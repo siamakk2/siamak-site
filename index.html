@@ -336,6 +336,7 @@
     <li><a onclick="showPage('about');closeMenu()" id="nav-about">About</a></li>
     <li><a onclick="showPage('services');closeMenu()" id="nav-services">Services</a></li>
     <li><a onclick="showPage('voice');closeMenu()" id="nav-voice">AI Advisor</a></li>
+    <li><a href="/voice" target="_blank" style="color:var(--gold)!important;opacity:1!important;">🎙️ Talk Live</a></li>
     <li><a onclick="showPage('book');closeMenu()" id="nav-book">Book a Call</a></li>
   </ul>
   <button class="nav-cta" onclick="showPage('book')">Free Strategy Audit</button>
@@ -356,6 +357,7 @@
       <div class="hero-btns">
         <button class="btn-gold" onclick="showPage('voice')">🎙️ &nbsp;Talk to My AI Advisor</button>
         <button class="btn-ghost" onclick="showPage('book')">Book a Strategy Session →</button>
+        <a href="/voice" target="_blank" style="display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);text-decoration:none;margin-top:0.5rem;opacity:0.75;transition:opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.75;">↗ &nbsp;Open standalone voice advisor page</a>
       </div>
       <div class="hero-stats">
         <div><div class="stat-n">40+</div><div class="stat-l">Years Experience</div></div>
@@ -665,9 +667,14 @@
   <div class="mini-voice-inner">
     <div style="font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(201,168,76,0.65);margin-bottom:0.6rem;">🎙️ &nbsp;AI Voice Advisor — 24/7 · 13 Languages</div>
     <p style="font-size:0.88rem;color:rgba(245,242,238,0.45);margin-bottom:1.25rem;">Have a quick question? Get instant expert answers — no appointment needed.</p>
-    <button onclick="showPage('voice')" style="display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(201,168,76,0.35);color:rgba(201,168,76,0.85);font-family:var(--font-body);font-size:0.75rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:0.7rem 1.75rem;border-radius:2px;cursor:pointer;transition:border-color 0.2s,color 0.2s;" onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c';" onmouseout="this.style.borderColor='rgba(201,168,76,0.35)';this.style.color='rgba(201,168,76,0.85)';">
-      Talk to My AI Advisor →
-    </button>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <button onclick="showPage('voice')" style="display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(201,168,76,0.35);color:rgba(201,168,76,0.85);font-family:var(--font-body);font-size:0.75rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:0.7rem 1.75rem;border-radius:2px;cursor:pointer;transition:border-color 0.2s,color 0.2s;" onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c';" onmouseout="this.style.borderColor='rgba(201,168,76,0.35)';this.style.color='rgba(201,168,76,0.85)';">
+        Talk to My AI Advisor →
+      </button>
+      <a href="/voice" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--black);font-family:var(--font-body);font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.7rem 1.75rem;border-radius:2px;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#e8d5a3';" onmouseout="this.style.background='#c9a84c';">
+        🔗 &nbsp;Open Full Voice Page →
+      </a>
+    </div>
   </div>
 </div>
 
