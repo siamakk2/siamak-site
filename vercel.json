@@ -1,5 +1,6 @@
 {
-  "rewrites": [
-    { "source": "/((?!voice).*)", "destination": "/index.html" }
+  "routes": [
+    { "src": "/voice", "dest": "/voice/index.html" },
+    { "src": "/", "dest": "/index.html" }
   ]
 }
