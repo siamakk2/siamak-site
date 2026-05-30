@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Siamak Kalhor — AI Marketing & Business Growth Consultant</title>
+  <meta name="description" content="AI-driven digital marketing consultant specializing in business growth, LMO, and brand strategy. 40 years of experience." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #080808;
+      --white: #f5f2ee;
+      --cream: #ede9e2;
+      --gold: #c9a84c;
+      --gold-light: #e8d5a3;
+      --gold-dark: #8a6f2e;
+      --muted: #7a7468;
+      --border: rgba(201,168,76,0.2);
+      --card-bg: #111010;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 4rem;
+      background: rgba(8,8,8,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.3s;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.2s, color 0.2s;
+      cursor: pointer;
+    }
+    .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--gold); }
+    .nav-cta {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--gold);
+      padding: 0.6rem 1.5rem;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .nav-cta:hover { background: var(--gold-light); }
+
+    /* ── PAGES ── */
+    .page { display: none; min-height: 100vh; }
+    .page.active { display: block; }
+
+    /* ── HOME ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 4rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 50%, rgba(201,168,76,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(201,168,76,0.04) 0%, transparent 60%),
+        linear-gradient(180deg, #080808 0%, #0e0d0b 100%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0; opacity: 0.04;
+      background-image: linear-gradient(var(--gold) 1px, transparent 1px), linear-gradient(90deg, var(--gold) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 900px; }
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 7vw, 7rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      color: var(--white);
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(245,242,238,0.65);
+      max-width: 520px;
+      line-height: 1.75;
+      margin-bottom: 3rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--gold);
+      color: var(--black);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1rem 2rem;
+      border-radius: 2px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s, transform 0.15s;
+      font-family: var(--font-body);
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: transparent;
+      color: var(--white);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1rem 2rem;
+      border-radius: 2px;
+      border: 1px solid rgba(245,242,238,0.2);
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      font-family: var(--font-body);
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-stats {
+      position: relative; z-index: 1;
+      display: flex; gap: 4rem;
+      margin-top: 6rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 0;
+      background: rgba(201,168,76,0.03);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 4rem;
+      animation: marquee 30s linear infinite;
+      width: max-content;
+    }
+    .marquee-item {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.6;
+      white-space: nowrap;
+      display: flex; align-items: center; gap: 1.5rem;
+    }
+    .marquee-item::after { content: '◆'; font-size: 0.5rem; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 6rem 4rem; }
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+    }
+    h2 em { font-style: italic; color: var(--gold); }
+
+    /* ── ABOUT STRIP (HOME) ── */
+    .about-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+    .about-text p {
+      color: rgba(245,242,238,0.65);
+      margin-bottom: 1.25rem;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+    .about-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .about-card {
+      background: var(--card-bg);
+      padding: 2rem;
+    }
+    .about-card-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+    .about-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+      color: var(--gold);
+    }
+    .about-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── SERVICES PAGE ── */
+    .services-hero {
+      padding: 10rem 4rem 5rem;
+      background: radial-gradient(ellipse 50% 60% at 90% 40%, rgba(201,168,76,0.07) 0%, transparent 70%);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin: 0 4rem 6rem;
+    }
+    .service-card {
+      background: var(--card-bg);
+      padding: 2.5rem;
+      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .service-card:hover { background: #161512; }
+    .service-card:hover::before { opacity: 1; }
+    .service-num {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      opacity: 0.5;
+      margin-bottom: 1.5rem;
+    }
+    .service-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      color: var(--white);
+    }
+    .service-card p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.3);
+      padding: 0.2rem 0.6rem;
+      border-radius: 1px;
+    }
+
+    /* ── VOICE ADVISOR PAGE ── */
+    .voice-hero {
+      padding: 10rem 4rem 4rem;
+      text-align: center;
+      background: radial-gradient(ellipse 60% 50% at 50% 30%, rgba(201,168,76,0.07) 0%, transparent 70%);
+    }
+    .voice-hero h1 { max-width: 700px; margin: 0 auto 1.5rem; }
+    .voice-hero p {
+      max-width: 520px;
+      margin: 0 auto 3rem;
+      color: rgba(245,242,238,0.6);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+    .widget-shell {
+      max-width: 100%;
+      margin: 0 4rem 6rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .widget-header {
+      background: #0e0d0b;
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .widget-header-left { display: flex; align-items: center; gap: 1rem; }
+    .widget-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+    .widget-title-text {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--white);
+    }
+    .widget-subtitle {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+    .widget-body { padding: 2.5rem 3rem; }
+
+    /* ── BOOK PAGE ── */
+    .book-hero {
+      padding: 10rem 4rem 5rem;
+    }
+    .book-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      padding: 0 4rem 6rem;
+      align-items: start;
+    }
+    .book-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+    }
+    .book-info p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .book-features { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+    .book-features li {
+      display: flex; align-items: flex-start; gap: 1rem;
+      font-size: 0.875rem;
+      color: rgba(245,242,238,0.7);
+      line-height: 1.6;
+    }
+    .book-features li::before {
+      content: '◆';
+      color: var(--gold);
+      font-size: 0.4rem;
+      margin-top: 0.4rem;
+      flex-shrink: 0;
+    }
+    .book-form {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+    }
+    .form-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+    .form-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 2rem; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: #0a0a0a;
+      border: 1px solid rgba(201,168,76,0.15);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 300;
+      padding: 0.85rem 1rem;
+      border-radius: 2px;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+    }
+    .form-group select option { background: #111; }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-submit {
+      width: 100%;
+      background: var(--gold);
+      color: var(--black);
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1.1rem;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      margin-top: 0.75rem;
+      transition: background 0.2s;
+    }
+    .form-submit:hover { background: var(--gold-light); }
+    .form-note { font-size: 0.72rem; color: var(--muted); text-align: center; margin-top: 0.75rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { font-size: 0.72rem; color: var(--muted); }
+
+    /* ── SUCCESS MESSAGE ── */
+    .success-msg {
+      display: none;
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.3);
+      padding: 1.5rem;
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .success-msg p { color: var(--gold); font-size: 0.9rem; }
+
+    /* ── ANIMATIONS ── */
+    .fade-in { animation: fadeIn 0.7s ease both; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section, .services-hero, .voice-hero, .book-hero { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .hero { padding: 7rem 1.5rem 4rem; }
+      .hero-stats { gap: 2rem; flex-wrap: wrap; }
+      .about-strip { grid-template-columns: 1fr; gap: 3rem; }
+      .services-grid { margin: 0 1.5rem 4rem; }
+      .book-grid { grid-template-columns: 1fr; gap: 3rem; padding: 0 1.5rem 4rem; }
+      .widget-shell { margin: 0 1.5rem 4rem; }
+      .widget-body { padding: 1.5rem; }
+      footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo" onclick="showPage('home')">SK Consulting</span>
+    <ul class="nav-links">
+      <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+      <li><a onclick="showPage('services')" id="nav-services">Services</a></li>
+      <li><a onclick="showPage('voice')" id="nav-voice">AI Advisor</a></li>
+      <li><a onclick="showPage('book')" id="nav-book">Book a Call</a></li>
+    </ul>
+    <span class="nav-cta" onclick="showPage('book')">Book Strategy Session</span>
+  </nav>
+
+  <!-- ══════════════ HOME ══════════════ -->
+  <div id="page-home" class="page active">
+
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-grid"></div>
+      <div class="hero-content fade-in">
+        <div class="hero-eyebrow">AI Marketing & Business Growth Consultant</div>
+        <h1>Where <em>Strategy</em><br>Meets the Age<br>of Intelligence</h1>
+        <p class="hero-sub">40 years of market mastery, now supercharged with AI. I help brands grow faster, rank higher, and lead with authority in the era of large language models.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="showPage('voice')">🎙️ &nbsp;Talk to My AI Advisor</button>
+          <button class="btn-outline" onclick="showPage('book')">Book a Strategy Session →</button>
+        </div>
+      </div>
+      <div class="hero-stats fade-in">
+        <div>
+          <div class="stat-num">40+</div>
+          <div class="stat-label">Years of Experience</div>
+        </div>
+        <div>
+          <div class="stat-num">13</div>
+          <div class="stat-label">Languages</div>
+        </div>
+        <div>
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">AI Advisor Access</div>
+        </div>
+        <div>
+          <div class="stat-num">LMO™</div>
+          <div class="stat-label">Proprietary Framework</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        <span class="marquee-item">Large Model Optimization</span>
+        <span class="marquee-item">Neural DNA Architect™</span>
+        <span class="marquee-item">S.C.A.L.E. Framework™</span>
+        <span class="marquee-item">AI Brand Strategy</span>
+        <span class="marquee-item">Algorithmic Authority</span>
+        <span class="marquee-item">Fractional CMO</span>
+        <span class="marquee-item">Business Growth Consulting</span>
+        <span class="marquee-item">Digital Marketing</span>
+        <span class="marquee-item">Large Model Optimization</span>
+        <span class="marquee-item">Neural DNA Architect™</span>
+        <span class="marquee-item">S.C.A.L.E. Framework™</span>
+        <span class="marquee-item">AI Brand Strategy</span>
+        <span class="marquee-item">Algorithmic Authority</span>
+        <span class="marquee-item">Fractional CMO</span>
+        <span class="marquee-item">Business Growth Consulting</span>
+        <span class="marquee-item">Digital Marketing</span>
+      </div>
+    </div>
+
+    <section>
+      <div class="about-strip">
+        <div class="about-text">
+          <div class="section-label">About Siamak Kalhor</div>
+          <h2>The Architect of Your <em>Digital Future</em></h2>
+          <p>I'm Siamak Kalhor — a digital marketing consultant with 40 years of experience and a relentless obsession with what's next. I was doing marketing before the internet existed, and I've adapted every step of the way.</p>
+          <p>Today I specialize in helping businesses become visible, cited, and trusted by AI systems like ChatGPT, Gemini, and Claude — not just Google. This is Large Model Optimization, and it's the most important shift in marketing since the web.</p>
+          <button class="btn-outline" onclick="showPage('services')" style="margin-top:1rem;">Explore My Services →</button>
+        </div>
+        <div class="about-cards">
+          <div class="about-card">
+            <div class="about-card-icon">🧠</div>
+            <h3>AI-First Thinking</h3>
+            <p>Every strategy is built for the AI era, not just traditional search engines.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">📈</div>
+            <h3>Proven Growth</h3>
+            <p>Four decades of turning stagnant brands into market leaders.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">🌍</div>
+            <h3>Global Reach</h3>
+            <p>My AI Advisor speaks 13 languages. No market is out of reach.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">⚡</div>
+            <h3>Speed & Precision</h3>
+            <p>Strategies that move fast and hit hard, without wasted budget.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ══════════════ SERVICES ══════════════ -->
+  <div id="page-services" class="page">
+
+    <div class="services-hero">
+      <div class="section-label">What I Do</div>
+      <h1>Architectural Solutions<br>for the <em>AI Era</em></h1>
+      <p style="color:var(--muted);font-size:1rem;max-width:560px;line-height:1.75;margin-top:1rem;">Not marketing tactics. Not quick fixes. Strategic systems built to make your brand the authority that AI and humans both trust.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <h3>Large Model Optimization (LMO™)</h3>
+        <p>The evolution of SEO. I re-engineer your brand's digital presence so that ChatGPT, Gemini, and Claude cite you as a primary authority — not your competitors.</p>
+        <div class="service-tags">
+          <span class="tag">Entity Linking</span>
+          <span class="tag">AI Sentiment</span>
+          <span class="tag">Semantic Enrichment</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <h3>Neural DNA Architect™</h3>
+        <p>A radical deep-scan audit of your entire digital footprint. I identify the hidden friction points in your brand voice, metadata, and conversion path that are silently costing you revenue.</p>
+        <div class="service-tags">
+          <span class="tag">Brand Diagnosis</span>
+          <span class="tag">Voice Alignment</span>
+          <span class="tag">Web Optimization</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <h3>S.C.A.L.E. Framework™</h3>
+        <p>My proprietary five-stage system that transforms business potential into market leadership through algorithmic mastery, content authority, automation, video strategy, and AI-driven execution.</p>
+        <div class="service-tags">
+          <span class="tag">Google Ads</span>
+          <span class="tag">Meta Suite</span>
+          <span class="tag">Automation</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <h3>Fractional CMO</h3>
+        <p>The strategic oversight of a seasoned marketing executive — without the full-time cost. Get 40 years of market context applied directly to your growth trajectory.</p>
+        <div class="service-tags">
+          <span class="tag">Executive Strategy</span>
+          <span class="tag">Growth Blueprints</span>
+          <span class="tag">Market Navigation</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <h3>Lead Velocity & Conversion Automation</h3>
+        <p>Automated funnels that convert traffic into revenue around the clock — without increasing your overhead. I build the systems that do the heavy lifting of your sales process.</p>
+        <div class="service-tags">
+          <span class="tag">Funnel Design</span>
+          <span class="tag">CPA Reduction</span>
+          <span class="tag">Email Automation</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <h3>Legacy Brand Transformation</h3>
+        <p>Specialized consulting for established businesses stepping into the AI-first world. I protect what your brand has built while modernizing every touchpoint for the next decade.</p>
+        <div class="service-tags">
+          <span class="tag">Digital Transition</span>
+          <span class="tag">Heritage Protection</span>
+          <span class="tag">AI Readiness</span>
+        </div>
+      </div>
+
+    </div>
+
+    <section style="text-align:center;padding-top:0;">
+      <p style="color:var(--muted);margin-bottom:2rem;font-size:0.95rem;">Ready to claim your digital edge?</p>
+      <button class="btn-primary" onclick="showPage('book')" style="margin:0 auto;">Book a Free 30-Min Strategy Audit →</button>
+    </section>
+
+  </div>
+
+  <!-- ══════════════ VOICE ADVISOR ══════════════ -->
+  <div id="page-voice" class="page">
+
+    <div class="voice-hero">
+      <div class="section-label" style="justify-content:center;">AI Voice Advisor</div>
+      <h1>Ask Me Anything.<br><em>In Your Language.</em></h1>
+      <p>My AI advisor is trained on everything I know about digital marketing, brand growth, and AI strategy. Available 24/7, in 13 languages. No appointment needed.</p>
+    </div>
+
+    <div class="widget-shell">
+      <div class="widget-header">
+        <div class="widget-header-left">
+          <div class="widget-dot"></div>
+          <div>
+            <div class="widget-title-text">Siamak Kalhor AI Advisor</div>
+            <div class="widget-subtitle">Online · Ready to talk</div>
+          </div>
+        </div>
+        <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;">13 LANGUAGES</div>
+      </div>
+      <div class="widget-body">
+
+        <!-- The actual embed widget -->
+        <div style="font-family:var(--font-body);font-size:var(--font-body);">
+
+          <p style="font-size:0.9rem;color:rgba(245,242,238,0.6);line-height:1.7;margin:0 0 2rem;max-width:600px;">
+            Hi! I'm Siamak's AI advisor. Ask me about <strong style="color:var(--white);">digital marketing, brand growth, LMO, or AI strategy</strong> — or just say hello in your own language. Pick your language below, then start the call.
+          </p>
+
+          <p style="font-size:0.7rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">① Choose your language</p>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-bottom:2rem;" id="lang-grid">
+
+            <button onclick="selectLang('en','English')" id="btn-en" class="lang-btn">
+              <span style="font-size:24px;">🇺🇸</span><span>English</span>
+            </button>
+            <button onclick="selectLang('bg','Bulgarian')" id="btn-bg" class="lang-btn">
+              <span style="font-size:24px;">🇧🇬</span><span>Bulgarian</span>
+            </button>
+            <button onclick="selectLang('zh','Chinese')" id="btn-zh" class="lang-btn">
+              <span style="font-size:24px;">🇨🇳</span><span>中文</span>
+            </button>
+            <button onclick="selectLang('tl','Filipino')" id="btn-tl" class="lang-btn">
+              <span style="font-size:24px;">🇵🇭</span><span>Filipino</span>
+            </button>
+            <button onclick="selectLang('fr','French')" id="btn-fr" class="lang-btn">
+              <span style="font-size:24px;">🇫🇷</span><span>Français</span>
+            </button>
+            <button onclick="selectLang('de','German')" id="btn-de" class="lang-btn">
+              <span style="font-size:24px;">🇩🇪</span><span>Deutsch</span>
+            </button>
+            <button onclick="selectLang('he','Hebrew')" id="btn-he" class="lang-btn">
+              <span style="font-size:24px;">🇮🇱</span><span>עברית</span>
+            </button>
+            <button onclick="selectLang('it','Italian')" id="btn-it" class="lang-btn">
+              <span style="font-size:24px;">🇮🇹</span><span>Italiano</span>
+            </button>
+            <button onclick="selectLang('ko','Korean')" id="btn-ko" class="lang-btn">
+              <span style="font-size:24px;">🇰🇷</span><span>한국어</span>
+            </button>
+            <button onclick="selectLang('fa','Persian')" id="btn-fa" class="lang-btn">
+              <span style="font-size:24px;">🇮🇷</span><span>فارسی</span>
+            </button>
+            <button onclick="selectLang('pt','Portuguese')" id="btn-pt" class="lang-btn">
+              <span style="font-size:24px;">🇵🇹</span><span>Português</span>
+            </button>
+            <button onclick="selectLang('es','Spanish')" id="btn-es" class="lang-btn">
+              <span style="font-size:24px;">🇪🇸</span><span>Español</span>
+            </button>
+            <button onclick="selectLang('sv','Swedish')" id="btn-sv" class="lang-btn">
+              <span style="font-size:24px;">🇸🇪</span><span>Svenska</span>
+            </button>
+
+          </div>
+
+          <div id="call-section" style="display:none;">
+            <p style="font-size:0.7rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">② Start your conversation</p>
+
+            <div style="background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.2);padding:0.85rem 1.25rem;margin-bottom:1.25rem;display:flex;align-items:center;gap:0.75rem;border-radius:2px;">
+              <span>✅</span>
+              <p id="lang-confirm" style="font-size:0.875rem;color:var(--gold);margin:0;font-weight:500;"></p>
+            </div>
+
+            <button onclick="launchWidget()" id="start-btn" style="display:flex;align-items:center;justify-content:center;gap:12px;width:100%;padding:1.25rem;border-radius:2px;border:none;background:var(--gold);color:var(--black);font-size:1rem;font-weight:700;cursor:pointer;font-family:var(--font-body);letter-spacing:0.05em;transition:background 0.2s;">
+              📞 &nbsp;Start a call now
+            </button>
+            <p style="font-size:0.7rem;color:var(--muted);text-align:center;margin-top:0.75rem;font-family:var(--font-mono);">Allow microphone access when prompted</p>
+
+            <div id="widget-container" style="margin-top:1.5rem;text-align:center;"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <section style="text-align:center;padding-top:0;padding-bottom:5rem;">
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem;">Prefer a live strategy session with Siamak directly?</p>
+      <button class="btn-outline" onclick="showPage('book')">Book a Real Session →</button>
+    </section>
+
+  </div>
+
+  <!-- ══════════════ BOOK A CALL ══════════════ -->
+  <div id="page-book" class="page">
+
+    <div class="book-hero">
+      <div class="section-label">Book a Session</div>
+      <h1>Let's Build Your<br><em>Growth Strategy</em></h1>
+    </div>
+
+    <div class="book-grid">
+      <div class="book-info">
+        <h3>Free 30-Minute Strategy Audit</h3>
+        <p>In 30 minutes, I'll identify exactly where your brand is leaking revenue, where your biggest growth opportunities are, and what an AI-first strategy looks like for your specific business.</p>
+        <p>No fluff. No sales pitch. Just 40 years of market experience focused entirely on your business.</p>
+        <ul class="book-features">
+          <li>Deep-scan review of your current digital presence</li>
+          <li>Identification of hidden bottlenecks and revenue leaks</li>
+          <li>A clear picture of your LMO opportunities</li>
+          <li>Actionable next steps you can use immediately</li>
+          <li>Personalized roadmap for AI-era brand authority</li>
+        </ul>
+        <div style="margin-top:2rem;padding:1.5rem;background:var(--card-bg);border:1px solid var(--border);">
+          <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.15em;color:var(--gold);margin-bottom:0.5rem;">DIRECT CONTACT</div>
+          <div style="font-family:var(--font-display);font-size:1.4rem;color:var(--white);">323-657-7752</div>
+          <div style="font-size:0.8rem;color:var(--muted);margin-top:0.25rem;">siamakk2@gmail.com</div>
+        </div>
+      </div>
+
+      <div class="book-form">
+        <div class="form-title">Request Your Session</div>
+        <div class="form-sub">Fill out the form and I'll be in touch within 24 hours.</div>
+
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="Siamak" required />
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="Kalhor" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="you@company.com" required />
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+1 (323) 000-0000" />
+          </div>
+          <div class="form-group">
+            <label>Your Business / Industry</label>
+            <input type="text" placeholder="e.g. E-commerce, Legal, Medical..." required />
+          </div>
+          <div class="form-group">
+            <label>Primary Goal</label>
+            <select required>
+              <option value="" disabled selected>Select your main goal</option>
+              <option>Increase website traffic & leads</option>
+              <option>AI / LMO brand visibility</option>
+              <option>Social media & content strategy</option>
+              <option>Paid ads & conversion optimization</option>
+              <option>Full digital transformation</option>
+              <option>Fractional CMO services</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tell Me About Your Business</label>
+            <textarea placeholder="What's your biggest challenge right now? What does success look like for you?"></textarea>
+          </div>
+          <button type="submit" class="form-submit">Request My Free Strategy Audit →</button>
+          <p class="form-note">100% confidential · No spam · Response within 24 hours</p>
+        </form>
+
+        <div class="success-msg" id="success-msg">
+          <p>✅ &nbsp;Thank you! Siamak will be in touch within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Siamak Kalhor Consulting</div>
+    <div class="footer-links">
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('services')">Services</a>
+      <a onclick="showPage('voice')">AI Advisor</a>
+      <a onclick="showPage('book')">Book a Call</a>
+      <a href="https://siamakkalhor.com/privacy-policy" target="_blank">Privacy</a>
+    </div>
+    <div class="footer-copy">© 2026 Siamak Kalhor Consulting</div>
+  </footer>
+
+  <!-- Language button styles injected -->
+  <style>
+    .lang-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 0.85rem 0.5rem;
+      border-radius: 2px;
+      border: 1px solid rgba(201,168,76,0.2);
+      background: #111010;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(245,242,238,0.7);
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
+    }
+    .lang-btn:hover {
+      border-color: rgba(201,168,76,0.5);
+      color: var(--white);
+    }
+    .lang-btn.selected {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.1);
+      color: var(--gold);
+    }
+  </style>
+
+  <script>
+    // ── PAGE ROUTING ──
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+      document.getElementById('page-' + id).classList.add('active');
+      var navEl = document.getElementById('nav-' + id);
+      if (navEl) navEl.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── LANGUAGE SELECTION ──
+    var selectedLang = null;
+    var langCodes = ['en','bg','zh','tl','fr','de','he','it','ko','fa','pt','es','sv'];
+
+    function selectLang(code, label) {
+      selectedLang = code;
+      langCodes.forEach(function(c) {
+        var btn = document.getElementById('btn-' + c);
+        if (btn) btn.classList.remove('selected');
+      });
+      var sel = document.getElementById('btn-' + code);
+      if (sel) sel.classList.add('selected');
+      document.getElementById('lang-confirm').textContent = 'Language set to ' + label + ' — ready when you are!';
+      document.getElementById('call-section').style.display = 'block';
+      document.getElementById('call-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      document.getElementById('widget-container').innerHTML = '';
+      var btn = document.getElementById('start-btn');
+      btn.innerHTML = '📞 &nbsp;Start a call now';
+      btn.style.background = 'var(--gold)';
+      btn.disabled = false;
+    }
+
+    function launchWidget() {
+      if (!selectedLang) return;
+      var btn = document.getElementById('start-btn');
+      btn.innerHTML = '⏳ &nbsp;Connecting...';
+      btn.style.background = '#5a5040';
+      btn.disabled = true;
+
+      var container = document.getElementById('widget-container');
+      var oldScript = document.getElementById('el-script');
+      if (oldScript) oldScript.remove();
+
+      container.innerHTML = '<elevenlabs-convai agent-id="agent_1501ksnmsv1dea1rmb2ed6t8rzwe" language="' + selectedLang + '"></elevenlabs-convai>';
+
+      var script = document.createElement('script');
+      script.id = 'el-script';
+      script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
+      script.type = 'text/javascript';
+      script.onload = function() {
+        setTimeout(function() {
+          var widget = container.querySelector('elevenlabs-convai');
+          if (widget && widget.shadowRoot) {
+            var startBtn = widget.shadowRoot.querySelector('button');
+            if (startBtn) startBtn.click();
+          }
+          btn.innerHTML = '📞 &nbsp;Start a call now';
+          btn.style.background = 'var(--gold)';
+          btn.disabled = false;
+        }, 800);
+      };
+      document.body.appendChild(script);
+    }
+
+    // ── FORM SUBMIT ──
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('success-msg').style.display = 'block';
+      e.target.reset();
+      e.target.style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
