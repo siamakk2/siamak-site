@@ -5,6 +5,10 @@
       "dest": "/aislebird/index.html"
     },
     {
+      "src": "/bluemoon",
+      "dest": "/bluemoon/index.html"
+    },
+    {
       "src": "/voice",
       "dest": "/voice/index.html"
     },
