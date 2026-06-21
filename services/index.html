@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulting Services — AI Marketing, Growth Strategy, LLMO Optimization</title>
+  <meta name="description" content="Strategic consulting services: AI marketing, Large Language Model Optimization (LLMO), business growth strategy, digital transformation, brand positioning, and e-commerce scaling.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --primary: #4a3728;
+      --accent: #c4a574;
+      --text: #2a2a2a;
+      --text-light: #666;
+      --bg: #faf8f5;
+      --card: #ffffff;
+      --border: #e8e4df;
+    }
+    
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+    }
+    
+    header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text);
+    }
+    
+    .header-nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      margin-left: 40px;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    
+    .header-nav a:hover {
+      color: var(--primary);
+    }
+    
+    .hero {
+      padding: 100px 40px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(196, 165, 116, 0.08) 0%, rgba(232, 213, 163, 0.04) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    
+    .hero p {
+      font-size: 16px;
+      color: var(--text-light);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    
+    .section {
+      padding: 80px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 600;
+      margin-bottom: 40px;
+      color: var(--text);
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    
+    .service-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 50px;
+      transition: all 0.3s;
+    }
+    
+    .service-card:hover {
+      border-color: var(--accent);
+      background: rgba(196, 165, 116, 0.02);
+      transform: translateY(-4px);
+    }
+    
+    .service-icon {
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+    
+    .service-card h3 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    
+    .service-card p {
+      font-size: 15px;
+      color: var(--text-light);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    
+    .service-bullet {
+      font-size: 13px;
+      color: var(--text-light);
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+    }
+    
+    .service-bullet:before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    
+    .content-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 60px;
+      margin-bottom: 40px;
+      line-height: 2;
+    }
+    
+    .content-block h3 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    
+    .content-block p {
+      font-size: 16px;
+      color: var(--text-light);
+      margin-bottom: 16px;
+    }
+    
+    .highlight {
+      background: rgba(196, 165, 116, 0.15);
+      padding: 2px 6px;
+      border-radius: 3px;
+      color: var(--primary);
+      font-weight: 600;
+    }
+    
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+    
+    .step {
+      text-align: center;
+    }
+    
+    .step-number {
+      font-size: 48px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    
+    .step h4 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+    
+    .step p {
+      font-size: 14px;
+      color: var(--text-light);
+    }
+    
+    .cta-section {
+      background: rgba(196, 165, 116, 0.08);
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      padding: 60px;
+      text-align: center;
+    }
+    
+    .cta-section h2 {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    
+    .cta-section p {
+      font-size: 16px;
+      color: var(--text-light);
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    
+    .cta-button:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+    
+    footer {
+      background: var(--primary);
+      color: #fff;
+      padding: 60px 40px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    
+    footer p {
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+    
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+      .hero { padding: 60px 20px; }
+      .hero h1 { font-size: 36px; }
+      .section { padding: 60px 20px; }
+      .content-block { padding: 40px; }
+      .services-grid { gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" class="header-logo">Siamak Kalhor Consulting</a>
+    <nav class="header-nav">
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      <a href="/about-us">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Strategic Consulting Services</h1>
+    <p>AI-powered business growth through data-driven strategy, LLM optimization, and proven execution methodologies.</p>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Core Services</h2>
+    
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🤖</div>
+        <h3>AI & LLM Optimization</h3>
+        <p>Identify where artificial intelligence creates competitive advantage in your business. From smart categorization engines to AI-powered product innovation.</p>
+        <div class="service-bullet">Smart content generation & optimization</div>
+        <div class="service-bullet">Intelligent product categorization systems</div>
+        <div class="service-bullet">AI-powered feature development</div>
+        <div class="service-bullet">LLM integration strategy</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📈</div>
+        <h3>Business Growth Strategy</h3>
+        <p>Scale from startup to market leader. Systematic approach to market analysis, positioning, and revenue acceleration.</p>
+        <div class="service-bullet">Market opportunity analysis</div>
+        <div class="service-bullet">Product-market fit strategy</div>
+        <div class="service-bullet">Revenue growth roadmaps</div>
+        <div class="service-bullet">Competitive positioning</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🛍️</div>
+        <h3>Digital Transformation</h3>
+        <p>Take traditional retail and service businesses digital. E-commerce strategy, omnichannel operations, and supply chain optimization.</p>
+        <div class="service-bullet">Shopify & e-commerce strategy</div>
+        <div class="service-bullet">Digital operations design</div>
+        <div class="service-bullet">Supply chain optimization</div>
+        <div class="service-bullet">Logistics & fulfillment</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🎯</div>
+        <h3>Brand & Marketing Strategy</h3>
+        <p>Clarify your differentiated value proposition and build marketing strategies that attract high-value customers efficiently.</p>
+        <div class="service-bullet">Brand positioning development</div>
+        <div class="service-bullet">Go-to-market strategy</div>
+        <div class="service-bullet">Customer acquisition strategy</div>
+        <div class="service-bullet">Content & messaging framework</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">💬</div>
+        <h3>Voice & AI Consulting</h3>
+        <p>Build voice-enabled applications and AI-powered user experiences. Voice UX strategy, recognition systems, and voice commerce.</p>
+        <div class="service-bullet">Voice application strategy</div>
+        <div class="service-bullet">Voice UX design</div>
+        <div class="service-bullet">Conversational AI integration</div>
+        <div class="service-bullet">Voice commerce solutions</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3>Analytics & Insights</h3>
+        <p>Data-driven decision making. Build measurement frameworks, KPI dashboards, and customer intelligence systems.</p>
+        <div class="service-bullet">Analytics & measurement design</div>
+        <div class="service-bullet">KPI & dashboard development</div>
+        <div class="service-bullet">Customer behavior analysis</div>
+        <div class="service-bullet">Reporting & insights automation</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Our Consulting Process</h2>
+    
+    <div class="content-block">
+      <p style="font-size: 18px; margin-bottom: 40px;">
+        Real transformation happens through systematic application of strategy over years. Here's how we work:
+      </p>
+      
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h4>Diagnose</h4>
+          <p>Understand root problems and identify the highest-impact opportunities for your business.</p>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">2</div>
+          <h4>Design</h4>
+          <p>Build a clear strategic roadmap with specific milestones, timelines, and success metrics.</p>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">3</div>
+          <h4>Execute</h4>
+          <p>Implement with precision and discipline. Regular checkpoints and course correction as needed.</p>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">4</div>
+          <h4>Measure</h4>
+          <p>Track relentlessly. Iterate based on results. Continuous improvement mindset.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Why This Approach Works</h2>
+    
+    <div class="content-block">
+      <h3>Strategy Before Tactics</h3>
+      <p>
+        Too many businesses jump straight to execution without clarity on strategy. You can't optimize your way out of a bad strategy. We start with <span class="highlight">crystal clear strategy</span>, then execute with precision.
+      </p>
+    </div>
+
+    <div class="content-block">
+      <h3>Long-Term Thinking</h3>
+      <p>
+        Real growth takes time. Blue Moon Fabrics grew 100x over 8 years through consistent, systematic application of strategy. Not a viral moment. Not a quick hack. <span class="highlight">Disciplined growth</span> that compounds.
+      </p>
+    </div>
+
+    <div class="content-block">
+      <h3>Data Informs Everything</h3>
+      <p>
+        Gut feeling is not a strategy. We measure everything, track what matters, and make decisions based on evidence. This is how you avoid costly mistakes and identify real opportunities.
+      </p>
+    </div>
+
+    <div class="content-block">
+      <h3>AI as a Competitive Advantage</h3>
+      <p>
+        AI is not a feature. It's a way to do business smarter and faster. <span class="highlight">Large Language Model Optimization (LLMO)</span> — understanding where AI amplifies your value — is now table stakes for competitive advantage.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="cta-section">
+      <h2>Ready to Transform Your Business?</h2>
+      <p>Whether you're a startup looking for strategic direction or an established business ready to scale through AI and digital innovation, let's explore what's possible together.</p>
+      <a href="/contact" class="cta-button">Schedule a Consultation</a>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>Siamak Kalhor Consulting</strong></p>
+    <p>AI Marketing & Business Growth Strategy</p>
+    <p style="margin-top: 20px; font-size: 12px; opacity: 0.8;">
+      <a href="/services">Services</a> • <a href="/about-us">About</a> • <a href="/contact">Contact</a> • <a href="/faq">FAQ</a>
+    </p>
+  </footer>
+</body>
+</html>
