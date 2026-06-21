@@ -3,38 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Siamak Kalhor — AI Marketing & Business Growth Consultant</title>
-  <meta name="description" content="AI marketing consultant specializing in Large Language Model Optimization (LLMO), brand strategy, digital transformation, and business growth. The S.C.A.L.E. Framework for exponential growth. 24/7 AI Voice Advisor.">
+  <title>Siamak Kalhor — AI Marketing Consultant & Business Growth Strategist</title>
+  <meta name="description" content="AI marketing expert. Large Model Optimization (LLMO). Business growth through strategic consulting. 40+ years experience. 24/7 AI voice advisor in 14 languages.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    :root {
-      --primary: #4a3728;
-      --accent: #c4a574;
-      --accent-light: #e8d5a3;
-      --text: #2a2a2a;
-      --text-light: #666;
-      --bg: #faf8f5;
-      --card: #ffffff;
-      --border: #e8e4df;
-      --dark: #1a1a1a;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    
-    body {
-      font-family: 'DM Sans', sans-serif;
+
+    :root {
+      --bg: #0a0a0a;
+      --bg-alt: #1a1a1a;
+      --text: #f5f5f5;
+      --text-light: #b0b0b0;
+      --gold: #c9a84c;
+      --gold-light: #e8d5a3;
+      --border: #333;
+      --accent: #4ade80;
+    }
+
+    html, body {
       background: var(--bg);
       color: var(--text);
-      line-height: 1.8;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      scroll-behavior: smooth;
     }
-    
+
     /* HEADER */
     header {
-      background: var(--card);
+      background: var(--bg-alt);
       border-bottom: 1px solid var(--border);
       padding: 20px 40px;
       display: flex;
@@ -42,435 +46,510 @@
       justify-content: space-between;
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
     }
-    
-    .header-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 20px;
-      font-weight: 600;
+
+    .logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
       text-decoration: none;
-      color: var(--text);
+      text-transform: uppercase;
     }
-    
-    .header-nav {
+
+    nav {
       display: flex;
       gap: 40px;
     }
-    
-    .header-nav a {
+
+    nav a {
       color: var(--text-light);
       text-decoration: none;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
       transition: color 0.2s;
-      position: relative;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
-    
-    .header-nav a:hover {
-      color: var(--primary);
+
+    nav a:hover {
+      color: var(--gold);
     }
-    
-    .header-nav a.active::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--accent);
-    }
-    
+
     /* HERO */
     .hero {
-      padding: 120px 40px 100px;
-      background: linear-gradient(135deg, rgba(196, 165, 116, 0.08) 0%, rgba(232, 213, 163, 0.04) 100%);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      padding: 100px 40px;
+      min-height: 700px;
       border-bottom: 1px solid var(--border);
     }
-    
-    .hero-content {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    
-    .hero-label {
-      font-size: 13px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-    
-    .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 64px;
-      font-weight: 600;
+
+    .hero-left h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      font-weight: 700;
+      line-height: 1.2;
       margin-bottom: 20px;
       color: var(--text);
-      line-height: 1.1;
     }
-    
-    .hero p {
-      font-size: 18px;
-      color: var(--text-light);
-      margin-bottom: 16px;
-      max-width: 700px;
-      line-height: 1.8;
+
+    .hero-left em {
+      color: var(--gold);
+      font-style: italic;
     }
-    
-    .hero-cta {
-      display: flex;
-      gap: 16px;
-      margin-top: 32px;
-    }
-    
-    .btn {
-      display: inline-block;
-      padding: 14px 32px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 15px;
-      transition: all 0.3s;
-      cursor: pointer;
-      border: none;
-      font-family: 'DM Sans', sans-serif;
-    }
-    
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-    }
-    
-    .btn-primary:hover {
-      opacity: 0.9;
-      transform: translateY(-2px);
-    }
-    
-    .btn-secondary {
-      background: transparent;
-      color: var(--text);
-      border: 2px solid var(--border);
-    }
-    
-    .btn-secondary:hover {
-      border-color: var(--accent);
-      background: rgba(196, 165, 116, 0.05);
-    }
-    
-    /* SECTIONS */
-    .section {
-      padding: 100px 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .section-header {
-      text-align: center;
-      margin-bottom: 80px;
-    }
-    
-    .section-label {
-      font-size: 13px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-    
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 48px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 16px;
-      line-height: 1.2;
-    }
-    
-    .section-subtitle {
+
+    .hero-left p {
       font-size: 16px;
       color: var(--text-light);
-      max-width: 600px;
+      margin-bottom: 30px;
+      max-width: 500px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 50px;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--bg);
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201, 168, 76, 0.05);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 400px;
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+
+    .stat-n {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .stat-l {
+      font-size: 12px;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .hero-img-main {
+      position: relative;
+      height: 400px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--border) 0%, var(--bg-alt) 100%);
+      border: 1px solid var(--border);
+    }
+
+    .hero-img-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-img-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .hero-img-sm {
+      position: relative;
+      height: 150px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--border) 0%, var(--bg-alt) 100%);
+      border: 1px solid var(--border);
+    }
+
+    .hero-img-sm img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* MARQUEE */
+    .marquee-wrap {
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-alt);
+      padding: 20px 0;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 40px;
+      animation: marquee 30s linear infinite;
+      font-size: 13px;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .marquee-item {
+      flex-shrink: 0;
+    }
+
+    .marquee-item:before {
+      content: '•';
+      margin-right: 40px;
+      color: var(--gold);
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 80px 40px;
+      border-bottom: 1px solid var(--border);
+      max-width: 1400px;
       margin: 0 auto;
     }
-    
-    /* SERVICES GRID */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 40px;
-    }
-    
-    .service-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 50px;
-      transition: all 0.3s;
-      position: relative;
-    }
-    
-    .service-card:hover {
-      border-color: var(--accent);
-      background: rgba(196, 165, 116, 0.02);
-      transform: translateY(-4px);
-    }
-    
-    .service-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 48px;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 16px;
-      opacity: 0.6;
-    }
-    
-    .service-card h3 {
-      font-size: 22px;
-      font-weight: 600;
+
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 700;
       margin-bottom: 16px;
       color: var(--text);
     }
-    
-    .service-card p {
+
+    .section h2 em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .section-desc {
       font-size: 15px;
       color: var(--text-light);
-      margin-bottom: 20px;
+      max-width: 700px;
+      margin-bottom: 50px;
       line-height: 1.8;
     }
-    
+
+    /* SERVICE CARDS */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    .service-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 40px;
+      transition: all 0.3s;
+    }
+
+    .service-card:hover {
+      border-color: var(--gold);
+      background: rgba(201, 168, 76, 0.05);
+      transform: translateY(-4px);
+    }
+
+    .service-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .service-num {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .service-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .service-card p {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
     .service-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
+      margin-top: 16px;
     }
-    
+
     .tag {
       display: inline-block;
-      background: rgba(196, 165, 116, 0.1);
-      color: var(--primary);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 12px;
+      background: rgba(201, 168, 76, 0.1);
+      color: var(--gold);
+      padding: 4px 10px;
+      border-radius: 3px;
+      font-size: 11px;
       font-weight: 600;
-    }
-    
-    /* FRAMEWORKS SECTION */
-    .frameworks {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 80px;
-      margin-bottom: 40px;
-    }
-    
-    .frameworks h3 {
-      font-size: 28px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: var(--text);
-    }
-    
-    .frameworks-subtitle {
-      font-size: 16px;
-      color: var(--text-light);
-      margin-bottom: 40px;
-      max-width: 700px;
-    }
-    
-    .scale-framework {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 30px;
-    }
-    
-    .scale-step {
-      text-align: center;
-    }
-    
-    .scale-letter {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 42px;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
-    
-    .scale-label {
-      font-weight: 600;
-      color: var(--text);
-      font-size: 15px;
-      margin-bottom: 8px;
-    }
-    
-    .scale-desc {
-      font-size: 13px;
-      color: var(--text-light);
-      line-height: 1.6;
-    }
-    
-    /* VOICE ADVISOR SECTION */
-    .voice-section {
-      background: var(--dark);
-      color: #fff;
-      border-radius: 12px;
-      padding: 80px;
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    
-    .voice-section h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 42px;
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-    
-    .voice-section p {
-      font-size: 16px;
-      color: rgba(255,255,255,0.7);
-      max-width: 600px;
-      margin: 0 auto 40px;
-    }
-    
-    /* CASE STUDIES */
-    .case-studies-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 40px;
-    }
-    
-    .case-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: all 0.3s;
-    }
-    
-    .case-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-    }
-    
-    .case-header {
-      background: linear-gradient(135deg, rgba(196, 165, 116, 0.15) 0%, rgba(232, 213, 163, 0.08) 100%);
-      padding: 40px;
-      border-bottom: 1px solid var(--border);
-    }
-    
-    .case-header h3 {
-      font-size: 24px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-    
-    .case-stat {
-      font-size: 13px;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      font-weight: 600;
+      letter-spacing: 0.03em;
     }
-    
-    .case-body {
-      padding: 40px;
+
+    /* VOICE SECTION */
+    .voice-section {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 60px;
+      margin: 50px 0;
     }
-    
-    .case-body p {
+
+    .voice-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .voice-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .voice-header p {
       font-size: 15px;
       color: var(--text-light);
-      margin-bottom: 20px;
-      line-height: 1.8;
+      max-width: 600px;
+      margin: 0 auto;
     }
-    
-    .case-body a {
-      color: var(--primary);
-      text-decoration: none;
+
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 12px;
+      margin-bottom: 30px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .lang-btn {
+      background: var(--bg);
+      border: 2px solid var(--border);
+      color: var(--text);
+      padding: 12px 16px;
+      border-radius: 4px;
+      font-size: 13px;
       font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
-    
+
+    .lang-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .lang-btn.active {
+      background: var(--gold);
+      color: var(--bg);
+      border-color: var(--gold);
+    }
+
+    #widget-container {
+      margin-top: 30px;
+      min-height: 300px;
+    }
+
+    #start-btn {
+      display: block;
+      margin: 0 auto;
+    }
+
     /* FOOTER */
     footer {
-      background: var(--primary);
-      color: #fff;
-      padding: 60px 40px;
-      text-align: center;
+      background: var(--bg-alt);
       border-top: 1px solid var(--border);
+      padding: 40px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-light);
     }
-    
-    footer p {
-      margin-bottom: 16px;
-      font-size: 14px;
-    }
-    
+
     footer a {
-      color: var(--accent);
+      color: var(--gold);
       text-decoration: none;
     }
-    
+
     footer a:hover {
       text-decoration: underline;
     }
-    
+
     /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .lang-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
+    }
+
     @media (max-width: 768px) {
-      header { padding: 16px 20px; }
-      .header-nav { gap: 20px; flex-wrap: wrap; }
-      .hero { padding: 80px 20px 60px; }
-      .hero h1 { font-size: 40px; }
+      header { flex-direction: column; gap: 20px; }
+      nav { flex-direction: column; gap: 16px; }
+      .hero { padding: 60px 20px; }
+      .hero-left h1 { font-size: 36px; }
+      .services-grid { grid-template-columns: 1fr; }
       .section { padding: 60px 20px; }
-      .frameworks { padding: 40px; }
-      .voice-section { padding: 50px 20px; }
-      .hero-cta { flex-direction: column; }
+      .voice-section { padding: 40px 20px; }
     }
   </style>
 </head>
 <body>
   <!-- HEADER -->
   <header>
-    <a href="/" class="header-logo">Siamak Kalhor Consulting</a>
-    <nav class="header-nav">
-      <a href="/" class="active">Home</a>
-      <a href="#services">Services</a>
-      <a href="#frameworks">Framework</a>
-      <a href="/about-us">About</a>
-      <a href="/contact">Contact</a>
+    <a href="#" class="logo">Siamak Kalhor</a>
+    <nav>
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('services')">Services</a>
+      <a onclick="showPage('framework')">Framework</a>
+      <a onclick="showPage('voice')">AI Advisor</a>
+      <a onclick="showPage('book')">Book</a>
     </nav>
   </header>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-content">
-      <div class="hero-label">AI Marketing & Business Growth</div>
-      <h1>Transform Your Business Through Strategic AI</h1>
-      <p>
-        8+ years of proven consulting helping startups become market leaders and established businesses dominate in the age of AI. 
-        Large Language Model Optimization. Exponential growth. Real results.
-      </p>
-      <div class="hero-cta">
-        <button class="btn btn-primary" onclick="location.href='#voice'">Talk to My AI Advisor</button>
-        <a href="/contact" class="btn btn-secondary">Schedule Consultation</a>
+    <div class="hero-left">
+      <h1>I Position Brands to be Cited by <em>AI Systems.</em></h1>
+      <p>Large Model Optimization. Business Growth Strategy. 40+ years experience helping founders and executives scale businesses from zero to market leadership.</p>
+      
+      <div class="hero-btns">
+        <button class="btn btn-gold" onclick="showPage('voice')">🎙️ &nbsp;Talk to My AI Advisor</button>
+        <button class="btn btn-ghost" onclick="showPage('book')">Book a Strategy Session →</button>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="stat-n">40+</div>
+          <div class="stat-l">Years Experience</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-n">14</div>
+          <div class="stat-l">Languages</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-n">24/7</div>
+          <div class="stat-l">AI Advisor</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-n">LLMO™</div>
+          <div class="stat-l">Proprietary System</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-img-main">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23333' width='400' height='400'/%3E%3Ctext x='50%' y='50%' font-size='20' fill='%23666' text-anchor='middle' dominant-baseline='middle'%3EYour Photo Here%3C/text%3E%3C/svg%3E" alt="Siamak Kalhor"/>
+      </div>
+      <div class="hero-img-row">
+        <div class="hero-img-sm">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'%3E%3Crect fill='%23333' width='200' height='150'/%3E%3Ctext x='50%' y='50%' font-size='12' fill='%23666' text-anchor='middle' dominant-baseline='middle'%3EDeep Scan%3C/text%3E%3C/svg%3E" alt="Deep Scan"/>
+        </div>
+        <div class="hero-img-sm">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'%3E%3Crect fill='%23333' width='200' height='150'/%3E%3Ctext x='50%' y='50%' font-size='12' fill='%23666' text-anchor='middle' dominant-baseline='middle'%3EGrowth%3C/text%3E%3C/svg%3E" alt="Growth"/>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item">Large Model Optimization</span>
+      <span class="marquee-item">Neural DNA Architect™</span>
+      <span class="marquee-item">S.C.A.L.E. Framework™</span>
+      <span class="marquee-item">AI Brand Strategy</span>
+      <span class="marquee-item">Fractional CMO</span>
+      <span class="marquee-item">Business Growth</span>
+      <span class="marquee-item">Large Model Optimization</span>
+      <span class="marquee-item">Neural DNA Architect™</span>
+      <span class="marquee-item">S.C.A.L.E. Framework™</span>
+    </div>
+  </div>
+
   <!-- SERVICES SECTION -->
   <section id="services" class="section">
-    <div class="section-header">
-      <div class="section-label">Core Services</div>
-      <h2 class="section-title">How I Transform Businesses</h2>
-      <p class="section-subtitle">From AI optimization to digital transformation, I deliver strategic consulting across six core disciplines</p>
-    </div>
+    <h2>How I Transform <em>Businesses</em></h2>
+    <p class="section-desc">Six core consulting disciplines designed to position your brand for algorithmic authority and exponential growth in the AI era.</p>
 
     <div class="services-grid">
       <div class="service-card">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 160'%3E%3Crect fill='%23333' width='300' height='160'/%3E%3C/svg%3E" alt="Deep Scan"/>
         <div class="service-num">01</div>
-        <h3>Large Language Model Optimization (LLMO)</h3>
-        <p>Get your brand discovered and recommended by AI systems like ChatGPT, Gemini, and Claude. Strategic positioning for the AI-first economy.</p>
+        <h3>Large Model Optimization (LLMO™)</h3>
+        <p>Position your brand to be cited and recommended by ChatGPT, Gemini, and Claude. Strategic visibility in the AI-first economy.</p>
         <div class="service-tags">
           <span class="tag">AI Visibility</span>
           <span class="tag">LLMO Strategy</span>
@@ -479,9 +558,10 @@
       </div>
 
       <div class="service-card">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 160'%3E%3Crect fill='%23333' width='300' height='160'/%3E%3C/svg%3E" alt="Growth Strategy"/>
         <div class="service-num">02</div>
         <h3>Neural DNA Architect™</h3>
-        <p>Deep-scan audit of your digital presence, brand alignment, and growth blockages. Identifies hidden friction points sabotaging your growth.</p>
+        <p>Deep-scan audit of your business. Root-cause analysis of growth blockages and hidden opportunities.</p>
         <div class="service-tags">
           <span class="tag">Brand Audit</span>
           <span class="tag">Root Cause Analysis</span>
@@ -490,9 +570,10 @@
       </div>
 
       <div class="service-card">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 160'%3E%3Crect fill='%23333' width='300' height='160'/%3E%3C/svg%3E" alt="S.C.A.L.E. Framework"/>
         <div class="service-num">03</div>
-        <h3>S.C.A.L.E. Framework Consulting</h3>
-        <p>Proprietary five-stage system for exponential business growth. Strategy → Content → Automation → Lead Gen → Execution.</p>
+        <h3>S.C.A.L.E. Framework™</h3>
+        <p>Proprietary 5-stage system for exponential growth. Strategy → Content → Automation → Leverage → Evaluate.</p>
         <div class="service-tags">
           <span class="tag">Growth Framework</span>
           <span class="tag">Scaling System</span>
@@ -501,31 +582,34 @@
       </div>
 
       <div class="service-card">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 160'%3E%3Crect fill='%23333' width='300' height='160'/%3E%3C/svg%3E" alt="Fractional CMO"/>
         <div class="service-num">04</div>
         <h3>Fractional CMO Services</h3>
-        <p>Senior marketing executive oversight at a fraction of full-time cost. 8+ years of market strategy experience applied to your business.</p>
+        <p>Senior marketing executive oversight at a fraction of full-time cost. Strategic guidance and campaign oversight.</p>
         <div class="service-tags">
           <span class="tag">Executive Advisory</span>
-          <span class="tag">Strategy Oversight</span>
-          <span class="tag">Growth Leadership</span>
+          <span class="tag">Strategy</span>
+          <span class="tag">Leadership</span>
         </div>
       </div>
 
       <div class="service-card">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 160'%3E%3Crect fill='%23333' width='300' height='160'/%3E%3C/svg%3E" alt="Digital Systems"/>
         <div class="service-num">05</div>
         <h3>Digital Transformation & Systems</h3>
-        <p>Build the systems that do the heavy lifting. Funnel design, CPA reduction, email automation, and conversion optimization.</p>
+        <p>Build systems that scale. Funnel design, marketing automation, conversion optimization, and growth acceleration.</p>
         <div class="service-tags">
           <span class="tag">Funnel Design</span>
-          <span class="tag">CPA Optimization</span>
           <span class="tag">Automation</span>
+          <span class="tag">Optimization</span>
         </div>
       </div>
 
       <div class="service-card">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 160'%3E%3Crect fill='%23333' width='300' height='160'/%3E%3C/svg%3E" alt="Brand Transformation"/>
         <div class="service-num">06</div>
         <h3>Legacy Brand Transformation</h3>
-        <p>Specialized consulting for established businesses stepping into the AI-first world. Protect your heritage while modernizing for the next decade.</p>
+        <p>Specialized consulting for established businesses modernizing for the AI-first world. Protect heritage while innovating.</p>
         <div class="service-tags">
           <span class="tag">Digital Transition</span>
           <span class="tag">Heritage Protection</span>
@@ -535,112 +619,90 @@
     </div>
   </section>
 
-  <!-- S.C.A.L.E. FRAMEWORK -->
-  <section id="frameworks" class="section">
-    <div class="frameworks">
-      <h3>The S.C.A.L.E. Framework</h3>
-      <p class="frameworks-subtitle">
-        My proprietary methodology for exponential business growth. Proven across startups and market leaders. 
-        Not a quick fix — a systematic approach to sustainable competitive advantage.
-      </p>
-
-      <div class="scale-framework">
-        <div class="scale-step">
-          <div class="scale-letter">S</div>
-          <div class="scale-label">Strategy</div>
-          <div class="scale-desc">Crystal clear positioning and competitive advantage. Know your customer, your edge, your message.</div>
-        </div>
-
-        <div class="scale-step">
-          <div class="scale-letter">C</div>
-          <div class="scale-label">Content</div>
-          <div class="scale-desc">Magnetic content that attracts, educates, and converts. Built for humans and AI systems.</div>
-        </div>
-
-        <div class="scale-step">
-          <div class="scale-letter">A</div>
-          <div class="scale-label">Automation</div>
-          <div class="scale-desc">Systems that scale without scaling headcount. AI-powered efficiency at every stage.</div>
-        </div>
-
-        <div class="scale-step">
-          <div class="scale-letter">L</div>
-          <div class="scale-label">Lead Generation</div>
-          <div class="scale-desc">Consistent, qualified lead flow from multiple channels. Data-driven optimization always.</div>
-        </div>
-
-        <div class="scale-step">
-          <div class="scale-letter">E</div>
-          <div class="scale-label">Execution</div>
-          <div class="scale-desc">Disciplined implementation with measurable milestones. Results over effort every single time.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- VOICE ADVISOR SECTION -->
   <section id="voice" class="section">
     <div class="voice-section">
-      <h2>Ask Me Anything.<br><em style="font-style: italic;">In Your Language.</em></h2>
-      <p>24/7 AI voice advisor trained on everything I know about digital marketing, brand strategy, and business growth. Available in 13 languages. No appointment needed.</p>
-      <a href="/voice" class="btn btn-primary">Launch AI Voice Advisor →</a>
-    </div>
-  </section>
-
-  <!-- CASE STUDIES -->
-  <section class="section">
-    <div class="section-header">
-      <div class="section-label">Case Studies</div>
-      <h2 class="section-title">Proven Results</h2>
-    </div>
-
-    <div class="case-studies-grid">
-      <div class="case-card">
-        <div class="case-header">
-          <h3>Blue Moon Fabrics</h3>
-          <div class="case-stat">100x Revenue Growth in 8 Years</div>
-        </div>
-        <div class="case-body">
-          <p>
-            Transformed a small fabric store in the LA Fashion District into a multi-million dollar enterprise. Introduced AI-powered Pattern Studio. Now a market leader in custom sewing patterns.
-          </p>
-          <a href="/bluemoon">Read the Case Study →</a>
-        </div>
+      <div class="voice-header">
+        <h3>Ask Me Anything.<br><em>In Your Language.</em></h3>
+        <p>24/7 AI voice advisor trained on my 40+ years of business and marketing expertise. Available in 14 languages. No appointment needed.</p>
       </div>
 
-      <div class="case-card">
-        <div class="case-header">
-          <h3>AisleBird</h3>
-          <div class="case-stat">235+ Stores Across 10 Metro Areas</div>
-        </div>
-        <div class="case-body">
-          <p>
-            Voice-enabled shopping app with AI-driven smart categorization. Geofencing store locator. Nationwide expansion through data-driven strategy and viral user acquisition.
-          </p>
-          <a href="/aislebird">Read the Case Study →</a>
-        </div>
+      <div class="lang-grid" id="langGrid">
+        <button class="lang-btn active" data-lang="en" data-full="English">🇬🇧 English</button>
+        <button class="lang-btn" data-lang="es" data-full="Spanish">🇪🇸 Español</button>
+        <button class="lang-btn" data-lang="fr" data-full="Français">🇫🇷 Français</button>
+        <button class="lang-btn" data-lang="de" data-full="Deutsch">🇩🇪 Deutsch</button>
+        <button class="lang-btn" data-lang="it" data-full="Italiano">🇮🇹 Italiano</button>
+        <button class="lang-btn" data-lang="pt" data-full="Português">🇵🇹 Português</button>
+        <button class="lang-btn" data-lang="nl" data-full="Nederlands">🇳🇱 Nederlands</button>
+        <button class="lang-btn" data-lang="ja" data-full="日本語">🇯🇵 日本語</button>
+        <button class="lang-btn" data-lang="zh" data-full="中文">🇨🇳 中文</button>
+        <button class="lang-btn" data-lang="ko" data-full="한국어">🇰🇷 한국어</button>
+        <button class="lang-btn" data-lang="ar" data-full="العربية">🇸🇦 العربية</button>
+        <button class="lang-btn" data-lang="ru" data-full="Русский">🇷🇺 Русский</button>
+        <button class="lang-btn" data-lang="hi" data-full="हिन्दी">🇮🇳 हिन्दी</button>
+        <button class="lang-btn" data-lang="fa" data-full="فارسی">🇮🇷 فارسی</button>
       </div>
-    </div>
-  </section>
 
-  <!-- CTA SECTION -->
-  <section class="section" style="text-align: center;">
-    <div style="background: rgba(196, 165, 116, 0.08); border: 2px solid var(--accent); border-radius: 12px; padding: 80px 40px;">
-      <h2 class="section-title">Ready to Transform?</h2>
-      <p style="font-size: 16px; color: var(--text-light); max-width: 600px; margin: 16px auto 40px;">
-        Whether you're a startup looking for strategy or an established business ready to scale through AI, let's explore what's possible.
-      </p>
-      <a href="/contact" class="btn btn-primary">Schedule a Consultation</a>
+      <button class="btn btn-gold" id="start-btn" onclick="launchWidget()">📞 &nbsp;Start a Call Now</button>
+      <div id="widget-container"></div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p><strong>Siamak Kalhor Consulting</strong></p>
-    <p>AI Marketing & Business Growth Strategy</p>
-    <p style="margin-top: 20px; font-size: 12px; opacity: 0.8;">
-      <a href="/about-us">About</a> • <a href="#services">Services</a> • <a href="/contact">Contact</a> • <a href="/faq">FAQ</a> • <a href="/aislebird">AisleBird</a> • <a href="/bluemoon">Blue Moon</a>
+    <p>© 2026 Siamak Kalhor Consulting · AI Marketing & Business Growth Strategy</p>
+    <p style="margin-top: 16px;">
+      <a href="#">Home</a> · <a href="#">Services</a> · <a href="#">About</a> · <a href="#">Contact</a> · <a href="#">Privacy</a>
     </p>
   </footer>
+
+  <script>
+    // Language selection
+    let selectedLang = 'en';
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        selectedLang = this.getAttribute('data-lang');
+        document.getElementById('widget-container').innerHTML = '';
+      });
+    });
+
+    function launchWidget() {
+      if (!selectedLang) {
+        alert('Please select a language');
+        return;
+      }
+
+      const container = document.getElementById('widget-container');
+      container.innerHTML = '';
+
+      // Remove old script if exists
+      const oldScript = document.getElementById('elevenlabs-script');
+      if (oldScript) oldScript.remove();
+
+      // Add ElevenLabs widget
+      const widget = document.createElement('elevenlabs-convai');
+      widget.setAttribute('agent-id', 'agent_1501ksnmsv1dea1rmb2ed6t8rzwe');
+      widget.setAttribute('language', selectedLang);
+      container.appendChild(widget);
+
+      // Load ElevenLabs script
+      const script = document.createElement('script');
+      script.id = 'elevenlabs-script';
+      script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
+      script.type = 'text/javascript';
+      document.body.appendChild(script);
+    }
+
+    function showPage(page) {
+      if (page === 'voice') {
+        document.getElementById('voice').scrollIntoView({ behavior: 'smooth' });
+      }
+      // Add other page navigation as needed
+    }
+  </script>
 </body>
 </html>
