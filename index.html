@@ -312,6 +312,26 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:54px 0 4
   *{animation:none!important}
   .mq-track{animation:none!important}
 }
+
+.brand-logo{height:30px;width:auto;display:block}
+.about{padding:96px 0;position:relative}
+.about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:54px;align-items:center}
+.about-portrait{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--panel)}
+.about-portrait::after{content:'';position:absolute;inset:0;border-radius:16px;box-shadow:inset 0 0 0 1px rgba(45,212,255,.12);pointer-events:none}
+.about-portrait img{width:100%;display:block}
+.about-portrait .glow{position:absolute;inset:-1px;border-radius:16px;background:var(--glow);filter:blur(34px);opacity:.16;z-index:-1}
+.about-quote{position:absolute;left:20px;bottom:18px;right:20px;font-family:var(--display);font-size:15px;font-weight:500;color:#eaf2f8;text-shadow:0 2px 18px rgba(0,0,0,.8);line-height:1.4}
+.about-quote span{color:var(--cyan)}
+.about-body .sec-label{margin-bottom:16px}
+.about-body h2{font-family:var(--display);font-size:clamp(28px,3.6vw,42px);font-weight:600;letter-spacing:-.015em;line-height:1.14;margin-bottom:18px}
+.about-body h2 .grad{background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.about-body p{font-size:15.5px;color:var(--muted);line-height:1.8;margin-bottom:16px}
+.about-body p strong{color:var(--text)}
+.about-stats{display:flex;gap:30px;margin-top:26px}
+.about-stats .n{font-family:var(--display);font-size:24px;font-weight:600;color:var(--text)}
+.about-stats .n .u{background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.about-stats .l{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-dim);margin-top:3px}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr;gap:32px}}
 </style>
 </head>
 <body>
@@ -319,15 +339,13 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:54px 0 4
 
 <nav>
   <div class="nav-in">
-    <a href="#top" class="brand">
-      <div class="brand-mark"></div>
-      <div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div>
-    </a>
+    <a href="#top" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" class="brand-logo"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
     <div class="nav-links" id="navLinks">
       <a href="/services">Services</a>
       <a href="/llm-optimization">LLM Optimization</a>
       <a href="/growth-framework">Framework</a>
       <a href="/the-growth-glossary">Glossary</a>
+      <a href="/ai-advisor">AI Advisor</a>
       <a href="/about-us">About</a>
       <a href="/contact-us" class="nav-cta">Book a Scan →</a>
     </div>
@@ -381,6 +399,27 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:54px 0 4
   </div>
 </header>
 
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-portrait">
+      <div class="glow"></div>
+      <img src="/assets/portrait.jpg" alt="Siamak Kalhor, AI marketing consultant, in a Napa vineyard office">
+      <div class="about-quote">"Crafting brands that inspire, <span>like a fine vineyard.</span>"</div>
+    </div>
+    <div class="about-body">
+      <div class="sec-label">Who You're Working With</div>
+      <h2>Forty years of instinct, <span class="grad">engineered for AI.</span></h2>
+      <p>I started in marketing before the internet existed. I've spent four decades learning what actually moves a business — and the last several years engineering that judgment for the age of generative AI.</p>
+      <p>Today I help founders and executives become <strong>the answer AI gives</strong>: visible, cited, and recommended by ChatGPT, Gemini, and Claude. Same principle that's always worked, new machinery: build the system that makes campaigns unnecessary.</p>
+      <div class="about-stats">
+        <div><div class="n">40<span class="u">+</span></div><div class="l">Years in Market</div></div>
+        <div><div class="n">100<span class="u">×</span></div><div class="l">Client Growth</div></div>
+        <div><div class="n">LLMO<span class="u">™</span></div><div class="l">Proprietary System</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- THESIS -->
 <section id="thesis">
   <div class="wrap">
@@ -583,6 +622,7 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:54px 0 4
         <a href="/llm-optimization">LLM Optimization</a>
         <a href="#framework">S.C.A.L.E. Framework</a>
         <a href="/the-growth-glossary">Glossary</a>
+      <a href="/ai-advisor">AI Advisor</a>
         <a href="#voice">AI Advisor</a>
       </div>
       <div class="foot-col">
