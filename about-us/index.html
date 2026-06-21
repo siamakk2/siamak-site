@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Siamak Kalhor — AI Marketing & Business Growth Consultant</title>
+  <meta name="description" content="Siamak Kalhor is an AI marketing consultant with 8+ years of proven experience scaling businesses from startups to market leaders. Specializing in LLM optimization, digital transformation, and strategic growth.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --primary: #4a3728;
+      --accent: #c4a574;
+      --text: #2a2a2a;
+      --text-light: #666;
+      --bg: #faf8f5;
+      --card: #ffffff;
+      --border: #e8e4df;
+    }
+    
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+    }
+    
+    header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text);
+    }
+    
+    .header-nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      margin-left: 40px;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    
+    .header-nav a:hover {
+      color: var(--primary);
+    }
+    
+    .hero {
+      padding: 100px 40px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(196, 165, 116, 0.08) 0%, rgba(232, 213, 163, 0.04) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    
+    .hero-subtitle {
+      font-size: 20px;
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    
+    .hero p {
+      font-size: 16px;
+      color: var(--text-light);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    
+    .section {
+      padding: 80px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 600;
+      margin-bottom: 40px;
+      color: var(--text);
+    }
+    
+    .content-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 60px;
+      margin-bottom: 40px;
+      line-height: 2;
+    }
+    
+    .content-block h3 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    
+    .content-block p {
+      font-size: 16px;
+      color: var(--text-light);
+      margin-bottom: 16px;
+    }
+    
+    .highlight {
+      background: rgba(196, 165, 116, 0.15);
+      padding: 2px 6px;
+      border-radius: 3px;
+      color: var(--primary);
+      font-weight: 600;
+    }
+    
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin: 60px 0;
+    }
+    
+    .stat {
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 42px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 20px;
+      transition: all 0.3s;
+    }
+    
+    .cta-button:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+    
+    footer {
+      background: var(--primary);
+      color: #fff;
+      padding: 60px 40px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    
+    footer p {
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+    
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        padding: 16px 20px;
+      }
+      
+      .header-nav a {
+        margin-left: 20px;
+        font-size: 12px;
+      }
+      
+      .hero {
+        padding: 60px 20px;
+      }
+      
+      .hero h1 {
+        font-size: 36px;
+      }
+      
+      .section {
+        padding: 60px 20px;
+      }
+      
+      .content-block {
+        padding: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" class="header-logo">Siamak Kalhor Consulting</a>
+    <nav class="header-nav">
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      <a href="/about-us">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Siamak Kalhor</h1>
+    <p class="hero-subtitle">AI Marketing Consultant & Business Growth Strategist</p>
+    <p>8+ years of proven experience transforming businesses through strategic consulting, AI innovation, and data-driven growth strategies. From bootstrapped startups to market-leading enterprises.</p>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">The Origin Story</h2>
+    
+    <div class="content-block">
+      <h3>From Idea to Impact</h3>
+      <p>
+        My consulting career started with a simple observation: <span class="highlight">most businesses fail not because of bad products, but because of bad strategy</span>. They lack clarity on who their customer is, what problem they solve, and how to communicate that value at scale.
+      </p>
+      <p>
+        Over the last 8+ years, I've worked with founders, executives, and leadership teams at companies ranging from bootstrapped startups to multi-million dollar enterprises. The work spans industries — retail, fashion, technology, services — but the underlying principles remain constant:
+      </p>
+      <p style="margin-top: 20px; font-size: 15px; background: rgba(196, 165, 116, 0.05); padding: 20px; border-left: 4px solid var(--accent); border-radius: 4px;">
+        <strong>Strategy first. Execution second. Results always.</strong>
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Proven Results</h2>
+    
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-number">100x</div>
+        <div class="stat-label">Revenue Growth (Blue Moon Fabrics)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">235+</div>
+        <div class="stat-label">Stores Launched (AisleBird)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Consulting Clients</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">8+</div>
+        <div class="stat-label">Years of Expertise</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Expertise Areas</h2>
+    
+    <div class="content-block">
+      <h3>AI & Large Language Model Optimization (LLMO)</h3>
+      <p>
+        I specialize in <span class="highlight">Large Language Model Optimization</span> — using advanced AI to enhance business operations, marketing strategy, content, and customer experience. From smart categorization engines (like AisleBird's) to AI-powered pattern generation (Blue Moon's Pattern Studio), I know how to identify where AI creates competitive advantage.
+      </p>
+    </div>
+
+    <div class="content-block">
+      <h3>Digital Transformation & E-Commerce</h3>
+      <p>
+        Traditional business meeting digital reality. I help companies transition from local retail to nationwide (or global) digital operations. This includes Shopify optimization, supply chain digitization, logistics, and omnichannel strategy.
+      </p>
+    </div>
+
+    <div class="content-block">
+      <h3>Business Growth Strategy</h3>
+      <p>
+        From market analysis to product-market fit to scaling operations. I work backwards from the customer to design growth strategies that actually work. Not guesswork. Data-driven, tested, iterated.
+      </p>
+    </div>
+
+    <div class="content-block">
+      <h3>Brand & Marketing Strategy</h3>
+      <p>
+        How do you stand out? What's your differentiated value proposition? I help companies clarify their positioning and build marketing strategies that attract the right customers at the right cost.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Case Studies</h2>
+    
+    <div class="content-block">
+      <h3>Blue Moon Fabrics — 8-Year Transformation</h3>
+      <p>
+        Took a small fabric store in the LA Fashion District and grew it into a multi-million dollar enterprise. 100x revenue growth. Introduced the AI-powered Custom Pattern Studio. Now a market leader in custom sewing patterns and specialty fabrics.
+      </p>
+      <a href="/bluemoon" class="cta-button">Read the Case Study →</a>
+    </div>
+
+    <div class="content-block">
+      <h3>AisleBird — Voice Shopping App</h3>
+      <p>
+        Built a voice-enabled shopping app with AI-driven smart categorization, geofencing store locator, and nationwide expansion to 235+ stores across 10 major metro areas. Organic growth through Facebook, viral user acquisition, and data-driven expansion strategy.
+      </p>
+      <a href="/aislebird" class="cta-button">Read the Case Study →</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">My Approach</h2>
+    
+    <div class="content-block">
+      <h3>Systematic. Data-Driven. Results-Oriented.</h3>
+      <p>
+        I don't believe in quick fixes or silver bullets. Real growth happens through systematic application of strategy over years, not quarters. My process:
+      </p>
+      <p style="margin-top: 20px;"><strong>1. Diagnose</strong> — Understand the root problems and largest opportunities</p>
+      <p><strong>2. Design</strong> — Build a clear roadmap with measurable milestones</p>
+      <p><strong>3. Execute</strong> — Implement with precision and discipline</p>
+      <p><strong>4. Measure</strong> — Track relentlessly and iterate based on results</p>
+      <p style="margin-top: 20px; color: var(--text-light);">This disciplined approach is why Blue Moon Fabrics grew consistently for 8+ years, not with one viral moment.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Ready to Transform Your Business?</h2>
+    
+    <div class="content-block" style="text-align: center;">
+      <p style="font-size: 18px; margin-bottom: 30px;">
+        Whether you're a startup looking for strategy or an established business ready to scale, let's talk about what's possible.
+      </p>
+      <a href="/contact" class="cta-button">Schedule a Consultation</a>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>Siamak Kalhor Consulting</strong></p>
+    <p>AI Marketing & Business Growth Strategy</p>
+    <p style="margin-top: 20px; font-size: 12px; opacity: 0.8;">
+      <a href="/services">Services</a> • <a href="/about-us">About</a> • <a href="/contact">Contact</a> • <a href="/faq">FAQ</a>
+    </p>
+  </footer>
+</body>
+</html>
