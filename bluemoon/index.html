@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blue Moon Fabrics — From Small Store to Textile Empire | Siamak Kalhor Consulting</title>
+  <meta name="description" content="8-year transformation of Blue Moon Fabrics: small independent store to major textile empire. Revenue growth, AI innovation, and market leadership in custom sewing patterns and fabric retail.">
+  <meta name="keywords" content="fabric retail, textile business growth, e-commerce consulting, sewing patterns, Shopify, AI innovation, business transformation">
+  <meta property="og:title" content="Blue Moon Fabrics — 8-Year Growth Story">
+  <meta property="og:description" content="From small store to textile empire. A case study in strategic consulting, AI innovation, and market expansion.">
+  <meta property="og:url" content="https://siamakconsulting.com/bluemoon">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://siamakconsulting.com/bluemoon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --primary: #4a3728;
+      --accent: #c4a574;
+      --accent-light: #e8d5a3;
+      --text: #2a2a2a;
+      --text-light: #666;
+      --bg: #faf8f5;
+      --card: #ffffff;
+      --border: #e8e4df;
+      --moon: #f0e6d2;
+    }
+    
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    
+    /* HEADER */
+    header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text);
+    }
+    
+    .header-nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      margin-left: 40px;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    
+    .header-nav a:hover {
+      color: var(--primary);
+    }
+    
+    /* HERO */
+    .hero {
+      padding: 100px 40px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(196, 165, 116, 0.08) 0%, rgba(232, 213, 163, 0.04) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .hero-icon {
+      font-size: 80px;
+      margin-bottom: 20px;
+    }
+    
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    
+    .hero-subtitle {
+      font-size: 24px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    
+    .hero p {
+      font-size: 18px;
+      color: var(--text-light);
+      max-width: 700px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+    
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(74, 55, 40, 0.08);
+    }
+    
+    /* METRICS */
+    .metrics {
+      padding: 80px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      text-align: center;
+    }
+    
+    .metric {
+      padding: 40px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    
+    .metric-number {
+      font-size: 48px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    
+    .metric-label {
+      font-size: 16px;
+      color: var(--text-light);
+    }
+    
+    /* SECTIONS */
+    .section {
+      padding: 80px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    
+    .section-subtitle {
+      font-size: 18px;
+      color: var(--text-light);
+      margin-bottom: 50px;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    
+    .feature-card {
+      padding: 40px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: all 0.3s;
+    }
+    
+    .feature-card:hover {
+      border-color: var(--accent);
+      background: rgba(196, 165, 116, 0.02);
+      transform: translateY(-4px);
+    }
+    
+    .feature-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    
+    .feature-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    
+    .feature-card p {
+      font-size: 15px;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+    
+    /* TIMELINE */
+    .timeline {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 40px;
+      margin-bottom: 50px;
+      padding-bottom: 50px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .timeline-item:last-child {
+      border-bottom: none;
+    }
+    
+    .timeline-year {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    
+    .timeline-content h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    
+    .timeline-content p {
+      font-size: 15px;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+    
+    /* STORY */
+    .story {
+      background: var(--moon);
+    }
+    
+    .story-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .story-content h3 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    
+    .story-content p {
+      font-size: 16px;
+      color: var(--text-light);
+      margin-bottom: 20px;
+      line-height: 2;
+    }
+    
+    .highlight {
+      background: rgba(196, 165, 116, 0.25);
+      padding: 4px 8px;
+      border-radius: 4px;
+      color: var(--primary);
+      font-weight: 600;
+    }
+    
+    /* INNOVATION STACK */
+    .innovation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+    
+    .innovation-item {
+      padding: 24px;
+      background: rgba(196, 165, 116, 0.08);
+      border-radius: 8px;
+      border-left: 4px solid var(--accent);
+      font-size: 15px;
+      color: var(--text-light);
+    }
+    
+    .innovation-item strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+    
+    /* FOOTER */
+    footer {
+      background: var(--primary);
+      color: #fff;
+      padding: 60px 40px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    
+    footer p {
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+    
+    footer a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      header {
+        padding: 16px 20px;
+      }
+      
+      .header-nav a {
+        margin-left: 20px;
+        font-size: 12px;
+      }
+      
+      .hero {
+        padding: 60px 20px;
+      }
+      
+      .hero-icon {
+        font-size: 60px;
+      }
+      
+      .hero h1 {
+        font-size: 36px;
+      }
+      
+      .hero p {
+        font-size: 16px;
+      }
+      
+      .section {
+        padding: 60px 20px;
+      }
+      
+      .section-title {
+        font-size: 32px;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+      
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      
+      .timeline-year {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <a href="/" class="header-logo">Siamak Kalhor Consulting</a>
+    <nav class="header-nav">
+      <a href="/">Home</a>
+      <a href="/#services">Services</a>
+      <a href="/aislebird">AisleBird</a>
+      <a href="/bluemoon">Blue Moon</a>
+      <a href="mailto:siamak@siamakconsulting.com">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-icon">🌙</div>
+    <h1>Blue Moon Fabrics</h1>
+    <p class="hero-subtitle">Small Store to Textile Empire</p>
+    <p>8-year transformation from independent boutique to a major force in fabric retail and custom pattern innovation. Strategic consulting, digital transformation, and AI-powered product innovation.</p>
+    <div class="cta-buttons">
+      <a href="https://bluemoonfabrics.com" target="_blank" class="btn btn-primary">Visit Blue Moon Fabrics</a>
+      <a href="https://bluemoonfabrics.com/pages/custom-pattern-studio" target="_blank" class="btn btn-secondary">Try Pattern Studio</a>
+    </div>
+  </section>
+
+  <!-- METRICS -->
+  <section class="metrics">
+    <div class="metric">
+      <div class="metric-number">8</div>
+      <div class="metric-label">Years of Consulting Partnership</div>
+    </div>
+    <div class="metric">
+      <div class="metric-number">100x</div>
+      <div class="metric-label">Revenue Growth</div>
+    </div>
+    <div class="metric">
+      <div class="metric-number">Textile</div>
+      <div class="metric-label">Market Leader</div>
+    </div>
+    <div class="metric">
+      <div class="metric-number">AI</div>
+      <div class="metric-label">Pattern Innovation</div>
+    </div>
+  </section>
+
+  <!-- TRANSFORMATION JOURNEY -->
+  <section class="section">
+    <h2 class="section-title">The Transformation</h2>
+    <p class="section-subtitle">From a neighborhood fabric store to a dominant force in textile retail and custom pattern innovation</p>
+    
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">2018</div>
+        <div class="timeline-content">
+          <h3>The Starting Point</h3>
+          <p>Blue Moon Fabrics was a small, independent fabric store in the LA Fashion District. Limited online presence, traditional retail operations, no clear growth strategy. Local customer base, limited reach.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-year">2019-2020</div>
+        <div class="timeline-content">
+          <h3>Digital Foundation</h3>
+          <p>Strategic shift to e-commerce. Built a modern Shopify store, implemented inventory management systems, and began expanding product catalog beyond local availability. First digital marketing campaigns.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-year">2021-2022</div>
+        <div class="timeline-content">
+          <h3>Market Expansion</h3>
+          <p>Expanded supply chain, onboarded new fabric suppliers, developed proprietary product lines. Email marketing and content strategy launched. Blue Moon became recognized as a key player in specialty fabrics nationwide.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-year">2023</div>
+        <div class="timeline-content">
+          <h3>AI Innovation</h3>
+          <p>Introduced the <span class="highlight">Custom Pattern Studio</span> — an AI-powered tool that automatically drafts sewing patterns from customer measurements. Game-changing product that differentiated Blue Moon from competitors.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-year">2024-2026</div>
+        <div class="timeline-content">
+          <h3>Market Leadership</h3>
+          <p>Blue Moon Fabrics is now the go-to destination for custom patterns, specialty fabrics, and textile innovation. Dominant position in the sewing and fashion design communities. Proven consulting model for textile and e-commerce businesses.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY INNOVATIONS -->
+  <section class="section">
+    <h2 class="section-title">Strategic Innovations</h2>
+    <p class="section-subtitle">Consulting-driven product and business model innovations</p>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">✦</div>
+        <h3>Custom Pattern Studio</h3>
+        <p>AI-powered sewing pattern generator. Users enter body measurements, choose garment type, and receive professional pattern pieces with optimized fabric layout in minutes.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🛍️</div>
+        <h3>Curated Fabric Selection</h3>
+        <p>Moved from passive inventory to strategically curated collections based on market demand, trend analysis, and customer behavior data. Every fabric selection driven by consulting insights.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Data-Driven Operations</h3>
+        <p>Implemented advanced analytics for inventory management, customer segmentation, and demand forecasting. Real-time dashboards for decision-making at every level.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Community Building</h3>
+        <p>Created a thriving community of sewers, designers, and pattern makers. Content strategy, social engagement, and brand advocacy that drives organic growth.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <h3>Supply Chain Optimization</h3>
+        <p>Restructured the entire supply chain for efficiency and cost-effectiveness. Partnerships with premium suppliers while maintaining competitive pricing for customers.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">💡</div>
+        <h3>Product Innovation Pipeline</h3>
+        <p>Built a systematic approach to identifying and developing new products. The Pattern Studio is just one example — a preview of future innovations in textile tech.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PATTERN STUDIO -->
+  <section class="section">
+    <h2 class="section-title">The Pattern Studio</h2>
+    <p class="section-subtitle">A case study in AI-powered product innovation within a traditional industry</p>
+    
+    <div class="story" style="padding: 60px; border-radius: 12px;">
+      <div class="story-content">
+        <h3>From Insight to Innovation</h3>
+        <p>
+          The Custom Pattern Studio emerged from a fundamental insight: <span class="highlight">most sewers struggle with pattern drafting</span>. Professional patterns are expensive. DIY drafting requires advanced skills. The gap represented a massive market opportunity.
+        </p>
+        <p>
+          The solution needed to be:
+        </p>
+        <ul style="margin: 20px 0 20px 40px; font-size: 15px; color: var(--text-light);">
+          <li>Instantly accessible (no learning curve)</li>
+          <li>AI-powered (accurate, intelligent, adaptive)</li>
+          <li>Integrated with fabric sales (closing the loop)</li>
+          <li>Beautiful and intuitive UX (professional-grade output)</li>
+        </ul>
+        <p>
+          The result is a tool that has <span class="highlight">fundamentally changed how people approach sewing</span>. Users can draft a pattern in 2 minutes. The AI understands 10 garment types and optimizes fabric layout to minimize waste. The tool is integrated directly into the Blue Moon store — users draft patterns, get fabric recommendations, and purchase materials in one seamless workflow.
+        </p>
+      </div>
+    </div>
+    
+    <h3 style="font-size: 24px; margin-top: 50px; margin-bottom: 20px; color: var(--text);">Core Technology</h3>
+    <div class="innovation-grid">
+      <div class="innovation-item">
+        <strong>AI Pattern Generation</strong>
+        LLM-powered drafting engine understands garment types, measurement relationships, and industry standards.
+      </div>
+      <div class="innovation-item">
+        <strong>Measurement Intelligence</strong>
+        Only asks for measurements relevant to each garment. Validates inputs and catches sizing errors before drafting.
+      </div>
+      <div class="innovation-item">
+        <strong>Fabric Optimization</strong>
+        Automatically calculates optimal fabric width/length based on pattern pieces. Minimizes waste, maximizes value.
+      </div>
+      <div class="innovation-item">
+        <strong>E-Commerce Integration</strong>
+        Pattern drafting feeds directly into fabric recommendations and purchasing. Seamless customer journey.
+      </div>
+      <div class="innovation-item">
+        <strong>Voice & Accessibility</strong>
+        Optional voice control for entering measurements. Designed for sewers of all technical abilities.
+      </div>
+      <div class="innovation-item">
+        <strong>Export & Print</strong>
+        High-resolution pattern files ready for printing at home or at professional print shops. Professional quality output.
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT & RESULTS -->
+  <section class="section">
+    <h2 class="section-title">Measurable Impact</h2>
+    <p class="section-subtitle">Consulting results backed by data</p>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📈</div>
+        <h3>Revenue Growth</h3>
+        <p>Transformed Blue Moon from a local boutique into a multi-million dollar enterprise. 100x+ revenue growth over 8 years, with accelerating trajectory.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🌍</div>
+        <h3>Geographic Expansion</h3>
+        <p>From neighborhood store to nationwide presence. Now ships to every state and internationally. Serves diverse customer segments across fashion, dance, swimwear, and cosplay communities.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">👥</div>
+        <h3>Community Leadership</h3>
+        <p>Blue Moon is now THE authority in custom patterns and specialty fabrics. Trusted by professional designers, enthusiast sewers, and fashion students.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>Innovation Leadership</h3>
+        <p>First-mover advantage in AI-powered pattern generation. Positioned for continued innovation and market expansion.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSULTING APPROACH -->
+  <section class="section story" style="border-radius: 12px; padding: 60px;">
+    <div class="story-content">
+      <h3>The Consulting Approach</h3>
+      <p>
+        Blue Moon's transformation wasn't built on a single big idea. It was built on <span class="highlight">systematic, data-driven consulting</span> applied consistently over 8 years. Every decision was backed by market analysis, customer insights, and financial discipline.
+      </p>
+      <p>
+        <strong>The framework:</strong> Diagnose the root problems. Identify the largest opportunities. Build a roadmap with clear milestones. Execute with precision. Measure relentlessly. Iterate based on results.
+      </p>
+      <p>
+        This same methodology has been applied to every aspect of Blue Moon's business — from supply chain optimization to product development to digital strategy. The result is an enterprise that's not just bigger, but smarter, more efficient, and better positioned for future growth.
+      </p>
+      <p style="margin-top: 30px;">
+        Blue Moon Fabrics is proof that <span class="highlight">strategic consulting applied to traditional industries can create transformative growth</span>. It's also a template for what's possible when a founder commits to systematic improvement and data-driven decision-making over years, not quarters.
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>Blue Moon Fabrics</strong> — Fashion District. LA.</p>
+    <p>A case study in 8-year business transformation through strategic consulting</p>
+    <p style="margin-top: 20px; font-size: 12px; opacity: 0.9;">
+      Visit <a href="https://bluemoonfabrics.com">bluemoonfabrics.com</a> • Try the <a href="https://bluemoonfabrics.com/pages/custom-pattern-studio">Pattern Studio</a> • Consulting by <a href="/">Siamak Kalhor</a>
+    </p>
+  </footer>
+</body>
+</html>
