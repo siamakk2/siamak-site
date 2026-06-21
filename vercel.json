@@ -1,7 +1,20 @@
 {
   "routes": [
-    { "src": "/voice", "dest": "/voice/index.html" },
-    { "src": "/clients", "dest": "/clients/index.html" },
-    { "src": "/", "dest": "/index.html" }
+    {
+      "src": "/aislebird",
+      "dest": "/aislebird/index.html"
+    },
+    {
+      "src": "/voice",
+      "dest": "/voice/index.html"
+    },
+    {
+      "src": "/clients",
+      "dest": "/clients/index.html"
+    },
+    {
+      "src": "/",
+      "dest": "/index.html"
+    }
   ]
 }
