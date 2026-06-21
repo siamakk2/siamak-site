@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AisleBird — Voice-Enabled Shopping App | Siamak Kalhor Consulting</title>
+  <meta name="description" content="AisleBird: A voice-powered shopping app with AI-driven smart categorization, geofencing store locator, and nationwide expansion. Built and growing on Facebook with 235+ stores across 10 major metros.">
+  <meta name="keywords" content="voice shopping app, AI grocery app, store locator, geofencing, smart categorization, LLM optimization, mobile app">
+  <meta property="og:title" content="AisleBird — Voice Shopping Made Smart">
+  <meta property="og:description" content="Stop wandering. Start flying. Voice-enabled shopping with intelligent store navigation.">
+  <meta property="og:url" content="https://siamakkalhor.com/aislebird">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://siamakkalhor.com/aislebird">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --primary: #ff6b35;
+      --primary-light: #ff8c5a;
+      --primary-dark: #ff4500;
+      --accent: #ffb59d;
+      --text: #1a1a1a;
+      --text-light: #4a4a4a;
+      --bg: #f9f7f4;
+      --card: #ffffff;
+      --border: #e8e8e8;
+      --orange: #ff6b35;
+    }
+    
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    
+    /* HEADER */
+    header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text);
+    }
+    
+    .header-nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      margin-left: 40px;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    
+    .header-nav a:hover {
+      color: var(--primary);
+    }
+    
+    /* HERO */
+    .hero {
+      padding: 100px 40px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(255, 107, 53, 0.08) 0%, rgba(255, 140, 90, 0.04) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .hero-bird {
+      font-size: 80px;
+      margin-bottom: 20px;
+    }
+    
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    
+    .hero-tagline {
+      font-size: 24px;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    
+    .hero p {
+      font-size: 18px;
+      color: var(--text-light);
+      max-width: 700px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      padding: 14px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+    
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255, 107, 53, 0.08);
+    }
+    
+    /* METRICS */
+    .metrics {
+      padding: 80px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      text-align: center;
+    }
+    
+    .metric {
+      padding: 40px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    
+    .metric-number {
+      font-size: 48px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    
+    .metric-label {
+      font-size: 16px;
+      color: var(--text-light);
+    }
+    
+    /* FEATURES */
+    .section {
+      padding: 80px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    
+    .section-subtitle {
+      font-size: 18px;
+      color: var(--text-light);
+      margin-bottom: 50px;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    
+    .feature-card {
+      padding: 40px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: all 0.3s;
+    }
+    
+    .feature-card:hover {
+      border-color: var(--primary);
+      background: rgba(255, 107, 53, 0.02);
+      transform: translateY(-4px);
+    }
+    
+    .feature-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    
+    .feature-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    
+    .feature-card p {
+      font-size: 15px;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+    
+    /* EXPANSION */
+    .expansion {
+      background: linear-gradient(135deg, rgba(255, 107, 53, 0.08) 0%, rgba(255, 140, 90, 0.04) 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .cities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 40px;
+    }
+    
+    .city-badge {
+      padding: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    
+    /* STORY */
+    .story {
+      background: var(--card);
+    }
+    
+    .story-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .story-content h3 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    
+    .story-content p {
+      font-size: 16px;
+      color: var(--text-light);
+      margin-bottom: 20px;
+      line-height: 2;
+    }
+    
+    .highlight {
+      background: rgba(255, 107, 53, 0.15);
+      padding: 4px 8px;
+      border-radius: 4px;
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+    
+    /* TECHNOLOGY */
+    .tech-stack {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+    
+    .tech-item {
+      padding: 20px;
+      background: rgba(255, 107, 53, 0.08);
+      border-radius: 8px;
+      border-left: 4px solid var(--primary);
+      font-size: 15px;
+      color: var(--text-light);
+    }
+    
+    .tech-item strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+    
+    /* FOOTER */
+    footer {
+      background: var(--text);
+      color: #fff;
+      padding: 60px 40px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    
+    footer p {
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+    
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      header {
+        padding: 16px 20px;
+      }
+      
+      .header-nav a {
+        margin-left: 20px;
+        font-size: 12px;
+      }
+      
+      .hero {
+        padding: 60px 20px;
+      }
+      
+      .hero-bird {
+        font-size: 60px;
+      }
+      
+      .hero h1 {
+        font-size: 36px;
+      }
+      
+      .hero p {
+        font-size: 16px;
+      }
+      
+      .section {
+        padding: 60px 20px;
+      }
+      
+      .section-title {
+        font-size: 32px;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <a href="/" class="header-logo">Siamak Kalhor Consulting</a>
+    <nav class="header-nav">
+      <a href="/">Home</a>
+      <a href="/#services">Services</a>
+      <a href="/aislebird">AisleBird</a>
+      <a href="mailto:siamak@siamakkalhor.com">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bird">🐦</div>
+    <h1>AisleBird</h1>
+    <p class="hero-tagline">Stop wandering. Start flying.</p>
+    <p>A voice-enabled shopping app that uses AI to intelligently categorize items, geofence nearby stores, and reorder your list as you walk the aisle. Now live with 235+ stores across 10 major metros and growing on Facebook.</p>
+    <div class="cta-buttons">
+      <a href="https://aislebird.com/app" class="btn btn-primary">🎤 Open AisleBird</a>
+      <a href="https://aislebird.com" class="btn btn-secondary">Learn More</a>
+    </div>
+  </section>
+
+  <!-- METRICS -->
+  <section class="metrics">
+    <div class="metric">
+      <div class="metric-number">235+</div>
+      <div class="metric-label">Stores Nationwide</div>
+    </div>
+    <div class="metric">
+      <div class="metric-number">10</div>
+      <div class="metric-label">Major Metro Areas</div>
+    </div>
+    <div class="metric">
+      <div class="metric-number">11</div>
+      <div class="metric-label">Retail Chains Supported</div>
+    </div>
+    <div class="metric">
+      <div class="metric-number">119+</div>
+      <div class="metric-label">California Locations</div>
+    </div>
+  </section>
+
+  <!-- KEY FEATURES -->
+  <section class="section">
+    <h2 class="section-title">Core Technology</h2>
+    <p class="section-subtitle">Built on voice recognition, LLM-powered categorization, and real-time geofencing</p>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎤</div>
+        <h3>Voice Shopping</h3>
+        <p>Say what you need — "add organic milk" or "get sourdough bread." The app understands natural language and adds items instantly.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">✨</div>
+        <h3>Smart Categorization</h3>
+        <p>AI engine (LLM-powered) maps items to store aisles automatically. "Spray paint" → Paint aisle. "Hot dog buns" → Bakery. Works across 11 different retail formats.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🗺️</div>
+        <h3>Geofencing Store Locator</h3>
+        <p>Request location access, see nearby stores sorted by distance in miles. Seamless switching between retailers — distances update in real time.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">↕️</div>
+        <h3>Walk-the-Aisle Sorting</h3>
+        <p>Tap the aisle you're in and your entire list reorders to match your path through the store. No more backtracking for forgotten items.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <h3>Import & Export</h3>
+        <p>Copy-paste from Notes, import shopping lists, and organize items by category. Full control over your shopping workflow.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Privacy First</h3>
+        <p>Location is never stored. Used only while the app is open to show nearby stores. Completely optional — manually select a store anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPANSION -->
+  <section class="section expansion">
+    <h2 class="section-title">National Coverage</h2>
+    <p class="section-subtitle">Live in 10 major metros + California. Smart expansion strategy based on user demand.</p>
+    
+    <div class="cities-grid">
+      <div class="city-badge">🏙️ Chicago</div>
+      <div class="city-badge">🗽 New York</div>
+      <div class="city-badge">🌆 Los Angeles</div>
+      <div class="city-badge">🎸 Austin</div>
+      <div class="city-badge">⛰️ Denver</div>
+      <div class="city-badge">☔ Seattle</div>
+      <div class="city-badge">🔴 Boston</div>
+      <div class="city-badge">🍑 Atlanta</div>
+      <div class="city-badge">☀️ Phoenix</div>
+      <div class="city-badge">🌊 San Diego</div>
+      <div class="city-badge">🐦 California</div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="section story">
+    <div class="story-content">
+      <h3>The Vision</h3>
+      <p>
+        AisleBird solves a universal shopping problem: <span class="highlight">people spend time looking for items instead of shopping efficiently</span>. The app combines three technologies to eliminate friction:
+      </p>
+      <p>
+        <strong>1. Voice Input —</strong> Say what you need naturally. "Add two cartons of almond milk" understands quantities and variations instantly.
+      </p>
+      <p>
+        <strong>2. LLM-Powered Categorization —</strong> An intelligent engine maps items to store aisles in real time. One item ("bananas") might go to Produce. Another ("banana bread mix") routes to Baking. Each of the 11 supported retail chains has different aisle structures — the system learns and adapts.
+      </p>
+      <p>
+        <strong>3. Geofencing —</strong> See nearby stores by distance. Walk through the store, tap your current aisle, and your list reorders to match your physical path.
+      </p>
+      <p style="margin-top: 30px;">
+        <strong>Result:</strong> A fast, intuitive shopping experience that works across Whole Foods, Trader Joe's, Target, Walmart, CVS, Walgreens, Costco, Home Depot, Lowe's, Friedman's, and Tractor Supply — with one app.
+      </p>
+    </div>
+  </section>
+
+  <!-- TECHNOLOGY STACK -->
+  <section class="section">
+    <h2 class="section-title">Technology Stack</h2>
+    <div class="tech-stack">
+      <div class="tech-item">
+        <strong>Frontend</strong>
+        React-based responsive web app. Mobile-first design with home screen icon support.
+      </div>
+      <div class="tech-item">
+        <strong>Voice Recognition</strong>
+        Web Speech API with real-time transcription and error handling for robust voice input.
+      </div>
+      <div class="tech-item">
+        <strong>AI/LLM Integration</strong>
+        Large Language Models for intelligent keyword-to-category mapping. Learns 11 distinct retail formats.
+      </div>
+      <div class="tech-item">
+        <strong>Geofencing</strong>
+        Geolocation API with Haversine distance calculation. Shows stores sorted by proximity in miles.
+      </div>
+      <div class="tech-item">
+        <strong>Store Database</strong>
+        235+ locations with verified coordinates across 11 retail chains. Real-time expansion infrastructure.
+      </div>
+      <div class="tech-item">
+        <strong>Deployment</strong>
+        Vercel serverless deployment with instant auto-deploys. CDN delivery, 30-second push-to-live cycle.
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="section">
+    <h2 class="section-title">User Traction</h2>
+    <p class="section-subtitle">Organic growth through Facebook sharing and word-of-mouth</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3>Facebook Launch</h3>
+        <p>Shared on personal Facebook — users from multiple states requesting access immediately. Natural demand signal for nationwide expansion.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌍</div>
+        <h3>Cross-State Usage</h3>
+        <p>Friend from Chicago, users from Texas, Colorado, Washington. Real users, real demand. Each metro added based on user requests.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Fast Iteration</h3>
+        <p>Built, deployed, and expanded from 119 California stores to 235+ nationwide in weeks. Responsive to user feedback.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>AisleBird</strong> — Stop wandering. Start flying.</p>
+    <p>Built by <a href="/">Siamak Kalhor Consulting</a></p>
+    <p style="margin-top: 20px; font-size: 12px; opacity: 0.8;">
+      Visit <a href="https://aislebird.com">aislebird.com</a> • Open the <a href="https://aislebird.com/app">app</a> • Designed by Jennifer • Built by Siamak Kalhor
+    </p>
+  </footer>
+</body>
+</html>
