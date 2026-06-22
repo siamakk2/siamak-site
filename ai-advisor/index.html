@@ -65,6 +65,18 @@ h1 .grad{background:var(--glow);-webkit-background-clip:text;background-clip:tex
 .avatar-cta .avatar-pulse{width:11px;height:11px;border-radius:50%;background:#4ade80;box-shadow:0 0 12px #4ade80;animation:pulse 2s infinite;flex-shrink:0}
 .avatar-cta-t{font-family:var(--display);font-weight:600;font-size:15px;color:var(--text)}
 .avatar-cta-s{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:2px}
+.dual{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.dual-card{background:var(--surface-2);border:1px solid var(--line-bright);border-radius:13px;padding:22px}
+.dual-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.dual-ico{font-size:22px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+.dual-t{font-family:var(--display);font-weight:600;font-size:16px;color:var(--text)}
+.dual-s{font-family:var(--mono);font-size:11px;color:var(--cyan);margin-top:2px}
+.dual-p{font-size:13.5px;color:var(--muted);line-height:1.6;margin-bottom:16px}
+.dual-cue{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;color:var(--text);background:var(--void);border:1px solid var(--line);border-radius:9px;padding:10px 12px}
+.dual-cue .avatar-pulse{width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);animation:pulse 2s infinite;flex-shrink:0}
+.dual-cue .avatar-pulse.g{background:#4ade80;box-shadow:0 0 10px #4ade80}
+@media(max-width:680px){.dual{grid-template-columns:1fr}}
+
 
 section.blk{padding:60px 0;position:relative}
 .sec-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;display:flex;align-items:center;gap:12px}
@@ -138,15 +150,20 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:48px 0 3
       <div class="advisor-bar">
         <div class="orb"></div>
         <div><div class="who">Siamak Kalhor · AI Advisor</div><div class="st">● Online · Ready to talk</div></div>
-        <div class="langtag">● LIVE</div>
+        <div class="langtag">● 2 ADVISORS LIVE</div>
       </div>
       <div class="advisor-body">
-        <p class="intro">Hi — I'm Siamak's AI advisor. Ask me about <b>digital marketing, business growth, LLMO, AI visibility, and brand strategy</b>. Click the avatar button in the corner of your screen to start a live, face-to-face video conversation.</p>
-        <div class="avatar-cta">
-          <span class="avatar-pulse"></span>
-          <div>
-            <div class="avatar-cta-t">Your AI advisor is ready</div>
-            <div class="avatar-cta-s">Tap the avatar button at the corner of the page to begin</div>
+        <p class="intro">Two ways to talk to my AI advisor — both trained on <b>digital marketing, growth, LLMO, AI visibility, and brand strategy</b>. Choose the <b>face-to-face video avatar</b> or the <b>voice advisor</b>.</p>
+        <div class="dual">
+          <div class="dual-card">
+            <div class="dual-head"><span class="dual-ico">🎥</span><div><div class="dual-t">Video Avatar</div><div class="dual-s">Powered by Runway</div></div></div>
+            <p class="dual-p">A lifelike, face-to-face conversation. See and hear your advisor in real time.</p>
+            <div class="dual-cue"><span class="avatar-pulse"></span>Tap the avatar button — <b>lower-left</b> of your screen</div>
+          </div>
+          <div class="dual-card">
+            <div class="dual-head"><span class="dual-ico">🎙️</span><div><div class="dual-t">Voice Advisor</div><div class="dual-s">Powered by ElevenLabs</div></div></div>
+            <p class="dual-p">Prefer to just talk? Start a natural voice conversation, hands-free.</p>
+            <div class="dual-cue"><span class="avatar-pulse g"></span>Tap the voice button — <b>lower-right</b> of your screen</div>
           </div>
         </div>
       </div>
@@ -229,7 +246,13 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:48px 0 3
 <script>
 document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
 </script>
-<!-- Runway AI Avatar (floating, sitewide) -->
+<!-- AI Advisors: Runway avatar (left) + ElevenLabs voice (right), floating sitewide -->
+<style>
+elevenlabs-convai{position:fixed;right:18px;bottom:18px;left:auto;z-index:9998}
+[data-runway-widget],#runway-widget-root,.runway-widget-root{left:18px!important;right:auto!important;bottom:18px!important;z-index:9998}
+</style>
+<elevenlabs-convai agent-id="agent_1501ksnmsv1dea1rmb2ed6t8rzwe"></elevenlabs-convai>
+<script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
 <script src="https://cdn.dev.runwayml.com/prod/widget.js" data-pub-key="pub_f47a5f101749ea0b4a8e7a8f6e82e38055021b32eea97d11ca552840274fa6dc"></script>
 </body>
 </html>
