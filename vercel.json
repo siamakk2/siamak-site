@@ -1,16 +1,24 @@
 {
   "headers": [
     {
-      "source": "/(.*).jpg",
-      "headers": [
-        { "key": "Content-Type", "value": "image/jpeg" }
-      ]
+      "source": "/og-image.jpg",
+      "headers": [{ "key": "Content-Type", "value": "image/jpeg" }]
     },
     {
-      "source": "/(.*).png", 
-      "headers": [
-        { "key": "Content-Type", "value": "image/png" }
-      ]
+      "source": "/sk-social-2026.jpg", 
+      "headers": [{ "key": "Content-Type", "value": "image/jpeg" }]
+    },
+    {
+      "source": "/assets/portrait.jpg",
+      "headers": [{ "key": "Content-Type", "value": "image/jpeg" }]
+    },
+    {
+      "source": "/assets/logo-mark.png",
+      "headers": [{ "key": "Content-Type", "value": "image/png" }]
+    },
+    {
+      "source": "/assets/logo.png",
+      "headers": [{ "key": "Content-Type", "value": "image/png" }]
     }
   ],
   "rewrites": [
