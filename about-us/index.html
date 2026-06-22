@@ -171,10 +171,10 @@ document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',(
 
 <!-- AI Advisors: ElevenLabs voice (left, enlarged) + Runway avatar (right), floating sitewide -->
 <style>
-elevenlabs-convai{position:fixed!important;left:18px!important;right:auto!important;bottom:18px!important;z-index:9998;transform:scale(1.3);transform-origin:bottom left}
-[data-runway-widget],#runway-widget-root,.runway-widget-root,#runwayml-widget,runway-widget{right:18px!important;left:auto!important;bottom:18px!important;z-index:9998}
+/* ElevenLabs voice widget: pinned bottom-left and enlarged (Runway avatar position is set in the Runway portal) */
+elevenlabs-convai{position:fixed!important;left:20px!important;right:auto!important;bottom:20px!important;z-index:9999;transform:scale(1.25);transform-origin:bottom left}
 </style>
-<elevenlabs-convai agent-id="agent_1501ksnmsv1dea1rmb2ed6t8rzwe"></elevenlabs-convai>
+<elevenlabs-convai agent-id="agent_1501ksnmsv1dea1rmb2ed6t8rzwe" disable-banner="true"></elevenlabs-convai>
 <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
 <script src="https://cdn.dev.runwayml.com/prod/widget.js" data-pub-key="pub_f47a5f101749ea0b4a8e7a8f6e82e38055021b32eea97d11ca552840274fa6dc"></script>
 </body>
