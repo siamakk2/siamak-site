@@ -166,8 +166,8 @@ document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',(
 
 <!-- AI Advisors: ElevenLabs voice (left, enlarged) + Runway avatar (right), floating sitewide -->
 <style>
-/* ElevenLabs voice widget: pinned bottom-left and enlarged (Runway avatar position is set in the Runway portal) */
-elevenlabs-convai{position:fixed!important;left:20px!important;right:auto!important;bottom:20px!important;z-index:9999;transform:scale(1.25);transform-origin:bottom left}
+/* ElevenLabs voice widget: bottom-left, gently enlarged, anchored so it never leaves the screen (Runway position is set in the Runway portal) */
+elevenlabs-convai{position:fixed!important;left:24px!important;right:auto!important;bottom:24px!important;z-index:9999;transform:scale(1.1);transform-origin:left bottom}
 </style>
 <elevenlabs-convai agent-id="agent_1501ksnmsv1dea1rmb2ed6t8rzwe" disable-banner="true"></elevenlabs-convai>
 <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
