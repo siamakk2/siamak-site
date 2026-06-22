@@ -564,10 +564,10 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:54px 0 4
   <div class="wrap">
     <div class="voice-shell">
       <h3>Meet my <span class="grad">AI avatar.</span></h3>
-      <p class="vs">A 24/7 face-to-face AI advisor trained on four decades of marketing and growth strategy. Click the avatar that appears in the corner of your screen to start a live video conversation — ask anything about AI visibility, LLMO, or growth.</p>
+      <p class="vs">Two ways to talk to my 24/7 AI advisor, trained on four decades of marketing and growth strategy: the <strong>video avatar</strong> on the lower-left for a face-to-face conversation, or the <strong>voice advisor</strong> on the lower-right to just speak. Ask anything about AI visibility, LLMO, or growth.</p>
       <div class="avatar-hint" aria-hidden="true">
         <span class="avatar-pulse"></span>
-        <span>Look for the avatar button — bottom corner of the page</span>
+        <span>Avatar bottom-left · Voice advisor bottom-right</span>
       </div>
     </div>
   </div>
@@ -699,7 +699,13 @@ if(reduce){
 /* close mobile menu on link click */
 document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
 </script>
-<!-- Runway AI Avatar (floating, sitewide) -->
+<!-- AI Advisors: Runway avatar (left) + ElevenLabs voice (right), floating sitewide -->
+<style>
+elevenlabs-convai{position:fixed;right:18px;bottom:18px;left:auto;z-index:9998}
+[data-runway-widget],#runway-widget-root,.runway-widget-root{left:18px!important;right:auto!important;bottom:18px!important;z-index:9998}
+</style>
+<elevenlabs-convai agent-id="agent_1501ksnmsv1dea1rmb2ed6t8rzwe"></elevenlabs-convai>
+<script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
 <script src="https://cdn.dev.runwayml.com/prod/widget.js" data-pub-key="pub_f47a5f101749ea0b4a8e7a8f6e82e38055021b32eea97d11ca552840274fa6dc"></script>
 </body>
 </html>
