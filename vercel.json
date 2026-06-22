@@ -1,4 +1,10 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false
+  "routes": [
+    { "src": "/og-image.jpg", "dest": "/og-image.jpg" },
+    { "src": "/og-image.png", "dest": "/og-image.png" },
+    { "src": "/logo.png", "dest": "/logo.png" },
+    { "src": "/voice", "dest": "/voice/index.html" },
+    { "src": "/clients", "dest": "/clients/index.html" },
+    { "src": "/", "dest": "/index.html" }
+  ]
 }
