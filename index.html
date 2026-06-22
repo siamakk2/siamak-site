@@ -332,6 +332,8 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:54px 0 4
 .about-stats .n .u{background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .about-stats .l{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-dim);margin-top:3px}
 @media(max-width:860px){.about-grid{grid-template-columns:1fr;gap:32px}}
+.avatar-hint{display:inline-flex;align-items:center;gap:11px;font-family:var(--mono);font-size:12.5px;color:var(--muted);border:1px solid var(--line-bright);background:var(--surface-2);padding:11px 18px;border-radius:100px}
+.avatar-pulse{width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan);animation:pulse 2s infinite}
 </style>
 </head>
 <body>
@@ -561,26 +563,12 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:54px 0 4
 <section id="voice">
   <div class="wrap">
     <div class="voice-shell">
-      <h3>Ask me anything. <span class="grad">In your language.</span></h3>
-      <p class="vs">A 24/7 AI advisor trained on four decades of marketing and growth strategy. Pick a language, then start the call.</p>
-      <div class="lang-grid" id="langGrid">
-        <button class="lang-btn active" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="es">ES</button>
-        <button class="lang-btn" data-lang="fr">FR</button>
-        <button class="lang-btn" data-lang="de">DE</button>
-        <button class="lang-btn" data-lang="it">IT</button>
-        <button class="lang-btn" data-lang="pt">PT</button>
-        <button class="lang-btn" data-lang="nl">NL</button>
-        <button class="lang-btn" data-lang="ja">日本語</button>
-        <button class="lang-btn" data-lang="zh">中文</button>
-        <button class="lang-btn" data-lang="ko">한국어</button>
-        <button class="lang-btn" data-lang="ar">العربية</button>
-        <button class="lang-btn" data-lang="ru">RU</button>
-        <button class="lang-btn" data-lang="hi">हिन्दी</button>
-        <button class="lang-btn" data-lang="fa">فارسی</button>
+      <h3>Meet my <span class="grad">AI avatar.</span></h3>
+      <p class="vs">A 24/7 face-to-face AI advisor trained on four decades of marketing and growth strategy. Click the avatar that appears in the corner of your screen to start a live video conversation — ask anything about AI visibility, LLMO, or growth.</p>
+      <div class="avatar-hint" aria-hidden="true">
+        <span class="avatar-pulse"></span>
+        <span>Look for the avatar button — bottom corner of the page</span>
       </div>
-      <button class="btn btn-pri" id="start-btn" onclick="launchWidget()">📞 Start a call now</button>
-      <div id="widget-container"></div>
     </div>
   </div>
 </section>
@@ -708,30 +696,10 @@ if(reduce){
   setTimeout(type,600);
 }
 
-/* ---- voice ---- */
-let selectedLang='en';
-document.querySelectorAll('.lang-btn').forEach(b=>{
-  b.addEventListener('click',function(){
-    document.querySelectorAll('.lang-btn').forEach(x=>x.classList.remove('active'));
-    this.classList.add('active');selectedLang=this.dataset.lang;
-    document.getElementById('widget-container').innerHTML='';
-    const s=document.getElementById('start-btn');s.innerHTML='📞 Start a call now';
-  });
-});
-function launchWidget(){
-  const c=document.getElementById('widget-container');c.innerHTML='';
-  const old=document.getElementById('el-script');if(old)old.remove();
-  const w=document.createElement('elevenlabs-convai');
-  w.setAttribute('agent-id','agent_1501ksnmsv1dea1rmb2ed6t8rzwe');
-  w.setAttribute('language',selectedLang);
-  c.appendChild(w);
-  const s=document.createElement('script');s.id='el-script';
-  s.src='https://unpkg.com/@elevenlabs/convai-widget-embed';s.async=true;s.type='text/javascript';
-  document.body.appendChild(s);
-  document.getElementById('start-btn').innerHTML='✓ Advisor ready below';
-}
 /* close mobile menu on link click */
 document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
 </script>
+<!-- Runway AI Avatar (floating, sitewide) -->
+<script src="https://cdn.dev.runwayml.com/prod/widget.js" data-pub-key="pub_f47a5f101749ea0b4a8e7a8f6e82e38055021b32eea97d11ca552840274fa6dc"></script>
 </body>
 </html>
