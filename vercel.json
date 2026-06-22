@@ -1,6 +1,4 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
   "rewrites": [
     { "source": "/voice", "destination": "/voice/index.html" },
     { "source": "/clients", "destination": "/clients/index.html" }
