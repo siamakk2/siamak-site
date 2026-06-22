@@ -1,4 +1,18 @@
 {
+  "headers": [
+    {
+      "source": "/(.*).jpg",
+      "headers": [
+        { "key": "Content-Type", "value": "image/jpeg" }
+      ]
+    },
+    {
+      "source": "/(.*).png", 
+      "headers": [
+        { "key": "Content-Type", "value": "image/png" }
+      ]
+    }
+  ],
   "rewrites": [
     { "source": "/voice", "destination": "/voice/index.html" },
     { "source": "/clients", "destination": "/clients/index.html" }
