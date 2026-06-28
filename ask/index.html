@@ -114,53 +114,43 @@ elevenlabs-convai{z-index:2147483000!important;}
 
 <footer class="footer"><p>© 2026 Siamak Kalhor · <a href="/">siamakconsulting.com</a> · Make your brand the answer AI gives</p></footer>
 
-<elevenlabs-convai agent-id="agent_1501ksnmsv1dea1rmb2ed6t8rzwe" disable-banner="true"></elevenlabs-convai>
-<script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+<!-- AI Advisor: loads ONLY when the user clicks (no auto-open big box on page load) -->
+<button id="talkBtn" aria-label="Talk to the AI Advisor"
+  style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9998;display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#2dd4ff,#a06bff);color:#04060a;border:none;border-radius:999px;padding:15px 26px;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 8px 34px rgba(45,212,255,.4)">
+  🎙️ Talk to AI Advisor
+</button>
+
 <script>
-var t=false;
-document.addEventListener('click',function(e){if(e.target.closest('elevenlabs-convai')&&!t){t=true;gtag('event','ai_advisor_open',{event_category:'engagement'});}});
 (function(){
+  var loaded=false, tracked=false;
+  function track(){ if(!tracked){ tracked=true; try{ gtag('event','ai_advisor_open',{event_category:'engagement'}); }catch(e){} } }
+  function openAdvisor(){
+    var orb=document.getElementById('orb'); if(orb) orb.classList.add('active');
+    if(!loaded){
+      loaded=true;
+      // inject the widget on demand — it opens itself
+      var el=document.createElement('elevenlabs-convai');
+      el.setAttribute('agent-id','agent_1501ksnmsv1dea1rmb2ed6t8rzwe');
+      document.body.appendChild(el);
+      var s=document.createElement('script');
+      s.src='https://unpkg.com/@elevenlabs/convai-widget-embed';
+      s.async=true; s.type='text/javascript';
+      document.body.appendChild(s);
+      var b=document.getElementById('talkBtn'); if(b) b.style.display='none';
+      track();
+    } else {
+      // already loaded — toggle it open/closed via its own control
+      var w=document.querySelector('elevenlabs-convai');
+      if(w && w.shadowRoot){ var btn=w.shadowRoot.querySelector('button,[role="button"]'); if(btn){ try{ btn.click(); }catch(e){} } }
+    }
+  }
   var orb=document.getElementById('orb');
-  if(!orb) return;
-  function lbl(el){
-    var a=(el.getAttribute&&(el.getAttribute('aria-label')||el.getAttribute('title')||el.getAttribute('data-testid')))||'';
-    return (a+' '+(el.textContent||'')).toLowerCase();
+  if(orb){
+    orb.addEventListener('click', openAdvisor);
+    orb.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openAdvisor(); }});
   }
-  // Open the TEXT CHAT inside the widget (not the voice call)
-  function openChat(attempt){
-    var w=document.querySelector('elevenlabs-convai');
-    if(!w){ return; }
-    var root=w.shadowRoot;
-    if(!root){ try{ w.click(); }catch(e){} if(attempt<12){ setTimeout(function(){openChat(attempt+1);},220);} return; }
-    var nodes=Array.prototype.slice.call(root.querySelectorAll('button,[role="button"],a,svg,[part]'));
-    // 1) find an explicit chat / text / message control
-    var chat=null;
-    for(var i=0;i<nodes.length;i++){
-      var s=lbl(nodes[i]);
-      if(/chat|message|text|type|write|keyboard|send|conversation/.test(s)){
-        chat=nodes[i]; break;
-      }
-    }
-    if(chat){
-      var click=chat.closest? (chat.closest('button')||chat.closest('[role=\"button\"]')||chat):chat;
-      try{ click.click(); }catch(e){ try{chat.click();}catch(e2){} }
-      return;
-    }
-    // 2) widget might still be collapsed — open it, then retry to reach the chat control
-    if(attempt<12){
-      if(attempt===0){
-        var opener=root.querySelector('button,[role="button"]');
-        if(opener){ try{ opener.click(); }catch(e){} }
-      }
-      setTimeout(function(){ openChat(attempt+1); }, 220);
-    }
-  }
-  orb.addEventListener('click',function(){
-    orb.classList.add('active');
-    openChat(0);
-    if(!t){ t=true; gtag('event','ai_advisor_open',{event_category:'engagement'}); }
-  });
-  orb.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); orb.click(); }});
+  var tb=document.getElementById('talkBtn');
+  if(tb) tb.addEventListener('click', openAdvisor);
 })();
 </script>
 </body></html>
