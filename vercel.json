@@ -1,6 +1,21 @@
 {
   "redirects": [
     {
+      "source": "/audit",
+      "destination": "https://orchamind.com/audit",
+      "permanent": false
+    },
+    {
+      "source": "/website-audit",
+      "destination": "https://orchamind.com/audit",
+      "permanent": false
+    },
+    {
+      "source": "/free-audit",
+      "destination": "https://orchamind.com/audit",
+      "permanent": false
+    },
+    {
       "source": "/",
       "has": [
         {
