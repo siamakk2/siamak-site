@@ -1,28 +1,523 @@
 {
-  "headers": [
+  "redirects": [
     {
-      "source": "/og-image.jpg",
-      "headers": [{ "key": "Content-Type", "value": "image/jpeg" }]
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/",
+      "permanent": true
     },
     {
-      "source": "/sk-social-2026.jpg", 
-      "headers": [{ "key": "Content-Type", "value": "image/jpeg" }]
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/",
+      "permanent": true
     },
     {
-      "source": "/assets/portrait.jpg",
-      "headers": [{ "key": "Content-Type", "value": "image/jpeg" }]
+      "source": "/contact",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/contact/",
+      "permanent": true
     },
     {
-      "source": "/assets/logo-mark.png",
-      "headers": [{ "key": "Content-Type", "value": "image/png" }]
+      "source": "/contact/",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/contact/",
+      "permanent": true
     },
     {
-      "source": "/assets/logo.png",
-      "headers": [{ "key": "Content-Type", "value": "image/png" }]
+      "source": "/contact-us",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/contact-us/",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us/",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/contact-us/",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/about-us/",
+      "permanent": true
+    },
+    {
+      "source": "/about/",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/about-us/",
+      "permanent": true
+    },
+    {
+      "source": "/about-us",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/about-us/",
+      "permanent": true
+    },
+    {
+      "source": "/about-us/",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/about-us/",
+      "permanent": true
+    },
+    {
+      "source": "/services",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/services/",
+      "permanent": true
+    },
+    {
+      "source": "/services/",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/services/",
+      "permanent": true
+    },
+    {
+      "source": "/ai-consultant",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/ai-consultant/",
+      "permanent": true
+    },
+    {
+      "source": "/ai-consultant/",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/ai-consultant/",
+      "permanent": true
+    },
+    {
+      "source": "/ai-advisor",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/ai-advisor/",
+      "permanent": true
+    },
+    {
+      "source": "/ai-advisor/",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/ai-advisor/",
+      "permanent": true
+    },
+    {
+      "source": "/llm-optimization",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/llm-optimization/",
+      "permanent": true
+    },
+    {
+      "source": "/llm-optimization/",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/llm-optimization/",
+      "permanent": true
+    },
+    {
+      "source": "/growth-strategies",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/growth-strategies/",
+      "permanent": true
+    },
+    {
+      "source": "/growth-strategies/",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/growth-strategies/",
+      "permanent": true
+    },
+    {
+      "source": "/growth-framework",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/growth-framework/",
+      "permanent": true
+    },
+    {
+      "source": "/growth-framework/",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/growth-framework/",
+      "permanent": true
+    },
+    {
+      "source": "/online-consulting",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/online-consulting/",
+      "permanent": true
+    },
+    {
+      "source": "/online-consulting/",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/online-consulting/",
+      "permanent": true
+    },
+    {
+      "source": "/clients",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/clients/",
+      "permanent": true
+    },
+    {
+      "source": "/clients/",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/clients/",
+      "permanent": true
+    },
+    {
+      "source": "/voice",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/voice/",
+      "permanent": true
+    },
+    {
+      "source": "/voice/",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/voice/",
+      "permanent": true
+    },
+    {
+      "source": "/authority-hub",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/authority-hub/",
+      "permanent": true
+    },
+    {
+      "source": "/authority-hub/",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/authority-hub/",
+      "permanent": true
+    },
+    {
+      "source": "/the-growth-glossary",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/the-growth-glossary/",
+      "permanent": true
+    },
+    {
+      "source": "/the-growth-glossary/",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/the-growth-glossary/",
+      "permanent": true
+    },
+    {
+      "source": "/analyze-your-brand",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/analyze-your-brand/",
+      "permanent": true
+    },
+    {
+      "source": "/analyze-your-brand/",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/analyze-your-brand/",
+      "permanent": true
+    },
+    {
+      "source": "/business-dna",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/business-dna/",
+      "permanent": true
+    },
+    {
+      "source": "/business-dna/",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/business-dna/",
+      "permanent": true
+    },
+    {
+      "source": "/aislebird",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://aislebird.com/",
+      "permanent": true
+    },
+    {
+      "source": "/aislebird/",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://aislebird.com/",
+      "permanent": true
+    },
+    {
+      "source": "/bluemoon",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/",
+      "permanent": true
+    },
+    {
+      "source": "/bluemoon/",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.siamakkalhor.com"
+        }
+      ],
+      "destination": "https://siamakconsulting.com/$1",
+      "permanent": true
     }
   ],
   "rewrites": [
-    { "source": "/voice", "destination": "/voice/index.html" },
-    { "source": "/clients", "destination": "/clients/index.html" }
+    {
+      "source": "/voice",
+      "destination": "/voice/index.html"
+    },
+    {
+      "source": "/clients",
+      "destination": "/clients/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/og-image.jpg",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "source": "/sk-social-2026.jpg",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "source": "/assets/portrait.jpg",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "source": "/assets/logo-mark.png",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/png"
+        }
+      ]
+    },
+    {
+      "source": "/assets/logo.png",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/png"
+        }
+      ]
+    }
   ]
 }
