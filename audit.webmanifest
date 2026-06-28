@@ -1,0 +1,21 @@
+{
+  "name": "AI Website Audit \u00b7 Siamak Kalhor",
+  "short_name": "AI Audit",
+  "description": "Free AI Visibility Audit \u2014 scores your SEO, LLMO, and positioning with fixes.",
+  "icons": [
+    {
+      "src": "/audit-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/audit-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#06080c",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/audit"
+}
