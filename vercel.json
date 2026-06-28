@@ -262,6 +262,10 @@
     {
       "source": "/clients",
       "destination": "/clients/index.html"
+    },
+    {
+      "source": "/voice-consultant",
+      "destination": "/voice-consultant/index.html"
     }
   ],
   "headers": [
