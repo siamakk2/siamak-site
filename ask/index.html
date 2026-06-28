@@ -41,7 +41,9 @@ a{text-decoration:none;color:inherit}
 .hero{max-width:760px;margin:0 auto;padding:64px 24px 40px;text-align:center}
 .eyebrow{display:inline-block;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);border:1px solid var(--line-b);padding:6px 14px;border-radius:999px;margin-bottom:28px}
 .orb-wrap{display:flex;justify-content:center;margin:8px 0 36px}
-.orb{position:relative;width:150px;height:150px;border-radius:50%;background:var(--glow);box-shadow:0 0 80px rgba(45,212,255,.5);animation:breathe 3.2s ease-in-out infinite}
+.orb{position:relative;width:150px;height:150px;border-radius:50%;background:var(--glow);box-shadow:0 0 80px rgba(45,212,255,.5);animation:breathe 3.2s ease-in-out infinite;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.orb:hover{box-shadow:0 0 110px rgba(45,212,255,.7)}
+.orb.active{box-shadow:0 0 130px rgba(160,107,255,.85)}
 .orb::before,.orb::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--cyan);opacity:0;animation:ring 3.2s ease-out infinite}
 .orb::after{animation-delay:1.6s}
 @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
@@ -72,7 +74,7 @@ h1 .grad{background:var(--glow);-webkit-background-clip:text;background-clip:tex
 .footer{border-top:1px solid var(--line);margin-top:64px;padding:36px 24px;text-align:center}
 .footer p{font-family:var(--mono);font-size:12.5px;color:#586173}
 .footer a{color:var(--muted)} .footer a:hover{color:var(--cyan)}
-elevenlabs-convai{position:fixed!important;bottom:24px!important;left:0!important;right:0!important;margin-left:auto!important;margin-right:auto!important;width:max-content!important;transform:none!important;z-index:9999!important}
+elevenlabs-convai{z-index:2147483000!important;}
 @media(max-width:700px){.grid,.app-grid{grid-template-columns:1fr}}
 </style>
 </head><body>
@@ -80,10 +82,10 @@ elevenlabs-convai{position:fixed!important;bottom:24px!important;left:0!importan
 
 <section class="hero">
   <span class="eyebrow">Free · Voice AI</span>
-  <div class="orb-wrap"><div class="orb"></div></div>
+  <div class="orb-wrap"><div class="orb" id="orb" role="button" tabindex="0" aria-label="Start or stop talking to the AI Advisor"></div></div>
   <h1>Ask my <span class="grad">AI Advisor</span> anything</h1>
   <p class="sub">A voice assistant trained on 40+ years of marketing and AI expertise. It answers questions about AI marketing, LLMO, growth strategy, and how to make your brand the answer AI gives.</p>
-  <div class="hint">Tap the assistant at the bottom to start talking ↓</div>
+  <div class="hint">↑ Tap the orb to start talking · tap again to stop</div>
   <div class="chips">
     <div class="chip">Try: <b>"What is LLMO?"</b></div>
     <div class="chip">Try: <b>"How do I get cited by ChatGPT?"</b></div>
@@ -115,6 +117,31 @@ elevenlabs-convai{position:fixed!important;bottom:24px!important;left:0!importan
 <elevenlabs-convai agent-id="agent_1501ksnmsv1dea1rmb2ed6t8rzwe"></elevenlabs-convai>
 <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
 <script>
-var t=false;document.addEventListener('click',function(e){if(e.target.closest('elevenlabs-convai')&&!t){t=true;gtag('event','ai_advisor_open',{event_category:'engagement'});}});
+var t=false;
+document.addEventListener('click',function(e){if(e.target.closest('elevenlabs-convai')&&!t){t=true;gtag('event','ai_advisor_open',{event_category:'engagement'});}});
+(function(){
+  var orb=document.getElementById('orb');
+  if(!orb) return;
+  function fireWidget(){
+    var w=document.querySelector('elevenlabs-convai');
+    if(!w) return false;
+    // reach into the widget's shadow DOM and click its main button (toggles the call)
+    try{
+      var root=w.shadowRoot;
+      if(root){
+        var btn=root.querySelector('button,[role="button"],[part="button"]');
+        if(btn){ btn.click(); return true; }
+      }
+    }catch(err){}
+    try{ w.click(); return true; }catch(err){}
+    return false;
+  }
+  orb.addEventListener('click',function(){
+    var ok=fireWidget();
+    orb.classList.toggle('active');
+    if(ok && !t){ t=true; gtag('event','ai_advisor_open',{event_category:'engagement'}); }
+  });
+  orb.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); orb.click(); }});
+})();
 </script>
 </body></html>
