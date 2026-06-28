@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Analytics GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7P0KWXJ026"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7P0KWXJ026');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Business DNA — Neural DNA Architect™ Deep-Scan Diagnostic | Siamak Kalhor</title>
@@ -165,12 +173,24 @@ document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',(
 </script>
 
 <!-- AI Advisors: ElevenLabs voice (left, enlarged) + Runway avatar (right), floating sitewide -->
+
+
+
+<script src="https://cdn.dev.runwayml.com/prod/widget.js" data-pub-key="pub_f47a5f101749ea0b4a8e7a8f6e82e38055021b32eea97d11ca552840274fa6dc"></script>
+
+<!-- ElevenLabs Voice Widget -->
 <style>
-/* ElevenLabs voice widget: bottom-left, gently enlarged, anchored so it never leaves the screen (Runway position is set in the Runway portal) */
-elevenlabs-convai{position:fixed!important;left:24px!important;right:auto!important;bottom:24px!important;z-index:9999;transform:scale(1.1);transform-origin:left bottom}
+elevenlabs-convai{
+  position:fixed!important;
+  bottom:24px!important;
+  right:24px!important;
+  left:auto!important;
+  z-index:9999!important;
+  transform:scale(1.05);
+  transform-origin:right bottom;
+}
 </style>
 <elevenlabs-convai agent-id="agent_1501ksnmsv1dea1rmb2ed6t8rzwe" disable-banner="true"></elevenlabs-convai>
 <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
-<script src="https://cdn.dev.runwayml.com/prod/widget.js" data-pub-key="pub_f47a5f101749ea0b4a8e7a8f6e82e38055021b32eea97d11ca552840274fa6dc"></script>
 </body>
 </html>
