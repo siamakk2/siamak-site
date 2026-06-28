@@ -124,6 +124,29 @@ elevenlabs-convai{z-index:2147483000!important;}
 (function(){
   var loaded=false, tracked=false;
   function track(){ if(!tracked){ tracked=true; try{ gtag('event','ai_advisor_open',{event_category:'engagement'}); }catch(e){} } }
+  // Make the hang-up / end-call button obvious (red) inside the widget's shadow DOM
+  function enhanceHangup(){
+    function inject(root){
+      try{
+        if(root.getElementById && root.getElementById('sk-hangup-style')) return;
+        var st=document.createElement('style');
+        st.id='sk-hangup-style';
+        st.textContent='button[aria-label*="end" i],button[aria-label*="hang" i],button[aria-label*="leave" i],button[aria-label*="stop" i],button[aria-label*="disconnect" i],button[title*="end" i],button[title*="hang" i]{background:#e53935 !important;color:#fff !important;border-color:#e53935 !important;border-radius:14px !important;box-shadow:0 3px 16px rgba(229,57,53,.55) !important;}';
+        root.appendChild(st);
+      }catch(e){}
+    }
+    var tries=0;
+    var iv=setInterval(function(){
+      tries++;
+      var w=document.querySelector('elevenlabs-convai');
+      if(w && w.shadowRoot){
+        inject(w.shadowRoot);
+        try{ new MutationObserver(function(){ inject(w.shadowRoot); }).observe(w.shadowRoot,{childList:true,subtree:true}); }catch(e){}
+        clearInterval(iv);
+      }
+      if(tries>60) clearInterval(iv);
+    },200);
+  }
   function openAdvisor(){
     var orb=document.getElementById('orb'); if(orb) orb.classList.add('active');
     if(!loaded){
@@ -138,6 +161,7 @@ elevenlabs-convai{z-index:2147483000!important;}
       document.body.appendChild(s);
       var b=document.getElementById('talkBtn'); if(b) b.style.display='none';
       track();
+      enhanceHangup();
     } else {
       // already loaded — toggle it open/closed via its own control
       var w=document.querySelector('elevenlabs-convai');
