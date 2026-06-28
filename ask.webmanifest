@@ -1,0 +1,21 @@
+{
+  "name": "Ask Siamak AI",
+  "short_name": "Ask Siamak AI",
+  "description": "A free voice AI advisor trained on 40+ years of marketing and AI expertise. Ask it anything.",
+  "icons": [
+    {
+      "src": "/ask-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/ask-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#06080c",
+  "background_color": "#000000",
+  "display": "standalone",
+  "start_url": "/ask"
+}
