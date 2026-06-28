@@ -378,18 +378,21 @@
 
 
 
-<!-- ElevenLabs Voice Widget -->
+
+
+<!-- ElevenLabs Voice Widget — centered bottom -->
 <style>
 elevenlabs-convai{
   position:fixed!important;
   bottom:24px!important;
-  left:24px!important;
+  left:50%!important;
   right:auto!important;
+  transform:translateX(-50%)!important;
   z-index:9999!important;
-  transform-origin:left bottom;
 }
 </style>
 <elevenlabs-convai agent-id="agent_1501ksnmsv1dea1rmb2ed6t8rzwe" disable-banner="true"></elevenlabs-convai>
 <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+
 </body>
 </html>
