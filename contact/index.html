@@ -294,5 +294,70 @@ elevenlabs-convai{
 <elevenlabs-convai agent-id="agent_1501ksnmsv1dea1rmb2ed6t8rzwe" disable-banner="true"></elevenlabs-convai>
 <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
 
+
+<!-- GA4 Event Tracking — Siamak Kalhor Consulting -->
+<script>
+(function(){
+  function track(name, params){
+    if (typeof gtag === 'function') { gtag('event', name, params || {}); }
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a, button');
+    if (!a) return;
+    var href = (a.getAttribute('href') || '').toLowerCase();
+    var txt = (a.textContent || '').trim().toLowerCase();
+
+    // Phone clicks
+    if (href.indexOf('tel:') === 0) {
+      track('phone_click', {event_category:'lead', event_label:'phone', value:1});
+    }
+    // Email clicks
+    else if (href.indexOf('mailto:') === 0) {
+      track('email_click', {event_category:'lead', event_label:'email', value:1});
+    }
+    // Book a call / consultation buttons
+    else if (txt.indexOf('book') !== -1 || txt.indexOf('consultation') !== -1 || txt.indexOf('scan') !== -1 || href.indexOf('/contact') !== -1) {
+      track('book_call_click', {event_category:'lead', event_label:txt.slice(0,40), value:1});
+    }
+    // Product clicks (ecosystem)
+    else if (href.indexOf('aislebird.com') !== -1) {
+      track('product_click', {event_category:'ecosystem', event_label:'AisleBird'});
+    }
+    else if (href.indexOf('orchamind.com') !== -1) {
+      track('product_click', {event_category:'ecosystem', event_label:'Orchamind'});
+    }
+    else if (href.indexOf('resbizai.com') !== -1) {
+      track('product_click', {event_category:'ecosystem', event_label:'ResBizAI'});
+    }
+  }, true);
+
+  // Form submit = generate_lead (the money event)
+  document.addEventListener('submit', function(e){
+    if (e.target && e.target.tagName === 'FORM') {
+      track('generate_lead', {event_category:'lead', event_label:'contact_form', value:10});
+    }
+  }, true);
+
+  // AI Advisor widget opened (ElevenLabs)
+  var advisorTracked = false;
+  document.addEventListener('click', function(e){
+    var w = e.target.closest('elevenlabs-convai');
+    if (w && !advisorTracked) {
+      advisorTracked = true;
+      track('ai_advisor_open', {event_category:'engagement', event_label:'voice_advisor'});
+    }
+  }, true);
+
+  // Language selection (on AI advisor / voice pages)
+  document.addEventListener('click', function(e){
+    var l = e.target.closest('.lang, .lang-btn, .lang-card');
+    if (l) {
+      var lang = (l.textContent || '').trim().slice(0,20);
+      track('language_select', {event_category:'engagement', event_label:lang});
+    }
+  }, true);
+})();
+</script>
+
 </body>
 </html>
