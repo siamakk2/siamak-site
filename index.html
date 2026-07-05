@@ -251,15 +251,15 @@
 :root{
   --void:#000000;
   --panel:#06080c;
-  --surface:#0b0f16;
-  --surface-2:#11161f;
-  --line:#1b212c;
-  --line-bright:#2a3340;
+  --surface:#0e131d;
+  --surface-2:#161d29;
+  --line:#2b3441;
+  --line-bright:#3d4859;
   --cyan:#2dd4ff;
   --violet:#a06bff;
-  --text:#e9eef5;
-  --muted:#7e8a9a;
-  --muted-dim:#586173;
+  --text:#f2f5fa;
+  --muted:#b3becc;
+  --muted-dim:#8b98aa;
   --glow:linear-gradient(135deg,#2dd4ff 0%,#a06bff 100%);
   --display:'Space Grotesk',sans-serif;
   --body:'Inter',sans-serif;
@@ -357,7 +357,7 @@ h1.hero-h .grad{background:var(--glow);-webkit-background-clip:text;background-c
 @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* section scaffold */
-section{padding:96px 0;position:relative}
+section{padding:64px 0;position:relative}
 .sec-head{margin-bottom:56px;max-width:720px}
 .sec-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:18px;display:flex;align-items:center;gap:12px}
 .sec-label::before{content:'';width:28px;height:1px;background:var(--glow)}
@@ -481,7 +481,7 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:54px 0 4
 }
 
 .brand-logo{height:30px;width:auto;display:block}
-.about{padding:96px 0;position:relative}
+.about{padding:64px 0;position:relative}
 .about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:54px;align-items:center}
 .about-portrait{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--panel)}
 .about-portrait::after{content:'';position:absolute;inset:0;border-radius:16px;box-shadow:inset 0 0 0 1px rgba(45,212,255,.12);pointer-events:none}
@@ -827,9 +827,9 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:54px 0 4
 
 
 <!-- BUILT BY SIAMAK — Products showcase -->
-<section style="padding:96px 0;background:var(--surface-2);border-top:1px solid var(--line);" id="products">
+<section style="padding:64px 0;background:var(--surface-2);border-top:1px solid var(--line);" id="products">
   <div class="wrap">
-    <div class="sec-head" style="margin-bottom:52px;">
+    <div class="sec-head" style="margin-bottom:36px;">
       <div class="sec-label">Built by Siamak Kalhor</div>
       <h2 class="sec-h">Products I built from<br/>idea to <span class="grad">live product</span></h2>
       <p class="sec-desc" style="max-width:600px;">Every strategy I teach, I apply first. These four AI-native products were conceived, designed, built, and launched by Siamak Kalhor — fully LLMO-optimized, voice-powered, and live in production.</p>
