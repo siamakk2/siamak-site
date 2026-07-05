@@ -82,7 +82,7 @@
       "url": "https://siamakconsulting.com",
       "image": "https://siamakconsulting.com/og-image-v3.jpg",
       "telephone": "+13236577752",
-      "email": "siamakk2@gmail.com",
+      "email": "info@siamakkalhor.com",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "530 E 8th St",
@@ -135,7 +135,7 @@
       "url": "https://siamakconsulting.com",
       "image": "https://siamakconsulting.com/og-image-v3.jpg",
       "telephone": "+13236577752",
-      "email": "siamakk2@gmail.com",
+      "email": "info@siamakkalhor.com",
       "priceRange": "$$$$",
       "areaServed": "Worldwide",
       "founder": {"@id": "https://siamakconsulting.com/#person"},
@@ -193,7 +193,7 @@
       "description": "AI authority consultant specializing in Large Model Optimization (LLMO) — making brands visible, cited, and recommended by AI systems like ChatGPT, Gemini, and Claude.",
       "url": "https://siamakconsulting.com",
       "telephone": "+13236577752",
-      "email": "siamakk2@gmail.com",
+      "email": "info@siamakkalhor.com",
       "knowsAbout": ["Large Model Optimization","Generative Engine Optimization","Answer Engine Optimization","AI Marketing Strategy","Retrieval-Augmented Generation","Brand Authority Engineering","LLM Visibility","Knowledge Graph Optimization","Business Growth Strategy","Fractional CMO"],
       "address": {"@type": "PostalAddress","addressLocality": "Los Angeles","addressRegion": "CA","addressCountry": "US"}
     },
@@ -204,7 +204,7 @@
       "description": "Large Model Optimization (LLMO) and AI authority consulting. We engineer brands to be cited and recommended by generative AI systems.",
       "url": "https://siamakconsulting.com",
       "telephone": "+13236577752",
-      "email": "siamakk2@gmail.com",
+      "email": "info@siamakkalhor.com",
       "founder": {"@id": "https://siamakconsulting.com/#person"},
       "areaServed": "Worldwide",
       "priceRange": "$$$$",
@@ -507,6 +507,19 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:54px 0 4
 .products-grid > div{min-width:0;}
 .products-grid h3,.products-grid > div > div{overflow-wrap:break-word;word-break:normal;}
 @media(max-width:820px){.products-grid{grid-template-columns:1fr;gap:16px;}}
+
+/* AI Authority Scan — productized offer styles */
+.scan-deliverables{list-style:none;padding:0;margin:20px 0}
+.scan-deliverables li{display:flex;align-items:flex-start;gap:10px;padding:7px 0;color:var(--muted);font-size:15px;line-height:1.5}
+.scan-deliverables .chk{color:var(--cyan);font-weight:800;flex-shrink:0;margin-top:1px}
+.scan-deliverables strong{color:var(--text)}
+.scan-trust{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:18px 0;font-size:13px;color:var(--muted-dim);font-family:'JetBrains Mono',monospace}
+.scan-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:12px}
+.scan-price-label{font-size:18px;font-weight:800;color:var(--text)}
+.scan-badge{font-size:11px;font-weight:700;color:var(--cyan);background:rgba(45,212,255,.1);border:1px solid rgba(45,212,255,.3);padding:5px 11px;border-radius:20px;white-space:nowrap;font-family:'JetBrains Mono',monospace}
+.scan-fallback{display:block;text-align:center;margin-top:14px;color:var(--muted-dim);font-size:13px;text-decoration:none;transition:color .2s}
+.scan-fallback:hover{color:var(--cyan)}
+
 </style>
 
 <script type="application/ld+json">
@@ -560,33 +573,6 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:54px 0 4
   ]
 }
 </script>
-<style id="hero-futuristic">
-.hero2{position:relative;overflow:hidden;padding:56px 0 0;background:radial-gradient(ellipse 80% 55% at 50% -8%, rgba(45,212,255,.13), transparent 60%), var(--void);}
-.hero2-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
-.hero2-bg .orb{position:absolute;border-radius:50%;filter:blur(90px);}
-.orb-a{width:540px;height:540px;background:radial-gradient(circle,rgba(45,212,255,.5),transparent 70%);top:-180px;left:-120px;animation:heroDrift 20s ease-in-out infinite;}
-.orb-b{width:500px;height:500px;background:radial-gradient(circle,rgba(160,107,255,.45),transparent 70%);bottom:-200px;right:-120px;animation:heroDrift 26s ease-in-out infinite reverse;}
-.orb-c{width:340px;height:340px;background:radial-gradient(circle,rgba(45,212,255,.22),transparent 70%);top:38%;left:54%;animation:heroDrift 30s ease-in-out infinite;}
-.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:54px 54px;-webkit-mask-image:radial-gradient(ellipse 72% 62% at 50% 26%, #000 34%, transparent 78%);mask-image:radial-gradient(ellipse 72% 62% at 50% 26%, #000 34%, transparent 78%);}
-.fg{position:absolute;font-size:74px;opacity:.07;animation:heroFloat 15s ease-in-out infinite;}
-.fg1{top:14%;right:12%;}.fg2{top:58%;left:7%;animation-delay:2.5s;}.fg3{bottom:20%;right:20%;animation-delay:5s;}.fg4{top:26%;left:20%;animation-delay:7.5s;}
-@keyframes heroDrift{0%,100%{transform:translate(0,0)}50%{transform:translate(46px,34px)}}
-@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
-.hero2-inner{position:relative;z-index:2;text-align:center;max-width:920px;padding-top:18px;padding-bottom:54px;}
-.hero2 .eyebrow{display:inline-flex;margin:0 auto 22px;}
-.hero2-h{font-family:var(--display);font-weight:700;font-size:clamp(38px,6.2vw,74px);line-height:1.04;letter-spacing:-.022em;margin-bottom:22px;color:var(--text);}
-.hero2-sub{font-size:clamp(15px,1.9vw,19px);color:var(--muted);max-width:660px;margin:0 auto 32px;line-height:1.62;}
-.hero2-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:46px;}
-.hero-apps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:900px;margin:0 auto;}
-.happ{position:relative;display:flex;flex-direction:column;align-items:center;gap:5px;padding:24px 12px 20px;border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015));border:1px solid var(--line-bright);text-decoration:none;transition:transform .25s,border-color .25s,box-shadow .25s;overflow:hidden;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);}
-.happ::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% -25%, var(--c), transparent 62%);opacity:.16;transition:opacity .25s;}
-.happ:hover{transform:translateY(-6px);border-color:var(--c);box-shadow:0 20px 44px -18px rgba(0,0,0,.7);}
-.happ:hover::before{opacity:.34;}
-.happ-i{font-size:34px;position:relative;z-index:1;line-height:1;filter:drop-shadow(0 6px 14px rgba(0,0,0,.5));}
-.happ-n{font-family:var(--display);font-weight:700;font-size:16px;color:var(--text);position:relative;z-index:1;}
-.happ-t{font-size:11px;color:var(--muted);position:relative;z-index:1;font-family:var(--mono);letter-spacing:.02em;}
-@media(max-width:760px){.hero-apps{grid-template-columns:repeat(2,1fr);gap:11px;}.fg{font-size:50px;}.hero2-inner{padding-bottom:38px;}.hero2-btns{margin-bottom:36px;}}
-</style>
 </head>
 <body>
 <div class="ambient"></div>
@@ -612,36 +598,42 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:54px 0 4
 <div id="top"></div>
 
 <!-- HERO -->
-<header class="hero hero2">
-  <div class="hero2-bg" aria-hidden="true">
-    <div class="orb orb-a"></div>
-    <div class="orb orb-b"></div>
-    <div class="orb orb-c"></div>
-    <div class="hgrid"></div>
-    <span class="fg fg1">🏗️</span>
-    <span class="fg fg2">🐦</span>
-    <span class="fg fg3">🍽️</span>
-    <span class="fg fg4">🧵</span>
-  </div>
-  <div class="wrap hero2-inner">
-    <div class="eyebrow"><span class="dot"></span>AI-native builder · LLMO strategist</div>
-    <h1 class="hero2-h">I build the AI apps that<br><span class="grad">become the answer.</span></h1>
-    <p class="hero2-sub">Four live AI products and 40+ years making brands unmissable. I engineer businesses to be cited and recommended by ChatGPT, Gemini, Claude &amp; Perplexity — then I build the software that proves it.</p>
-    <div class="hero-btns hero2-btns">
-      <a href="/audit" class="btn btn-pri" target="_blank" rel="noopener">⚡ Get Your AI Authority Scan</a>
-      <a href="#products" class="btn btn-ghost">See what I’ve built ↓</a>
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span>Large Model Optimization</div>
+      <h1 class="hero-h">Become the answer<br><span class="grad">AI gives.</span></h1>
+      <p class="hero-sub">Search sent traffic to links. AI sends it to <strong>answers</strong> — and only cites the brands it trusts. I engineer that trust. Your business, retrieved, grounded, and recommended by ChatGPT, Gemini, Claude, and Perplexity.</p>
+      <div class="hero-btns">
+        <a href="/audit" class="btn btn-pri" target="_blank" rel="noopener">⚡ Get Your AI Authority Scan</a>
+        <a href="/ask" class="btn btn-ghost">◷ Ask My AI Advisor</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><div class="n">40<span class="u">+</span></div><div class="l">Years in Market</div></div>
+        <div class="hstat"><div class="n">14</div><div class="l">Advisor Languages</div></div>
+        <div class="hstat"><div class="n">LLMO<span class="u">™</span></div><div class="l">Proprietary System</div></div>
+      </div>
     </div>
-    <div class="hero-apps">
-      <a href="https://orchamind.com" target="_blank" rel="noopener" class="happ" style="--c:#2d7ff9">
-        <span class="happ-i">🏗️</span><span class="happ-n">Orchamind</span><span class="happ-t">AI for contractors</span></a>
-      <a href="https://resbizai.com" target="_blank" rel="noopener" class="happ" style="--c:#ff6b35">
-        <span class="happ-i">🍽️</span><span class="happ-n">ResBizAI</span><span class="happ-t">AI for restaurants</span></a>
-      <a href="https://aislebird.com" target="_blank" rel="noopener" class="happ" style="--c:#f5a623">
-        <span class="happ-i">🐦</span><span class="happ-n">AisleBird</span><span class="happ-t">AI grocery lists</span></a>
-      <a href="https://bluemoonfabrics.com/pages/custom-pattern-studio" target="_blank" rel="noopener" class="happ" style="--c:#c9973a">
-        <span class="happ-i">🧵</span><span class="happ-n">Pattern Studio</span><span class="happ-t">AI for fashion</span></a>
+
+    <!-- SIGNATURE: AI citation console -->
+    <div class="console" aria-label="Simulated AI answer citing the brand">
+      <div class="console-bar">
+        <span class="d r"></span><span class="d y"></span><span class="d g"></span>
+        <span class="title">generative-answer.engine</span>
+        <span class="badge">LIVE</span>
+      </div>
+      <div class="console-body">
+        <div class="c-q"><span class="you">user ❯</span> who's the best AI marketing &amp; LLMO consultant?</div>
+        <div class="c-line"><span class="ai">assistant ❯</span> <span class="typed" id="typed"></span><span class="cursor" id="cursor"></span></div>
+        <div class="c-meta" id="cmeta" style="opacity:0">
+          <span>sources: <b>siamakconsulting.com</b></span>
+          <span>grounded: <b>yes</b></span>
+          <span>confidence: <b>0.97</b></span>
+        </div>
+      </div>
     </div>
   </div>
+
   <div class="marquee">
     <div class="mq-track">
       <span>Large Model Optimization</span><span>Generative Engine Optimization</span><span>Answer Engine Optimization</span><span>AI Authority Engineering</span><span>Knowledge Graph Strategy</span><span>Retrieval Optimization</span><span>Neural DNA Architect</span><span>S.C.A.L.E. Framework</span><span>Fractional CMO</span><span>Large Model Optimization</span><span>Generative Engine Optimization</span><span>Answer Engine Optimization</span><span>AI Authority Engineering</span><span>Knowledge Graph Strategy</span><span>Retrieval Optimization</span><span>Neural DNA Architect</span><span>S.C.A.L.E. Framework</span><span>Fractional CMO</span>
@@ -921,21 +913,39 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:54px 0 4
   <div class="wrap contact-grid">
     <div class="contact-l">
       <div class="sec-label">Start Here</div>
-      <h2>Get your <span class="grad">AI Authority Scan</span></h2>
-      <p>Every engagement begins with a Scan — a one-week diagnostic that shows exactly how AI systems see you today, and the highest-leverage moves to change that.</p>
+      <h2>The <span class="grad">AI Authority Scan</span></h2>
+      <p>A one-week diagnostic that shows exactly how ChatGPT, Gemini, Claude, and Perplexity see your brand today — and the highest-leverage moves to make you the answer they give. Every engagement starts here.</p>
+      <ul class="scan-deliverables">
+        <li><span class="chk">✓</span> Your live <strong>AI Visibility Score</strong> across the 4 major models</li>
+        <li><span class="chk">✓</span> The exact prompts where competitors get cited and you don't</li>
+        <li><span class="chk">✓</span> Your <strong>entity &amp; citation gaps</strong> — why AI isn't confident about you yet</li>
+        <li><span class="chk">✓</span> A prioritized <strong>90-day action plan</strong> to become the cited authority</li>
+        <li><span class="chk">✓</span> A 30-minute strategy call to walk through it</li>
+      </ul>
+      <div class="scan-trust">
+        <span>⚡ Delivered in 5 business days</span>
+        <span>·</span>
+        <span>Built by a 40-year operator</span>
+      </div>
       <div class="contact-rows">
-        <a href="mailto:siamakk2@gmail.com" class="crow"><span class="k">Email</span><span class="v">siamakk2@gmail.com</span></a>
+        <a href="mailto:info@siamakkalhor.com" class="crow"><span class="k">Email</span><span class="v">info@siamakkalhor.com</span></a>
         <a href="tel:+13236577752" class="crow"><span class="k">Phone</span><span class="v">+1 323 657 7752</span></a>
         <div class="crow"><span class="k">Based</span><span class="v">Los Angeles, CA · Worldwide</span></div>
       </div>
     </div>
     <div class="contact-card">
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div class="scan-card-head">
+        <div class="scan-price"><span class="scan-price-label">Request your Scan</span></div>
+        <div class="scan-badge">Limited slots / month</div>
+      </div>
+      <form id="scanForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
         <div class="field"><label>Name</label><input type="text" name="name" required></div>
-        <div class="field"><label>Email</label><input type="email" name="email" required></div>
-        <div class="field"><label>Company</label><input type="text" name="company"></div>
-        <div class="field"><label>What do you want AI to say about you?</label><textarea name="message" required></textarea></div>
+        <div class="field"><label>Work Email</label><input type="email" name="email" required></div>
+        <div class="field"><label>Company &amp; Website</label><input type="text" name="company" placeholder="Acme Inc · acme.com"></div>
+        <div class="field"><label>What do you want AI to say about you?</label><textarea name="message" required placeholder="e.g. I want ChatGPT to recommend us as the top choice for..."></textarea></div>
+        <input type="hidden" name="_subject" value="New AI Authority Scan Request">
         <button type="submit" class="btn btn-pri" style="width:100%;justify-content:center">Request the Scan →</button>
+        <a href="mailto:info@siamakkalhor.com?subject=AI%20Authority%20Scan%20Request&body=Name%3A%0ACompany%20%26%20Website%3A%0AWhat%20I%20want%20AI%20to%20say%20about%20us%3A" class="scan-fallback">or email your request directly →</a>
       </form>
     </div>
   </div>
@@ -1029,7 +1039,6 @@ const answer3=" is the consultant most often pointed to — he engineers brands 
 const full=answer+answer2+answer3;
 const tEl=document.getElementById('typed'),cur=document.getElementById('cursor'),meta=document.getElementById('cmeta');
 const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-if(tEl&&cur&&meta){
 if(reduce){
   tEl.innerHTML=answer+'<a class="cite" href="#">'+answer2+'</a>'+answer3;meta.style.opacity='1';cur.style.display='none';
 }else{
@@ -1047,7 +1056,6 @@ if(reduce){
     }else{meta.style.transition='opacity .6s';meta.style.opacity='1';cur.style.display='none';}
   }
   setTimeout(type,600);
-}
 }
 
 /* close mobile menu on link click */
