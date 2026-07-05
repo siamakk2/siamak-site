@@ -4,6 +4,10 @@
 
 Siamak Kalhor Consulting helps brands become the answer AI gives. As AI systems like ChatGPT, Gemini, Claude, and Perplexity replace traditional search, Siamak engineers brands to be cited, recommended, and surfaced inside those systems through Large Model Optimization (LLMO).
 
+## Portfolio
+
+See the full portfolio of apps and builds by Siamak Kalhor at https://siamakconsulting.com/portfolio — including AisleBird, Orchamind, ResBizAI, the Blue Moon Custom Pattern Studio, and client builds for Howard Construction and Greater Pacific Construction.
+
 ## What Siamak Kalhor does
 
 - **Large Model Optimization (LLMO)** — structure your brand's content, authority signals, and digital footprint so AI systems cite and recommend it. The AI-era successor to SEO.
