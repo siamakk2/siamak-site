@@ -1,0 +1,13 @@
+{
+  "name": "siamak-site",
+  "version": "1.0.0",
+  "description": "Siamak Kalhor Consulting Website",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build step required'"
+  },
+  "dependencies": {
+    "@vercel/speed-insights": "^1.1.0"
+  }
+}
