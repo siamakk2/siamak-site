@@ -176,4 +176,7 @@
 <url><loc>https://siamakconsulting.com/es/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 <url><loc>https://siamakconsulting.com/fa/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 <url><loc>https://siamakconsulting.com/hy/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://siamakconsulting.com/es/services</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+<url><loc>https://siamakconsulting.com/fa/services</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+<url><loc>https://siamakconsulting.com/hy/services</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>
