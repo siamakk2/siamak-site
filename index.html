@@ -1,12 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <!-- Google Analytics GA4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2W5EQQ49S9"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-2W5EQQ49S9');
-</script>
+<script>/* gtagDeferred: analytics loads on idle/interaction, not in the critical path */
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+(function(){var done=false;function load(){if(done)return;done=true;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-2W5EQQ49S9';document.head.appendChild(s);gtag('js',new Date());gtag('config','G-2W5EQQ49S9');}
+['scroll','pointerdown','keydown','touchstart'].forEach(function(e){window.addEventListener(e,load,{once:true,passive:true});});
+function idle(){if('requestIdleCallback' in window){requestIdleCallback(load,{timeout:6000});}else{setTimeout(load,5000);}}
+if(document.readyState==='complete'){idle();}else{window.addEventListener('load',idle);}})();</script>
+
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -179,7 +181,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" media="print" onload="this.media='all';this.onload=null;" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"></noscript>
 
 <script type="application/ld+json">
 {
@@ -573,13 +577,26 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:54px 0 4
   ]
 }
 </script>
-<link rel="alternate" hreflang="en" href="https://siamakconsulting.com/"/><link rel="alternate" hreflang="es" href="https://siamakconsulting.com/es/"/><link rel="alternate" hreflang="fa" href="https://siamakconsulting.com/fa/"/><link rel="alternate" hreflang="hy" href="https://siamakconsulting.com/hy/"/><link rel="alternate" hreflang="x-default" href="https://siamakconsulting.com/"/></head>
+<link rel="alternate" hreflang="en" href="https://siamakconsulting.com/"/><link rel="alternate" hreflang="es" href="https://siamakconsulting.com/es/"/><link rel="alternate" hreflang="fa" href="https://siamakconsulting.com/fa/"/><link rel="alternate" hreflang="hy" href="https://siamakconsulting.com/hy/"/><link rel="alternate" hreflang="x-default" href="https://siamakconsulting.com/"/><style id="a11y-perf-pass">
+/* Links must not rely on colour alone (WCAG) — underline in-content links. */
+main a:not(.btn):not(.btn-pri):not(.brand):not(.lang-btn):not(.nav-in a),
+.contact-l a:not(.btn):not(.btn-pri),.about-body a:not(.btn):not(.btn-pri){text-decoration:underline;text-underline-offset:3px;}
+/* Visible keyboard focus */
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{
+  outline:3px solid #2dd4ff;outline-offset:2px;border-radius:4px;}
+/* Skip layout+paint for below-the-fold sections (biggest FCP/LCP lever). */
+section{content-visibility:auto;contain-intrinsic-size:0 900px;}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;}
+}
+</style>
+</head>
 <body>
 <div class="ambient"></div>
 
 <nav>
   <div class="nav-in">
-    <a href="#top" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" class="brand-logo"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
+    <a href="#top" class="brand"><img src="/assets/logo-mark.webp" alt="Siamak Kalhor Consulting" class="brand-logo" width="132" height="114" fetchpriority="high" decoding="async"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
     <div class="nav-links" id="navLinks">
       <a href="/services">Services</a>
       <a href="/llm-optimization">LLM Optimization</a>
@@ -646,7 +663,7 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:54px 0 4
 </header>
 
 <!-- ABOUT -->
-<section style="padding:64px 0;background:var(--surface-2);border-top:1px solid var(--line);" id="products">
+<section role="main" id="main-content" style="padding:64px 0;background:var(--surface-2);border-top:1px solid var(--line);" id="products">
   <div class="wrap">
     <div class="sec-head" style="margin-bottom:36px;">
       <div class="sec-label">Built by Siamak Kalhor</div>
@@ -746,7 +763,7 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:54px 0 4
   <div class="wrap about-grid">
     <div class="about-portrait">
       <div class="glow"></div>
-      <img src="/assets/portrait.jpg" alt="Siamak Kalhor, AI marketing consultant, in a Napa vineyard office">
+      <img src="/assets/portrait.webp" alt="Siamak Kalhor, AI marketing consultant, in a Napa vineyard office" width="1000" height="525" loading="lazy" decoding="async">
       <div class="about-quote">"Crafting brands that inspire, <span>like a fine vineyard.</span>"</div>
     </div>
     <div class="about-body">
@@ -868,7 +885,7 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:54px 0 4
     <div class="kb-controls">
       <div class="kb-search">
         <span class="ico">⌕</span>
-        <input type="text" id="kbSearch" placeholder="Search terms — e.g. retrieval, embeddings, grounding…" oninput="filterKB()">
+        <input type="text" id="kbSearch" aria-label="Search glossary terms" placeholder="Search terms — e.g. retrieval, embeddings, grounding…" oninput="filterKB()">
       </div>
       <div class="kb-count"><b id="kbNum">24</b> terms indexed</div>
     </div>
@@ -944,9 +961,9 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:54px 0 4
         <div class="scan-badge">Limited slots / month</div>
       </div>
       <form id="scanForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-        <div class="field"><label>Name</label><input type="text" name="name" required></div>
-        <div class="field"><label>Work Email</label><input type="email" name="email" required></div>
-        <div class="field"><label>Company &amp; Website</label><input type="text" name="company" placeholder="Acme Inc · acme.com"></div>
+        <div class="field"><label>Name</label><input type="text" name="name" required aria-label="Your name"></div>
+        <div class="field"><label>Work Email</label><input type="email" name="email" required aria-label="Your email address"></div>
+        <div class="field"><label>Company &amp; Website</label><input type="text" name="company" placeholder="Acme Inc · acme.com" aria-label="Company name or website"></div>
         <div class="field"><label>What do you want AI to say about you?</label><textarea name="message" required placeholder="e.g. I want ChatGPT to recommend us as the top choice for..."></textarea></div>
         <input type="hidden" name="_subject" value="New AI Authority Scan Request">
         <button type="submit" class="btn btn-pri" style="width:100%;justify-content:center">Request the Scan →</button>
