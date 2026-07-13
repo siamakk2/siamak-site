@@ -22,6 +22,7 @@ Search is changing. People no longer click ten blue links — they ask an AI and
 - [How to get cited by ChatGPT](https://siamakconsulting.com/how-to-get-cited-by-chatgpt/): ChatGPT-specific citation strategy.
 - [ChatGPT SEO](https://siamakconsulting.com/chatgpt-seo/): Ranking and citation inside ChatGPT.
 - [LLM optimization](https://siamakconsulting.com/llm-optimization/): The technical side of making content model-readable.
+- [What is a good PageSpeed score?](https://siamakconsulting.com/what-is-a-good-pagespeed-score/): Honest performance targets for business sites — what the lab test simulates, why 100 is a vanity metric, and which numbers drive rankings.
 - [The Growth Glossary](https://siamakconsulting.com/the-growth-glossary/): Definitions for AI marketing, retrieval, embeddings, and LLMO terms.
 
 ## Frameworks
