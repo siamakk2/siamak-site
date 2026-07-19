@@ -367,8 +367,19 @@ function setLang(btn, lang) {
   curLang = lang;
   document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
-  var el = elWidget();
-  if (el) { try { el.setAttribute('language', String(lang).split('-')[0]); } catch(e){} }
+  applyWidgetLanguage(String(lang).split('-')[0]);
+  var st = document.getElementById('mic-status');
+  if (st) st.textContent = 'Language set - tap the mic to talk.';
+}
+function applyWidgetLanguage(code){
+  var old = elWidget();
+  if (!old || !old.parentNode) return;
+  var agent = old.getAttribute('agent-id') || 'agent_1501ksnmsv1dea1rmb2ed6t8rzwe';
+  var fresh = document.createElement('elevenlabs-convai');
+  fresh.setAttribute('agent-id', agent);
+  fresh.setAttribute('disable-banner','true');
+  if (code) fresh.setAttribute('language', code);
+  old.parentNode.replaceChild(fresh, old);
 }
 
 function elWidget(){ return document.querySelector('elevenlabs-convai'); }
@@ -399,28 +410,32 @@ function calmMic(){ setTimeout(function(){ var b=document.getElementById('mic-bt
 function startVoice() {
   var status = document.getElementById('mic-status');
   var btn = document.getElementById('mic-btn');
-  var el = elWidget();
-  if (!el) { status.textContent = 'Voice advisor is still loading - try again in a second.'; return; }
-  status.textContent = 'Connecting you to the voice advisor...';
+  if (status) status.textContent = 'Connecting you to the voice advisor...';
   if (btn) btn.style.animation = 'pulse 1s infinite';
   var CALL = /start a call|start call|call|talk|speak|voice/;
-  var methods = ['startConversation','startCall','startSession','start','open','expand'];
-  for (var i=0;i<methods.length;i++){
-    try {
-      if (typeof el[methods[i]] === 'function') {
-        el[methods[i]]();
-        status.textContent = 'Connected - speak your question.';
-        calmMic(); return;
-      }
-    } catch(e){}
-  }
-  if (clickWidget(CALL)) { status.textContent = 'Connected - speak your question.'; calmMic(); return; }
-  clickWidget(/./);
-  setTimeout(function(){
-    if (clickWidget(CALL)) { status.textContent = 'Connected - speak your question.'; }
-    else { spotlightWidget(); status.textContent = 'Tap "Start a call" in the panel below to talk.'; }
-    calmMic();
-  }, 700);
+  var tries = 0;
+  (function attempt(){
+    tries++;
+    var el = elWidget();
+    var ready = el && (el.shadowRoot || typeof el.startConversation === 'function');
+    if (!ready) {
+      if (tries < 16) { setTimeout(attempt, 250); return; }
+      spotlightWidget();
+      if (status) status.textContent = 'Tap "Start a call" in the panel below to talk.';
+      calmMic(); return;
+    }
+    var methods = ['startConversation','startCall','startSession','start','open','expand'];
+    for (var i=0;i<methods.length;i++){
+      try { if (typeof el[methods[i]] === 'function') { el[methods[i]](); if(status) status.textContent='Connected - speak your question.'; calmMic(); return; } } catch(e){}
+    }
+    if (clickWidget(CALL)) { if(status) status.textContent='Connected - speak your question.'; calmMic(); return; }
+    clickWidget(/./);
+    setTimeout(function(){
+      if (clickWidget(CALL)) { if(status) status.textContent='Connected - speak your question.'; }
+      else { spotlightWidget(); if(status) status.textContent='Tap "Start a call" in the panel below to talk.'; }
+      calmMic();
+    }, 700);
+  })();
 }
 
 function resetMic() {
