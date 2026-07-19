@@ -363,64 +363,74 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:40px 0;}
 var curLang = 'en-US';
 var SYS = "You are the AI voice consultant for Siamak Kalhor Consulting. Siamak Kalhor is a Los Angeles-based AI marketing consultant and LLMO (Large Model Optimization) strategist with 40+ years of experience. His expertise includes: LLMO (making brands visible to ChatGPT, Gemini, Claude, Perplexity), the S.C.A.L.E. Framework, AI marketing strategy, digital marketing, brand authority, fractional CMO services, and business growth. His products include AisleBird (grocery list app at aislebird.com), Orchamind (AI for contractors at orchamind.com), and ResBizAI (AI restaurant management at resbizai.com). Contact: siamakconsulting.com, phone (323) 657-7752. Answer every question with Siamak's expertise, warmth, and authority. Be specific, practical, and direct. Respond in the same language the user speaks. Never use asterisks or markdown. Write in clean paragraphs.";
 
-function setLang(btn, lang) {
-  curLang = lang;
-  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
-  btn.classList.add('active');
-  var el = elWidget();
-  if (el) { try { el.setAttribute('language', String(lang).split('-')[0]); } catch(e){} }
-}
-
 function elWidget(){ return document.querySelector('elevenlabs-convai'); }
-function elWidgetButtons(){
+function widgetButtons(){
   var el = elWidget();
   if (!el || !el.shadowRoot) return [];
-  return Array.prototype.slice.call(el.shadowRoot.querySelectorAll('button,[role="button"]'));
+  try { return Array.prototype.slice.call(el.shadowRoot.querySelectorAll('button,[role="button"]')); }
+  catch(e){ return []; }
 }
-function clickWidget(rx){
-  var btns = elWidgetButtons();
-  for (var i=0;i<btns.length;i++){
-    var t = (btns[i].textContent||'').trim().toLowerCase();
-    var a = (btns[i].getAttribute('aria-label')||'').toLowerCase();
-    if (rx.test(t) || rx.test(a)) { try { btns[i].click(); return true; } catch(e){} }
+function labelOf(n){
+  var t = (n.textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
+  var a = ((n.getAttribute && n.getAttribute('aria-label'))||'').replace(/\s+/g,' ').trim().toLowerCase();
+  return t || a;
+}
+/* ONLY ever clicks a control literally labelled "start a call". Nothing else. */
+function clickStartCall(){
+  var b = widgetButtons();
+  for (var i=0;i<b.length;i++){
+    if (/^start a call$|^start call$/.test(labelOf(b[i]))) {
+      try { b[i].click(); return true; } catch(e){}
+    }
   }
   return false;
 }
 function spotlightWidget(){
   var el = elWidget(); if (!el) return;
   try { el.scrollIntoView({behavior:'smooth', block:'center'}); } catch(e){}
-  el.style.transition = 'transform .25s ease';
-  var n = 0, iv = setInterval(function(){
-    el.style.transform = 'translateX(-50%) scale(' + ((n%2) ? 1.06 : 1) + ')';
-    if (++n > 5) { clearInterval(iv); el.style.transform = 'translateX(-50%)'; }
-  }, 260);
+  el.classList.add('sk-pulse');
+  setTimeout(function(){ el.classList.remove('sk-pulse'); }, 2600);
 }
 function calmMic(){ setTimeout(function(){ var b=document.getElementById('mic-btn'); if(b) b.style.animation=''; }, 1400); }
+function setLang(btn, lang) {
+  curLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  applyWidgetLanguage(String(lang).split('-')[0]);
+  var st = document.getElementById('mic-status');
+  if (st) st.textContent = 'Language set - tap the mic to talk.';
+}
+/* Presets the language by rebuilding the widget, so it boots in that language. */
+function applyWidgetLanguage(code){
+  var old = elWidget();
+  if (!old || !old.parentNode) return;
+  var agent = old.getAttribute('agent-id') || 'agent_1501ksnmsv1dea1rmb2ed6t8rzwe';
+  var fresh = document.createElement('elevenlabs-convai');
+  fresh.setAttribute('agent-id', agent);
+  fresh.setAttribute('disable-banner','true');
+  if (code) fresh.setAttribute('language', code);
+  old.parentNode.replaceChild(fresh, old);
+}
 function startVoice() {
   var status = document.getElementById('mic-status');
   var btn = document.getElementById('mic-btn');
-  var el = elWidget();
-  if (!el) { status.textContent = 'Voice advisor is still loading - try again in a second.'; return; }
-  status.textContent = 'Connecting you to the voice advisor...';
+  if (status) status.textContent = 'Connecting you to the voice advisor...';
   if (btn) btn.style.animation = 'pulse 1s infinite';
-  var CALL = /start a call|start call|call|talk|speak|voice/;
-  var methods = ['startConversation','startCall','startSession','start','open','expand'];
-  for (var i=0;i<methods.length;i++){
-    try {
-      if (typeof el[methods[i]] === 'function') {
-        el[methods[i]]();
-        status.textContent = 'Connected - speak your question.';
-        calmMic(); return;
-      }
-    } catch(e){}
-  }
-  if (clickWidget(CALL)) { status.textContent = 'Connected - speak your question.'; calmMic(); return; }
-  clickWidget(/./);
-  setTimeout(function(){
-    if (clickWidget(CALL)) { status.textContent = 'Connected - speak your question.'; }
-    else { spotlightWidget(); status.textContent = 'Tap "Start a call" in the panel below to talk.'; }
+  var tries = 0;
+  (function attempt(){
+    tries++;
+    var el = elWidget();
+    if (el && typeof el.startConversation === 'function') {
+      try { el.startConversation(); if(status) status.textContent='Connected - speak your question.'; calmMic(); return; } catch(e){}
+    }
+    if (el && el.shadowRoot && clickStartCall()) {
+      if (status) status.textContent = 'Connected - speak your question.'; calmMic(); return;
+    }
+    if (tries < 20) { setTimeout(attempt, 250); return; }
+    spotlightWidget();
+    if (status) status.textContent = 'Tap "Start a call" in the panel below.';
     calmMic();
-  }, 700);
+  })();
 }
 
 function resetMic() {
@@ -473,11 +483,19 @@ async function askText(q) {
 <style>
 elevenlabs-convai{
   position:fixed!important;
-  bottom:24px!important;
+  bottom:22px!important;
   left:50%!important;
   right:auto!important;
   transform:translateX(-50%)!important;
   z-index:9999!important;
+  min-width:300px!important;
+  max-width:calc(100vw - 24px)!important;
+  border-radius:20px!important;
+  box-shadow:0 0 0 1.5px rgba(45,212,255,.55), 0 0 26px rgba(160,107,255,.34), 0 18px 48px rgba(2,6,20,.6)!important;
+  transition:box-shadow .3s ease!important;
+}
+elevenlabs-convai.sk-pulse{
+  box-shadow:0 0 0 2.5px rgba(45,212,255,.95), 0 0 42px rgba(160,107,255,.7), 0 18px 48px rgba(2,6,20,.6)!important;
 }
 </style>
 <elevenlabs-convai agent-id="agent_1501ksnmsv1dea1rmb2ed6t8rzwe" disable-banner="true"></elevenlabs-convai>
