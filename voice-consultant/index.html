@@ -363,73 +363,26 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:40px 0;}
 var curLang = 'en-US';
 var SYS = "You are the AI voice consultant for Siamak Kalhor Consulting. Siamak Kalhor is a Los Angeles-based AI marketing consultant and LLMO (Large Model Optimization) strategist with 40+ years of experience. His expertise includes: LLMO (making brands visible to ChatGPT, Gemini, Claude, Perplexity), the S.C.A.L.E. Framework, AI marketing strategy, digital marketing, brand authority, fractional CMO services, and business growth. His products include AisleBird (grocery list app at aislebird.com), Orchamind (AI for contractors at orchamind.com), and ResBizAI (AI restaurant management at resbizai.com). Contact: siamakconsulting.com, phone (323) 657-7752. Answer every question with Siamak's expertise, warmth, and authority. Be specific, practical, and direct. Respond in the same language the user speaks. Never use asterisks or markdown. Write in clean paragraphs.";
 
-function elWidget(){ return document.querySelector('elevenlabs-convai'); }
-var LANG_NAMES = {
-  en:['english'], es:['espanol','espa\u00f1ol','spanish'], fr:['fran\u00e7ais','francais','french'],
-  de:['deutsch','german'], it:['italiano','italian'], pt:['portugu\u00eas','portugues','portuguese'],
-  ar:['\u0627\u0644\u0639\u0631\u0628\u064a\u0629','arabic'], fa:['\u0641\u0627\u0631\u0633\u06cc','persian','farsi'],
-  zh:['\u4e2d\u6587','chinese','mandarin'], ja:['\u65e5\u672c\u8a9e','japanese'], ko:['\ud55c\uad6d\uc5b4','korean'],
-  hi:['\u0939\u093f\u0928\u094d\u0926\u0940','hindi'], tr:['t\u00fcrk\u00e7e','turkce','turkish'],
-  nl:['nederlands','dutch'], ru:['\u0440\u0443\u0441\u0441\u043a\u0438\u0439','russian'],
-  he:['\u05e2\u05d1\u05e8\u05d9\u05ea','hebrew'], hy:['\u0570\u0561\u0575\u0565\u0580\u0565\u0576','armenian']
-};
-function deepControls(root, out, depth){
-  out = out || []; depth = depth || 0;
-  if (!root || depth > 6) return out;
-  try {
-    var nodes = root.querySelectorAll('button,[role="button"],[role="option"],li,a');
-    for (var i=0;i<nodes.length;i++) out.push(nodes[i]);
-    var all = root.querySelectorAll('*');
-    for (var j=0;j<all.length;j++){ if (all[j].shadowRoot) deepControls(all[j].shadowRoot, out, depth+1); }
-  } catch(e){}
-  return out;
-}
-function widgetControls(){
+function setLang(btn, lang) {
+  curLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
   var el = elWidget();
-  if (!el) return [];
-  var out = [];
-  if (el.shadowRoot) deepControls(el.shadowRoot, out, 0);
-  deepControls(el, out, 0);
-  return out;
+  if (el) { try { el.setAttribute('language', String(lang).split('-')[0]); } catch(e){} }
 }
-function ctlText(n){
-  var t = (n.textContent||'').trim().toLowerCase();
-  var a = (n.getAttribute && (n.getAttribute('aria-label')||n.getAttribute('title'))||'').toLowerCase();
-  return (t + ' ' + a).trim();
+
+function elWidget(){ return document.querySelector('elevenlabs-convai'); }
+function elWidgetButtons(){
+  var el = elWidget();
+  if (!el || !el.shadowRoot) return [];
+  return Array.prototype.slice.call(el.shadowRoot.querySelectorAll('button,[role="button"]'));
 }
-var SKIP_RX = /language|idioma|expand|collapse|close|minimi|dismiss|chat|message|mute|settings/;
-function clickControl(rx, useSkip){
-  var c = widgetControls();
-  for (var i=0;i<c.length;i++){
-    var s = ctlText(c[i]);
-    if (!s) continue;
-    if (useSkip && SKIP_RX.test(s)) continue;
-    if (rx.test(s)) { try { c[i].click(); return true; } catch(e){} }
-  }
-  return false;
-}
-/* If the widget popped its own language list, choose the one the user already picked. */
-function selectWidgetLanguage(code){
-  var names = LANG_NAMES[code]; if (!names) return false;
-  var c = widgetControls();
-  for (var i=0;i<c.length;i++){
-    var s = ctlText(c[i]);
-    if (!s) continue;
-    for (var k=0;k<names.length;k++){
-      if (s.indexOf(names[k]) !== -1) { try { c[i].click(); return true; } catch(e){} }
-    }
-  }
-  return false;
-}
-function languageMenuOpen(){
-  var c = widgetControls(), hits = 0;
-  for (var i=0;i<c.length;i++){
-    var s = ctlText(c[i]);
-    for (var code in LANG_NAMES){
-      var names = LANG_NAMES[code];
-      for (var k=0;k<names.length;k++){ if (s && s.indexOf(names[k]) !== -1) { hits++; break; } }
-    }
-    if (hits >= 3) return true;
+function clickWidget(rx){
+  var btns = elWidgetButtons();
+  for (var i=0;i<btns.length;i++){
+    var t = (btns[i].textContent||'').trim().toLowerCase();
+    var a = (btns[i].getAttribute('aria-label')||'').toLowerCase();
+    if (rx.test(t) || rx.test(a)) { try { btns[i].click(); return true; } catch(e){} }
   }
   return false;
 }
@@ -443,58 +396,31 @@ function spotlightWidget(){
   }, 260);
 }
 function calmMic(){ setTimeout(function(){ var b=document.getElementById('mic-btn'); if(b) b.style.animation=''; }, 1400); }
-function setLang(btn, lang) {
-  curLang = lang;
-  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
-  btn.classList.add('active');
-  applyWidgetLanguage(String(lang).split('-')[0]);
-  var st = document.getElementById('mic-status');
-  if (st) st.textContent = 'Language set - tap the mic to talk.';
-}
-function applyWidgetLanguage(code){
-  var old = elWidget();
-  if (!old || !old.parentNode) return;
-  var agent = old.getAttribute('agent-id') || 'agent_1501ksnmsv1dea1rmb2ed6t8rzwe';
-  var fresh = document.createElement('elevenlabs-convai');
-  fresh.setAttribute('agent-id', agent);
-  fresh.setAttribute('disable-banner','true');
-  if (code) { fresh.setAttribute('language', code); fresh.setAttribute('default-language', code); }
-  old.parentNode.replaceChild(fresh, old);
-}
 function startVoice() {
   var status = document.getElementById('mic-status');
   var btn = document.getElementById('mic-btn');
-  var code = String(curLang).split('-')[0];
-  if (status) status.textContent = 'Connecting you to the voice advisor...';
+  var el = elWidget();
+  if (!el) { status.textContent = 'Voice advisor is still loading - try again in a second.'; return; }
+  status.textContent = 'Connecting you to the voice advisor...';
   if (btn) btn.style.animation = 'pulse 1s infinite';
-  var CALL = /start a call|start call|begin call|talk to|speak to|start conversation/;
-  var tries = 0;
-  (function attempt(){
-    tries++;
-    var el = elWidget();
-    var ready = el && (el.shadowRoot || typeof el.startConversation === 'function');
-    if (!ready) {
-      if (tries < 16) { setTimeout(attempt, 250); return; }
-      spotlightWidget();
-      if (status) status.textContent = 'Tap "Start a call" in the panel below to talk.';
-      calmMic(); return;
-    }
-    var methods = ['startConversation','startCall','startSession'];
-    for (var i=0;i<methods.length;i++){
-      try { if (typeof el[methods[i]] === 'function') { el[methods[i]](); if(status) status.textContent='Connected - speak your question.'; calmMic(); return; } } catch(e){}
-    }
-    if (clickControl(CALL, true)) { if(status) status.textContent='Connected - speak your question.'; calmMic(); return; }
-    /* Widget collapsed: open it WITHOUT touching its language selector, then start the call. */
-    clickControl(/help|need help|open|assistant|advisor|\u25b6/, true);
-    setTimeout(function(){
-      if (languageMenuOpen()) { selectWidgetLanguage(code); }
-      setTimeout(function(){
-        if (clickControl(CALL, true)) { if(status) status.textContent='Connected - speak your question.'; }
-        else { spotlightWidget(); if(status) status.textContent='Tap "Start a call" in the panel below to talk.'; }
-        calmMic();
-      }, 450);
-    }, 650);
-  })();
+  var CALL = /start a call|start call|call|talk|speak|voice/;
+  var methods = ['startConversation','startCall','startSession','start','open','expand'];
+  for (var i=0;i<methods.length;i++){
+    try {
+      if (typeof el[methods[i]] === 'function') {
+        el[methods[i]]();
+        status.textContent = 'Connected - speak your question.';
+        calmMic(); return;
+      }
+    } catch(e){}
+  }
+  if (clickWidget(CALL)) { status.textContent = 'Connected - speak your question.'; calmMic(); return; }
+  clickWidget(/./);
+  setTimeout(function(){
+    if (clickWidget(CALL)) { status.textContent = 'Connected - speak your question.'; }
+    else { spotlightWidget(); status.textContent = 'Tap "Start a call" in the panel below to talk.'; }
+    calmMic();
+  }, 700);
 }
 
 function resetMic() {
