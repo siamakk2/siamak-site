@@ -367,35 +367,60 @@ function setLang(btn, lang) {
   curLang = lang;
   document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
+  var el = elWidget();
+  if (el) { try { el.setAttribute('language', String(lang).split('-')[0]); } catch(e){} }
 }
 
+function elWidget(){ return document.querySelector('elevenlabs-convai'); }
+function elWidgetButtons(){
+  var el = elWidget();
+  if (!el || !el.shadowRoot) return [];
+  return Array.prototype.slice.call(el.shadowRoot.querySelectorAll('button,[role="button"]'));
+}
+function clickWidget(rx){
+  var btns = elWidgetButtons();
+  for (var i=0;i<btns.length;i++){
+    var t = (btns[i].textContent||'').trim().toLowerCase();
+    var a = (btns[i].getAttribute('aria-label')||'').toLowerCase();
+    if (rx.test(t) || rx.test(a)) { try { btns[i].click(); return true; } catch(e){} }
+  }
+  return false;
+}
+function spotlightWidget(){
+  var el = elWidget(); if (!el) return;
+  try { el.scrollIntoView({behavior:'smooth', block:'center'}); } catch(e){}
+  el.style.transition = 'transform .25s ease';
+  var n = 0, iv = setInterval(function(){
+    el.style.transform = 'translateX(-50%) scale(' + ((n%2) ? 1.06 : 1) + ')';
+    if (++n > 5) { clearInterval(iv); el.style.transform = 'translateX(-50%)'; }
+  }, 260);
+}
+function calmMic(){ setTimeout(function(){ var b=document.getElementById('mic-btn'); if(b) b.style.animation=''; }, 1400); }
 function startVoice() {
-  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SR) { document.getElementById('mic-status').textContent = 'Voice requires Chrome or Safari.'; return; }
-  var rec = new SR();
-  rec.lang = curLang;
-  rec.continuous = false;
-  rec.interimResults = true;
+  var status = document.getElementById('mic-status');
   var btn = document.getElementById('mic-btn');
-  btn.style.animation = 'pulse 1s infinite';
-  btn.textContent = '🔴';
-  document.getElementById('mic-status').textContent = 'Listening…';
-  rec.onresult = function(e) {
-    var final = '', interim = '';
-    for (var i = e.resultIndex; i < e.results.length; i++) {
-      if (e.results[i].isFinal) final += e.results[i][0].transcript;
-      else interim += e.results[i][0].transcript;
-    }
-    if (interim) document.getElementById('mic-transcript').textContent = '"' + interim + '"';
-    if (final.trim()) {
-      document.getElementById('mic-transcript').textContent = '"' + final.trim() + '"';
-      rec.abort();
-      askText(final.trim());
-    }
-  };
-  rec.onerror = function() { resetMic(); };
-  rec.onend = function() { resetMic(); };
-  rec.start();
+  var el = elWidget();
+  if (!el) { status.textContent = 'Voice advisor is still loading - try again in a second.'; return; }
+  status.textContent = 'Connecting you to the voice advisor...';
+  if (btn) btn.style.animation = 'pulse 1s infinite';
+  var CALL = /start a call|start call|call|talk|speak|voice/;
+  var methods = ['startConversation','startCall','startSession','start','open','expand'];
+  for (var i=0;i<methods.length;i++){
+    try {
+      if (typeof el[methods[i]] === 'function') {
+        el[methods[i]]();
+        status.textContent = 'Connected - speak your question.';
+        calmMic(); return;
+      }
+    } catch(e){}
+  }
+  if (clickWidget(CALL)) { status.textContent = 'Connected - speak your question.'; calmMic(); return; }
+  clickWidget(/./);
+  setTimeout(function(){
+    if (clickWidget(CALL)) { status.textContent = 'Connected - speak your question.'; }
+    else { spotlightWidget(); status.textContent = 'Tap "Start a call" in the panel below to talk.'; }
+    calmMic();
+  }, 700);
 }
 
 function resetMic() {
