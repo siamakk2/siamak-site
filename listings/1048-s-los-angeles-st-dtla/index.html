@@ -414,6 +414,13 @@ section{content-visibility:auto;contain-intrinsic-size:0 900px;}
 .re-lb-p{left:18px}
 .re-lb-n{right:18px}
 @media(max-width:700px){.re-lb-p{left:8px}.re-lb-n{right:8px}.re-lb button{width:42px;height:42px;font-size:22px}}
+.re-tour{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background-size:cover;background-position:center;min-height:min(62vh,520px);display:flex;align-items:center;justify-content:center;margin-top:6px}
+.re-tour iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:16px}
+.re-tour-go{background:rgba(8,14,24,.55);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);border-radius:16px;padding:26px 34px;color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:9px;transition:transform .22s,border-color .22s}
+.re-tour-go:hover{transform:translateY(-2px);border-color:var(--cyan)}
+.re-tour-ico{width:60px;height:60px;border-radius:50%;background:var(--glow);color:#04060a;display:flex;align-items:center;justify-content:center;margin-bottom:3px}
+.re-tour-t{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-.01em}
+.re-tour-s{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:rgba(255,255,255,.72)}
 .re-faq{max-width:820px}
 .re-q{border-bottom:1px solid var(--line);padding:0}
 .re-q summary{cursor:pointer;list-style:none;padding:20px 34px 20px 0;font-family:var(--display);font-weight:600;font-size:17px;color:var(--text);position:relative;line-height:1.4}
@@ -509,6 +516,7 @@ section{content-visibility:auto;contain-intrinsic-size:0 900px;}
   <div class="re-galwrap"><div class="re-pills"><button type="button" class="re-pill is-on" data-cat="all">All <span>6</span></button><button type="button" class="re-pill" data-cat="gallery">Gallery <span>6</span></button></div><div class="re-grid"><figure class="re-tile" data-cat="gallery" data-i="0" data-src="/listings/img/1048-s-los-angeles-st-dtla-1.webp" data-cap="Building exterior"><img src="/listings/img/1048-s-los-angeles-st-dtla-1.webp" alt="1048-1052 S Los Angeles Street &ndash; Building exterior" loading="lazy" decoding="async"><figcaption>Building exterior</figcaption></figure><figure class="re-tile" data-cat="gallery" data-i="1" data-src="/listings/img/1048-s-los-angeles-st-dtla-2.webp" data-cap="Storefront"><img src="/listings/img/1048-s-los-angeles-st-dtla-2.webp" alt="1048-1052 S Los Angeles Street &ndash; Storefront" loading="lazy" decoding="async"><figcaption>Storefront</figcaption></figure><figure class="re-tile" data-cat="gallery" data-i="2" data-src="/listings/img/1048-s-los-angeles-st-dtla-3.webp" data-cap="Interior"><img src="/listings/img/1048-s-los-angeles-st-dtla-3.webp" alt="1048-1052 S Los Angeles Street &ndash; Interior" loading="lazy" decoding="async"><figcaption>Interior</figcaption></figure><figure class="re-tile" data-cat="gallery" data-i="3" data-src="/listings/img/1048-s-los-angeles-st-dtla-4.webp" data-cap="Upper floor"><img src="/listings/img/1048-s-los-angeles-st-dtla-4.webp" alt="1048-1052 S Los Angeles Street &ndash; Upper floor" loading="lazy" decoding="async"><figcaption>Upper floor</figcaption></figure><figure class="re-tile" data-cat="gallery" data-i="4" data-src="/listings/img/1048-s-los-angeles-st-dtla-5.webp" data-cap="Corner view"><img src="/listings/img/1048-s-los-angeles-st-dtla-5.webp" alt="1048-1052 S Los Angeles Street &ndash; Corner view" loading="lazy" decoding="async"><figcaption>Corner view</figcaption></figure><figure class="re-tile" data-cat="gallery" data-i="5" data-src="/listings/img/1048-s-los-angeles-st-dtla-6.webp" data-cap="Trade area"><img src="/listings/img/1048-s-los-angeles-st-dtla-6.webp" alt="1048-1052 S Los Angeles Street &ndash; Trade area" loading="lazy" decoding="async"><figcaption>Trade area</figcaption></figure></div><p class="re-galnote">6 photographs &middot; tap any image to view full screen</p></div><div class="re-lb" id="reLb" hidden><button class="re-lb-x" type="button" aria-label="Close">&times;</button><button class="re-lb-p" type="button" aria-label="Previous">&#8249;</button><figure><img id="reLbImg" alt=""><figcaption><span id="reLbCap"></span><span id="reLbNum"></span></figcaption></figure><button class="re-lb-n" type="button" aria-label="Next">&#8250;</button></div>
 </div></section>
 
+
 <section class="re-sec"><div class="wrap">
   <h2>The property</h2>
   <p>A rare mixed-use retail and office asset on a signalized corner in the heart of the Downtown Los Angeles Fashion District. Fifteen thousand square feet, fully leased, and extensively rebuilt &mdash; with the kind of in-place rents that make an underwriter sit up.</p>
@@ -563,6 +571,16 @@ section{content-visibility:auto;contain-intrinsic-size:0 900px;}
   <p>Financial information, including net operating income, cap rate, and lease terms, is provided by ownership and is deemed reliable but not guaranteed. Buyers should conduct their own due diligence and independently verify all figures, measurements, zoning, and permit documentation.</p>
 </div></section>
 <script>
+(function(){
+  var t=document.getElementById('reTour');
+  if(t){ t.querySelector('.re-tour-go').addEventListener('click',function(){
+    var f=document.createElement('iframe');
+    f.src=t.getAttribute('data-src');
+    f.allow='xr-spatial-tracking; fullscreen; accelerometer; gyroscope';
+    f.allowFullscreen=true; f.loading='lazy'; f.title='3D virtual tour';
+    t.innerHTML=''; t.appendChild(f);
+  }); }
+})();
 (function(){
   var tiles=[].slice.call(document.querySelectorAll('.re-tile'));
   var pills=[].slice.call(document.querySelectorAll('.re-pill'));
