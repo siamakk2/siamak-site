@@ -8,7 +8,9 @@ module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ ok: false, error: 'Method not allowed' });
 
-  const TO = 'bk@k2investments.com';
+  // Destination. Override with K2_TO_EMAIL in Vercel while Resend is unverified
+  // (an unverified Resend account can only deliver to its own signup address).
+  const TO = process.env.K2_TO_EMAIL || 'bk@k2investments.com';
 
   try {
     let b = req.body;
