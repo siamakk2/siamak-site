@@ -11,6 +11,11 @@
 <meta property="og:title" content="Real Estate Listings &mdash; Napa Valley &amp; Los Angeles"/>
 <meta property="og:description" content="Napa Valley estates and Los Angeles commercial investment property."/>
 <meta property="og:url" content="https://siamakconsulting.com/listings/"/>
+<meta property="og:image" content="https://siamakconsulting.com/listings/img/listings-share.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://siamakconsulting.com/listings/img/listings-share.jpg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"><link rel="stylesheet" media="print" onload="this.media='all';this.onload=null;" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "RealEstateAgent", "name": "Siamak Kalhor", "url": "https://siamakconsulting.com/listings/", "telephone": "323-541-6529", "areaServed": ["Napa County, CA", "Los Angeles, CA"], "description": "Siamak Kalhor is a California Realtor and investor with 35+ years of experience across residential estates in Napa Valley and commercial investment property in Los Angeles.", "memberOf": {"@type": "RealEstateAgent", "name": "K2 Investment, Inc.", "url": "https://www.k2investments.com"}, "sameAs": ["https://www.k2investments.com"], "email": "sk@k2investments.com"}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Who is Siamak Kalhor?", "acceptedAnswer": {"@type": "Answer", "text": "Siamak Kalhor is a California Realtor and investor with more than 35 years in real estate, licensed under CA DRE #00908799 and working through K2 Investment, Inc. He represents residential estate properties in Napa Valley and commercial investment property in Los Angeles, and he has bought, sold, and held real estate through several full market cycles."}}, {"@type": "Question", "name": "What areas does he work in?", "acceptedAnswer": {"@type": "Answer", "text": "Two markets. Residentially, Napa Valley - with particular focus on the estate and equestrian properties in the eastern foothills, where he lives. Commercially, Los Angeles investment property through K2 Investment, Inc., concentrated in the Downtown and Fashion District corridors."}}, {"@type": "Question", "name": "What kinds of properties does he represent?", "acceptedAnswer": {"@type": "Answer", "text": "Large-acreage Napa Valley estates, equestrian and vineyard-potential land, and Los Angeles mixed-use and retail investment assets. The common thread is property where land, position, or in-place income carry the value rather than finish level alone."}}, {"@type": "Question", "name": "Does he represent buyers as well as sellers?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. He works both sides - listing estate and investment property, and representing buyers acquiring it. For out-of-area and international buyers, that includes coordinating due diligence on acreage, water, zoning, and county requirements."}}, {"@type": "Question", "name": "How do I arrange a private showing?", "acceptedAnswer": {"@type": "Answer", "text": "Call 323-541-6529 directly, or email sk@k2investments.com. Napa Valley estate showings in gated communities are arranged by appointment, and commercial tours are scheduled with ownership."}}, {"@type": "Question", "name": "What makes his approach different?", "acceptedAnswer": {"@type": "Answer", "text": "Thirty-five years of running his own business, plus a parallel career building AI and software systems. That combination means clients get someone who can read a market cycle and tell them when a deal does not make sense - not a script."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://siamakconsulting.com/"}, {"@type": "ListItem", "position": 2, "name": "Real Estate", "item": "https://siamakconsulting.com/listings/"}]}]}</script>
 <style>
@@ -333,8 +338,17 @@ section{content-visibility:auto;contain-intrinsic-size:0 900px;}
 .re-hero{position:relative;padding:96px 0 60px;overflow:hidden}
 .re-hero::after{content:"";position:absolute;inset:0;background:radial-gradient(900px 420px at 78% 8%,rgba(45,212,255,.12),transparent 62%),radial-gradient(700px 380px at 12% 92%,rgba(160,107,255,.11),transparent 60%);pointer-events:none;z-index:0}
 .re-hero>*{position:relative;z-index:1}
-.re-hero::before{content:"";position:absolute;top:50%;right:-70px;transform:translateY(-50%);width:min(460px,52vw);aspect-ratio:1;background:url('/listings/img/k2-mark.webp') center/contain no-repeat;opacity:.085;pointer-events:none;z-index:0;filter:saturate(1.2)}
-@media(max-width:820px){.re-hero::before{right:-90px;width:min(340px,68vw);opacity:.06}}
+.re-hero-img{background-size:cover;background-position:center;padding-top:34px}
+.re-hero-img::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(100deg,rgba(2,4,9,.95) 0%,rgba(2,4,9,.88) 34%,rgba(2,4,9,.55) 62%,rgba(2,4,9,.30) 100%),
+             linear-gradient(180deg,rgba(2,4,9,.62) 0%,rgba(2,4,9,.10) 30%,rgba(2,4,9,.55) 78%,var(--void) 100%)}
+.re-hero-img::after{background:radial-gradient(760px 380px at 84% 14%,rgba(45,212,255,.16),transparent 64%),radial-gradient(620px 340px at 8% 94%,rgba(160,107,255,.14),transparent 60%)}
+.re-k2-lock{display:inline-flex;align-items:center;gap:13px;text-decoration:none;margin:0 0 30px;padding:9px 16px 9px 10px;border:1px solid rgba(255,255,255,.16);background:rgba(6,10,18,.42);backdrop-filter:blur(9px);border-radius:14px}
+.re-k2-lock img{display:block;width:58px;height:58px;object-fit:contain}
+.re-k2-lock span{display:flex;flex-direction:column;gap:3px}
+.re-k2-lock b{font-family:var(--mono);font-size:12.5px;letter-spacing:.16em;color:#fff;font-weight:600}
+.re-k2-lock i{font-family:var(--body);font-style:normal;font-size:12.5px;color:var(--muted-dim)}
+@media(max-width:600px){.re-k2-lock{margin-bottom:22px}.re-k2-lock img{width:46px;height:46px}}
 .re-k2{display:block;width:104px;height:auto;margin:0 0 4px}
 .re-agent .re-k2wrap{display:flex;flex-direction:column;gap:2px}
 .re-status{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(45,212,255,.34);background:rgba(45,212,255,.07);padding:7px 14px;border-radius:999px}
@@ -496,7 +510,11 @@ section{content-visibility:auto;contain-intrinsic-size:0 900px;}
     </div>
   </div>
 </nav>
-<header class="re-hero"><div class="wrap">
+<header class="re-hero re-hero-img" style="background-image:url('/listings/img/90-longhorn-ridge-napa-8.webp')"><div class="wrap">
+  <a class="re-k2-lock" href="https://www.k2investments.com" target="_blank" rel="noopener">
+    <img src="/listings/img/k2-logo-light.webp" alt="K2 Investment, Inc." width="58" height="58" loading="eager">
+    <span><b>K2 INVESTMENT</b><i>Siamak Kalhor &middot; Realtor</i></span>
+  </a>
   <span class="re-status"><i></i>Current Listings</span>
   <h1 style="margin-top:26px">Real estate is where the market instinct started.</h1>
   <p class="re-tag">Before the internet, before AI, I was reading markets in real estate &mdash; and I never
