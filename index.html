@@ -395,7 +395,9 @@ h2.sec-h .grad{background:var(--glow);-webkit-background-clip:text;background-cl
 .svc::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--glow);opacity:0;transition:opacity .25s}
 .svc:hover{border-color:var(--line-bright);transform:translateY(-4px)}
 .svc:hover::before{opacity:1}
-.svc-ico{width:42px;height:42px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line-bright);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:20px}
+.svc-ico{width:42px;height:42px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line-bright);display:flex;align-items:center;justify-content:center;color:var(--cyan);transition:all .25s;margin-bottom:20px}
+.svc-ico svg{width:21px;height:21px}
+.svc:hover .svc-ico{background:linear-gradient(135deg,rgba(45,212,255,.16),rgba(160,107,255,.16));border-color:var(--cyan);color:#eaf6ff;transform:scale(1.08) rotate(-3deg)}
 .svc h3{font-family:var(--display);font-size:18px;font-weight:600;margin-bottom:11px}
 .svc p{font-size:13.5px;color:var(--muted);line-height:1.7;margin-bottom:18px}
 .svc-tags{display:flex;flex-wrap:wrap;gap:7px}
@@ -762,7 +764,29 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
   </div>
 </header>
 
-<!-- ABOUT -->
+<!-- FOUNDER (promoted directly under hero) -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-portrait">
+      <div class="glow"></div>
+      <img src="/assets/portrait.webp" alt="Siamak Kalhor, AI marketing consultant, in a Napa vineyard office" width="1000" height="525" loading="lazy" decoding="async">
+      <div class="about-quote">"Crafting brands that inspire, <span>like a fine vineyard.</span>"</div>
+    </div>
+    <div class="about-body">
+      <div class="sec-label">Who You're Working With</div>
+      <h2>Forty years of instinct, <span class="grad">engineered for AI.</span></h2>
+      <p>I started in marketing before the internet existed. I've spent four decades learning what actually moves a business — and the last several years engineering that judgment for the age of generative AI.</p>
+      <p>Today I help founders and executives become <strong>the answer AI gives</strong>: visible, cited, and recommended by ChatGPT, Gemini, and Claude. Same principle that's always worked, new machinery: build the system that makes campaigns unnecessary.</p>
+      <div class="about-stats">
+        <div><div class="n">40<span class="u">+</span></div><div class="l">Years in Market</div></div>
+        <div><div class="n">100<span class="u">×</span></div><div class="l">Client Growth</div></div>
+        <div><div class="n">LLMO<span class="u">™</span></div><div class="l">Proprietary System</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
 <section role="main" id="main-content" style="padding:64px 0;background:var(--surface-2);border-top:1px solid var(--line);" id="products">
   <div class="wrap">
     <div class="sec-head" style="margin-bottom:36px;">
@@ -876,26 +900,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 
 
 <section style="padding:44px 0;"><div class="wrap"><a href="/how-to-get-cited-by-ai" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:linear-gradient(135deg,rgba(45,212,255,.09),rgba(160,107,255,.06));border:1px solid var(--line-bright);border-radius:16px;padding:24px 28px;text-decoration:none;"><div><div style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:6px;">Start here · The LLMO Playbook</div><div style="font-family:var(--display);font-size:clamp(20px,3vw,26px);font-weight:700;color:var(--text);">How to Get Cited by AI</div></div><span style="font-family:var(--mono);font-size:14px;font-weight:600;color:var(--cyan);white-space:nowrap;">Read the playbook →</span></a></div></section>
-<section class="about" id="about">
-  <div class="wrap about-grid">
-    <div class="about-portrait">
-      <div class="glow"></div>
-      <img src="/assets/portrait.webp" alt="Siamak Kalhor, AI marketing consultant, in a Napa vineyard office" width="1000" height="525" loading="lazy" decoding="async">
-      <div class="about-quote">"Crafting brands that inspire, <span>like a fine vineyard.</span>"</div>
-    </div>
-    <div class="about-body">
-      <div class="sec-label">Who You're Working With</div>
-      <h2>Forty years of instinct, <span class="grad">engineered for AI.</span></h2>
-      <p>I started in marketing before the internet existed. I've spent four decades learning what actually moves a business — and the last several years engineering that judgment for the age of generative AI.</p>
-      <p>Today I help founders and executives become <strong>the answer AI gives</strong>: visible, cited, and recommended by ChatGPT, Gemini, and Claude. Same principle that's always worked, new machinery: build the system that makes campaigns unnecessary.</p>
-      <div class="about-stats">
-        <div><div class="n">40<span class="u">+</span></div><div class="l">Years in Market</div></div>
-        <div><div class="n">100<span class="u">×</span></div><div class="l">Client Growth</div></div>
-        <div><div class="n">LLMO<span class="u">™</span></div><div class="l">Proprietary System</div></div>
-      </div>
-    </div>
-  </div>
-</section>
+
 <!-- THESIS -->
 <section id="thesis">
   <div class="wrap">
@@ -934,37 +939,37 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
     </div>
     <div class="svc-grid">
       <div class="svc">
-        <div class="svc-ico">⚡</div>
+        <div class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></div>
         <h3>Large Model Optimization</h3>
         <p>The core engagement. We make your brand retrievable, quotable, and citable across ChatGPT, Gemini, Claude, and Perplexity.</p>
         <div class="svc-tags"><span>Citation Building</span><span>Schema</span><span>Grounding</span></div>
       </div>
       <div class="svc">
-        <div class="svc-ico">◎</div>
+        <div class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3" width="11" height="14" rx="1.6"/><line x1="6.5" y1="7" x2="11.5" y2="7"/><line x1="6.5" y1="10.5" x2="11.5" y2="10.5"/><circle cx="16.5" cy="16.5" r="3.3"/><line x1="18.9" y1="18.9" x2="21" y2="21"/></svg></div>
         <h3>AI Authority Audit</h3>
         <p>A deep-scan diagnostic of how models currently see, cite, or ignore you — with a prioritized map of every fixable gap.</p>
         <div class="svc-tags"><span>Deep Scan</span><span>Gap Analysis</span><span>Benchmark</span></div>
       </div>
       <div class="svc">
-        <div class="svc-ico">⬡</div>
+        <div class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 3c0 4.5 9 4.5 9 9s-9 4.5-9 9"/><path d="M16.5 3c0 4.5-9 4.5-9 9s9 4.5 9 9"/><line x1="8.6" y1="7.2" x2="15.4" y2="7.2"/><line x1="8.6" y1="16.8" x2="15.4" y2="16.8"/></svg></div>
         <h3>Neural DNA Architect™</h3>
         <p>We define the canonical entity for your brand — the consistent identity, facts, and relationships models learn to trust.</p>
         <div class="svc-tags"><span>Entity Design</span><span>Knowledge Graph</span></div>
       </div>
       <div class="svc">
-        <div class="svc-ico">▦</div>
+        <div class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="3.5" y1="20.5" x2="20.5" y2="20.5"/><rect x="5" y="14.5" width="3.2" height="6" fill="currentColor" stroke="none" opacity=".85"/><rect x="10.4" y="10" width="3.2" height="10.5" fill="currentColor" stroke="none" opacity=".85"/><rect x="15.8" y="4.5" width="3.2" height="16" fill="currentColor" stroke="none" opacity=".85"/></svg></div>
         <h3>S.C.A.L.E. Framework™</h3>
         <p>A five-stage system that turns one-off wins into compounding growth: Scan, Clarify, Amplify, Leverage, Evaluate.</p>
         <div class="svc-tags"><span>Growth System</span><span>Roadmap</span></div>
       </div>
       <div class="svc">
-        <div class="svc-ico">◈</div>
+        <div class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 8.5 12.8 12.8 9 15 11.2 10.7Z" fill="currentColor" stroke="currentColor" stroke-linejoin="round"/></svg></div>
         <h3>Fractional CMO</h3>
         <p>Senior marketing leadership rebuilt for the generative era — strategy, oversight, and an AI-first growth engine.</p>
         <div class="svc-tags"><span>Leadership</span><span>Strategy</span><span>Oversight</span></div>
       </div>
       <div class="svc">
-        <div class="svc-ico">⟁</div>
+        <div class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18"/><path d="M3.5 17v-3.5a8.5 8.5 0 0 1 17 0V17"/><line x1="3.5" y1="21" x2="3.5" y2="17"/><line x1="20.5" y1="21" x2="20.5" y2="17"/></svg></div>
         <h3>Legacy Brand Transformation</h3>
         <p>For established businesses crossing into the AI-first world — modernize every touchpoint while protecting hard-won equity.</p>
         <div class="svc-tags"><span>Transition</span><span>Heritage</span><span>AI Readiness</span></div>
