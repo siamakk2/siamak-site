@@ -105,26 +105,112 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:50px 0 3
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://siamakconsulting.com/#website", "url": "https://siamakconsulting.com", "name": "Siamak Kalhor Consulting", "publisher": {"@id": "https://siamakconsulting.com/#person"}}, {"@type": "Person", "@id": "https://siamakconsulting.com/#person", "name": "Siamak Kalhor", "jobTitle": "AI Marketing Consultant & LLMO Strategist", "url": "https://siamakconsulting.com", "sameAs": ["https://www.linkedin.com/in/siamakkalhor/"], "knowsAbout": ["Large Model Optimization", "Generative Engine Optimization", "AI marketing", "Brand authority", "SEO"]}, {"@type": "Organization", "@id": "https://siamakconsulting.com/#org", "name": "Siamak Kalhor Consulting", "url": "https://siamakconsulting.com", "founder": {"@id": "https://siamakconsulting.com/#person"}, "areaServed": "Worldwide"}, {"@type": "WebPage", "@id": "https://siamakconsulting.com/business-dna#webpage", "url": "https://siamakconsulting.com/business-dna", "name": "Business DNA \u2014 Neural DNA Architect\u2122 Deep-Scan Diagnostic | Siamak Kalhor", "isPartOf": {"@id": "https://siamakconsulting.com/#website"}, "about": {"@id": "https://siamakconsulting.com/#person"}, "breadcrumb": {"@id": "https://siamakconsulting.com/business-dna#breadcrumb"}}, {"@type": "BreadcrumbList", "@id": "https://siamakconsulting.com/business-dna#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://siamakconsulting.com"}, {"@type": "ListItem", "position": 2, "name": "Business Dna", "item": "https://siamakconsulting.com/business-dna"}]}]}</script>
-<link rel="alternate" hreflang="en" href="https://siamakconsulting.com/business-dna"/><link rel="alternate" hreflang="es" href="https://siamakconsulting.com/es/business-dna"/><link rel="alternate" hreflang="fa" href="https://siamakconsulting.com/fa/business-dna"/><link rel="alternate" hreflang="hy" href="https://siamakconsulting.com/hy/business-dna"/><link rel="alternate" hreflang="x-default" href="https://siamakconsulting.com/business-dna"/></head>
+<link rel="alternate" hreflang="en" href="https://siamakconsulting.com/business-dna"/><link rel="alternate" hreflang="es" href="https://siamakconsulting.com/es/business-dna"/><link rel="alternate" hreflang="fa" href="https://siamakconsulting.com/fa/business-dna"/><link rel="alternate" hreflang="hy" href="https://siamakconsulting.com/hy/business-dna"/><link rel="alternate" hreflang="x-default" href="https://siamakconsulting.com/business-dna"/><style id="canonical-nav-css">
+nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1180px;margin:0 auto;padding:15px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
+.brand-txt{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.05em;color:var(--text);white-space:nowrap}
+.brand-txt span{color:var(--muted)}
+.nav-right{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.nav-links{display:flex;gap:22px;align-items:center;flex-wrap:nowrap}
+.nav-links>a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s;white-space:nowrap}
+.nav-links>a:hover,.nav-links>a.active{color:var(--text)}
+.nav-item{position:relative}
+.dd-trigger{background:none;border:none;color:var(--muted);font-family:inherit;font-size:13px;font-weight:500;letter-spacing:.02em;cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:0;transition:color .2s;white-space:nowrap}
+.dd-trigger:hover{color:var(--text)}
+.dd-caret{font-size:9px;opacity:.65;transition:transform .2s}
+.has-dd.open .dd-caret{transform:rotate(180deg)}
+.dd-menu{position:absolute;top:calc(100% + 14px);left:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px;min-width:210px;display:none;flex-direction:column;gap:2px;z-index:200;box-shadow:0 14px 44px rgba(0,0,0,.55)}
+.has-dd::after{content:"";position:absolute;top:100%;left:0;right:0;height:16px}
+.has-dd.open .dd-menu{display:flex}
+.dd-menu a{padding:9px 14px;border-radius:7px;font-size:13px;font-weight:500;color:var(--muted);white-space:nowrap;text-decoration:none;transition:background .15s,color .15s}
+.dd-menu a:hover{background:var(--surface-2);color:var(--text)}
+@media(min-width:961px){.has-dd:hover .dd-menu{display:flex}}
+.nav-cta{font-family:var(--mono);font-size:12px;padding:9px 15px;border:1px solid var(--line-bright);border-radius:6px;color:var(--text)!important;text-decoration:none;white-space:nowrap}
+.nav-cta:hover{border-color:var(--cyan);box-shadow:0 0 18px rgba(45,212,255,.15)}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:21px;cursor:pointer}
+@media(max-width:960px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;background:var(--void);border-bottom:1px solid var(--line);padding:16px 28px 22px;gap:4px;max-height:80vh;overflow-y:auto}
+  .nav-links.open{display:flex}
+  .nav-links>a{padding:10px 0;width:100%}
+  .nav-item,.has-dd{width:100%}
+  .has-dd::after{display:none}
+  .dd-trigger{width:100%;padding:10px 0;justify-content:space-between}
+  .dd-menu{position:static;box-shadow:none;border:none;background:var(--surface);margin:0 0 6px;width:100%}
+  .nav-toggle{display:block}
+}
+</style>
+</head>
 <body>
 <div class="ambient"></div>
 <nav>
   <div class="nav-in">
     <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
     <div class="nav-links" id="navLinks">
-      <a href="/services">Services</a>
-      <a href="/llm-optimization">LLM Optimization</a>
-      <a href="/growth-framework">Framework</a>
-      <a href="/the-growth-glossary">Glossary</a>
-      <a href="/the-long-view">The Long View</a>
-      <a href="/ai-advisor">AI Advisor</a>
-      <a href="/portfolio">Portfolio</a>
-      <a href="/portfolio#clients">Clients</a>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Services <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/llm-optimization">LLM Optimization</a>
+          <a href="/internet-marketing/">Internet Marketing</a>
+          <a href="/social-media-marketing/">Social Media Marketing</a>
+          <a href="/brand-creation/">Brand Creation</a>
+          <a href="/services">All Services &rarr;</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Industries <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/ai-for-law-firms/">Law Firms</a>
+          <a href="/ai-for-contractors/">Contractors</a>
+          <a href="/ai-for-restaurants/">Restaurants</a>
+          <a href="/ai-for-ecommerce/">E-commerce</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Resources <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/growth-framework">S.C.A.L.E. Framework</a>
+          <a href="/the-growth-glossary">Growth Glossary</a>
+          <a href="/the-long-view">The Long View</a>
+          <a href="/faq/">Answers</a>
+          <a href="/how-much-does-llmo-cost/">Pricing</a>
+          <a href="/ai-advisor">AI Advisor</a>
+          <a href="/ask">Ask My AI</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Portfolio <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/portfolio">The Portfolio</a>
+          <a href="/portfolio#clients">Clients</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Real Estate <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/listings/">All Listings &rarr;</a>
+          <a href="/listings/k2-investment/">About K2 Investment</a>
+          <a href="/listings/90-longhorn-ridge-napa/">90 Longhorn Ridge, Napa</a>
+          <a href="/listings/95-longhorn-ridge-napa/">95 Longhorn Ridge, Napa</a>
+          <a href="/listings/1048-s-los-angeles-st-dtla/">1048 S Los Angeles St, DTLA</a>
+        </div>
+      </div>
       <a href="/about-us">About</a>
-      <a href="/listings/">Real Estate</a><a href="/#contact">Contact</a>
-      <a href="/contact-us" class="nav-cta">Book a Scan →</a>
+      <a href="/#contact">Contact</a>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false" style="font-family:var(--mono);font-size:12px;">&#127760; <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/">English</a>
+          <a href="/es/">Espa&ntilde;ol</a>
+          <a href="/fa/">&#1601;&#1575;&#1585;&#1587;&#1740;</a>
+          <a href="/hy/">&#1344;&#1377;&#1397;&#1381;&#1408;&#1381;&#1398;</a>
+        </div>
+      </div>
     </div>
-    <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+    <div class="nav-right">
+      <a href="/contact-us" class="nav-cta">Book a Scan &rarr;</a>
+      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+    </div>
   </div>
 </nav>
 <header class="ph"><div class="wrap">
@@ -268,5 +354,22 @@ elevenlabs-convai{
 </script>
 
   <script src="/share.js" defer></script>
+<script id="canonical-nav-js">
+(function(){
+  document.querySelectorAll('#navLinks>a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open');});});
+  document.querySelectorAll('.dd-menu a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open');document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');});});});
+  document.querySelectorAll('.dd-trigger').forEach(function(t){
+    t.addEventListener('click',function(e){
+      e.preventDefault();e.stopPropagation();
+      var p=t.parentElement,was=p.classList.contains('open');
+      document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');var b=x.querySelector('.dd-trigger');if(b)b.setAttribute('aria-expanded','false');});
+      if(!was){p.classList.add('open');t.setAttribute('aria-expanded','true');}
+    });
+  });
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.has-dd')){document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');var b=x.querySelector('.dd-trigger');if(b)b.setAttribute('aria-expanded','false');});}
+  });
+})();
+</script>
 </body>
 </html>

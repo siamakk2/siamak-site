@@ -124,23 +124,111 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:50px 0 3
 .cta-inline a{font-family:var(--mono);color:var(--cyan);font-weight:600;text-decoration:none;white-space:nowrap}
 @media(max-width:760px){.article-h{font-size:32px}}
 </style>
+<style id="canonical-nav-css">
+nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1180px;margin:0 auto;padding:15px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
+.brand-txt{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.05em;color:var(--text);white-space:nowrap}
+.brand-txt span{color:var(--muted)}
+.nav-right{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.nav-links{display:flex;gap:22px;align-items:center;flex-wrap:nowrap}
+.nav-links>a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s;white-space:nowrap}
+.nav-links>a:hover,.nav-links>a.active{color:var(--text)}
+.nav-item{position:relative}
+.dd-trigger{background:none;border:none;color:var(--muted);font-family:inherit;font-size:13px;font-weight:500;letter-spacing:.02em;cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:0;transition:color .2s;white-space:nowrap}
+.dd-trigger:hover{color:var(--text)}
+.dd-caret{font-size:9px;opacity:.65;transition:transform .2s}
+.has-dd.open .dd-caret{transform:rotate(180deg)}
+.dd-menu{position:absolute;top:calc(100% + 14px);left:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px;min-width:210px;display:none;flex-direction:column;gap:2px;z-index:200;box-shadow:0 14px 44px rgba(0,0,0,.55)}
+.has-dd::after{content:"";position:absolute;top:100%;left:0;right:0;height:16px}
+.has-dd.open .dd-menu{display:flex}
+.dd-menu a{padding:9px 14px;border-radius:7px;font-size:13px;font-weight:500;color:var(--muted);white-space:nowrap;text-decoration:none;transition:background .15s,color .15s}
+.dd-menu a:hover{background:var(--surface-2);color:var(--text)}
+@media(min-width:961px){.has-dd:hover .dd-menu{display:flex}}
+.nav-cta{font-family:var(--mono);font-size:12px;padding:9px 15px;border:1px solid var(--line-bright);border-radius:6px;color:var(--text)!important;text-decoration:none;white-space:nowrap}
+.nav-cta:hover{border-color:var(--cyan);box-shadow:0 0 18px rgba(45,212,255,.15)}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:21px;cursor:pointer}
+@media(max-width:960px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;background:var(--void);border-bottom:1px solid var(--line);padding:16px 28px 22px;gap:4px;max-height:80vh;overflow-y:auto}
+  .nav-links.open{display:flex}
+  .nav-links>a{padding:10px 0;width:100%}
+  .nav-item,.has-dd{width:100%}
+  .has-dd::after{display:none}
+  .dd-trigger{width:100%;padding:10px 0;justify-content:space-between}
+  .dd-menu{position:static;box-shadow:none;border:none;background:var(--surface);margin:0 0 6px;width:100%}
+  .nav-toggle{display:block}
+}
+</style>
+</head>
 <body id="top"><nav>
   <div class="nav-in">
     <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
     <div class="nav-links" id="navLinks">
-      <a href="/services">Services</a>
-      <a href="/llm-optimization">LLM Optimization</a>
-      <a href="/growth-framework">Framework</a>
-      <a href="/the-growth-glossary">Glossary</a>
-      <a href="/the-long-view">The Long View</a>
-      <a href="/ai-advisor">AI Advisor</a>
-      <a href="/portfolio">Portfolio</a>
-      <a href="/portfolio#clients">Clients</a>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Services <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/llm-optimization">LLM Optimization</a>
+          <a href="/internet-marketing/">Internet Marketing</a>
+          <a href="/social-media-marketing/">Social Media Marketing</a>
+          <a href="/brand-creation/">Brand Creation</a>
+          <a href="/services">All Services &rarr;</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Industries <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/ai-for-law-firms/">Law Firms</a>
+          <a href="/ai-for-contractors/">Contractors</a>
+          <a href="/ai-for-restaurants/">Restaurants</a>
+          <a href="/ai-for-ecommerce/">E-commerce</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Resources <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/growth-framework">S.C.A.L.E. Framework</a>
+          <a href="/the-growth-glossary">Growth Glossary</a>
+          <a href="/the-long-view">The Long View</a>
+          <a href="/faq/">Answers</a>
+          <a href="/how-much-does-llmo-cost/">Pricing</a>
+          <a href="/ai-advisor">AI Advisor</a>
+          <a href="/ask">Ask My AI</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Portfolio <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/portfolio">The Portfolio</a>
+          <a href="/portfolio#clients">Clients</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Real Estate <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/listings/">All Listings &rarr;</a>
+          <a href="/listings/k2-investment/">About K2 Investment</a>
+          <a href="/listings/90-longhorn-ridge-napa/">90 Longhorn Ridge, Napa</a>
+          <a href="/listings/95-longhorn-ridge-napa/">95 Longhorn Ridge, Napa</a>
+          <a href="/listings/1048-s-los-angeles-st-dtla/">1048 S Los Angeles St, DTLA</a>
+        </div>
+      </div>
       <a href="/about-us">About</a>
-      <a href="/listings/">Real Estate</a><a href="/#contact">Contact</a>
-      <a href="/contact-us" class="nav-cta">Book a Scan &rarr;</a>
+      <a href="/#contact">Contact</a>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false" style="font-family:var(--mono);font-size:12px;">&#127760; <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/">English</a>
+          <a href="/es/">Espa&ntilde;ol</a>
+          <a href="/fa/">&#1601;&#1575;&#1585;&#1587;&#1740;</a>
+          <a href="/hy/">&#1344;&#1377;&#1397;&#1381;&#1408;&#1381;&#1398;</a>
+        </div>
+      </div>
     </div>
-    <button class="nav-toggle"</div>
+    <div class="nav-right">
+      <a href="/contact-us" class="nav-cta">Book a Scan &rarr;</a>
+      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+    </div>
+  </div>
 </nav><section class="article-hero"><div class="wrap"><div class="crumb"><a href="/the-long-view">The Long View</a> / AI Visibility</div><h1 class="article-h">Why Your Business Doesn't Show Up When People Ask ChatGPT for Recommendations</h1><div class="article-meta"><span>8 min read</span><span>&middot;</span><span>Siamak Kalhor</span></div></div></section>
 <section class="prose-wrap"><div class="wrap"><div class="prose">
 <p>Somewhere this week, a potential customer typed something like &ldquo;best [your industry] near me&rdquo; or &ldquo;who should I hire for [your service]&rdquo; &mdash; not into Google, but into ChatGPT, Gemini, or Claude. And your business wasn't in the answer.</p><p>This isn't a hypothetical anymore. ChatGPT alone has grown from around 400 million weekly users in early 2025 to roughly 900 million by early 2026. AI-driven referral traffic to U.S. retail sites surged nearly 700% year over year during the most recent holiday season, and visitors who arrive via an AI recommendation convert at more than four times the rate of a typical organic search visitor &mdash; because by the time they click through, the AI has already done the convincing.</p><p>Traditional search volume is starting to erode as a result. Analysts project meaningful ongoing declines in classic search-engine query volume as AI chatbots and assistants absorb more of that &ldquo;where should I go&rdquo; behavior. For forty years, the game was ranking on a search engine results page. That game hasn't disappeared &mdash; but a second one has opened up alongside it, and almost nobody in most local and professional-services categories is playing it yet. Citation rates in professional services remain among the lowest of any industry, under 4% of prompts &mdash; which means the businesses who move first have an unusually open field.</p><h2>Why AI Assistants Skip Most Businesses</h2><p>An AI assistant doesn't &ldquo;know&rdquo; your business the way a person does. It generates an answer based on patterns learned from what's written about you &mdash; and about your competitors &mdash; across the web. If very little exists, or what exists is thin, inconsistent, or indistinguishable from every competitor's boilerplate &ldquo;About Us&rdquo; page, there's nothing for the model to confidently recommend you <em>for</em>.</p><p>A few structural realities worth understanding:</p><ul><li><strong>Third-party sources matter more than your own website.</strong> Businesses cited by AI assistants are roughly 6.5 times more likely to be cited via a third-party source &mdash; a review site, a directory, a news mention, another site's comparison article &mdash; than from their own domain. Your website alone, however well built, is not the whole game anymore.</li><li><strong>Authority compounds.</strong> Sites with a strong base of referring domains are meaningfully more likely to be cited than newer or thinner sites. This mirrors something true in traditional SEO for two decades: authority is not claimed, it's accumulated.</li><li><strong>Direct, specific answers get cited more.</strong> Content that states a clear, specific answer in its opening sentences &mdash; not buried under three paragraphs of preamble &mdash; is measurably more likely to be pulled into an AI-generated response.</li><li><strong>The platforms are diversifying.</strong> ChatGPT still leads AI referral traffic, but Claude posted the fastest growth of any major platform over the past year, and Gemini has climbed past a quarter of the category. Optimizing for a single AI platform no longer covers the addressable audience the way it once did.</li></ul><h2>What &ldquo;Being Visible to AI&rdquo; Actually Requires</h2><p>This is not a plugin you install or a checkbox you tick. It's the same discipline that has always separated businesses that get chosen from businesses that get overlooked &mdash; applied to a new surface.</p><p><strong>Say something specific, not something generic.</strong> &ldquo;We provide quality legal services&rdquo; gives an AI model nothing to differentiate you with. &ldquo;We handle catastrophic injury cases involving commercial vehicles in [region]&rdquo; gives it something to match against a specific query.</p><p><strong>Build real third-party presence.</strong> Reviews, press mentions, directory listings, guest contributions, partner mentions &mdash; every one of these is a signal an AI model can pull from when it's deciding who to recommend. This is where authority is engineered rather than left to chance.</p><p><strong>Publish content that answers real questions directly.</strong> Not content stuffed with keywords for a 2015-era search engine &mdash; content that a model could lift a clear, accurate answer from, because you stated the answer plainly.</p><p><strong>Keep your information consistent everywhere.</strong> Conflicting details about your business across your website, listings, and profiles create exactly the kind of uncertainty that makes a model hedge and recommend a competitor instead.</p><h2>The Businesses Getting Left Behind</h2><p>The pattern I'm seeing across ecommerce, legal, and medical clients is consistent: the businesses treating this as urgent are the ones with the least competition doing it right now. Professional services &mdash; law, medicine, finance &mdash; currently show among the lowest AI-citation rates of any industry, which sounds like a warning until you realize what it actually means: the field is wide open for whoever engineers their authority first.</p><p>This has always been the real principle behind good strategy &mdash; build the system that makes chasing every new channel unnecessary, because you were positioned correctly before the channel mattered. AI visibility isn't a new discipline bolted onto marketing. It's the same discipline of engineered authority and strategic clarity, aimed at a new set of eyes reading your content.</p>
@@ -181,5 +269,22 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:50px 0 3
     </div>
   </div>
 </footer>
+<script id="canonical-nav-js">
+(function(){
+  document.querySelectorAll('#navLinks>a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open');});});
+  document.querySelectorAll('.dd-menu a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open');document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');});});});
+  document.querySelectorAll('.dd-trigger').forEach(function(t){
+    t.addEventListener('click',function(e){
+      e.preventDefault();e.stopPropagation();
+      var p=t.parentElement,was=p.classList.contains('open');
+      document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');var b=x.querySelector('.dd-trigger');if(b)b.setAttribute('aria-expanded','false');});
+      if(!was){p.classList.add('open');t.setAttribute('aria-expanded','true');}
+    });
+  });
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.has-dd')){document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');var b=x.querySelector('.dd-trigger');if(b)b.setAttribute('aria-expanded','false');});}
+  });
+})();
+</script>
 </body>
 </html>

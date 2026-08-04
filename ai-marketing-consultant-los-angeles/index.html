@@ -91,23 +91,109 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:50px 0 3
 .loc-faq-q{font-family:var(--display);font-size:17px;font-weight:600;color:var(--text);margin:0 0 8px;}
 .loc-faq-a{font-size:14px;color:var(--muted);line-height:1.7;margin:0 0 22px;}
 @media(max-width:720px){.who-grid{grid-template-columns:1fr;}}
-</style><link rel="alternate" hreflang="en" href="https://siamakconsulting.com/ai-marketing-consultant-los-angeles"/><link rel="alternate" hreflang="es" href="https://siamakconsulting.com/es/ai-marketing-consultant-los-angeles"/><link rel="alternate" hreflang="fa" href="https://siamakconsulting.com/fa/ai-marketing-consultant-los-angeles"/><link rel="alternate" hreflang="hy" href="https://siamakconsulting.com/hy/ai-marketing-consultant-los-angeles"/><link rel="alternate" hreflang="x-default" href="https://siamakconsulting.com/ai-marketing-consultant-los-angeles"/></head><body id="top"><nav>
+</style><link rel="alternate" hreflang="en" href="https://siamakconsulting.com/ai-marketing-consultant-los-angeles"/><link rel="alternate" hreflang="es" href="https://siamakconsulting.com/es/ai-marketing-consultant-los-angeles"/><link rel="alternate" hreflang="fa" href="https://siamakconsulting.com/fa/ai-marketing-consultant-los-angeles"/><link rel="alternate" hreflang="hy" href="https://siamakconsulting.com/hy/ai-marketing-consultant-los-angeles"/><link rel="alternate" hreflang="x-default" href="https://siamakconsulting.com/ai-marketing-consultant-los-angeles"/><style id="canonical-nav-css">
+nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1180px;margin:0 auto;padding:15px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
+.brand-txt{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.05em;color:var(--text);white-space:nowrap}
+.brand-txt span{color:var(--muted)}
+.nav-right{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.nav-links{display:flex;gap:22px;align-items:center;flex-wrap:nowrap}
+.nav-links>a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s;white-space:nowrap}
+.nav-links>a:hover,.nav-links>a.active{color:var(--text)}
+.nav-item{position:relative}
+.dd-trigger{background:none;border:none;color:var(--muted);font-family:inherit;font-size:13px;font-weight:500;letter-spacing:.02em;cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:0;transition:color .2s;white-space:nowrap}
+.dd-trigger:hover{color:var(--text)}
+.dd-caret{font-size:9px;opacity:.65;transition:transform .2s}
+.has-dd.open .dd-caret{transform:rotate(180deg)}
+.dd-menu{position:absolute;top:calc(100% + 14px);left:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px;min-width:210px;display:none;flex-direction:column;gap:2px;z-index:200;box-shadow:0 14px 44px rgba(0,0,0,.55)}
+.has-dd::after{content:"";position:absolute;top:100%;left:0;right:0;height:16px}
+.has-dd.open .dd-menu{display:flex}
+.dd-menu a{padding:9px 14px;border-radius:7px;font-size:13px;font-weight:500;color:var(--muted);white-space:nowrap;text-decoration:none;transition:background .15s,color .15s}
+.dd-menu a:hover{background:var(--surface-2);color:var(--text)}
+@media(min-width:961px){.has-dd:hover .dd-menu{display:flex}}
+.nav-cta{font-family:var(--mono);font-size:12px;padding:9px 15px;border:1px solid var(--line-bright);border-radius:6px;color:var(--text)!important;text-decoration:none;white-space:nowrap}
+.nav-cta:hover{border-color:var(--cyan);box-shadow:0 0 18px rgba(45,212,255,.15)}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:21px;cursor:pointer}
+@media(max-width:960px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;background:var(--void);border-bottom:1px solid var(--line);padding:16px 28px 22px;gap:4px;max-height:80vh;overflow-y:auto}
+  .nav-links.open{display:flex}
+  .nav-links>a{padding:10px 0;width:100%}
+  .nav-item,.has-dd{width:100%}
+  .has-dd::after{display:none}
+  .dd-trigger{width:100%;padding:10px 0;justify-content:space-between}
+  .dd-menu{position:static;box-shadow:none;border:none;background:var(--surface);margin:0 0 6px;width:100%}
+  .nav-toggle{display:block}
+}
+</style>
+</head><body id="top"><nav>
   <div class="nav-in">
     <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
     <div class="nav-links" id="navLinks">
-      <a href="/services">Services</a>
-      <a href="/llm-optimization">LLM Optimization</a>
-      <a href="/growth-framework">Framework</a>
-      <a href="/the-growth-glossary">Glossary</a>
-      <a href="/the-long-view">The Long View</a>
-      <a href="/ai-advisor">AI Advisor</a>
-      <a href="/portfolio">Portfolio</a>
-      <a href="/portfolio#clients">Clients</a>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Services <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/llm-optimization">LLM Optimization</a>
+          <a href="/internet-marketing/">Internet Marketing</a>
+          <a href="/social-media-marketing/">Social Media Marketing</a>
+          <a href="/brand-creation/">Brand Creation</a>
+          <a href="/services">All Services &rarr;</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Industries <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/ai-for-law-firms/">Law Firms</a>
+          <a href="/ai-for-contractors/">Contractors</a>
+          <a href="/ai-for-restaurants/">Restaurants</a>
+          <a href="/ai-for-ecommerce/">E-commerce</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Resources <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/growth-framework">S.C.A.L.E. Framework</a>
+          <a href="/the-growth-glossary">Growth Glossary</a>
+          <a href="/the-long-view">The Long View</a>
+          <a href="/faq/">Answers</a>
+          <a href="/how-much-does-llmo-cost/">Pricing</a>
+          <a href="/ai-advisor">AI Advisor</a>
+          <a href="/ask">Ask My AI</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Portfolio <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/portfolio">The Portfolio</a>
+          <a href="/portfolio#clients">Clients</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Real Estate <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/listings/">All Listings &rarr;</a>
+          <a href="/listings/k2-investment/">About K2 Investment</a>
+          <a href="/listings/90-longhorn-ridge-napa/">90 Longhorn Ridge, Napa</a>
+          <a href="/listings/95-longhorn-ridge-napa/">95 Longhorn Ridge, Napa</a>
+          <a href="/listings/1048-s-los-angeles-st-dtla/">1048 S Los Angeles St, DTLA</a>
+        </div>
+      </div>
       <a href="/about-us">About</a>
-      <a href="/listings/">Real Estate</a><a href="/#contact">Contact</a>
-      <a href="/contact-us" class="nav-cta">Book a Scan →</a>
+      <a href="/#contact">Contact</a>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false" style="font-family:var(--mono);font-size:12px;">&#127760; <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/">English</a>
+          <a href="/es/">Espa&ntilde;ol</a>
+          <a href="/fa/">&#1601;&#1575;&#1585;&#1587;&#1740;</a>
+          <a href="/hy/">&#1344;&#1377;&#1397;&#1381;&#1408;&#1381;&#1398;</a>
+        </div>
+      </div>
     </div>
-    <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+    <div class="nav-right">
+      <a href="/contact-us" class="nav-cta">Book a Scan &rarr;</a>
+      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+    </div>
   </div>
 </nav><section class="loc-hero"><div class="wrap"><div class="sec-label" style="justify-content:center;">Los Angeles, CA · &amp; online everywhere</div><h1 class="loc-h">AI Marketing Consultant<br><span class="grad">in Los Angeles</span></h1><div class="answer-box"><p>Los Angeles is one of the most competitive markets on earth, and the game just changed: your customers now ask AI for recommendations instead of scrolling Google. I engineer <b>LA brands to be the ones AI names</b> — through Large Model Optimization, AI-native marketing, and custom software. Based in Los Angeles, working with clients everywhere, fully online.</p></div></div></section><section style="padding:36px 0 20px;"><div class="wrap" style="max-width:760px;"><h2 class="sec-h" style="text-align:center;margin-bottom:8px;">What I do for Los Angeles brands</h2><p style="text-align:center;color:var(--muted);font-size:16px;line-height:1.7;max-width:680px;margin:0 auto;">I make brands the answer AI gives. Using my <strong style="color:var(--text);">S.C.A.L.E. framework</strong> — Scan, Clarify, Amplify, Leverage, Evaluate — I engineer your positioning, content, and authority so you get found, trusted, and recommended by ChatGPT, Gemini, Claude, Perplexity, and Google. Plus AI-native marketing, conversion-focused websites, and custom AI software.</p></div></section><section style="padding:20px 0 40px;"><div class="wrap"><div class="sec-head" style="text-align:center;margin-bottom:6px;"><div class="sec-label" style="justify-content:center;">Who I help</div></div><div class="who-grid"><div class="who-chip"><b>E-commerce & DTC</b>Product brands that need AI to recommend them</div><div class="who-chip"><b>Professional services</b>Law, medical, finance, consulting</div><div class="who-chip"><b>Real estate</b>Agents & brokerages competing for visibility</div><div class="who-chip"><b>Hospitality & food</b>Restaurants, hotels, experiences</div><div class="who-chip"><b>Entertainment & creators</b>Personal brands and studios</div><div class="who-chip"><b>Startups & SaaS</b>AI-era launches that need authority fast</div></div></div></section><section style="padding:44px 0;background:var(--surface-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);"><div class="wrap" style="max-width:760px;text-align:center;"><div class="sec-label" style="justify-content:center;">Proof, not promises</div><h2 class="sec-h" style="margin:8px 0 12px;">I build what I preach</h2><p style="color:var(--muted);font-size:15.5px;line-height:1.7;">I’ve designed, built, and launched four live AI products — <a href="https://orchamind.com" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none;">Orchamind</a>, <a href="https://resbizai.com" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none;">ResBizAI</a>, <a href="https://aislebird.com" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none;">AisleBird</a>, and the <a href="https://bluemoonfabrics.com/pages/custom-pattern-studio" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none;">Blue Moon Custom Pattern Studio</a> — each engineered to be discovered and cited by AI. <a href="/portfolio" style="color:var(--cyan);text-decoration:none;">See the full portfolio →</a></p></div></section><section style="padding:44px 0;"><div class="wrap" style="max-width:760px;"><div class="sec-head" style="margin-bottom:26px;"><div class="sec-label">FAQ</div><h2 class="sec-h">Working with me in Los Angeles</h2></div><div><div class="loc-faq-q">Do you work with Los Angeles businesses?</div><div class="loc-faq-a">Yes. I work with Los Angeles brands across e-commerce, professional services, real estate, hospitality, entertainment, and startups — and with clients across the country. Every engagement runs online, so location is never a barrier.</div></div><div><div class="loc-faq-q">Do I have to be in Los Angeles to hire you?</div><div class="loc-faq-a">No. While I’m based in Los Angeles, I work fully online with clients anywhere. The entire process — scan, strategy, and execution — happens remotely.</div></div><div><div class="loc-faq-q">What is an AI marketing consultant?</div><div class="loc-faq-a">An AI marketing consultant helps your brand get discovered, trusted, and recommended by AI systems like ChatGPT, Gemini, Claude, and Perplexity — not just ranked on Google. That practice is Large Model Optimization (LLMO), and it’s the core of what I do.</div></div><div><div class="loc-faq-q">How do you get my LA business cited by AI?</div><div class="loc-faq-a">Through my S.C.A.L.E. framework: I scan your current AI footprint, clarify your positioning, amplify it with structured content and citations, leverage third-party authority, and evaluate results monthly. See the full playbook at /how-to-get-cited-by-ai.</div></div></div></section><section style="padding:20px 0 20px;"><div class="wrap" style="max-width:760px;text-align:center;"><p style="color:var(--muted);font-size:14px;">Also serving <a href="/ai-marketing-consultant-napa-valley" style="color:var(--cyan);text-decoration:none;">Napa Valley →</a></p></div></section><section style="padding:40px 0 72px;text-align:center;"><div class="wrap"><h2 class="sec-h" style="margin-bottom:12px;">Ready to become the answer in Los Angeles?</h2><p style="color:var(--muted);max-width:540px;margin:0 auto 24px;font-size:16px;">Start with a free AI Authority Scan — see exactly how AI sees your brand today.</p><a href="/audit" target="_blank" rel="noopener" style="display:inline-flex;font-family:var(--mono);font-size:14px;font-weight:600;padding:16px 30px;border-radius:8px;background:var(--glow);color:#04060a;text-decoration:none;">⚡ Get Your Free AI Authority Scan</a></div></section><footer>
   <div class="wrap">
@@ -139,4 +225,21 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:50px 0 3
       <span>323-657-7752 · Los Angeles · Worldwide</span>
     </div>
   </div>
-</footer></body></html>
+</footer><script id="canonical-nav-js">
+(function(){
+  document.querySelectorAll('#navLinks>a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open');});});
+  document.querySelectorAll('.dd-menu a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open');document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');});});});
+  document.querySelectorAll('.dd-trigger').forEach(function(t){
+    t.addEventListener('click',function(e){
+      e.preventDefault();e.stopPropagation();
+      var p=t.parentElement,was=p.classList.contains('open');
+      document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');var b=x.querySelector('.dd-trigger');if(b)b.setAttribute('aria-expanded','false');});
+      if(!was){p.classList.add('open');t.setAttribute('aria-expanded','true');}
+    });
+  });
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.has-dd')){document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');var b=x.querySelector('.dd-trigger');if(b)b.setAttribute('aria-expanded','false');});}
+  });
+})();
+</script>
+</body></html>
