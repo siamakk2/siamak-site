@@ -76,6 +76,7 @@ Search is changing. People no longer click ten blue links — they ask an AI and
 
 - [Orchamind](https://orchamind.com/): AI operations platform for contractors and field-service businesses.
 - [AisleBird](https://aislebird.com/): AI grocery list app that sorts by store aisle.
+- [Fabric ERP](https://siamakconsulting.com/fabric-erp): Cloud ERP for fabric and textile distributors — roll and dye-lot inventory, packing lists that convert to invoices, accounts receivable aging, sales reporting, and manufacturing. $500/month with a 30-day free trial. Live app at https://fabric-erp-gamma.vercel.app
 
 ## About
 
