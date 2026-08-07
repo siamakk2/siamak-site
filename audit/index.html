@@ -188,7 +188,7 @@
 
 <div class="top">
   <div class="top-in">
-    <a class="brand" href="/"><span class="dot">O</span> Orchamind</a>
+    <a class="brand" href="/"><span class="dot">S</span> Siamak Kalhor Consulting</a>
     <a class="call" href="tel:13236577752">📞 (323) 657-7752</a>
   </div>
 </div>
@@ -621,7 +621,7 @@
   }
 
   function saveLead(){
-    // Save lead to Upstash via our data API
+    // Save lead to Upstash via our data API (and trigger the branded report email)
     var lead = {
       name: LEAD.name,
       email: LEAD.email,
@@ -629,10 +629,23 @@
       businessName: LEAD.businessName,
       ts: new Date().toISOString()
     };
+    // Attach a compact report summary so the backend can email it to the lead
+    var reportSummary = null;
+    if (typeof REPORT === 'object' && REPORT) {
+      reportSummary = {
+        business_name: REPORT.business_name || LEAD.businessName || '',
+        host: REPORT.host || '',
+        overall_score: REPORT.overall_score,
+        grade_label: REPORT.grade_label || '',
+        headline: REPORT.headline || '',
+        scores: REPORT.scores || null,
+        quick_wins: REPORT.quick_wins || []
+      };
+    }
     fetch('/api/leads', {
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ action:'saveLead', lead: lead })
+      body: JSON.stringify({ action:'saveLead', lead: lead, report: reportSummary })
     }).catch(function(){/* silent fail */});
   }
 
@@ -657,7 +670,7 @@
     var url = (REPORT && REPORT.host) ? REPORT.host : '';
     var ver = LEAD.version || VERSION_NAMES[currentPage] || 'Authority & Trust';
     var msg = encodeURIComponent(
-      'Hi Siamak! I just ran the Orchamind site audit for ' + biz + ' (' + url + '). ' +
+      'Hi Siamak! I just ran the AI audit on siamakconsulting.com for ' + biz + ' (' + url + '). ' +
       'I liked the "' + ver + '" version. Can we talk about building it? ' +
       '— ' + (LEAD.name || 'a potential client')
     );
