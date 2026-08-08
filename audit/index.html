@@ -357,7 +357,7 @@
     var load=document.getElementById('loading'); load.classList.add('show'); cycleSteps();
     document.getElementById('goBtn').disabled=true;
 
-    fetch('/api/audit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:url})})
+    fetch('https://orchamind.com/api/audit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:url})})
       .then(function(r){return r.json();})
       .then(function(d){
         clearInterval(stepTimer); load.classList.remove('show'); document.getElementById('goBtn').disabled=false;
@@ -469,7 +469,7 @@
 
   function generatePage(versionIndex, callback){
     var prompt = buildPrompt(versionIndex);
-    fetch('/api/pagegen',{
+    fetch('https://orchamind.com/api/pagegen',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({

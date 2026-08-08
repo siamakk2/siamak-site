@@ -38,6 +38,18 @@ module.exports = async function handler(req, res) {
         await r.json();
         saved = true;
       } catch (e) { console.error('Lead save failed:', e && e.message); }
+    } else {
+      // Local storage not configured — forward the lead to the Orchamind
+      // project's leads API (same owner) so no lead is ever lost.
+      try {
+        const r = await fetch('https://orchamind.com/api/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'saveLead', lead })
+        });
+        const d = await r.json().catch(() => ({}));
+        saved = !!(d && d.ok);
+      } catch (e) { console.error('Lead forward failed:', e && e.message); }
     }
 
     // --- 2) Email the report to the lead (Siamak Kalhor Consulting branding) ---
