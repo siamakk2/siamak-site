@@ -138,6 +138,9 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
   .dd-menu{position:static;box-shadow:none;border:none;background:var(--surface);margin:0 0 6px;width:100%}
   .nav-toggle{display:block}
 }
+
+@media(max-width:960px){.nav-in{padding:12px 16px;gap:10px}.brand{gap:8px}.brand img{height:24px!important}.brand-txt{font-size:11px}.brand-txt span{display:none}.nav-right{gap:8px}.nav-toggle{flex-shrink:0}.nav-cta{font-size:11px;padding:8px 10px}}
+@media(max-width:400px){.nav-cta{font-size:10.5px;padding:7px 8px;letter-spacing:0}}
 </style>
 </head>
 <body id="top"><nav>
@@ -178,7 +181,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
       <div class="nav-item has-dd">
         <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Portfolio <span class="dd-caret">&#9662;</span></button>
         <div class="dd-menu">
-          <a href="/portfolio">The Portfolio</a><a href="/fabric-erp">Fabric ERP</a>
+          <a href="/portfolio">The Portfolio</a><a href="/textile-wizard">Textile Wizard</a>
           <a href="/portfolio#clients">Clients</a>
         </div>
       </div>

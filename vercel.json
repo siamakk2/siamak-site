@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/fabric-erp",
+      "destination": "/textile-wizard",
+      "permanent": true
+    },
+    {
       "source": "/",
       "has": [
         {
