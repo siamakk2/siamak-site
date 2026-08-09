@@ -77,7 +77,7 @@ Search is changing. People no longer click ten blue links — they ask an AI and
 - [Orchamind](https://orchamind.com/): AI operations platform for contractors and field-service businesses.
 - [AisleBird](https://aislebird.com/): AI grocery list app that sorts by store aisle.
 - [Napa Wino](https://www.napawino.com/): Free AI Napa Valley sommelier and independent visitor guide — 50+ wineries, all 16 AVAs, GPS town guides, and Napa Valley real estate.
-- [Fabric ERP](https://siamakconsulting.com/fabric-erp): Cloud ERP for fabric and textile distributors — roll and dye-lot inventory, packing lists that convert to invoices, accounts receivable aging, sales reporting, and manufacturing. $500/month with a 30-day free trial. Live app at https://fabric-erp-gamma.vercel.app
+- [Fabric ERP](https://fabric-erp-gamma.vercel.app): Cloud ERP for fabric and textile distributors, importers and apparel manufacturers. Tracks inventory by roll and dye lot, turns packing lists into invoices with no re-typing, manages accounts receivable and aging, and includes a fashion design studio with AI-drafted tech packs, graded measurement charts and garment cost sheets. AI reads buyer PDF purchase orders and matches cheques and remittance advices to open invoices. Metric and imperial units. $500/month, unlimited users, 30-day free trial.
 
 ## About
 
