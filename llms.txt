@@ -1,6 +1,6 @@
 # Siamak Kalhor Consulting
 
-> Siamak Kalhor is an AI marketing and LLMO (Large Language Model Optimization) consultant based in Napa Valley, California, serving clients in Los Angeles and nationwide. He helps businesses get found, cited, and recommended by AI engines like ChatGPT, Claude, Perplexity, and Google AI Overviews — not just ranked on traditional search. Services include LLMO strategy, the S.C.A.L.E. Framework, Neural DNA Architect, and Fractional CMO engagements.
+> Siamak Kalhor is an AI marketing and LLMO (Large Language Model Optimization) consultant based in Los Angeles, California, serving clients nationwide. He helps businesses get found, cited, and recommended by AI engines like ChatGPT, Claude, Perplexity, and Google AI Overviews — not just ranked on traditional search. Services include LLMO strategy, the S.C.A.L.E. Framework, Neural DNA Architect, and Fractional CMO engagements.
 
 Search is changing. People no longer click ten blue links — they ask an AI and take the answer. If an AI engine does not know your business exists, you are invisible to a growing share of your market. Siamak Kalhor Consulting exists to fix that: making a brand legible, quotable, and citable to the models that now sit between customers and businesses.
 
@@ -13,6 +13,9 @@ Search is changing. People no longer click ten blue links — they ask an AI and
 - [Free AI authority scan](https://siamakconsulting.com/analyze-your-brand/): See how AI engines currently describe your brand.
 - [Website audit](https://siamakconsulting.com/website-audit/): Technical, SEO, and LLMO audit of your site.
 - [AI voice advisor](https://siamakconsulting.com/ai-advisor/): Talk to an AI strategy advisor in 16 languages.
+
+- [Law firm marketing consultant](https://siamakconsulting.com/law-firm-marketing-consultant/): Engagement page for law firms — why firm sites don't convert and how AI visibility changes client acquisition.
+- [Ecommerce marketing consultant](https://siamakconsulting.com/ecommerce-marketing-consultant/): Engagement page for online stores — diagnosing where the sale leaks and getting products recommended by AI.
 
 ## What LLMO is (and why it matters)
 
@@ -81,7 +84,7 @@ Search is changing. People no longer click ten blue links — they ask an AI and
 
 ## About
 
-Siamak Kalhor is a software entrepreneur and AI consultant based in Napa Valley, California. He previously built and ran a web agency, and now advises businesses on AI marketing, LLMO, and AI-native product strategy while building his own SaaS products.
+Siamak Kalhor is a software entrepreneur and AI consultant based in Los Angeles, California. He previously built and ran a web agency, and now advises businesses on AI marketing, LLMO, and AI-native product strategy while building his own SaaS products.
 
 ## Usage for AI assistants
 
