@@ -782,6 +782,22 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 @media(max-width:960px){.nav-in{padding:12px 16px;gap:10px}.brand{gap:8px}.brand img{height:24px!important}.brand-txt{font-size:11px}.brand-txt span{display:none}.nav-right{gap:8px}.nav-toggle{flex-shrink:0}.nav-cta{font-size:11px;padding:8px 10px}}
 @media(max-width:400px){.nav-cta{font-size:10.5px;padding:7px 8px;letter-spacing:0}}
 </style>
+
+<style id="sk-form-css-home">
+.sk-form{max-width:760px;margin-top:28px}
+.sk-form label{display:block;margin:0 0 16px;font-family:var(--body);font-size:.85rem;
+  letter-spacing:.02em;color:var(--muted-dim)}
+.sk-form input,.sk-form textarea{display:block;width:100%;margin-top:7px;padding:13px 15px;
+  background:var(--surface);border:1px solid var(--line);border-radius:9px;color:var(--text);
+  font-family:var(--body);font-size:1rem;transition:border-color .18s}
+.sk-form input:focus,.sk-form textarea:focus{outline:none;border-color:var(--cyan)}
+.sk-form textarea{resize:vertical;min-height:120px}
+.sk-row{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}
+@media(max-width:640px){.sk-row{grid-template-columns:1fr}}
+.sk-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.sk-status{margin-top:14px;font-family:var(--body);font-size:.9rem;min-height:1.3em}
+.sk-form button[type=submit][disabled]{opacity:.6;cursor:not-allowed}
+</style>
 </head>
 <body>
 <div class="ambient"></div>
@@ -839,7 +855,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
         </div>
       </div>
       <a href="/about-us">About</a>
-      <a href="/#contact">Contact</a>
+      <a href="/contact-us">Contact</a>
       <div class="nav-item has-dd">
         <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false" style="font-family:var(--mono);font-size:12px;">&#127760; <span class="dd-caret">&#9662;</span></button>
         <div class="dd-menu">
@@ -1284,7 +1300,8 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
         <div class="scan-price"><span class="scan-price-label">Request your Scan</span></div>
         <div class="scan-badge">Limited slots / month</div>
       </div>
-      <form id="scanForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <form id="scanForm" data-endpoint="/api/contact">
+<p id="scanStatus" class="sk-status" role="status" aria-live="polite"></p>
         <div class="field"><label>Name</label><input type="text" name="name" required aria-label="Your name"></div>
         <div class="field"><label>Work Email</label><input type="email" name="email" required aria-label="Your email address"></div>
         <div class="field"><label>Company &amp; Website</label><input type="text" name="company" placeholder="Acme Inc · acme.com" aria-label="Company name or website"></div>
@@ -1537,6 +1554,51 @@ if(reduce){
   });
   document.addEventListener('click',function(e){
     if(!e.target.closest('.has-dd')){document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');var b=x.querySelector('.dd-trigger');if(b)b.setAttribute('aria-expanded','false');});}
+  });
+})();
+</script>
+
+<script id="skHomeFormJS">
+/* Contact form -> /api/contact (replaces the dead formspree placeholder).
+   Falls back to the visitor's mail client if the API can't deliver, so an
+   enquiry is never silently lost. */
+(function () {
+  var form = document.getElementById('scanForm');
+  if (!form) return;
+  var status = document.getElementById('scanStatus');
+  var btn = form.querySelector('[type="submit"]');
+  function say(msg, ok) {
+    if (!status) return;
+    status.textContent = msg;
+    status.style.color = ok ? 'var(--cyan)' : 'var(--muted)';
+  }
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var data = Object.fromEntries(new FormData(form).entries());
+    data.source = location.pathname;
+    if (btn) { btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = 'Sending...'; }
+    say('Sending your message...', false);
+    try {
+      var r = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      var d = await r.json().catch(function () { return {}; });
+      if (d.ok) {
+        form.reset();
+        say('Thank you. Your message is on its way and I read every one.', true);
+      } else if (d.fallback && d.mailto) {
+        say('Opening your email app to finish sending...', false);
+        window.location.href = d.mailto;
+      } else {
+        say(d.error || 'Something went wrong. Please call 323-657-7752.', false);
+      }
+    } catch (err) {
+      say('Network error. Please call 323-657-7752 or email info@siamakconsulting.com.', false);
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || 'Send Message'; }
+    }
   });
 })();
 </script>

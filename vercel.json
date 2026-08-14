@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/contact",
+      "destination": "/contact-us",
+      "permanent": true
+    },
+    {
       "source": "/fabric-erp",
       "destination": "/textile-wizard",
       "permanent": true
@@ -211,7 +216,7 @@
           "value": "siamakkalhor.com"
         }
       ],
-      "destination": "https://aislebird.com/",
+      "destination": "https://siamakconsulting.com/aislebird",
       "permanent": true
     },
     {
@@ -222,7 +227,7 @@
           "value": "siamakkalhor.com"
         }
       ],
-      "destination": "https://siamakconsulting.com/",
+      "destination": "https://siamakconsulting.com/bluemoon",
       "permanent": true
     },
     {
