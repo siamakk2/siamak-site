@@ -10,445 +10,380 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/about-us/</loc>
+    <loc>https://siamakconsulting.com/about-us</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/services/</loc>
+    <loc>https://siamakconsulting.com/services</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/ai-consultant/</loc>
+    <loc>https://siamakconsulting.com/ai-consultant</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/ai-advisor/</loc>
+    <loc>https://siamakconsulting.com/ai-advisor</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/voice-consultant/</loc>
+    <loc>https://siamakconsulting.com/voice-consultant</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/llm-optimization/</loc>
+    <loc>https://siamakconsulting.com/llm-optimization</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/growth-strategies/</loc>
+    <loc>https://siamakconsulting.com/growth-strategies</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/growth-framework/</loc>
+    <loc>https://siamakconsulting.com/growth-framework</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/online-consulting/</loc>
+    <loc>https://siamakconsulting.com/online-consulting</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/authority-hub/</loc>
+    <loc>https://siamakconsulting.com/authority-hub</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/the-growth-glossary/</loc>
+    <loc>https://siamakconsulting.com/the-growth-glossary</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/the-long-view/</loc>
+    <loc>https://siamakconsulting.com/the-long-view</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/the-long-view/why-your-online-store-gets-traffic-but-no-sales/</loc>
+    <loc>https://siamakconsulting.com/the-long-view/why-your-online-store-gets-traffic-but-no-sales</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/the-long-view/why-your-business-doesnt-show-up-when-people-ask-chatgpt/</loc>
+    <loc>https://siamakconsulting.com/the-long-view/why-your-business-doesnt-show-up-when-people-ask-chatgpt</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/the-long-view/why-most-law-firm-websites-dont-convert/</loc>
+    <loc>https://siamakconsulting.com/the-long-view/why-most-law-firm-websites-dont-convert</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/the-long-view/patient-trust-is-engineered-cosmetic-surgery-marketing/</loc>
+    <loc>https://siamakconsulting.com/the-long-view/patient-trust-is-engineered-cosmetic-surgery-marketing</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/the-long-view/blue-moon-fabrics-100x-case-study/</loc>
+    <loc>https://siamakconsulting.com/the-long-view/blue-moon-fabrics-100x-case-study</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/the-long-view/ai-search-is-replacing-google-is-your-law-firm-visible/</loc>
+    <loc>https://siamakconsulting.com/the-long-view/ai-search-is-replacing-google-is-your-law-firm-visible</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/the-long-view/how-doctors-can-build-local-authority/</loc>
+    <loc>https://siamakconsulting.com/the-long-view/how-doctors-can-build-local-authority</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/the-long-view/why-businesses-fail-on-strategy-not-product/</loc>
+    <loc>https://siamakconsulting.com/the-long-view/why-businesses-fail-on-strategy-not-product</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/the-long-view/why-isnt-my-advertising-working/</loc>
+    <loc>https://siamakconsulting.com/the-long-view/why-isnt-my-advertising-working</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/the-long-view/why-cant-i-get-customers/</loc>
+    <loc>https://siamakconsulting.com/the-long-view/why-cant-i-get-customers</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/the-long-view/why-doesnt-my-business-show-up-on-google-or-ai-search/</loc>
+    <loc>https://siamakconsulting.com/the-long-view/why-doesnt-my-business-show-up-on-google-or-ai-search</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/the-long-view/my-marketing-agency-isnt-delivering-results/</loc>
+    <loc>https://siamakconsulting.com/the-long-view/my-marketing-agency-isnt-delivering-results</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/the-long-view/why-do-competitors-outrank-me-when-my-business-is-better/</loc>
+    <loc>https://siamakconsulting.com/the-long-view/why-do-competitors-outrank-me-when-my-business-is-better</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/the-long-view/why-has-my-business-growth-stalled/</loc>
+    <loc>https://siamakconsulting.com/the-long-view/why-has-my-business-growth-stalled</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/the-long-view/why-do-my-leads-never-turn-into-sales/</loc>
+    <loc>https://siamakconsulting.com/the-long-view/why-do-my-leads-never-turn-into-sales</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/the-long-view/why-cant-i-raise-my-prices-without-losing-customers/</loc>
+    <loc>https://siamakconsulting.com/the-long-view/why-cant-i-raise-my-prices-without-losing-customers</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/analyze-your-brand/</loc>
+    <loc>https://siamakconsulting.com/analyze-your-brand</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/business-dna/</loc>
+    <loc>https://siamakconsulting.com/business-dna</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/clients/</loc>
+    <loc>https://siamakconsulting.com/clients</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/contact-us/</loc>
+    <loc>https://siamakconsulting.com/contact-us</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/voice/</loc>
+    <loc>https://siamakconsulting.com/voice</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/aislebird/</loc>
+    <loc>https://siamakconsulting.com/aislebird</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-
-  <url><loc>https://siamakconsulting.com/what-is-llmo/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://siamakconsulting.com/how-to-get-cited-by-chatgpt/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://siamakconsulting.com/seo-vs-llmo/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://siamakconsulting.com/what-is-llmo</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://siamakconsulting.com/how-to-get-cited-by-chatgpt</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://siamakconsulting.com/seo-vs-llmo</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://siamakconsulting.com/faq</loc><lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://siamakconsulting.com/ask</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://siamakconsulting.com/audit</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://siamakconsulting.com/terms</loc><lastmod>2026-06-28</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
-<url><loc>https://siamakconsulting.com/portfolio</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-<url><loc>https://siamakconsulting.com/how-to-get-cited-by-ai</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-<url><loc>https://siamakconsulting.com/about-us</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/ai-advisor</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/ai-consultant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/aislebird</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/analyze-your-brand</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/authority-hub</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/bluemoon</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/business-dna</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/clients</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/growth-framework</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/growth-strategies</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/how-to-get-cited-by-chatgpt</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/llm-optimization</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/online-consulting</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/seo-vs-llmo</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/services</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/the-growth-glossary</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/voice-consultant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/voice</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/website-audit</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/what-is-llmo</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/ai-marketing-consultant-los-angeles</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-<url><loc>https://siamakconsulting.com/ai-marketing-consultant-napa-valley</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-<url><loc>https://siamakconsulting.com/chatgpt-seo</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-<url><loc>https://siamakconsulting.com/best-llmo-consultant</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-<url><loc>https://siamakconsulting.com/es/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/fa/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/hy/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://siamakconsulting.com/es/services</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/fa/services</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/hy/services</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/es/how-to-get-cited-by-ai</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/fa/how-to-get-cited-by-ai</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/hy/how-to-get-cited-by-ai</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/es/what-is-llmo</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/fa/what-is-llmo</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/hy/what-is-llmo</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/es/chatgpt-seo</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/fa/chatgpt-seo</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/hy/chatgpt-seo</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/es/best-llmo-consultant</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/fa/best-llmo-consultant</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/hy/best-llmo-consultant</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/es/ai-marketing-consultant-los-angeles</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/fa/ai-marketing-consultant-los-angeles</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/hy/ai-marketing-consultant-los-angeles</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/es/ai-marketing-consultant-napa-valley</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/fa/ai-marketing-consultant-napa-valley</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/hy/ai-marketing-consultant-napa-valley</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/es/about-us</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/fa/about-us</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/hy/about-us</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/es/portfolio</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/fa/portfolio</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/hy/portfolio</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/es/contact</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/fa/contact</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/hy/contact</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://siamakconsulting.com/es/seo-vs-llmo</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/fa/seo-vs-llmo</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/hy/seo-vs-llmo</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/es/how-to-get-cited-by-chatgpt</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/fa/how-to-get-cited-by-chatgpt</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/hy/how-to-get-cited-by-chatgpt</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/es/llm-optimization</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/fa/llm-optimization</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/hy/llm-optimization</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/es/growth-framework</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/fa/growth-framework</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/hy/growth-framework</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/es/authority-hub</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/fa/authority-hub</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/hy/authority-hub</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/es/growth-strategies</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/fa/growth-strategies</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/hy/growth-strategies</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/es/ai-advisor</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/fa/ai-advisor</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/hy/ai-advisor</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/es/ai-consultant</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/fa/ai-consultant</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/hy/ai-consultant</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/es/aislebird</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/fa/aislebird</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/hy/aislebird</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/es/analyze-your-brand</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/fa/analyze-your-brand</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/hy/analyze-your-brand</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/es/bluemoon</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/fa/bluemoon</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/hy/bluemoon</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/es/business-dna</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/fa/business-dna</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/hy/business-dna</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/es/clients</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/fa/clients</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/hy/clients</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/es/contact-us</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/fa/contact-us</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/hy/contact-us</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/es/online-consulting</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/fa/online-consulting</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/hy/online-consulting</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/es/the-growth-glossary</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/fa/the-growth-glossary</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/hy/the-growth-glossary</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/es/voice-consultant</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/fa/voice-consultant</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/hy/voice-consultant</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/es/voice</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/fa/voice</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/hy/voice</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/es/website-audit</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/fa/website-audit</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/hy/website-audit</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/es/audit</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/fa/audit</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/hy/audit</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/es/ask</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/fa/ask</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://siamakconsulting.com/hy/ask</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://siamakconsulting.com/what-is-a-good-pagespeed-score/</loc><lastmod>2026-07-12</lastmod></url>
+  <url><loc>https://siamakconsulting.com/portfolio</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://siamakconsulting.com/how-to-get-cited-by-ai</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://siamakconsulting.com/bluemoon</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://siamakconsulting.com/website-audit</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://siamakconsulting.com/ai-marketing-consultant-los-angeles</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://siamakconsulting.com/ai-marketing-consultant-napa-valley</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://siamakconsulting.com/chatgpt-seo</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://siamakconsulting.com/best-llmo-consultant</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://siamakconsulting.com/es</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://siamakconsulting.com/fa</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://siamakconsulting.com/hy</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://siamakconsulting.com/es/services</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/services</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/services</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/es/how-to-get-cited-by-ai</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/how-to-get-cited-by-ai</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/how-to-get-cited-by-ai</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/es/what-is-llmo</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/what-is-llmo</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/what-is-llmo</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/es/chatgpt-seo</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/chatgpt-seo</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/chatgpt-seo</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/es/best-llmo-consultant</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/best-llmo-consultant</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/best-llmo-consultant</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/es/ai-marketing-consultant-los-angeles</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/ai-marketing-consultant-los-angeles</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/ai-marketing-consultant-los-angeles</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/es/ai-marketing-consultant-napa-valley</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/ai-marketing-consultant-napa-valley</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/ai-marketing-consultant-napa-valley</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/es/about-us</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/about-us</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/about-us</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/es/portfolio</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/portfolio</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/portfolio</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/es/seo-vs-llmo</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/seo-vs-llmo</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/seo-vs-llmo</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/es/how-to-get-cited-by-chatgpt</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/how-to-get-cited-by-chatgpt</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/how-to-get-cited-by-chatgpt</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/es/llm-optimization</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/llm-optimization</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/llm-optimization</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/es/growth-framework</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/growth-framework</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/growth-framework</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/es/authority-hub</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/authority-hub</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/authority-hub</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/es/growth-strategies</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/growth-strategies</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/growth-strategies</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/es/ai-advisor</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/ai-advisor</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/ai-advisor</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/es/ai-consultant</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/ai-consultant</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/ai-consultant</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/es/aislebird</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/aislebird</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/aislebird</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/es/analyze-your-brand</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/analyze-your-brand</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/analyze-your-brand</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/es/bluemoon</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/bluemoon</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/bluemoon</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/es/business-dna</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/business-dna</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/business-dna</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/es/clients</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/clients</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/clients</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/es/contact-us</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/contact-us</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/contact-us</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/es/online-consulting</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/online-consulting</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/online-consulting</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/es/the-growth-glossary</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/the-growth-glossary</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/the-growth-glossary</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/es/voice-consultant</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/voice-consultant</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/voice-consultant</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/es/voice</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/voice</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/voice</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/es/website-audit</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/website-audit</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/website-audit</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/es/audit</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/audit</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/audit</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/es/ask</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/fa/ask</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/hy/ask</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://siamakconsulting.com/what-is-a-good-pagespeed-score</loc><lastmod>2026-07-12</lastmod></url>
   <url>
-    <loc>https://siamakconsulting.com/how-much-does-llmo-cost/</loc>
+    <loc>https://siamakconsulting.com/how-much-does-llmo-cost</loc>
     <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/ai-for-law-firms/</loc>
+    <loc>https://siamakconsulting.com/ai-for-law-firms</loc>
     <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/ai-for-contractors/</loc>
+    <loc>https://siamakconsulting.com/ai-for-contractors</loc>
     <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/ai-for-restaurants/</loc>
+    <loc>https://siamakconsulting.com/ai-for-restaurants</loc>
     <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/ai-for-ecommerce/</loc>
+    <loc>https://siamakconsulting.com/ai-for-ecommerce</loc>
     <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/internet-marketing/</loc>
+    <loc>https://siamakconsulting.com/internet-marketing</loc>
     <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/social-media-marketing/</loc>
+    <loc>https://siamakconsulting.com/social-media-marketing</loc>
     <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://siamakconsulting.com/brand-creation/</loc>
+    <loc>https://siamakconsulting.com/brand-creation</loc>
     <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <url><loc>https://siamakconsulting.com/listings/</loc><lastmod>2026-07-23</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://siamakconsulting.com/listings/90-longhorn-ridge-napa/</loc><lastmod>2026-07-23</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://siamakconsulting.com/listings/95-longhorn-ridge-napa/</loc><lastmod>2026-07-23</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://siamakconsulting.com/listings/1048-s-los-angeles-st-dtla/</loc><lastmod>2026-07-23</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://siamakconsulting.com/listings/k2-investment/</loc><lastmod>2026-07-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-<url><loc>https://siamakconsulting.com/textile-wizard</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://siamakconsulting.com/listings</loc><lastmod>2026-07-23</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://siamakconsulting.com/listings/90-longhorn-ridge-napa</loc><lastmod>2026-07-23</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://siamakconsulting.com/listings/95-longhorn-ridge-napa</loc><lastmod>2026-07-23</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://siamakconsulting.com/listings/1048-s-los-angeles-st-dtla</loc><lastmod>2026-07-23</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://siamakconsulting.com/listings/k2-investment</loc><lastmod>2026-07-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://siamakconsulting.com/textile-wizard</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url>
-    <loc>https://siamakconsulting.com/law-firm-marketing-consultant/</loc>
+    <loc>https://siamakconsulting.com/law-firm-marketing-consultant</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://siamakconsulting.com/ecommerce-marketing-consultant/</loc>
+    <loc>https://siamakconsulting.com/ecommerce-marketing-consultant</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
