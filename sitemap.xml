@@ -387,4 +387,19 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://siamakconsulting.com/the-long-view/how-napa-wineries-get-recommended-by-ai</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://siamakconsulting.com/the-long-view/why-your-restaurant-doesnt-show-up-in-ai-recommendations</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://siamakconsulting.com/the-long-view/how-much-should-i-spend-on-marketing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
