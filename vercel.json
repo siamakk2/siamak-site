@@ -1,6 +1,351 @@
 {
   "redirects": [
     {
+      "source": "/hy/website-audit",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/voice-consultant",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/seo-vs-llmo",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/portfolio",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/online-consulting",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/llm-optimization",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/how-to-get-cited-by-chatgpt",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/growth-strategies",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/growth-framework",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/contact",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/chatgpt-seo",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/business-dna",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/bluemoon",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/best-llmo-consultant",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/authority-hub",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/audit",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/ask",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/analyze-your-brand",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/aislebird",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/ai-marketing-consultant-napa-valley",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/ai-marketing-consultant-los-angeles",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/ai-consultant",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/ai-advisor",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/hy/about-us",
+      "destination": "/hy",
+      "permanent": true
+    },
+    {
+      "source": "/fa/voice",
+      "destination": "/fa",
+      "permanent": true
+    },
+    {
+      "source": "/fa/the-growth-glossary",
+      "destination": "/fa",
+      "permanent": true
+    },
+    {
+      "source": "/fa/seo-vs-llmo",
+      "destination": "/fa",
+      "permanent": true
+    },
+    {
+      "source": "/fa/portfolio",
+      "destination": "/fa",
+      "permanent": true
+    },
+    {
+      "source": "/fa/llm-optimization",
+      "destination": "/fa",
+      "permanent": true
+    },
+    {
+      "source": "/fa/how-to-get-cited-by-chatgpt",
+      "destination": "/fa",
+      "permanent": true
+    },
+    {
+      "source": "/fa/growth-strategies",
+      "destination": "/fa",
+      "permanent": true
+    },
+    {
+      "source": "/fa/contact",
+      "destination": "/fa",
+      "permanent": true
+    },
+    {
+      "source": "/fa/chatgpt-seo",
+      "destination": "/fa",
+      "permanent": true
+    },
+    {
+      "source": "/fa/business-dna",
+      "destination": "/fa",
+      "permanent": true
+    },
+    {
+      "source": "/fa/bluemoon",
+      "destination": "/fa",
+      "permanent": true
+    },
+    {
+      "source": "/fa/best-llmo-consultant",
+      "destination": "/fa",
+      "permanent": true
+    },
+    {
+      "source": "/fa/audit",
+      "destination": "/fa",
+      "permanent": true
+    },
+    {
+      "source": "/fa/ask",
+      "destination": "/fa",
+      "permanent": true
+    },
+    {
+      "source": "/fa/analyze-your-brand",
+      "destination": "/fa",
+      "permanent": true
+    },
+    {
+      "source": "/fa/aislebird",
+      "destination": "/fa",
+      "permanent": true
+    },
+    {
+      "source": "/fa/ai-marketing-consultant-napa-valley",
+      "destination": "/fa",
+      "permanent": true
+    },
+    {
+      "source": "/fa/ai-marketing-consultant-los-angeles",
+      "destination": "/fa",
+      "permanent": true
+    },
+    {
+      "source": "/fa/ai-consultant",
+      "destination": "/fa",
+      "permanent": true
+    },
+    {
+      "source": "/fa/ai-advisor",
+      "destination": "/fa",
+      "permanent": true
+    },
+    {
+      "source": "/fa/about-us",
+      "destination": "/fa",
+      "permanent": true
+    },
+    {
+      "source": "/es/website-audit",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/voice",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/the-growth-glossary",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/seo-vs-llmo",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/portfolio",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/online-consulting",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/llm-optimization",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/how-to-get-cited-by-chatgpt",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/growth-strategies",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/growth-framework",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/contact",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/chatgpt-seo",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/business-dna",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/bluemoon",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/best-llmo-consultant",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/authority-hub",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/audit",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/ask",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/analyze-your-brand",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/aislebird",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/ai-marketing-consultant-napa-valley",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/ai-marketing-consultant-los-angeles",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/ai-consultant",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
+      "source": "/es/about-us",
+      "destination": "/es",
+      "permanent": true
+    },
+    {
       "source": "/hy/clients",
       "destination": "/portfolio",
       "permanent": true
