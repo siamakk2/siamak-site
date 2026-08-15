@@ -1,6 +1,21 @@
 {
   "redirects": [
     {
+      "source": "/hy/clients",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/fa/clients",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/es/clients",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
       "source": "/chatgpt-seo",
       "destination": "/how-to-get-cited-by-ai",
       "permanent": true
