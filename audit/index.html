@@ -603,48 +603,82 @@
       'Score issues: SEO '+(r.scores&&r.scores.seo?r.scores.seo.score:0)+'/100, AI visibility '+(r.scores&&r.scores.llmo?r.scores.llmo.score:0)+'/100'
     ].join('\n');
 
-    return 'You are an expert web designer building a high-converting, SEO-optimized, LLMO-optimized landing page.\n\n'+
+    return 'You are an expert web designer and technical SEO/LLMO engineer building a landing page that must score highly for BOTH traditional search and AI answer engines (ChatGPT, Claude, Gemini, Perplexity).\n\n'+
       'BUSINESS INFO:\n'+businessInfo+'\n\n'+
       'VERSION: '+versionName+'\n'+
       'DESIGN DIRECTION: '+direction+'\n\n'+
-      'REQUIREMENTS:\n'+
-      '- Complete, self-contained HTML page with all CSS inlined in a <style> tag\n'+
-      '- No external dependencies except Google Fonts (allowed)\n'+
-      '- Full landing page: nav, hero, services section, why-us/trust section, about section, CTA section, footer\n'+
-      '- Use the REAL business name, services, location, and story from the info above\n'+
-      '- Write strong, specific, conversion-focused copy — not generic filler\n'+
-      '- Include schema markup (JSON-LD: LocalBusiness or relevant type) for LLMO/AI visibility\n'+
-      '- Include proper meta tags: title, description, og:title, og:description\n'+
-      '- Mobile responsive\n'+
-      '- The footer should say "Website redesign by Siamak Kalhor Consulting · (323) 657-7752 · siamakconsulting.com"\n'+
-      '- Strong, specific CTAs — not "Learn More" or "Submit"\n'+
-      '- Trust signals: years in business, license numbers, certifications, service area — use real data from above\n'+
-      '- Location-specific content for local SEO\n\n'+
+      '=== ABSOLUTE RULE: NEVER FABRICATE ===\n'+
+      'Do NOT invent license numbers, certifications, award names, years in business, review counts, ratings, client names, or statistics. Use ONLY facts present in the business info above. If a trust signal is not supplied, write a truthful generic alternative (e.g. "Licensed and insured" with no number, or omit it). A fabricated license number or review count is a legal liability for this business. Never output AggregateRating or Review schema — reviews you cannot verify must not be marked up.\n\n'+
+      '=== MANDATORY HEAD BLOCK ===\n'+
+      '- <html lang="en">\n'+
+      '- <meta charset="utf-8"> and <meta name="viewport" content="width=device-width, initial-scale=1">\n'+
+      '- <title>: 50-60 characters, leading with the primary service + location\n'+
+      '- <meta name="description">: 140-160 characters, specific and benefit-led, not a keyword list\n'+
+      '- <link rel="canonical" href="https://[their-domain]/">\n'+
+      '- Open Graph: og:type, og:title, og:description, og:url, og:site_name, og:locale\n'+
+      '- Twitter: twitter:card (summary_large_image), twitter:title, twitter:description\n\n'+
+      '=== MANDATORY JSON-LD (this is the LLMO core) ===\n'+
+      'One <script type="application/ld+json"> containing an @graph with:\n'+
+      '1. LocalBusiness (or the most specific correct subtype: LegalService, Dentist, Restaurant, HomeAndConstructionBusiness, Store) with @id "#business" — name, description, url, telephone, address as PostalAddress, areaServed, openingHoursSpecification if hours are known, priceRange if known.\n'+
+      '2. WebSite with @id "#website", publisher referencing {"@id":"#business"}.\n'+
+      '3. WebPage with @id "#webpage", isPartOf the website, about the business.\n'+
+      '4. FAQPage with @id "#faq" containing 4-6 real questions this business is actually asked, each with a direct 2-3 sentence answer.\n'+
+      '5. BreadcrumbList.\n'+
+      'Every @id must be unique. Cross-reference nodes by @id rather than repeating objects. Valid JSON only — it must parse.\n\n'+
+      '=== CONTENT STRUCTURE FOR AI EXTRACTION ===\n'+
+      '- EXACTLY ONE <h1>, containing the primary service and location in plain text (no text hidden in images)\n'+
+      '- 4-6 descriptive <h2> section headings phrased the way a customer would ask ("How much does X cost?", "Where do you serve?")\n'+
+      '- ANSWER-FIRST: the first sentence under each heading must directly answer that heading. AI engines quote the opening sentence; do not warm up to the point.\n'+
+      '- State in plain body text: business name, exactly what they do, who they serve, city/area, and how to contact. AI cannot extract facts that only exist in images or CSS.\n'+
+      '- A visible FAQ section whose questions and answers EXACTLY match the FAQPage JSON-LD. Schema that does not match visible content violates Google guidelines.\n'+
+      '- Semantic HTML5: <header>, <nav>, <main>, <section>, <footer>. Every <img> needs descriptive alt text.\n'+
+      '- Name the city and region in body copy, not only in schema.\n\n'+
+      '=== DESIGN & CONVERSION ===\n'+
+      '- Complete self-contained HTML, all CSS in one inlined <style>. No external dependencies except Google Fonts.\n'+
+      '- Sections: nav, hero, services, why-us/trust, about, FAQ, contact CTA, footer\n'+
+      '- Mobile responsive; set explicit width/height on images so nothing shifts on load\n'+
+      '- Use the REAL business name, services, location and story from the info above\n'+
+      '- Specific CTAs tied to the action ("Get a Free Estimate", "Book a Consultation") — never "Learn More" or "Submit"\n'+
+      '- Footer must read "Website redesign by Siamak Kalhor Consulting - (323) 657-7752 - siamakconsulting.com"\n'+
+      '- Use the business\'s own phone in page CTAs, never Siamak\'s number\n\n'+
       'Output ONLY the complete HTML. No explanation, no markdown, no backticks. Start with <!DOCTYPE html>.';
   }
 
   function generatePage(versionIndex, callback){
     var prompt = buildPrompt(versionIndex);
-    fetch('https://orchamind.com/api/pagegen',{
+    // Hard client-side timeout. Without one, a stalled request leaves the
+    // spinner running indefinitely with no way for the user to know it failed.
+    var ctrl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+    var timedOut = false;
+    var timer = setTimeout(function(){ timedOut = true; if(ctrl) ctrl.abort(); }, 150000);
+    var opts = {
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         model:'claude-sonnet-4-6',
-        max_tokens:4000,
+        max_tokens:8000,
         messages:[{role:'user',content:prompt}]
       })
-    })
+    };
+    if(ctrl) opts.signal = ctrl.signal;
+    fetch('https://orchamind.com/api/pagegen', opts)
     .then(function(r){return r.json();})
     .then(function(d){
+      clearTimeout(timer);
+      if(d && d.error){ callback(new Error(typeof d.error==='string'?d.error:'Page builder error'), null); return; }
       var html = '';
       if(d && d.content && d.content[0] && d.content[0].text){
         html = d.content[0].text.trim();
         // Strip any accidental markdown fences
         html = html.replace(/^```html\n?/i,'').replace(/```$/,'').trim();
       }
+      if(!html){ callback(new Error('The page builder returned nothing. Please try again.'), null); return; }
       callback(null, html);
     })
-    .catch(function(e){ callback(e, null); });
+    .catch(function(e){
+      clearTimeout(timer);
+      callback(timedOut ? new Error('This is taking longer than expected. Please try again.') : e, null);
+    });
   }
 
   function generateAllPages(){
@@ -661,13 +695,31 @@
           updateTabState(idx, err);
           // Show first page as soon as it's done
           if(idx===0 || (currentPage===idx)){
-            showPage(idx);
+            if(err){ showPageError(idx, err); } else { showPage(idx); }
           }
         });
       })(i);
     }
   }
 
+  function showPageError(idx, err){
+    var msg = (err && err.message) ? err.message : 'Something went wrong building this page.';
+    document.getElementById('pageDisplay').innerHTML =
+      '<div class="page-generating" style="text-align:center;padding:40px 24px;">'+
+      '<p style="font-weight:600;margin-bottom:8px;">Couldn\'t build the '+VERSION_NAMES[idx]+' version</p>'+
+      '<p style="color:#667;margin-bottom:18px;">'+msg+'</p>'+
+      '<button class="btn btn-go" style="max-width:260px;margin:0 auto;" onclick="retryPage('+idx+')">Try again</button>'+
+      '<p style="color:#889;font-size:13px;margin-top:16px;">Or call Siamak at (323) 657-7752 &mdash; he\'ll build it for you.</p>'+
+      '</div>';
+  }
+  function retryPage(idx){
+    showLoadingState(idx);
+    generatePage(idx, function(err, html){
+      PAGES[idx] = err ? null : html;
+      updateTabState(idx, err);
+      if(err){ showPageError(idx, err); } else { showPage(idx); }
+    });
+  }
   function showLoadingState(idx){
     document.getElementById('pageDisplay').innerHTML =
       '<div class="page-generating"><div class="mini-spin"></div>'+
