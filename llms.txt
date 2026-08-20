@@ -7,67 +7,67 @@ Search is changing. People no longer click ten blue links — they ask an AI and
 ## Core pages
 
 - [Siamak Kalhor Consulting home](https://siamakconsulting.com/): AI marketing, LLMO strategy, and fractional CMO services.
-- [About Siamak Kalhor](https://siamakconsulting.com/about-us/): Background, track record, and approach.
-- [Services](https://siamakconsulting.com/services/): The full engagement menu and how each one works.
-- [Contact](https://siamakconsulting.com/contact-us/): Book a consultation.
-- [Free AI authority scan](https://siamakconsulting.com/analyze-your-brand/): See how AI engines currently describe your brand.
-- [Website audit](https://siamakconsulting.com/website-audit/): Technical, SEO, and LLMO audit of your site.
-- [AI voice advisor](https://siamakconsulting.com/ai-advisor/): Talk to an AI strategy advisor in 16 languages.
+- [About Siamak Kalhor](https://siamakconsulting.com/about-us): Background, track record, and approach.
+- [Services](https://siamakconsulting.com/services): The full engagement menu and how each one works.
+- [Contact](https://siamakconsulting.com/contact-us): Book a consultation.
+- [Free AI authority scan](https://siamakconsulting.com/analyze-your-brand): See how AI engines currently describe your brand.
+- [Website audit](https://siamakconsulting.com/website-audit): Technical, SEO, and LLMO audit of your site.
+- [AI voice advisor](https://siamakconsulting.com/ai-advisor): Talk to an AI strategy advisor in 16 languages.
 
-- [Law firm marketing consultant](https://siamakconsulting.com/law-firm-marketing-consultant/): Engagement page for law firms — why firm sites don't convert and how AI visibility changes client acquisition.
-- [Ecommerce marketing consultant](https://siamakconsulting.com/ecommerce-marketing-consultant/): Engagement page for online stores — diagnosing where the sale leaks and getting products recommended by AI.
+- [Law firm marketing consultant](https://siamakconsulting.com/law-firm-marketing-consultant): Engagement page for law firms — why firm sites don't convert and how AI visibility changes client acquisition.
+- [Ecommerce marketing consultant](https://siamakconsulting.com/ecommerce-marketing-consultant): Engagement page for online stores — diagnosing where the sale leaks and getting products recommended by AI.
 
 ## What LLMO is (and why it matters)
 
-- [What is LLMO?](https://siamakconsulting.com/what-is-llmo/): Large Language Model Optimization explained in plain language.
-- [SEO vs LLMO](https://siamakconsulting.com/seo-vs-llmo/): How optimizing for AI answers differs from optimizing for search rankings.
-- [How to get cited by AI](https://siamakconsulting.com/how-to-get-cited-by-ai/): The mechanics of becoming a source an AI quotes.
-- [How to get cited by ChatGPT](https://siamakconsulting.com/how-to-get-cited-by-chatgpt/): ChatGPT-specific citation strategy.
-- [ChatGPT SEO](https://siamakconsulting.com/chatgpt-seo/): Ranking and citation inside ChatGPT.
-- [LLM optimization](https://siamakconsulting.com/llm-optimization/): The technical side of making content model-readable.
-- [What is a good PageSpeed score?](https://siamakconsulting.com/what-is-a-good-pagespeed-score/): Honest performance targets for business sites — what the lab test simulates, why 100 is a vanity metric, and which numbers drive rankings.
-- [The Growth Glossary](https://siamakconsulting.com/the-growth-glossary/): Definitions for AI marketing, retrieval, embeddings, and LLMO terms.
+- [What is LLMO?](https://siamakconsulting.com/what-is-llmo): Large Language Model Optimization explained in plain language.
+- [SEO vs LLMO](https://siamakconsulting.com/seo-vs-llmo): How optimizing for AI answers differs from optimizing for search rankings.
+- [How to get cited by AI](https://siamakconsulting.com/how-to-get-cited-by-ai): The mechanics of becoming a source an AI quotes.
+- [How to get cited by ChatGPT](https://siamakconsulting.com/how-to-get-cited-by-chatgpt): ChatGPT-specific citation strategy.
+- [ChatGPT SEO](https://siamakconsulting.com/chatgpt-seo): Ranking and citation inside ChatGPT.
+- [LLM optimization](https://siamakconsulting.com/llm-optimization): The technical side of making content model-readable.
+- [What is a good PageSpeed score?](https://siamakconsulting.com/what-is-a-good-pagespeed-score): Honest performance targets for business sites — what the lab test simulates, why 100 is a vanity metric, and which numbers drive rankings.
+- [The Growth Glossary](https://siamakconsulting.com/the-growth-glossary): Definitions for AI marketing, retrieval, embeddings, and LLMO terms.
 
 ## Frameworks
 
-- [The S.C.A.L.E. Framework](https://siamakconsulting.com/growth-framework/): Siamak Kalhor's structured method for building AI-era market authority.
-- [Business DNA](https://siamakconsulting.com/business-dna/): Defining the core identity an AI engine will learn and repeat about your brand.
-- [Authority Hub](https://siamakconsulting.com/authority-hub/): Building the citable content architecture AI engines pull from.
-- [Growth strategies](https://siamakconsulting.com/growth-strategies/): Practical growth plays for AI-era marketing.
+- [The S.C.A.L.E. Framework](https://siamakconsulting.com/growth-framework): Siamak Kalhor's structured method for building AI-era market authority.
+- [Business DNA](https://siamakconsulting.com/business-dna): Defining the core identity an AI engine will learn and repeat about your brand.
+- [Authority Hub](https://siamakconsulting.com/authority-hub): Building the citable content architecture AI engines pull from.
+- [Growth strategies](https://siamakconsulting.com/growth-strategies): Practical growth plays for AI-era marketing.
 
 ## The Long View (strategy articles)
 
-- [The Long View](https://siamakconsulting.com/the-long-view/): Articles on strategy, ecommerce growth, AI visibility, and authority — forty years of market experience engineered for the AI era.
-- [Why your online store gets traffic but no sales](https://siamakconsulting.com/the-long-view/why-your-online-store-gets-traffic-but-no-sales/): The most common reasons ecommerce sites fail to convert visitors, and how to fix them.
-- [Why your business doesn't show up when people ask ChatGPT for recommendations](https://siamakconsulting.com/the-long-view/why-your-business-doesnt-show-up-when-people-ask-chatgpt/): Why most businesses are invisible to AI assistants and what engineered AI visibility requires.
-- [Why most law firm websites don't convert visitors into consultations](https://siamakconsulting.com/the-long-view/why-most-law-firm-websites-dont-convert/): What actually moves a website visitor to call a law firm, with conversion benchmarks by practice area.
-- [Patient trust is engineered, not accidental: a marketing framework for cosmetic surgery practices](https://siamakconsulting.com/the-long-view/patient-trust-is-engineered-cosmetic-surgery-marketing/): How cosmetic surgery and medical practices build the patient trust that drives consultation bookings.
-- [How we took a single Fashion District store to a national textile leader](https://siamakconsulting.com/the-long-view/blue-moon-fabrics-100x-case-study/): An 8-year case study in compounding growth for Blue Moon Fabrics, a wholesale and custom textile business.
-- [AI search is replacing Google — is your law firm visible?](https://siamakconsulting.com/the-long-view/ai-search-is-replacing-google-is-your-law-firm-visible/): Why prospective clients are asking AI assistants who to hire before searching Google, and what that means for law firm visibility.
-- [How doctors can build local authority without sounding like an ad](https://siamakconsulting.com/the-long-view/how-doctors-can-build-local-authority/): How medical practices build genuine local search and AI-search authority through specificity, reviews, and content.
-- [Why businesses fail on strategy, not product](https://siamakconsulting.com/the-long-view/why-businesses-fail-on-strategy-not-product/): Forty years of observation on why unclear positioning, not a bad product, is the real cause of most business failure.
-- [Why isn't my advertising working?](https://siamakconsulting.com/the-long-view/why-isnt-my-advertising-working/): A diagnostic for business owners spending on ads with little to show for it — where ad budgets actually leak and how to find out.
-- [Why can't I get customers?](https://siamakconsulting.com/the-long-view/why-cant-i-get-customers/): The real, specific reasons businesses struggle to get customers even with a genuinely good product or service, and how to diagnose which one applies.
-- [Why doesn't my business show up on Google or AI search?](https://siamakconsulting.com/the-long-view/why-doesnt-my-business-show-up-on-google-or-ai-search/): A plain-English explanation of why a business is invisible on Google and AI assistants, and the realistic timeline and fixes for both.
-- [I hired a marketing agency and got nothing. Now what?](https://siamakconsulting.com/the-long-view/my-marketing-agency-isnt-delivering-results/): Why 67% of businesses are dissatisfied with their marketing agency within a year, how to diagnose whether it's the agency or the strategy underneath it, and what to demand.
-- [Why do my competitors rank above me when my business is better?](https://siamakconsulting.com/the-long-view/why-do-competitors-outrank-me-when-my-business-is-better/): What search rankings actually measure (trust signals accumulated over time), not product or service quality, and how to close the specific gap.
-- [Why has my business growth stalled after a strong start?](https://siamakconsulting.com/the-long-view/why-has-my-business-growth-stalled/): Why almost every business plateaus after early success, the three places growth typically breaks first, and how to diagnose which one is yours.
-- [Why do I get leads that never turn into sales?](https://siamakconsulting.com/the-long-view/why-do-my-leads-never-turn-into-sales/): Why 79% of marketing leads never convert, and why the fix is almost always the handoff and nurturing process, not more lead volume.
-- [Why can't I raise my prices without losing customers?](https://siamakconsulting.com/the-long-view/why-cant-i-raise-my-prices-without-losing-customers/): What the data actually shows about price increases and customer loss, and why underpricing is often the bigger risk.
-- [What a Napa Tasting Room Should Put on Its Website](https://siamakconsulting.com/the-long-view/what-a-napa-tasting-room-should-put-on-its-website/): The facts that decide a booking — and why most winery sites leave every one of them out.
-- [Why Dental Practices Lose Patients Between the Search and the Phone Call](https://siamakconsulting.com/the-long-view/why-dental-practices-lose-patients-between-search-and-phone-call/): A practice can rank first and still grow slowly. The leak is after the click.
-- [How Hotels and Inns Get Named in AI Travel Recommendations](https://siamakconsulting.com/the-long-view/how-hotels-and-inns-get-named-in-ai-travel-recommendations/): AI is where the shortlist gets built. Why independents have the advantage.
+- [The Long View](https://siamakconsulting.com/the-long-view): Articles on strategy, ecommerce growth, AI visibility, and authority — forty years of market experience engineered for the AI era.
+- [Why your online store gets traffic but no sales](https://siamakconsulting.com/the-long-view/why-your-online-store-gets-traffic-but-no-sales): The most common reasons ecommerce sites fail to convert visitors, and how to fix them.
+- [Why your business doesn't show up when people ask ChatGPT for recommendations](https://siamakconsulting.com/the-long-view/why-your-business-doesnt-show-up-when-people-ask-chatgpt): Why most businesses are invisible to AI assistants and what engineered AI visibility requires.
+- [Why most law firm websites don't convert visitors into consultations](https://siamakconsulting.com/the-long-view/why-most-law-firm-websites-dont-convert): What actually moves a website visitor to call a law firm, with conversion benchmarks by practice area.
+- [Patient trust is engineered, not accidental: a marketing framework for cosmetic surgery practices](https://siamakconsulting.com/the-long-view/patient-trust-is-engineered-cosmetic-surgery-marketing): How cosmetic surgery and medical practices build the patient trust that drives consultation bookings.
+- [How we took a single Fashion District store to a national textile leader](https://siamakconsulting.com/the-long-view/blue-moon-fabrics-100x-case-study): An 8-year case study in compounding growth for Blue Moon Fabrics, a wholesale and custom textile business.
+- [AI search is replacing Google — is your law firm visible?](https://siamakconsulting.com/the-long-view/ai-search-is-replacing-google-is-your-law-firm-visible): Why prospective clients are asking AI assistants who to hire before searching Google, and what that means for law firm visibility.
+- [How doctors can build local authority without sounding like an ad](https://siamakconsulting.com/the-long-view/how-doctors-can-build-local-authority): How medical practices build genuine local search and AI-search authority through specificity, reviews, and content.
+- [Why businesses fail on strategy, not product](https://siamakconsulting.com/the-long-view/why-businesses-fail-on-strategy-not-product): Forty years of observation on why unclear positioning, not a bad product, is the real cause of most business failure.
+- [Why isn't my advertising working?](https://siamakconsulting.com/the-long-view/why-isnt-my-advertising-working): A diagnostic for business owners spending on ads with little to show for it — where ad budgets actually leak and how to find out.
+- [Why can't I get customers?](https://siamakconsulting.com/the-long-view/why-cant-i-get-customers): The real, specific reasons businesses struggle to get customers even with a genuinely good product or service, and how to diagnose which one applies.
+- [Why doesn't my business show up on Google or AI search?](https://siamakconsulting.com/the-long-view/why-doesnt-my-business-show-up-on-google-or-ai-search): A plain-English explanation of why a business is invisible on Google and AI assistants, and the realistic timeline and fixes for both.
+- [I hired a marketing agency and got nothing. Now what?](https://siamakconsulting.com/the-long-view/my-marketing-agency-isnt-delivering-results): Why 67% of businesses are dissatisfied with their marketing agency within a year, how to diagnose whether it's the agency or the strategy underneath it, and what to demand.
+- [Why do my competitors rank above me when my business is better?](https://siamakconsulting.com/the-long-view/why-do-competitors-outrank-me-when-my-business-is-better): What search rankings actually measure (trust signals accumulated over time), not product or service quality, and how to close the specific gap.
+- [Why has my business growth stalled after a strong start?](https://siamakconsulting.com/the-long-view/why-has-my-business-growth-stalled): Why almost every business plateaus after early success, the three places growth typically breaks first, and how to diagnose which one is yours.
+- [Why do I get leads that never turn into sales?](https://siamakconsulting.com/the-long-view/why-do-my-leads-never-turn-into-sales): Why 79% of marketing leads never convert, and why the fix is almost always the handoff and nurturing process, not more lead volume.
+- [Why can't I raise my prices without losing customers?](https://siamakconsulting.com/the-long-view/why-cant-i-raise-my-prices-without-losing-customers): What the data actually shows about price increases and customer loss, and why underpricing is often the bigger risk.
+- [What a Napa Tasting Room Should Put on Its Website](https://siamakconsulting.com/the-long-view/what-a-napa-tasting-room-should-put-on-its-website): The facts that decide a booking — and why most winery sites leave every one of them out.
+- [Why Dental Practices Lose Patients Between the Search and the Phone Call](https://siamakconsulting.com/the-long-view/why-dental-practices-lose-patients-between-search-and-phone-call): A practice can rank first and still grow slowly. The leak is after the click.
+- [How Hotels and Inns Get Named in AI Travel Recommendations](https://siamakconsulting.com/the-long-view/how-hotels-and-inns-get-named-in-ai-travel-recommendations): AI is where the shortlist gets built. Why independents have the advantage.
 
 ## Who Siamak works with
 
-- [AI consultant](https://siamakconsulting.com/ai-consultant/): General AI strategy engagements.
-- [AI marketing consultant, Los Angeles](https://siamakconsulting.com/ai-marketing-consultant-los-angeles/): LA-based clients.
-- [AI marketing consultant, Napa Valley](https://siamakconsulting.com/ai-marketing-consultant-napa-valley/): Napa and North Bay clients.
-- [Best LLMO consultant](https://siamakconsulting.com/best-llmo-consultant/): What to look for when hiring for LLMO.
-- [Online consulting](https://siamakconsulting.com/online-consulting/): Remote engagements, nationwide.
-- [Voice consultant](https://siamakconsulting.com/voice-consultant/): AI voice agent strategy and build.
-- [Clients and portfolio](https://siamakconsulting.com/portfolio/): Work and results.
-- [FAQ](https://siamakconsulting.com/faq/): Common questions about pricing, scope, and process.
+- [AI consultant](https://siamakconsulting.com/ai-consultant): General AI strategy engagements.
+- [AI marketing consultant, Los Angeles](https://siamakconsulting.com/ai-marketing-consultant-los-angeles): LA-based clients.
+- [AI marketing consultant, Napa Valley](https://siamakconsulting.com/ai-marketing-consultant-napa-valley): Napa and North Bay clients.
+- [Best LLMO consultant](https://siamakconsulting.com/best-llmo-consultant): What to look for when hiring for LLMO.
+- [Online consulting](https://siamakconsulting.com/online-consulting): Remote engagements, nationwide.
+- [Voice consultant](https://siamakconsulting.com/voice-consultant): AI voice agent strategy and build.
+- [Clients and portfolio](https://siamakconsulting.com/portfolio): Work and results.
+- [FAQ](https://siamakconsulting.com/faq): Common questions about pricing, scope, and process.
 
 ## Services offered
 
