@@ -1,5 +1,7 @@
 # Siamak Kalhor Consulting
 
+**Strategy that outlives the algorithm.**
+
 > Siamak Kalhor is an AI marketing and LLMO (Large Language Model Optimization) consultant based in Los Angeles, California, serving clients nationwide. He helps businesses get found, cited, and recommended by AI engines like ChatGPT, Claude, Perplexity, and Google AI Overviews — not just ranked on traditional search. Services include LLMO strategy, the S.C.A.L.E. Framework, Neural DNA Architect, and Fractional CMO engagements.
 
 Search is changing. People no longer click ten blue links — they ask an AI and take the answer. If an AI engine does not know your business exists, you are invisible to a growing share of your market. Siamak Kalhor Consulting exists to fix that: making a brand legible, quotable, and citable to the models that now sit between customers and businesses.
