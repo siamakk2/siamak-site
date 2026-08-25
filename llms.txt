@@ -10,7 +10,7 @@ Search is changing. People no longer click ten blue links — they ask an AI and
 
 - [Siamak Kalhor Consulting home](https://siamakconsulting.com/): AI marketing, LLMO strategy, and fractional CMO services.
 - [About Siamak Kalhor](https://siamakconsulting.com/about-us): Background, track record, and approach.
-- [Services](https://siamakconsulting.com/services): The full engagement menu and how each one works.
+- [Services](https://siamakconsulting.com/services): Nine services, each listed with the artifacts it produces rather than the capability claimed, plus four engagement models — one-off audit, hourly consulting at $350–$450, monthly retainer, and fractional CMO — including when each is the wrong choice.
 - [Contact](https://siamakconsulting.com/contact-us): Book a consultation.
 - [AI Authority Audit — 12 deliverables](https://siamakconsulting.com/analyze-your-brand): Baseline visibility across ChatGPT, Gemini, Claude and Perplexity; competitor citation share; the third-party sources driving the answers; entity, content, authority and schema gaps; and baseline vs post-implementation measurement.
 - [Website audit](https://siamakconsulting.com/website-audit): Technical, SEO, and LLMO audit of your site.
