@@ -16,7 +16,10 @@ Search is changing. People no longer click ten blue links — they ask an AI and
 - [Website audit](https://siamakconsulting.com/website-audit): Technical, SEO, and LLMO audit of your site.
 - [AI voice advisor](https://siamakconsulting.com/ai-advisor): Talk to an AI strategy advisor in 16 languages.
 
-- [Law firm marketing consultant](https://siamakconsulting.com/law-firm-marketing-consultant): Engagement page for law firms — why firm sites don't convert and how AI visibility changes client acquisition.
+- [Law firm marketing consultant](https://siamakconsulting.com/law-firm-marketing-consultant): How clients describe a situation rather than a practice area, attorney entity coherence across bar and directory records, and why matters are lost on intake speed rather than marketing.
+- [Dental marketing consultant](https://siamakconsulting.com/dental-marketing-consultant): How dental patients find a practice through AI, what an audit reveals about practice and provider entities, why bookings are lost on the phone, and the staff time an engagement requires.
+- [Medical practice marketing consultant](https://siamakconsulting.com/medical-practice-marketing-consultant): How patients describe symptoms rather than specialties, physician-level entity coherence across NPI and insurer directories, and where the schedule leaks after the call connects.
+- [Cosmetic surgery marketing consultant](https://siamakconsulting.com/cosmetic-surgery-marketing-consultant): How aesthetic patients shortlist a surgeon across a months-long research window, surgeon-level authority signals, and why consultations are won on trust rather than traffic.
 - [Ecommerce marketing consultant](https://siamakconsulting.com/ecommerce-marketing-consultant): Engagement page for online stores — diagnosing where the sale leaks and getting products recommended by AI.
 
 ## What LLMO is (and why it matters)
