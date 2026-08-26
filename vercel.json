@@ -389,7 +389,7 @@
     },
     {
       "source": "/fa/contact",
-      "destination": "/fa",
+      "destination": "/fa/contact-us",
       "permanent": true
     },
     {
@@ -414,7 +414,7 @@
     },
     {
       "source": "/fa/audit",
-      "destination": "/fa",
+      "destination": "/fa/website-audit",
       "permanent": true
     },
     {
@@ -494,7 +494,7 @@
     },
     {
       "source": "/es/how-to-get-cited-by-chatgpt",
-      "destination": "/es",
+      "destination": "/es/how-to-get-cited-by-ai",
       "permanent": true
     },
     {
@@ -509,12 +509,12 @@
     },
     {
       "source": "/es/contact",
-      "destination": "/es",
+      "destination": "/es/contact-us",
       "permanent": true
     },
     {
       "source": "/es/chatgpt-seo",
-      "destination": "/es",
+      "destination": "/es/how-to-get-cited-by-ai",
       "permanent": true
     },
     {
