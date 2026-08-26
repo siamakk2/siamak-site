@@ -126,6 +126,7 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:50px 0 3
 .foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:11.5px;color:var(--muted-dim)}
 @media(max-width:860px){.grid2,.grid3,.checks,.foot-grid{grid-template-columns:1fr}.nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--void);border-bottom:1px solid var(--line);padding:20px 28px;gap:16px}.nav-links.open{display:flex}.nav-toggle{display:block}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
+:focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
 </style><style>
 .article-hero{padding:64px 0 30px;position:relative;border-bottom:1px solid var(--line);background:var(--panel)}
 .crumb{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-dim);margin-bottom:18px}
@@ -249,7 +250,8 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 }
 </script>
 </head>
-<body id="top"><nav>
+<body id="top">
+<a href="#main" class="skip-link">Skip to content</a><nav>
   <div class="nav-in">
     <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
     <div class="nav-links" id="navLinks">
@@ -313,10 +315,11 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
     </div>
     <div class="nav-right">
       <a href="/contact-us" class="nav-cta">Book a Scan &rarr;</a>
-      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" onclick="const o=document.getElementById('navLinks').classList.toggle('open');this.setAttribute('aria-expanded',o)">&#9776;</button>
     </div>
   </div>
-</nav><section class="article-hero"><div class="wrap"><div class="crumb"><a href="/the-long-view">The Long View</a> / Business Growth</div><h1 class="article-h">Why Has My Business Growth Stalled After a Strong Start?</h1><div class="article-meta"><span>7 min read</span><span>&middot;</span><span>Siamak Kalhor</span></div></div></section>
+</nav>
+<main id="main"><section class="article-hero"><div class="wrap"><div class="crumb"><a href="/the-long-view">The Long View</a> / Business Growth</div><h1 class="article-h">Why Has My Business Growth Stalled After a Strong Start?</h1><div class="article-meta"><span>7 min read</span><span>&middot;</span><span>Siamak Kalhor</span></div></div></section>
 <section class="prose-wrap"><div class="wrap"><div class="prose">
 <p>Almost every business owner who reaches a certain point describes the same feeling: things went well, then well enough that it felt automatic, and then — without any obvious single cause — growth just stopped. Revenue holds steady instead of climbing. The energy that used to come from momentum starts to feel like treading water. This is one of the most common and most disorienting stages in business, and it's genuinely not a sign you did something wrong.</p><h2>Why the Plateau Happens to Almost Everyone</h2><p>Early success usually comes from serving the easiest, most receptive part of your market — the people who were already looking for exactly what you offer, easy to convert, forgiving of rough edges. Over time, that segment gets saturated. Continued growth now requires reaching a broader, more skeptical, more price-sensitive audience, and whatever got you the first wave of customers — word of mouth, a founder's personal network, an early lucky channel — typically wasn't built to reach that second, harder audience at all.</p><p>There's a second, quieter mechanism at work too: early success hides the problems that later limit growth. Hustle covers for the absence of systems. A founder's personal involvement in every sale covers for the absence of a repeatable sales process. These aren't visible as problems while things are working — they only become visible once the business has outgrown what founder effort alone can sustain, which is usually exactly the moment growth plateaus.</p><h2>What Actually Breaks First</h2><p><strong>Informal sales processes.</strong> Early sales often come from the owner's own relationships and reputation. That approach genuinely does not scale — it caps out at whatever volume one person's personal network and time can support, and no amount of additional ad spend fixes a bottleneck that's actually about sales capacity, not lead volume.</p><p><strong>Marketing that relied on one channel.</strong> A single early channel — referrals, one ad platform, one piece of viral luck — can carry a business a surprisingly long way, right up until that channel saturates or its cost rises, at which point growth doesn't slow gradually. It stops abruptly, because there was never a second channel built to pick up the slack.</p><p><strong>Operational capacity.</strong> Processes that worked fine for a small team become genuine bottlenecks at a larger one. If your growth ceiling is actually about how much work you can physically deliver, not how many customers you can attract, more marketing spend doesn't just fail to help — it makes the strain worse.</p><h2>How to Tell Which One Is Yours</h2><p>Look at where the resistance actually shows up. If leads and interest are still coming in but they're not converting to closed sales, the bottleneck is downstream, in your sales process or capacity, not in your marketing. If leads themselves have dried up, the channel that used to bring them likely saturated or got more expensive, and you need a second channel, not more spend on the first one. If you have both interest and closed sales but the business feels like it's straining to deliver, the ceiling is operational, and no amount of demand generation addresses it.</p><h2>The Reassuring Part</h2><p>A plateau is not a verdict on your business. It's usually a signal that whatever got you to this point — hustle, one channel, founder-led sales — has done everything it's capable of doing, and the next stage requires a genuinely different system, not more effort applied to the old one. The businesses that break through aren't the ones that work harder at what already worked. They're the ones that correctly diagnose which specific piece stopped scaling, and rebuild that one piece deliberately.</p>
 <hr>
@@ -326,6 +329,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <a href="/the-long-view/why-your-business-doesnt-show-up-when-people-ask-chatgpt" style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;text-decoration:none;"><div style="font-family:var(--display);font-weight:600;color:var(--text);font-size:15px;line-height:1.35;">Why Your Business Doesn't Show Up When People Ask ChatGPT for Recommendations</div></a>
 <a href="/the-long-view/why-most-law-firm-websites-dont-convert" style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;text-decoration:none;"><div style="font-family:var(--display);font-weight:600;color:var(--text);font-size:15px;line-height:1.35;">Why Most Law Firm Websites Don't Convert Visitors Into Consultations</div></a>
 </div></div></section>
+</main>
 <footer>
   <div class="wrap">
     <div class="foot-grid">

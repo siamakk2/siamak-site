@@ -95,6 +95,7 @@ h1 .grad{background:var(--glow);-webkit-background-clip:text;background-clip:tex
 .footer a{color:var(--muted)}
 .footer a:hover{color:var(--cyan)}
 @media(max-width:700px){.related-grid{grid-template-columns:1fr}}
+:focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
 </style>
 <style id="canonical-nav-css">
 nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
@@ -136,6 +137,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 <nav>
   <div class="nav-in">
     <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
@@ -200,10 +202,11 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
     </div>
     <div class="nav-right">
       <a href="/contact-us" class="nav-cta">Book a Scan &rarr;</a>
-      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" onclick="const o=document.getElementById('navLinks').classList.toggle('open');this.setAttribute('aria-expanded',o)">&#9776;</button>
     </div>
   </div>
-</nav><article class="article">
+</nav>
+<main id="main"><article class="article">
 <div class="wrap">
 <div class="crumb"><a href="/">~/</a> <a href="/faq">answers</a> / contractors</div>
 <span class="eyebrow">AI for Trades & Field Service</span>
@@ -227,16 +230,17 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <p>Want to understand how contractors get recommended by AI in the first place? Read <a href="/how-to-get-cited-by-ai" class="ilink">How to Get Cited by AI</a> or browse <a href="/faq" class="ilink">the answer hub</a>.</p>
 <div class="faq-sec">
 <h2>Frequently asked questions</h2>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How can AI actually help a contracting business?<span class="faq-ico"></span></button><div class="faq-a"><p>Two ways that move money: it captures leads you'd otherwise miss — answering and qualifying calls while you're on a job — and it makes your business the one AI assistants and Google recommend when a homeowner searches for your trade. Plus it handles the operational busywork that eats your nights.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Will it answer calls and capture leads after hours?<span class="faq-ico"></span></button><div class="faq-a"><p>Yes. That's the core win. The jobs you lose aren't usually to a better bid — they're to whoever picked up first. AI makes sure that's always you.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How do I show up when someone asks ChatGPT for a contractor?<span class="faq-ico"></span></button><div class="faq-a"><p>By structuring your business so AI models can retrieve and trust it — consistent details, the right content, and authoritative signals. It's called LLMO, and it's exactly what I do. Start with the free site audit to see where you stand.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does this work for my trade?<span class="faq-ico"></span></button><div class="faq-a"><p>If you run HVAC, plumbing, electrical, roofing, or landscaping, yes — Orchamind is built specifically for field-service trades. Other service businesses usually fit too; the free audit will tell you fast.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">What's the free site audit?<span class="faq-ico"></span></button><div class="faq-a"><p>A no-cost scan of how your business appears to search engines and AI assistants, with a prioritized list of what's costing you jobs and what to fix first.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How much does it cost?<span class="faq-ico"></span></button><div class="faq-a"><p>Consulting and implementation run hourly, roughly $350–$450 depending on the work, with custom builds quoted per project. Full detail on the pricing page.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">How can AI actually help a contracting business?<span class="faq-ico"></span></button><div class="faq-a"><p>Two ways that move money: it captures leads you'd otherwise miss — answering and qualifying calls while you're on a job — and it makes your business the one AI assistants and Google recommend when a homeowner searches for your trade. Plus it handles the operational busywork that eats your nights.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Will it answer calls and capture leads after hours?<span class="faq-ico"></span></button><div class="faq-a"><p>Yes. That's the core win. The jobs you lose aren't usually to a better bid — they're to whoever picked up first. AI makes sure that's always you.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">How do I show up when someone asks ChatGPT for a contractor?<span class="faq-ico"></span></button><div class="faq-a"><p>By structuring your business so AI models can retrieve and trust it — consistent details, the right content, and authoritative signals. It's called LLMO, and it's exactly what I do. Start with the free site audit to see where you stand.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Does this work for my trade?<span class="faq-ico"></span></button><div class="faq-a"><p>If you run HVAC, plumbing, electrical, roofing, or landscaping, yes — Orchamind is built specifically for field-service trades. Other service businesses usually fit too; the free audit will tell you fast.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">What's the free site audit?<span class="faq-ico"></span></button><div class="faq-a"><p>A no-cost scan of how your business appears to search engines and AI assistants, with a prioritized list of what's costing you jobs and what to fix first.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">How much does it cost?<span class="faq-ico"></span></button><div class="faq-a"><p>Consulting and implementation run hourly, roughly $350–$450 depending on the work, with custom builds quoted per project. Full detail on the pricing page.</p></div></div>
 </div>
 <div class="cta-band"><h2>Get your free site audit</h2><p>See exactly where your business stands online and what's costing you jobs — no cost, no spam.</p><a href="/website-audit">Run the free audit →</a></div>
 </div>
-</article><section class="related"><div class="wrap-wide"><h2>Keep reading</h2><div class="related-grid"><a href="/ai-for-law-firms" class="rcard"><h3>AI for Law Firms</h3><p>24/7 multilingual intake and drafting.</p></a><a href="/ai-for-restaurants" class="rcard"><h3>AI for Restaurants</h3><p>Get discovered by AI and maps.</p></a><a href="/website-audit" class="rcard"><h3>Free site audit</h3><p>See what's costing you jobs.</p></a></div></div></section><footer class="footer"><div class="wrap-wide"><p>© 2026 Siamak Kalhor · Make your brand the answer AI gives · <a href="/">siamakconsulting.com</a></p></div></footer>
+</article><section class="related"><div class="wrap-wide"><h2>Keep reading</h2><div class="related-grid"><a href="/ai-for-law-firms" class="rcard"><h3>AI for Law Firms</h3><p>24/7 multilingual intake and drafting.</p></a><a href="/ai-for-restaurants" class="rcard"><h3>AI for Restaurants</h3><p>Get discovered by AI and maps.</p></a><a href="/website-audit" class="rcard"><h3>Free site audit</h3><p>See what's costing you jobs.</p></a></div></div></section></main>
+<footer class="footer"><div class="wrap-wide"><p>© 2026 Siamak Kalhor · Make your brand the answer AI gives · <a href="/">siamakconsulting.com</a></p></div></footer>
   <script src="/share.js" defer></script>
 <script id="canonical-nav-js">
 (function(){

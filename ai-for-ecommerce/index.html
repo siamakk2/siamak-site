@@ -95,6 +95,7 @@ h1 .grad{background:var(--glow);-webkit-background-clip:text;background-clip:tex
 .footer a{color:var(--muted)}
 .footer a:hover{color:var(--cyan)}
 @media(max-width:700px){.related-grid{grid-template-columns:1fr}}
+:focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
 </style>
 <style id="canonical-nav-css">
 nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
@@ -136,6 +137,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 <nav>
   <div class="nav-in">
     <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
@@ -200,10 +202,11 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
     </div>
     <div class="nav-right">
       <a href="/contact-us" class="nav-cta">Book a Scan &rarr;</a>
-      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" onclick="const o=document.getElementById('navLinks').classList.toggle('open');this.setAttribute('aria-expanded',o)">&#9776;</button>
     </div>
   </div>
-</nav><article class="article">
+</nav>
+<main id="main"><article class="article">
 <div class="wrap">
 <div class="crumb"><a href="/">~/</a> <a href="/faq">answers</a> / e-commerce</div>
 <span class="eyebrow">AI &amp; Growth for E-commerce</span>
@@ -225,16 +228,17 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <p>Curious how a store becomes the one AI recommends? Read <a href="/how-to-get-cited-by-ai" class="ilink">How to Get Cited by AI</a>, or browse <a href="/faq" class="ilink">the answer hub</a> and <a href="/how-much-does-llmo-cost" class="ilink">pricing</a>.</p>
 <div class="faq-sec">
 <h2>Frequently asked questions</h2>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How do I get my products recommended by AI like ChatGPT?<span class="faq-ico"></span></button><div class="faq-a"><p>By making your brand and catalog easy for models to retrieve and trust — consistent product data, structured content, strong reviews and citations, and a clear brand entity. That's LLMO applied to e-commerce, and a free scan shows exactly where you stand.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do you work with Shopify?<span class="faq-ico"></span></button><div class="faq-a"><p>Yes — it's what I run my own stores on. I handle store builds, speed and conversion optimization, catalog structure, apps, and the marketing around them.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">What kinds of e-commerce do you work with?<span class="faq-ico"></span></button><div class="faq-a"><p>Fashion and apparel, fabric and textiles, auto and industrial parts, and DTC online retail broadly. If you sell online, the visibility problem is the same.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do you handle social media and paid ads too?<span class="faq-ico"></span></button><div class="faq-a"><p>Yes. E-commerce growth is full-funnel — I cover SEO, paid, email, and social media marketing, not just AI visibility, so the pieces actually work together.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can you help create or reposition my brand?<span class="faq-ico"></span></button><div class="faq-a"><p>Yes. Brand creation and positioning is core to the work — a clear, consistent brand is what makes both shoppers and AI models trust and recommend you.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How much does it cost?<span class="faq-ico"></span></button><div class="faq-a"><p>Consulting and implementation run hourly, roughly $350–$450 depending on the work, with custom builds quoted per project. Full detail on the pricing page.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">How do I get my products recommended by AI like ChatGPT?<span class="faq-ico"></span></button><div class="faq-a"><p>By making your brand and catalog easy for models to retrieve and trust — consistent product data, structured content, strong reviews and citations, and a clear brand entity. That's LLMO applied to e-commerce, and a free scan shows exactly where you stand.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Do you work with Shopify?<span class="faq-ico"></span></button><div class="faq-a"><p>Yes — it's what I run my own stores on. I handle store builds, speed and conversion optimization, catalog structure, apps, and the marketing around them.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">What kinds of e-commerce do you work with?<span class="faq-ico"></span></button><div class="faq-a"><p>Fashion and apparel, fabric and textiles, auto and industrial parts, and DTC online retail broadly. If you sell online, the visibility problem is the same.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Do you handle social media and paid ads too?<span class="faq-ico"></span></button><div class="faq-a"><p>Yes. E-commerce growth is full-funnel — I cover SEO, paid, email, and social media marketing, not just AI visibility, so the pieces actually work together.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Can you help create or reposition my brand?<span class="faq-ico"></span></button><div class="faq-a"><p>Yes. Brand creation and positioning is core to the work — a clear, consistent brand is what makes both shoppers and AI models trust and recommend you.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">How much does it cost?<span class="faq-ico"></span></button><div class="faq-a"><p>Consulting and implementation run hourly, roughly $350–$450 depending on the work, with custom builds quoted per project. Full detail on the pricing page.</p></div></div>
 </div>
 <div class="cta-band"><h2>See how AI sees your store</h2><p>Run a free AI Authority Scan — see whether AI and shoppers can find and recommend your store, and exactly what to fix.</p><a href="/website-audit">Get your free scan →</a></div>
 </div>
 </article><section class="related"><div class="wrap-wide"><h2>Keep reading</h2><div class="related-grid"><a href="/ai-for-law-firms" class="rcard"><h3>AI for Law Firms</h3><p>24/7 multilingual intake and drafting.</p></a><a href="/ai-for-contractors" class="rcard"><h3>AI for Contractors</h3><p>Capture every lead, get found by AI.</p></a><a href="/how-much-does-llmo-cost" class="rcard"><h3>What it costs</h3><p>Hourly rates and ROI, explained.</p></a></div></div></section><section><div class="wrap"><div class="sec-label">Next step</div><div class="checks"><div class="check"><span class="c">→</span><a href="/ecommerce-marketing-consultant">Work with an ecommerce marketing consultant</a></div></div></div></section>
+</main>
 <footer class="footer"><div class="wrap-wide"><p>© 2026 Siamak Kalhor · Make your brand the answer AI gives · <a href="/">siamakconsulting.com</a></p></div></footer>
   <script src="/share.js" defer></script>
 <script id="canonical-nav-js">

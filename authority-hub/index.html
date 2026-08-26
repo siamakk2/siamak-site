@@ -103,6 +103,7 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:50px 0 3
 .foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:11.5px;color:var(--muted-dim)}
 @media(max-width:860px){.grid2,.grid3,.checks,.foot-grid{grid-template-columns:1fr}.nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--void);border-bottom:1px solid var(--line);padding:20px 28px;gap:16px}.nav-links.open{display:flex}.nav-toggle{display:block}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
+:focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
 </style>
 <link rel="canonical" href="https://siamakconsulting.com/authority-hub"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://siamakconsulting.com/#website", "url": "https://siamakconsulting.com", "name": "Siamak Kalhor Consulting", "publisher": {"@id": "https://siamakconsulting.com/#person"}}, {"@type": "Person", "@id": "https://siamakconsulting.com/#person", "name": "Siamak Kalhor", "jobTitle": "AI Marketing Consultant & LLMO Strategist", "url": "https://siamakconsulting.com", "sameAs": ["https://www.linkedin.com/in/siamakkalhor/"], "knowsAbout": ["Large Model Optimization", "Generative Engine Optimization", "AI marketing", "Brand authority", "SEO"]}, {"@type": "Organization", "@id": "https://siamakconsulting.com/#org", "name": "Siamak Kalhor Consulting", "url": "https://siamakconsulting.com", "founder": {"@id": "https://siamakconsulting.com/#person"}, "areaServed": "Worldwide"}, {"@type": "WebPage", "@id": "https://siamakconsulting.com/authority-hub#webpage", "url": "https://siamakconsulting.com/authority-hub", "name": "Authority Hub \u2014 AI Brand Authority Strategy | Siamak Kalhor Consulting", "isPartOf": {"@id": "https://siamakconsulting.com/#website"}, "about": {"@id": "https://siamakconsulting.com/#person"}, "breadcrumb": {"@id": "https://siamakconsulting.com/authority-hub#breadcrumb"}}, {"@type": "BreadcrumbList", "@id": "https://siamakconsulting.com/authority-hub#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://siamakconsulting.com"}, {"@type": "ListItem", "position": 2, "name": "Authority Hub", "item": "https://siamakconsulting.com/authority-hub"}]}]}</script>
@@ -146,6 +147,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 <div class="ambient"></div>
 <nav>
   <div class="nav-in">
@@ -211,10 +213,11 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
     </div>
     <div class="nav-right">
       <a href="/contact-us" class="nav-cta">Book a Scan &rarr;</a>
-      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" onclick="const o=document.getElementById('navLinks').classList.toggle('open');this.setAttribute('aria-expanded',o)">&#9776;</button>
     </div>
   </div>
 </nav>
+<main id="main">
 <header class="ph"><div class="wrap">
 <div class="eyebrow"><span class="dot"></span>Authority Hub</div>
 <h1 class="ph-h">Where brands become <span class="grad">the source.</span></h1>
@@ -232,6 +235,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <div class="grid3"><div class="card"><div class="ico">⚡</div><h3>LLM Optimization</h3><p>The engineering that makes AI models cite you as a primary authority.</p></div><div class="card"><div class="ico">▦</div><h3>Growth Framework</h3><p>The S.C.A.L.E. system that turns authority into compounding growth.</p></div><div class="card"><div class="ico">◎</div><h3>Analyze Your Brand</h3><p>An audit of how AI sees you today — your authority baseline.</p></div></div>
 </div></section><section><div class="wrap"><div class="cta-band"><h3>Build authority that compounds</h3><p>Early movers lock in an advantage that's expensive to dislodge. Book your AI Authority Scan and start now.</p><div class="cta-row"><a href="/contact-us" class="btn btn-pri">Request the Scan →</a><a href="tel:+13236577752" class="btn btn-ghost">Call 323-657-7752</a></div></div></div></section>
 <section style="padding:44px 0;"><div class="wrap"><a href="/how-to-get-cited-by-ai" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:linear-gradient(135deg,rgba(45,212,255,.09),rgba(160,107,255,.06));border:1px solid var(--line-bright);border-radius:16px;padding:24px 28px;text-decoration:none;"><div><div style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:6px;">Start here · The LLMO Playbook</div><div style="font-family:var(--display);font-size:clamp(20px,3vw,26px);font-weight:700;color:var(--text);">How to Get Cited by AI</div></div><span style="font-family:var(--mono);font-size:14px;font-weight:600;color:var(--cyan);white-space:nowrap;">Read the playbook →</span></a></div></section>
+</main>
 <footer>
   <div class="wrap">
     <div class="foot-grid">

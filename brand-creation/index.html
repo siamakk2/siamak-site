@@ -95,6 +95,7 @@ h1 .grad{background:var(--glow);-webkit-background-clip:text;background-clip:tex
 .footer a{color:var(--muted)}
 .footer a:hover{color:var(--cyan)}
 @media(max-width:700px){.related-grid{grid-template-columns:1fr}}
+:focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
 </style>
 <style id="canonical-nav-css">
 nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
@@ -136,6 +137,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 <nav>
   <div class="nav-in">
     <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
@@ -200,10 +202,11 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
     </div>
     <div class="nav-right">
       <a href="/contact-us" class="nav-cta">Book a Scan &rarr;</a>
-      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" onclick="const o=document.getElementById('navLinks').classList.toggle('open');this.setAttribute('aria-expanded',o)">&#9776;</button>
     </div>
   </div>
-</nav><article class="article">
+</nav>
+<main id="main"><article class="article">
 <div class="wrap">
 <div class="crumb"><a href="/">~/</a> <a href="/services">services</a> / brand creation</div>
 <span class="eyebrow">Brand Creation</span>
@@ -223,16 +226,17 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <p>A clear, consistent brand entity is exactly what language models use to trust and cite you. Strong branding and <a href="/llm-optimization" class="ilink">LLMO</a> are the same discipline from two angles — which is why I build them together. See it applied in <a href="/ai-for-ecommerce" class="ilink">e-commerce</a> or across <a href="/faq" class="ilink">the answer hub</a>.</p>
 <div class="faq-sec">
 <h2>Frequently asked questions</h2>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">What does brand creation include?<span class="faq-ico"></span></button><div class="faq-a"><p>Naming, identity direction, positioning, messaging, and brand voice — the full foundation to take a business to market, or to reposition one that's lost its edge.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can you create a brand from scratch, or rebrand an existing business?<span class="faq-ico"></span></button><div class="faq-a"><p>Both. I've launched brands from a blank page and repositioned established ones. The process adapts to where you're starting.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do you handle visual identity and logos?<span class="faq-ico"></span></button><div class="faq-a"><p>I lead the identity direction and can produce the visual system, so naming, look, and messaging all come out coherent rather than stitched together.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Why does branding matter for AI and LLMO?<span class="faq-ico"></span></button><div class="faq-a"><p>Because AI models recommend brands they can clearly identify and trust. A consistent, well-defined brand entity is what makes you citable — vague brands get skipped.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How long does brand creation take?<span class="faq-ico"></span></button><div class="faq-a"><p>It depends on scope — a focused naming-and-positioning sprint is fast; a full identity and launch foundation takes longer. I scope it to your timeline.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How much does it cost?<span class="faq-ico"></span></button><div class="faq-a"><p>Hourly, roughly $350–$450 depending on the work, with custom builds quoted per project. Full detail on the pricing page.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">What does brand creation include?<span class="faq-ico"></span></button><div class="faq-a"><p>Naming, identity direction, positioning, messaging, and brand voice — the full foundation to take a business to market, or to reposition one that's lost its edge.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Can you create a brand from scratch, or rebrand an existing business?<span class="faq-ico"></span></button><div class="faq-a"><p>Both. I've launched brands from a blank page and repositioned established ones. The process adapts to where you're starting.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Do you handle visual identity and logos?<span class="faq-ico"></span></button><div class="faq-a"><p>I lead the identity direction and can produce the visual system, so naming, look, and messaging all come out coherent rather than stitched together.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Why does branding matter for AI and LLMO?<span class="faq-ico"></span></button><div class="faq-a"><p>Because AI models recommend brands they can clearly identify and trust. A consistent, well-defined brand entity is what makes you citable — vague brands get skipped.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">How long does brand creation take?<span class="faq-ico"></span></button><div class="faq-a"><p>It depends on scope — a focused naming-and-positioning sprint is fast; a full identity and launch foundation takes longer. I scope it to your timeline.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">How much does it cost?<span class="faq-ico"></span></button><div class="faq-a"><p>Hourly, roughly $350–$450 depending on the work, with custom builds quoted per project. Full detail on the pricing page.</p></div></div>
 </div>
 <div class="cta-band"><h2>Start with a free scan</h2><p>See how clearly your brand reads to buyers and AI today — and what to sharpen.</p><a href="/website-audit">Get your free scan →</a></div>
 </div>
-</article><section class="related"><div class="wrap-wide"><h2>Keep reading</h2><div class="related-grid"><a href="/internet-marketing" class="rcard"><h3>Internet Marketing</h3><p>Take the brand to market.</p></a><a href="/social-media-marketing" class="rcard"><h3>Social Media Marketing</h3><p>Build the brand in the feed.</p></a><a href="/llm-optimization" class="rcard"><h3>LLM Optimization</h3><p>Make AI trust your brand.</p></a></div></div></section><footer class="footer"><div class="wrap-wide"><p>© 2026 Siamak Kalhor · Make your brand the answer AI gives · <a href="/">siamakconsulting.com</a></p></div></footer>
+</article><section class="related"><div class="wrap-wide"><h2>Keep reading</h2><div class="related-grid"><a href="/internet-marketing" class="rcard"><h3>Internet Marketing</h3><p>Take the brand to market.</p></a><a href="/social-media-marketing" class="rcard"><h3>Social Media Marketing</h3><p>Build the brand in the feed.</p></a><a href="/llm-optimization" class="rcard"><h3>LLM Optimization</h3><p>Make AI trust your brand.</p></a></div></div></section></main>
+<footer class="footer"><div class="wrap-wide"><p>© 2026 Siamak Kalhor · Make your brand the answer AI gives · <a href="/">siamakconsulting.com</a></p></div></footer>
   <script src="/share.js" defer></script>
 <script id="canonical-nav-js">
 (function(){

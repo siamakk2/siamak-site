@@ -126,6 +126,7 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:50px 0 3
 .foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:11.5px;color:var(--muted-dim)}
 @media(max-width:860px){.grid2,.grid3,.checks,.foot-grid{grid-template-columns:1fr}.nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--void);border-bottom:1px solid var(--line);padding:20px 28px;gap:16px}.nav-links.open{display:flex}.nav-toggle{display:block}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
+:focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
 </style>
 <link rel="canonical" href="https://siamakconsulting.com/services"/>
 <script type="application/ld+json">{
@@ -381,6 +382,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 <div class="ambient"></div>
 <nav>
   <div class="nav-in">
@@ -442,10 +444,11 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
     </div>
     <div class="nav-right">
       <a href="/contact-us" class="nav-cta">Book a Scan &rarr;</a>
-      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" onclick="const o=document.getElementById('navLinks').classList.toggle('open');this.setAttribute('aria-expanded',o)">&#9776;</button>
     </div>
   </div>
 </nav>
+<main id="main">
 <header class="ph"><div class="wrap">
 <div class="eyebrow"><span class="dot"></span>Services</div>
 <h1 class="ph-h">What you actually <span class="grad">receive.</span></h1>
@@ -475,6 +478,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <div class="faq"><div class="qa"><h4>What do I actually receive from an engagement?</h4><p>Named artifacts rather than activity reports. Depending on scope: the twelve-deliverable AI Authority Audit, a written diagnosis working backwards from your unit economics, a prioritized page plan drawn from your commercial prompt set, structured data and entity fixes, and a re-measured baseline showing what moved. Every service on this page lists what it produces.</p></div><div class="qa"><h4>How much does this cost?</h4><p>Hourly consulting runs $350 to $450. Retainers and fractional CMO engagements are scoped to the work and quoted after a diagnostic, because pricing a plan before knowing the constraint is guesswork. What matters more than the rate is what a customer is worth to you — the same monthly figure is expensive for a business where an order is worth $60 and cheap where a client is worth $40,000.</p></div><div class="qa"><h4>Do I need a retainer?</h4><p>Often not. A retainer is the right instrument when the work is genuinely continuous. If what you need is a one-time fix — an entity cleanup, a positioning decision, a technical problem — then an audit or a few hours of consulting will do it, and I will tell you that rather than sell you twelve months.</p></div><div class="qa"><h4>How quickly will I see results?</h4><p>It depends which lever moves. Intake and conversion fixes affect revenue within weeks because the demand already exists and is being lost. AI visibility work typically shows movement in weeks as engines re-crawl and re-ground. Search authority operates over months and compounds. Any single timeline offered without that distinction is a sales figure.</p></div><div class="qa"><h4>Do you work with businesses outside Los Angeles?</h4><p>Yes. The work is remote by default and clients span legal, medical and dental practices, ecommerce, hospitality, finance and textiles across the United States. Los Angeles is where I am based, not the limit of who I work with.</p></div></div>
 <p class="lead" style="margin-top:18px;">Forty-nine more answers on the <a href="/faq">Ask Siamak</a> page.</p>
 </div></section><section><div class="wrap"><div class="cta-band"><h3>Claim your digital edge</h3><p>Book a free 30-minute strategy call and find out where you actually stand — including whether you need less than you think.</p><div class="cta-row"><a href="/contact-us" class="btn btn-pri">Request the Scan &rarr;</a><a href="tel:+13236577752" class="btn btn-ghost">Call 323-657-7752</a></div></div></div></section>
+</main>
 <footer>
   <div class="wrap">
     <div class="foot-grid">

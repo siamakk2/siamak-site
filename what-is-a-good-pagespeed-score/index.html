@@ -96,6 +96,7 @@ h1 .grad{background:var(--glow);-webkit-background-clip:text;background-clip:tex
 .footer a{color:var(--muted)}
 .footer a:hover{color:var(--cyan)}
 @media(max-width:700px){.related-grid{grid-template-columns:1fr}}
+:focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
 </style>
 <link rel="alternate" hreflang="en" href="https://siamakconsulting.com/what-is-llmo"/><link rel="alternate" hreflang="es" href="https://siamakconsulting.com/es/what-is-llmo"/><link rel="alternate" hreflang="fa" href="https://siamakconsulting.com/fa/what-is-llmo"/><link rel="alternate" hreflang="hy" href="https://siamakconsulting.com/hy/what-is-llmo"/><link rel="alternate" hreflang="x-default" href="https://siamakconsulting.com/what-is-llmo"/><style id="canonical-nav-css">
 nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
@@ -137,6 +138,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 <nav>
   <div class="nav-in">
     <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
@@ -201,10 +203,11 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
     </div>
     <div class="nav-right">
       <a href="/contact-us" class="nav-cta">Book a Scan &rarr;</a>
-      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" onclick="const o=document.getElementById('navLinks').classList.toggle('open');this.setAttribute('aria-expanded',o)">&#9776;</button>
     </div>
   </div>
 </nav>
+<main id="main">
 <article class="article">
 <div class="wrap">
 <div class="crumb"><a href="/">~/</a> <a href="/authority-hub">authority</a> / pagespeed</div>
@@ -258,15 +261,16 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 
 <div class="faq-sec">
 <h2>Frequently asked questions</h2>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is a PageSpeed score of 100 achievable for a real business website?<span class="faq-ico"></span></button><div class="faq-a"><p>Rarely, and usually not desirable. Most remaining deductions on an optimized commerce site come from required revenue tools: analytics, ad pixels, review widgets, and the platform&rsquo;s own infrastructure. A 100 usually means conversion tracking was stripped &mdash; trading measurable revenue for a vanity number.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Why does my score change every time I run the test?<span class="faq-ico"></span></button><div class="faq-a"><p>PageSpeed runs on Google&rsquo;s shared servers; server load and cache state swing identical code 15&ndash;30 points between runs. Run it three times back-to-back and use the middle score.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does the lab score directly affect my Google rankings?<span class="faq-ico"></span></button><div class="faq-a"><p>No &mdash; rankings and Ads quality use Core Web Vitals <em>field data</em> from your real visitors&rsquo; devices. The lab score is a diagnostic, not the ranking input.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">What should a Shopify store realistically score?<span class="faq-ico"></span></button><div class="faq-a"><p>Mobile Performance 70&ndash;85 and Best Practices 70&ndash;80 represent a fully optimized store with its apps and tracking intact &mdash; that&rsquo;s where virtually every major Shopify brand lands. Accessibility and SEO should still hit 95&ndash;100.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Is a PageSpeed score of 100 achievable for a real business website?<span class="faq-ico"></span></button><div class="faq-a"><p>Rarely, and usually not desirable. Most remaining deductions on an optimized commerce site come from required revenue tools: analytics, ad pixels, review widgets, and the platform&rsquo;s own infrastructure. A 100 usually means conversion tracking was stripped &mdash; trading measurable revenue for a vanity number.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Why does my score change every time I run the test?<span class="faq-ico"></span></button><div class="faq-a"><p>PageSpeed runs on Google&rsquo;s shared servers; server load and cache state swing identical code 15&ndash;30 points between runs. Run it three times back-to-back and use the middle score.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Does the lab score directly affect my Google rankings?<span class="faq-ico"></span></button><div class="faq-a"><p>No &mdash; rankings and Ads quality use Core Web Vitals <em>field data</em> from your real visitors&rsquo; devices. The lab score is a diagnostic, not the ranking input.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">What should a Shopify store realistically score?<span class="faq-ico"></span></button><div class="faq-a"><p>Mobile Performance 70&ndash;85 and Best Practices 70&ndash;80 represent a fully optimized store with its apps and tracking intact &mdash; that&rsquo;s where virtually every major Shopify brand lands. Accessibility and SEO should still hit 95&ndash;100.</p></div></div>
 </div>
 </div>
 </article>
 <section class="related"><div class="wrap-wide"><h2>Keep reading</h2><div class="related-grid"><a href="/how-to-get-cited-by-ai" class="rcard"><h3>How to get cited by ChatGPT</h3><p>The practical playbook for AI citations.</p></a><a href="/seo-vs-llmo" class="rcard"><h3>SEO vs LLMO</h3><p>What changes in the AI era — and what doesn't.</p></a><a href="/contact-us" class="rcard"><h3>Work with Siamak</h3><p>Make your brand the answer AI gives.</p></a></div></div></section>
 <section style="padding:44px 0;"><div class="wrap"><a href="/how-to-get-cited-by-ai" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:linear-gradient(135deg,rgba(45,212,255,.09),rgba(160,107,255,.06));border:1px solid var(--line-bright);border-radius:16px;padding:24px 28px;text-decoration:none;"><div><div style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:6px;">Start here · The LLMO Playbook</div><div style="font-family:var(--display);font-size:clamp(20px,3vw,26px);font-weight:700;color:var(--text);">How to Get Cited by AI</div></div><span style="font-family:var(--mono);font-size:14px;font-weight:600;color:var(--cyan);white-space:nowrap;">Read the playbook →</span></a></div></section>
+</main>
 <footer class="footer"><div class="wrap-wide"><p>© 2026 Siamak Kalhor · Make your brand the answer AI gives · <a href="/">siamakconsulting.com</a></p></div></footer>
   <script src="/share.js" defer></script>
 <script id="canonical-nav-js">

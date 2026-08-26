@@ -126,6 +126,7 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:50px 0 3
 .foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:11.5px;color:var(--muted-dim)}
 @media(max-width:860px){.grid2,.grid3,.checks,.foot-grid{grid-template-columns:1fr}.nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--void);border-bottom:1px solid var(--line);padding:20px 28px;gap:16px}.nav-links.open{display:flex}.nav-toggle{display:block}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
+:focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
 </style><style>
 .article-hero{padding:64px 0 30px;position:relative;border-bottom:1px solid var(--line);background:var(--panel)}
 .crumb{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-dim);margin-bottom:18px}
@@ -249,7 +250,8 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 }
 </script>
 </head>
-<body id="top"><nav>
+<body id="top">
+<a href="#main" class="skip-link">Skip to content</a><nav>
   <div class="nav-in">
     <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
     <div class="nav-links" id="navLinks">
@@ -313,10 +315,11 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
     </div>
     <div class="nav-right">
       <a href="/contact-us" class="nav-cta">Book a Scan &rarr;</a>
-      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" onclick="const o=document.getElementById('navLinks').classList.toggle('open');this.setAttribute('aria-expanded',o)">&#9776;</button>
     </div>
   </div>
-</nav><section class="article-hero"><div class="wrap"><div class="crumb"><a href="/the-long-view">The Long View</a> / Search & AI Visibility</div><h1 class="article-h">Why Do My Competitors Rank Above Me When My Business Is Better?</h1><div class="article-meta"><span>6 min read</span><span>&middot;</span><span>Siamak Kalhor</span></div></div></section>
+</nav>
+<main id="main"><section class="article-hero"><div class="wrap"><div class="crumb"><a href="/the-long-view">The Long View</a> / Search & AI Visibility</div><h1 class="article-h">Why Do My Competitors Rank Above Me When My Business Is Better?</h1><div class="article-meta"><span>6 min read</span><span>&middot;</span><span>Siamak Kalhor</span></div></div></section>
 <section class="prose-wrap"><div class="wrap"><div class="prose">
 <p>This is one of the most maddening experiences in business: you know, with real confidence, that your product or service is better than a specific competitor's — better craftsmanship, better service, better results for the client — and yet they show up above you on Google every time someone searches for what you both do. It feels unfair because, in a sense, it is. Search engines don't rank the better business. They rank the business that has given them the most reason to trust it, and those are not the same thing.</p><h2>What Ranking Actually Measures</h2><p>A search engine's job is to guess, from signals it can actually observe, which result will best satisfy the person searching. It cannot taste your product or sit through your consultation. What it can observe: how long your site has existed, how many other credible sites link to it, how specifically your content matches the exact question being asked, how fast your site loads, and how consistently you've published relevant, useful content over time. None of these measure quality directly. All of them are proxies for trust, accumulated over time — which is exactly why a genuinely inferior competitor who's been building these signals for five years can outrank a superior business that's been at it for five months.</p><h2>The Four Places the Gap Usually Lives</h2><p><strong>1. They simply have more history.</strong> Domain age and accumulated backlinks are two of the most durable ranking factors, and there's no shortcut that compresses years into weeks. This is the one gap that time alone narrows, provided you're doing the other three well in the meantime.</p><p><strong>2. They're more specific than you are.</strong> &ldquo;Quality service you can trust&rdquo; matches nothing a person actually searches. A competitor whose page names the exact service, the exact area, and the exact problem solved is giving the algorithm something concrete to match against a real query — even if their actual service is worse.</p><p><strong>3. Other sites talk about them and don't talk about you.</strong> A mention from a local publication, an industry directory, a partner site, or even a well-earned batch of reviews functions as a vote of confidence a search engine weighs heavily. If nobody but you is talking about your business online, you're relying entirely on your own claims about yourself — which search engines are, reasonably, skeptical of.</p><p><strong>4. They publish, and you don't.</strong> A site that adds genuinely useful, specific content on a regular cadence gets crawled more often and accumulates more chances to match a real search than a site that hasn't been touched since it launched.</p><h2>The Reframe That Actually Helps</h2><p>Stop asking &ldquo;why don't they see that we're better&rdquo; and start asking &ldquo;what specific trust signal does this competitor have that we don't.&rdquo; That's a solvable, concrete question. Pull up their site next to yours and go signal by signal: who links to them, how specific is their content, how often do they publish, how many reviews do they have and how recent. Wherever the gap is largest is where your next move should go — not into a vague sense that you deserve to rank higher, but into the specific signal that's currently missing.</p><h2>Why This Gets Worse With AI Search, and Also Why It's a Real Opportunity</h2><p>AI assistants answering a recommendation question draw even more heavily on third-party signals — reviews, mentions, directories — than traditional search does, and they're currently citing businesses in most local and professional categories at very low rates industry-wide. That's a genuine opening: the businesses building these signals deliberately right now, while most competitors still haven't started, get a disproportionate return on the effort relative to what it will cost in two years, once everyone's doing it.</p>
 <hr>
@@ -326,6 +329,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <a href="/the-long-view/why-your-business-doesnt-show-up-when-people-ask-chatgpt" style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;text-decoration:none;"><div style="font-family:var(--display);font-weight:600;color:var(--text);font-size:15px;line-height:1.35;">Why Your Business Doesn't Show Up When People Ask ChatGPT for Recommendations</div></a>
 <a href="/the-long-view/why-most-law-firm-websites-dont-convert" style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;text-decoration:none;"><div style="font-family:var(--display);font-weight:600;color:var(--text);font-size:15px;line-height:1.35;">Why Most Law Firm Websites Don't Convert Visitors Into Consultations</div></a>
 </div></div></section>
+</main>
 <footer>
   <div class="wrap">
     <div class="foot-grid">

@@ -95,6 +95,7 @@ h1 .grad{background:var(--glow);-webkit-background-clip:text;background-clip:tex
 .footer a{color:var(--muted)}
 .footer a:hover{color:var(--cyan)}
 @media(max-width:700px){.related-grid{grid-template-columns:1fr}}
+:focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
 </style>
 <style id="canonical-nav-css">
 nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
@@ -136,6 +137,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 <nav>
   <div class="nav-in">
     <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
@@ -200,10 +202,11 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
     </div>
     <div class="nav-right">
       <a href="/contact-us" class="nav-cta">Book a Scan &rarr;</a>
-      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" onclick="const o=document.getElementById('navLinks').classList.toggle('open');this.setAttribute('aria-expanded',o)">&#9776;</button>
     </div>
   </div>
-</nav><article class="article">
+</nav>
+<main id="main"><article class="article">
 <div class="wrap">
 <div class="crumb"><a href="/">~/</a> <a href="/faq">answers</a> / restaurants</div>
 <span class="eyebrow">AI for Restaurants</span>
@@ -226,15 +229,16 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <p>Want to know how a restaurant becomes the one AI names? That's <a href="/how-to-get-cited-by-ai" class="ilink">LLMO</a>. Browse <a href="/faq" class="ilink">the answer hub</a> or <a href="/how-much-does-llmo-cost" class="ilink">see what it costs</a>.</p>
 <div class="faq-sec">
 <h2>Frequently asked questions</h2>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How can AI help my restaurant?<span class="faq-ico"></span></button><div class="faq-a"><p>It makes you easier to find and easier to run. On the discovery side, AI structures your restaurant so assistants and maps recommend you when someone's deciding where to eat. On the operations side, it takes repetitive back-office and guest-response work off your team so they can focus on service.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How do I get my restaurant recommended by AI and maps?<span class="faq-ico"></span></button><div class="faq-a"><p>By making your restaurant legible and trustworthy to the models — consistent details everywhere, the right content, and strong local signals. That's LLMO, and it's exactly the work I do. A free scan shows where you stand today.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does this replace my staff?<span class="faq-ico"></span></button><div class="faq-a"><p>No. It removes repetitive busywork and makes sure no inquiry goes unanswered — so your people spend their time on hospitality, not admin. Great restaurants win on the human parts; AI just clears the path.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does it work for a single location or a small group?<span class="faq-ico"></span></button><div class="faq-a"><p>Both. Independents and small groups are exactly who ResBizAI is built for — the goal is to give you systems that used to be reserved for the big chains.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How much does it cost?<span class="faq-ico"></span></button><div class="faq-a"><p>Hourly, roughly $350–$450 depending on the work, with custom builds quoted per project. The pricing page breaks down what drives it and the ROI.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">How can AI help my restaurant?<span class="faq-ico"></span></button><div class="faq-a"><p>It makes you easier to find and easier to run. On the discovery side, AI structures your restaurant so assistants and maps recommend you when someone's deciding where to eat. On the operations side, it takes repetitive back-office and guest-response work off your team so they can focus on service.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">How do I get my restaurant recommended by AI and maps?<span class="faq-ico"></span></button><div class="faq-a"><p>By making your restaurant legible and trustworthy to the models — consistent details everywhere, the right content, and strong local signals. That's LLMO, and it's exactly the work I do. A free scan shows where you stand today.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Does this replace my staff?<span class="faq-ico"></span></button><div class="faq-a"><p>No. It removes repetitive busywork and makes sure no inquiry goes unanswered — so your people spend their time on hospitality, not admin. Great restaurants win on the human parts; AI just clears the path.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Does it work for a single location or a small group?<span class="faq-ico"></span></button><div class="faq-a"><p>Both. Independents and small groups are exactly who ResBizAI is built for — the goal is to give you systems that used to be reserved for the big chains.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">How much does it cost?<span class="faq-ico"></span></button><div class="faq-a"><p>Hourly, roughly $350–$450 depending on the work, with custom builds quoted per project. The pricing page breaks down what drives it and the ROI.</p></div></div>
 </div>
 <div class="cta-band"><h2>See how AI sees your restaurant</h2><p>Run a free AI Authority Scan — see whether AI and maps recommend you, and exactly what to fix.</p><a href="/website-audit">Get your free scan →</a></div>
 </div>
-</article><section class="related"><div class="wrap-wide"><h2>Keep reading</h2><div class="related-grid"><a href="/ai-for-law-firms" class="rcard"><h3>AI for Law Firms</h3><p>24/7 multilingual intake and drafting.</p></a><a href="/ai-for-contractors" class="rcard"><h3>AI for Contractors</h3><p>Never miss a job while you're on a job.</p></a><a href="/faq" class="rcard"><h3>Answer Hub</h3><p>Every question about AI visibility.</p></a></div></div></section><footer class="footer"><div class="wrap-wide"><p>© 2026 Siamak Kalhor · Make your brand the answer AI gives · <a href="/">siamakconsulting.com</a></p></div></footer>
+</article><section class="related"><div class="wrap-wide"><h2>Keep reading</h2><div class="related-grid"><a href="/ai-for-law-firms" class="rcard"><h3>AI for Law Firms</h3><p>24/7 multilingual intake and drafting.</p></a><a href="/ai-for-contractors" class="rcard"><h3>AI for Contractors</h3><p>Never miss a job while you're on a job.</p></a><a href="/faq" class="rcard"><h3>Answer Hub</h3><p>Every question about AI visibility.</p></a></div></div></section></main>
+<footer class="footer"><div class="wrap-wide"><p>© 2026 Siamak Kalhor · Make your brand the answer AI gives · <a href="/">siamakconsulting.com</a></p></div></footer>
   <script src="/share.js" defer></script>
 <script id="canonical-nav-js">
 (function(){

@@ -556,6 +556,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 <nav>
   <div class="nav-in">
     <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
@@ -630,10 +631,11 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
     </div>
     <div class="nav-right">
       <a href="/contact-us" class="nav-cta">Book a Scan &rarr;</a>
-      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" onclick="const o=document.getElementById('navLinks').classList.toggle('open');this.setAttribute('aria-expanded',o)">&#9776;</button>
     </div>
   </div>
 </nav>
+<main id="main">
 <header class="k2-hero"><div class="wrap">
   <span class="k2-since">Established 1994 &middot; Downtown Los Angeles</span>
   <h1>Thirty years in one of California's most dynamic real estate markets.</h1>
@@ -708,6 +710,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
   <p><strong>Equal Housing Opportunity.</strong> K2 Investment, Inc. &mdash; California real estate
   brokerage. All information deemed reliable but not guaranteed.</p>
 </div></section>
+</main>
 <footer>
   <div class="wrap">
     <div class="foot-grid">

@@ -95,6 +95,7 @@ h1 .grad{background:var(--glow);-webkit-background-clip:text;background-clip:tex
 .footer a{color:var(--muted)}
 .footer a:hover{color:var(--cyan)}
 @media(max-width:700px){.related-grid{grid-template-columns:1fr}}
+:focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
 </style>
 <style id="canonical-nav-css">
 nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
@@ -136,6 +137,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 <nav>
   <div class="nav-in">
     <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
@@ -200,10 +202,11 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
     </div>
     <div class="nav-right">
       <a href="/contact-us" class="nav-cta">Book a Scan &rarr;</a>
-      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" onclick="const o=document.getElementById('navLinks').classList.toggle('open');this.setAttribute('aria-expanded',o)">&#9776;</button>
     </div>
   </div>
-</nav><article class="article">
+</nav>
+<main id="main"><article class="article">
 <div class="wrap">
 <div class="crumb"><a href="/">~/</a> <a href="/faq">answers</a> / how much does llmo cost</div>
 <span class="eyebrow">Pricing &amp; ROI</span>
@@ -236,16 +239,17 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 
 <div class="faq-sec">
 <h2>Frequently asked questions</h2>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is there a free way to start?<span class="faq-ico"></span></button><div class="faq-a"><p>Yes. A free AI Authority Scan shows where you stand across SEO and AI visibility before you spend anything, so any paid work starts from evidence, not guesswork.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do you charge hourly, monthly, or per project?<span class="faq-ico"></span></button><div class="faq-a"><p>Primarily hourly — about $350 to $450 an hour depending on the work. For larger ongoing engagements I can scope a predictable monthly block, and custom product builds are quoted per project.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Why not just publish a fixed price list?<span class="faq-ico"></span></button><div class="faq-a"><p>Because scoping a five-page local service site and a hundred-page store with three languages at the same number would be dishonest to one of them. What stays fixed is the method; the investment scales to the surface area and the speed you want.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">What determines the cost?<span class="faq-ico"></span></button><div class="faq-a"><p>Where you're starting (how much is already broken), how much content and structure needs building, how many languages and markets, and whether it's a one-time fix or an ongoing compounding build.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How is this different from paying an SEO agency?<span class="faq-ico"></span></button><div class="faq-a"><p>An agency rents you rankings that stop when you stop paying. LLMO builds durable authority a model keeps citing. And you're working with the operator who runs his own AI companies, not a junior account manager.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Is there a free way to start?<span class="faq-ico"></span></button><div class="faq-a"><p>Yes. A free AI Authority Scan shows where you stand across SEO and AI visibility before you spend anything, so any paid work starts from evidence, not guesswork.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Do you charge hourly, monthly, or per project?<span class="faq-ico"></span></button><div class="faq-a"><p>Primarily hourly — about $350 to $450 an hour depending on the work. For larger ongoing engagements I can scope a predictable monthly block, and custom product builds are quoted per project.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Why not just publish a fixed price list?<span class="faq-ico"></span></button><div class="faq-a"><p>Because scoping a five-page local service site and a hundred-page store with three languages at the same number would be dishonest to one of them. What stays fixed is the method; the investment scales to the surface area and the speed you want.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">What determines the cost?<span class="faq-ico"></span></button><div class="faq-a"><p>Where you're starting (how much is already broken), how much content and structure needs building, how many languages and markets, and whether it's a one-time fix or an ongoing compounding build.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">How is this different from paying an SEO agency?<span class="faq-ico"></span></button><div class="faq-a"><p>An agency rents you rankings that stop when you stop paying. LLMO builds durable authority a model keeps citing. And you're working with the operator who runs his own AI companies, not a junior account manager.</p></div></div>
 </div>
 <div class="cta-band"><h2>Start with a free scan</h2><p>See where you stand before you spend a dollar. Get a prioritized list of exactly what to fix.</p><a href="/website-audit">Get your free AI Authority Scan →</a></div>
 </div>
 </article><section class="related"><div class="wrap-wide"><h2>Keep reading</h2><div class="related-grid"><a href="/faq" class="rcard"><h3>Answer Hub</h3><p>Every question about LLMO, answered.</p></a><a href="/seo-vs-llmo" class="rcard"><h3>SEO vs LLMO</h3><p>Where your budget actually moves the needle now.</p></a><a href="/contact-us" class="rcard"><h3>Get a real quote</h3><p>Tell me your goal — I'll scope it.</p></a></div></div></section><section><div class="wrap"><div class="sec-label">Related</div><div class="checks"><div class="check"><span class="c">&rarr;</span><a href="/what-is-llmo">What is LLMO?</a></div><div class="check"><span class="c">&rarr;</span><a href="/best-llmo-consultant">Choosing an LLMO consultant</a></div></div></div></section>
 <section><div class="wrap"><div class="cta-band"><div class="sec-label">Check yours</div><h2 class="sec-h">See what AI actually says about your site</h2><p class="lead">Free, no signup, about 60 seconds. Scores your search visibility, AI visibility, positioning and content — then tells you what to fix first.</p><div class="cta-row"><a href="/audit" class="btn btn-pri">Run the free audit &rarr;</a></div></div></div></section>
+</main>
 <footer class="footer"><div class="wrap-wide"><p>© 2026 Siamak Kalhor · Make your brand the answer AI gives · <a href="/">siamakconsulting.com</a></p></div></footer>
   <script src="/share.js" defer></script>
 <script id="canonical-nav-js">

@@ -812,6 +812,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 <div class="ambient"></div>
 
 <nav>
@@ -878,10 +879,11 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
     </div>
     <div class="nav-right">
       <a href="/audit" class="nav-cta">Run Your Free Scan &rarr;</a>
-      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" onclick="const o=document.getElementById('navLinks').classList.toggle('open');this.setAttribute('aria-expanded',o)">&#9776;</button>
     </div>
   </div>
 </nav>
+<main id="main">
 
 <div id="top"></div>
 
@@ -1202,6 +1204,7 @@ people search now.</p>
 
 
 <section style="padding:30px 0;border-top:1px solid var(--line);"><div class="wrap" style="text-align:center;"><p style="color:var(--muted);font-size:14px;margin:0;">AI Marketing Consultant serving <a href="/ai-marketing-consultant-los-angeles" style="color:var(--cyan);text-decoration:none;">Los Angeles</a> &amp; <a href="/ai-marketing-consultant-napa-valley" style="color:var(--cyan);text-decoration:none;">Napa Valley</a> — and clients everywhere, fully online.</p></div></section>
+</main>
 <footer>
   <div class="wrap">
     <div class="foot-grid">

@@ -95,6 +95,7 @@ h1 .grad{background:var(--glow);-webkit-background-clip:text;background-clip:tex
 .footer a{color:var(--muted)}
 .footer a:hover{color:var(--cyan)}
 @media(max-width:700px){.related-grid{grid-template-columns:1fr}}
+:focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
 </style>
 <style id="canonical-nav-css">
 nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
@@ -136,6 +137,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 <nav>
   <div class="nav-in">
     <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
@@ -200,10 +202,11 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
     </div>
     <div class="nav-right">
       <a href="/contact-us" class="nav-cta">Book a Scan &rarr;</a>
-      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" onclick="const o=document.getElementById('navLinks').classList.toggle('open');this.setAttribute('aria-expanded',o)">&#9776;</button>
     </div>
   </div>
-</nav><article class="article">
+</nav>
+<main id="main"><article class="article">
 <div class="wrap">
 <div class="crumb"><a href="/">~/</a> <a href="/services">services</a> / internet marketing</div>
 <span class="eyebrow">Internet Marketing</span>
@@ -222,16 +225,17 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <p>See the verticals I focus on — <a href="/ai-for-ecommerce" class="ilink">e-commerce</a>, <a href="/ai-for-law-firms" class="ilink">law firms</a>, <a href="/ai-for-contractors" class="ilink">contractors</a> — or <a href="/how-much-does-llmo-cost" class="ilink">what it costs</a>.</p>
 <div class="faq-sec">
 <h2>Frequently asked questions</h2>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">What does internet marketing include?<span class="faq-ico"></span></button><div class="faq-a"><p>Everything that moves a buyer from not knowing you to buying: SEO, AI visibility (LLMO), paid search and social, email and retention, landing pages, and conversion optimization — run as one funnel.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do you do both SEO and paid?<span class="faq-ico"></span></button><div class="faq-a"><p>Yes. Organic and paid work best together — organic compounds, paid gives you speed and control. I run them as one strategy, not competing budgets.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do you cover AI visibility, not just Google?<span class="faq-ico"></span></button><div class="faq-a"><p>Yes — that's a core edge. Getting recommended inside AI answers is where discovery is heading, and most competitors aren't doing it yet.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How is this different from hiring an agency?<span class="faq-ico"></span></button><div class="faq-a"><p>You work directly with an operator who runs his own businesses, owns the full funnel, and is measured on revenue — not a junior account manager optimizing one channel.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How do you measure ROI?<span class="faq-ico"></span></button><div class="faq-a"><p>Against revenue and qualified leads, not impressions. We agree on the number that matters up front and track to it.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How much does it cost?<span class="faq-ico"></span></button><div class="faq-a"><p>Hourly, roughly $350–$450 depending on the work, with custom builds quoted per project. Full detail on the pricing page.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">What does internet marketing include?<span class="faq-ico"></span></button><div class="faq-a"><p>Everything that moves a buyer from not knowing you to buying: SEO, AI visibility (LLMO), paid search and social, email and retention, landing pages, and conversion optimization — run as one funnel.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Do you do both SEO and paid?<span class="faq-ico"></span></button><div class="faq-a"><p>Yes. Organic and paid work best together — organic compounds, paid gives you speed and control. I run them as one strategy, not competing budgets.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Do you cover AI visibility, not just Google?<span class="faq-ico"></span></button><div class="faq-a"><p>Yes — that's a core edge. Getting recommended inside AI answers is where discovery is heading, and most competitors aren't doing it yet.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">How is this different from hiring an agency?<span class="faq-ico"></span></button><div class="faq-a"><p>You work directly with an operator who runs his own businesses, owns the full funnel, and is measured on revenue — not a junior account manager optimizing one channel.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">How do you measure ROI?<span class="faq-ico"></span></button><div class="faq-a"><p>Against revenue and qualified leads, not impressions. We agree on the number that matters up front and track to it.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">How much does it cost?<span class="faq-ico"></span></button><div class="faq-a"><p>Hourly, roughly $350–$450 depending on the work, with custom builds quoted per project. Full detail on the pricing page.</p></div></div>
 </div>
 <div class="cta-band"><h2>See where you stand</h2><p>Run a free AI Authority Scan — a prioritized view of what's costing you customers across search and AI.</p><a href="/website-audit">Get your free scan →</a></div>
 </div>
-</article><section class="related"><div class="wrap-wide"><h2>Keep reading</h2><div class="related-grid"><a href="/social-media-marketing" class="rcard"><h3>Social Media Marketing</h3><p>Turn feeds into customers.</p></a><a href="/brand-creation" class="rcard"><h3>Brand Creation</h3><p>A brand buyers and AI trust.</p></a><a href="/how-much-does-llmo-cost" class="rcard"><h3>What it costs</h3><p>Hourly rates and ROI.</p></a></div></div></section><footer class="footer"><div class="wrap-wide"><p>© 2026 Siamak Kalhor · Make your brand the answer AI gives · <a href="/">siamakconsulting.com</a></p></div></footer>
+</article><section class="related"><div class="wrap-wide"><h2>Keep reading</h2><div class="related-grid"><a href="/social-media-marketing" class="rcard"><h3>Social Media Marketing</h3><p>Turn feeds into customers.</p></a><a href="/brand-creation" class="rcard"><h3>Brand Creation</h3><p>A brand buyers and AI trust.</p></a><a href="/how-much-does-llmo-cost" class="rcard"><h3>What it costs</h3><p>Hourly rates and ROI.</p></a></div></div></section></main>
+<footer class="footer"><div class="wrap-wide"><p>© 2026 Siamak Kalhor · Make your brand the answer AI gives · <a href="/">siamakconsulting.com</a></p></div></footer>
   <script src="/share.js" defer></script>
 <script id="canonical-nav-js">
 (function(){

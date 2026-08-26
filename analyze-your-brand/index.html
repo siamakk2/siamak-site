@@ -126,6 +126,7 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:50px 0 3
 .foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:11.5px;color:var(--muted-dim)}
 @media(max-width:860px){.grid2,.grid3,.checks,.foot-grid{grid-template-columns:1fr}.nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--void);border-bottom:1px solid var(--line);padding:20px 28px;gap:16px}.nav-links.open{display:flex}.nav-toggle{display:block}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
+:focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
 </style>
 <link rel="canonical" href="https://siamakconsulting.com/analyze-your-brand"/>
 <script type="application/ld+json">{
@@ -421,6 +422,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 <div class="ambient"></div>
 <nav>
   <div class="nav-in">
@@ -486,10 +488,11 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
     </div>
     <div class="nav-right">
       <a href="/contact-us" class="nav-cta">Book a Scan &rarr;</a>
-      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" onclick="const o=document.getElementById('navLinks').classList.toggle('open');this.setAttribute('aria-expanded',o)">&#9776;</button>
     </div>
   </div>
 </nav>
+<main id="main">
 <header class="ph"><div class="wrap">
 <div class="eyebrow"><span class="dot"></span>AI Authority Audit</div>
 <h1 class="ph-h">How do AI systems <span class="grad">see you</span> right now?</h1>
@@ -512,6 +515,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <h2 class="sec-h">Before you commit</h2>
 <div class="faq"><div class="qa"><h4>What should I ask an AI visibility consultant before hiring them?</h4><p>Ask them to establish your current AI authority baseline, identify your 25 to 50 most commercially important prompts, show you who currently wins those prompts, identify which sources the engines are using to make those recommendations, and give you a prioritized plan for taking authority away from competitors. Then ask to see visibility across ChatGPT, Gemini, Claude and Perplexity, competitor citation share, which third-party sites influence the answers, entity gaps, knowledge and authority gaps, technical and schema problems, content gaps, external citation opportunities, and baseline versus post-implementation results. If a consultant cannot produce those, they are selling activity rather than outcomes.</p></div><div class="qa"><h4>How is competitor citation share measured?</h4><p>By running your agreed prompt set across all four engines and recording which businesses are named in each answer, then expressing the results as share of total mentions. It is a sample, not a census — no one has access to the full population of queries — so the set is fixed in advance and re-run identically, which makes the comparison over time valid even though the absolute number is an estimate.</p></div><div class="qa"><h4>Why do the four engines give different answers about my business?</h4><p>Because they ground their answers in different sources and weight source quality differently. It is common to be well represented in one engine and absent from another, and the cause is usually a specific third-party site that one engine relies on and another ignores. That is exactly why the audit reports each engine separately instead of averaging them into a single score.</p></div><div class="qa"><h4>How long does the audit take, and what happens after?</h4><p>The audit itself takes about two weeks depending on the size of the prompt set. What follows is a prioritized plan sequenced by leverage — entity contradictions and technical blockers first because they are fast and cheap, then content, then external authority, which is the slowest to move. The prompt set is then re-run to measure against the baseline.</p></div><div class="qa"><h4>Can you guarantee I'll appear in AI answers?</h4><p>No, and neither can anyone else. There is no placement to buy and no ranking to purchase inside a generated answer. What can be guaranteed is that you will know exactly where you stand today, what the engines are drawing on, where the fixable gaps are, and whether the work moved the number — which is more than most engagements can show you.</p></div><div class="qa"><h4>Do I need this if my search rankings are already good?</h4><p>Not necessarily, and it depends on how your buyers ask. Short branded and navigational searches still behave like classic search. But research on real search behaviour finds AI summaries appearing on a majority of long, conversational, question-shaped queries. If your customers describe their problem in a full sentence before choosing, ranking well is no longer sufficient on its own.</p></div></div>
 </div></section><section><div class="wrap"><div class="cta-band"><h3>See yourself through AI's eyes</h3><p>Request the audit and stop guessing how the engines represent your business. You get the baseline, the competitive picture, and the plan — and the numbers to check it against later.</p><div class="cta-row"><a href="/contact-us" class="btn btn-pri">Request Your Audit &rarr;</a><a href="/faq" class="btn btn-ghost">Ask Siamak</a></div></div></div></section>
+</main>
 <footer>
   <div class="wrap">
     <div class="foot-grid">

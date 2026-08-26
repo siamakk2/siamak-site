@@ -126,6 +126,7 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:50px 0 3
 .foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:11.5px;color:var(--muted-dim)}
 @media(max-width:860px){.grid2,.grid3,.checks,.foot-grid{grid-template-columns:1fr}.nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--void);border-bottom:1px solid var(--line);padding:20px 28px;gap:16px}.nav-links.open{display:flex}.nav-toggle{display:block}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
+:focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
 </style><style>
 .article-hero{padding:64px 0 30px;position:relative;border-bottom:1px solid var(--line);background:var(--panel)}
 .crumb{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-dim);margin-bottom:18px}
@@ -249,7 +250,8 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 }
 </script>
 </head>
-<body id="top"><nav>
+<body id="top">
+<a href="#main" class="skip-link">Skip to content</a><nav>
   <div class="nav-in">
     <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
     <div class="nav-links" id="navLinks">
@@ -313,10 +315,11 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
     </div>
     <div class="nav-right">
       <a href="/contact-us" class="nav-cta">Book a Scan &rarr;</a>
-      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" onclick="const o=document.getElementById('navLinks').classList.toggle('open');this.setAttribute('aria-expanded',o)">&#9776;</button>
     </div>
   </div>
-</nav><section class="article-hero"><div class="wrap"><div class="crumb"><a href="/the-long-view">The Long View</a> / Business Growth</div><h1 class="article-h">Why Do I Get Leads That Never Turn Into Sales?</h1><div class="article-meta"><span>6 min read</span><span>&middot;</span><span>Siamak Kalhor</span></div></div></section>
+</nav>
+<main id="main"><section class="article-hero"><div class="wrap"><div class="crumb"><a href="/the-long-view">The Long View</a> / Business Growth</div><h1 class="article-h">Why Do I Get Leads That Never Turn Into Sales?</h1><div class="article-meta"><span>6 min read</span><span>&middot;</span><span>Siamak Kalhor</span></div></div></section>
 <section class="prose-wrap"><div class="wrap"><div class="prose">
 <p>Your lead count looks healthy. Form fills, phone calls, inquiries — the top of the funnel is genuinely full. And almost none of it turns into an actual paying customer. This is one of the most common and most misdiagnosed problems in business, because the instinctive response — generate more leads — usually makes the problem worse, not better.</p><h2>The Number That Explains Almost Everything</h2><p>Across industries, 79% of marketing leads never convert into a sale, and the research is consistent that this traces overwhelmingly to poor nurturing and a broken handoff — not to the leads themselves being fundamentally uninterested. Separately, roughly three-quarters of leads passed from marketing to sales are not actually qualified when they arrive, meaning the volume looks impressive while the substance underneath is thin. When lead quality silently drops like this, conversion rates follow it down, even while the top-line lead count keeps climbing.</p><h2>Why &ldquo;More Leads&rdquo; Makes This Worse, Not Better</h2><p>This is the trap almost every business falls into: sales isn't closing enough, so the instinct is to generate more leads. But if the actual problem is that leads aren't being nurtured or qualified properly, adding volume on top of a broken process just produces more unconverted leads, faster — the same leak, at higher volume. It's possible to have a business simultaneously spending more on lead generation and watching close rates fall, because the two numbers were never actually connected the way it feels like they should be.</p><h2>Where the Handoff Actually Breaks</h2><p><strong>Marketing and sales don't agree on what &ldquo;qualified&rdquo; means.</strong> In a meaningful share of B2B organizations, sales rejects around 40% of what marketing hands over as qualified — not because those leads are worthless, but because the two teams are working from different definitions of what a real opportunity looks like. That disagreement alone accounts for a large share of leads that quietly die in the gap between generation and follow-up.</p><p><strong>Follow-up is too slow.</strong> A lead that isn't nurtured properly cools fast — interest has a shelf life, and by the time a slow follow-up process gets to it, the moment that made them reach out in the first place has often passed.</p><p><strong>There's no nurturing sequence at all.</strong> Businesses that build a genuine, structured lead nurturing process generate roughly 50% more sales-ready leads at meaningfully lower cost than those that don't — the leads aren't different, the follow-up around them is.</p><h2>What to Actually Do About It</h2><p>Before generating a single additional lead, get a clear, shared definition — in writing — of what a qualified lead actually looks like for your business, and make sure whoever generates leads and whoever closes them are working from the same definition. Then track the handoff specifically: how fast is a new lead actually contacted, and what happens to the ones that don't convert. Most of the time, the honest answer is that a large share never get a real second touch at all. Fixing that single gap — faster, more structured follow-up on the leads you already have — will often move revenue more than any amount of additional lead generation, because you're finally converting the interest you already paid to create instead of generating more of it and losing it the same way.</p>
 <hr>
@@ -326,6 +329,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <a href="/the-long-view/why-your-business-doesnt-show-up-when-people-ask-chatgpt" style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;text-decoration:none;"><div style="font-family:var(--display);font-weight:600;color:var(--text);font-size:15px;line-height:1.35;">Why Your Business Doesn't Show Up When People Ask ChatGPT for Recommendations</div></a>
 <a href="/the-long-view/why-most-law-firm-websites-dont-convert" style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;text-decoration:none;"><div style="font-family:var(--display);font-weight:600;color:var(--text);font-size:15px;line-height:1.35;">Why Most Law Firm Websites Don't Convert Visitors Into Consultations</div></a>
 </div></div></section>
+</main>
 <footer>
   <div class="wrap">
     <div class="foot-grid">

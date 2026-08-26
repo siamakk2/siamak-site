@@ -95,6 +95,7 @@ h1 .grad{background:var(--glow);-webkit-background-clip:text;background-clip:tex
 .footer a{color:var(--muted)}
 .footer a:hover{color:var(--cyan)}
 @media(max-width:700px){.related-grid{grid-template-columns:1fr}}
+:focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
 </style>
 <style id="canonical-nav-css">
 nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
@@ -136,6 +137,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 <nav>
   <div class="nav-in">
     <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
@@ -200,10 +202,11 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
     </div>
     <div class="nav-right">
       <a href="/contact-us" class="nav-cta">Book a Scan &rarr;</a>
-      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" onclick="const o=document.getElementById('navLinks').classList.toggle('open');this.setAttribute('aria-expanded',o)">&#9776;</button>
     </div>
   </div>
-</nav><article class="article">
+</nav>
+<main id="main"><article class="article">
 <div class="wrap">
 <div class="crumb"><a href="/">~/</a> <a href="/services">services</a> / social media marketing</div>
 <span class="eyebrow">Social Media Marketing</span>
@@ -220,16 +223,17 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <p>I run social for my own brands and e-commerce stores, so I know what converts versus what just looks busy. It plugs straight into the rest of your funnel — <a href="/internet-marketing" class="ilink">internet marketing</a> and <a href="/brand-creation" class="ilink">brand creation</a> — instead of running as a disconnected feed.</p>
 <div class="faq-sec">
 <h2>Frequently asked questions</h2>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Which platforms do you cover?<span class="faq-ico"></span></button><div class="faq-a"><p>The ones your buyers use — Instagram, TikTok, Facebook, LinkedIn, YouTube, Pinterest — chosen by fit, not by chasing every network at once.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do you create content or just advise?<span class="faq-ico"></span></button><div class="faq-a"><p>Both. I set the strategy and can drive the content and campaigns, so you're not handed a plan with no one to execute it.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do you run paid social ads?<span class="faq-ico"></span></button><div class="faq-a"><p>Yes. Organic builds the brand; paid scales what's already working. I run them together and measure against sales.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does social media actually drive sales?<span class="faq-ico"></span></button><div class="faq-a"><p>When it's tied to the funnel, yes — especially for e-commerce, fashion, food, and local. Random posting doesn't; strategy plus consistency plus paid does.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does this work for e-commerce, local, and B2B?<span class="faq-ico"></span></button><div class="faq-a"><p>Yes, with different playbooks. E-commerce leans discovery and UGC, local leans presence and reviews, B2B leans authority — I tailor to the model.</p></div></div>
-<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How much does it cost?<span class="faq-ico"></span></button><div class="faq-a"><p>Hourly, roughly $350–$450 depending on the work, with custom builds quoted per project. See the pricing page.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Which platforms do you cover?<span class="faq-ico"></span></button><div class="faq-a"><p>The ones your buyers use — Instagram, TikTok, Facebook, LinkedIn, YouTube, Pinterest — chosen by fit, not by chasing every network at once.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Do you create content or just advise?<span class="faq-ico"></span></button><div class="faq-a"><p>Both. I set the strategy and can drive the content and campaigns, so you're not handed a plan with no one to execute it.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Do you run paid social ads?<span class="faq-ico"></span></button><div class="faq-a"><p>Yes. Organic builds the brand; paid scales what's already working. I run them together and measure against sales.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Does social media actually drive sales?<span class="faq-ico"></span></button><div class="faq-a"><p>When it's tied to the funnel, yes — especially for e-commerce, fashion, food, and local. Random posting doesn't; strategy plus consistency plus paid does.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">Does this work for e-commerce, local, and B2B?<span class="faq-ico"></span></button><div class="faq-a"><p>Yes, with different playbooks. E-commerce leans discovery and UGC, local leans presence and reviews, B2B leans authority — I tailor to the model.</p></div></div>
+<div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="const o=this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',o)">How much does it cost?<span class="faq-ico"></span></button><div class="faq-a"><p>Hourly, roughly $350–$450 depending on the work, with custom builds quoted per project. See the pricing page.</p></div></div>
 </div>
 <div class="cta-band"><h2>See how your brand shows up</h2><p>Run a free AI Authority Scan — see how visible and consistent your brand is across the web and AI.</p><a href="/website-audit">Get your free scan →</a></div>
 </div>
-</article><section class="related"><div class="wrap-wide"><h2>Keep reading</h2><div class="related-grid"><a href="/internet-marketing" class="rcard"><h3>Internet Marketing</h3><p>The full funnel, one operator.</p></a><a href="/brand-creation" class="rcard"><h3>Brand Creation</h3><p>A brand buyers remember.</p></a><a href="/ai-for-ecommerce" class="rcard"><h3>AI for E-commerce</h3><p>Get your store recommended by AI.</p></a></div></div></section><footer class="footer"><div class="wrap-wide"><p>© 2026 Siamak Kalhor · Make your brand the answer AI gives · <a href="/">siamakconsulting.com</a></p></div></footer>
+</article><section class="related"><div class="wrap-wide"><h2>Keep reading</h2><div class="related-grid"><a href="/internet-marketing" class="rcard"><h3>Internet Marketing</h3><p>The full funnel, one operator.</p></a><a href="/brand-creation" class="rcard"><h3>Brand Creation</h3><p>A brand buyers remember.</p></a><a href="/ai-for-ecommerce" class="rcard"><h3>AI for E-commerce</h3><p>Get your store recommended by AI.</p></a></div></div></section></main>
+<footer class="footer"><div class="wrap-wide"><p>© 2026 Siamak Kalhor · Make your brand the answer AI gives · <a href="/">siamakconsulting.com</a></p></div></footer>
   <script src="/share.js" defer></script>
 <script id="canonical-nav-js">
 (function(){
