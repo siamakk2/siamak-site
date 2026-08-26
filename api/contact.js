@@ -1,3 +1,4 @@
+const { guard } = require('./_guard');
 // Contact form handler for siamakconsulting.com — forwards enquiries to
 // info@siamakconsulting.com via Resend.
 //
@@ -20,11 +21,7 @@
 // just because an API was down.
 
 module.exports = async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST') return res.status(405).json({ ok: false, error: 'Method not allowed' });
+  if (!(await guard(req, res, { bucket: 'contact', limit: 10, window: 3600 }))) return;
 
   const TO = process.env.CONTACT_TO_EMAIL || 'info@siamakconsulting.com';
 

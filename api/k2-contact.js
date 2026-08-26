@@ -1,12 +1,9 @@
+const { guard } = require('./_guard');
 // K2 Investment contact form — forwards enquiries to bk@k2investments.com
 // Sends via Resend if RESEND_API_KEY is set; otherwise returns a graceful
 // fallback so the front end can open the visitor's mail client instead.
 module.exports = async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST') return res.status(405).json({ ok: false, error: 'Method not allowed' });
+  if (!(await guard(req, res, { bucket: 'k2', limit: 10, window: 3600 }))) return;
 
   // Destination. Override with K2_TO_EMAIL in Vercel while Resend is unverified
   // (an unverified Resend account can only deliver to its own signup address).

@@ -1,13 +1,10 @@
+const { guard } = require('./_guard');
 // Leads API — saves audit leads (name, email, business URL) to Upstash,
 // then emails the lead their AI Visibility Report, branded
 // Siamak Kalhor Consulting (sent via Resend, same service as k2-contact).
 // Email failures never block the lead save.
 module.exports = async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  if (req.method === 'OPTIONS') { return res.status(200).end(); }
-  if (req.method !== 'POST') { return res.status(405).json({ error: 'Method not allowed' }); }
+  if (!(await guard(req, res, { bucket: 'leads', limit: 20, window: 3600 }))) return;
 
   try {
     const REDIS_URL = process.env.UPSTASH_REDIS_REST_URL;
