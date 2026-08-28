@@ -2,6 +2,15 @@ const { guard } = require('./_guard');
 // K2 Investment contact form — forwards enquiries to bk@k2investments.com
 // Sends via Resend if RESEND_API_KEY is set; otherwise returns a graceful
 // fallback so the front end can open the visitor's mail client instead.
+// Resend keys pasted from a browser sometimes arrive with newlines or extra
+// text attached, which makes fetch() throw 'invalid header value' before the
+// request is ever sent. Extract the first well-formed key and ignore the rest.
+function resendKey() {
+  const raw = process.env.RESEND_API_KEY || '';
+  const m = String(raw).match(/re_[A-Za-z0-9_-]{10,}/);
+  return m ? m[0] : '';
+}
+
 module.exports = async function handler(req, res) {
   if (!(await guard(req, res, { bucket: 'k2', limit: 10, window: 3600 }))) return;
 
@@ -49,7 +58,7 @@ module.exports = async function handler(req, res) {
       '</table><hr style="border:none;border-top:1px solid #ddd;margin:18px 0">' +
       '<p style="font-family:Arial,sans-serif;font-size:14px;line-height:1.7;white-space:pre-wrap">' + esc(message) + '</p>';
 
-    const key = process.env.RESEND_API_KEY;
+    const key = resendKey();
     if (!key) {
       // Not configured yet — tell the front end to fall back to the mail client.
       return res.status(200).json({

@@ -3,6 +3,15 @@ const { guard } = require('./_guard');
 // then emails the lead their AI Visibility Report, branded
 // Siamak Kalhor Consulting (sent via Resend, same service as k2-contact).
 // Email failures never block the lead save.
+// Resend keys pasted from a browser sometimes arrive with newlines or extra
+// text attached, which makes fetch() throw 'invalid header value' before the
+// request is ever sent. Extract the first well-formed key and ignore the rest.
+function resendKey() {
+  const raw = process.env.RESEND_API_KEY || '';
+  const m = String(raw).match(/re_[A-Za-z0-9_-]{10,}/);
+  return m ? m[0] : '';
+}
+
 module.exports = async function handler(req, res) {
   if (!(await guard(req, res, { bucket: 'leads', limit: 20, window: 3600 }))) return;
 
@@ -52,9 +61,11 @@ module.exports = async function handler(req, res) {
     // --- 2) Email the report to the lead (Siamak Kalhor Consulting branding) ---
     let emailed = false;
     let emailReason = null;
-    const key = process.env.RESEND_API_KEY;
+    const key = resendKey();
     const report = body.report;
-    if (!key) emailReason = 'missing_RESEND_API_KEY';
+    if (!key) emailReason = (process.env.RESEND_API_KEY || '').trim()
+      ? 'malformed_RESEND_API_KEY (contains newlines or extra text — re-paste the key alone)'
+      : 'missing_RESEND_API_KEY';
     else if (!report || typeof report !== 'object') emailReason = 'no_report_in_payload';
     if (key && report && typeof report === 'object') {
       try {

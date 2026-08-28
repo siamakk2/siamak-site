@@ -20,6 +20,15 @@ const { guard } = require('./_guard');
 // body carrying the mailto fallback so a real person's enquiry is never lost
 // just because an API was down.
 
+// Resend keys pasted from a browser sometimes arrive with newlines or extra
+// text attached, which makes fetch() throw 'invalid header value' before the
+// request is ever sent. Extract the first well-formed key and ignore the rest.
+function resendKey() {
+  const raw = process.env.RESEND_API_KEY || '';
+  const m = String(raw).match(/re_[A-Za-z0-9_-]{10,}/);
+  return m ? m[0] : '';
+}
+
 module.exports = async function handler(req, res) {
   if (!(await guard(req, res, { bucket: 'contact', limit: 10, window: 3600 }))) return;
 
@@ -92,7 +101,7 @@ module.exports = async function handler(req, res) {
       'mailto:' + TO + '?subject=' + encodeURIComponent(subject) +
       '&body=' + encodeURIComponent(text);
 
-    const key = process.env.RESEND_API_KEY;
+    const key = resendKey();
     if (!key) {
       return res.status(200).json({
         ok: false, fallback: true,
