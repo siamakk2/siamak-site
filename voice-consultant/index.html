@@ -190,6 +190,7 @@ section.hero{padding-bottom:190px !important}
 @media(max-width:600px){.type-block button{margin-left:0 !important;width:100%;max-width:480px}}
 </style>
 <link rel="stylesheet" href="/type.css">
+<!--type-scaled-->
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -249,7 +250,7 @@ section.hero{padding-bottom:190px !important}
       <a href="/about-us">About</a>
       <a href="/contact-us">Contact</a>
       <div class="nav-item has-dd">
-        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false" style="font-family:var(--mono);font-size:12px;">&#127760; <span class="dd-caret">&#9662;</span></button>
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false" style="font-family:var(--mono);font-size:13px;">&#127760; <span class="dd-caret">&#9662;</span></button>
         <div class="dd-menu">
           <a href="/">English</a>
           <a href="/es">Espa&ntilde;ol</a>
@@ -303,15 +304,15 @@ section.hero{padding-bottom:190px !important}
         style="background:linear-gradient(135deg,#2dd4ff,#a06bff);border:none;border-radius:50%;width:80px;height:80px;font-size:32px;cursor:pointer;box-shadow:0 8px 32px rgba(45,212,255,.35);transition:all .2s;display:inline-flex;align-items:center;justify-content:center;">
         🎙️
       </button>
-      <div id="mic-status" style="margin-top:16px;font-family:var(--mono);font-size:13px;color:var(--muted);">Tap the mic and speak your question</div>
-      <div id="mic-transcript" style="margin-top:12px;font-size:14px;color:var(--text);min-height:20px;"></div>
-      <div id="ai-response" style="margin-top:20px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:20px;text-align:left;font-size:14px;line-height:1.75;color:var(--text);display:none;max-width:640px;margin-left:auto;margin-right:auto;"></div>
+      <div id="mic-status" style="margin-top:16px;font-family:var(--mono);font-size:15.5px;color:var(--muted);">Tap the mic and speak your question</div>
+      <div id="mic-transcript" style="margin-top:12px;font-size:16.5px;color:var(--text);min-height:20px;"></div>
+      <div id="ai-response" style="margin-top:20px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:20px;text-align:left;font-size:16.5px;line-height:1.75;color:var(--text);display:none;max-width:640px;margin-left:auto;margin-right:auto;"></div>
       <div class="type-block" style="margin-top:26px;"><div class="type-or"><span>or type your question</span></div>
         <input id="text-inp" type="text" placeholder="Or type your question here..."
-          style="background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:12px 16px;color:var(--text);font-family:var(--body);font-size:14px;width:100%;max-width:480px;outline:none;"
+          style="background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:12px 16px;color:var(--text);font-family:var(--body);font-size:16.5px;width:100%;max-width:480px;outline:none;"
           onkeydown="if(event.key==='Enter')askText(this.value)"/>
         <button onclick="askText(document.getElementById('text-inp').value)"
-          style="margin-left:8px;background:var(--glow);border:none;border-radius:8px;padding:12px 20px;font-family:var(--mono);font-size:13px;font-weight:600;color:#04060a;cursor:pointer;">Ask</button>
+          style="margin-left:8px;background:var(--glow);border:none;border-radius:8px;padding:12px 20px;font-family:var(--mono);font-size:15.5px;font-weight:600;color:#04060a;cursor:pointer;">Ask</button>
       </div>
     </div>
   </div>

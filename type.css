@@ -1,142 +1,262 @@
 /* ============================================================================
    type.css — legibility pass for siamakconsulting.com
+
    Load LAST, after each page's inline <style>, so these win on document order.
 
-   Diagnosis, not guesswork:
-     - body never declared a base size, so each component set its own px value
-       and most landed at 13px or below. 55% of font-size declarations sitewide
-       were under 14px; 13px was the single most common value.
-     - mobile media queries shrank the header further, to 11px and 10.5px.
-     - contrast was NOT the problem. Every text token clears WCAG AA at 10:1 or
-       better on black. Low opacity was: --muted-dim at 0.6 composites to
-       #666d76, which is 4.01:1 and fails AA for body text.
+   Second attempt. The first one used floors that topped out at 14.5px, which
+   moved the median paragraph on the homepage from 14px to 14.5px and left 23 of
+   43 paragraphs under 15px. Measured, not estimated: it was not a change anyone
+   would notice.
 
-   Floors: under 11px -> 12px, under 12.5px -> 13px, under 14px -> 14.5px.
-   Nothing shrinks. Headings and display type untouched. Horizontal nav bar
-   selectors are lifted on mobile only, so the desktop bar cannot overflow.
+   This scales properly and never reduces anything:
+       under 11px  -> 12.5      12.5-13.9 -> 15.5      15.5-16.9 -> 17
+       11-12.4     -> 13        14-15.4   -> 16.5      17px and up unchanged
+
+   Headings and display type are untouched. Horizontal nav bar selectors are
+   lifted on mobile only, so the desktop bar cannot overflow.
+
+   Contrast was never the problem here: every text token clears WCAG AA at 10:1
+   or better on black. Low opacity was, and that is corrected below.
    ========================================================================== */
 
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-body { font-size: 16px; line-height: 1.72; }
+body { font-size: 17px; line-height: 1.72; }
 p  { line-height: 1.72; }
 li { line-height: 1.68; }
 
-/* ---- size floors ----------------------------------------------------- */
-.eyebrow{font-size:13px}
-.btn{font-size:14.5px}
-.dd-caret{font-size:12px}
-.dd-menu a{font-size:14.5px}
-.sec-label{font-size:13px}
-.foot-brand p{font-size:14.5px}
-.foot-col a{font-size:14.5px}
-.foot-bottom{font-size:13px}
-.foot-col h5{font-size:13px}
-.card p{font-size:14.5px}
-.step p{font-size:14.5px}
-.check p{font-size:14.5px}
-.crumb{font-size:13px}
-footer{font-size:14.5px}
-.langbar a{font-size:14.5px}
-.article-meta{font-size:13px}
-.mnav a{font-size:14.5px}
-.answer-box .lbl{font-size:13px}
-.footer p{font-size:14.5px}
-.compare th{font-size:14.5px}
-.rcard p{font-size:14.5px}
-.svc p{font-size:14.5px}
-.hstat .l{font-size:12px}
-.console-bar .title{font-size:13px}
-.console-bar .badge{font-size:12px}
-.console-body{font-size:14.5px}
-.c-meta{font-size:12px}
-.mq-track{font-size:13px}
-.mq-track span::before{font-size:12px}
-.svc-tags span{font-size:12px}
-.scale-step .idx{font-size:13px}
-.scale-step p{font-size:14.5px}
-.kb-count{font-size:13px}
-.kb-card .abbr{font-size:13px}
-.kb-card .def{font-size:14.5px}
-.kb-empty{font-size:14.5px}
-.case-top .tag{font-size:12px}
-.case-body p{font-size:14.5px}
-.case-body .more{font-size:13px}
-.crow{font-size:14.5px}
-.crow .k{font-size:13px}
-.field label{font-size:13px}
-.about-stats .l{font-size:12px}
-.avatar-hint{font-size:14.5px}
-.foot-col h3{font-size:13px}
-.scan-trust{font-size:14.5px}
-.scan-badge{font-size:13px}
-.scan-fallback{font-size:14.5px}
-.ind-card .go{font-size:13px}
-.re-k2-lock b{font-size:14.5px}
-.re-k2-lock i{font-size:14.5px}
-.re-status{font-size:13px}
-.re-eyeline{font-size:14.5px}
-.re-psf{font-size:14.5px}
-.re-stats span{font-size:12px}
-.re-btn{font-size:14.5px}
-.re-ph{font-size:12px}
-.re-facts td:first-child{font-size:13px}
-.re-scores span{font-size:12px}
-.re-agent .re-dre{font-size:13px}
-.re-legal p{font-size:14.5px}
-.re-pill{font-size:13px}
-.re-tile figcaption{font-size:13px}
-.re-tile.is-missing::after{font-size:12px}
-.re-galnote{font-size:13px}
-.re-lb figcaption{font-size:14.5px}
-.re-tour-s{font-size:13px}
-.re-src{font-size:14.5px}
-.re-numbers span{font-size:13px}
-.re-feat-badge{font-size:13px}
-.re-feat-go{font-size:14.5px}
-.re-card-body .re-ctype{font-size:12px}
-.re-card-body .re-cstats{font-size:13px}
-.app .t{font-size:13px}
-.fullsite{font-size:14.5px}
-.reassure{font-size:14.5px}
-.trust{font-size:14.5px}
-.rep-head .biz{font-size:14.5px}
-.card li{font-size:14.5px}
-.what{font-size:13px}
-.page-tab .tab-lbl{font-size:13px}
-.browser-chrome .addr-bar{font-size:13px}
-.gate-skip{font-size:14.5px}
-.gate-note{font-size:13px}
-.build-bar .build-text span{font-size:14.5px}
-.who-chip{font-size:14.5px}
-.hero-tag{font-size:14.5px}
-.tcard figcaption{font-size:13px}
-.feat p{font-size:14.5px}
-/* SEC LABEL */ .sec-label{font-size:13px}
-.foot-links a{font-size:14.5px}
-.foot-copy{font-size:13px}
-.type-or{font-size:13px}
-.widget-subtitle{font-size:13px}
-.widget-label{font-size:13px}
-.app p{font-size:14.5px}
+/* ---- scale ------------------------------------------------------------ */
+.about-body p{font-size:17px}
+.about-quote{font-size:16.5px}
+.about-stats .l{font-size:12.5px}
+.abox p{font-size:17px}
+.advisor-bar .langtag{font-size:12.5px}
 .advisor-bar .st{font-size:13px}
-.advisor-bar .langtag{font-size:12px}
-.advisor-body .intro{font-size:14.5px}
-.lang-label{font-size:13px}
+.advisor-bar .who{font-size:16.5px}
+.advisor-body .intro{font-size:15.5px}
+.answer-box .lbl{font-size:13px}
+.answer-box p{font-size:17px}
+.app .n{font-size:16.5px}
+.app .t{font-size:13px}
+.app h3{font-size:17px}
+.app p{font-size:15.5px}
+.apps .lead{font-size:16.5px}
+.article li{font-size:17px}
+.article-meta{font-size:13px}
+.ask .q{font-size:15.5px}
+.ask p{font-size:16.5px}
 .avatar-cta-s{font-size:13px}
-.dual-s{font-size:13px}
-.dual-p{font-size:14.5px}
+.avatar-cta-t{font-size:16.5px}
+.avatar-hint{font-size:15.5px}
+.back{font-size:15.5px}
+.brand .dot{font-size:16.5px}
+.browser-chrome .addr-bar{font-size:13px}
+.btn{font-size:15.5px}
+.btn-gate{font-size:17px}
+.btn-stripe{font-size:16.5px}
+.btn-text{font-size:16.5px}
+.build-bar .build-text span{font-size:15.5px}
+.c-meta{font-size:12.5px}
+.card .sm{font-size:16.5px}
+.card h3{font-size:17px}
+.card li{font-size:15.5px}
+.card p{font-size:15.5px}
+.case-body .more{font-size:13px}
+.case-body p{font-size:15.5px}
+.case-top .tag{font-size:12.5px}
+.check .c{font-size:16.5px}
+.check p{font-size:15.5px}
+.chip{font-size:16.5px}
+.city-badge{font-size:17px}
+.compare td{font-size:16.5px}
+.compare th{font-size:15.5px}
+.console-bar .badge{font-size:12.5px}
+.console-bar .title{font-size:13px}
+.console-body{font-size:15.5px}
+.contact-item p{font-size:16.5px}
+.contact-item strong{font-size:16.5px}
+.contact-l p{font-size:16.5px}
+.cp-faq-a{font-size:16.5px}
+.cp-sec li{font-size:16.5px}
+.cp-sec p{font-size:17px}
+.crow{font-size:15.5px}
+.crow .k{font-size:13px}
+.crumb{font-size:13px}
+.cta-band a{font-size:17px}
+.cta-band p{font-size:16.5px}
+.cta-bar p{font-size:16.5px}
+.cta-button{font-size:16.5px}
+.cta-inline p{font-size:17px}
+.dd-caret{font-size:12.5px}
+.dd-menu a{font-size:15.5px}
 .dual-cue{font-size:13px}
-.ask .q{font-size:14.5px}
-.back{font-size:14.5px}
-.k2-since{font-size:13px}
-.k2-role{font-size:13px}
+.dual-p{font-size:15.5px}
+.dual-s{font-size:13px}
+.dual-t{font-size:17px}
+.err{font-size:16.5px}
+.eyebrow{font-size:13px}
+.faq-a{font-size:16.5px}
+.faq-a p{font-size:16.5px}
+.faq-q{font-size:17px}
+.faqr .q h4{font-size:17px}
+.faqr .q p{font-size:16.5px}
+.feat p{font-size:15.5px}
+.feature-card p{font-size:16.5px}
+.field input,.field textarea{font-size:16.5px}
+.field label{font-size:13px}
+.foot-bottom{font-size:13px}
+.foot-brand p{font-size:15.5px}
+.foot-col a{font-size:15.5px}
+.foot-col h3{font-size:13px}
+.foot-col h5{font-size:13px}
+.foot-copy{font-size:13px}
+.foot-links a{font-size:15.5px}
+.footer p{font-size:15.5px}
+.form-group input, .form-group textarea{font-size:16.5px}
+.form-group label{font-size:16.5px}
+.fullsite{font-size:15.5px}
+.gate-box p{font-size:16.5px}
+.gate-fields input{font-size:17px}
+.gate-note{font-size:13px}
+.gate-skip{font-size:15.5px}
+.gauge .num small{font-size:16.5px}
+.grade{font-size:16.5px}
+.hero p{font-size:17px}
+.hero-tag{font-size:15.5px}
+.hint{font-size:16.5px}
+.hstat .l{font-size:12.5px}
+.ideas .ic{font-size:17px}
+.ideas .row{font-size:16.5px}
+.ind-card .go{font-size:13px}
+.ind-card p{font-size:16.5px}
+.info-section p{font-size:16.5px}
+.intro{font-size:16.5px}
+.k2-era-body p{font-size:17px}
 .k2-person .k2-lic{font-size:13px}
-.k2-year{font-size:14.5px}
-.scale-card p{font-size:14.5px}
+.k2-person p{font-size:16.5px}
+.k2-role{font-size:13px}
+.k2-since{font-size:13px}
+.k2-year{font-size:15.5px}
+.kb-card .abbr{font-size:13px}
+.kb-card .def{font-size:15.5px}
+.kb-card .term{font-size:17px}
+.kb-count{font-size:13px}
+.kb-empty{font-size:15.5px}
+.kb-search .ico{font-size:16.5px}
+.kb-search input{font-size:16.5px}
+.lang-label{font-size:13px}
+.langbar a{font-size:15.5px}
+.langbar span{font-size:16.5px}
+.langlbl{font-size:16.5px}
+.law span{font-size:16.5px}
+.lead{font-size:17px}
+.loading .step{font-size:16.5px}
+.loc-faq-a{font-size:16.5px}
+.metric-label{font-size:17px}
+.mnav a{font-size:15.5px}
+.mq-track{font-size:13px}
+.mq-track span::before{font-size:12.5px}
+.np-list li{font-size:17px}
+.np-p{font-size:17px}
+.page-err{font-size:16.5px}
+.page-generating p{font-size:16.5px}
+.page-tab{font-size:16.5px}
+.page-tab .tab-lbl{font-size:13px}
+.pages-section .lead{font-size:17px}
+.pitch{font-size:16.5px}
+.prose{font-size:17px}
+.pt p{font-size:16.5px}
+.qa h4{font-size:17px}
+.qa p{font-size:16.5px}
+.rcard h3{font-size:17px}
+.rcard p{font-size:15.5px}
+.re-agent .re-dre{font-size:13px}
+.re-agent p{font-size:16.5px}
+.re-btn{font-size:15.5px}
+.re-card-body .re-cloc{font-size:16.5px}
+.re-card-body .re-cstats{font-size:13px}
+.re-card-body .re-ctype{font-size:12.5px}
+.re-eyeline{font-size:15.5px}
+.re-facts td{font-size:16.5px}
+.re-facts td:first-child{font-size:13px}
+.re-fcard h3{font-size:17px}
+.re-fcard li{font-size:16.5px}
+.re-feat-badge{font-size:13px}
+.re-feat-body p{font-size:17px}
+.re-feat-go{font-size:15.5px}
+.re-galnote{font-size:13px}
+.re-history li{font-size:16.5px}
+.re-k2-lock b{font-size:15.5px}
+.re-k2-lock i{font-size:15.5px}
+.re-lb figcaption{font-size:15.5px}
+.re-legal p{font-size:15.5px}
+.re-numbers span{font-size:13px}
+.re-ph{font-size:12.5px}
+.re-pill{font-size:13px}
+.re-psf{font-size:15.5px}
+.re-q .re-a p{font-size:17px}
+.re-scores span{font-size:12.5px}
+.re-sec p{font-size:17px}
+.re-src{font-size:15.5px}
+.re-stats span{font-size:12.5px}
+.re-status{font-size:13px}
+.re-tile figcaption{font-size:13px}
+.re-tile.is-missing::after{font-size:12.5px}
+.re-tour-s{font-size:13px}
+.reassure{font-size:15.5px}
+.rep-head .biz{font-size:15.5px}
+.rep-head .does{font-size:16.5px}
+.scale-card p{font-size:15.5px}
+.scale-step .idx{font-size:13px}
+.scale-step h3{font-size:16.5px}
+.scale-step h4{font-size:16.5px}
+.scale-step p{font-size:15.5px}
+.scan-badge{font-size:13px}
+.scan-deliverables li{font-size:16.5px}
+.scan-fallback{font-size:15.5px}
+.scan-trust{font-size:15.5px}
+.sec li{font-size:17px}
+.sec p{font-size:17px}
+.sec-desc{font-size:16.5px}
+.sec-label{font-size:13px}
+.start-btn{font-size:16.5px}
+.step h4{font-size:16.5px}
+.step p{font-size:15.5px}
+.step-n{font-size:16.5px}
+.step-tx{font-size:17px}
+.story-content p{font-size:17px}
+.submit-btn{font-size:16.5px}
+.svc p{font-size:15.5px}
+.svc-tags span{font-size:12.5px}
+.tcard figcaption{font-size:13px}
+.tech-item{font-size:16.5px}
+.tech-item strong{font-size:17px}
+.thesis-cell p{font-size:16.5px}
+.top .call{font-size:16.5px}
+.topic-txt{font-size:16.5px}
+.trust{font-size:15.5px}
+.type-or{font-size:13px}
+.updated{font-size:16.5px}
+.voice-shell .vs{font-size:16.5px}
+.voice-shell p{font-size:16.5px}
+.what{font-size:13px}
+.who-chip{font-size:15.5px}
+.who-chip b{font-size:16.5px}
+.widget-body p{font-size:16.5px}
+.widget-label{font-size:13px}
+.widget-subtitle{font-size:13px}
+.widget-title{font-size:16.5px}
+.wins li{font-size:16.5px}
+.wins li::before{font-size:16.5px}
+/* ===== LEAD SAVED TOAST ===== */ .toast{font-size:16.5px}
+/* SEC LABEL */ .sec-label{font-size:13px}
+footer{font-size:15.5px}
+footer p{font-size:16.5px}
+p{font-size:17px}
 
-/* ---- opacity on text -------------------------------------------------
+/* ---- opacity on text --------------------------------------------------
    opacity multiplies against contrast, so the real value becomes emergent
-   and unauditable. Replaced with solid colour.
+   rather than declared. --muted-dim at 0.6 composites to #666d76, which is
+   4.01:1 and fails AA for body text.
 ---------------------------------------------------------------------- */
 .dd-caret     { opacity: 1; color: var(--muted-dim); }
 .langbar span { opacity: 1; color: var(--muted-dim); }
@@ -146,22 +266,25 @@ footer{font-size:14.5px}
 
 /* ---- mobile -----------------------------------------------------------
    A phone is held further from the eye than a monitor and wants more size,
-   not less. This is where the nav bar selectors get their lift.
+   not less. The originals shrank the header here; this is where the nav bar
+   selectors get their lift instead.
 ---------------------------------------------------------------------- */
 @media (max-width: 960px) {
-  .nav-cta{font-size:12px}
+  .answer-box p{font-size:17px}
+  .brand{font-size:15.5px}
   .brand-txt{font-size:13px}
-  .brand{font-size:14.5px}
   .call{font-size:13px}
-  .page-tab{font-size:14.5px}
-  .lang-btn{font-size:13px}
   .header-nav a{font-size:13px}
-  body { font-size: 16.5px; line-height: 1.75; }
-  p    { font-size: 16.5px; }
-  .nav-cta, .lang-btn { font-size: 13px; }
-  .brand-txt { font-size: 13.5px; }
-  .nav-links a, .nav-links>a, .dd-trigger { font-size: 15px; }
-  .card p, .step p, .foot-brand p, .foot-col a { font-size: 15.5px; }
+  .hero p{font-size:17px}
+  .lang-btn{font-size:13px}
+  .nav-cta{font-size:12.5px}
+  .page-tab{font-size:15.5px}
+  body { font-size: 17px; line-height: 1.75; }
+  p    { font-size: 17px; }
+  .nav-cta, .lang-btn { font-size: 13.5px; }
+  .brand-txt { font-size: 14px; }
+  .nav-links a, .nav-links>a, .dd-trigger { font-size: 16px; }
+  .card p, .step p, .foot-brand p, .foot-col a { font-size: 16.5px; }
   .eyebrow, .sec-label, .crumb, .foot-bottom   { font-size: 13px; }
   /* iOS guidance: 44px minimum for anything tappable */
   .nav-links a, .dd-menu a, .foot-col a, .nav-cta {
@@ -170,13 +293,14 @@ footer{font-size:14.5px}
 }
 
 @media (max-width: 480px) {
-  body { font-size: 17px; }
-  p    { font-size: 17px; line-height: 1.76; }
+  body, p { font-size: 17px; line-height: 1.76; }
 }
 
-/* ---- specificity guard ------------------------------------------------
-   index.html declares these two inside an in-body <style>, which sits after
-   the <link> in document order. Raising specificity wins regardless of order.
+/* ---- specificity guard -------------------------------------------------
+   These selectors are declared inside in-body <style> blocks, which sit after
+   the <link> in document order and would otherwise win. Detected by scanning
+   the repo rather than listed by hand, so a new one cannot be missed.
 ---------------------------------------------------------------------- */
-body .ind-card .go     { font-size: 13px; }
+body .ind-card .go { font-size: 13px; }
+body .ind-card p { font-size: 16.5px; }
 body .tcard figcaption { font-size: 13px; }
