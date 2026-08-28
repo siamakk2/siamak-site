@@ -51,8 +51,11 @@ module.exports = async function handler(req, res) {
 
     // --- 2) Email the report to the lead (Siamak Kalhor Consulting branding) ---
     let emailed = false;
+    let emailReason = null;
     const key = process.env.RESEND_API_KEY;
     const report = body.report;
+    if (!key) emailReason = 'missing_RESEND_API_KEY';
+    else if (!report || typeof report !== 'object') emailReason = 'no_report_in_payload';
     if (key && report && typeof report === 'object') {
       try {
         const esc = s => String(s == null ? '' : s)
@@ -137,6 +140,10 @@ module.exports = async function handler(req, res) {
           'Call/text: (323) 657-7752\n\nSiamak Kalhor Consulting · siamakconsulting.com';
 
         const from = process.env.AUDIT_FROM_EMAIL || 'Siamak Kalhor Consulting <onboarding@resend.dev>';
+        // resend.dev is a sandbox sender: it can only deliver to the address on
+        // the Resend account, so every lead email 403s. Flag it rather than
+        // failing silently.
+        const usingSandbox = /@resend\.dev/i.test(from);
         const to = [String(lead.email).trim()];
         const notify = process.env.AUDIT_NOTIFY_EMAIL; // optional copy to Siamak
 
@@ -154,12 +161,20 @@ module.exports = async function handler(req, res) {
         if (r.ok) { emailed = true; }
         else {
           const detail = await r.text().catch(() => '');
+          let msg = '';
+          try { msg = (JSON.parse(detail) || {}).message || ''; } catch (e) { msg = detail.slice(0, 200); }
+          emailReason = 'resend_' + r.status + (msg ? ': ' + msg.slice(0, 180) : '');
+          if (usingSandbox) {
+            emailReason += ' | AUDIT_FROM_EMAIL is unset, so the sender is the resend.dev sandbox, ' +
+              'which can only deliver to the address on the Resend account. Set AUDIT_FROM_EMAIL to an ' +
+              'address on a domain verified at resend.com/domains.';
+          }
           console.error('Report email failed', r.status, detail.slice(0, 300));
         }
-      } catch (e) { console.error('Report email error:', e && e.message); }
+      } catch (e) { emailReason = 'exception: ' + (e && e.message); console.error('Report email error:', e && e.message); }
     }
 
-    return res.status(200).json({ ok: saved || emailed, saved, emailed });
+    return res.status(200).json({ ok: saved || emailed, saved, emailed, emailReason });
   } catch (err) {
     return res.status(200).json({ ok: false, error: err.message });
   }

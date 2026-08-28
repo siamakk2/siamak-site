@@ -855,7 +855,14 @@
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({ action:'saveLead', lead: lead, report: reportSummary })
-    }).catch(function(){/* silent fail */});
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (d && d.emailed === false) {
+        console.warn('[audit] report email NOT sent —', d.emailReason || 'unknown reason');
+      }
+    })
+    .catch(function(){/* never block the user */});
   }
 
   function showToast(msg){
