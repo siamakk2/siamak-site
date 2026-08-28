@@ -160,6 +160,20 @@ elevenlabs-convai{z-index:2147483000!important;}
     },200);
   }
   function openAdvisor(){
+    // Third-party embed (ElevenLabs): must not load until the visitor has
+    // allowed the AI assistant category. The static-tag gating does not cover
+    // this page, which builds the script tag in JS at click time.
+    var _c = window.SKConsent && window.SKConsent.get();
+    if (window.SKConsent && (!_c || !_c.functional)) {
+      window.addEventListener('sk:consent', function h(e){
+        if (e.detail && e.detail.functional) {
+          window.removeEventListener('sk:consent', h);
+          openAdvisor();
+        }
+      });
+      window.SKConsent.open();
+      return;
+    }
     var orb=document.getElementById('orb'); if(orb) orb.classList.add('active');
     if(!loaded){
       loaded=true;

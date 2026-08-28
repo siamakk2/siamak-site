@@ -1356,6 +1356,20 @@ if(reduce){
 (function(){
   var loaded=false;
   function openAdvisor(){
+    // The advisor is a third-party embed (ElevenLabs), so it must not load until
+    // the visitor has allowed the AI assistant category. Gating the static script
+    // tag was not enough here: this page builds the tag in JS at click time.
+    var _c = window.SKConsent && window.SKConsent.get();
+    if (window.SKConsent && (!_c || !_c.functional)) {
+      window.addEventListener('sk:consent', function h(e){
+        if (e.detail && e.detail.functional) {
+          window.removeEventListener('sk:consent', h);
+          openAdvisor();
+        }
+      });
+      window.SKConsent.open();
+      return;
+    }
     if(!loaded){
       loaded=true;
       var el=document.createElement('elevenlabs-convai');
