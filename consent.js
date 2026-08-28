@@ -109,7 +109,7 @@
   var CSS = [
     '.skc,.skc *{box-sizing:border-box}',
     '.skc{position:fixed;left:0;right:0;bottom:0;z-index:2147483000;',
-      'font-family:var(--body,Inter,system-ui,sans-serif);',
+      'font-family:inherit;',
       'background:var(--panel,#06080c);color:var(--muted,#ccd6e2);',
       'border-top:1px solid var(--line,#36414f);',
       'box-shadow:0 -24px 60px rgba(0,0,0,.6);',
@@ -129,7 +129,7 @@
     '.skc-p a{color:var(--cyan,#2dd4ff);text-decoration:none;border-bottom:1px solid rgba(45,212,255,.35)}',
     '.skc-p a:hover{border-bottom-color:var(--cyan,#2dd4ff)}',
     '.skc-acts{display:flex;gap:10px;align-items:center;flex-wrap:wrap;flex:0 0 auto;padding-top:4px}',
-    '.skc-b{font-family:var(--body,Inter,sans-serif);font-size:13px;font-weight:600;',
+    '.skc-b{font-family:inherit;font-size:13px;font-weight:600;',
       'padding:10px 18px;border-radius:6px;border:1px solid var(--line,#36414f);',
       'background:transparent;color:var(--muted,#ccd6e2);cursor:pointer;',
       'transition:border-color .18s,color .18s,background .18s;white-space:nowrap}',
@@ -164,6 +164,13 @@
     '.skc-sw input:focus-visible+span{outline:2px solid var(--cyan,#2dd4ff);outline-offset:2px}',
     '.skc-panel-foot{grid-column:1/-1;display:flex;gap:10px;justify-content:flex-end;',
       'flex-wrap:wrap;padding-top:4px}',
+    /* RTL (fa). Flex and text direction are inherited from <html dir>, but the
+       switch knob is transform-based and has to be mirrored explicitly. */
+    '[dir="rtl"] .skc-sw input:checked+span::after{transform:translateX(-17px)}',
+    '[dir="rtl"] .skc-panel-foot{justify-content:flex-start}',
+    '[dir="rtl"] .skc-eyebrow{letter-spacing:normal}',
+    '[dir="rtl"] .skc-cat h4{letter-spacing:normal}',
+    '[dir="rtl"] .skc-lock{letter-spacing:normal}',
     '@media(max-width:720px){',
       '.skc-in{padding:16px 18px 18px;gap:16px}',
       '.skc-acts{width:100%}.skc-b{flex:1 1 auto;text-align:center}',
@@ -175,8 +182,9 @@
 
 
   /* ---------- copy ------------------------------------------------------
-     fa and hy fall back to English until reviewed by a native speaker.
-     Add a block here to enable them.
+     en, es, fa, hy. Anything else falls back to English.
+     The banner inherits the page's own font stack (Vazirmatn on /fa,
+     Noto Sans Armenian on /hy), so scripts render in their proper face.
   --------------------------------------------------------------------- */
 
   var STRINGS = {
@@ -211,6 +219,38 @@
       d_functional: 'Carga el asesor de voz y recuerda donde lo dejaste. Desactivado, el asistente no aparecera.',
       c_ads: 'Publicidad',
       d_ads: 'Identificadores de publicidad y remarketing. Hoy nada en este sitio los utiliza.'
+    },
+    fa: {
+      eyebrow: 'داده‌های شما، انتخاب شما',
+      title: 'انتخاب کنید این سایت چه چیزی را اندازه می‌گیرد',
+      body: 'کوکی‌های ضروری سایت را در حال کار نگه می‌دارند. تحلیل آماری و دستیار هوش مصنوعی اختیاری هستند. هر زمان بخواهید می‌توانید این انتخاب را از پایین صفحه تغییر دهید. جزئیات در {a}سیاست حریم خصوصی{/a} (به زبان انگلیسی).',
+      customize: 'تنظیم دلخواه', hide: 'بستن گزینه‌ها',
+      reject: 'رد موارد اختیاری', accept: 'پذیرش همه', save: 'ذخیرهٔ انتخاب‌ها',
+      always: 'همیشه', link: 'تنظیمات کوکی',
+      c_essential: 'ضروری',
+      d_essential: 'امنیت، توزیع بار و جلوگیری از سوءاستفاده. برای کارکرد سایت لازم‌اند و به همین دلیل قابل خاموش‌کردن نیستند.',
+      c_analytics: 'تحلیل آماری',
+      d_analytics: 'گوگل آنالیتیکس ثبت می‌کند چه صفحه‌هایی را دیده‌اید، تقریباً کجا هستید، با چه دستگاهی و از چه راهی وارد شده‌اید.',
+      c_functional: 'دستیار هوش مصنوعی',
+      d_functional: 'مشاور صوتی را بارگذاری می‌کند و جای شما را در گفت‌وگو به یاد می‌سپارد. اگر خاموش باشد، دستیار نمایش داده نمی‌شود.',
+      c_ads: 'تبلیغات',
+      d_ads: 'شناسه‌های تبلیغاتی و بازاریابی مجدد. در حال حاضر هیچ بخشی از این سایت از آن‌ها استفاده نمی‌کند.'
+    },
+    hy: {
+      eyebrow: 'Ձեր տվյալները, ձեր ընտրությունը',
+      title: 'Ընտրեք, թե ինչ է չափում այս կայքը',
+      body: 'Անհրաժեշտ քուքիներն ապահովում են կայքի աշխատանքը։ Վերլուծությունը և արհեստական բանականության օգնականը կամընտիր են։ Կարող եք ցանկացած պահի փոխել ընտրությունը էջի ստորոտից։ Մանրամասները՝ {a}գաղտնիության քաղաքականության{/a} մեջ (անգլերեն)։',
+      customize: 'Կարգավորել', hide: 'Փակել ընտրանքները',
+      reject: 'Մերժել կամընտիրները', accept: 'Ընդունել բոլորը', save: 'Պահպանել ընտրությունս',
+      always: 'Միշտ', link: 'Քուքիների կարգավորումներ',
+      c_essential: 'Անհրաժեշտ',
+      d_essential: 'Անվտանգություն, բեռնվածության բաշխում և չարաշահման կանխարգելում։ Անհրաժեշտ են կայքի աշխատանքի համար, ուստի չեն կարող անջատվել։',
+      c_analytics: 'Վերլուծություն',
+      d_analytics: 'Google Analytics-ը գրանցում է, թե որ էջերն եք դիտել, մոտավորապես որտեղ եք գտնվում, ձեր սարքը և ինչպես եք հասել կայք։',
+      c_functional: 'AI օգնական',
+      d_functional: 'Բեռնում է ձայնային խորհրդատուին և հիշում ձեր տեղը զրույցում։ Անջատված վիճակում օգնականը չի հայտնվի։',
+      c_ads: 'Գովազդ',
+      d_ads: 'Գովազդային և վերաշուկայավարման նույնացուցիչներ։ Այս կայքում ներկայում ոչինչ չի օգտագործում դրանք։'
     }
   };
 
