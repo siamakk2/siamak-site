@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<!-- Consent Mode v2 defaults — must load ahead of gtag.js. Keep it directly after the charset meta tag. -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+(function(){var d='denied',g='granted',B={ad_storage:d,ad_user_data:d,ad_personalization:d,functionality_storage:d,personalization_storage:d,security_storage:g,wait_for_update:500},m=function(o){var r={},k;for(k in B)r[k]=B[k];for(k in o)r[k]=o[k];return r};
+gtag('consent','default',m({analytics_storage:g}));
+gtag('consent','default',m({analytics_storage:d,region:'AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE IS LI NO GB CH'.split(' ')}));
+try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.now()-c.ts<15552e6){var a=c.ads?g:d,n=c.analytics?g:d,f=c.functional?g:d;gtag('consent','update',{ad_storage:a,ad_user_data:a,ad_personalization:a,analytics_storage:n,functionality_storage:f,personalization_storage:f,security_storage:g});}}catch(e){}})();</script>
 <!-- Google Analytics GA4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2W5EQQ49S9"></script>
 <script>
@@ -9,7 +16,6 @@
   gtag('js', new Date());
   gtag('config', 'G-2W5EQQ49S9');
 </script>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Voice Consultant — Talk to Siamak's AI by Voice | 20 Languages</title>
@@ -183,6 +189,7 @@ section.hero{padding-bottom:190px !important}
 .type-block > input{margin:0 auto}
 @media(max-width:600px){.type-block button{margin-left:0 !important;width:100%;max-width:480px}}
 </style>
+<link rel="stylesheet" href="/type.css">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -440,7 +447,7 @@ section.hero{padding-bottom:190px !important}
     <div class="foot-bottom">
       <span>© 2026 Siamak Kalhor Consulting · All Rights Reserved</span>
       <span>323-657-7752 · Los Angeles · Worldwide</span>
-     · <a href="/privacy">Privacy</a></div>
+     · <a href="/privacy">Privacy</a> · <a href="#cookie-preferences" data-sk-consent-open>Cookie preferences</a></div>
   </div>
 </footer>
 
@@ -584,7 +591,7 @@ elevenlabs-convai.sk-pulse{
 }
 </style>
 <elevenlabs-convai agent-id="agent_1501ksnmsv1dea1rmb2ed6t8rzwe" disable-banner="true"></elevenlabs-convai>
-<script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+<script type="text/plain" data-consent="functional" data-src="https://unpkg.com/@elevenlabs/convai-widget-embed"></script>
 
 
 <!-- GA4 Event Tracking — Siamak Kalhor Consulting -->
@@ -652,5 +659,6 @@ elevenlabs-convai.sk-pulse{
 </script>
 
   <script src="/share.js" defer></script>
+<script defer src="/consent.js"></script>
 </body>
 </html>

@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<!-- Consent Mode v2 defaults — must load ahead of gtag.js. Keep it directly after the charset meta tag. -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+(function(){var d='denied',g='granted',B={ad_storage:d,ad_user_data:d,ad_personalization:d,functionality_storage:d,personalization_storage:d,security_storage:g,wait_for_update:500},m=function(o){var r={},k;for(k in B)r[k]=B[k];for(k in o)r[k]=o[k];return r};
+gtag('consent','default',m({analytics_storage:g}));
+gtag('consent','default',m({analytics_storage:d,region:'AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE IS LI NO GB CH'.split(' ')}));
+try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.now()-c.ts<15552e6){var a=c.ads?g:d,n=c.analytics?g:d,f=c.functional?g:d;gtag('consent','update',{ad_storage:a,ad_user_data:a,ad_personalization:a,analytics_storage:n,functionality_storage:f,personalization_storage:f,security_storage:g});}}catch(e){}})();</script>
 <!-- Google Analytics GA4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2W5EQQ49S9"></script>
 <script>
@@ -9,7 +16,6 @@
   gtag('js', new Date());
   gtag('config', 'G-2W5EQQ49S9');
 </script>
-  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Siamak Kalhor — AI Marketing Consultant</title>
   <meta name="description" content="Get in touch with Siamak Kalhor Consulting. Schedule a consultation about AI marketing strategy, business growth, or LLMO optimization for your business.">
@@ -195,7 +201,8 @@
 </style>
 <link rel="canonical" href="https://siamakconsulting.com/contact"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://siamakconsulting.com/#website", "url": "https://siamakconsulting.com", "name": "Siamak Kalhor Consulting", "publisher": {"@id": "https://siamakconsulting.com/#person"}}, {"@type": "Person", "@id": "https://siamakconsulting.com/#person", "name": "Siamak Kalhor", "jobTitle": "AI Marketing Consultant & LLMO Strategist", "url": "https://siamakconsulting.com", "sameAs": ["https://www.linkedin.com/in/siamakkalhor/"], "knowsAbout": ["Large Model Optimization", "Generative Engine Optimization", "AI marketing", "Brand authority", "SEO"]}, {"@type": "Organization", "@id": "https://siamakconsulting.com/#org", "name": "Siamak Kalhor Consulting", "url": "https://siamakconsulting.com", "founder": {"@id": "https://siamakconsulting.com/#person"}, "areaServed": "Worldwide"}, {"@type": "WebPage", "@id": "https://siamakconsulting.com/contact#webpage", "url": "https://siamakconsulting.com/contact", "name": "Contact Siamak Kalhor \u2014 AI Marketing Consultant", "isPartOf": {"@id": "https://siamakconsulting.com/#website"}, "about": {"@id": "https://siamakconsulting.com/#person"}, "breadcrumb": {"@id": "https://siamakconsulting.com/contact#breadcrumb"}}, {"@type": "BreadcrumbList", "@id": "https://siamakconsulting.com/contact#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://siamakconsulting.com"}, {"@type": "ListItem", "position": 2, "name": "Contact", "item": "https://siamakconsulting.com/contact"}]}]}</script>
-<link rel="alternate" hreflang="en" href="https://siamakconsulting.com/contact"/><link rel="alternate" hreflang="x-default" href="https://siamakconsulting.com/contact"/></head>
+<link rel="alternate" hreflang="en" href="https://siamakconsulting.com/contact"/><link rel="alternate" hreflang="x-default" href="https://siamakconsulting.com/contact"/><link rel="stylesheet" href="/type.css">
+</head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
   <header>
@@ -303,7 +310,7 @@ elevenlabs-convai{
 }
 </style>
 <elevenlabs-convai agent-id="agent_1501ksnmsv1dea1rmb2ed6t8rzwe" disable-banner="true"></elevenlabs-convai>
-<script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+<script type="text/plain" data-consent="functional" data-src="https://unpkg.com/@elevenlabs/convai-widget-embed"></script>
 
 
 <!-- GA4 Event Tracking — Siamak Kalhor Consulting -->
@@ -371,5 +378,6 @@ elevenlabs-convai{
 </script>
 
   <script src="/share.js" defer></script>
+<script defer src="/consent.js"></script>
 </body>
 </html>

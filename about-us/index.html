@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<!-- Consent Mode v2 defaults — must load ahead of gtag.js. Keep it directly after the charset meta tag. -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+(function(){var d='denied',g='granted',B={ad_storage:d,ad_user_data:d,ad_personalization:d,functionality_storage:d,personalization_storage:d,security_storage:g,wait_for_update:500},m=function(o){var r={},k;for(k in B)r[k]=B[k];for(k in o)r[k]=o[k];return r};
+gtag('consent','default',m({analytics_storage:g}));
+gtag('consent','default',m({analytics_storage:d,region:'AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE IS LI NO GB CH'.split(' ')}));
+try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.now()-c.ts<15552e6){var a=c.ads?g:d,n=c.analytics?g:d,f=c.functional?g:d;gtag('consent','update',{ad_storage:a,ad_user_data:a,ad_personalization:a,analytics_storage:n,functionality_storage:f,personalization_storage:f,security_storage:g});}}catch(e){}})();</script>
 <!-- Google Analytics GA4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2W5EQQ49S9"></script>
 <script>
@@ -9,7 +16,6 @@
   gtag('js', new Date());
   gtag('config', 'G-2W5EQQ49S9');
 </script>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About Siamak Kalhor — AI Marketing Consultant | 40+ Years Experience</title>
 <meta name="description" content="Siamak Kalhor is an AI marketing consultant with 40 years of experience, specializing in Large Model Optimization and engineering brands for visibility in ChatGPT, Gemini, and Claude.">
@@ -145,6 +151,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 @media(max-width:960px){.nav-in{padding:12px 16px;gap:10px}.brand{gap:8px}.brand img{height:24px!important}.brand-txt{font-size:11px}.brand-txt span{display:none}.nav-right{gap:8px}.nav-toggle{flex-shrink:0}.nav-cta{font-size:11px;padding:8px 10px}}
 @media(max-width:400px){.nav-cta{font-size:10.5px;padding:7px 8px;letter-spacing:0}}
 </style>
+<link rel="stylesheet" href="/type.css">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -237,7 +244,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <div class="sec-label">Proof</div>
 <h2 class="sec-h">Builds that compounded</h2>
 
-<div class="grid3"><div class="card"><div class="num">100×</div><h3>Blue Moon Fabrics</h3><p>A single LA Fashion District store engineered into a national textile leader over an 8-year engagement.</p></div><div class="card"><div class="num">235+</div><h3>AisleBird</h3><p>A voice-first shopping app scaled to 235+ stores across 10 metros with AI categorization.</p></div><div class="card"><div class="num">40yr</div><h3>Market Experience</h3><p>Across legal, medical, e-commerce, hospitality, finance, and retail.</p></div></div>
+<div class="grid3"><div class="card"><div class="num">100×</div><h3>Blue Moon Fabrics</h3><p>A single LA Fashion District store engineered into a national textile leader over an 8-year engagement.</p></div><div class="card"><div class="num">235+</div><h3>AisleBird</h3><p>A voice-first shopping app scaled to 235+ stores across 10 metros with AI categorization.</p></div><div class="card"><div class="num">40yr</div><h3>Marketing Experience</h3><p>Across legal, medical, e-commerce, hospitality, finance, and retail.</p></div></div>
 </div></section><section><div class="wrap"><div class="cta-band"><h3>Let's build your authority</h3><p>Book a free 30-minute strategy audit and find out what AI systems should be saying about your brand.</p><div class="cta-row"><a href="/contact-us" class="btn btn-pri">Request the Scan →</a><a href="tel:+13236577752" class="btn btn-ghost">Call 323-657-7752</a></div></div></div></section>
 <section><div class="wrap"><div class="sec-label">Related</div><div class="checks"><div class="check"><span class="c">&rarr;</span><a href="/what-is-llmo">What is LLMO?</a></div></div></div></section>
 </main>
@@ -269,7 +276,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
     <div class="foot-bottom">
       <span>© 2026 Siamak Kalhor Consulting · All Rights Reserved</span>
       <span>323-657-7752 · Los Angeles · Worldwide</span>
-     · <a href="/privacy">Privacy</a></div>
+     · <a href="/privacy">Privacy</a> · <a href="#cookie-preferences" data-sk-consent-open>Cookie preferences</a></div>
   </div>
 </footer>
 <script>
@@ -290,7 +297,7 @@ elevenlabs-convai{
 }
 </style>
 <elevenlabs-convai agent-id="agent_1501ksnmsv1dea1rmb2ed6t8rzwe" disable-banner="true"></elevenlabs-convai>
-<script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+<script type="text/plain" data-consent="functional" data-src="https://unpkg.com/@elevenlabs/convai-widget-embed"></script>
 
 
 <!-- GA4 Event Tracking — Siamak Kalhor Consulting -->
@@ -375,5 +382,6 @@ elevenlabs-convai{
   });
 })();
 </script>
+<script defer src="/consent.js"></script>
 </body>
 </html>
