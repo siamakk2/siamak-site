@@ -1,6 +1,6 @@
 const { guard } = require('./_guard');
 // Contact form handler for siamakconsulting.com — forwards enquiries to
-// info@siamakconsulting.com via Resend.
+// siamakk2@gmail.com via Resend.
 //
 // Replaces the broken formspree.io/f/YOUR_FORM_ID placeholder that both the
 // homepage scan form and /contact were posting to. That placeholder was never
@@ -10,7 +10,7 @@ const { guard } = require('./_guard');
 //
 // Env:
 //   RESEND_API_KEY      required for delivery (already set on this project)
-//   CONTACT_TO_EMAIL    optional override, defaults to info@siamakconsulting.com
+//   CONTACT_TO_EMAIL    optional override, defaults to siamakk2@gmail.com
 //   CONTACT_FROM_EMAIL  optional override. Until siamakconsulting.com is a
 //                       verified sending domain in Resend, this falls back to
 //                       Resend's shared onboarding sender, which has poor
@@ -32,7 +32,7 @@ function resendKey() {
 module.exports = async function handler(req, res) {
   if (!(await guard(req, res, { bucket: 'contact', limit: 10, window: 3600 }))) return;
 
-  const TO = process.env.CONTACT_TO_EMAIL || 'info@siamakconsulting.com';
+  const TO = process.env.CONTACT_TO_EMAIL || 'siamakk2@gmail.com';
 
   try {
     let b = req.body;
