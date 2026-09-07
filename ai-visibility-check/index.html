@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Consent Mode v2 defaults — must load ahead of gtag.js. Keep it directly after the charset meta tag. -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+(function(){var d='denied',g='granted',B={ad_storage:d,ad_user_data:d,ad_personalization:d,functionality_storage:d,personalization_storage:d,security_storage:g,wait_for_update:500},m=function(o){var r={},k;for(k in B)r[k]=B[k];for(k in o)r[k]=o[k];return r};
+gtag('consent','default',m({analytics_storage:g}));
+gtag('consent','default',m({analytics_storage:d,region:'AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE IS LI NO GB CH'.split(' ')}));
+try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.now()-c.ts<15552e6){var a=c.ads?g:d,n=c.analytics?g:d,f=c.functional?g:d;gtag('consent','update',{ad_storage:a,ad_user_data:a,ad_personalization:a,analytics_storage:n,functionality_storage:f,personalization_storage:f,security_storage:g});}}catch(e){}})();</script>
+<!-- Google Analytics GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2W5EQQ49S9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2W5EQQ49S9');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="author" content="Siamak Kalhor">
+<meta property="article:published_time" content="2026-08-19T09:00:00-07:00">
+<meta property="article:modified_time" content="2026-08-19T09:00:00-07:00">
+<meta property="article:author" content="Siamak Kalhor">
+<meta property="article:publisher" content="https://siamakconsulting.com">
+<meta property="article:section" content="The Long View">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--void:#000;--panel:#06080c;--surface:#111826;--surface-2:#19222f;--line:#36414f;--line-bright:#465365;--cyan:#2dd4ff;--violet:#a06bff;--text:#f9fbfe;--muted:#ccd6e2;--muted-dim:#aab6c4;--glow:linear-gradient(135deg,#2dd4ff 0%,#a06bff 100%);--display:'Space Grotesk',sans-serif;--body:'Inter',sans-serif;--mono:'JetBrains Mono',monospace}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--text);font-family:var(--body);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:rgba(45,212,255,.25);color:#fff}
+a{color:inherit}
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(circle at 18% 12%,rgba(45,212,255,.07),transparent 38%),radial-gradient(circle at 82% 78%,rgba(160,107,255,.08),transparent 42%),linear-gradient(rgba(27,33,44,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(27,33,44,.35) 1px,transparent 1px);background-size:100% 100%,100% 100%,54px 54px,54px 54px;mask-image:radial-gradient(ellipse 120% 90% at 50% 0%,#000 40%,transparent 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 28px}
+nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1180px;margin:0 auto;padding:15px 28px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand-mark{width:28px;height:28px;border-radius:7px;background:var(--glow);position:relative;flex-shrink:0}
+.brand-mark::after{content:'';position:absolute;inset:6px;border-radius:3px;background:var(--void)}
+.brand-txt{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.05em}
+.brand-txt span{color:var(--muted)}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-cta{font-family:var(--mono);font-size:12px;padding:9px 15px;border:1px solid var(--line-bright);border-radius:6px;color:var(--text)!important}
+.nav-cta:hover{border-color:var(--cyan);box-shadow:0 0 18px rgba(45,212,255,.15)}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:21px;cursor:pointer}
+.ph{padding:74px 0 30px;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:22px;padding:6px 13px;border:1px solid var(--line-bright);border-radius:100px;background:var(--surface)}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+h1.ph-h{font-family:var(--display);font-size:clamp(34px,5vw,58px);font-weight:700;line-height:1.05;letter-spacing:-.02em;margin-bottom:20px;max-width:880px}
+h1.ph-h .grad{background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.ph-sub{font-size:18px;color:var(--muted);max-width:660px;line-height:1.7}
+.ph-sub strong{color:var(--text);font-weight:600}
+.ph-btns{display:flex;gap:13px;flex-wrap:wrap;margin-top:30px}
+.btn{font-family:var(--mono);font-size:13px;font-weight:500;padding:13px 22px;border-radius:8px;text-decoration:none;cursor:pointer;border:none;transition:all .22s;display:inline-flex;align-items:center;gap:8px}
+.btn-pri{background:var(--glow);color:#04060a;font-weight:600}
+.btn-pri:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(45,212,255,.26)}
+.btn-ghost{background:var(--surface);color:var(--text);border:1px solid var(--line-bright)}
+.btn-ghost:hover{border-color:var(--cyan)}
+section{padding:54px 0;position:relative}
+.sec-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.sec-label::before{content:'';width:26px;height:1px;background:var(--glow)}
+h2.sec-h{font-family:var(--display);font-size:clamp(26px,3.4vw,38px);font-weight:600;letter-spacing:-.015em;line-height:1.14;margin-bottom:16px;max-width:760px}
+h2.sec-h .grad{background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.lead{font-size:16.5px;color:var(--muted);max-width:760px;line-height:1.8;margin-bottom:14px}
+.lead strong{color:var(--text)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:28px;transition:all .25s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--glow);opacity:0;transition:opacity .25s}
+.card:hover{border-color:var(--line-bright);transform:translateY(-3px)}
+.card:hover::before{opacity:1}
+.card .ico{width:40px;height:40px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line-bright);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px}
+.card h3{font-family:var(--display);font-size:17.5px;font-weight:600;margin-bottom:10px}
+.card p{font-size:13.5px;color:var(--muted);line-height:1.7}
+.card .num{font-family:var(--display);font-size:30px;font-weight:600;background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;line-height:1}
+.steps{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.step{background:var(--surface);padding:26px 28px;display:grid;grid-template-columns:60px 1fr;gap:22px;align-items:start;transition:background .2s}
+.step:hover{background:var(--surface-2)}
+.step .l{font-family:var(--display);font-size:38px;font-weight:700;background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.step h4{font-family:var(--display);font-size:17px;font-weight:600;margin-bottom:6px}
+.step p{font-size:14px;color:var(--muted);line-height:1.7}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:8px}
+.check{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.check .c{color:var(--cyan);font-family:var(--mono);font-size:14px;margin-top:1px}
+.check p{font-size:13.5px;color:var(--muted);line-height:1.6}
+.check b{color:var(--text);font-weight:600;display:block;margin-bottom:2px;font-family:var(--display)}
+.cta-band{background:linear-gradient(180deg,var(--surface),var(--panel));border:1px solid var(--line);border-radius:16px;padding:48px;text-align:center;margin-top:10px}
+.cta-band h3{font-family:var(--display);font-size:clamp(24px,3.2vw,34px);font-weight:600;margin-bottom:12px;line-height:1.15}
+.cta-band h3 .grad{background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.cta-band p{color:var(--muted);max-width:540px;margin:0 auto 26px;font-size:15px}
+.cta-row{display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
+.faq{display:flex;flex-direction:column;gap:12px}
+.qa{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:22px 24px}
+.qa h4{font-family:var(--display);font-size:16px;font-weight:600;margin-bottom:8px;color:var(--text)}
+.qa p{font-size:14px;color:var(--muted);line-height:1.7}
+footer{border-top:1px solid var(--line);background:var(--panel);padding:50px 0 36px;margin-top:40px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:36px}
+.foot-brand p{color:var(--muted);font-size:13.5px;max-width:300px;margin-top:14px;line-height:1.7}
+.foot-col h5{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-dim);margin-bottom:15px}
+.foot-col a{display:block;color:var(--muted);text-decoration:none;font-size:13.5px;margin-bottom:10px;transition:color .2s}
+.foot-col a:hover{color:var(--cyan)}
+.foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:11.5px;color:var(--muted-dim)}
+@media(max-width:860px){.grid2,.grid3,.checks,.foot-grid{grid-template-columns:1fr}.nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--void);border-bottom:1px solid var(--line);padding:20px 28px;gap:16px}.nav-links.open{display:flex}.nav-toggle{display:block}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+:focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
+</style>
+<link rel="alternate" hreflang="en" href="https://siamakconsulting.com/analyze-your-brand"/><link rel="alternate" hreflang="x-default" href="https://siamakconsulting.com/analyze-your-brand"/><style id="canonical-nav-css">
+nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1180px;margin:0 auto;padding:15px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
+.brand-txt{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.05em;color:var(--text);white-space:nowrap}
+.brand-txt span{color:var(--muted)}
+.nav-right{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.nav-links{display:flex;gap:22px;align-items:center;flex-wrap:nowrap}
+.nav-links>a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s;white-space:nowrap}
+.nav-links>a:hover,.nav-links>a.active{color:var(--text)}
+.nav-item{position:relative}
+.dd-trigger{background:none;border:none;color:var(--muted);font-family:inherit;font-size:13px;font-weight:500;letter-spacing:.02em;cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:0;transition:color .2s;white-space:nowrap}
+.dd-trigger:hover{color:var(--text)}
+.dd-caret{font-size:9px;opacity:.65;transition:transform .2s}
+.has-dd.open .dd-caret{transform:rotate(180deg)}
+.dd-menu{position:absolute;top:calc(100% + 14px);left:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px;min-width:210px;display:none;flex-direction:column;gap:2px;z-index:200;box-shadow:0 14px 44px rgba(0,0,0,.55)}
+.has-dd::after{content:"";position:absolute;top:100%;left:0;right:0;height:16px}
+.has-dd.open .dd-menu{display:flex}
+.dd-menu a{padding:9px 14px;border-radius:7px;font-size:13px;font-weight:500;color:var(--muted);white-space:nowrap;text-decoration:none;transition:background .15s,color .15s}
+.dd-menu a:hover{background:var(--surface-2);color:var(--text)}
+@media(min-width:961px){.has-dd:hover .dd-menu{display:flex}}
+.nav-cta{font-family:var(--mono);font-size:12px;padding:9px 15px;border:1px solid var(--line-bright);border-radius:6px;color:var(--text)!important;text-decoration:none;white-space:nowrap}
+.nav-cta:hover{border-color:var(--cyan);box-shadow:0 0 18px rgba(45,212,255,.15)}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:21px;cursor:pointer}
+@media(max-width:960px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;background:var(--void);border-bottom:1px solid var(--line);padding:16px 28px 22px;gap:4px;max-height:80vh;overflow-y:auto}
+  .nav-links.open{display:flex}
+  .nav-links>a{padding:10px 0;width:100%}
+  .nav-item,.has-dd{width:100%}
+  .has-dd::after{display:none}
+  .dd-trigger{width:100%;padding:10px 0;justify-content:space-between}
+  .dd-menu{position:static;box-shadow:none;border:none;background:var(--surface);margin:0 0 6px;width:100%}
+  .nav-toggle{display:block}
+}
+
+@media(max-width:960px){.nav-in{padding:12px 16px;gap:10px}.brand{gap:8px}.brand img{height:24px!important}.brand-txt{font-size:11px}.brand-txt span{display:none}.nav-right{gap:8px}.nav-toggle{flex-shrink:0}.nav-cta{font-size:11px;padding:8px 10px}}
+@media(max-width:400px){.nav-cta{font-size:10.5px;padding:7px 8px;letter-spacing:0}}
+</style>
+<link rel="stylesheet" href="/type.css">
+<!--type-scaled-->
+<title>Are You Visible to AI? Free Local AI Visibility Check | Siamak Kalhor</title>
+<meta name="description" content="Find out whether AI assistants recommend your business when customers ask. Free check — see your mention rate and the sources the assistant actually used.">
+<link rel="canonical" href="https://siamakconsulting.com/ai-visibility-check">
+<meta property="og:title" content="Are You Visible to AI? Free Local AI Visibility Check">
+<meta property="og:description" content="When someone asks an AI assistant for a business like yours, do you come up? Find out in under a minute.">
+<meta property="og:url" content="https://siamakconsulting.com/ai-visibility-check">
+
+<style>
+.av-wrap{max-width:820px;margin:0 auto;padding:56px 22px 90px}
+.av-eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin:0 0 14px;display:flex;align-items:center;gap:9px}
+.av-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+.av-wrap h1{font-family:var(--display);font-size:clamp(28px,5vw,42px);line-height:1.14;color:var(--text);margin:0 0 16px;letter-spacing:-.02em}
+.av-lede{font-size:17px;line-height:1.72;color:var(--muted);margin:0 0 34px;max-width:62ch}
+.av-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px 26px}
+.av-field{margin-bottom:18px}
+.av-field label{display:block;font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-dim);margin-bottom:8px}
+.av-field input{width:100%;background:var(--void);border:1px solid var(--line);border-radius:8px;padding:14px 15px;color:var(--text);font-family:var(--body);font-size:17px;min-height:48px}
+.av-field input:focus{outline:2px solid var(--cyan);outline-offset:1px;border-color:var(--cyan)}
+.av-hint{font-size:14px;color:var(--muted-dim);margin:6px 0 0}
+.av-go{width:100%;background:var(--cyan);color:#04121a;border:none;border-radius:8px;padding:16px 24px;font-family:var(--body);font-size:17px;font-weight:700;cursor:pointer;min-height:52px}
+.av-go:hover{background:#5ce0ff}
+.av-go:disabled{opacity:.55;cursor:not-allowed}
+.av-status{margin-top:18px;font-size:16px;color:var(--muted);min-height:24px}
+.av-out{margin-top:34px;display:none}
+.av-score{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:26px;margin-bottom:18px}
+.av-num{font-family:var(--display);font-size:54px;line-height:1;color:var(--cyan)}
+.av-num.bad{color:#f87171}.av-num.mid{color:#fbbf24}.av-num.good{color:#4ade80}
+.av-score p{margin:0;font-size:16.5px;color:var(--muted);max-width:46ch}
+.av-sec{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:24px 26px;margin-bottom:18px}
+.av-sec h2{font-family:var(--display);font-size:20px;color:var(--text);margin:0 0 6px}
+.av-sec p.sub{font-size:15.5px;color:var(--muted-dim);margin:0 0 16px}
+.av-src{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px solid var(--line);font-size:16px}
+.av-src:last-child{border-bottom:0}
+.av-src b{color:var(--text);font-weight:600}
+.av-src span{color:var(--muted-dim);font-family:var(--mono);font-size:14px}
+.av-run{padding:13px 0;border-bottom:1px solid var(--line)}
+.av-run:last-child{border-bottom:0}
+.av-run .q{font-size:16px;color:var(--muted);margin:0 0 5px}
+.av-run .r{font-family:var(--mono);font-size:13.5px;letter-spacing:.06em}
+.av-run .yes{color:#4ade80}.av-run .no{color:#f87171}
+.av-next{border-left:3px solid var(--cyan);padding:4px 0 4px 18px;margin-top:26px}
+.av-next p{font-size:16.5px;line-height:1.7;color:var(--muted);margin:0 0 14px}
+.av-cta{display:inline-flex;font-family:var(--body);font-size:16.5px;font-weight:600;padding:14px 26px;border-radius:8px;background:var(--cyan);color:#04121a;text-decoration:none}
+@media(max-width:720px){.av-wrap{padding:38px 18px 70px}.av-num{font-size:44px}}
+</style>
+</head>
+<body>
+
+<div class="av-wrap">
+  <p class="av-eyebrow">Free check</p>
+  <h1>Does AI recommend your business?</h1>
+  <p class="av-lede">When someone asks ChatGPT or Claude for a business like yours, you either come up or you don't. This asks a live AI assistant six real customer questions and tells you which. It also shows the websites the assistant used to build its answer &mdash; which is usually where the fix is.</p>
+
+  <div class="av-card">
+    <div class="av-field">
+      <label for="av-b">Business name</label>
+      <input id="av-b" type="text" placeholder="Sunland Dental Care" autocomplete="organization">
+    </div>
+    <div class="av-field">
+      <label for="av-c">What it does</label>
+      <input id="av-c" type="text" placeholder="dentist">
+      <p class="av-hint">How a customer would say it &mdash; "dentist", "general contractor", "wine bar".</p>
+    </div>
+    <div class="av-field">
+      <label for="av-t">City</label>
+      <input id="av-t" type="text" placeholder="Sunland, Los Angeles">
+    </div>
+    <div class="av-field">
+      <label for="av-w">Website <span style="text-transform:none;letter-spacing:0">(optional)</span></label>
+      <input id="av-w" type="text" placeholder="sunlanddentalcare.com" autocomplete="url">
+    </div>
+    <button class="av-go" id="av-go" type="button">Run the check</button>
+    <p class="av-status" id="av-status"></p>
+  </div>
+
+  <div class="av-out" id="av-out"></div>
+</div>
+
+<script>
+(function(){
+  var go=document.getElementById('av-go'), st=document.getElementById('av-status'), out=document.getElementById('av-out');
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  go.addEventListener('click', function(){
+    var b=document.getElementById('av-b').value.trim(),
+        c=document.getElementById('av-c').value.trim(),
+        t=document.getElementById('av-t').value.trim(),
+        w=document.getElementById('av-w').value.trim();
+    if(!b||!c||!t){ st.textContent='Please fill in the business name, what it does, and the city.'; return; }
+
+    go.disabled=true; out.style.display='none'; out.innerHTML='';
+    var msgs=['Asking the assistant six customer questions…','Reading which websites it used…','Checking whether you were named…','Almost there — this takes up to a minute…'];
+    var i=0; st.textContent=msgs[0];
+    var tick=setInterval(function(){ i=(i+1)%msgs.length; st.textContent=msgs[i]; }, 9000);
+
+    fetch('/api/local-audit',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({business:b,category:c,city:t,website:w})})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        clearInterval(tick); go.disabled=false; st.textContent='';
+        if(d.error){ st.textContent=d.error; return; }
+        var rate=d.mention_rate||0;
+        var cls = rate===0?'bad':(rate<50?'mid':'good');
+        var verdict = rate===0
+          ? 'You were not named in any of the six answers. Right now, someone asking an assistant for a '+esc(d.category)+' in '+esc(d.city)+' does not hear about you.'
+          : (rate<50
+            ? 'You came up in some answers but not most. You are known to the assistant but not a first choice.'
+            : 'You came up in most answers. You are one of the businesses the assistant reaches for.');
+
+        var html='<div class="av-score"><div class="av-num '+cls+'">'+rate+'%</div><p>'+verdict+'</p></div>';
+
+        var src=d.sources_the_assistant_used||[];
+        html+='<div class="av-sec"><h2>Where the answers came from</h2>'+
+              '<p class="sub">The assistant built its answers from these sites. If you are not listed on them, that is why you are missing.</p>';
+        if(src.length){ src.slice(0,10).forEach(function(s){
+          html+='<div class="av-src"><b>'+esc(s.host)+'</b><span>'+s.references+' reference'+(s.references===1?'':'s')+'</span></div>'; });
+        } else { html+='<p class="sub">No sources were captured on this run.</p>'; }
+        html+='</div>';
+
+        var runs=d.runs||[];
+        html+='<div class="av-sec"><h2>The six questions</h2><p class="sub">Exactly what was asked, and whether you were named.</p>';
+        runs.forEach(function(r){
+          html+='<div class="av-run"><p class="q">'+esc(r.prompt)+'</p>'+
+                '<p class="r '+(r.mentioned?'yes':'no')+'">'+(r.mentioned?'You were named':'Not named')+'</p></div>';
+        });
+        html+='</div>';
+
+        html+='<div class="av-next"><p>Being missing from these answers is fixable, and it is usually not about your website. '+
+              'It is about which sources the assistant trusts, and whether your business appears on them with consistent details.</p>'+
+              '<a class="av-cta" href="/contact-us">Talk it through &mdash; 323-657-7752</a></div>';
+
+        out.innerHTML=html; out.style.display='block';
+        out.scrollIntoView({behavior:'smooth',block:'start'});
+        try{ gtag('event','local_audit_complete',{mention_rate:rate}); }catch(e){}
+      })
+      .catch(function(){
+        clearInterval(tick); go.disabled=false;
+        st.textContent='Something went wrong. Please try again, or call 323-657-7752.';
+      });
+  });
+})();
+</script>
+<script defer src="/consent.js"></script>
+</body>
+</html>
