@@ -37,7 +37,7 @@ ok('handles empty content', F.collectSources([]).length === 0 && F.collectSource
 
 console.log('\n[3] prompts');
 const p = F.buildPrompts('dentist', 'Sunland', '');
-ok('six prompts', p.length === 6);
+ok('three prompts', p.length === 3);
 ok('city interpolated', p.every(x => x.includes('Sunland')));
 ok('no undefined leaks', p.every(x => !x.includes('undefined')));
 ok('neighborhood used when given', F.buildPrompts('dentist','Los Angeles','Silver Lake').some(x => x.includes('Silver Lake')));

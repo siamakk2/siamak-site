@@ -280,6 +280,28 @@ try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.
   .call{font-size:12px;}
 }
 :focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
+
+.local-check{margin-top:34px;border:1px solid #E4EAF2;border-radius:14px;background:#F7F9FC;padding:26px 24px}
+.lc-h{font-size:21px;margin:0 0 8px;color:#0A1628;font-weight:700}
+.lc-p{font-size:16px;line-height:1.7;color:#3D4C5C;margin:0 0 18px;max-width:62ch}
+.lc-form{display:flex;gap:10px;flex-wrap:wrap}
+.lc-form input{flex:1 1 200px;min-width:0;padding:13px 14px;font-size:16.5px;border:1px solid #C6D2E0;border-radius:8px;background:#fff;color:#0A1628;min-height:48px}
+.lc-form input:focus{outline:2px solid #2871DE;outline-offset:1px}
+.lc-form button{flex:0 0 auto;padding:13px 28px;font-size:16.5px;font-weight:700;border:0;border-radius:8px;background:#2871DE;color:#fff;cursor:pointer;min-height:48px}
+.lc-form button:disabled{opacity:.55;cursor:not-allowed}
+.lc-status{font-size:15.5px;color:#3D4C5C;margin:14px 0 0;min-height:22px}
+.lc-out{margin-top:18px;display:none}
+.lc-score{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.lc-num{font-size:42px;font-weight:700;line-height:1}
+.lc-num.bad{color:#C0392B}.lc-num.mid{color:#B7791F}.lc-num.good{color:#1E7E45}
+.lc-score p{margin:0;font-size:16px;color:#3D4C5C;max-width:44ch}
+.lc-sub{font-size:15px;color:#5A6B7D;margin:0 0 10px}
+.lc-row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #E4EAF2;font-size:15.5px}
+.lc-row:last-child{border-bottom:0}
+.lc-row b{color:#0A1628}
+.lc-row span{color:#5A6B7D;font-size:14px}
+.lc-yes{color:#1E7E45;font-weight:600}.lc-no{color:#C0392B;font-weight:600}
+@media(max-width:640px){.lc-form button{width:100%}}
 </style>
 <link rel="alternate" hreflang="en" href="https://siamakconsulting.com/audit"/><link rel="alternate" hreflang="x-default" href="https://siamakconsulting.com/audit"/><script type="application/ld+json">
 {
@@ -388,6 +410,19 @@ try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.
     <div class="ideas">
       <h3>💡 Growth ideas for your business</h3>
       <div id="repIdeas"></div>
+
+    <div class="local-check" id="localCheck">
+      <h3 class="lc-h">Do AI assistants recommend you locally?</h3>
+      <p class="lc-p">The audit above reads your website. This asks a live AI assistant three real customer questions and checks whether your business comes back &mdash; and which sites it used to decide.</p>
+      <div class="lc-form">
+        <input id="lcCat" type="text" placeholder="What you do — e.g. dentist">
+        <input id="lcCity" type="text" placeholder="City — e.g. Sunland, Los Angeles">
+        <button type="button" id="lcGo">Check</button>
+      </div>
+      <p class="lc-status" id="lcStatus"></p>
+      <div class="lc-out" id="lcOut"></div>
+    </div>
+
     </div>
 
     <!-- ===== 4 AI-GENERATED LANDING PAGES ===== -->
@@ -930,6 +965,51 @@ try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.
 <div class="toast" id="toast"></div>
 
   <script src="/share.js" defer></script>
-<script defer src="/consent.js"></script>
+<script defer src="/consent.js">
+  // Local AI visibility — asks an assistant real customer questions rather than
+  // reading the site. Prefills from the audit result so it is two fields, not five.
+  (function(){
+    var go=document.getElementById('lcGo'), st=document.getElementById('lcStatus'), out=document.getElementById('lcOut');
+    if(!go) return;
+    go.addEventListener('click', function(){
+      var cat=document.getElementById('lcCat').value.trim();
+      var city=document.getElementById('lcCity').value.trim();
+      var biz=(REPORT&&(REPORT.business_name||REPORT.host))||'';
+      var site=(REPORT&&REPORT.host)?('https://'+REPORT.host):'';
+      if(!biz){ st.textContent='Run the website audit first.'; return; }
+      if(!cat||!city){ st.textContent='Please fill in what you do and the city.'; return; }
+      go.disabled=true; out.style.display='none'; out.innerHTML='';
+      var msgs=['Asking an assistant three customer questions…','Reading which sites it used…','Almost there…'];
+      var i=0; st.textContent=msgs[0];
+      var tick=setInterval(function(){ i=(i+1)%msgs.length; st.textContent=msgs[i]; }, 8000);
+      fetch('/api/local-audit',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({business:biz,category:cat,city:city,website:site})})
+        .then(function(r){return r.json();})
+        .then(function(d){
+          clearInterval(tick); go.disabled=false; st.textContent='';
+          if(d.error){ st.textContent=d.error; return; }
+          var rate=d.mention_rate||0, cls=rate===0?'bad':(rate<50?'mid':'good');
+          var verdict = rate===0
+            ? 'Not named in any answer. Someone asking an assistant for a '+esc(d.category)+' in '+esc(d.city)+' does not hear about you.'
+            : (rate<50 ? 'Named in some answers but not most.' : 'Named in most answers.');
+          var h='<div class="lc-score"><div class="lc-num '+cls+'">'+rate+'%</div><p>'+verdict+'</p></div>';
+          var src=d.sources_the_assistant_used||[];
+          if(src.length){
+            h+='<p class="lc-sub"><b>Where the answers came from.</b> If you are not on these, that is why.</p>';
+            src.slice(0,8).forEach(function(x){
+              h+='<div class="lc-row"><b>'+esc(x.host)+'</b><span>'+x.references+'&times;</span></div>'; });
+          }
+          h+='<p class="lc-sub" style="margin-top:16px"><b>The questions asked.</b></p>';
+          (d.runs||[]).forEach(function(r){
+            h+='<div class="lc-row"><b style="font-weight:400">'+esc(r.prompt)+'</b>'+
+               '<span class="'+(r.mentioned?'lc-yes':'lc-no')+'">'+(r.mentioned?'Named':'Not named')+'</span></div>'; });
+          out.innerHTML=h; out.style.display='block';
+          try{ gtag('event','local_visibility_check',{mention_rate:rate}); }catch(e){}
+        })
+        .catch(function(){ clearInterval(tick); go.disabled=false;
+          st.textContent='That did not complete. Please try again, or call 323-657-7752.'; });
+    });
+  })();
+</script>
 </body>
 </html>

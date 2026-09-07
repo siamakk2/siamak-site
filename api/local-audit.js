@@ -30,12 +30,13 @@ const MODEL = 'claude-sonnet-4-6';
 function buildPrompts(category, city, neighborhood) {
   const near = neighborhood || city;
   return [
+    // Three, not six. Each is a searched call taking 15-30s; six run
+    // sequentially exceeded Vercel's function limit and the endpoint died with
+    // no error at all. Three run in parallel finish comfortably inside 120s,
+    // and the extra three were mostly re-measuring the same thing.
     'What are the best ' + category + ' in ' + city + '?',
     'Who should I call for ' + category + ' near ' + near + '?',
-    'Recommend a highly rated ' + category + ' in ' + city + '.',
-    'I need ' + category + ' in ' + city + ' — who do you suggest and why?',
-    'Which ' + category + ' in ' + city + ' do people rate most highly?',
-    'Best ' + category + ' near ' + near + ' for someone who wants good service.'
+    'Recommend a highly rated ' + category + ' in ' + city + '.'
   ];
 }
 
@@ -166,25 +167,22 @@ module.exports = async function handler(req, res) {
 
     const prompts = buildPrompts(category, city, neighborhood);
 
-    // Sequential rather than parallel: these are searched calls and firing six
-    // at once is a good way to meet a rate limit on the provider side.
-    const runs = [];
-    for (let i = 0; i < prompts.length; i++) {
-      let data;
+    // In parallel. Three concurrent calls is well within provider limits and
+    // keeps the whole run inside the function timeout.
+    const runs = await Promise.all(prompts.map(async function (prompt) {
       try {
-        data = await askOne(apiKey, prompts[i]);
+        const data = await askOne(apiKey, prompt);
+        const answer = textOf(data.content);
+        return {
+          prompt: prompt,
+          mentioned: mentions(answer, business, website, category),
+          answer: answer,
+          sources: collectSources(data.content)
+        };
       } catch (e) {
-        runs.push({ prompt: prompts[i], error: e.message, mentioned: false, sources: [] });
-        continue;
+        return { prompt: prompt, error: e.message, mentioned: false, sources: [] };
       }
-      const answer = textOf(data.content);
-      runs.push({
-        prompt: prompts[i],
-        mentioned: mentions(answer, business, website, category),
-        answer: answer,
-        sources: collectSources(data.content)
-      });
-    }
+    }));
 
     const usable = runs.filter(function (r) { return !r.error; });
     const hits = usable.filter(function (r) { return r.mentioned; }).length;

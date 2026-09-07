@@ -850,5 +850,10 @@
         }
       ]
     }
-  ]
+  ],
+  "functions": {
+    "api/local-audit.js": {
+      "maxDuration": 120
+    }
+  }
 }
