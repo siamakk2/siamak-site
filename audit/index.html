@@ -966,16 +966,22 @@ try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.
 
   <script src="/share.js" defer></script>
 <script defer src="/consent.js">
+</script>
+<script>
   // Local AI visibility — asks an assistant real customer questions rather than
   // reading the site. Prefills from the audit result so it is two fields, not five.
   (function(){
+    function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
     var go=document.getElementById('lcGo'), st=document.getElementById('lcStatus'), out=document.getElementById('lcOut');
     if(!go) return;
     go.addEventListener('click', function(){
       var cat=document.getElementById('lcCat').value.trim();
       var city=document.getElementById('lcCity').value.trim();
-      var biz=(REPORT&&(REPORT.business_name||REPORT.host))||'';
-      var site=(REPORT&&REPORT.host)?('https://'+REPORT.host):'';
+      var nameEl=document.getElementById('repName');
+      var biz=nameEl?nameEl.textContent.trim():'';
+      if(biz==='—') biz='';
+      var addrEl=document.getElementById('pageAddr');
+      var site=addrEl?('https://'+addrEl.textContent.trim().replace(/^www\./,'')):'';
       if(!biz){ st.textContent='Run the website audit first.'; return; }
       if(!cat||!city){ st.textContent='Please fill in what you do and the city.'; return; }
       go.disabled=true; out.style.display='none'; out.innerHTML='';
