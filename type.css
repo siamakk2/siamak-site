@@ -304,3 +304,17 @@ p{font-size:17px}
 body .ind-card .go { font-size: 13px; }
 body .ind-card p { font-size: 16.5px; }
 body .tcard figcaption { font-size: 13px; }
+
+/* ---- call-to-action legibility ---------------------------------------
+   .btn-pri painted dark text over the --glow gradient. On the violet end
+   that is 5.83:1 — passing, but thin mono letterforms on a saturated
+   gradient read as washed out. Solid accent gives 11.56:1 across the whole
+   button, and the gradient survives as the hover state.
+--------------------------------------------------------------------- */
+.btn-pri {
+  background: var(--cyan, #2dd4ff);
+  color: #04121a;
+  font-weight: 700;
+  letter-spacing: .01em;
+}
+.btn-pri:hover { background: var(--glow); color: #04060a; }
