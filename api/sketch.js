@@ -1,5 +1,5 @@
 // Blue Moon Pattern Maker — couture sketch proxy
-// GEMINI_API_KEY must be set in Vercel environment variables
+// Uses Gemini 2.0 Flash for image generation (GEMINI_API_KEY env var)
 const ALLOWED = [
   'https://bluemoonfabrics.com',
   'https://www.bluemoonfabrics.com',
@@ -24,39 +24,47 @@ module.exports = async function handler(req, res) {
     let body = req.body;
     if (typeof body === 'string') { try { body = JSON.parse(body); } catch(e) { body = {}; } }
     const prompt = ((body && body.prompt) || '').toString().trim();
-    if (!prompt || prompt.length > 2000) return res.status(400).json({ error: 'Invalid prompt' });
+    if (!prompt || prompt.length > 4000) return res.status(400).json({ error: 'Invalid prompt' });
 
-    // Try Imagen 4 preview model, fall back to Imagen 3
-    const models = [
-      'imagen-4.0-generate-preview-06-06',
-      'imagen-4.0-flash-preview-05-20',
-      'imagen-3.0-generate-002',
-      'imagen-3.0-generate-001'
-    ];
+    // Use Gemini 2.0 Flash image generation
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-preview-image-generation:generateContent?key=${key}`;
+    
+    const r = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{
+          parts: [{ text: prompt }]
+        }],
+        generationConfig: {
+          responseModalities: ['TEXT', 'IMAGE']
+        }
+      })
+    });
 
-    let lastErr = '';
-    for (const model of models) {
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:predict?key=${key}`;
-      const r = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          instances: [{ prompt }],
-          parameters: { sampleCount: 1, aspectRatio: '3:4', personGeneration: 'allow_adult' }
-        })
-      });
-      if (r.ok) {
-        const data = await r.json();
-        const b64 = data?.predictions?.[0]?.bytesBase64Encoded;
-        if (b64) return res.status(200).json({ image: 'data:image/png;base64,' + b64 });
-      }
+    if (!r.ok) {
       const txt = await r.text().catch(() => '');
-      lastErr = `${model}: ${r.status} ${txt.slice(0, 200)}`;
-      console.error('Sketch model failed:', lastErr);
+      console.error('Gemini image error:', r.status, txt.slice(0, 300));
+      return res.status(502).json({ error: 'Image generation failed', detail: txt.slice(0, 300) });
     }
-    return res.status(502).json({ error: 'All models failed', detail: lastErr });
+
+    const data = await r.json();
+    
+    // Extract image from response parts
+    const parts = data?.candidates?.[0]?.content?.parts || [];
+    const imagePart = parts.find(p => p.inlineData);
+    
+    if (imagePart?.inlineData?.data) {
+      const mimeType = imagePart.inlineData.mimeType || 'image/png';
+      const imageDataUrl = `data:${mimeType};base64,${imagePart.inlineData.data}`;
+      return res.status(200).json({ image: imageDataUrl });
+    }
+
+    console.error('No image in response:', JSON.stringify(data).slice(0, 300));
+    return res.status(502).json({ error: 'No image in response' });
+
   } catch(e) {
-    console.error('Sketch proxy error:', e);
+    console.error('Proxy error:', e);
     return res.status(500).json({ error: String(e).slice(0, 200) });
   }
 };
