@@ -1,5 +1,6 @@
 // Blue Moon Pattern Maker — couture sketch proxy
-// Uses Gemini 2.0 Flash for image generation (GEMINI_API_KEY env var)
+// Uses Gemini API for image generation
+// Set GEMINI_API_KEY in Vercel environment variables
 const ALLOWED = [
   'https://bluemoonfabrics.com',
   'https://www.bluemoonfabrics.com',
@@ -26,38 +27,40 @@ module.exports = async function handler(req, res) {
     const prompt = ((body && body.prompt) || '').toString().trim();
     if (!prompt || prompt.length > 4000) return res.status(400).json({ error: 'Invalid prompt' });
 
-    // Use Gemini 2.0 Flash image generation
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-preview-image-generation:generateContent?key=${key}`;
+    // Determine auth method based on key format
+    // AQ. keys = OAuth2 Bearer token
+    // AIza keys = API key query param
+    const isOAuth = key.startsWith('AQ.');
     
+    const url = isOAuth
+      ? 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent'
+      : 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=' + key;
+
+    const headers = { 'Content-Type': 'application/json' };
+    if (isOAuth) headers['Authorization'] = 'Bearer ' + key;
+
     const r = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers,
       body: JSON.stringify({
-        contents: [{
-          parts: [{ text: prompt }]
-        }],
-        generationConfig: {
-          responseModalities: ['TEXT', 'IMAGE']
-        }
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { responseModalities: ['TEXT', 'IMAGE'] }
       })
     });
 
     if (!r.ok) {
       const txt = await r.text().catch(() => '');
-      console.error('Gemini image error:', r.status, txt.slice(0, 300));
+      console.error('Gemini error:', r.status, txt.slice(0, 300));
       return res.status(502).json({ error: 'Image generation failed', detail: txt.slice(0, 300) });
     }
 
     const data = await r.json();
-    
-    // Extract image from response parts
     const parts = data?.candidates?.[0]?.content?.parts || [];
     const imagePart = parts.find(p => p.inlineData);
     
     if (imagePart?.inlineData?.data) {
       const mimeType = imagePart.inlineData.mimeType || 'image/png';
-      const imageDataUrl = `data:${mimeType};base64,${imagePart.inlineData.data}`;
-      return res.status(200).json({ image: imageDataUrl });
+      return res.status(200).json({ image: `data:${mimeType};base64,${imagePart.inlineData.data}` });
     }
 
     console.error('No image in response:', JSON.stringify(data).slice(0, 300));
