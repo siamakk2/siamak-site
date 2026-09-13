@@ -1,0 +1,230 @@
+/* ============================================================================
+   editorial.css — article layer for The Long View
+
+   The brief keeps the dark base: the homepage console is the thing the client
+   likes, and it earns the darkness. What changes is everything that made the
+   articles read as machine-made.
+
+   Diagnosis this answers, counted across the site:
+     405 tracked-out uppercase labels
+     354 links with an arrow appended to the text
+     1377 uses of the monospace face for ordinary labels
+     155 meta strings joined with middle dots
+     0 photographs in 23 articles
+     Inter + Space Grotesk — the commonest generated pairing there is
+
+   Decisions:
+
+   TYPE. Body moves to Newsreader, a serif built for screen reading. Serif body
+   on a dark ground is uncommon and reads as written rather than generated. It
+   also lets the measure breathe — 66 characters, not the full column width.
+   Space Grotesk stays for headings so the brand is continuous with the
+   homepage. Two families, clearly distinct, which is the whole budget.
+
+   MARGIN NOTES. The signature element, and the reason this looks like nobody
+   else: an adviser annotates. Short notes sit in the right rail beside the
+   paragraph they answer, set in the author's voice, the way a consultant marks
+   up a document before handing it back. On narrow screens they fold inline as
+   indented asides rather than disappearing.
+
+   CHROME REMOVED. No uppercase eyebrow above the headline, no mono meta line,
+   no arrows appended to link text. Those encode nothing here; they were
+   decoration wearing the costume of structure.
+
+   MOTION. None added. The answer console is the one orchestrated moment on the
+   page and a second effect would compete with it.
+   ========================================================================== */
+
+/* ---- the editorial grid ------------------------------------------------
+   Asymmetric on purpose. A centred single column is the default for every
+   article template on the web; the offset rail is where the notes live and
+   what makes the page recognisable at a glance.
+--------------------------------------------------------------------- */
+@media (min-width: 1080px) {
+  .prose-wrap .wrap {
+    max-width: 1180px;
+  }
+  .prose {
+    display: grid;
+    grid-template-columns: minmax(0, 640px) 300px;
+    column-gap: 60px;
+    align-items: start;
+  }
+  .prose > * {
+    grid-column: 1;
+  }
+  .prose > .mnote {
+    grid-column: 2;
+    margin-top: 6px;
+  }
+}
+
+/* ---- body type --------------------------------------------------------- */
+.prose {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 20px;
+  line-height: 1.62;              /* serif wants more air than sans */
+  color: #d6dee8;
+  letter-spacing: .002em;
+}
+.prose p {
+  font-size: 20px;
+  line-height: 1.62;
+  margin: 0 0 1.35em;
+  max-width: 66ch;
+}
+.prose p + p {
+  margin-top: -.2em;              /* paragraphs read as a run, not as blocks */
+}
+
+/* The opening paragraph carries the piece. Larger, lighter, wider measure. */
+.prose > p:first-of-type {
+  font-size: 23.5px;
+  line-height: 1.55;
+  color: #eef3f9;
+  margin-bottom: 1.5em;
+}
+
+.prose h2 {
+  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-size: 27px;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -.015em;
+  color: var(--text, #f9fbfe);
+  margin: 2.4em 0 .7em;
+  max-width: 24ch;                /* headings break early, like a magazine */
+}
+.prose h2:first-child { margin-top: 0; }
+
+.prose strong { color: #f2f6fb; font-weight: 600; }
+.prose em { font-style: italic; color: #e3eaf3; }
+
+.prose a {
+  color: #d6dee8;
+  text-decoration: underline;
+  text-decoration-color: rgba(45, 212, 255, .5);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.prose a:hover { color: var(--cyan, #2dd4ff); }
+
+/* ---- margin notes ------------------------------------------------------ */
+.mnote {
+  font-family: var(--body, Inter, system-ui, sans-serif);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted-dim, #aab6c4);
+  border-left: 2px solid rgba(45, 212, 255, .5);
+  padding-left: 16px;
+  margin: 0 0 26px;
+}
+.mnote b {
+  display: block;
+  color: var(--text, #f9fbfe);
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+@media (max-width: 1079px) {
+  .mnote {
+    margin: 26px 0 30px;
+    max-width: 60ch;
+    background: rgba(45, 212, 255, .035);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+  }
+}
+
+/* ---- byline with a face ------------------------------------------------
+   The single most humanising asset on the site is a photograph of the person
+   whose forty years of judgement is the product. It appeared in no article.
+--------------------------------------------------------------------- */
+.byline {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 22px;
+}
+.byline img {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--line-bright, #465365);
+  flex: 0 0 auto;
+}
+.byline .who {
+  font-family: var(--body, Inter, sans-serif);
+  font-size: 15.5px;
+  color: var(--text, #f9fbfe);
+  line-height: 1.35;
+}
+.byline .who span {
+  display: block;
+  font-size: 14px;
+  color: var(--muted-dim, #aab6c4);
+}
+
+/* ---- hero -------------------------------------------------------------- */
+.article-hero .article-h {
+  font-size: clamp(34px, 5.2vw, 54px);
+  line-height: 1.06;
+  letter-spacing: -.028em;
+  max-width: 17ch;
+  margin-bottom: 0;
+}
+.article-hero .crumb {
+  font-family: var(--body, Inter, sans-serif);
+  font-size: 15px;
+  letter-spacing: 0;
+  text-transform: none;           /* was a tracked-out uppercase label */
+  color: var(--muted-dim, #aab6c4);
+  margin-bottom: 20px;
+}
+
+/* A photograph under the headline, not a gradient. */
+.hero-figure {
+  margin: 34px 0 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--line, #36414f);
+  position: relative;
+}
+.hero-figure img {
+  display: block;
+  width: 100%;
+  height: clamp(240px, 34vw, 420px);
+  object-fit: cover;
+}
+.hero-figure figcaption {
+  font-family: var(--body, Inter, sans-serif);
+  font-size: 14px;
+  color: var(--muted-dim, #aab6c4);
+  padding: 12px 16px;
+  background: var(--panel, #06080c);
+  border-top: 1px solid var(--line, #36414f);
+  margin: 0;
+}
+
+/* ---- pull quote --------------------------------------------------------
+   Set in the heading face at display size, not in quotation marks. One per
+   article at most; it is the loudest thing on the page after the headline.
+--------------------------------------------------------------------- */
+.pull {
+  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-size: clamp(25px, 3.4vw, 33px);
+  line-height: 1.22;
+  letter-spacing: -.02em;
+  color: var(--text, #f9fbfe);
+  max-width: 18ch;
+  margin: 1.7em 0;
+  padding-left: 22px;
+  border-left: 3px solid var(--cyan, #2dd4ff);
+}
+
+@media (max-width: 720px) {
+  .prose, .prose p { font-size: 18.5px; }
+  .prose > p:first-of-type { font-size: 21px; }
+  .prose h2 { font-size: 24px; max-width: none; }
+}
