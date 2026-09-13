@@ -197,7 +197,19 @@
   height: clamp(240px, 34vw, 420px);
   object-fit: cover;
 }
+/* Bright MLS photography on a near-black page reads as a pasted-in lightbox.
+   The scrim grades the lower edge into the page so the two belong together. */
+.hero-figure::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 55%;
+  background: linear-gradient(180deg, rgba(4, 6, 10, 0) 0%, rgba(4, 6, 10, .55) 100%);
+  pointer-events: none;
+}
 .hero-figure figcaption {
+  position: relative;
+  z-index: 1;
   font-family: var(--body, Inter, sans-serif);
   font-size: 14px;
   color: var(--muted-dim, #aab6c4);
