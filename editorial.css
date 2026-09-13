@@ -45,9 +45,15 @@
     max-width: 1180px;
   }
   .prose {
+    /* The page stylesheet caps .prose at 740px. Inside that, a 300px rail plus
+       a 60px gutter leaves 380px for the text — a ribbon. Release the cap here
+       and let the grid define the width instead. */
+    max-width: none;
+    margin: 0;
     display: grid;
-    grid-template-columns: minmax(0, 640px) 300px;
-    column-gap: 60px;
+    grid-template-columns: minmax(0, 660px) 280px;
+    column-gap: 56px;
+    justify-content: center;
     align-items: start;
   }
   .prose > * {
@@ -57,6 +63,20 @@
     grid-column: 2;
     margin-top: 6px;
   }
+  /* The console earns more room than the measure allows. Spanning both columns
+     stops it reading as a cramped inline box. */
+  .prose > .ansbox {
+    grid-column: 1 / -1;
+    max-width: 996px;
+  }
+  .prose > .console-pair {
+    grid-column: 1 / -1;
+    max-width: 996px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .prose > .console-pair .ansbox { margin: 0; }
 }
 
 /* ---- body type --------------------------------------------------------- */
@@ -239,4 +259,8 @@
   .prose, .prose p { font-size: 18.5px; }
   .prose > p:first-of-type { font-size: 21px; }
   .prose h2 { font-size: 24px; max-width: none; }
+}
+
+@media (max-width: 1079px) {
+  .console-pair { display: grid; gap: 16px; }
 }
