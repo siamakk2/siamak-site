@@ -35,49 +35,15 @@
    page and a second effect would compete with it.
    ========================================================================== */
 
-/* ---- the editorial grid ------------------------------------------------
-   Asymmetric on purpose. A centred single column is the default for every
-   article template on the web; the offset rail is where the notes live and
-   what makes the page recognisable at a glance.
+/* ---- column ------------------------------------------------------------
+   The first version put notes in a permanent right-hand rail. With three or
+   four notes in a long piece the rail is empty for most of the scroll, and a
+   column of black beside the text reads as an unfinished page rather than as
+   a margin. Single centred column instead; the notes become insets that
+   interrupt the text deliberately, which is what an annotation does anyway.
 --------------------------------------------------------------------- */
-@media (min-width: 1080px) {
-  .prose-wrap .wrap {
-    max-width: 1180px;
-  }
-  .prose {
-    /* The page stylesheet caps .prose at 740px. Inside that, a 300px rail plus
-       a 60px gutter leaves 380px for the text — a ribbon. Release the cap here
-       and let the grid define the width instead. */
-    max-width: none;
-    margin: 0;
-    display: grid;
-    grid-template-columns: minmax(0, 660px) 280px;
-    column-gap: 56px;
-    justify-content: center;
-    align-items: start;
-  }
-  .prose > * {
-    grid-column: 1;
-  }
-  .prose > .mnote {
-    grid-column: 2;
-    margin-top: 6px;
-  }
-  /* The console earns more room than the measure allows. Spanning both columns
-     stops it reading as a cramped inline box. */
-  .prose > .ansbox {
-    grid-column: 1 / -1;
-    max-width: 996px;
-  }
-  .prose > .console-pair {
-    grid-column: 1 / -1;
-    max-width: 996px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  .prose > .console-pair .ansbox { margin: 0; }
-}
+.prose-wrap .wrap { max-width: 860px; }
+.prose { max-width: 720px; margin: 0 auto; }
 
 /* ---- body type --------------------------------------------------------- */
 .prose {
@@ -129,31 +95,61 @@
 }
 .prose a:hover { color: var(--cyan, #2dd4ff); }
 
-/* ---- margin notes ------------------------------------------------------ */
+/* ---- annotations ------------------------------------------------------
+   Set against the grain of the body: sans, smaller, tinted panel. They read
+   as the author stopping to say something aside from the argument.
+--------------------------------------------------------------------- */
 .mnote {
   font-family: var(--body, Inter, system-ui, sans-serif);
-  font-size: 15px;
-  line-height: 1.6;
-  color: var(--muted-dim, #aab6c4);
-  border-left: 2px solid rgba(45, 212, 255, .5);
-  padding-left: 16px;
-  margin: 0 0 26px;
+  font-size: 16px;
+  line-height: 1.62;
+  color: var(--muted, #ccd6e2);
+  background: rgba(45, 212, 255, .05);
+  border-left: 3px solid var(--cyan, #2dd4ff);
+  border-radius: 0 10px 10px 0;
+  padding: 18px 22px;
+  margin: 30px 0;
+  max-width: none;
 }
 .mnote b {
   display: block;
-  color: var(--text, #f9fbfe);
-  font-weight: 600;
-  font-size: 14px;
-  margin-bottom: 5px;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 11.5px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--cyan, #2dd4ff);
+  font-weight: 500;
+  margin-bottom: 7px;
 }
-@media (max-width: 1079px) {
-  .mnote {
-    margin: 26px 0 30px;
-    max-width: 60ch;
-    background: rgba(45, 212, 255, .035);
-    padding: 14px 18px;
-    border-radius: 0 8px 8px 0;
-  }
+
+/* ---- figure: a number given room ---------------------------------------
+   Long-form needs somewhere for the eye to rest that is not another
+   paragraph. One statistic, set large, does that and carries meaning.
+--------------------------------------------------------------------- */
+.figure {
+  margin: 38px 0;
+  padding: 26px 0;
+  border-top: 1px solid var(--line, #36414f);
+  border-bottom: 1px solid var(--line, #36414f);
+  display: flex;
+  align-items: baseline;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+.figure .n {
+  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-size: clamp(42px, 7vw, 66px);
+  line-height: .95;
+  letter-spacing: -.035em;
+  color: var(--cyan, #2dd4ff);
+  flex: 0 0 auto;
+}
+.figure .t {
+  font-family: var(--body, Inter, sans-serif);
+  font-size: 16.5px;
+  line-height: 1.55;
+  color: var(--muted-dim, #aab6c4);
+  max-width: 34ch;
 }
 
 /* ---- byline with a face ------------------------------------------------
@@ -264,3 +260,15 @@
 @media (max-width: 1079px) {
   .console-pair { display: grid; gap: 16px; }
 }
+
+/* Consoles break the measure slightly — they are the signature element. */
+.prose > .ansbox, .prose > .console-pair { max-width: none; }
+@media (min-width: 900px) {
+  .prose > .ansbox, .prose > .console-pair {
+    width: calc(100% + 120px);
+    margin-left: -60px;
+  }
+}
+.console-pair { display: grid; gap: 18px; margin: 34px 0; }
+@media (min-width: 900px) { .console-pair { grid-template-columns: 1fr 1fr; } }
+.console-pair .ansbox { margin: 0; }
