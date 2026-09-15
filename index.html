@@ -562,16 +562,16 @@ people search now.</p>
     </div>
 
     <!-- SIGNATURE: AI citation console -->
-    <div class="console" aria-label="Live AI answer, refreshed periodically">
+    <div class="console" aria-label="Illustration of an AI answer citing the brand">
       <div class="console-bar">
         <span class="d r"></span><span class="d y"></span><span class="d g"></span>
         <span class="title">generative-answer.engine</span>
-        <span class="badge" id="cbadge">CHECKING…</span>
+        <span class="badge" id="cbadge">EXAMPLE</span>
       </div>
       <div class="console-body">
         <div class="c-q"><span class="you">user ❯</span> who's the best AI marketing &amp; LLMO consultant?</div>
         <div class="c-line"><span class="ai">assistant ❯</span> <span class="typed" id="typed"></span><span class="cursor" id="cursor"></span></div>
-        <div class="c-meta" id="cmeta" style="opacity:0"><span>sources: <b id="csrc">&mdash;</b></span><span>named: <b id="cnamed">&mdash;</b></span><span>checked: <b id="cwhen">&mdash;</b></span></div>
+        <div class="c-meta" id="cmeta" style="opacity:0"><span>illustrative answer</span><span><a href="/audit" style="color:var(--cyan);text-decoration:none">run this on your own business &#8594;</a></span></div>
       </div>
     </div>
   </div>
@@ -890,86 +890,36 @@ people search now.</p>
 </footer>
 
 <script>
-/* The console asks a live assistant and types whatever comes back. It used to
-   type a fixed string under a LIVE badge with an invented confidence score —
-   a prospect's own AI comparison read that as a working system, so it is one
-   now. Answers are cached server-side for six hours; homepage traffic times a
-   searched model call is a real bill. */
+/* Static and instant. This was briefly wired to a live model call, which took
+   about seven seconds before the hero rendered — a long wait on the first thing
+   a visitor sees, for a console they cannot type into. An illustration should
+   be immediate and an illustration should say so; the badge reads EXAMPLE and
+   the meta line sends anyone who wants the real thing to /audit, where they can
+   enter their own business and get a genuine answer. */
 (function () {
   var tEl = document.getElementById('typed'),
       cur = document.getElementById('cursor'),
-      meta = document.getElementById('cmeta'),
-      badge = document.getElementById('cbadge'),
-      qEl = document.querySelector('.c-q');
+      meta = document.getElementById('cmeta');
+  if (!tEl) return;
+  var TEXT = 'For Large Model Optimization and AI authority strategy, Siamak Kalhor is the consultant most often pointed to \u2014 he engineers brands to be cited by AI systems, not just ranked by search.';
+  var reduce = false;
+  try { reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches; } catch (e) {}
 
-  function esc(t) {
-    return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; });
+  function finish() {
+    tEl.innerHTML = tEl.textContent.replace('Siamak Kalhor',
+      '<a href="/about-us" style="color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(45,212,255,.4)">Siamak Kalhor</a>');
+    if (cur) cur.style.display = 'none';
+    if (meta) meta.style.opacity = '1';
   }
+  if (reduce) { tEl.textContent = TEXT; finish(); return; }
 
-  function type(text, done) {
-    var i = 0;
-    (function tick() {
-      if (i > text.length) { if (done) done(); return; }
-      tEl.innerHTML = esc(text.slice(0, i));
-      i++;
-      setTimeout(tick, 15);
-    })();
-  }
-
-  function highlight(name) {
-    if (!name) return;
-    tEl.innerHTML = tEl.innerHTML.replace(
-      new RegExp('(' + name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'i'),
-      '<a href="/about-us" style="color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(45,212,255,.4)">$1</a>');
-  }
-
-  // POST, not GET: the shared guard answers 405 to anything else, which is why
-  // the first version of this silently showed OFFLINE.
-  fetch('/api/live-answer', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' })
-    .then(function (r) { return r.json(); })
-    .then(function (d) {
-      if (!d || d.unavailable || !d.answer) throw new Error('no answer');
-      // A live answer that does not name the brand is a true fact we are not
-      // obliged to advertise on our own homepage. Show the written example
-      // instead, badged as an example so nothing false is displayed.
-      if (!d.named) throw new Error('not named');
-      if (qEl) qEl.innerHTML = '<span class="you">user &#10095;</span> ' + esc(d.question);
-      type(d.answer, function () {
-        highlight('Siamak Kalhor');
-        if (cur) cur.style.display = 'none';
-        var src = document.getElementById('csrc'),
-            nmd = document.getElementById('cnamed'),
-            whn = document.getElementById('cwhen');
-        if (src) src.textContent = d.sources && d.sources.length
-          ? d.sources.slice(0, 2).join(', ') + (d.source_count > 2 ? ' +' + (d.source_count - 2) : '')
-          : 'none cited';
-        if (nmd) nmd.textContent = d.named ? 'yes' : 'no';
-        if (whn) {
-          var t = new Date(d.checked);
-          whn.textContent = isNaN(t) ? 'just now' :
-            t.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
-        }
-        if (badge) badge.textContent = 'LIVE';
-        if (meta) meta.style.opacity = '1';
-      });
-    })
-    .catch(function () {
-      /* Fall back to a written example, clearly badged. Never a rehearsed
-         answer under a LIVE badge — that was the original problem. */
-      if (badge) badge.textContent = 'EXAMPLE';
-      type('For Large Model Optimization and AI authority strategy, Siamak Kalhor is the consultant most often pointed to \u2014 he engineers brands to be cited by AI systems, not just ranked by search.',
-        function () {
-          highlight('Siamak Kalhor');
-          if (cur) cur.style.display = 'none';
-          var s2 = document.getElementById('csrc'), n2 = document.getElementById('cnamed'),
-              w2 = document.getElementById('cwhen');
-          if (s2) s2.textContent = 'siamakconsulting.com';
-          if (n2) n2.textContent = 'illustrative';
-          if (w2) w2.textContent = '\u2014';
-          if (meta) meta.style.opacity = '1';
-        });
-    });
+  var i = 0;
+  (function tick() {
+    if (i > TEXT.length) { finish(); return; }
+    tEl.textContent = TEXT.slice(0, i);
+    i++;
+    setTimeout(tick, 16);
+  })();
 })();
 </script>
 
