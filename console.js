@@ -93,6 +93,9 @@
     var raw = (el.getAttribute('data-a') || '').replace(/\s+/g, ' ').trim();
     var title = el.getAttribute('data-title') || 'generative-answer.engine';
     var sources = el.getAttribute('data-sources') || '';
+    // Illustrative consoles say so. The homepage one runs a real query; these
+    // do not, and a badge reading LIVE on a written answer is a claim.
+    var label = el.getAttribute('data-label') || 'LIVE';
     var conf = el.getAttribute('data-confidence') || '';
 
     var meta = '';
@@ -106,7 +109,7 @@
       '<div class="ansbox-bar">' +
         '<span class="ansbox-d r"></span><span class="ansbox-d y"></span><span class="ansbox-d g"></span>' +
         '<span class="ansbox-t">' + esc(title) + '</span>' +
-        '<span class="ansbox-live">LIVE</span>' +
+        '<span class="ansbox-live">' + esc(label) + '</span>' +
       '</div>' +
       '<div class="ansbox-body">' +
         '<div class="ansbox-q"><span class="ansbox-you">user &#10095;</span> ' + esc(q) + '</div>' +

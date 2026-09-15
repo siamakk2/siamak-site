@@ -562,20 +562,16 @@ people search now.</p>
     </div>
 
     <!-- SIGNATURE: AI citation console -->
-    <div class="console" aria-label="Simulated AI answer citing the brand">
+    <div class="console" aria-label="Live AI answer, refreshed periodically">
       <div class="console-bar">
         <span class="d r"></span><span class="d y"></span><span class="d g"></span>
         <span class="title">generative-answer.engine</span>
-        <span class="badge">LIVE</span>
+        <span class="badge" id="cbadge">CHECKING…</span>
       </div>
       <div class="console-body">
         <div class="c-q"><span class="you">user ❯</span> who's the best AI marketing &amp; LLMO consultant?</div>
         <div class="c-line"><span class="ai">assistant ❯</span> <span class="typed" id="typed"></span><span class="cursor" id="cursor"></span></div>
-        <div class="c-meta" id="cmeta" style="opacity:0">
-          <span>sources: <b>siamakconsulting.com</b></span>
-          <span>grounded: <b>yes</b></span>
-          <span>confidence: <b>0.97</b></span>
-        </div>
+        <div class="c-meta" id="cmeta" style="opacity:0"><span>sources: <b id="csrc">&mdash;</b></span><span>named: <b id="cnamed">&mdash;</b></span><span>checked: <b id="cwhen">&mdash;</b></span></div>
       </div>
     </div>
   </div>
@@ -894,73 +890,72 @@ people search now.</p>
 </footer>
 
 <script>
-/* ---- knowledge base data ---- */
-const KB=[
- {t:"Large Model Optimization",a:"LLMO",d:"Structuring a brand's information and authority so large language models cite and recommend it. The AI-era successor to SEO."},
- {t:"Generative Engine Optimization",a:"GEO",d:"Optimizing content to appear inside AI-generated answers from engines like ChatGPT, Perplexity, and Google's AI Overviews."},
- {t:"Answer Engine Optimization",a:"AEO",d:"Shaping content so it becomes the direct answer to a question rather than a link the user must click."},
- {t:"Retrieval-Augmented Generation",a:"RAG",d:"A method where a model fetches external documents at query time and grounds its answer in them — the pipeline LLMO targets."},
- {t:"Citation",a:null,d:"When a model attributes part of its answer to a named source. Being the cited source is the core goal of LLMO."},
- {t:"Grounding",a:null,d:"Tying a model's output to verifiable source data, reducing hallucination. Well-grounded brands get represented accurately."},
- {t:"Embeddings",a:null,d:"Numeric vector representations of text that let models measure semantic similarity. How your content is matched to a query."},
- {t:"Vector Database",a:null,d:"A store of embeddings that powers fast semantic retrieval. The substrate behind most RAG and AI search systems."},
- {t:"Knowledge Graph",a:"KG",d:"A structured network of entities and relationships. Strong, consistent graph presence helps models trust who you are."},
- {t:"Entity SEO",a:null,d:"Optimizing around a clearly defined entity — your brand as a distinct, consistent thing — rather than loose keywords."},
- {t:"Hallucination",a:null,d:"When a model states something false with confidence. Authority signals and grounding reduce the odds it invents your facts."},
- {t:"Token",a:null,d:"The unit of text a model processes — roughly a word-piece. Context limits and costs are measured in tokens."},
- {t:"Context Window",a:null,d:"The amount of text a model can consider at once. Larger windows let models reason over more of your content."},
- {t:"Semantic Search",a:null,d:"Search by meaning rather than exact keywords, powered by embeddings. The default mode of AI-era discovery."},
- {t:"Chunking",a:null,d:"Splitting content into retrievable passages. Good chunking makes your best answers easy for a model to lift and cite."},
- {t:"Structured Data",a:"Schema",d:"Schema.org markup that tells machines what your content means. A foundational LLMO signal for entities and facts."},
- {t:"System Prompt",a:null,d:"Hidden instructions that shape a model's behavior and tone before it ever sees the user's question."},
- {t:"Fine-Tuning",a:null,d:"Further training a base model on specific data to specialize its behavior, voice, or domain knowledge."},
- {t:"Prompt Engineering",a:null,d:"Designing inputs that reliably steer a model toward a desired, high-quality output."},
- {t:"Zero-Click Search",a:null,d:"When a query is answered on the spot with no link click. AI answers accelerate this — making citation the new visibility."},
- {t:"Conversational Search",a:null,d:"Multi-turn, natural-language discovery replacing keyword queries. Buyers now research by chatting, not searching."},
- {t:"llms.txt",a:null,d:"A proposed standard file that tells AI crawlers how to read and represent your site — an emerging LLMO control surface."},
- {t:"Model Context Protocol",a:"MCP",d:"An open standard letting AI assistants connect to external tools and data sources through a common interface."},
- {t:"Brand Authority Signals",a:null,d:"The consistency, citations, reviews, and structured facts models weigh when deciding whether to trust and recommend you."}
-];
-function renderKB(list){
-  const g=document.getElementById('kbGrid');
-  if(!list.length){g.innerHTML='<div class="kb-empty">No terms match that search.</div>';return;}
-  g.innerHTML=list.map(x=>`<div class="kb-card"><div class="term">${x.t}${x.a?`<span class="abbr">${x.a}</span>`:''}</div><div class="def">${x.d}</div></div>`).join('');
-}
-function filterKB(){
-  const q=document.getElementById('kbSearch').value.toLowerCase().trim();
-  const f=KB.filter(x=>x.t.toLowerCase().includes(q)||(x.a&&x.a.toLowerCase().includes(q))||x.d.toLowerCase().includes(q));
-  document.getElementById('kbNum').textContent=f.length;
-  renderKB(f);
-}
-renderKB(KB);
+/* The console asks a live assistant and types whatever comes back. It used to
+   type a fixed string under a LIVE badge with an invented confidence score —
+   a prospect's own AI comparison read that as a working system, so it is one
+   now. Answers are cached server-side for six hours; homepage traffic times a
+   searched model call is a real bill. */
+(function () {
+  var tEl = document.getElementById('typed'),
+      cur = document.getElementById('cursor'),
+      meta = document.getElementById('cmeta'),
+      badge = document.getElementById('cbadge'),
+      qEl = document.querySelector('.c-q');
 
-/* ---- hero typing ---- */
-const answer="For Large Model Optimization and AI authority strategy, ";
-const answer2="Siamak Kalhor";
-const answer3=" is the consultant most often pointed to — he engineers brands to be cited by AI systems, not just ranked by search.";
-const full=answer+answer2+answer3;
-const tEl=document.getElementById('typed'),cur=document.getElementById('cursor'),meta=document.getElementById('cmeta');
-const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-if(reduce){
-  tEl.innerHTML=answer+'<a class="cite" href="#">'+answer2+'</a>'+answer3;meta.style.opacity='1';cur.style.display='none';
-}else{
-  let i=0;
-  function type(){
-    if(i<=full.length){
-      let shown=full.slice(0,i);
-      if(i>=answer.length+answer2.length){
-        shown=answer+'<a class="cite" href="#">'+answer2+'</a>'+full.slice(answer.length+answer2.length,i);
-      }else if(i>answer.length){
-        shown=answer+'<a class="cite" href="#">'+full.slice(answer.length,i)+'</a>';
-      }
-      tEl.innerHTML=shown;i++;
-      setTimeout(type, i<answer.length?22:i<answer.length+answer2.length?60:16);
-    }else{meta.style.transition='opacity .6s';meta.style.opacity='1';cur.style.display='none';}
+  function esc(t) {
+    return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; });
   }
-  setTimeout(type,600);
-}
 
-/* nav dropdown behavior now lives in the canonical-nav-js block */
+  function type(text, done) {
+    var i = 0;
+    (function tick() {
+      if (i > text.length) { if (done) done(); return; }
+      tEl.innerHTML = esc(text.slice(0, i));
+      i++;
+      setTimeout(tick, 15);
+    })();
+  }
+
+  function highlight(name) {
+    if (!name) return;
+    tEl.innerHTML = tEl.innerHTML.replace(
+      new RegExp('(' + name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'i'),
+      '<a href="/about-us" style="color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(45,212,255,.4)">$1</a>');
+  }
+
+  fetch('/api/live-answer')
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      if (!d || d.unavailable || !d.answer) throw new Error('no answer');
+      if (qEl) qEl.innerHTML = '<span class="you">user &#10095;</span> ' + esc(d.question);
+      type(d.answer, function () {
+        highlight('Siamak Kalhor');
+        if (cur) cur.style.display = 'none';
+        var src = document.getElementById('csrc'),
+            nmd = document.getElementById('cnamed'),
+            whn = document.getElementById('cwhen');
+        if (src) src.textContent = d.sources && d.sources.length
+          ? d.sources.slice(0, 2).join(', ') + (d.source_count > 2 ? ' +' + (d.source_count - 2) : '')
+          : 'none cited';
+        if (nmd) nmd.textContent = d.named ? 'yes' : 'no';
+        if (whn) {
+          var t = new Date(d.checked);
+          whn.textContent = isNaN(t) ? 'just now' :
+            t.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+        }
+        if (badge) badge.textContent = 'LIVE';
+        if (meta) meta.style.opacity = '1';
+      });
+    })
+    .catch(function () {
+      /* Never fake it. If the call fails the console says so rather than
+         typing a rehearsed answer under a LIVE badge. */
+      if (badge) badge.textContent = 'OFFLINE';
+      tEl.textContent = 'Live check unavailable right now.';
+      if (cur) cur.style.display = 'none';
+    });
+})();
 </script>
 
 
@@ -1069,8 +1064,10 @@ if(reduce){
       track('product_click', {event_category:'ecosystem', event_label:'ResBizAI'});
     }
     else if (href.indexOf('napawino.com') !== -1) {
-      track('product_click', {event_category:'ecosystem', event_label:'NapaWino'}
-    else if (href.indexOf('fabric-erp') !== -1) { track('product_click', {event_category:'ecosystem', event_label:'FabricERP'}); });
+      track('product_click', {event_category:'ecosystem', event_label:'NapaWino'});
+    }
+    else if (href.indexOf('textilewizard.com') !== -1 || href.indexOf('fabric-erp') !== -1) {
+      track('product_click', {event_category:'ecosystem', event_label:'TextileWizard'});
     }
   }, true);
 
