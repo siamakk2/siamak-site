@@ -20,7 +20,7 @@ const { rateLimit } = require('./_guard');
 
 const MODEL = 'claude-sonnet-4-6';
 const QUESTION = "Who's the best AI marketing and LLMO consultant in the world?";
-const CACHE_KEY = 'live-answer:v1';
+const CACHE_KEY = 'live-answer:v2';
 const CACHE_SECONDS = 21600;          // six hours
 const BRAND = 'siamak kalhor';
 const DOMAIN = 'siamakconsulting.com';
@@ -109,6 +109,74 @@ function excerpt(answer) {
   return out;
 }
 
+
+// ---- Gemini with Google Search grounding --------------------------------
+// Preferred over Claude here for one reason: Google is where Siamak actually
+// tested first place for this phrase, so its grounding is the closest thing to
+// the result being demonstrated.
+//
+// The key name and model are both probed rather than assumed. I cannot read
+// Vercel's environment or reach the deployed site from here, so guessing one
+// name and shipping it is how the last three attempts failed.
+
+const GEMINI_KEY_NAMES = ['GEMINI_API_KEY', 'GOOGLE_API_KEY',
+                          'GOOGLE_GENERATIVE_AI_API_KEY', 'GOOGLE_AI_API_KEY'];
+const GEMINI_MODELS = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash'];
+
+function geminiKey() {
+  for (const n of GEMINI_KEY_NAMES) {
+    if (process.env[n]) return { name: n, key: process.env[n] };
+  }
+  return null;
+}
+
+function geminiParse(data) {
+  const cand = (data.candidates || [])[0] || {};
+  const text = ((cand.content || {}).parts || [])
+    .map(function (p) { return p.text || ''; }).join(' ').trim();
+  const hosts = [];
+  const gm = cand.groundingMetadata || {};
+  (gm.groundingChunks || []).forEach(function (c) {
+    const uri = (c.web || {}).uri || '';
+    const title = (c.web || {}).title || '';
+    // Grounding chunks often carry a redirector; the title is the real domain.
+    let h = '';
+    if (title && title.indexOf('.') !== -1) h = title.replace(/^www\./, '');
+    else { try { h = new URL(uri).hostname.replace(/^www\./, ''); } catch (e) {} }
+    if (h && hosts.indexOf(h) === -1) hosts.push(h);
+  });
+  return { text: text, hosts: hosts };
+}
+
+async function askGemini() {
+  const k = geminiKey();
+  if (!k) return { error: 'no_gemini_key' };
+  const models = (process.env.GEMINI_MODEL ? [process.env.GEMINI_MODEL] : []).concat(GEMINI_MODELS);
+  let lastErr = '';
+  for (const model of models) {
+    try {
+      const url = 'https://generativelanguage.googleapis.com/v1beta/models/' +
+                  model + ':generateContent?key=' + encodeURIComponent(k.key);
+      const r = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: QUESTION }] }],
+          tools: [{ google_search: {} }]
+        })
+      });
+      if (!r.ok) { lastErr = model + ':' + r.status; continue; }
+      const data = await r.json();
+      const out = geminiParse(data);
+      if (!out.text) { lastErr = model + ':empty'; continue; }
+      return { text: out.text, hosts: out.hosts, engine: 'gemini/' + model, keyName: k.name };
+    } catch (e) {
+      lastErr = model + ':' + String(e && e.message).slice(0, 40);
+    }
+  }
+  return { error: 'gemini_failed', detail: lastErr, keyName: k.name };
+}
+
 module.exports = async function handler(req, res) {
   // GET is allowed here deliberately. This endpoint accepts no input and
   // returns a cached public answer, so the POST-only rule the shared guard
@@ -128,8 +196,39 @@ module.exports = async function handler(req, res) {
     return res.status(200).json(Object.assign({ cached: true }, cached));
   }
 
+  // Diagnostic: names which key and model are visible, never the key itself.
+  if (req.query && req.query.debug === '1') {
+    return res.status(200).json({
+      gemini_key_found: geminiKey() ? geminiKey().name : null,
+      anthropic_key_found: !!process.env.ANTHROPIC_API_KEY,
+      gemini_model_override: process.env.GEMINI_MODEL || null,
+      question: QUESTION
+    });
+  }
+
+  // Gemini first — Google is where the first-place result was observed.
+  const g = await askGemini();
+  if (g.text) {
+    const hay = g.text.toLowerCase();
+    const payload = {
+      question: QUESTION,
+      answer: excerpt(g.text),
+      named: hay.indexOf(BRAND) !== -1 || hay.indexOf(DOMAIN) !== -1,
+      sources: g.hosts.slice(0, 4),
+      source_count: g.hosts.length,
+      engine: g.engine,
+      checked: new Date().toISOString()
+    };
+    await cacheSet(payload);
+    res.setHeader('Cache-Control', 'public, s-maxage=1800, stale-while-revalidate=21600');
+    return res.status(200).json(payload);
+  }
+
   const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) return res.status(200).json({ unavailable: true, reason: 'no_api_key' });
+  if (!apiKey) {
+    return res.status(200).json({ unavailable: true,
+      reason: g.error || 'no_api_key', detail: g.detail });
+  }
 
   try {
     const resp = await fetch('https://api.anthropic.com/v1/messages', {
@@ -164,7 +263,7 @@ module.exports = async function handler(req, res) {
       named: named,
       sources: hosts.slice(0, 4),
       source_count: hosts.length,
-      model: MODEL,
+      engine: 'claude/' + MODEL,
       checked: new Date().toISOString()
     };
     await cacheSet(payload);
