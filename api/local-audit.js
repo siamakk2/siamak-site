@@ -141,6 +141,52 @@ async function askOne(apiKey, prompt) {
   return resp.json();
 }
 
+
+// ---- run history --------------------------------------------------------
+// A single score is a snapshot and says little; the same prompts measured again
+// later say a great deal. Storing each run is what turns this from a one-off
+// lead magnet into something worth re-running every month.
+//
+// Keyed on business, category and city so the same business measured the same
+// way lands in the same series. Twelve runs kept — a year of monthly checks.
+
+function seriesKey(business, category, city) {
+  const raw = [business, category, city].join('|').toLowerCase().replace(/[^a-z0-9|]+/g, '');
+  let h = 5381;
+  for (let i = 0; i < raw.length; i++) h = ((h << 5) + h + raw.charCodeAt(i)) >>> 0;
+  return 'localaudit:hist:' + h.toString(36);
+}
+
+async function historyGet(key) {
+  const url = process.env.UPSTASH_REDIS_REST_URL;
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  if (!url || !token) return [];
+  try {
+    const r = await fetch(url + '/get/' + encodeURIComponent(key),
+                          { headers: { Authorization: 'Bearer ' + token } });
+    const d = await r.json();
+    const v = d && d.result ? JSON.parse(d.result) : [];
+    return Array.isArray(v) ? v : [];
+  } catch (e) { return []; }
+}
+
+async function historySet(key, runs) {
+  const url = process.env.UPSTASH_REDIS_REST_URL;
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  if (!url || !token) return;
+  try {
+    await fetch(url + '/set/' + encodeURIComponent(key), {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + token, 'Content-Type': 'text/plain' },
+      body: JSON.stringify(runs.slice(-12))
+    });
+  } catch (e) {}
+}
+
+// Same day counts as the same check — re-running twice in an afternoon should
+// not read as movement.
+function sameDay(a, b) { return String(a).slice(0, 10) === String(b).slice(0, 10); }
+
 module.exports = async function handler(req, res) {
   // Lower limit than the site audit: each run makes several searched calls.
   if (!(await guard(req, res, { bucket: 'local-audit', limit: 6, window: 3600 }))) return;
@@ -200,15 +246,44 @@ module.exports = async function handler(req, res) {
       .sort(function (a, b) { return b.references - a.references; })
       .slice(0, 15);
 
+    const rate = usable.length ? Math.round((hits / usable.length) * 100) : 0;
+    const nowIso = new Date().toISOString();
+    const key = seriesKey(business, category, city);
+    const past = await historyGet(key);
+
+    // The last run from a different day is what we compare against.
+    const previous = past.filter(function (r) { return !sameDay(r.at, nowIso); }).pop() || null;
+
+    const entry = { at: nowIso, rate: rate, hits: hits, of: usable.length,
+                    sources: sources.slice(0, 6).map(function (x) { return x.host; }) };
+    const updated = past.filter(function (r) { return !sameDay(r.at, nowIso); }).concat([entry]);
+    await historySet(key, updated);
+
+    let change = null;
+    if (previous) {
+      const gained = entry.sources.filter(function (h) { return previous.sources.indexOf(h) === -1; });
+      const lost = (previous.sources || []).filter(function (h) { return entry.sources.indexOf(h) === -1; });
+      change = {
+        previous_rate: previous.rate,
+        previous_at: previous.at,
+        delta: rate - previous.rate,
+        sources_gained: gained.slice(0, 5),
+        sources_lost: lost.slice(0, 5)
+      };
+    }
+
     return res.status(200).json({
       business: business,
       category: category,
       city: city,
       measured_with: 'claude-sonnet-4-6 with live web search',
+      change: change,
+      checks_recorded: updated.length,
+      history: updated.map(function (r) { return { at: r.at, rate: r.rate }; }),
       prompts_run: runs.length,
       prompts_usable: usable.length,
       mention_count: hits,
-      mention_rate: usable.length ? Math.round((hits / usable.length) * 100) : 0,
+      mention_rate: rate,
       sources_the_assistant_used: sources,
       runs: runs.map(function (r) {
         return {

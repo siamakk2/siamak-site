@@ -999,6 +999,32 @@ try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.
             ? 'Not named in any answer. Someone asking an assistant for a '+esc(d.category)+' in '+esc(d.city)+' does not hear about you.'
             : (rate<50 ? 'Named in some answers but not most.' : 'Named in most answers.');
           var h='<div class="lc-score"><div class="lc-num '+cls+'">'+rate+'%</div><p>'+verdict+'</p></div>';
+
+          /* Movement against the last check. A single score is a snapshot; the
+             same prompts measured again is the thing worth paying attention to. */
+          if (d.change) {
+            var dl = d.change.delta, when = new Date(d.change.previous_at);
+            var whenTxt = isNaN(when) ? 'the last check'
+              : when.toLocaleDateString(undefined,{month:'long', day:'numeric'});
+            var dir = dl > 0 ? 'up' : (dl < 0 ? 'down' : 'unchanged');
+            var col = dl > 0 ? '#1E7E45' : (dl < 0 ? '#C0392B' : '#5A6B7D');
+            h += '<p class="lc-sub" style="font-size:16px;color:'+col+';font-weight:600;margin:-6px 0 14px">'
+               + (dl === 0 ? 'Unchanged since ' + esc(whenTxt)
+                           : dir + ' ' + Math.abs(dl) + ' points from ' + d.change.previous_rate
+                             + '% on ' + esc(whenTxt))
+               + '</p>';
+            if (d.change.sources_gained && d.change.sources_gained.length) {
+              h += '<p class="lc-sub"><b>New sources since then:</b> '
+                 + d.change.sources_gained.map(esc).join(', ') + '</p>';
+            }
+            if (d.change.sources_lost && d.change.sources_lost.length) {
+              h += '<p class="lc-sub"><b>No longer cited:</b> '
+                 + d.change.sources_lost.map(esc).join(', ') + '</p>';
+            }
+          } else if (d.checks_recorded === 1) {
+            h += '<p class="lc-sub" style="margin:-6px 0 14px">First check recorded. '
+               + 'Run this again in a month and it will show what moved.</p>';
+          }
           var src=d.sources_the_assistant_used||[];
           if(src.length){
             h+='<p class="lc-sub"><b>Where the answers came from.</b> If you are not on these, that is why.</p>';
