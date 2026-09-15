@@ -16,7 +16,7 @@
 // Cached in Upstash. Homepage traffic multiplied by a searched model call is a
 // real bill, and the answer does not change minute to minute.
 
-const { guard } = require('./_guard');
+const { rateLimit } = require('./_guard');
 
 const MODEL = 'claude-sonnet-4-6';
 const QUESTION = "Who's the best AI marketing and LLMO consultant?";
@@ -88,7 +88,17 @@ function excerpt(answer) {
 }
 
 module.exports = async function handler(req, res) {
-  if (!(await guard(req, res, { bucket: 'live-answer', limit: 30, window: 3600 }))) return;
+  // GET is allowed here deliberately. This endpoint accepts no input and
+  // returns a cached public answer, so the POST-only rule the shared guard
+  // applies to the LLM endpoints buys nothing — and it made the failure
+  // impossible to reproduce from outside a browser. Rate limiting still runs.
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  if (req.method === 'OPTIONS') { res.status(200).end(); return; }
+  if (req.method !== 'GET' && req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+  const rl = await rateLimit(req, 'live-answer', 60, 3600);
+  if (!rl.ok) return res.status(429).json({ error: 'Too many requests' });
 
   const cached = await cacheGet();
   if (cached) {
