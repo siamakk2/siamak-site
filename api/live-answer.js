@@ -97,7 +97,7 @@ module.exports = async function handler(req, res) {
   }
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) return res.status(200).json({ unavailable: true });
+  if (!apiKey) return res.status(200).json({ unavailable: true, reason: 'no_api_key' });
 
   try {
     const resp = await fetch('https://api.anthropic.com/v1/messages', {
@@ -114,7 +114,11 @@ module.exports = async function handler(req, res) {
         tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 3 }]
       })
     });
-    if (!resp.ok) return res.status(200).json({ unavailable: true });
+    if (!resp.ok) {
+      const detail = await resp.text().catch(function () { return ''; });
+      return res.status(200).json({ unavailable: true, reason: 'upstream_' + resp.status,
+                                    detail: detail.slice(0, 160) });
+    }
 
     const data = await resp.json();
     const answer = textOf(data.content);
@@ -135,6 +139,7 @@ module.exports = async function handler(req, res) {
     res.setHeader('Cache-Control', 'public, s-maxage=1800, stale-while-revalidate=21600');
     return res.status(200).json(payload);
   } catch (e) {
-    return res.status(200).json({ unavailable: true });
+    return res.status(200).json({ unavailable: true, reason: 'exception',
+                                 detail: String(e && e.message).slice(0, 160) });
   }
 };

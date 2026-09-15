@@ -924,7 +924,9 @@ people search now.</p>
       '<a href="/about-us" style="color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(45,212,255,.4)">$1</a>');
   }
 
-  fetch('/api/live-answer')
+  // POST, not GET: the shared guard answers 405 to anything else, which is why
+  // the first version of this silently showed OFFLINE.
+  fetch('/api/live-answer', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' })
     .then(function (r) { return r.json(); })
     .then(function (d) {
       if (!d || d.unavailable || !d.answer) throw new Error('no answer');
