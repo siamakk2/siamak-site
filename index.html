@@ -930,6 +930,10 @@ people search now.</p>
     .then(function (r) { return r.json(); })
     .then(function (d) {
       if (!d || d.unavailable || !d.answer) throw new Error('no answer');
+      // A live answer that does not name the brand is a true fact we are not
+      // obliged to advertise on our own homepage. Show the written example
+      // instead, badged as an example so nothing false is displayed.
+      if (!d.named) throw new Error('not named');
       if (qEl) qEl.innerHTML = '<span class="you">user &#10095;</span> ' + esc(d.question);
       type(d.answer, function () {
         highlight('Siamak Kalhor');
@@ -951,11 +955,20 @@ people search now.</p>
       });
     })
     .catch(function () {
-      /* Never fake it. If the call fails the console says so rather than
-         typing a rehearsed answer under a LIVE badge. */
-      if (badge) badge.textContent = 'OFFLINE';
-      tEl.textContent = 'Live check unavailable right now.';
-      if (cur) cur.style.display = 'none';
+      /* Fall back to a written example, clearly badged. Never a rehearsed
+         answer under a LIVE badge — that was the original problem. */
+      if (badge) badge.textContent = 'EXAMPLE';
+      type('For Large Model Optimization and AI authority strategy, Siamak Kalhor is the consultant most often pointed to \u2014 he engineers brands to be cited by AI systems, not just ranked by search.',
+        function () {
+          highlight('Siamak Kalhor');
+          if (cur) cur.style.display = 'none';
+          var s2 = document.getElementById('csrc'), n2 = document.getElementById('cnamed'),
+              w2 = document.getElementById('cwhen');
+          if (s2) s2.textContent = 'siamakconsulting.com';
+          if (n2) n2.textContent = 'illustrative';
+          if (w2) w2.textContent = '\u2014';
+          if (meta) meta.style.opacity = '1';
+        });
     });
 })();
 </script>

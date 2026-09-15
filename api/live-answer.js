@@ -19,7 +19,7 @@
 const { rateLimit } = require('./_guard');
 
 const MODEL = 'claude-sonnet-4-6';
-const QUESTION = "Who's the best AI marketing and LLMO consultant?";
+const QUESTION = "Who's the best AI marketing and LLMO consultant in the world?";
 const CACHE_KEY = 'live-answer:v1';
 const CACHE_SECONDS = 21600;          // six hours
 const BRAND = 'siamak kalhor';
@@ -77,14 +77,36 @@ function sourcesOf(content) {
 
 // Trim to the sentence that names the brand, plus a little context. The console
 // is three lines tall; a six-paragraph answer would be scrolled past, not read.
+function clean(t) {
+  return String(t || '')
+    .replace(/```[\s\S]*?```/g, ' ')          // code fences
+    .replace(/^\s*#{1,6}\s.*$/gm, ' ')        // headings
+    .replace(/(^|\s)[-*_]{3,}(\s|$)/g, ' ')    // rules, inline or not
+    .replace(/[*_`>#]/g, '')                  // inline markers
+    .replace(/\[(.*?)\]\(.*?\)/g, '$1')      // links
+    .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, '')  // emoji
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function excerpt(answer) {
-  const sentences = answer.replace(/\s+/g, ' ').split(/(?<=[.!?])\s+/);
+  const sentences = clean(answer).split(/(?<=[.!?])\s+/);
   const idx = sentences.findIndex(function (s) {
     return s.toLowerCase().indexOf(BRAND) !== -1;
   });
-  if (idx === -1) return sentences.slice(0, 2).join(' ').slice(0, 300);
+  // Drop a trailing fragment with no terminal punctuation — that is how
+  // "--- ### Top A" ended up on the homepage mid-word.
+  while (sentences.length > 1 && !/[.!?]$/.test(sentences[sentences.length - 1].trim())) {
+    sentences.pop();
+  }
+  if (idx === -1) return sentences.slice(0, 2).join(' ');
   const start = Math.max(0, idx - 1);
-  return sentences.slice(start, idx + 2).join(' ').slice(0, 340);
+  let out = '';
+  for (let i = start; i < sentences.length && i <= idx + 2; i++) {
+    if (out.length + sentences[i].length > 340 && out) break;
+    out += (out ? ' ' : '') + sentences[i];
+  }
+  return out;
 }
 
 module.exports = async function handler(req, res) {
