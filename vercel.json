@@ -857,6 +857,9 @@
     },
     "api/live-answer.js": {
       "maxDuration": 60
+    },
+    "api/book.js": {
+      "maxDuration": 30
     }
   }
 }

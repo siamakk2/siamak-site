@@ -160,6 +160,24 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <meta name="twitter:title" content="Online Consulting — Book a Strategy Session | Siamak Kalhor">
 <meta name="twitter:description" content="Book a 1-on-1 online consulting session with Siamak Kalhor. Free 30-minute strategy audit, deep engagements, and ongoing AI growth advisory.">
 <meta name="twitter:image" content="https://siamakconsulting.com/og-image.jpg">
+
+<style>
+.book-sec{padding:64px 0;border-top:1px solid var(--line)}
+.book-lede{font-size:17px;line-height:1.7;color:var(--muted);max-width:62ch;margin:0 0 26px}
+.book-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));margin-bottom:24px}
+.slot{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:13px 15px;cursor:pointer;text-align:left;font-family:var(--body);color:var(--text);font-size:15.5px;min-height:56px;transition:border-color .18s,background .18s}
+.slot:hover{border-color:var(--cyan)}
+.slot[aria-pressed="true"]{border-color:var(--cyan);background:rgba(45,212,255,.08)}
+.slot b{display:block;font-size:13px;color:var(--muted-dim);font-weight:500;margin-bottom:3px}
+.book-form{max-width:640px;border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:24px}
+.book-chosen{font-family:var(--mono);font-size:14px;color:var(--cyan);margin:0 0 16px}
+.bf-row{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.book-form input,.book-form textarea{flex:1 1 200px;min-width:0;width:100%;background:var(--void);border:1px solid var(--line);border-radius:8px;padding:13px 14px;color:var(--text);font-family:var(--body);font-size:16.5px}
+.book-form textarea{margin-bottom:14px;resize:vertical}
+.book-form input:focus,.book-form textarea:focus{outline:2px solid var(--cyan);outline-offset:1px}
+.book-status{font-size:15.5px;color:var(--muted);margin:14px 0 0;min-height:22px}
+@media(max-width:600px){.book-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -237,7 +255,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <div class="eyebrow"><span class="dot"></span>Online Consulting · 1-on-1</div>
 <h1 class="ph-h">Book a strategy session that <span class="grad">actually converts.</span></h1>
 <p class="ph-sub">A focused, online consultation built around your business. We diagnose what's leaking revenue, map the AI-era opportunity, and leave you with a prioritized plan — whether or not we work together after.</p>
-<div class="ph-btns"><a href="/contact-us" class="btn btn-pri">⚡ Schedule a Session</a><a href="https://wa.me/13235416529" class="btn btn-ghost">Chat on WhatsApp</a></div>
+<div class="ph-btns"><a href="#book" class="btn btn-pri">⚡ Schedule a Session</a><a href="https://wa.me/13235416529" class="btn btn-ghost">Chat on WhatsApp</a></div>
 </div></header><section><div class="wrap">
 <div class="sec-label">What you get</div>
 <h2 class="sec-h">A working session, not a sales pitch</h2>
@@ -250,6 +268,21 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <div class="steps"><div class="step"><div class="l">1</div><div><h4>Book</h4><p>Pick a time and tell me about your business. No long forms — just enough to make the session useful.</p></div></div><div class="step"><div class="l">2</div><div><h4>Diagnose</h4><p>We get on a call, scan your current position, and find the root cause of stagnation — not the symptoms.</p></div></div><div class="step"><div class="l">3</div><div><h4>Plan</h4><p>You leave with a concrete, prioritized set of moves you can act on immediately, in or out of an engagement.</p></div></div></div>
 </div></section><section><div class="wrap"><div class="cta-band"><h3>Ready when you are</h3><p>Schedule your session now, or call directly. Most clients know within one call whether we're a fit.</p><div class="cta-row"><a href="/contact-us" class="btn btn-pri">Schedule Now →</a><a href="tel:+13236577752" class="btn btn-ghost">Call 323-657-7752</a></div></div></div></section>
 </main>
+
+<section id="book" class="book-sec"><div class="wrap">
+  <div class="sec-label">Pick a time</div>
+  <h2 class="sec-h">Book a session</h2>
+  <p class="book-lede">Weekday mornings at 8:00 AM, and Monday, Wednesday and Friday at 5:00 PM &mdash; Pacific Time. Choose a slot and I confirm by email, usually within one business day.</p>
+  <div class="book-grid" id="bookSlots"></div>
+  <div class="book-form" id="bookForm" hidden>
+    <p class="book-chosen" id="bookChosen"></p>
+    <div class="bf-row"><input id="bkName" type="text" placeholder="Your name" autocomplete="name"><input id="bkEmail" type="email" placeholder="Email" autocomplete="email"></div>
+    <div class="bf-row"><input id="bkPhone" type="tel" placeholder="Phone (optional)" autocomplete="tel"><input id="bkCo" type="text" placeholder="Business name" autocomplete="organization"></div>
+    <textarea id="bkAbout" rows="3" placeholder="What would you like to cover?"></textarea>
+    <button type="button" class="btn btn-pri" id="bkGo">Request this time</button>
+    <p class="book-status" id="bkStatus"></p>
+  </div>
+</div></section>
 <footer>
   <div class="wrap">
     <div class="foot-grid">
@@ -389,5 +422,70 @@ elevenlabs-convai{
 })();
 </script>
 <script defer src="/consent.js"></script>
+
+<script>
+(function(){
+  var SLOTS={1:['08:00','17:00'],2:['08:00'],3:['08:00','17:00'],4:['08:00'],5:['08:00','17:00']};
+  var grid=document.getElementById('bookSlots'), form=document.getElementById('bookForm'),
+      chosen=document.getElementById('bookChosen'), st=document.getElementById('bkStatus');
+  if(!grid) return;
+  var picked=null;
+  function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function lbl(t){var h=parseInt(t.slice(0,2),10);return (h%12===0?12:h%12)+':'+t.slice(3)+' '+(h>=12?'PM':'AM');}
+
+  // Next ten bookable slots, starting tomorrow.
+  var d=new Date(); d.setHours(12,0,0,0); d.setDate(d.getDate()+1);
+  var out=[], guard=0;
+  while(out.length<10 && guard++<40){
+    var day=d.getDay(), times=SLOTS[day];
+    if(times){ for(var i=0;i<times.length && out.length<10;i++){
+      out.push({date:d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'),
+                time:times[i],
+                label:d.toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})});
+    }}
+    d.setDate(d.getDate()+1);
+  }
+  grid.innerHTML=out.map(function(s){
+    return '<button type="button" class="slot" aria-pressed="false" data-d="'+s.date+'" data-t="'+s.time+'">'
+         + '<b>'+esc(s.label)+'</b>'+lbl(s.time)+' PT</button>';
+  }).join('');
+
+  grid.addEventListener('click',function(e){
+    var b=e.target.closest('.slot'); if(!b) return;
+    [].forEach.call(grid.querySelectorAll('.slot'),function(x){x.setAttribute('aria-pressed','false');});
+    b.setAttribute('aria-pressed','true');
+    picked={date:b.getAttribute('data-d'),time:b.getAttribute('data-t'),
+            label:b.querySelector('b').textContent+' at '+lbl(b.getAttribute('data-t'))+' PT'};
+    chosen.textContent=picked.label;
+    form.hidden=false;
+    try{ form.scrollIntoView({behavior:'smooth',block:'nearest'}); }catch(e){}
+  });
+
+  document.getElementById('bkGo').addEventListener('click',function(){
+    if(!picked){ st.textContent='Please choose a time first.'; return; }
+    var name=document.getElementById('bkName').value.trim(),
+        email=document.getElementById('bkEmail').value.trim();
+    if(!name||!email){ st.textContent='Please add your name and email.'; return; }
+    var btn=this; btn.disabled=true; st.textContent='Sending…';
+    fetch('/api/book',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name:name,email:email,
+        phone:document.getElementById('bkPhone').value.trim(),
+        company:document.getElementById('bkCo').value.trim(),
+        about:document.getElementById('bkAbout').value.trim(),
+        date:picked.date,time:picked.time})})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        btn.disabled=false;
+        if(d.ok){ form.innerHTML='<p class="book-chosen">'+esc(d.slot)+'</p>'
+            +'<p style="font-size:16.5px;color:var(--muted);margin:0">Request received. You will get a confirmation by email, usually within one business day. If it is urgent, call 323-657-7752.</p>';
+          try{ gtag('event','generate_lead',{event_category:'booking'}); }catch(e){}
+          return; }
+        if(d.mailto){ st.innerHTML='Could not send automatically. <a href="'+d.mailto+'" style="color:var(--cyan)">Email the request instead</a>.'; return; }
+        st.textContent=d.error||'That did not go through. Please call 323-657-7752.';
+      })
+      .catch(function(){ btn.disabled=false; st.textContent='That did not go through. Please call 323-657-7752.'; });
+  });
+})();
+</script>
 </body>
 </html>
