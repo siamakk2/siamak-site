@@ -366,3 +366,19 @@ body .tcard figcaption { font-size: 13px; }
   top: 8px;
   outline: 2px solid var(--cyan, #2dd4ff);
 }
+
+
+/* ---- hero eyebrow overflow --------------------------------------------
+   The pill text went from "Large Model Optimization" to "Large Language Model
+   Optimization" when the acronym and its expansion were reconciled. Eight more
+   characters in an uppercase, letter-spaced mono face is enough to overflow a
+   narrow phone, so let it wrap instead of pushing the layout sideways.
+--------------------------------------------------------------------- */
+.hero .eyebrow {
+  max-width: 100%;
+  white-space: normal;
+  line-height: 1.5;
+}
+@media (max-width: 420px) {
+  .hero .eyebrow { letter-spacing: .08em; }
+}
