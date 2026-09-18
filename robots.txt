@@ -2,6 +2,7 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /prospects
 
 # Traditional search
 User-agent: Googlebot

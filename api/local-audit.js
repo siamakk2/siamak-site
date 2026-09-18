@@ -189,7 +189,10 @@ function sameDay(a, b) { return String(a).slice(0, 10) === String(b).slice(0, 10
 
 module.exports = async function handler(req, res) {
   // Lower limit than the site audit: each run makes several searched calls.
-  if (!(await guard(req, res, { bucket: 'local-audit', limit: 6, window: 3600 }))) return;
+  // 40/hour, not 6: the prospecting tool runs a batch of twenty in one sitting
+  // and a limit of six blocked it on the seventh. Still bounded — each run is
+  // three searched model calls and this is not free.
+  if (!(await guard(req, res, { bucket: 'local-audit', limit: 40, window: 3600 }))) return;
 
   try {
     const apiKey = process.env.ANTHROPIC_API_KEY;
