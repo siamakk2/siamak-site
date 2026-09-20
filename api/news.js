@@ -30,7 +30,13 @@ Return ONLY a JSON array, no preamble and no markdown fences. Between 5 and 8 ob
  "url": "direct link to the primary source",
  "date": "YYYY-MM-DD"}
 
-Rules: prefer primary sources (company announcements, official docs) over aggregators. Do not invent a URL — if you cannot cite one, omit the item. Do not include opinion pieces or listicles. Order newest first.`;
+Rules, all of which matter:
+- The url must point at the specific article or announcement about THAT item, not a blog index, category page or roundup. If you only have an index page, omit the item.
+- Never use the same url for two different items. Each item needs its own source.
+- Prefer the primary source: the company's own announcement, official documentation, a regulator's press release, or a court filing, over any publication reporting on it.
+- Finish every sentence. A summary must end with a full stop, not mid-clause.
+- No opinion pieces, listicles or vendor marketing.
+- Order newest first.`;
 
 async function cacheGet() {
   const url = process.env.UPSTASH_REDIS_REST_URL, token = process.env.UPSTASH_REDIS_REST_TOKEN;
@@ -61,6 +67,20 @@ function textOf(content) {
 }
 
 // Models wrap JSON in prose or fences often enough that this is not optional.
+// A summary ending "against the framew" reads as broken software, which on this
+// page is worse than a shorter summary. Trim at the last sentence that fits, or
+// failing that at a word boundary with an ellipsis.
+function trimSummary(t) {
+  const s = String(t || '').replace(/\s+/g, ' ').trim();
+  if (s.length <= 400) return s;
+  const window = s.slice(0, 398);
+  for (const stop of ['. ', '? ', '! ']) {
+    const i = window.lastIndexOf(stop);
+    if (i > 160) return s.slice(0, i + 1);
+  }
+  return window.slice(0, window.lastIndexOf(' ')).replace(/[,;:\-–—]$/, '') + '\u2026';
+}
+
 function parseItems(raw) {
   let t = String(raw || '').replace(/```(?:json)?/g, '').trim();
   const a = t.indexOf('['), b = t.lastIndexOf(']');
@@ -81,13 +101,20 @@ function parseItems(raw) {
     try { host = new URL(it.url).hostname.replace(/^www\./, ''); } catch (e) {}
     return {
       headline: String(it.headline).slice(0, 140),
-      summary: String(it.summary || '').slice(0, 420),
+      summary: trimSummary(it.summary),
       source: String(it.source || host).slice(0, 60),
       host: host,
       url: it.url,
       date: /^\d{4}-\d{2}-\d{2}$/.test(String(it.date || '')) ? it.date : null
     };
-  }).slice(0, 8);
+  })
+  // The prompt asks for one source per item; this enforces it. A blog index
+  // credited for two unrelated stories is how a feed loses its credibility,
+  // and asking a model nicely is not a control.
+  .filter(function (it, i, all) {
+    return all.findIndex(function (o) { return o.url === it.url; }) === i;
+  })
+  .slice(0, 8);
 }
 
 
