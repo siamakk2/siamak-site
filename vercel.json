@@ -860,6 +860,9 @@
     },
     "api/book.js": {
       "maxDuration": 30
+    },
+    "api/news.js": {
+      "maxDuration": 90
     }
   }
 }
