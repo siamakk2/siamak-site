@@ -866,7 +866,7 @@
       "maxDuration": 30
     },
     "api/news.js": {
-      "maxDuration": 90
+      "maxDuration": 300
     },
     "api/news-feed.js": {
       "maxDuration": 15

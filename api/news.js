@@ -98,9 +98,20 @@ function parseItems(raw) {
 // same lesson as the live-answer endpoint, where guessing one name and shipping
 // it cost three deploys.
 
+
+// Every provider call is bounded. The function previously tried three Gemini
+// models and then six Anthropic web searches, which ran past the function's own
+// time limit; Vercel killed it mid-flight and the browser got nothing at all.
+// A slow failure that still answers is fine. A hang is not.
+function withDeadline(ms) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(function () { ctrl.abort(); }, ms);
+  return { signal: ctrl.signal, done: function () { clearTimeout(timer); } };
+}
+
 const GEMINI_KEY_NAMES = ['GEMINI_API_KEY', 'GOOGLE_API_KEY',
                           'GOOGLE_GENERATIVE_AI_API_KEY', 'GOOGLE_AI_API_KEY'];
-const GEMINI_MODELS = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash'];
+const GEMINI_MODELS = ['gemini-2.5-flash', 'gemini-2.0-flash'];
 
 function geminiKey() {
   for (const n of GEMINI_KEY_NAMES) {
@@ -116,15 +127,19 @@ async function askGemini() {
   let last = '';
   for (const model of models) {
     try {
-      const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' +
-                            model + ':generateContent?key=' + encodeURIComponent(k.key), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: PROMPT }] }],
-          tools: [{ google_search: {} }]
-        })
-      });
+      const dl = withDeadline(55000);
+      let r;
+      try {
+        r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' +
+                        model + ':generateContent?key=' + encodeURIComponent(k.key), {
+          method: 'POST', signal: dl.signal,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: PROMPT }] }],
+            tools: [{ google_search: {} }]
+          })
+        });
+      } finally { dl.done(); }
       if (!r.ok) { last = model + ':' + r.status; continue; }
       const data = await r.json();
       const cand = (data.candidates || [])[0] || {};
@@ -141,14 +156,15 @@ async function askAnthropic() {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) return { error: 'no_anthropic_key' };
   try {
+    const dl = withDeadline(110000);
     const resp = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
+      method: 'POST', signal: dl.signal,
       headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey,
                  'anthropic-version': '2023-06-01' },
       body: JSON.stringify({
         model: MODEL, max_tokens: 2600,
         messages: [{ role: 'user', content: PROMPT }],
-        tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 6 }]
+        tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 4 }]
       })
     });
     if (!resp.ok) {
@@ -156,6 +172,7 @@ async function askAnthropic() {
       return { error: 'anthropic_' + resp.status, detail: d.slice(0, 140) };
     }
     const data = await resp.json();
+    dl.done();
     return { text: textOf(data.content), engine: 'claude/' + MODEL };
   } catch (e) {
     return { error: 'anthropic_exception', detail: String(e && e.message).slice(0, 140) };
@@ -187,10 +204,13 @@ module.exports = async function handler(req, res) {
     });
   }
 
+  const started = Date.now();
   let r = await askGemini();
   if (!r.text) {
     const first = r;
-    r = await askAnthropic();
+    // Only try the second provider if there is time left to hear the answer.
+    r = (Date.now() - started < 120000) ? await askAnthropic()
+        : { error: first.error || 'gemini_timeout', detail: 'no time for fallback' };
     if (!r.text) {
       if (cached) return res.status(200).json(Object.assign({ cached: true, stale: true }, cached));
       return res.status(200).json({ unavailable: true,
