@@ -657,6 +657,10 @@
     {
       "source": "/voice-consultant",
       "destination": "/voice-consultant/index.html"
+    },
+    {
+      "source": "/news.xml",
+      "destination": "/api/news-feed"
     }
   ],
   "headers": [
@@ -863,6 +867,9 @@
     },
     "api/news.js": {
       "maxDuration": 90
+    },
+    "api/news-feed.js": {
+      "maxDuration": 15
     }
   },
   "crons": [

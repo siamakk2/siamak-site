@@ -1,6 +1,7 @@
 # Siamak Kalhor Consulting — robots.txt
 User-agent: *
 Allow: /
+Allow: /news.xml
 Disallow: /api/
 Disallow: /prospects
 
