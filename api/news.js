@@ -90,6 +90,78 @@ function parseItems(raw) {
   }).slice(0, 8);
 }
 
+
+// ---- providers -----------------------------------------------------------
+// Gemini first, because its key is the one present in this project and because
+// Google Search grounding is well suited to finding recent news. Anthropic is
+// the fallback. Key names and model names are probed rather than assumed — the
+// same lesson as the live-answer endpoint, where guessing one name and shipping
+// it cost three deploys.
+
+const GEMINI_KEY_NAMES = ['GEMINI_API_KEY', 'GOOGLE_API_KEY',
+                          'GOOGLE_GENERATIVE_AI_API_KEY', 'GOOGLE_AI_API_KEY'];
+const GEMINI_MODELS = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash'];
+
+function geminiKey() {
+  for (const n of GEMINI_KEY_NAMES) {
+    if (process.env[n]) return { name: n, key: process.env[n] };
+  }
+  return null;
+}
+
+async function askGemini() {
+  const k = geminiKey();
+  if (!k) return { error: 'no_gemini_key' };
+  const models = (process.env.GEMINI_MODEL ? [process.env.GEMINI_MODEL] : []).concat(GEMINI_MODELS);
+  let last = '';
+  for (const model of models) {
+    try {
+      const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' +
+                            model + ':generateContent?key=' + encodeURIComponent(k.key), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: PROMPT }] }],
+          tools: [{ google_search: {} }]
+        })
+      });
+      if (!r.ok) { last = model + ':' + r.status; continue; }
+      const data = await r.json();
+      const cand = (data.candidates || [])[0] || {};
+      const text = ((cand.content || {}).parts || [])
+        .map(function (x) { return x.text || ''; }).join(' ').trim();
+      if (!text) { last = model + ':empty'; continue; }
+      return { text: text, engine: 'gemini/' + model };
+    } catch (e) { last = model + ':' + String(e && e.message).slice(0, 40); }
+  }
+  return { error: 'gemini_failed', detail: last };
+}
+
+async function askAnthropic() {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) return { error: 'no_anthropic_key' };
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey,
+                 'anthropic-version': '2023-06-01' },
+      body: JSON.stringify({
+        model: MODEL, max_tokens: 2600,
+        messages: [{ role: 'user', content: PROMPT }],
+        tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 6 }]
+      })
+    });
+    if (!resp.ok) {
+      const d = await resp.text().catch(function () { return ''; });
+      return { error: 'anthropic_' + resp.status, detail: d.slice(0, 140) };
+    }
+    const data = await resp.json();
+    return { text: textOf(data.content), engine: 'claude/' + MODEL };
+  } catch (e) {
+    return { error: 'anthropic_exception', detail: String(e && e.message).slice(0, 140) };
+  }
+}
+
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   if (req.method === 'OPTIONS') { res.status(200).end(); return; }
@@ -105,45 +177,34 @@ module.exports = async function handler(req, res) {
     return res.status(200).json(Object.assign({ cached: true }, cached));
   }
 
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) return res.status(200).json({ unavailable: true, reason: 'no_api_key' });
-
-  try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01'
-      },
-      body: JSON.stringify({
-        model: MODEL,
-        max_tokens: 2600,
-        messages: [{ role: 'user', content: PROMPT }],
-        tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 6 }]
-      })
+  // Diagnostic: which keys this deployment can see. Never the keys themselves.
+  if (req.query && req.query.debug === '1') {
+    return res.status(200).json({
+      gemini_key_found: geminiKey() ? geminiKey().name : null,
+      anthropic_key_found: !!process.env.ANTHROPIC_API_KEY,
+      cached_items: cached && cached.items ? cached.items.length : 0,
+      compiled: cached ? cached.compiled : null
     });
-    if (!resp.ok) {
-      const detail = await resp.text().catch(function () { return ''; });
-      // Serve stale rather than nothing — an old item with a date on it is
-      // honest; an empty page is just broken.
-      if (cached) return res.status(200).json(Object.assign({ cached: true, stale: true }, cached));
-      return res.status(200).json({ unavailable: true, reason: 'upstream_' + resp.status,
-                                    detail: detail.slice(0, 160) });
-    }
-    const data = await resp.json();
-    const items = parseItems(textOf(data.content));
-    if (!items.length) {
-      if (cached) return res.status(200).json(Object.assign({ cached: true, stale: true }, cached));
-      return res.status(200).json({ unavailable: true, reason: 'no_items' });
-    }
-    const payload = { items: items, compiled: new Date().toISOString(), model: MODEL };
-    await cacheSet(payload);
-    res.setHeader('Cache-Control', 'public, s-maxage=21600, stale-while-revalidate=86400');
-    return res.status(200).json(payload);
-  } catch (e) {
-    if (cached) return res.status(200).json(Object.assign({ cached: true, stale: true }, cached));
-    return res.status(200).json({ unavailable: true, reason: 'exception',
-                                  detail: String(e && e.message).slice(0, 160) });
   }
+
+  let r = await askGemini();
+  if (!r.text) {
+    const first = r;
+    r = await askAnthropic();
+    if (!r.text) {
+      if (cached) return res.status(200).json(Object.assign({ cached: true, stale: true }, cached));
+      return res.status(200).json({ unavailable: true,
+        reason: first.error || r.error, detail: first.detail || r.detail });
+    }
+  }
+
+  const items = parseItems(r.text);
+  if (!items.length) {
+    if (cached) return res.status(200).json(Object.assign({ cached: true, stale: true }, cached));
+    return res.status(200).json({ unavailable: true, reason: 'no_items', engine: r.engine });
+  }
+  const payload = { items: items, compiled: new Date().toISOString(), engine: r.engine };
+  await cacheSet(payload);
+  res.setHeader('Cache-Control', 'public, s-maxage=21600, stale-while-revalidate=86400');
+  return res.status(200).json(payload);
 };
