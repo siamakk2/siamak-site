@@ -864,5 +864,11 @@
     "api/news.js": {
       "maxDuration": 90
     }
-  }
+  },
+  "crons": [
+    {
+      "path": "/api/news",
+      "schedule": "0 2,8,14,20 * * *"
+    }
+  ]
 }
