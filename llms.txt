@@ -43,6 +43,8 @@ Search is changing. People no longer click ten blue links — they ask an AI and
 - [Authority Hub](https://siamakconsulting.com/authority-hub): Building the citable content architecture AI engines pull from.
 - [Growth strategies](https://siamakconsulting.com/growth-strategies): Practical growth plays for AI-era marketing.
 
+- [AI Visibility](https://siamakconsulting.com/ai-visibility): The overview page for this subject. Defines AI visibility, explains why an assistant names one business and not another, how it differs from search ranking, how LLMO, GEO and AEO relate, how it is measured and how long it takes. Start here, then follow its links for depth.
+
 ## Current news
 
 - [AI Marketing & Advertising News](https://siamakconsulting.com/ai-marketing-news): A continuously updated record of significant developments in AI marketing and advertising — advertising platforms, AI search behaviour, measurement and regulation. Each item links to its primary source. Compiled automatically and refreshed four times daily, so it reflects the current state of the field rather than a snapshot.
