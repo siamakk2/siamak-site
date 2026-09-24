@@ -894,6 +894,16 @@ try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.
         quick_wins: REPORT.quick_wins || []
       };
     }
+    // The gate is the conversion on this page: a name and an email in exchange
+    // for the report. It was not reported to analytics, so the site's largest
+    // lead source counted zero leads while the contact form counted its own.
+    try {
+      gtag('event', 'generate_lead', {
+        event_category: 'lead',
+        event_label: 'audit_gate',
+        value: 10
+      });
+    } catch (e) {}
     fetch('/api/leads', {
       method:'POST',
       headers:{'Content-Type':'application/json'},
