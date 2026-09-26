@@ -105,6 +105,9 @@
 
     el.setAttribute('role', 'figure');
     el.setAttribute('aria-label', 'Example AI answer to: ' + q);
+    // The noscript fallback carries the same Q&A for crawlers without JS.
+    // Once we render, it is replaced — so it never duplicates for a reader.
+    // (innerHTML assignment below removes any existing noscript.)
     el.innerHTML =
       '<div class="ansbox-bar">' +
         '<span class="ansbox-d r"></span><span class="ansbox-d y"></span><span class="ansbox-d g"></span>' +
