@@ -870,6 +870,9 @@
     },
     "api/news-feed.js": {
       "maxDuration": 15
+    },
+    "api/local-scan.js": {
+      "maxDuration": 20
     }
   },
   "crons": [

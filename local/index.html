@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Consent Mode v2 defaults — must load ahead of gtag.js. Keep it directly after the charset meta tag. -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+(function(){var d='denied',g='granted',B={ad_storage:d,ad_user_data:d,ad_personalization:d,functionality_storage:d,personalization_storage:d,security_storage:g,wait_for_update:500},m=function(o){var r={},k;for(k in B)r[k]=B[k];for(k in o)r[k]=o[k];return r};
+gtag('consent','default',m({analytics_storage:g}));
+gtag('consent','default',m({analytics_storage:d,region:'AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE IS LI NO GB CH'.split(' ')}));
+try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.now()-c.ts<15552e6){var a=c.ads?g:d,n=c.analytics?g:d,f=c.functional?g:d;gtag('consent','update',{ad_storage:a,ad_user_data:a,ad_personalization:a,analytics_storage:n,functionality_storage:f,personalization_storage:f,security_storage:g});}}catch(e){}})();</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2W5EQQ49S9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-2W5EQQ49S9');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Am I Not Showing Up on Google Maps? Free Local Check</title>
+<link rel="canonical" href="https://siamakconsulting.com/local"/>
+<meta name="description" content="Free scan of the local signals Google and AI assistants read from your site — address, hours, geo, structured data — plus a live check of whether AI names you.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Why Am I Not Showing Up on Google Maps? Free Local Check">
+<meta property="og:description" content="Scans the local signals on your website and asks a live AI assistant whether it recommends you. Free, no signup.">
+<meta property="og:image" content="https://siamakconsulting.com/og-audit.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:url" content="https://siamakconsulting.com/local">
+<meta property="og:site_name" content="Siamak Kalhor Consulting">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Why Am I Not Showing Up on Google Maps?">
+<meta name="twitter:description" content="Free scan of your local visibility signals, plus a live AI assistant check.">
+<meta name="twitter:image" content="https://siamakconsulting.com/og-audit.jpg">
+<link rel="apple-touch-icon" sizes="180x180" href="/audit-icon-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<meta name="theme-color" content="#06080c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://siamakconsulting.com/local#app",
+  "name": "Local Visibility Check",
+  "url": "https://siamakconsulting.com/local",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Scans a website for the local ranking signals Google and AI assistants read — structured data, address, phone, geo coordinates, opening hours, third-party profiles — and separately asks a live AI assistant whether it names the business for real customer questions.",
+  "provider": { "@id": "https://siamakconsulting.com/#business" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://siamakconsulting.com/local#faq",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why am I not showing up on Google Maps?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In most cases it is one of four things: the Business Profile is unclaimed or unverified, the primary category is too general, the business details on the website contradict the details on the profile, or the website carries no structured data telling a machine where the business is and when it is open. The first two are fixed inside the Google Business Profile. The second two are fixed on the website, and that is the half this scan measures." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this tool check my Google Maps ranking?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No, and no honest free tool does. Checking a Maps ranking requires the Google Places API, and scraping the results breaches Google's terms of service. This scan measures the local signals on your own website, which are readable, and separately asks a live AI assistant whether it names your business. Anything claiming to show a free live Maps rank is either using cached data or inventing it." }
+    },
+    {
+      "@type": "Question",
+      "name": "What local signals does the scan actually read?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Eight: whether LocalBusiness structured data exists at all, whether it carries a complete postal address, whether the phone number in that data matches the phone number on the page, whether geo coordinates are present, whether opening hours are declared, whether the street address and city appear in visible page text rather than only in code, whether third-party profiles are declared through sameAs, and whether a map or directions link is present." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my website matter if customers find me on Maps?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Google reconciles your Business Profile against your website and against every directory that lists you. When those sources disagree — a different phone number, different hours, a different suite number — confidence in the whole entity drops and a competitor with consistent details gets shown instead. The website is the source Google treats as authoritative, so a contradiction there is the most expensive kind." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do AI assistants use Google Maps data to recommend local businesses?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Not directly. Assistants build local recommendations from whatever they can retrieve at the moment of the question — directory pages, review platforms, local press, city guides, and your own website. That is why the live check in this tool reports which sources the assistant used to build its answer. If the answer came from three sites you do not appear on, that is the specific gap, and it is a different problem from Maps ranking." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the local visibility check free?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. The website scan is free and requires no signup. The live AI assistant check is also free and rate-limited to keep it available." }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://siamakconsulting.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Local Visibility Check", "item": "https://siamakconsulting.com/local" }
+  ]
+}
+</script>
+
+<style>
+  :root{
+    --navy:#0A1628; --blue:#7c5cff; --blue2:#2dd4ff; --amber:#F9A825;
+    --green:#1FA463; --red:#E53935; --ink:#0A1628; --muted:#5A6B7D;
+    --line:#E4EAF2; --bg:#F7F9FC; --card:#FFFFFF;
+    --shadow:0 10px 40px rgba(10,22,40,0.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Inter',-apple-system,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,.brand{font-family:'Space Grotesk',sans-serif;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px;}
+
+  .top{position:sticky;top:0;z-index:50;background:rgba(247,249,252,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .top-in{max-width:960px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;}
+  .brand{font-weight:800;font-size:18px;color:var(--navy);display:flex;align-items:center;gap:9px;}
+  .brand .dot{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--blue),var(--navy));display:grid;place-items:center;color:#fff;font-size:15px;font-weight:800;}
+  .top .call{font-size:14px;font-weight:600;color:var(--blue);}
+
+  .hero{padding:58px 0 28px;text-align:center;}
+  .eyebrow{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);background:rgba(124,92,255,0.09);border:1px solid rgba(124,92,255,0.2);padding:6px 14px;border-radius:100px;margin-bottom:20px;}
+  .hero h1{font-size:clamp(29px,5.2vw,47px);line-height:1.08;font-weight:800;letter-spacing:-0.02em;color:var(--navy);}
+  .hero h1 .grad{background:linear-gradient(100deg,var(--blue),var(--amber));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .hero p.sub{font-size:clamp(15px,2.2vw,18px);color:var(--muted);max-width:640px;margin:16px auto 0;}
+
+  .box{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:26px;margin:26px auto 0;max-width:660px;}
+  .row{display:flex;gap:10px;}
+  .row input{flex:1;font-size:17px;font-family:'Inter';padding:15px 18px;border:2px solid var(--line);border-radius:12px;outline:none;transition:border-color .15s;min-width:0;}
+  .row input:focus{border-color:var(--blue);}
+  .btn{font-family:'Space Grotesk';font-weight:700;font-size:15px;border:none;border-radius:12px;cursor:pointer;transition:transform .12s,box-shadow .2s;}
+  .btn-go{background:linear-gradient(135deg,var(--blue),#6a4ee8);color:#fff;padding:15px 26px;white-space:nowrap;box-shadow:0 6px 18px rgba(124,92,255,0.32);}
+  .btn-go:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(124,92,255,0.4);}
+  .btn-go:disabled{opacity:.6;cursor:wait;transform:none;}
+  .reassure{font-size:13px;color:var(--muted);margin-top:13px;text-align:center;}
+  .err{color:var(--red);font-size:14.5px;margin-top:12px;text-align:center;}
+
+  .trust{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center;margin-top:22px;font-size:13.5px;color:var(--muted);}
+  .trust span{display:flex;align-items:center;gap:6px;}
+
+  .out{display:none;padding:10px 0 0;}
+  .out.show{display:block;animation:rise .45s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+
+  .rep-head{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:28px;text-align:center;margin-bottom:16px;}
+  .rep-head .biz{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;word-break:break-word;}
+  .rep-head h2{font-size:24px;color:var(--navy);margin:4px 0 2px;}
+  .gauge{width:148px;height:148px;margin:10px auto 4px;position:relative;}
+  .gauge svg{transform:rotate(-90deg);}
+  .gauge .num{position:absolute;inset:0;display:grid;place-items:center;font-family:'Space Grotesk';font-weight:800;font-size:40px;color:var(--navy);}
+  .gauge .num small{font-size:15px;color:var(--muted);font-weight:600;}
+  .rep-head .headline{font-size:16.5px;color:var(--ink);font-weight:600;max-width:560px;margin:10px auto 0;}
+
+  .sec{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:24px 26px;margin-bottom:16px;}
+  .sec > h3{font-size:19px;color:var(--navy);margin-bottom:6px;}
+  .sec > p.lede{font-size:15px;color:var(--muted);margin-bottom:16px;max-width:64ch;}
+
+  .chk{display:flex;gap:13px;padding:14px 0;border-top:1px solid var(--line);}
+  .chk:first-of-type{border-top:none;padding-top:4px;}
+  .mark{flex:none;width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-size:14px;font-weight:800;color:#fff;margin-top:1px;}
+  .mark.y{background:var(--green);}
+  .mark.n{background:var(--red);}
+  .chk .body{min-width:0;}
+  .chk .lbl{font-weight:700;font-size:15.5px;color:var(--navy);}
+  .chk .det{font-size:14.5px;color:var(--muted);margin-top:2px;}
+  .chk .fix{font-size:14.5px;color:var(--ink);margin-top:7px;padding:10px 13px;background:rgba(124,92,255,0.06);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;}
+
+  .gbp li{list-style:none;padding:14px 0;border-top:1px solid var(--line);}
+  .gbp li:first-child{border-top:none;padding-top:4px;}
+  .gbp .k{font-weight:700;font-size:15.5px;color:var(--navy);}
+  .gbp .q{font-size:15px;color:var(--ink);margin-top:3px;}
+  .gbp .why{font-size:14px;color:var(--muted);margin-top:4px;}
+
+  .lc-form{display:flex;gap:10px;flex-wrap:wrap;}
+  .lc-form input{flex:1 1 180px;min-width:0;padding:13px 14px;font-size:16.5px;border:2px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);min-height:48px;font-family:'Inter';outline:none;}
+  .lc-form input:focus{border-color:var(--blue);}
+  .lc-form button{flex:0 0 auto;padding:13px 28px;font-size:16px;min-height:48px;}
+  .lc-status{font-size:15px;color:var(--muted);margin-top:14px;min-height:22px;}
+  .lc-out{margin-top:16px;display:none;}
+  .lc-score{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:14px;}
+  .lc-num{font-size:40px;font-weight:800;line-height:1;font-family:'Space Grotesk';}
+  .lc-num.bad{color:#C0392B;}.lc-num.mid{color:#B7791F;}.lc-num.good{color:#1E7E45;}
+  .lc-score p{margin:0;font-size:15.5px;color:var(--muted);max-width:46ch;}
+  .lc-sub{font-size:14.5px;color:var(--muted);margin:0 0 10px;}
+  .lc-row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px;}
+  .lc-row:last-child{border-bottom:0;}
+  .lc-row b{color:var(--navy);font-weight:600;}
+  .lc-yes{color:#1E7E45;font-weight:700;}.lc-no{color:#C0392B;font-weight:700;}
+
+  .spin{width:20px;height:20px;border:3px solid var(--line);border-top-color:var(--blue);border-radius:50%;display:inline-block;vertical-align:-4px;margin-right:9px;animation:spin .8s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  .cta{background:linear-gradient(135deg,var(--navy),#10243f);color:#fff;border-radius:18px;padding:30px 30px;margin:26px 0 8px;text-align:center;}
+  .cta h3{font-size:22px;margin-bottom:9px;color:#fff;}
+  .cta p{font-size:15.5px;color:rgba(255,255,255,0.72);max-width:56ch;margin:0 auto 20px;}
+  .cta-row{display:flex;gap:11px;flex-wrap:wrap;justify-content:center;}
+  .btn-call{background:var(--amber);color:var(--navy);padding:15px 28px;box-shadow:0 6px 18px rgba(249,168,37,0.35);display:inline-block;}
+  .btn-call:hover{transform:translateY(-1px);}
+  .btn-ghost{background:transparent;border:2px solid rgba(255,255,255,0.28);color:#fff;padding:13px 24px;display:inline-block;}
+  .btn-ghost:hover{border-color:rgba(255,255,255,0.55);}
+
+  .faq{padding:10px 0 4px;}
+  .faq h2{font-size:26px;color:var(--navy);margin-bottom:16px;}
+  .faq h3{font-size:17.5px;color:var(--navy);margin:22px 0 6px;}
+  .faq p{font-size:16px;color:#3D4C5C;max-width:68ch;}
+
+  footer{text-align:center;padding:36px 20px 48px;color:var(--muted);font-size:13.5px;}
+  footer b{color:var(--ink);}
+  footer a{color:var(--blue);font-weight:600;}
+
+  :focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}
+  .skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}
+  .skip-link:focus{left:8px;top:8px}
+
+  @media(max-width:680px){
+    .row{flex-direction:column;}
+    .btn-go{width:100%;}
+    .lc-form button{width:100%;}
+    .hero{padding:38px 0 20px;}
+    .sec{padding:22px 18px;}
+    .cta{padding:26px 20px;}
+  }
+  @media (max-width:560px){
+    .top-in{padding:10px 14px;gap:10px;}
+    .brand{font-size:14px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    .brand .dot{flex:0 0 auto;}
+    .call{font-size:13px;flex:0 0 auto;white-space:nowrap;}
+  }
+  @media (max-width:380px){ .brand{font-size:12.5px;} .call{font-size:12px;} }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="top">
+  <div class="top-in">
+    <a class="brand" href="https://siamakconsulting.com/"><span class="dot">S</span> Siamak Kalhor Consulting</a>
+    <a class="call" href="tel:13236577752">📞 (323) 657-7752</a>
+  </div>
+</div>
+
+<div class="wrap" id="main">
+
+  <section class="hero">
+    <span class="eyebrow">Free · No signup · About a second</span>
+    <h1>Why am I not showing up <span class="grad">on Google Maps?</span></h1>
+    <p class="sub">Usually because the local signals on your own website contradict your Business Profile, or were never there at all. This reads the eight signals Google and AI assistants actually pull from your site, and tells you which ones are missing.</p>
+  </section>
+
+  <div class="box">
+    <div class="row">
+      <input id="url" type="url" inputmode="url" autocomplete="url" placeholder="yourbusiness.com" aria-label="Your website address">
+      <button type="button" class="btn btn-go" id="go">Scan my site</button>
+    </div>
+    <p class="reassure">We read your public homepage only. Nothing is stored, nothing is shared.</p>
+    <p class="err" id="err" style="display:none"></p>
+  </div>
+
+  <div class="trust">
+    <span>✓ No Google login needed</span>
+    <span>✓ Works on any public site</span>
+    <span>✓ No email required</span>
+  </div>
+
+  <div class="out" id="out">
+    <div class="rep-head">
+      <div class="biz" id="repBiz">—</div>
+      <h2>Local signal score</h2>
+      <div class="gauge">
+        <svg width="148" height="148" aria-hidden="true">
+          <circle cx="74" cy="74" r="62" fill="none" stroke="#E4EAF2" stroke-width="13"></circle>
+          <circle id="arc" cx="74" cy="74" r="62" fill="none" stroke="#7c5cff" stroke-width="13"
+                  stroke-linecap="round" stroke-dasharray="389.6" stroke-dashoffset="389.6"
+                  style="transition:stroke-dashoffset 1s ease,stroke .6s"></circle>
+        </svg>
+        <div class="num"><span id="scoreNum">0</span><small>/100</small></div>
+      </div>
+      <p class="headline" id="repHeadline"></p>
+    </div>
+
+    <div class="sec">
+      <h3>What your site tells a machine about where you are</h3>
+      <p class="lede">These are the signals Google reconciles against your Business Profile, and the ones an AI assistant reads when it has never heard of you. Each failure below is a specific, fixable thing.</p>
+      <div id="checks"></div>
+    </div>
+
+    <div class="sec" id="liveSec">
+      <h3>Do AI assistants actually recommend you?</h3>
+      <p class="lede">The scan above reads your website. This is a different question: it asks a live AI assistant three real customer questions and reports whether your business comes back &mdash; and which websites it used to decide. That second part is the useful one.</p>
+      <div class="lc-form">
+        <input id="lcBiz" type="text" placeholder="Business name" aria-label="Business name">
+        <input id="lcCat" type="text" placeholder="What you do — e.g. dentist" aria-label="What your business does">
+        <input id="lcCity" type="text" placeholder="City — e.g. Sunland" aria-label="City">
+        <button type="button" class="btn btn-go" id="lcGo">Check</button>
+      </div>
+      <p class="lc-status" id="lcStatus"></p>
+      <div class="lc-out" id="lcOut"></div>
+    </div>
+
+    <div class="sec">
+      <h3>The eight things this scan cannot see</h3>
+      <p class="lede">These live inside your Google Business Profile, which no outside tool can read on your behalf. Rather than guess at them and hand you an invented number, here is the list &mdash; it takes about ninety seconds to walk, and for most businesses the answer is somewhere in it.</p>
+      <ul class="gbp" id="gbp"></ul>
+    </div>
+
+    <div class="cta">
+      <h3>Know which one is costing you the most?</h3>
+      <p>Most local businesses have four or five of these wrong at once, and they are not equally expensive. A short call sorts them in order &mdash; no charge, no pitch deck.</p>
+      <div class="cta-row">
+        <a class="btn btn-call" href="tel:13236577752" id="ctaCall">📞 Call (323) 657-7752</a>
+        <a class="btn btn-ghost" href="/audit">Run the full website audit</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Visible copy matching the FAQPage schema above. Google requires FAQ
+       markup to correspond to content the visitor can actually read, and AI
+       crawlers largely do not execute JavaScript, so this has to be in the
+       HTML rather than rendered by the script. -->
+  <section class="faq">
+    <h2>Local visibility, answered plainly</h2>
+
+    <h3>Why am I not showing up on Google Maps?</h3>
+    <p>In most cases it is one of four things: the Business Profile is unclaimed or unverified, the primary category is too general, the business details on the website contradict the details on the profile, or the website carries no structured data telling a machine where the business is and when it is open. The first two are fixed inside the Google Business Profile. The second two are fixed on the website, and that is the half this scan measures.</p>
+
+    <h3>Does this tool check my Google Maps ranking?</h3>
+    <p>No, and no honest free tool does. Checking a Maps ranking requires the Google Places API, and scraping the results breaches Google's terms of service. This scan measures the local signals on your own website, which are readable, and separately asks a live AI assistant whether it names your business. Anything claiming to show a free live Maps rank is either using cached data or inventing it.</p>
+
+    <h3>What local signals does the scan actually read?</h3>
+    <p>Eight: whether LocalBusiness structured data exists at all, whether it carries a complete postal address, whether the phone number in that data matches the phone number on the page, whether geo coordinates are present, whether opening hours are declared, whether the street address and city appear in visible page text rather than only in code, whether third-party profiles are declared through <code>sameAs</code>, and whether a map or directions link is present.</p>
+
+    <h3>Why does my website matter if customers find me on Maps?</h3>
+    <p>Google reconciles your Business Profile against your website and against every directory that lists you. When those sources disagree &mdash; a different phone number, different hours, a different suite number &mdash; confidence in the whole entity drops and a competitor with consistent details gets shown instead. The website is the source Google treats as authoritative, so a contradiction there is the most expensive kind.</p>
+
+    <h3>Do AI assistants use Google Maps data to recommend local businesses?</h3>
+    <p>Not directly. Assistants build local recommendations from whatever they can retrieve at the moment of the question &mdash; directory pages, review platforms, local press, city guides, and your own website. That is why the live check in this tool reports which sources the assistant used to build its answer. If the answer came from three sites you do not appear on, that is the specific gap, and it is a different problem from Maps ranking.</p>
+
+    <h3>Is the local visibility check free?</h3>
+    <p>Yes. The website scan is free and requires no signup. The live AI assistant check is also free and rate-limited to keep it available.</p>
+  </section>
+
+</div>
+
+<footer>
+  A free tool by <b>Siamak Kalhor Consulting</b> · <b>(323) 657-7752</b><br>
+  Los Angeles · <a href="/audit">Website audit</a> · <a href="/answers">Answers</a> · <a href="/about-us">About</a>
+</footer>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  function esc(s){ return String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+
+  var go = $('go'), urlIn = $('url'), err = $('err'), out = $('out');
+
+  function fail(msg){
+    err.textContent = msg; err.style.display = 'block';
+    go.disabled = false; go.textContent = 'Scan my site';
+  }
+
+  function paint(d){
+    err.style.display = 'none';
+
+    $('repBiz').textContent = d.business_name || d.url || '';
+
+    // Animate the arc. 2*pi*62 = 389.56.
+    var pct = Math.max(0, Math.min(100, d.score || 0));
+    var arc = $('arc');
+    var colour = pct < 45 ? '#E53935' : (pct < 75 ? '#F9A825' : '#1FA463');
+    arc.setAttribute('stroke', colour);
+    setTimeout(function(){ arc.style.strokeDashoffset = String(389.6 * (1 - pct / 100)); }, 60);
+
+    // Count up, so the number reads as measured rather than asserted.
+    var n = $('scoreNum'), cur = 0;
+    var step = setInterval(function(){
+      cur += Math.max(1, Math.round(pct / 28));
+      if (cur >= pct) { cur = pct; clearInterval(step); }
+      n.textContent = cur;
+    }, 28);
+
+    var missing = d.total - d.passed;
+    $('repHeadline').textContent = missing === 0
+      ? 'All eight local signals present. The website half is in good shape — anything still wrong is inside the Business Profile, below.'
+      : d.passed + ' of ' + d.total + ' local signals present. ' + missing +
+        (missing === 1 ? ' signal is missing' : ' signals are missing') +
+        ', and each one is a reason a machine cannot confirm where you are.';
+
+    // Failures first: the reason someone ran this is to find what is wrong.
+    var list = (d.checks || []).slice().sort(function(a,b){
+      if (a.ok !== b.ok) return a.ok ? 1 : -1;
+      return b.weight - a.weight;
+    });
+
+    $('checks').innerHTML = list.map(function(c){
+      return '<div class="chk">'
+        + '<div class="mark ' + (c.ok ? 'y' : 'n') + '" aria-hidden="true">' + (c.ok ? '✓' : '✕') + '</div>'
+        + '<div class="body">'
+        +   '<div class="lbl">' + esc(c.label) + '</div>'
+        +   '<div class="det">' + esc(c.detail) + '</div>'
+        +   (c.fix ? '<div class="fix"><b>Fix:</b> ' + esc(c.fix) + '</div>' : '')
+        + '</div></div>';
+    }).join('');
+
+    $('gbp').innerHTML = (d.gbp_self_check || []).map(function(g){
+      return '<li><div class="k">' + esc(g.k) + '</div>'
+        + '<div class="q">' + esc(g.q) + '</div>'
+        + '<div class="why">' + esc(g.why) + '</div></li>';
+    }).join('');
+
+    // Pre-fill the live check from what the scan already found, so the visitor
+    // is not asked twice for something we can read.
+    if (d.business_name && !$('lcBiz').value) $('lcBiz').value = d.business_name;
+    if (d.detected_city && !$('lcCity').value) $('lcCity').value = d.detected_city;
+
+    out.classList.add('show');
+    go.disabled = false; go.textContent = 'Scan my site';
+    try { gtag('event','run_local_scan',{score: pct, passed: d.passed}); } catch(e){}
+    out.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  function run(){
+    var v = urlIn.value.trim();
+    if (!v) { fail('Enter your website address, for example yourbusiness.com'); return; }
+    err.style.display = 'none';
+    go.disabled = true; go.textContent = 'Scanning…';
+    out.classList.remove('show');
+
+    fetch('/api/local-scan', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ url: v })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (d.error) { fail(d.error); return; }
+      paint(d);
+    })
+    .catch(function(){
+      fail('The scan could not reach that site. Check the address, or call (323) 657-7752.');
+    });
+  }
+
+  go.addEventListener('click', run);
+  urlIn.addEventListener('keydown', function(e){ if (e.key === 'Enter') run(); });
+
+  // ---- live AI check -----------------------------------------------------
+  var lcGo = $('lcGo'), lcSt = $('lcStatus'), lcOut = $('lcOut');
+
+  lcGo.addEventListener('click', function(){
+    var biz  = $('lcBiz').value.trim();
+    var cat  = $('lcCat').value.trim();
+    var city = $('lcCity').value.trim();
+    if (!biz || !cat || !city) { lcSt.textContent = 'Please fill in all three.'; return; }
+
+    lcGo.disabled = true; lcOut.style.display = 'none'; lcOut.innerHTML = '';
+    var msgs = ['Asking an assistant three customer questions…',
+                'Reading which websites it used to answer…',
+                'Almost there — this one is slow because it is real…'];
+    var i = 0;
+    lcSt.innerHTML = '<span class="spin"></span>' + msgs[0];
+    var tick = setInterval(function(){ i = (i+1) % msgs.length;
+      lcSt.innerHTML = '<span class="spin"></span>' + msgs[i]; }, 8000);
+
+    fetch('/api/local-audit', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ business: biz, category: cat, city: city, website: urlIn.value.trim() })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      clearInterval(tick); lcGo.disabled = false; lcSt.textContent = '';
+      if (d.error) { lcSt.textContent = d.error; return; }
+
+      var rate = d.mention_rate || 0;
+      var cls = rate === 0 ? 'bad' : (rate < 50 ? 'mid' : 'good');
+      var verdict = rate === 0
+        ? 'Not named in any answer. Someone asking an assistant for a ' + esc(d.category) + ' in ' + esc(d.city) + ' does not hear about you.'
+        : (rate < 50 ? 'Named in some answers but not most.' : 'Named in most answers.');
+
+      var h = '<div class="lc-score"><div class="lc-num ' + cls + '">' + rate + '%</div><p>' + verdict + '</p></div>';
+
+      if (d.change) {
+        var dl = d.change.delta, when = new Date(d.change.previous_at);
+        var whenTxt = isNaN(when) ? 'the last check'
+          : when.toLocaleDateString(undefined, {month:'long', day:'numeric'});
+        var col = dl > 0 ? '#1E7E45' : (dl < 0 ? '#C0392B' : '#5A6B7D');
+        h += '<p class="lc-sub" style="font-size:15.5px;color:' + col + ';font-weight:600;margin:-4px 0 14px">'
+           + (dl === 0 ? 'Unchanged since ' + esc(whenTxt)
+                       : (dl > 0 ? 'Up ' : 'Down ') + Math.abs(dl) + ' points from '
+                         + d.change.previous_rate + '% on ' + esc(whenTxt))
+           + '</p>';
+      }
+
+      if (d.sources_the_assistant_used && d.sources_the_assistant_used.length) {
+        h += '<p class="lc-sub" style="margin-top:14px"><b>The websites the assistant read to build its answer.</b> '
+           + 'If you do not appear on the ones near the top, that is the specific gap — not a vague authority problem.</p>';
+        d.sources_the_assistant_used.slice(0, 8).forEach(function(s){
+          h += '<div class="lc-row"><b>' + esc(s.host) + '</b><span>'
+            + s.references + (s.references === 1 ? ' reference' : ' references') + '</span></div>';
+        });
+      }
+
+      if (d.runs && d.runs.length) {
+        h += '<p class="lc-sub" style="margin-top:18px"><b>The three questions, and whether you came back.</b></p>';
+        d.runs.forEach(function(r){
+          h += '<div class="lc-row"><b>' + esc(r.prompt) + '</b><span class="'
+            + (r.mentioned ? 'lc-yes">Named' : 'lc-no">Not named') + '</span></div>';
+        });
+      }
+
+      h += '<p class="lc-sub" style="margin-top:16px;font-size:13.5px">' + esc(d.note || '') + '</p>';
+
+      lcOut.innerHTML = h;
+      lcOut.style.display = 'block';
+      try { gtag('event','run_local_ai_check',{rate: rate}); } catch(e){}
+    })
+    .catch(function(){
+      clearInterval(tick); lcGo.disabled = false;
+      lcSt.textContent = 'The live check could not complete. Please try again, or call (323) 657-7752.';
+    });
+  });
+
+  var cc = $('ctaCall');
+  if (cc) cc.addEventListener('click', function(){
+    try { gtag('event','book_call_click',{location:'local'}); } catch(e){}
+  });
+})();
+</script>
+
+</body>
+</html>
