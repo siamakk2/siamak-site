@@ -138,6 +138,10 @@ function withDeadline(ms) {
 
 const GEMINI_KEY_NAMES = ['GEMINI_API_KEY', 'GOOGLE_API_KEY',
                           'GOOGLE_GENERATIVE_AI_API_KEY', 'GOOGLE_AI_API_KEY'];
+// Fallback list only. Hard-coding model names is what broke this page: Google
+// retired gemini-2.0-flash, every call 404'd, the cron failed silently four
+// times a day and the page quietly served nothing. Names below are a last
+// resort — discoverModels() asks Google what actually exists first.
 const GEMINI_MODELS = ['gemini-2.5-flash', 'gemini-2.0-flash'];
 
 function geminiKey() {
@@ -147,10 +151,47 @@ function geminiKey() {
   return null;
 }
 
+// Ask Google which models this key can actually call, so a retirement degrades
+// to "use the next one" instead of "the feature is dead". Preference order:
+// newest version first, flash over pro (cheaper and fast enough for this job).
+async function discoverModels(key) {
+  try {
+    const dl = withDeadline(8000);
+    let r;
+    try {
+      r = await fetch('https://generativelanguage.googleapis.com/v1beta/models?key=' +
+                      encodeURIComponent(key) + '&pageSize=100', { signal: dl.signal });
+    } finally { dl.done(); }
+    if (!r.ok) return [];
+    const data = await r.json();
+    return (data.models || [])
+      .filter(function (m) {
+        return (m.supportedGenerationMethods || []).indexOf('generateContent') !== -1;
+      })
+      .map(function (m) { return String(m.name || '').replace(/^models\//, ''); })
+      .filter(function (n) { return /^gemini-/.test(n) && !/embedding|aqa|vision/i.test(n); })
+      .sort(function (a, b) {
+        const ver = function (s) { const m = s.match(/gemini-(\d+(?:\.\d+)?)/); return m ? parseFloat(m[1]) : 0; };
+        if (ver(b) !== ver(a)) return ver(b) - ver(a);
+        const flash = function (s) { return /flash/.test(s) ? 0 : 1; };
+        if (flash(a) !== flash(b)) return flash(a) - flash(b);
+        // Prefer plain names over dated or preview variants.
+        const plain = function (s) { return /(preview|exp|\d{3,})/.test(s) ? 1 : 0; };
+        return plain(a) - plain(b);
+      })
+      .slice(0, 4);
+  } catch (e) { return []; }
+}
+
 async function askGemini() {
   const k = geminiKey();
   if (!k) return { error: 'no_gemini_key' };
-  const models = (process.env.GEMINI_MODEL ? [process.env.GEMINI_MODEL] : []).concat(GEMINI_MODELS);
+  const discovered = await discoverModels(k.key);
+  // Pinned override first, then whatever Google says exists, then the old list.
+  const models = (process.env.GEMINI_MODEL ? [process.env.GEMINI_MODEL] : [])
+    .concat(discovered)
+    .concat(GEMINI_MODELS)
+    .filter(function (m, i, a) { return m && a.indexOf(m) === i; });
   let last = '';
   for (const model of models) {
     try {
@@ -167,16 +208,18 @@ async function askGemini() {
           })
         });
       } finally { dl.done(); }
-      if (!r.ok) { last = model + ':' + r.status; continue; }
+      if (!r.ok) { last += (last ? ' ' : '') + model + ':' + r.status; continue; }
       const data = await r.json();
       const cand = (data.candidates || [])[0] || {};
       const text = ((cand.content || {}).parts || [])
         .map(function (x) { return x.text || ''; }).join(' ').trim();
-      if (!text) { last = model + ':empty'; continue; }
+      if (!text) { last += (last ? ' ' : '') + model + ':empty'; continue; }
       return { text: text, engine: 'gemini/' + model };
-    } catch (e) { last = model + ':' + String(e && e.message).slice(0, 40); }
+    } catch (e) { last += (last ? ' ' : '') + model + ':' + String(e && e.message).slice(0, 40); }
   }
-  return { error: 'gemini_failed', detail: last };
+  // Every attempt, not just the last one. Reporting only the final failure hid
+  // that the model before it had failed for a different reason.
+  return { error: 'gemini_failed', detail: last, tried: models.length };
 }
 
 async function askAnthropic() {
@@ -196,11 +239,14 @@ async function askAnthropic() {
     });
     if (!resp.ok) {
       const d = await resp.text().catch(function () { return ''; });
+      dl.done();
       return { error: 'anthropic_' + resp.status, detail: d.slice(0, 140) };
     }
     const data = await resp.json();
     dl.done();
-    return { text: textOf(data.content), engine: 'claude/' + MODEL };
+    const text = textOf(data.content);
+    if (!text) return { error: 'anthropic_empty', detail: 'model returned no text' };
+    return { text: text, engine: 'claude/' + MODEL };
   } catch (e) {
     return { error: 'anthropic_exception', detail: String(e && e.message).slice(0, 140) };
   }
@@ -240,8 +286,14 @@ module.exports = async function handler(req, res) {
         : { error: first.error || 'gemini_timeout', detail: 'no time for fallback' };
     if (!r.text) {
       if (cached) return res.status(200).json(Object.assign({ cached: true, stale: true }, cached));
+      // Both providers failed. Report BOTH: the old code returned
+      // "first.error || r.error", so the Gemini failure always won and the
+      // fallback's real reason was never visible — which is why this page
+      // looked like a Gemini problem for as long as it did.
       return res.status(200).json({ unavailable: true,
-        reason: first.error || r.error, detail: first.detail || r.detail });
+        reason: 'all_providers_failed',
+        gemini: { error: first.error, detail: first.detail, tried: first.tried },
+        anthropic: { error: r.error, detail: r.detail } });
     }
   }
 
