@@ -22,7 +22,7 @@ const MODEL = 'claude-sonnet-4-6';
 let FALLBACK = null;
 try { FALLBACK = require('./news-fallback.json'); } catch (e) { FALLBACK = null; }
 
-const CACHE_KEY = 'ai-marketing-news:v1';
+const CACHE_KEY = 'ai-marketing-news:v2';   // v2: items are link-verified before caching
 const CACHE_SECONDS = 64800;             // 18 hours
 
 const PROMPT = `Find the most significant developments in AI marketing and advertising from the last 14 days.
@@ -76,6 +76,16 @@ treat them as hard constraints rather than style guidance:
 
 - AVAILABILITY: if the source gives no price, release date or eligibility,
   the summary must not imply the thing is generally available.
+
+- URLS ARE QUOTED, NOT COMPOSED: give back a url exactly as it appeared in a
+  search result you actually retrieved. Never assemble one from a publication's
+  domain plus a slug you infer from the headline, and never adjust, tidy or
+  guess at a path. This is the failure mode that has cost this feed most
+  recently: every story was real and four links in seven did not resolve,
+  including a Google post cited at /demand-gen-updates-september-2026 when the
+  post was published at /demand-gen-drop-september-2026. If you cannot quote an
+  exact url you retrieved, omit the item. Five items with working links are
+  worth more than eight where half the links are dead.
 
 Before returning, re-read each summary against these rules and fix any that
 fail. Prefer a duller summary that is exactly right.`;
@@ -221,6 +231,92 @@ function parseItems(raw) {
     return all.findIndex(function (o) { return o.url === it.url; }) === i;
   })
   .slice(0, 8);
+}
+
+
+// ---- link verification ---------------------------------------------------
+// Asking a model for a url is not the same as getting one. Search grounding
+// finds the story and the model then writes the link itself, so it emits a
+// plausible slug rather than the one it retrieved. Measured on the first live
+// compile after the cache came up: seven items, every story real and
+// independently checkable, four links that did not resolve. One cited Google's
+// September Demand Gen post at /demand-gen-updates-september-2026; it was
+// published at /demand-gen-drop-september-2026.
+//
+// This page tells the reader to click through and read the original instead of
+// trusting the summary. A link that 404s breaks that promise more thoroughly
+// than a missing item would, so every link is fetched before anything is
+// cached and an item whose link is gone is dropped.
+//
+// The distinction that matters: DEAD is not the same as BLOCKED. Publishers
+// routinely refuse datacentre IPs with 403, 405 or 429, and dropping items on
+// that basis would empty the feed of exactly the sources worth citing. Only a
+// definitive 404 or 410 removes an item. Anything else is kept, and a failure
+// to check is recorded rather than guessed at.
+const LINK_DEAD = [404, 410];
+
+async function checkLink(url, ms) {
+  const probe = async function (method) {
+    const d = withDeadline(ms);
+    try {
+      const r = await fetch(url, {
+        method: method,
+        redirect: 'follow',
+        signal: d.signal,
+        headers: {
+          // Identifies the checker honestly. A request pretending to be a
+          // browser would get further; it would also be a lie told by a page
+          // whose whole argument is that sources should be checkable.
+          'user-agent': 'SiamakConsulting-LinkCheck/1.0 (+https://siamakconsulting.com/ai-marketing-news)',
+          'accept': 'text/html,application/xhtml+xml,*/*'
+        }
+      });
+      return r.status;
+    } catch (e) {
+      return null;
+    } finally { d.done(); }
+  };
+
+  // HEAD first because it is cheap. Plenty of sites answer HEAD with 405 or
+  // 403 while serving GET perfectly well, so those escalate rather than count.
+  let status = await probe('HEAD');
+  if (status === null || status === 405 || status === 403 || status === 501) {
+    status = await probe('GET');
+  }
+  if (status === null) return { state: 'unchecked', status: null };
+  if (LINK_DEAD.indexOf(status) !== -1) return { state: 'dead', status: status };
+  if (status >= 200 && status < 400) return { state: 'ok', status: status };
+  return { state: 'unchecked', status: status };
+}
+
+// Returns the surviving items plus a report, so the debug endpoint can show
+// link health instead of implying it.
+async function verifyLinks(items, perLinkMs) {
+  const checks = await Promise.all(items.map(function (it) {
+    return checkLink(it.url, perLinkMs);
+  }));
+  const kept = [], dropped = [];
+  items.forEach(function (it, i) {
+    const c = checks[i];
+    if (c.state === 'dead') { dropped.push({ url: it.url, status: c.status }); return; }
+    // An unchecked link is still published — it is probably a publisher
+    // refusing the check — but it is marked so this is visible.
+    kept.push(c.state === 'ok' ? it : Object.assign({}, it, { link_unverified: true }));
+  });
+  if (dropped.length) {
+    console.error(JSON.stringify({ source: 'news', event: 'dead_links_dropped',
+                                   count: dropped.length, dropped: dropped,
+                                   at: new Date().toISOString() }));
+  }
+  return {
+    items: kept,
+    report: {
+      checked: items.length,
+      ok: checks.filter(function (c) { return c.state === 'ok'; }).length,
+      dead: dropped.length,
+      unchecked: checks.filter(function (c) { return c.state === 'unchecked'; }).length
+    }
+  };
 }
 
 
@@ -413,15 +509,34 @@ module.exports = async function handler(req, res) {
     }
   }
 
-  const items = parseItems(r.text);
-  if (!items.length) {
+  const parsed = parseItems(r.text);
+  if (!parsed.length) {
     if (cached) return res.status(200).json(Object.assign({ cached: true, stale: true }, cached));
     if (FALLBACK && FALLBACK.items && FALLBACK.items.length) {
       return res.status(200).json(Object.assign({ fallback: true, stale: true }, FALLBACK));
     }
     return res.status(200).json({ unavailable: true, reason: 'no_items', engine: r.engine });
   }
-  const payload = { items: items, compiled: new Date().toISOString(), engine: r.engine };
+
+  // Nothing reaches the cache, and therefore the page, until its link has been
+  // fetched. maxDuration is 300s and the compile above is the expensive part,
+  // so there is room to check every link properly.
+  const verified = await verifyLinks(parsed, 8000);
+  const items = verified.items;
+  if (!items.length) {
+    // Every link was dead. That is a compile worth discarding rather than
+    // publishing, so prefer anything previously known-good.
+    console.error(JSON.stringify({ source: 'news', event: 'all_links_dead',
+                                   checked: verified.report.checked,
+                                   at: new Date().toISOString() }));
+    if (cached) return res.status(200).json(Object.assign({ cached: true, stale: true }, cached));
+    if (FALLBACK && FALLBACK.items && FALLBACK.items.length) {
+      return res.status(200).json(Object.assign({ fallback: true, stale: true }, FALLBACK));
+    }
+    return res.status(200).json({ unavailable: true, reason: 'all_links_dead', engine: r.engine });
+  }
+  const payload = { items: items, compiled: new Date().toISOString(),
+                     engine: r.engine, links: verified.report };
   const cacheStatus = await cacheSet(payload);
   if (cacheStatus !== 'ok') {
     // Loud in the logs. A cache that will not hold means every visitor pays

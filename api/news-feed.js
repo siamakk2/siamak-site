@@ -20,7 +20,7 @@ const { rateLimit, redisCreds } = require('./_guard');
 let FALLBACK = null;
 try { FALLBACK = require('./news-fallback.json'); } catch (e) { FALLBACK = null; }
 
-const CACHE_KEY = 'ai-marketing-news:v1';
+const CACHE_KEY = 'ai-marketing-news:v2';   // v2: items are link-verified before caching
 const SITE = 'https://siamakconsulting.com';
 
 async function cacheGet() {
