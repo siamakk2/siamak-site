@@ -286,3 +286,54 @@
   color: #04121a;
   border-bottom: 0;
 }
+
+/* Comparison tables.
+   Rendered as real <table> markup rather than an image or a JS widget, because
+   a table a crawler cannot parse is a table that cannot be quoted back. The
+   wrapper scrolls on narrow screens so a wide table degrades by scrolling
+   rather than by breaking the page. */
+.prose .table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 26px 0;
+  border: 1px solid var(--line, #36414f);
+  border-radius: 12px;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15.5px;
+  min-width: 520px;
+}
+.prose thead th {
+  text-align: left;
+  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-weight: 600;
+  color: var(--text, #f9fbfe);
+  background: var(--surface, #111826);
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--line-bright, #465365);
+  white-space: nowrap;
+}
+.prose tbody td {
+  padding: 13px 16px;
+  border-top: 1px solid var(--line, #36414f);
+  color: var(--muted, #ccd6e2);
+  vertical-align: top;
+}
+.prose tbody tr:first-child td { border-top: 0; }
+.prose tbody th {
+  padding: 13px 16px;
+  border-top: 1px solid var(--line, #36414f);
+  text-align: left;
+  font-weight: 600;
+  color: var(--text, #f9fbfe);
+  vertical-align: top;
+}
+.prose table caption {
+  caption-side: bottom;
+  padding: 10px 2px 0;
+  font-size: 14px;
+  color: var(--muted-dim, #aab6c4);
+  text-align: left;
+}
