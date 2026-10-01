@@ -42,7 +42,43 @@ Rules, all of which matter:
 - Prefer the primary source: the company's own announcement, official documentation, a regulator's press release, or a court filing, over any publication reporting on it.
 - Finish every sentence. A summary must end with a full stop, not mid-clause.
 - No opinion pieces, listicles or vendor marketing.
-- Order newest first.`;
+- Order newest first.
+
+Accuracy rules. Each of these was written after this feed got it wrong, so
+treat them as hard constraints rather than style guidance:
+
+- NUMBERS: state what the number counts, and never attach a figure to a noun
+  the source did not attach it to. A document can contain two real numbers —
+  the size of a network and the number of participants in a programme, total
+  eligible merchants and merchants actually using something, an annualised
+  run rate and revenue. Reaching for the larger one produced a claim here
+  that a programme would train a million businesses when the document said a
+  thousand. If two readings are possible, use the smaller and more specific.
+
+- OBLIGATION: never write that anyone must, is required to, or will face
+  penalties unless the source says so in those terms. Distinguish explicitly
+  between a thing that is optional and a thing that is mandatory, even when
+  they appear in the same document. A set of icons published to help with
+  compliance is not itself a compliance requirement.
+
+- WHO IT BINDS: name the party the source names. A regulator acting on
+  platforms is not acting on advertisers. An order binding government
+  agencies is not binding private companies. Do not broaden the audience to
+  make an item feel more relevant.
+
+- NO ADVICE: report what happened. Do not add what readers should do,
+  prepare for, or expect next unless the source states it. Invented guidance
+  attached to a real regulatory item is the most damaging failure here.
+
+- ONE ANNOUNCEMENT PER ITEM: do not merge two announcements into one, even
+  from the same company on adjacent days, and even when they are related.
+  Two posts means two items, or pick the more significant one.
+
+- AVAILABILITY: if the source gives no price, release date or eligibility,
+  the summary must not imply the thing is generally available.
+
+Before returning, re-read each summary against these rules and fix any that
+fail. Prefer a duller summary that is exactly right.`;
 
 async function cacheGet() {
   const url = process.env.UPSTASH_REDIS_REST_URL, token = process.env.UPSTASH_REDIS_REST_TOKEN;
@@ -131,6 +167,16 @@ function trimSummary(t) {
   return window.slice(0, window.lastIndexOf(' ')).replace(/[,;:\-–—]$/, '') + '\u2026';
 }
 
+// Language that asserts a duty, a penalty, or advice the source probably did
+// not give. Deliberately narrow: it should catch "advertisers must now" and
+// "brands should prepare for", not ordinary reporting.
+const OBLIGATION_RE = new RegExp([
+  '\\b(must|required to|mandatory|obligated|liable)\\b',
+  '\\bface (?:penalties|fines|enforcement)\\b',
+  '\\b(?:should|need to|will need to) (?:prepare|expect|brace|act|comply|review|audit)\\b',
+  '\\bdeadline to comply\\b'
+].join('|'), 'i');
+
 function parseItems(raw) {
   let t = String(raw || '').replace(/```(?:json)?/g, '').trim();
   const a = t.indexOf('['), b = t.lastIndexOf(']');
@@ -155,7 +201,14 @@ function parseItems(raw) {
       source: String(it.source || host).slice(0, 60),
       host: host,
       url: it.url,
-      date: /^\d{4}-\d{2}-\d{2}$/.test(String(it.date || '')) ? it.date : null
+      date: /^\d{4}-\d{2}-\d{2}$/.test(String(it.date || '')) ? it.date : null,
+      // Asking the model not to assert obligations is necessary but not
+      // sufficient, so flag it in code too. Items claiming someone must do
+      // something, or telling readers to prepare for something, are the two
+      // shapes that were wrong here before — both were regulatory items whose
+      // sources said neither. The flag does not block the item; it marks it so
+      // a human reads the source before quoting it anywhere that matters.
+      review: OBLIGATION_RE.test(String(it.summary || '') + ' ' + String(it.headline || '')) || undefined
     };
   })
   // The prompt asks for one source per item; this enforces it. A blog index
