@@ -49,16 +49,60 @@ async function cacheGet() {
   } catch (e) { return null; }
 }
 
+// Writes the compiled feed, then sets the TTL as a SEPARATE call using path
+// segments — the same shape _guard.js uses against this same Upstash instance,
+// which is known to work.
+//
+// The previous version passed the expiry as "?EX=" on the SET URL and swallowed
+// every error with an empty catch. The write was failing and nothing said so,
+// so the cache was permanently empty: each visitor triggered a fresh ~17s
+// compile, the page gave up before it finished and showed "the feed could not
+// be refreshed", and every page view burned a model call. A cache that fails
+// silently is worse than no cache, because it looks like it is working.
+//
+// Returns a short status string so ?debug=1 can report whether the write stuck.
 async function cacheSet(value) {
   const url = process.env.UPSTASH_REDIS_REST_URL, token = process.env.UPSTASH_REDIS_REST_TOKEN;
-  if (!url || !token) return;
+  if (!url || !token) return 'no_upstash_env';
   try {
-    await fetch(url + '/set/' + encodeURIComponent(CACHE_KEY) + '?EX=' + CACHE_SECONDS, {
+    const r = await fetch(url + '/set/' + encodeURIComponent(CACHE_KEY), {
       method: 'POST',
       headers: { Authorization: 'Bearer ' + token, 'Content-Type': 'text/plain' },
       body: JSON.stringify(value)
     });
-  } catch (e) {}
+    if (!r.ok) return 'set_http_' + r.status;
+    const d = await r.json().catch(function () { return null; });
+    if (!d || d.result !== 'OK') return 'set_unexpected:' + JSON.stringify(d).slice(0, 60);
+
+    const e = await fetch(url + '/expire/' + encodeURIComponent(CACHE_KEY) + '/' + CACHE_SECONDS,
+                          { headers: { Authorization: 'Bearer ' + token } });
+    if (!e.ok) return 'stored_but_no_ttl_' + e.status;
+    return 'ok';
+  } catch (err) {
+    return 'set_exception:' + String(err && err.message).slice(0, 60);
+  }
+}
+
+// Writes and reads back a disposable key. Used only by ?debug=1.
+async function cacheProbe() {
+  const url = process.env.UPSTASH_REDIS_REST_URL, token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  if (!url || !token) return 'no_upstash_env';
+  const k = 'news:probe:' + Date.now();
+  try {
+    const w = await fetch(url + '/set/' + encodeURIComponent(k), {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + token, 'Content-Type': 'text/plain' },
+      body: 'probe'
+    });
+    if (!w.ok) return 'write_http_' + w.status;
+    await fetch(url + '/expire/' + encodeURIComponent(k) + '/60',
+                { headers: { Authorization: 'Bearer ' + token } }).catch(function () {});
+    const r = await fetch(url + '/get/' + encodeURIComponent(k),
+                          { headers: { Authorization: 'Bearer ' + token } });
+    if (!r.ok) return 'read_http_' + r.status;
+    const d = await r.json();
+    return (d && d.result === 'probe') ? 'ok' : 'read_back_mismatch:' + JSON.stringify(d).slice(0, 60);
+  } catch (e) { return 'exception:' + String(e && e.message).slice(0, 60); }
 }
 
 function textOf(content) {
@@ -273,7 +317,11 @@ module.exports = async function handler(req, res) {
       gemini_key_found: geminiKey() ? geminiKey().name : null,
       anthropic_key_found: !!process.env.ANTHROPIC_API_KEY,
       cached_items: cached && cached.items ? cached.items.length : 0,
-      compiled: cached ? cached.compiled : null
+      compiled: cached ? cached.compiled : null,
+      upstash_env: !!(process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN),
+      // Round-trip probe: write a throwaway key and read it back, so this
+      // endpoint can prove whether caching works rather than implying it.
+      cache_roundtrip: await cacheProbe()
     });
   }
 
@@ -303,7 +351,13 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({ unavailable: true, reason: 'no_items', engine: r.engine });
   }
   const payload = { items: items, compiled: new Date().toISOString(), engine: r.engine };
-  await cacheSet(payload);
+  const cacheStatus = await cacheSet(payload);
+  if (cacheStatus !== 'ok') {
+    // Loud in the logs. A cache that will not hold means every visitor pays
+    // for a full recompile, which is the failure this page just had.
+    console.error(JSON.stringify({ source: 'news', event: 'cache_write_failed',
+                                   status: cacheStatus, at: new Date().toISOString() }));
+  }
   res.setHeader('Cache-Control', 'public, s-maxage=21600, stale-while-revalidate=86400');
-  return res.status(200).json(payload);
+  return res.status(200).json(Object.assign({ cache: cacheStatus }, payload));
 };
