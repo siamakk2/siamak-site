@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Consent Mode v2 defaults — must load ahead of gtag.js. Keep it directly after the charset meta tag. -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+(function(){var d='denied',g='granted',B={ad_storage:d,ad_user_data:d,ad_personalization:d,functionality_storage:d,personalization_storage:d,security_storage:g,wait_for_update:500},m=function(o){var r={},k;for(k in B)r[k]=B[k];for(k in o)r[k]=o[k];return r};
+gtag('consent','default',m({analytics_storage:g}));
+gtag('consent','default',m({analytics_storage:d,region:'AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE IS LI NO GB CH'.split(' ')}));
+try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.now()-c.ts<15552e6){var a=c.ads?g:d,n=c.analytics?g:d,f=c.functional?g:d;gtag('consent','update',{ad_storage:a,ad_user_data:a,ad_personalization:a,analytics_storage:n,functionality_storage:f,personalization_storage:f,security_storage:g});}}catch(e){}})();</script>
+<!-- Google Analytics GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2W5EQQ49S9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2W5EQQ49S9');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Scored My Own Site 68 out of 100</title>
+<meta name="description" content="A teardown of my own site rather than somebody else’s. Three failures out of eight, thirty-two missing points, and why the technical gap was never the real problem.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="author" content="Siamak Kalhor">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Siamak Kalhor Consulting">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://siamakconsulting.com/the-long-view/anatomy-of-an-invisible-brand">
+<meta property="og:title" content="I Scored My Own Site 68 out of 100">
+<meta property="og:description" content="A teardown of my own site rather than somebody else’s. Three failures out of eight, thirty-two missing points, and why the technical gap was never the real problem.">
+<meta property="og:image" content="https://siamakconsulting.com/og/the-long-view/anatomy-of-an-invisible-brand.jpg">
+<meta property="og:image:secure_url" content="https://siamakconsulting.com/og/the-long-view/anatomy-of-an-invisible-brand.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="A measured teardown of my own site scoring 68 out of 100">
+<meta property="article:published_time" content="2026-10-01T09:00:00-07:00">
+<meta property="article:modified_time" content="2026-10-01T09:00:00-07:00">
+<meta property="article:author" content="Siamak Kalhor">
+<meta property="article:publisher" content="https://siamakconsulting.com">
+<meta property="article:section" content="The Long View">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@SiamakKalhor">
+<meta name="twitter:creator" content="@SiamakKalhor">
+<meta name="twitter:url" content="https://siamakconsulting.com/the-long-view/anatomy-of-an-invisible-brand">
+<meta name="twitter:title" content="I Scored My Own Site 68 out of 100">
+<meta name="twitter:description" content="A teardown of my own site rather than somebody else’s. Three failures out of eight, thirty-two missing points, and why the technical gap was never the real problem.">
+<meta name="twitter:image" content="https://siamakconsulting.com/og/the-long-view/anatomy-of-an-invisible-brand.jpg">
+<meta name="twitter:image:alt" content="A measured teardown of my own site scoring 68 out of 100">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--void:#000;--panel:#06080c;--surface:#111826;--surface-2:#19222f;--line:#36414f;--line-bright:#465365;--cyan:#2dd4ff;--violet:#a06bff;--text:#f9fbfe;--muted:#ccd6e2;--muted-dim:#aab6c4;--glow:linear-gradient(135deg,#2dd4ff 0%,#a06bff 100%);--display:'Space Grotesk',sans-serif;--body:'Inter',sans-serif;--mono:'JetBrains Mono',monospace}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--text);font-family:var(--body);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:rgba(45,212,255,.25);color:#fff}
+a{color:inherit}
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(circle at 18% 12%,rgba(45,212,255,.07),transparent 38%),radial-gradient(circle at 82% 78%,rgba(160,107,255,.08),transparent 42%),linear-gradient(rgba(27,33,44,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(27,33,44,.35) 1px,transparent 1px);background-size:100% 100%,100% 100%,54px 54px,54px 54px;mask-image:radial-gradient(ellipse 120% 90% at 50% 0%,#000 40%,transparent 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 28px}
+nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1180px;margin:0 auto;padding:15px 28px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand-mark{width:28px;height:28px;border-radius:7px;background:var(--glow);position:relative;flex-shrink:0}
+.brand-mark::after{content:'';position:absolute;inset:6px;border-radius:3px;background:var(--void)}
+.brand-txt{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.05em}
+.brand-txt span{color:var(--muted)}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-cta{font-family:var(--mono);font-size:12px;padding:9px 15px;border:1px solid var(--line-bright);border-radius:6px;color:var(--text)!important}
+.nav-cta:hover{border-color:var(--cyan);box-shadow:0 0 18px rgba(45,212,255,.15)}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:21px;cursor:pointer}
+.ph{padding:74px 0 30px;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:22px;padding:6px 13px;border:1px solid var(--line-bright);border-radius:100px;background:var(--surface)}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+h1.ph-h{font-family:var(--display);font-size:clamp(34px,5vw,58px);font-weight:700;line-height:1.05;letter-spacing:-.02em;margin-bottom:20px;max-width:880px}
+h1.ph-h .grad{background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.ph-sub{font-size:18px;color:var(--muted);max-width:660px;line-height:1.7}
+.ph-sub strong{color:var(--text);font-weight:600}
+.ph-btns{display:flex;gap:13px;flex-wrap:wrap;margin-top:30px}
+.btn{font-family:var(--mono);font-size:13px;font-weight:500;padding:13px 22px;border-radius:8px;text-decoration:none;cursor:pointer;border:none;transition:all .22s;display:inline-flex;align-items:center;gap:8px}
+.btn-pri{background:var(--glow);color:#04060a;font-weight:600}
+.btn-pri:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(45,212,255,.26)}
+.btn-ghost{background:var(--surface);color:var(--text);border:1px solid var(--line-bright)}
+.btn-ghost:hover{border-color:var(--cyan)}
+section{padding:54px 0;position:relative}
+.sec-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.sec-label::before{content:'';width:26px;height:1px;background:var(--glow)}
+h2.sec-h{font-family:var(--display);font-size:clamp(26px,3.4vw,38px);font-weight:600;letter-spacing:-.015em;line-height:1.14;margin-bottom:16px;max-width:760px}
+h2.sec-h .grad{background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.lead{font-size:16.5px;color:var(--muted);max-width:760px;line-height:1.8;margin-bottom:14px}
+.lead strong{color:var(--text)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:28px;transition:all .25s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--glow);opacity:0;transition:opacity .25s}
+.card:hover{border-color:var(--line-bright);transform:translateY(-3px)}
+.card:hover::before{opacity:1}
+.card .ico{width:40px;height:40px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line-bright);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px}
+.card h3{font-family:var(--display);font-size:17.5px;font-weight:600;margin-bottom:10px}
+.card p{font-size:13.5px;color:var(--muted);line-height:1.7}
+.card .num{font-family:var(--display);font-size:30px;font-weight:600;background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;line-height:1}
+.steps{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.step{background:var(--surface);padding:26px 28px;display:grid;grid-template-columns:60px 1fr;gap:22px;align-items:start;transition:background .2s}
+.step:hover{background:var(--surface-2)}
+.step .l{font-family:var(--display);font-size:38px;font-weight:700;background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.step h4{font-family:var(--display);font-size:17px;font-weight:600;margin-bottom:6px}
+.step p{font-size:14px;color:var(--muted);line-height:1.7}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:8px}
+.check{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.check .c{color:var(--cyan);font-family:var(--mono);font-size:14px;margin-top:1px}
+.check p{font-size:13.5px;color:var(--muted);line-height:1.6}
+.check b{color:var(--text);font-weight:600;display:block;margin-bottom:2px;font-family:var(--display)}
+.cta-band{background:linear-gradient(180deg,var(--surface),var(--panel));border:1px solid var(--line);border-radius:16px;padding:48px;text-align:center;margin-top:10px}
+.cta-band h3{font-family:var(--display);font-size:clamp(24px,3.2vw,34px);font-weight:600;margin-bottom:12px;line-height:1.15}
+.cta-band h3 .grad{background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.cta-band p{color:var(--muted);max-width:540px;margin:0 auto 26px;font-size:15px}
+.cta-row{display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
+.faq{display:flex;flex-direction:column;gap:12px}
+.qa{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:22px 24px}
+.qa h4{font-family:var(--display);font-size:16px;font-weight:600;margin-bottom:8px;color:var(--text)}
+.qa p{font-size:14px;color:var(--muted);line-height:1.7}
+footer{border-top:1px solid var(--line);background:var(--panel);padding:50px 0 36px;margin-top:40px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:36px}
+.foot-brand p{color:var(--muted);font-size:13.5px;max-width:300px;margin-top:14px;line-height:1.7}
+.foot-col h5{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-dim);margin-bottom:15px}
+.foot-col a{display:block;color:var(--muted);text-decoration:none;font-size:13.5px;margin-bottom:10px;transition:color .2s}
+.foot-col a:hover{color:var(--cyan)}
+.foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:11.5px;color:var(--muted-dim)}
+@media(max-width:860px){.grid2,.grid3,.checks,.foot-grid{grid-template-columns:1fr}.nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--void);border-bottom:1px solid var(--line);padding:20px 28px;gap:16px}.nav-links.open{display:flex}.nav-toggle{display:block}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+:focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
+</style><style>
+.article-hero{padding:64px 0 30px;position:relative;border-bottom:1px solid var(--line);background:var(--panel)}
+.crumb{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-dim);margin-bottom:18px}
+.crumb a{color:var(--cyan);text-decoration:none}
+.article-h{font-family:var(--display);font-weight:700;font-size:clamp(30px,4.6vw,50px);line-height:1.1;letter-spacing:-.02em;max-width:880px;margin-bottom:18px;color:var(--text)}
+.article-meta{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--muted-dim)}
+.prose-wrap{padding:52px 0 20px}
+.prose{max-width:740px;margin:0 auto;font-size:16.5px;color:var(--muted);line-height:1.85}
+.prose h2{font-family:var(--display);font-size:clamp(22px,2.8vw,30px);font-weight:600;color:var(--text);letter-spacing:-.01em;margin:44px 0 16px;line-height:1.2}
+.prose p{margin-bottom:20px}
+.prose strong{color:var(--text);font-weight:600}
+.prose ul{margin:0 0 22px;padding-left:22px}
+.prose li{margin-bottom:10px}
+.prose li::marker{color:var(--cyan)}
+.prose a{color:var(--cyan);text-decoration:underline;text-decoration-color:rgba(45,212,255,.35)}
+.prose hr{border:none;border-top:1px solid var(--line);margin:44px 0}
+.cta-inline{background:linear-gradient(180deg,rgba(45,212,255,.06),rgba(160,107,255,.03));border:1px solid var(--line-bright);border-radius:14px;padding:26px 28px;margin-top:10px}
+.cta-inline p{margin:0;font-size:15.5px;color:var(--text);line-height:1.7}
+.cta-inline a{font-family:var(--mono);color:var(--cyan);font-weight:600;text-decoration:none;white-space:nowrap}
+@media(max-width:760px){.article-h{font-size:32px}}
+</style>
+<style id="canonical-nav-css">
+nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1180px;margin:0 auto;padding:15px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
+.brand-txt{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.05em;color:var(--text);white-space:nowrap}
+.brand-txt span{color:var(--muted)}
+.nav-right{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.nav-links{display:flex;gap:22px;align-items:center;flex-wrap:nowrap}
+.nav-links>a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s;white-space:nowrap}
+.nav-links>a:hover,.nav-links>a.active{color:var(--text)}
+.nav-item{position:relative}
+.dd-trigger{background:none;border:none;color:var(--muted);font-family:inherit;font-size:13px;font-weight:500;letter-spacing:.02em;cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:0;transition:color .2s;white-space:nowrap}
+.dd-trigger:hover{color:var(--text)}
+.dd-caret{font-size:9px;opacity:.65;transition:transform .2s}
+.has-dd.open .dd-caret{transform:rotate(180deg)}
+.dd-menu{position:absolute;top:calc(100% + 14px);left:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px;min-width:210px;display:none;flex-direction:column;gap:2px;z-index:200;box-shadow:0 14px 44px rgba(0,0,0,.55)}
+.has-dd::after{content:"";position:absolute;top:100%;left:0;right:0;height:16px}
+.has-dd.open .dd-menu{display:flex}
+.dd-menu a{padding:9px 14px;border-radius:7px;font-size:13px;font-weight:500;color:var(--muted);white-space:nowrap;text-decoration:none;transition:background .15s,color .15s}
+.dd-menu a:hover{background:var(--surface-2);color:var(--text)}
+@media(min-width:961px){.has-dd:hover .dd-menu{display:flex}}
+.nav-cta{font-family:var(--mono);font-size:12px;padding:9px 15px;border:1px solid var(--line-bright);border-radius:6px;color:var(--text)!important;text-decoration:none;white-space:nowrap}
+.nav-cta:hover{border-color:var(--cyan);box-shadow:0 0 18px rgba(45,212,255,.15)}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:21px;cursor:pointer}
+@media(max-width:960px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;background:var(--void);border-bottom:1px solid var(--line);padding:16px 28px 22px;gap:4px;max-height:80vh;overflow-y:auto}
+  .nav-links.open{display:flex}
+  .nav-links>a{padding:10px 0;width:100%}
+  .nav-item,.has-dd{width:100%}
+  .has-dd::after{display:none}
+  .dd-trigger{width:100%;padding:10px 0;justify-content:space-between}
+  .dd-menu{position:static;box-shadow:none;border:none;background:var(--surface);margin:0 0 6px;width:100%}
+  .nav-toggle{display:block}
+}
+
+@media(max-width:960px){.nav-in{padding:12px 16px;gap:10px}.brand{gap:8px}.brand img{height:24px!important}.brand-txt{font-size:11px}.brand-txt span{display:none}.nav-right{gap:8px}.nav-toggle{flex-shrink:0}.nav-cta{font-size:11px;padding:8px 10px}}
+@media(max-width:400px){.nav-cta{font-size:10.5px;padding:7px 8px;letter-spacing:0}}
+</style>
+<link rel="canonical" href="https://siamakconsulting.com/the-long-view/anatomy-of-an-invisible-brand"/>
+<link rel="stylesheet" href="/type.css">
+<!--type-scaled-->
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/editorial.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://siamakconsulting.com/the-long-view/anatomy-of-an-invisible-brand#article","headline":"I Scored My Own Site 68 out of 100","description":"A teardown of my own site rather than somebody else’s. Three failures out of eight, thirty-two missing points, and why the technical gap was never the real problem.","url":"https://siamakconsulting.com/the-long-view/anatomy-of-an-invisible-brand","mainEntityOfPage":{"@type":"WebPage","@id":"https://siamakconsulting.com/the-long-view/anatomy-of-an-invisible-brand"},"author":{"@id":"https://siamakconsulting.com/#person"},"publisher":{"@id":"https://siamakconsulting.com/#business"},"isPartOf":{"@type":"Blog","@id":"https://siamakconsulting.com/the-long-view#blog","name":"The Long View"},"datePublished":"2026-10-01","dateModified":"2026-10-01","articleSection":"Teardown","keywords":"local SEO audit, NAP consistency, LocalBusiness schema, AI visibility teardown, Google Business Profile","about":[{"@type":"Thing","name":"Local search"},{"@type":"Thing","name":"Structured data"},{"@type":"Thing","name":"Website audits"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","@id":"https://siamakconsulting.com/the-long-view/anatomy-of-an-invisible-brand#faq","isPartOf":{"@id":"https://siamakconsulting.com/the-long-view/anatomy-of-an-invisible-brand#article"},"mainEntity":[{"@type":"Question","name":"What does it mean when a business is invisible to AI?","acceptedAnswer":{"@type":"Answer","text":"Usually not that the website is broken. It typically means a competent site is missing a small number of specific facts a machine needed in order to establish where the business is and what it does — and that nothing in ordinary analytics reports the absence. In the measured example in this article, a carefully built site scored 68 out of 100 because three facts were missing: the street address in visible page text, geographic coordinates, and opening hours."}},{"@type":"Question","name":"Why does an address in structured data not count if it is missing from the page?","acceptedAnswer":{"@type":"Answer","text":"Because structured data is a claim a site makes about itself in a format only machines read. The same address in visible copy is the version a human can verify and a crawler can corroborate independently. When both agree, the fact is confirmed twice. When only the markup contains it, it is an unsupported assertion, which is weaker evidence."}},{"@type":"Question","name":"Do geographic coordinates actually matter?","acceptedAnswer":{"@type":"Answer","text":"They matter most where an address is ambiguous: shared office buildings, street names repeated across a metropolitan area, and dense downtown blocks. Coordinates remove the ambiguity about which location the business occupies. For a business in a distinctive, unambiguous location the benefit is smaller, which is why the check carries ten points rather than twenty."}},{"@type":"Question","name":"Why would a business leave opening hours out of its structured data?","acceptedAnswer":{"@type":"Answer","text":"Often because the hours are genuinely unsettled. In the case documented here, two directories list weekday business hours and two others list twenty-four hours, each accurate when entered. Adding a third version to the site's own markup would create another conflicting record rather than resolving anything. The missing field is a symptom; the unmade decision is the actual problem."}},{"@type":"Question","name":"Can a free tool check my Google Maps ranking?","acceptedAnswer":{"@type":"Answer","text":"Not honestly. Querying Maps rankings requires the Google Places API, and scraping the results breaches Google's terms of service. A free tool presenting a live Maps rank is either serving cached data or inventing it. What can be measured legitimately is the set of local signals on your own website, plus a checklist for the Google Business Profile items no external tool can see."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://siamakconsulting.com/"},{"@type":"ListItem","position":2,"name":"The Long View","item":"https://siamakconsulting.com/the-long-view"},{"@type":"ListItem","position":3,"name":"I Scored My Own Site 68 out of 100","item":"https://siamakconsulting.com/the-long-view/anatomy-of-an-invisible-brand"}]}</script>
+</head>
+<body id="top">
+<a href="#main" class="skip-link">Skip to content</a><nav>
+  <div class="nav-in">
+    <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
+    <div class="nav-links" id="navLinks">
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Services <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/ai-visibility">AI Visibility</a><a href="/answers">Answers</a><a href="/ai-search-marketing-consultant">AI Search Marketing</a><a href="/llmo-training">Team Training</a><a href="/llm-optimization">LLM Optimization</a>
+          <a href="/internet-marketing">Internet Marketing</a>
+          <a href="/social-media-marketing">Social Media Marketing</a>
+          <a href="/brand-creation">Brand Creation</a>
+          <a href="/services">All Services &rarr;</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Industries <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/law-firm-marketing-consultant">Law Firms</a>
+          <a href="/dental-marketing-consultant">Dental Practices</a>
+          <a href="/medical-practice-marketing-consultant">Medical Practices</a>
+          <a href="/cosmetic-surgery-marketing-consultant">Cosmetic Surgery</a>
+          <a href="/ecommerce-marketing-consultant">E-commerce</a>
+          <a href="/ai-for-restaurants">Restaurants</a>
+          <a href="/ai-for-contractors">Contractors</a>
+          <a href="/ai-for-law-firms">AI Client Intake &rarr;</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Resources <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/growth-framework">S.C.A.L.E. Framework</a>
+          <a href="/the-growth-glossary">Growth Glossary</a>
+          <a href="/the-long-view">The Long View</a><a href="/ai-marketing-news">AI News</a><a href="/local">Local Visibility Check</a>
+          <a href="/faq">Ask Siamak</a>
+          <a href="/how-much-does-llmo-cost">Pricing</a>
+        <a href="/analyze-your-brand">AI Authority Audit</a>
+          <a href="/ai-advisor">AI Advisor</a>
+          <a href="/ask">Ask My AI</a>
+          <a href="/seo-vs-llmo">SEO vs LLMO</a>
+          <a href="/llm-info">Info for AI Systems</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Portfolio <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/portfolio">The Portfolio</a><a href="/textile-wizard">Textile Wizard</a><a href="/listings">Real Estate</a><a href="/listings/95-longhorn-ridge-napa">Napa Valley</a><a href="/listings/1048-s-los-angeles-st-dtla">Downtown LA</a><a href="/listings/k2-investment">K2 Investment</a>
+          <a href="/portfolio#clients">Clients</a>
+        </div>
+      </div>
+      <a href="/analyze-your-brand">AI Audit</a>
+      <a href="/about-us">About</a>
+      <a href="/contact-us">Contact</a>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false" style="font-family:var(--mono);font-size:13px;">&#127760; <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/">English</a>
+          <a href="/es">Espa&ntilde;ol</a>
+          <a href="/fa">&#1601;&#1575;&#1585;&#1587;&#1740;</a>
+          <a href="/hy">&#1344;&#1377;&#1397;&#1381;&#1408;&#1381;&#1398;</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="/audit" class="nav-cta">Run Your Free Scan &rarr;</a>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" onclick="const o=document.getElementById('navLinks').classList.toggle('open');this.setAttribute('aria-expanded',o)">&#9776;</button>
+    </div>
+  </div>
+</nav>
+<main id="main"><article><section class="article-hero"><header class="wrap"><div class="crumb"><a href="/the-long-view">The Long View</a> / Teardown</div><h1 class="article-h">I ran my own diagnostic on my own site. It scored 68.</h1><div class="byline"><img src="/assets/siamak-portrait.jpg" alt="Siamak Kalhor" width="46" height="46" loading="lazy"><div class="who">Siamak Kalhor<span>Forty years in marketing &mdash; 7 minute read</span></div></div></header></section>
+<section class="prose-wrap"><div class="wrap"><div class="prose">
+
+<p>Teardowns of other people's websites are easy to write and hard to trust, because the author picks the subject and the subject cannot answer back. So this one is about mine.</p>
+
+<p>I built a diagnostic that reads the signals a machine uses to work out where a business is and what it does. Then I ran it on siamakconsulting.com. It scored <strong>68 out of 100</strong>, failing three of eight checks.</p>
+
+<div class="ansbox" data-label="the short version" data-q="what does an invisible business actually look like?" data-a="Usually not broken. {cite}It looks like a competent site missing three specific facts a machine needed{/cite} — and nothing anywhere tells the owner which three."><noscript><p><strong>what does an invisible business actually look like?</strong></p><p>Usually not broken. It looks like a competent site missing three specific facts a machine needed &mdash; and nothing anywhere tells the owner which three.</p></noscript></div>
+
+<h2>The scan</h2>
+
+<p>Eight checks, weighted by how much each one contributes to a machine resolving where a business is. Here is what came back.</p>
+
+<div class="table-wrap">
+<table>
+<caption>siamakconsulting.com, measured. 68/100, five of eight passing.</caption>
+<thead><tr><th>Signal</th><th>Weight</th><th>Result</th><th>What was found</th></tr></thead>
+<tbody>
+<tr><th>LocalBusiness structured data</th><td>20</td><td>Pass</td><td>ProfessionalService present</td></tr>
+<tr><th>Complete postal address</th><td>18</td><td>Pass</td><td>530 E 8th St, Los Angeles, CA 90014</td></tr>
+<tr><th>Phone, tappable and consistent</th><td>14</td><td>Pass</td><td>Matches between markup and page</td></tr>
+<tr><th>Address visible in page text</th><td>12</td><td><strong>Fail</strong></td><td>City appears; street address does not</td></tr>
+<tr><th>Geographic coordinates</th><td>10</td><td><strong>Fail</strong></td><td>No geo in structured data</td></tr>
+<tr><th>Opening hours</th><td>10</td><td><strong>Fail</strong></td><td>No openingHoursSpecification</td></tr>
+<tr><th>Third-party profiles declared</th><td>10</td><td>Pass</td><td>Six declared via sameAs</td></tr>
+<tr><th>Map or directions link</th><td>6</td><td>Pass</td><td>Present</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Thirty-two points missing, across three things that take under an hour to fix between them.</p>
+
+<h2>What each failure actually costs</h2>
+
+<p><strong>Address in markup but not in text.</strong> Structured data is a claim I make about myself in a format only machines read. The same address in visible copy is the version a human can check and a crawler can corroborate. When both agree you have two independent-looking confirmations; when only the markup has it, you have an assertion with nothing behind it. Twelve points, and it is the one I would fix first.</p>
+
+<p><strong>No geographic coordinates.</strong> Matters most where an address is ambiguous &mdash; shared buildings, repeated street names across a metro, dense downtown blocks. Mine is in Downtown Los Angeles, which is exactly the situation coordinates exist for. I omitted them anyway, because the schema was written when the site was positioned nationally and nobody revisited it when local work started mattering.</p>
+
+<p><strong>No opening hours.</strong> This one is interesting, because it is the only failure I am not rushing to fix &mdash; and the reason is the thing this article is really about.</p>
+
+<h2>The failure behind the failures</h2>
+
+<p>I could add hours to the schema in two minutes. I have not, because I do not currently have one answer to what the hours are.</p>
+
+<p>Yelp and Yahoo list the business as Monday to Friday, nine to five. The chamber of commerce listing and Foursquare say twenty-four hours. Both were accurate at the time somebody entered them. Neither has been true consistently since.</p>
+
+<p>Adding hours to my own schema without resolving that would make things worse, not better: a third version of a fact that already exists in two conflicting forms. The scan reports a missing field. The actual problem is a decision nobody has made.</p>
+
+<div class="mnote"><p>This is the pattern underneath almost every invisibility case I see. The technical gap is real and easy to fix. It persists because fixing it requires settling a question about the business that nobody has settled &mdash; which hours, which phone number, which name, which address. The markup is downstream of the decision.</p></div>
+
+<h2>Why a competent site scores 68</h2>
+
+<p>Nothing here is incompetence. The schema is well-formed. The entity graph uses stable identifiers referenced consistently. The phone matches everywhere. Six external profiles are declared. By most measures it is a carefully built site, and it is.</p>
+
+<p>The gaps exist for ordinary reasons. The structured data was written for a national positioning and never revised when local work began mattering. The address lives in the footer of the schema rather than the footer of the page because nobody asked where a human would look for it. The hours are missing because the hours are genuinely unsettled.</p>
+
+<p>Three decisions deferred, each sensible at the time, none revisited. That is what thirty-two missing points look like from the inside. It is almost never a dramatic failure; it is a set of small deferrals that compound quietly while nothing in your analytics mentions them.</p>
+
+<h2>Run this on yourself</h2>
+
+<p>The diagnostic is free and public, at <a href="/local">siamakconsulting.com/local</a>. It reads the eight signals above from any site and tells you which are missing and what to do about each.</p>
+
+<p>Two things it deliberately does not do. It does not report a Google Maps ranking, because checking one requires the Places API and scraping the results breaches Google's terms &mdash; any free tool claiming a live Maps rank is using cached data or inventing it. And it does not pretend to see inside your Google Business Profile, which no external tool can; those items come back as a checklist you walk yourself.</p>
+
+<p>When you run it, the useful part is not the number. It is noticing which failures are technical and which are a decision you have been avoiding. The technical ones take an afternoon. The other kind is why the afternoon never happens.</p>
+
+<div class="cta-inline"><p><strong>See what your own site is missing.</strong> The local check reads the eight signals above and reports which are absent, with a specific fix for each.</p><a class="btn btn-pri" href="/local">Run the local check</a></div>
+
+<h2>Common questions</h2>
+
+<p><strong>What does it mean when a business is invisible to AI?</strong><br>Usually not that the website is broken. It typically means a competent site is missing a small number of specific facts a machine needed in order to establish where the business is and what it does &mdash; and that nothing in ordinary analytics reports the absence. In the measured example in this article, a carefully built site scored 68 out of 100 because three facts were missing: the street address in visible page text, geographic coordinates, and opening hours.</p>
+
+<p><strong>Why does an address in structured data not count if it is missing from the page?</strong><br>Because structured data is a claim a site makes about itself in a format only machines read. The same address in visible copy is the version a human can verify and a crawler can corroborate independently. When both agree, the fact is confirmed twice. When only the markup contains it, it is an unsupported assertion, which is weaker evidence.</p>
+
+<p><strong>Do geographic coordinates actually matter?</strong><br>They matter most where an address is ambiguous: shared office buildings, street names repeated across a metropolitan area, and dense downtown blocks. Coordinates remove the ambiguity about which location the business occupies. For a business in a distinctive, unambiguous location the benefit is smaller, which is why the check carries ten points rather than twenty.</p>
+
+<p><strong>Why would a business leave opening hours out of its structured data?</strong><br>Often because the hours are genuinely unsettled. In the case documented here, two directories list weekday business hours and two others list twenty-four hours, each accurate when entered. Adding a third version to the site's own markup would create another conflicting record rather than resolving anything. The missing field is a symptom; the unmade decision is the actual problem.</p>
+
+<p><strong>Can a free tool check my Google Maps ranking?</strong><br>Not honestly. Querying Maps rankings requires the Google Places API, and scraping the results breaches Google's terms of service. A free tool presenting a live Maps rank is either serving cached data or inventing it. What can be measured legitimately is the set of local signals on your own website, plus a checklist for the Google Business Profile items no external tool can see.</p>
+
+<div class="mnote"><p><strong>About the author.</strong> Siamak Kalhor is an AI marketing and LLMO consultant in Los Angeles with more than forty years of experience in marketing strategy. He advises professionals and e-commerce leaders on becoming the answer AI assistants give. <a href="/contact-us">Get in touch</a>, or connect on <a href="https://www.linkedin.com/in/siamakkalhor/" rel="author me noopener" target="_blank">LinkedIn</a>.</p></div>
+</div></div></section>
+<section style="padding:44px 0 70px;border-top:1px solid var(--line);"><div class="wrap" style="max-width:820px;"><div class="sec-label">Related</div><h2 style="font-family:var(--display);font-size:22px;color:var(--text);margin:10px 0 18px;">More from The Long View</h2><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;"><a href="/the-long-view/entity-contradiction-audit" style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;text-decoration:none;"><div style="font-family:var(--display);font-weight:600;color:var(--text);font-size:16.5px;line-height:1.35;">The Entity Contradiction Audit</div></a>
+<a href="/the-long-view/schema-markup-for-llms" style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;text-decoration:none;"><div style="font-family:var(--display);font-weight:600;color:var(--text);font-size:16.5px;line-height:1.35;">What Schema Markup Actually Does for AI</div></a>
+<a href="/the-long-view/ai-marketing-september-2026" style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;text-decoration:none;"><div style="font-family:var(--display);font-weight:600;color:var(--text);font-size:16.5px;line-height:1.35;">September 2026 in AI Marketing: What Actually Shipped</div></a></div></div></section>
+<section><div class="wrap"><div class="sec-label">Related</div><div class="checks"><div class="check"><span class="c">&rarr;</span><a href="/local">Local visibility check</a></div><div class="check"><span class="c">&rarr;</span><a href="/audit">Run the free audit</a></div><div class="check"><span class="c">&rarr;</span><a href="/ai-visibility">AI visibility — the overview</a></div></div></div></section>
+</article></main>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
+        <p><strong style="color:var(--text);display:block;margin-bottom:6px;">Strategy that outlives the algorithm.</strong>Large Language Model Optimization and AI authority consulting. I make brands the answer generative AI gives. 40 years of market experience, engineered for the AI era.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Services</h5>
+        <a href="/services">All Services</a>
+        <a href="/llm-optimization">LLM Optimization</a>
+        <a href="/business-dna">Business DNA</a>
+        <a href="/analyze-your-brand">Analyze Your Brand</a>
+        <a href="/ai-consultant">AI Consultant</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <a href="/about-us">About Us</a>
+        <a href="/the-long-view">The Long View</a>
+        <a href="/growth-framework">Growth Framework</a>
+        <a href="/the-growth-glossary">Growth Glossary</a>
+        <a href="/contact-us">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Siamak Kalhor Consulting &middot; All Rights Reserved</span>
+      <span>323-657-7752 &middot; Los Angeles &middot; Worldwide</span>
+     · <a href="/privacy">Privacy</a> · <a href="#cookie-preferences" data-sk-consent-open>Cookie preferences</a></div>
+  </div>
+</footer>
+<script id="canonical-nav-js">
+(function(){
+  document.querySelectorAll('#navLinks>a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open');});});
+  document.querySelectorAll('.dd-menu a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open');document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');});});});
+  document.querySelectorAll('.dd-trigger').forEach(function(t){
+    t.addEventListener('click',function(e){
+      e.preventDefault();e.stopPropagation();
+      var p=t.parentElement,was=p.classList.contains('open');
+      document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');var b=x.querySelector('.dd-trigger');if(b)b.setAttribute('aria-expanded','false');});
+      if(!was){p.classList.add('open');t.setAttribute('aria-expanded','true');}
+    });
+  });
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.has-dd')){document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');var b=x.querySelector('.dd-trigger');if(b)b.setAttribute('aria-expanded','false');});}
+  });
+})();
+</script>
+<script defer src="/console.js"></script>
+<script defer src="/consent.js"></script>
+</body>
+</html>

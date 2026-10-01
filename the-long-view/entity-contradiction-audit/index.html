@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Consent Mode v2 defaults — must load ahead of gtag.js. Keep it directly after the charset meta tag. -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+(function(){var d='denied',g='granted',B={ad_storage:d,ad_user_data:d,ad_personalization:d,functionality_storage:d,personalization_storage:d,security_storage:g,wait_for_update:500},m=function(o){var r={},k;for(k in B)r[k]=B[k];for(k in o)r[k]=o[k];return r};
+gtag('consent','default',m({analytics_storage:g}));
+gtag('consent','default',m({analytics_storage:d,region:'AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE IS LI NO GB CH'.split(' ')}));
+try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.now()-c.ts<15552e6){var a=c.ads?g:d,n=c.analytics?g:d,f=c.functional?g:d;gtag('consent','update',{ad_storage:a,ad_user_data:a,ad_personalization:a,analytics_storage:n,functionality_storage:f,personalization_storage:f,security_storage:g});}}catch(e){}})();</script>
+<!-- Google Analytics GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2W5EQQ49S9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2W5EQQ49S9');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Entity Contradiction Audit</title>
+<meta name="description" content="When AI hedges about your business it usually means your facts conflict across the web. A ninety-minute audit to find every contradiction and fix them in order.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="author" content="Siamak Kalhor">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Siamak Kalhor Consulting">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://siamakconsulting.com/the-long-view/entity-contradiction-audit">
+<meta property="og:title" content="The Entity Contradiction Audit">
+<meta property="og:description" content="When AI hedges about your business it usually means your facts conflict across the web. A ninety-minute audit to find every contradiction and fix them in order.">
+<meta property="og:image" content="https://siamakconsulting.com/og/the-long-view/entity-contradiction-audit.jpg">
+<meta property="og:image:secure_url" content="https://siamakconsulting.com/og/the-long-view/entity-contradiction-audit.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="Finding and fixing contradictory business facts across the web">
+<meta property="article:published_time" content="2026-10-01T09:00:00-07:00">
+<meta property="article:modified_time" content="2026-10-01T09:00:00-07:00">
+<meta property="article:author" content="Siamak Kalhor">
+<meta property="article:publisher" content="https://siamakconsulting.com">
+<meta property="article:section" content="The Long View">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@SiamakKalhor">
+<meta name="twitter:creator" content="@SiamakKalhor">
+<meta name="twitter:url" content="https://siamakconsulting.com/the-long-view/entity-contradiction-audit">
+<meta name="twitter:title" content="The Entity Contradiction Audit">
+<meta name="twitter:description" content="When AI hedges about your business it usually means your facts conflict across the web. A ninety-minute audit to find every contradiction and fix them in order.">
+<meta name="twitter:image" content="https://siamakconsulting.com/og/the-long-view/entity-contradiction-audit.jpg">
+<meta name="twitter:image:alt" content="Finding and fixing contradictory business facts across the web">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--void:#000;--panel:#06080c;--surface:#111826;--surface-2:#19222f;--line:#36414f;--line-bright:#465365;--cyan:#2dd4ff;--violet:#a06bff;--text:#f9fbfe;--muted:#ccd6e2;--muted-dim:#aab6c4;--glow:linear-gradient(135deg,#2dd4ff 0%,#a06bff 100%);--display:'Space Grotesk',sans-serif;--body:'Inter',sans-serif;--mono:'JetBrains Mono',monospace}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--text);font-family:var(--body);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:rgba(45,212,255,.25);color:#fff}
+a{color:inherit}
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(circle at 18% 12%,rgba(45,212,255,.07),transparent 38%),radial-gradient(circle at 82% 78%,rgba(160,107,255,.08),transparent 42%),linear-gradient(rgba(27,33,44,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(27,33,44,.35) 1px,transparent 1px);background-size:100% 100%,100% 100%,54px 54px,54px 54px;mask-image:radial-gradient(ellipse 120% 90% at 50% 0%,#000 40%,transparent 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 28px}
+nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1180px;margin:0 auto;padding:15px 28px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand-mark{width:28px;height:28px;border-radius:7px;background:var(--glow);position:relative;flex-shrink:0}
+.brand-mark::after{content:'';position:absolute;inset:6px;border-radius:3px;background:var(--void)}
+.brand-txt{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.05em}
+.brand-txt span{color:var(--muted)}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-cta{font-family:var(--mono);font-size:12px;padding:9px 15px;border:1px solid var(--line-bright);border-radius:6px;color:var(--text)!important}
+.nav-cta:hover{border-color:var(--cyan);box-shadow:0 0 18px rgba(45,212,255,.15)}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:21px;cursor:pointer}
+.ph{padding:74px 0 30px;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:22px;padding:6px 13px;border:1px solid var(--line-bright);border-radius:100px;background:var(--surface)}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+h1.ph-h{font-family:var(--display);font-size:clamp(34px,5vw,58px);font-weight:700;line-height:1.05;letter-spacing:-.02em;margin-bottom:20px;max-width:880px}
+h1.ph-h .grad{background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.ph-sub{font-size:18px;color:var(--muted);max-width:660px;line-height:1.7}
+.ph-sub strong{color:var(--text);font-weight:600}
+.ph-btns{display:flex;gap:13px;flex-wrap:wrap;margin-top:30px}
+.btn{font-family:var(--mono);font-size:13px;font-weight:500;padding:13px 22px;border-radius:8px;text-decoration:none;cursor:pointer;border:none;transition:all .22s;display:inline-flex;align-items:center;gap:8px}
+.btn-pri{background:var(--glow);color:#04060a;font-weight:600}
+.btn-pri:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(45,212,255,.26)}
+.btn-ghost{background:var(--surface);color:var(--text);border:1px solid var(--line-bright)}
+.btn-ghost:hover{border-color:var(--cyan)}
+section{padding:54px 0;position:relative}
+.sec-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.sec-label::before{content:'';width:26px;height:1px;background:var(--glow)}
+h2.sec-h{font-family:var(--display);font-size:clamp(26px,3.4vw,38px);font-weight:600;letter-spacing:-.015em;line-height:1.14;margin-bottom:16px;max-width:760px}
+h2.sec-h .grad{background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.lead{font-size:16.5px;color:var(--muted);max-width:760px;line-height:1.8;margin-bottom:14px}
+.lead strong{color:var(--text)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:28px;transition:all .25s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--glow);opacity:0;transition:opacity .25s}
+.card:hover{border-color:var(--line-bright);transform:translateY(-3px)}
+.card:hover::before{opacity:1}
+.card .ico{width:40px;height:40px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line-bright);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px}
+.card h3{font-family:var(--display);font-size:17.5px;font-weight:600;margin-bottom:10px}
+.card p{font-size:13.5px;color:var(--muted);line-height:1.7}
+.card .num{font-family:var(--display);font-size:30px;font-weight:600;background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;line-height:1}
+.steps{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.step{background:var(--surface);padding:26px 28px;display:grid;grid-template-columns:60px 1fr;gap:22px;align-items:start;transition:background .2s}
+.step:hover{background:var(--surface-2)}
+.step .l{font-family:var(--display);font-size:38px;font-weight:700;background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.step h4{font-family:var(--display);font-size:17px;font-weight:600;margin-bottom:6px}
+.step p{font-size:14px;color:var(--muted);line-height:1.7}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:8px}
+.check{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.check .c{color:var(--cyan);font-family:var(--mono);font-size:14px;margin-top:1px}
+.check p{font-size:13.5px;color:var(--muted);line-height:1.6}
+.check b{color:var(--text);font-weight:600;display:block;margin-bottom:2px;font-family:var(--display)}
+.cta-band{background:linear-gradient(180deg,var(--surface),var(--panel));border:1px solid var(--line);border-radius:16px;padding:48px;text-align:center;margin-top:10px}
+.cta-band h3{font-family:var(--display);font-size:clamp(24px,3.2vw,34px);font-weight:600;margin-bottom:12px;line-height:1.15}
+.cta-band h3 .grad{background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.cta-band p{color:var(--muted);max-width:540px;margin:0 auto 26px;font-size:15px}
+.cta-row{display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
+.faq{display:flex;flex-direction:column;gap:12px}
+.qa{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:22px 24px}
+.qa h4{font-family:var(--display);font-size:16px;font-weight:600;margin-bottom:8px;color:var(--text)}
+.qa p{font-size:14px;color:var(--muted);line-height:1.7}
+footer{border-top:1px solid var(--line);background:var(--panel);padding:50px 0 36px;margin-top:40px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:36px}
+.foot-brand p{color:var(--muted);font-size:13.5px;max-width:300px;margin-top:14px;line-height:1.7}
+.foot-col h5{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-dim);margin-bottom:15px}
+.foot-col a{display:block;color:var(--muted);text-decoration:none;font-size:13.5px;margin-bottom:10px;transition:color .2s}
+.foot-col a:hover{color:var(--cyan)}
+.foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:11.5px;color:var(--muted-dim)}
+@media(max-width:860px){.grid2,.grid3,.checks,.foot-grid{grid-template-columns:1fr}.nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--void);border-bottom:1px solid var(--line);padding:20px 28px;gap:16px}.nav-links.open{display:flex}.nav-toggle{display:block}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+:focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
+</style><style>
+.article-hero{padding:64px 0 30px;position:relative;border-bottom:1px solid var(--line);background:var(--panel)}
+.crumb{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-dim);margin-bottom:18px}
+.crumb a{color:var(--cyan);text-decoration:none}
+.article-h{font-family:var(--display);font-weight:700;font-size:clamp(30px,4.6vw,50px);line-height:1.1;letter-spacing:-.02em;max-width:880px;margin-bottom:18px;color:var(--text)}
+.article-meta{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--muted-dim)}
+.prose-wrap{padding:52px 0 20px}
+.prose{max-width:740px;margin:0 auto;font-size:16.5px;color:var(--muted);line-height:1.85}
+.prose h2{font-family:var(--display);font-size:clamp(22px,2.8vw,30px);font-weight:600;color:var(--text);letter-spacing:-.01em;margin:44px 0 16px;line-height:1.2}
+.prose p{margin-bottom:20px}
+.prose strong{color:var(--text);font-weight:600}
+.prose ul{margin:0 0 22px;padding-left:22px}
+.prose li{margin-bottom:10px}
+.prose li::marker{color:var(--cyan)}
+.prose a{color:var(--cyan);text-decoration:underline;text-decoration-color:rgba(45,212,255,.35)}
+.prose hr{border:none;border-top:1px solid var(--line);margin:44px 0}
+.cta-inline{background:linear-gradient(180deg,rgba(45,212,255,.06),rgba(160,107,255,.03));border:1px solid var(--line-bright);border-radius:14px;padding:26px 28px;margin-top:10px}
+.cta-inline p{margin:0;font-size:15.5px;color:var(--text);line-height:1.7}
+.cta-inline a{font-family:var(--mono);color:var(--cyan);font-weight:600;text-decoration:none;white-space:nowrap}
+@media(max-width:760px){.article-h{font-size:32px}}
+</style>
+<style id="canonical-nav-css">
+nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1180px;margin:0 auto;padding:15px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
+.brand-txt{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.05em;color:var(--text);white-space:nowrap}
+.brand-txt span{color:var(--muted)}
+.nav-right{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.nav-links{display:flex;gap:22px;align-items:center;flex-wrap:nowrap}
+.nav-links>a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s;white-space:nowrap}
+.nav-links>a:hover,.nav-links>a.active{color:var(--text)}
+.nav-item{position:relative}
+.dd-trigger{background:none;border:none;color:var(--muted);font-family:inherit;font-size:13px;font-weight:500;letter-spacing:.02em;cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:0;transition:color .2s;white-space:nowrap}
+.dd-trigger:hover{color:var(--text)}
+.dd-caret{font-size:9px;opacity:.65;transition:transform .2s}
+.has-dd.open .dd-caret{transform:rotate(180deg)}
+.dd-menu{position:absolute;top:calc(100% + 14px);left:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px;min-width:210px;display:none;flex-direction:column;gap:2px;z-index:200;box-shadow:0 14px 44px rgba(0,0,0,.55)}
+.has-dd::after{content:"";position:absolute;top:100%;left:0;right:0;height:16px}
+.has-dd.open .dd-menu{display:flex}
+.dd-menu a{padding:9px 14px;border-radius:7px;font-size:13px;font-weight:500;color:var(--muted);white-space:nowrap;text-decoration:none;transition:background .15s,color .15s}
+.dd-menu a:hover{background:var(--surface-2);color:var(--text)}
+@media(min-width:961px){.has-dd:hover .dd-menu{display:flex}}
+.nav-cta{font-family:var(--mono);font-size:12px;padding:9px 15px;border:1px solid var(--line-bright);border-radius:6px;color:var(--text)!important;text-decoration:none;white-space:nowrap}
+.nav-cta:hover{border-color:var(--cyan);box-shadow:0 0 18px rgba(45,212,255,.15)}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:21px;cursor:pointer}
+@media(max-width:960px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;background:var(--void);border-bottom:1px solid var(--line);padding:16px 28px 22px;gap:4px;max-height:80vh;overflow-y:auto}
+  .nav-links.open{display:flex}
+  .nav-links>a{padding:10px 0;width:100%}
+  .nav-item,.has-dd{width:100%}
+  .has-dd::after{display:none}
+  .dd-trigger{width:100%;padding:10px 0;justify-content:space-between}
+  .dd-menu{position:static;box-shadow:none;border:none;background:var(--surface);margin:0 0 6px;width:100%}
+  .nav-toggle{display:block}
+}
+
+@media(max-width:960px){.nav-in{padding:12px 16px;gap:10px}.brand{gap:8px}.brand img{height:24px!important}.brand-txt{font-size:11px}.brand-txt span{display:none}.nav-right{gap:8px}.nav-toggle{flex-shrink:0}.nav-cta{font-size:11px;padding:8px 10px}}
+@media(max-width:400px){.nav-cta{font-size:10.5px;padding:7px 8px;letter-spacing:0}}
+</style>
+<link rel="canonical" href="https://siamakconsulting.com/the-long-view/entity-contradiction-audit"/>
+<link rel="stylesheet" href="/type.css">
+<!--type-scaled-->
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/editorial.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://siamakconsulting.com/the-long-view/entity-contradiction-audit#article","headline":"The Entity Contradiction Audit","description":"When AI hedges about your business it usually means your facts conflict across the web. A ninety-minute audit to find every contradiction and fix them in order.","url":"https://siamakconsulting.com/the-long-view/entity-contradiction-audit","mainEntityOfPage":{"@type":"WebPage","@id":"https://siamakconsulting.com/the-long-view/entity-contradiction-audit"},"author":{"@id":"https://siamakconsulting.com/#person"},"publisher":{"@id":"https://siamakconsulting.com/#business"},"isPartOf":{"@type":"Blog","@id":"https://siamakconsulting.com/the-long-view#blog","name":"The Long View"},"datePublished":"2026-10-01","dateModified":"2026-10-01","articleSection":"AI Visibility","keywords":"entity contradiction, NAP consistency, knowledge graph, entity resolution, local SEO, AI visibility","about":[{"@type":"Thing","name":"Entity resolution"},{"@type":"Thing","name":"Knowledge graphs"},{"@type":"Thing","name":"Local search"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","@id":"https://siamakconsulting.com/the-long-view/entity-contradiction-audit#faq","isPartOf":{"@id":"https://siamakconsulting.com/the-long-view/entity-contradiction-audit#article"},"mainEntity":[{"@type":"Question","name":"What is an entity contradiction?","acceptedAnswer":{"@type":"Answer","text":"It is when the facts about your business disagree across the places it appears — two phone numbers, two versions of the name, an address with a suite number in some listings and without it in others. AI systems assemble an understanding of a business from many sources. When those sources conflict, confidence falls and the practical result is that the model hedges or omits the business rather than stating something it cannot verify."}},{"@type":"Question","name":"How do I find contradictions about my business?","acceptedAnswer":{"@type":"Answer","text":"Build a spreadsheet listing every place the business appears — your site, Google Business Profile, LinkedIn, Yelp, Bing Places, Apple Business Connect, chambers, industry directories, aggregators and social profiles. Search your business name and your phone number in quotes to find listings you never created. Record the exact name, address, phone, website, category and hours each source actually states, then read down each column. Any column that is not identical everywhere is a contradiction."}},{"@type":"Question","name":"Which contradictions matter most?","acceptedAnswer":{"@type":"Answer","text":"Conflicting phone numbers do the most damage, because a model finding two has no basis for choosing and often gives neither. Then conflicting business names, since variants read as separate candidate entities. Then addresses, particularly a missing or inconsistent suite number. Then multiple live websites. Conflicting hours and drifting categories matter less but still reduce confidence."}},{"@type":"Question","name":"In what order should I fix them?","acceptedAnswer":{"@type":"Answer","text":"Decide your canonical version first — one name, address, phone, URL and primary category. Fix your own website next, including making visible text and structured data agree. Then your Google Business Profile, then the major aggregators since smaller directories copy from them, then the long tail worst first. Finally declare the relationships with sameAs in your structured data so a machine knows those profiles are the same entity."}},{"@type":"Question","name":"How often should this be re-checked?","acceptedAnswer":{"@type":"Answer","text":"Monthly at first. Directories regenerate data from stale sources, so a business that was consistent in one quarter can become contradictory in the next without anyone touching it. The practical test is to ask an assistant who runs the business, where it is and how to reach it: correct, specific answers indicate the entity is resolving, while hedging or confusion with a similar business indicates a contradiction remains."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://siamakconsulting.com/"},{"@type":"ListItem","position":2,"name":"The Long View","item":"https://siamakconsulting.com/the-long-view"},{"@type":"ListItem","position":3,"name":"The Entity Contradiction Audit","item":"https://siamakconsulting.com/the-long-view/entity-contradiction-audit"}]}</script>
+</head>
+<body id="top">
+<a href="#main" class="skip-link">Skip to content</a><nav>
+  <div class="nav-in">
+    <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
+    <div class="nav-links" id="navLinks">
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Services <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/ai-visibility">AI Visibility</a><a href="/answers">Answers</a><a href="/ai-search-marketing-consultant">AI Search Marketing</a><a href="/llmo-training">Team Training</a><a href="/llm-optimization">LLM Optimization</a>
+          <a href="/internet-marketing">Internet Marketing</a>
+          <a href="/social-media-marketing">Social Media Marketing</a>
+          <a href="/brand-creation">Brand Creation</a>
+          <a href="/services">All Services &rarr;</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Industries <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/law-firm-marketing-consultant">Law Firms</a>
+          <a href="/dental-marketing-consultant">Dental Practices</a>
+          <a href="/medical-practice-marketing-consultant">Medical Practices</a>
+          <a href="/cosmetic-surgery-marketing-consultant">Cosmetic Surgery</a>
+          <a href="/ecommerce-marketing-consultant">E-commerce</a>
+          <a href="/ai-for-restaurants">Restaurants</a>
+          <a href="/ai-for-contractors">Contractors</a>
+          <a href="/ai-for-law-firms">AI Client Intake &rarr;</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Resources <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/growth-framework">S.C.A.L.E. Framework</a>
+          <a href="/the-growth-glossary">Growth Glossary</a>
+          <a href="/the-long-view">The Long View</a><a href="/ai-marketing-news">AI News</a><a href="/local">Local Visibility Check</a>
+          <a href="/faq">Ask Siamak</a>
+          <a href="/how-much-does-llmo-cost">Pricing</a>
+        <a href="/analyze-your-brand">AI Authority Audit</a>
+          <a href="/ai-advisor">AI Advisor</a>
+          <a href="/ask">Ask My AI</a>
+          <a href="/seo-vs-llmo">SEO vs LLMO</a>
+          <a href="/llm-info">Info for AI Systems</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Portfolio <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/portfolio">The Portfolio</a><a href="/textile-wizard">Textile Wizard</a><a href="/listings">Real Estate</a><a href="/listings/95-longhorn-ridge-napa">Napa Valley</a><a href="/listings/1048-s-los-angeles-st-dtla">Downtown LA</a><a href="/listings/k2-investment">K2 Investment</a>
+          <a href="/portfolio#clients">Clients</a>
+        </div>
+      </div>
+      <a href="/analyze-your-brand">AI Audit</a>
+      <a href="/about-us">About</a>
+      <a href="/contact-us">Contact</a>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false" style="font-family:var(--mono);font-size:13px;">&#127760; <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/">English</a>
+          <a href="/es">Espa&ntilde;ol</a>
+          <a href="/fa">&#1601;&#1575;&#1585;&#1587;&#1740;</a>
+          <a href="/hy">&#1344;&#1377;&#1397;&#1381;&#1408;&#1381;&#1398;</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="/audit" class="nav-cta">Run Your Free Scan &rarr;</a>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" onclick="const o=document.getElementById('navLinks').classList.toggle('open');this.setAttribute('aria-expanded',o)">&#9776;</button>
+    </div>
+  </div>
+</nav>
+<main id="main"><article><section class="article-hero"><header class="wrap"><div class="crumb"><a href="/the-long-view">The Long View</a> / AI Visibility</div><h1 class="article-h">Your facts disagree with each other. That is why you are invisible.</h1><div class="byline"><img src="/assets/siamak-portrait.jpg" alt="Siamak Kalhor" width="46" height="46" loading="lazy"><div class="who">Siamak Kalhor<span>Forty years in marketing &mdash; 7 minute read</span></div></div></header></section>
+<section class="prose-wrap"><div class="wrap"><div class="prose">
+
+<p>When an AI assistant declines to say anything about a business, the usual assumption is that it has never heard of it. Often the opposite is true. It has heard several things, they disagree, and it has no basis for choosing between them.</p>
+
+<p>That is an entity contradiction, and it is the most common fixable cause of invisibility I find.</p>
+
+<div class="ansbox" data-label="the short version" data-q="why does AI give vague answers about my business?" data-a="Usually because your facts disagree with each other across the web. {cite}A model that finds two different phone numbers for you reports neither{/cite} — hedging is what uncertainty looks like from the outside."><noscript><p><strong>why does AI give vague answers about my business?</strong></p><p>Usually because your facts disagree with each other across the web. A model that finds two different phone numbers for you reports neither &mdash; hedging is what uncertainty looks like from the outside.</p></noscript></div>
+
+<h2>What an entity is, in one paragraph</h2>
+
+<p>To a machine your business is not a website. It is an entity: a thing with properties &mdash; a name, an address, a phone number, a category, a set of people, a set of profiles elsewhere. Those properties get assembled from everywhere the business appears. When the sources agree, the entity resolves cleanly and a model will state things about it. When they disagree, confidence drops, and the practical result is hedging or omission.</p>
+
+<p>Nobody tells you this is happening. You simply do not come up.</p>
+
+<h2>Running the audit</h2>
+
+<p>This takes about ninety minutes and needs a spreadsheet, not a tool.</p>
+
+<p><strong>Column one: every place your business appears.</strong> Your website, your Google Business Profile, LinkedIn, Yelp, Bing Places, Apple Business Connect, your chamber of commerce, every industry directory, every aggregator you never signed up for, your social profiles, your email signature, your invoices. Search your business name and your phone number in quotes and work through the results. Most businesses find between fifteen and forty.</p>
+
+<p><strong>Columns two onward: the facts.</strong> Exact business name. Street address including suite. Phone. Website URL. Primary category. Hours. Owner or principal name.</p>
+
+<p>Then read down each column. Every place a column is not identical is a contradiction.</p>
+
+<div class="mnote"><p>Record what is <em>there</em>, not what should be there. The instinct is to write the correct value in every row. The audit only works if it captures what each source actually says, including the wrong ones.</p></div>
+
+<h2>The contradictions that cost you most</h2>
+
+<p>Ranked by how much damage they do, which is not the order people fix them in.</p>
+
+<p><strong>1. Two phone numbers.</strong> The single most damaging. Usually an old number on a directory nobody remembers claiming, or a tracking number from a former agency. A model finding two numbers for one business has no way to choose and will often give neither.</p>
+
+<p><strong>2. Two business names.</strong> &ldquo;Acme Dental&rdquo; and &ldquo;Acme Dental Care LLC&rdquo; and &ldquo;Dr. Smith &mdash; Acme Dental&rdquo; may be the same to you. To a machine they are three candidate entities. Pick one legal-but-usable form and make everything match it exactly, down to punctuation.</p>
+
+<p><strong>3. Two addresses.</strong> Usually a suite number present in some places and missing in others, or a former location still listed somewhere. For a service-area business, a public address in some places and a service area in others is the same problem.</p>
+
+<p><strong>4. Two websites.</strong> An old domain still live, or a www and non-www version both resolving without a canonical. A business pointing at two domains is a business a machine cannot confidently attach to either.</p>
+
+<p><strong>5. Conflicting hours.</strong> Lower stakes but still a confidence signal, and the easiest to let rot.</p>
+
+<p><strong>6. Category drift.</strong> &ldquo;Marketing consultant&rdquo; in one place, &ldquo;advertising agency&rdquo; in another, &ldquo;business consultant&rdquo; in a third. This does not block an answer so much as blur which question you are the answer to.</p>
+
+<h2>Fixing, in the right order</h2>
+
+<p><strong>First, decide the canonical version.</strong> One name, one address format, one phone, one URL, one primary category. Write it down. This is the only creative decision in the process; everything after is clerical.</p>
+
+<p><strong>Then fix your own site.</strong> It is the source others copy from and the one a machine treats as most authoritative about you. Make the visible text and the structured data agree with your canonical version, and make them agree with each other.</p>
+
+<p><strong>Then your Google Business Profile</strong>, which feeds more downstream systems than anything else you control.</p>
+
+<p><strong>Then the big aggregators</strong>, because many small directories pull from them. Fixing an aggregator can correct a dozen sites you have never visited.</p>
+
+<p><strong>Then the long tail,</strong> worst first. You will not clear all of it. You do not need to &mdash; you need the weight of agreement to be overwhelming.</p>
+
+<p><strong>Then declare the relationships.</strong> Use <code>sameAs</code> in your structured data to list every profile you control. This is the step almost everyone skips, and it is the one that tells a machine these scattered listings are the same entity rather than similar ones.</p>
+
+<h2>What success looks like</h2>
+
+<p>Not a score. Ask an assistant who runs the business, where it is, what it does, and how to reach it. Correct and specific answers mean the entity resolved. Hedging, confusion with a similarly named business, or a flat refusal means a contradiction survives.</p>
+
+<p>Re-run it monthly for a while. Directories regenerate bad data, and a business that was clean in March can be contradictory by June because an aggregator refreshed from a stale source.</p>
+
+<p>This work is tedious and it is not clever. It is also the highest-yield thing most businesses can do for AI visibility, because it removes the specific obstacle that stops a model talking about you at all.</p>
+
+<div class="cta-inline"><p><strong>Find out what is actually being said about you.</strong> The free audit asks a live assistant real questions about your business and reports which sources shaped the answer.</p><a class="btn btn-pri" href="/audit">Run the free audit</a></div>
+
+<h2>Common questions</h2>
+
+<p><strong>What is an entity contradiction?</strong><br>It is when the facts about your business disagree across the places it appears &mdash; two phone numbers, two versions of the name, an address with a suite number in some listings and without it in others. AI systems assemble an understanding of a business from many sources. When those sources conflict, confidence falls and the practical result is that the model hedges or omits the business rather than stating something it cannot verify.</p>
+
+<p><strong>How do I find contradictions about my business?</strong><br>Build a spreadsheet listing every place the business appears &mdash; your site, Google Business Profile, LinkedIn, Yelp, Bing Places, Apple Business Connect, chambers, industry directories, aggregators and social profiles. Search your business name and your phone number in quotes to find listings you never created. Record the exact name, address, phone, website, category and hours each source actually states, then read down each column. Any column that is not identical everywhere is a contradiction.</p>
+
+<p><strong>Which contradictions matter most?</strong><br>Conflicting phone numbers do the most damage, because a model finding two has no basis for choosing and often gives neither. Then conflicting business names, since variants read as separate candidate entities. Then addresses, particularly a missing or inconsistent suite number. Then multiple live websites. Conflicting hours and drifting categories matter less but still reduce confidence.</p>
+
+<p><strong>In what order should I fix them?</strong><br>Decide your canonical version first &mdash; one name, address, phone, URL and primary category. Fix your own website next, including making visible text and structured data agree. Then your Google Business Profile, then the major aggregators since smaller directories copy from them, then the long tail worst first. Finally declare the relationships with sameAs in your structured data so a machine knows those profiles are the same entity.</p>
+
+<p><strong>How often should this be re-checked?</strong><br>Monthly at first. Directories regenerate data from stale sources, so a business that was consistent in one quarter can become contradictory in the next without anyone touching it. The practical test is to ask an assistant who runs the business, where it is and how to reach it: correct, specific answers indicate the entity is resolving, while hedging or confusion with a similar business indicates a contradiction remains.</p>
+
+<h2>Related reading</h2>
+
+<p>The structured data side of this is covered in <a href="/the-long-view/schema-markup-for-llms">what schema markup actually does for AI</a>, and the local-specific version &mdash; where a Google Business Profile is the dominant source &mdash; has its own <a href="/local">free diagnostic</a>.</p>
+
+<div class="mnote"><p><strong>About the author.</strong> Siamak Kalhor is an AI marketing and LLMO consultant in Los Angeles with more than forty years of experience in marketing strategy. He advises professionals and e-commerce leaders on becoming the answer AI assistants give. <a href="/contact-us">Get in touch</a>, or connect on <a href="https://www.linkedin.com/in/siamakkalhor/" rel="author me noopener" target="_blank">LinkedIn</a>.</p></div>
+</div></div></section>
+<section style="padding:44px 0 70px;border-top:1px solid var(--line);"><div class="wrap" style="max-width:820px;"><div class="sec-label">Related</div><h2 style="font-family:var(--display);font-size:22px;color:var(--text);margin:10px 0 18px;">More from The Long View</h2><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;"><a href="/the-long-view/schema-markup-for-llms" style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;text-decoration:none;"><div style="font-family:var(--display);font-weight:600;color:var(--text);font-size:16.5px;line-height:1.35;">What Schema Markup Actually Does for AI</div></a>
+<a href="/the-long-view/anatomy-of-an-invisible-brand" style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;text-decoration:none;"><div style="font-family:var(--display);font-weight:600;color:var(--text);font-size:16.5px;line-height:1.35;">I Scored My Own Site 68 out of 100</div></a>
+<a href="/the-long-view/why-seo-agencies-fail-at-ai-search" style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;text-decoration:none;"><div style="font-family:var(--display);font-weight:600;color:var(--text);font-size:16.5px;line-height:1.35;">Why SEO Agencies Fail at AI Search</div></a></div></div></section>
+<section><div class="wrap"><div class="sec-label">Related</div><div class="checks"><div class="check"><span class="c">&rarr;</span><a href="/local">Local visibility check</a></div><div class="check"><span class="c">&rarr;</span><a href="/audit">Run the free audit</a></div><div class="check"><span class="c">&rarr;</span><a href="/listings">Listings</a></div></div></div></section>
+</article></main>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
+        <p><strong style="color:var(--text);display:block;margin-bottom:6px;">Strategy that outlives the algorithm.</strong>Large Language Model Optimization and AI authority consulting. I make brands the answer generative AI gives. 40 years of market experience, engineered for the AI era.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Services</h5>
+        <a href="/services">All Services</a>
+        <a href="/llm-optimization">LLM Optimization</a>
+        <a href="/business-dna">Business DNA</a>
+        <a href="/analyze-your-brand">Analyze Your Brand</a>
+        <a href="/ai-consultant">AI Consultant</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <a href="/about-us">About Us</a>
+        <a href="/the-long-view">The Long View</a>
+        <a href="/growth-framework">Growth Framework</a>
+        <a href="/the-growth-glossary">Growth Glossary</a>
+        <a href="/contact-us">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Siamak Kalhor Consulting &middot; All Rights Reserved</span>
+      <span>323-657-7752 &middot; Los Angeles &middot; Worldwide</span>
+     · <a href="/privacy">Privacy</a> · <a href="#cookie-preferences" data-sk-consent-open>Cookie preferences</a></div>
+  </div>
+</footer>
+<script id="canonical-nav-js">
+(function(){
+  document.querySelectorAll('#navLinks>a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open');});});
+  document.querySelectorAll('.dd-menu a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open');document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');});});});
+  document.querySelectorAll('.dd-trigger').forEach(function(t){
+    t.addEventListener('click',function(e){
+      e.preventDefault();e.stopPropagation();
+      var p=t.parentElement,was=p.classList.contains('open');
+      document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');var b=x.querySelector('.dd-trigger');if(b)b.setAttribute('aria-expanded','false');});
+      if(!was){p.classList.add('open');t.setAttribute('aria-expanded','true');}
+    });
+  });
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.has-dd')){document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');var b=x.querySelector('.dd-trigger');if(b)b.setAttribute('aria-expanded','false');});}
+  });
+})();
+</script>
+<script defer src="/console.js"></script>
+<script defer src="/consent.js"></script>
+</body>
+</html>

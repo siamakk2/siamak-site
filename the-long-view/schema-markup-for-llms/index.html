@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Consent Mode v2 defaults — must load ahead of gtag.js. Keep it directly after the charset meta tag. -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+(function(){var d='denied',g='granted',B={ad_storage:d,ad_user_data:d,ad_personalization:d,functionality_storage:d,personalization_storage:d,security_storage:g,wait_for_update:500},m=function(o){var r={},k;for(k in B)r[k]=B[k];for(k in o)r[k]=o[k];return r};
+gtag('consent','default',m({analytics_storage:g}));
+gtag('consent','default',m({analytics_storage:d,region:'AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE IS LI NO GB CH'.split(' ')}));
+try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.now()-c.ts<15552e6){var a=c.ads?g:d,n=c.analytics?g:d,f=c.functional?g:d;gtag('consent','update',{ad_storage:a,ad_user_data:a,ad_personalization:a,analytics_storage:n,functionality_storage:f,personalization_storage:f,security_storage:g});}}catch(e){}})();</script>
+<!-- Google Analytics GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2W5EQQ49S9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2W5EQQ49S9');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Schema Markup Actually Does for AI</title>
+<meta name="description" content="One provider has confirmed it. One study found no correlation. No peer-reviewed research exists. Sorting the proven benefits of schema from the sold ones.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="author" content="Siamak Kalhor">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Siamak Kalhor Consulting">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://siamakconsulting.com/the-long-view/schema-markup-for-llms">
+<meta property="og:title" content="What Schema Markup Actually Does for AI">
+<meta property="og:description" content="One provider has confirmed it. One study found no correlation. No peer-reviewed research exists. Sorting the proven benefits of schema from the sold ones.">
+<meta property="og:image" content="https://siamakconsulting.com/og/the-long-view/schema-markup-for-llms.jpg">
+<meta property="og:image:secure_url" content="https://siamakconsulting.com/og/the-long-view/schema-markup-for-llms.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="Sorting proven schema markup benefits from marketing claims">
+<meta property="article:published_time" content="2026-10-01T09:00:00-07:00">
+<meta property="article:modified_time" content="2026-10-01T09:00:00-07:00">
+<meta property="article:author" content="Siamak Kalhor">
+<meta property="article:publisher" content="https://siamakconsulting.com">
+<meta property="article:section" content="The Long View">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@SiamakKalhor">
+<meta name="twitter:creator" content="@SiamakKalhor">
+<meta name="twitter:url" content="https://siamakconsulting.com/the-long-view/schema-markup-for-llms">
+<meta name="twitter:title" content="What Schema Markup Actually Does for AI">
+<meta name="twitter:description" content="One provider has confirmed it. One study found no correlation. No peer-reviewed research exists. Sorting the proven benefits of schema from the sold ones.">
+<meta name="twitter:image" content="https://siamakconsulting.com/og/the-long-view/schema-markup-for-llms.jpg">
+<meta name="twitter:image:alt" content="Sorting proven schema markup benefits from marketing claims">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--void:#000;--panel:#06080c;--surface:#111826;--surface-2:#19222f;--line:#36414f;--line-bright:#465365;--cyan:#2dd4ff;--violet:#a06bff;--text:#f9fbfe;--muted:#ccd6e2;--muted-dim:#aab6c4;--glow:linear-gradient(135deg,#2dd4ff 0%,#a06bff 100%);--display:'Space Grotesk',sans-serif;--body:'Inter',sans-serif;--mono:'JetBrains Mono',monospace}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--text);font-family:var(--body);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:rgba(45,212,255,.25);color:#fff}
+a{color:inherit}
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(circle at 18% 12%,rgba(45,212,255,.07),transparent 38%),radial-gradient(circle at 82% 78%,rgba(160,107,255,.08),transparent 42%),linear-gradient(rgba(27,33,44,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(27,33,44,.35) 1px,transparent 1px);background-size:100% 100%,100% 100%,54px 54px,54px 54px;mask-image:radial-gradient(ellipse 120% 90% at 50% 0%,#000 40%,transparent 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 28px}
+nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1180px;margin:0 auto;padding:15px 28px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand-mark{width:28px;height:28px;border-radius:7px;background:var(--glow);position:relative;flex-shrink:0}
+.brand-mark::after{content:'';position:absolute;inset:6px;border-radius:3px;background:var(--void)}
+.brand-txt{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.05em}
+.brand-txt span{color:var(--muted)}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-cta{font-family:var(--mono);font-size:12px;padding:9px 15px;border:1px solid var(--line-bright);border-radius:6px;color:var(--text)!important}
+.nav-cta:hover{border-color:var(--cyan);box-shadow:0 0 18px rgba(45,212,255,.15)}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:21px;cursor:pointer}
+.ph{padding:74px 0 30px;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:22px;padding:6px 13px;border:1px solid var(--line-bright);border-radius:100px;background:var(--surface)}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+h1.ph-h{font-family:var(--display);font-size:clamp(34px,5vw,58px);font-weight:700;line-height:1.05;letter-spacing:-.02em;margin-bottom:20px;max-width:880px}
+h1.ph-h .grad{background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.ph-sub{font-size:18px;color:var(--muted);max-width:660px;line-height:1.7}
+.ph-sub strong{color:var(--text);font-weight:600}
+.ph-btns{display:flex;gap:13px;flex-wrap:wrap;margin-top:30px}
+.btn{font-family:var(--mono);font-size:13px;font-weight:500;padding:13px 22px;border-radius:8px;text-decoration:none;cursor:pointer;border:none;transition:all .22s;display:inline-flex;align-items:center;gap:8px}
+.btn-pri{background:var(--glow);color:#04060a;font-weight:600}
+.btn-pri:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(45,212,255,.26)}
+.btn-ghost{background:var(--surface);color:var(--text);border:1px solid var(--line-bright)}
+.btn-ghost:hover{border-color:var(--cyan)}
+section{padding:54px 0;position:relative}
+.sec-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.sec-label::before{content:'';width:26px;height:1px;background:var(--glow)}
+h2.sec-h{font-family:var(--display);font-size:clamp(26px,3.4vw,38px);font-weight:600;letter-spacing:-.015em;line-height:1.14;margin-bottom:16px;max-width:760px}
+h2.sec-h .grad{background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.lead{font-size:16.5px;color:var(--muted);max-width:760px;line-height:1.8;margin-bottom:14px}
+.lead strong{color:var(--text)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:28px;transition:all .25s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--glow);opacity:0;transition:opacity .25s}
+.card:hover{border-color:var(--line-bright);transform:translateY(-3px)}
+.card:hover::before{opacity:1}
+.card .ico{width:40px;height:40px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line-bright);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px}
+.card h3{font-family:var(--display);font-size:17.5px;font-weight:600;margin-bottom:10px}
+.card p{font-size:13.5px;color:var(--muted);line-height:1.7}
+.card .num{font-family:var(--display);font-size:30px;font-weight:600;background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;line-height:1}
+.steps{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.step{background:var(--surface);padding:26px 28px;display:grid;grid-template-columns:60px 1fr;gap:22px;align-items:start;transition:background .2s}
+.step:hover{background:var(--surface-2)}
+.step .l{font-family:var(--display);font-size:38px;font-weight:700;background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.step h4{font-family:var(--display);font-size:17px;font-weight:600;margin-bottom:6px}
+.step p{font-size:14px;color:var(--muted);line-height:1.7}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:8px}
+.check{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.check .c{color:var(--cyan);font-family:var(--mono);font-size:14px;margin-top:1px}
+.check p{font-size:13.5px;color:var(--muted);line-height:1.6}
+.check b{color:var(--text);font-weight:600;display:block;margin-bottom:2px;font-family:var(--display)}
+.cta-band{background:linear-gradient(180deg,var(--surface),var(--panel));border:1px solid var(--line);border-radius:16px;padding:48px;text-align:center;margin-top:10px}
+.cta-band h3{font-family:var(--display);font-size:clamp(24px,3.2vw,34px);font-weight:600;margin-bottom:12px;line-height:1.15}
+.cta-band h3 .grad{background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.cta-band p{color:var(--muted);max-width:540px;margin:0 auto 26px;font-size:15px}
+.cta-row{display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
+.faq{display:flex;flex-direction:column;gap:12px}
+.qa{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:22px 24px}
+.qa h4{font-family:var(--display);font-size:16px;font-weight:600;margin-bottom:8px;color:var(--text)}
+.qa p{font-size:14px;color:var(--muted);line-height:1.7}
+footer{border-top:1px solid var(--line);background:var(--panel);padding:50px 0 36px;margin-top:40px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:36px}
+.foot-brand p{color:var(--muted);font-size:13.5px;max-width:300px;margin-top:14px;line-height:1.7}
+.foot-col h5{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-dim);margin-bottom:15px}
+.foot-col a{display:block;color:var(--muted);text-decoration:none;font-size:13.5px;margin-bottom:10px;transition:color .2s}
+.foot-col a:hover{color:var(--cyan)}
+.foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:11.5px;color:var(--muted-dim)}
+@media(max-width:860px){.grid2,.grid3,.checks,.foot-grid{grid-template-columns:1fr}.nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--void);border-bottom:1px solid var(--line);padding:20px 28px;gap:16px}.nav-links.open{display:flex}.nav-toggle{display:block}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+:focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
+</style><style>
+.article-hero{padding:64px 0 30px;position:relative;border-bottom:1px solid var(--line);background:var(--panel)}
+.crumb{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-dim);margin-bottom:18px}
+.crumb a{color:var(--cyan);text-decoration:none}
+.article-h{font-family:var(--display);font-weight:700;font-size:clamp(30px,4.6vw,50px);line-height:1.1;letter-spacing:-.02em;max-width:880px;margin-bottom:18px;color:var(--text)}
+.article-meta{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--muted-dim)}
+.prose-wrap{padding:52px 0 20px}
+.prose{max-width:740px;margin:0 auto;font-size:16.5px;color:var(--muted);line-height:1.85}
+.prose h2{font-family:var(--display);font-size:clamp(22px,2.8vw,30px);font-weight:600;color:var(--text);letter-spacing:-.01em;margin:44px 0 16px;line-height:1.2}
+.prose p{margin-bottom:20px}
+.prose strong{color:var(--text);font-weight:600}
+.prose ul{margin:0 0 22px;padding-left:22px}
+.prose li{margin-bottom:10px}
+.prose li::marker{color:var(--cyan)}
+.prose a{color:var(--cyan);text-decoration:underline;text-decoration-color:rgba(45,212,255,.35)}
+.prose hr{border:none;border-top:1px solid var(--line);margin:44px 0}
+.cta-inline{background:linear-gradient(180deg,rgba(45,212,255,.06),rgba(160,107,255,.03));border:1px solid var(--line-bright);border-radius:14px;padding:26px 28px;margin-top:10px}
+.cta-inline p{margin:0;font-size:15.5px;color:var(--text);line-height:1.7}
+.cta-inline a{font-family:var(--mono);color:var(--cyan);font-weight:600;text-decoration:none;white-space:nowrap}
+@media(max-width:760px){.article-h{font-size:32px}}
+</style>
+<style id="canonical-nav-css">
+nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1180px;margin:0 auto;padding:15px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
+.brand-txt{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.05em;color:var(--text);white-space:nowrap}
+.brand-txt span{color:var(--muted)}
+.nav-right{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.nav-links{display:flex;gap:22px;align-items:center;flex-wrap:nowrap}
+.nav-links>a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s;white-space:nowrap}
+.nav-links>a:hover,.nav-links>a.active{color:var(--text)}
+.nav-item{position:relative}
+.dd-trigger{background:none;border:none;color:var(--muted);font-family:inherit;font-size:13px;font-weight:500;letter-spacing:.02em;cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:0;transition:color .2s;white-space:nowrap}
+.dd-trigger:hover{color:var(--text)}
+.dd-caret{font-size:9px;opacity:.65;transition:transform .2s}
+.has-dd.open .dd-caret{transform:rotate(180deg)}
+.dd-menu{position:absolute;top:calc(100% + 14px);left:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px;min-width:210px;display:none;flex-direction:column;gap:2px;z-index:200;box-shadow:0 14px 44px rgba(0,0,0,.55)}
+.has-dd::after{content:"";position:absolute;top:100%;left:0;right:0;height:16px}
+.has-dd.open .dd-menu{display:flex}
+.dd-menu a{padding:9px 14px;border-radius:7px;font-size:13px;font-weight:500;color:var(--muted);white-space:nowrap;text-decoration:none;transition:background .15s,color .15s}
+.dd-menu a:hover{background:var(--surface-2);color:var(--text)}
+@media(min-width:961px){.has-dd:hover .dd-menu{display:flex}}
+.nav-cta{font-family:var(--mono);font-size:12px;padding:9px 15px;border:1px solid var(--line-bright);border-radius:6px;color:var(--text)!important;text-decoration:none;white-space:nowrap}
+.nav-cta:hover{border-color:var(--cyan);box-shadow:0 0 18px rgba(45,212,255,.15)}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:21px;cursor:pointer}
+@media(max-width:960px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;background:var(--void);border-bottom:1px solid var(--line);padding:16px 28px 22px;gap:4px;max-height:80vh;overflow-y:auto}
+  .nav-links.open{display:flex}
+  .nav-links>a{padding:10px 0;width:100%}
+  .nav-item,.has-dd{width:100%}
+  .has-dd::after{display:none}
+  .dd-trigger{width:100%;padding:10px 0;justify-content:space-between}
+  .dd-menu{position:static;box-shadow:none;border:none;background:var(--surface);margin:0 0 6px;width:100%}
+  .nav-toggle{display:block}
+}
+
+@media(max-width:960px){.nav-in{padding:12px 16px;gap:10px}.brand{gap:8px}.brand img{height:24px!important}.brand-txt{font-size:11px}.brand-txt span{display:none}.nav-right{gap:8px}.nav-toggle{flex-shrink:0}.nav-cta{font-size:11px;padding:8px 10px}}
+@media(max-width:400px){.nav-cta{font-size:10.5px;padding:7px 8px;letter-spacing:0}}
+</style>
+<link rel="canonical" href="https://siamakconsulting.com/the-long-view/schema-markup-for-llms"/>
+<link rel="stylesheet" href="/type.css">
+<!--type-scaled-->
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/editorial.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://siamakconsulting.com/the-long-view/schema-markup-for-llms#article","headline":"What Schema Markup Actually Does for AI","description":"One provider has confirmed it. One study found no correlation. No peer-reviewed research exists. Sorting the proven benefits of schema from the sold ones.","url":"https://siamakconsulting.com/the-long-view/schema-markup-for-llms","mainEntityOfPage":{"@type":"WebPage","@id":"https://siamakconsulting.com/the-long-view/schema-markup-for-llms"},"author":{"@id":"https://siamakconsulting.com/#person"},"publisher":{"@id":"https://siamakconsulting.com/#business"},"isPartOf":{"@type":"Blog","@id":"https://siamakconsulting.com/the-long-view#blog","name":"The Long View"},"datePublished":"2026-10-01","dateModified":"2026-10-01","articleSection":"AI Visibility","keywords":"schema markup, JSON-LD, structured data, LLM citation, entity resolution, LLMO","about":[{"@type":"Thing","name":"Structured data"},{"@type":"Thing","name":"Schema.org"},{"@type":"Thing","name":"AI search"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","@id":"https://siamakconsulting.com/the-long-view/schema-markup-for-llms#faq","isPartOf":{"@id":"https://siamakconsulting.com/the-long-view/schema-markup-for-llms#article"},"mainEntity":[{"@type":"Question","name":"Does schema markup help LLMs cite my content?","acceptedAnswer":{"@type":"Answer","text":"Indirectly, yes; directly, unproven. Microsoft has confirmed that schema helps Bing's language models understand content for Copilot, and search indexes demonstrably use structured data, so assistants that retrieve from those indexes benefit. But no provider has described a language model parsing your JSON-LD directly, and a Search Atlas study found no correlation between schema coverage and citation rates across OpenAI, Gemini and Perplexity."}},{"@type":"Question","name":"Is there research proving schema improves AI visibility?","acceptedAnswer":{"@type":"Answer","text":"No. As of March 2026 there are no peer-reviewed studies on schema's impact on AI search visibility. The 2024 Princeton and Georgia Tech study frequently cited as evidence tested content strategies such as adding citations and statistics, not schema markup."}},{"@type":"Question","name":"If the direct benefit is unproven, why implement schema at all?","acceptedAnswer":{"@type":"Answer","text":"Because the established benefits justify it on their own. Schema drives rich results in ordinary search, it is confirmed to help Bing and Copilot, and most importantly it performs entity resolution — letting a machine establish that the business on your site is the same entity as the one on your Business Profile and directory listings. Consistent facts are what allow a model to assert something about you rather than hedge."}},{"@type":"Question","name":"What schema types matter most for a business?","acceptedAnswer":{"@type":"Answer","text":"A single Organization or LocalBusiness node with a stable @id referenced from every page; a Person node for any named individual in the brand, with worksFor pointing at the business; sameAs on both listing every external profile you control; truthful page-level types such as Article and Service; and FAQPage only where the answers appear as visible copy on the page."}},{"@type":"Question","name":"Can schema markup hurt my site?","acceptedAnswer":{"@type":"Answer","text":"Yes, in three ways. Self-applied aggregateRating or review markup on your own business is treated by Google as self-serving and ineligible. FAQPage markup whose questions do not appear as visible page content violates Google's structured data guidelines. And schema that contradicts your visible copy or your other listings creates exactly the inconsistency that causes a model to decline to assert anything about you."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://siamakconsulting.com/"},{"@type":"ListItem","position":2,"name":"The Long View","item":"https://siamakconsulting.com/the-long-view"},{"@type":"ListItem","position":3,"name":"What Schema Markup Actually Does for AI","item":"https://siamakconsulting.com/the-long-view/schema-markup-for-llms"}]}</script>
+</head>
+<body id="top">
+<a href="#main" class="skip-link">Skip to content</a><nav>
+  <div class="nav-in">
+    <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
+    <div class="nav-links" id="navLinks">
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Services <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/ai-visibility">AI Visibility</a><a href="/answers">Answers</a><a href="/ai-search-marketing-consultant">AI Search Marketing</a><a href="/llmo-training">Team Training</a><a href="/llm-optimization">LLM Optimization</a>
+          <a href="/internet-marketing">Internet Marketing</a>
+          <a href="/social-media-marketing">Social Media Marketing</a>
+          <a href="/brand-creation">Brand Creation</a>
+          <a href="/services">All Services &rarr;</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Industries <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/law-firm-marketing-consultant">Law Firms</a>
+          <a href="/dental-marketing-consultant">Dental Practices</a>
+          <a href="/medical-practice-marketing-consultant">Medical Practices</a>
+          <a href="/cosmetic-surgery-marketing-consultant">Cosmetic Surgery</a>
+          <a href="/ecommerce-marketing-consultant">E-commerce</a>
+          <a href="/ai-for-restaurants">Restaurants</a>
+          <a href="/ai-for-contractors">Contractors</a>
+          <a href="/ai-for-law-firms">AI Client Intake &rarr;</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Resources <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/growth-framework">S.C.A.L.E. Framework</a>
+          <a href="/the-growth-glossary">Growth Glossary</a>
+          <a href="/the-long-view">The Long View</a><a href="/ai-marketing-news">AI News</a><a href="/local">Local Visibility Check</a>
+          <a href="/faq">Ask Siamak</a>
+          <a href="/how-much-does-llmo-cost">Pricing</a>
+        <a href="/analyze-your-brand">AI Authority Audit</a>
+          <a href="/ai-advisor">AI Advisor</a>
+          <a href="/ask">Ask My AI</a>
+          <a href="/seo-vs-llmo">SEO vs LLMO</a>
+          <a href="/llm-info">Info for AI Systems</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Portfolio <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/portfolio">The Portfolio</a><a href="/textile-wizard">Textile Wizard</a><a href="/listings">Real Estate</a><a href="/listings/95-longhorn-ridge-napa">Napa Valley</a><a href="/listings/1048-s-los-angeles-st-dtla">Downtown LA</a><a href="/listings/k2-investment">K2 Investment</a>
+          <a href="/portfolio#clients">Clients</a>
+        </div>
+      </div>
+      <a href="/analyze-your-brand">AI Audit</a>
+      <a href="/about-us">About</a>
+      <a href="/contact-us">Contact</a>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false" style="font-family:var(--mono);font-size:13px;">&#127760; <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/">English</a>
+          <a href="/es">Espa&ntilde;ol</a>
+          <a href="/fa">&#1601;&#1575;&#1585;&#1587;&#1740;</a>
+          <a href="/hy">&#1344;&#1377;&#1397;&#1381;&#1408;&#1381;&#1398;</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="/audit" class="nav-cta">Run Your Free Scan &rarr;</a>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" onclick="const o=document.getElementById('navLinks').classList.toggle('open');this.setAttribute('aria-expanded',o)">&#9776;</button>
+    </div>
+  </div>
+</nav>
+<main id="main"><article><section class="article-hero"><header class="wrap"><div class="crumb"><a href="/the-long-view">The Long View</a> / AI Visibility</div><h1 class="article-h">What schema markup actually does for AI.</h1><div class="byline"><img src="/assets/siamak-portrait.jpg" alt="Siamak Kalhor" width="46" height="46" loading="lazy"><div class="who">Siamak Kalhor<span>Forty years in marketing &mdash; 8 minute read</span></div></div></header></section>
+<section class="prose-wrap"><div class="wrap"><div class="prose">
+
+<p>Schema markup is sold hard as the thing that gets you cited by AI. I implement it for every client. I also think most of what is claimed about it is unproven, and I would rather you heard that from me than worked it out later.</p>
+
+<p>Here is what is actually established, what is inference, and what is marketing &mdash; and why the honest version still ends with you implementing schema.</p>
+
+<div class="ansbox" data-label="the short version" data-q="does schema markup get me cited by ChatGPT?" data-a="There is no evidence it does so directly. {cite}The benefit that is established is indirect — through the search indexes that AI assistants retrieve from{/cite}, which is a real benefit and a different claim."><noscript><p><strong>does schema markup get me cited by ChatGPT?</strong></p><p>There is no evidence it does so directly. The benefit that is established is indirect &mdash; through the search indexes that AI assistants retrieve from, which is a real benefit and a different claim.</p></noscript></div>
+
+<h2>What is actually confirmed</h2>
+
+<p>One first-party confirmation exists, and it is worth having precisely. At SMX Munich in 2025, Microsoft's Fabrice Canel said that schema markup helps Bing's language models understand content for Copilot. Google has acknowledged in general terms that structured data is advantageous in AI search without being specific about mechanism.</p>
+
+<p>OpenAI, Anthropic and Perplexity have said nothing publicly about using schema.</p>
+
+<p>That is the complete list of what the companies themselves have stated. One clear confirmation, one vague one, three silences.</p>
+
+<h2>What the research shows</h2>
+
+<p>Thinner than the industry implies. As of March 2026 there are no peer-reviewed studies on schema's impact on AI search visibility.</p>
+
+<p>A Search Atlas study found <strong>no correlation</strong> between schema coverage and citation rates across OpenAI, Gemini and Perplexity. The 2024 Princeton and Georgia Tech study that gets cited constantly in GEO marketing did not test schema at all &mdash; it tested content strategies like adding citations and statistics. It is cited as schema evidence by people who did not read it.</p>
+
+<div class="figure"><span class="n">0</span><span class="t">peer-reviewed studies on schema's effect on AI search visibility as of March 2026. The most-cited &ldquo;proof&rdquo; in this field tested something else entirely.</span></div>
+
+<h2>The distinction that actually matters</h2>
+
+<p>Almost every argument about this collapses because two different claims get treated as one.</p>
+
+<p><strong>The direct claim:</strong> a language model reads your JSON-LD and is more likely to cite you because of it. <em>Unconfirmed.</em> No provider has described this mechanism and no study demonstrates it.</p>
+
+<p><strong>The indirect claim:</strong> schema helps search infrastructure parse and classify your content, and AI assistants retrieve from that infrastructure. <em>Well supported.</em> Bing has confirmed it. Retrieval-augmented systems query search indexes, and those indexes demonstrably use structured data.</p>
+
+<p>The indirect claim is the one that justifies the work. It is less exciting, which is why the direct one gets sold instead.</p>
+
+<div class="table-wrap"><table>
+<caption>Sorting the claims by what supports them.</caption>
+<thead><tr><th>Claim</th><th>Status</th><th>What supports it</th></tr></thead>
+<tbody>
+<tr><th>Helps Bing and Copilot understand content</th><td>Confirmed</td><td>Microsoft, on the record</td></tr>
+<tr><th>Helps search indexes classify you</th><td>Established</td><td>Rich results, knowledge panels, entity resolution</td></tr>
+<tr><th>Helps AI assistants that retrieve from search</th><td>Strong inference</td><td>Follows from the two above</td></tr>
+<tr><th>Resolves who you are across sources</th><td>Established</td><td>Entity disambiguation is what @id is for</td></tr>
+<tr><th>LLMs parse your JSON-LD directly</th><td>Unconfirmed</td><td>No provider statement, no study</td></tr>
+<tr><th>Schema coverage raises citation rates</th><td>Contradicted</td><td>Search Atlas found no correlation</td></tr>
+</tbody>
+</table></div>
+
+<h2>Why I still implement it on every project</h2>
+
+<p>Because the proven benefits are sufficient on their own, and because one of them is the entire job.</p>
+
+<p><strong>Entity resolution.</strong> This is the one that matters most and gets discussed least. Schema lets you state, in a form a machine cannot misread, that the business on your site is the same business as the one on your Business Profile, your LinkedIn and every directory listing. You do that with a stable <code>@id</code> referenced from every page, and <code>sameAs</code> pointing at your external profiles.</p>
+
+<p>When those facts agree, a machine can assert things about you confidently. When they disagree, it hedges or omits you &mdash; and omission is what being invisible actually looks like.</p>
+
+<p><strong>Rich results.</strong> Established, visible, and still worth having in ordinary search.</p>
+
+<p><strong>It costs almost nothing once.</strong> Static JSON-LD in the head. No runtime cost, no maintenance beyond keeping it true.</p>
+
+<p>So: implement it. Just implement it for entity resolution and search infrastructure, which are real, rather than for direct LLM parsing, which nobody has demonstrated.</p>
+
+<h2>What to implement, in order</h2>
+
+<p><strong>1. One Organization or LocalBusiness node with a stable @id.</strong> Something like <code>https://yoursite.com/#business</code>. Define it once. Reference it by <code>@id</code> from every other page rather than redefining it. Two definitions of the same company is the contradiction you are trying to avoid.</p>
+
+<p><strong>2. One Person node, same discipline,</strong> if a named individual is part of the brand. <code>worksFor</code> points at the business <code>@id</code>.</p>
+
+<p><strong>3. sameAs on both,</strong> listing every external profile you control. This is the line that does entity resolution. Without it a machine has no way to know your LinkedIn is you.</p>
+
+<p><strong>4. Page-level types that are true.</strong> Article or BlogPosting on articles, with <code>author</code> and <code>publisher</code> referencing the <code>@id</code>s above. Service on service pages. Nothing aspirational.</p>
+
+<p><strong>5. FAQPage only where the answers are visible on the page.</strong> Google requires the markup to correspond to content a visitor can read. Marking up questions that exist only in the JSON is a guidelines violation, and it is common &mdash; I have found it on sites that were otherwise carefully built, including ones I inherited.</p>
+
+<div class="mnote"><p>Two schema anti-patterns worth naming. Do not self-apply <code>aggregateRating</code> or <code>review</code> to your own business; Google treats self-serving review markup as ineligible. And do not let your schema drift from your visible copy &mdash; a page claiming one address in markup and another in text is worse than a page with no markup.</p></div>
+
+<h2>How to tell if yours is working</h2>
+
+<p>Not by counting schema types. By checking whether a machine can answer questions about you correctly.</p>
+
+<p>Ask an assistant who runs your business, where it is located, and what it does. If the answer is right, your entity is resolving. If it hedges, confuses you with someone similar, or declines, you have a contradiction somewhere, and the schema is where to start looking because it is the part you fully control.</p>
+
+<p>That test takes two minutes and tells you more than any schema validator, because it measures the outcome rather than the implementation.</p>
+
+<div class="cta-inline"><p><strong>Run that test properly.</strong> The free audit asks a live assistant real questions about your business and shows which sources it used to answer.</p><a class="btn btn-pri" href="/audit">Run the free audit</a></div>
+
+<h2>Common questions</h2>
+
+<p><strong>Does schema markup help LLMs cite my content?</strong><br>Indirectly, yes; directly, unproven. Microsoft has confirmed that schema helps Bing's language models understand content for Copilot, and search indexes demonstrably use structured data, so assistants that retrieve from those indexes benefit. But no provider has described a language model parsing your JSON-LD directly, and a Search Atlas study found no correlation between schema coverage and citation rates across OpenAI, Gemini and Perplexity.</p>
+
+<p><strong>Is there research proving schema improves AI visibility?</strong><br>No. As of March 2026 there are no peer-reviewed studies on schema's impact on AI search visibility. The 2024 Princeton and Georgia Tech study frequently cited as evidence tested content strategies such as adding citations and statistics, not schema markup.</p>
+
+<p><strong>If the direct benefit is unproven, why implement schema at all?</strong><br>Because the established benefits justify it on their own. Schema drives rich results in ordinary search, it is confirmed to help Bing and Copilot, and most importantly it performs entity resolution &mdash; letting a machine establish that the business on your site is the same entity as the one on your Business Profile and directory listings. Consistent facts are what allow a model to assert something about you rather than hedge.</p>
+
+<p><strong>What schema types matter most for a business?</strong><br>A single Organization or LocalBusiness node with a stable @id referenced from every page; a Person node for any named individual in the brand, with worksFor pointing at the business; sameAs on both listing every external profile you control; truthful page-level types such as Article and Service; and FAQPage only where the answers appear as visible copy on the page.</p>
+
+<p><strong>Can schema markup hurt my site?</strong><br>Yes, in three ways. Self-applied aggregateRating or review markup on your own business is treated by Google as self-serving and ineligible. FAQPage markup whose questions do not appear as visible page content violates Google's structured data guidelines. And schema that contradicts your visible copy or your other listings creates exactly the inconsistency that causes a model to decline to assert anything about you.</p>
+
+<h2>Sources</h2>
+
+<ul>
+<li><a href="https://www.belmoredigital.com/tvfmw/geo/does-schema-markup-help-llms-what-the-evidence-actually-shows-20260512" rel="nofollow noopener" target="_blank">Belmore Digital &mdash; Does schema markup help LLMs? What the evidence actually shows (provider statements, Search Atlas null result, absence of peer-reviewed studies)</a></li>
+<li><a href="https://schema.org/" rel="nofollow noopener" target="_blank">Schema.org &mdash; the vocabulary itself</a></li>
+<li><a href="https://developers.google.com/search/docs/appearance/structured-data/search-gallery" rel="nofollow noopener" target="_blank">Google &mdash; structured data features and eligibility requirements</a></li>
+</ul>
+
+<div class="mnote"><p><strong>About the author.</strong> Siamak Kalhor is an AI marketing and LLMO consultant in Los Angeles with more than forty years of experience in marketing strategy. He advises professionals and e-commerce leaders on becoming the answer AI assistants give. <a href="/contact-us">Get in touch</a>, or connect on <a href="https://www.linkedin.com/in/siamakkalhor/" rel="author me noopener" target="_blank">LinkedIn</a>.</p></div>
+</div></div></section>
+<section style="padding:44px 0 70px;border-top:1px solid var(--line);"><div class="wrap" style="max-width:820px;"><div class="sec-label">Related</div><h2 style="font-family:var(--display);font-size:22px;color:var(--text);margin:10px 0 18px;">More from The Long View</h2><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;"><a href="/the-long-view/entity-contradiction-audit" style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;text-decoration:none;"><div style="font-family:var(--display);font-weight:600;color:var(--text);font-size:16.5px;line-height:1.35;">The Entity Contradiction Audit</div></a>
+<a href="/the-long-view/how-to-write-an-llms-txt-file" style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;text-decoration:none;"><div style="font-family:var(--display);font-weight:600;color:var(--text);font-size:16.5px;line-height:1.35;">I Publish an llms.txt. The Data Says Nobody Reads It.</div></a>
+<a href="/the-long-view/why-seo-agencies-fail-at-ai-search" style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;text-decoration:none;"><div style="font-family:var(--display);font-weight:600;color:var(--text);font-size:16.5px;line-height:1.35;">Why SEO Agencies Fail at AI Search</div></a></div></div></section>
+<section><div class="wrap"><div class="sec-label">Related</div><div class="checks"><div class="check"><span class="c">&rarr;</span><a href="/what-is-llmo">What is LLMO?</a></div><div class="check"><span class="c">&rarr;</span><a href="/ai-visibility">AI visibility — the overview</a></div><div class="check"><span class="c">&rarr;</span><a href="/audit">Run the free audit</a></div></div></div></section>
+</article></main>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
+        <p><strong style="color:var(--text);display:block;margin-bottom:6px;">Strategy that outlives the algorithm.</strong>Large Language Model Optimization and AI authority consulting. I make brands the answer generative AI gives. 40 years of market experience, engineered for the AI era.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Services</h5>
+        <a href="/services">All Services</a>
+        <a href="/llm-optimization">LLM Optimization</a>
+        <a href="/business-dna">Business DNA</a>
+        <a href="/analyze-your-brand">Analyze Your Brand</a>
+        <a href="/ai-consultant">AI Consultant</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <a href="/about-us">About Us</a>
+        <a href="/the-long-view">The Long View</a>
+        <a href="/growth-framework">Growth Framework</a>
+        <a href="/the-growth-glossary">Growth Glossary</a>
+        <a href="/contact-us">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Siamak Kalhor Consulting &middot; All Rights Reserved</span>
+      <span>323-657-7752 &middot; Los Angeles &middot; Worldwide</span>
+     · <a href="/privacy">Privacy</a> · <a href="#cookie-preferences" data-sk-consent-open>Cookie preferences</a></div>
+  </div>
+</footer>
+<script id="canonical-nav-js">
+(function(){
+  document.querySelectorAll('#navLinks>a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open');});});
+  document.querySelectorAll('.dd-menu a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open');document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');});});});
+  document.querySelectorAll('.dd-trigger').forEach(function(t){
+    t.addEventListener('click',function(e){
+      e.preventDefault();e.stopPropagation();
+      var p=t.parentElement,was=p.classList.contains('open');
+      document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');var b=x.querySelector('.dd-trigger');if(b)b.setAttribute('aria-expanded','false');});
+      if(!was){p.classList.add('open');t.setAttribute('aria-expanded','true');}
+    });
+  });
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.has-dd')){document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');var b=x.querySelector('.dd-trigger');if(b)b.setAttribute('aria-expanded','false');});}
+  });
+})();
+</script>
+<script defer src="/console.js"></script>
+<script defer src="/consent.js"></script>
+</body>
+</html>
