@@ -16,6 +16,12 @@
 const { rateLimit } = require('./_guard');
 
 const MODEL = 'claude-sonnet-4-6';
+// Shipped with the deployment. Serving slightly dated but verified items beats
+// rendering "the feed could not be refreshed", which is what a visitor saw
+// whenever a live compile failed and no cache was warm.
+let FALLBACK = null;
+try { FALLBACK = require('./news-fallback.json'); } catch (e) { FALLBACK = null; }
+
 const CACHE_KEY = 'ai-marketing-news:v1';
 const CACHE_SECONDS = 64800;             // 18 hours
 
@@ -334,6 +340,9 @@ module.exports = async function handler(req, res) {
         : { error: first.error || 'gemini_timeout', detail: 'no time for fallback' };
     if (!r.text) {
       if (cached) return res.status(200).json(Object.assign({ cached: true, stale: true }, cached));
+      if (FALLBACK && FALLBACK.items && FALLBACK.items.length) {
+        return res.status(200).json(Object.assign({ fallback: true, stale: true }, FALLBACK));
+      }
       // Both providers failed. Report BOTH: the old code returned
       // "first.error || r.error", so the Gemini failure always won and the
       // fallback's real reason was never visible — which is why this page
@@ -348,6 +357,9 @@ module.exports = async function handler(req, res) {
   const items = parseItems(r.text);
   if (!items.length) {
     if (cached) return res.status(200).json(Object.assign({ cached: true, stale: true }, cached));
+    if (FALLBACK && FALLBACK.items && FALLBACK.items.length) {
+      return res.status(200).json(Object.assign({ fallback: true, stale: true }, FALLBACK));
+    }
     return res.status(200).json({ unavailable: true, reason: 'no_items', engine: r.engine });
   }
   const payload = { items: items, compiled: new Date().toISOString(), engine: r.engine };

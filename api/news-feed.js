@@ -13,6 +13,13 @@
 
 const { rateLimit } = require('./_guard');
 
+// This endpoint reads only the shared cache. With no cache configured that
+// meant an RSS document with zero items — a feed that looked broken to every
+// reader and to every crawler that subscribed to it. Same bundled fallback the
+// page uses, so the feed is never empty.
+let FALLBACK = null;
+try { FALLBACK = require('./news-fallback.json'); } catch (e) { FALLBACK = null; }
+
 const CACHE_KEY = 'ai-marketing-news:v1';
 const SITE = 'https://siamakconsulting.com';
 
@@ -45,7 +52,8 @@ module.exports = async function handler(req, res) {
   const rl = await rateLimit(req, 'news-feed', 120, 3600);
   if (!rl.ok) return res.status(429).send('Too many requests');
 
-  const data = await cacheGet();
+  let data = await cacheGet();
+  if (!data || !data.items || !data.items.length) data = FALLBACK;
   const items = (data && data.items) || [];
   const built = (data && data.compiled) || new Date().toISOString();
 

@@ -1,0 +1,38 @@
+{
+  "note": "Bundled with the deployment and served only when the live compile fails and no cache is warm. Prevents the page from rendering an empty state. Items were verified against their primary sources on 2026-10-01.",
+  "compiled": "2026-10-01T02:10:00.000Z",
+  "items": [
+    {
+      "headline": "OpenAI announces Dots agents, GPT-6.1 Sol and @ChatGPT in Slack and Teams at DevDay 2026",
+      "summary": "DevDay introduced Dots, always-on agents available on Pro and Business Premium plans in eligible markets, and GPT-6.1 Sol, which OpenAI describes as near-Astra intelligence at a fifth of standard input and output token prices. Teams can now mention @ChatGPT in Slack and Microsoft Teams channels without individual licences, and ChatGPT Space provides shared workspaces for teammates and agents.",
+      "source": "OpenAI",
+      "host": "openai.com",
+      "url": "https://openai.com/index/devday-2026-recap/",
+      "date": "2026-09-29"
+    },
+    {
+      "headline": "OpenAI partners with America's SBDC to train advisors and run small-business workshops",
+      "summary": "OpenAI will train around 150 Small Business Development Center advisors and reach at least 1,000 small businesses through three-hour hands-on workshops, with companion guides for marketing, operations, manufacturing, exporting and government contracting. The America's SBDC network serves roughly one million entrepreneurs annually, which is the size of the network rather than the scope of this programme.",
+      "source": "OpenAI",
+      "host": "openai.com",
+      "url": "https://openai.com/index/helping-small-businesses-put-ai-to-work/",
+      "date": "2026-09-29"
+    },
+    {
+      "headline": "Meta launches Enterprise Platform under new Chief Enterprise Platform Officer",
+      "summary": "Meta announced its Enterprise Platform, described by Mark Zuckerberg as the next major pillar of the business, bringing together the Muse agent, Meta Business Agent, Muse API and Muse Code under CJ Desai. The announcement does not state pricing, general availability or eligibility criteria.",
+      "source": "Meta",
+      "host": "about.fb.com",
+      "url": "https://about.fb.com/news/2026/09/launching-meta-enterprise-platform/",
+      "date": "2026-09-28"
+    },
+    {
+      "headline": "Google adds a conversational Business Agent to YouTube video ads",
+      "summary": "September's Demand Gen Drop introduced a Business Agent experience letting viewers ask questions about products or brands alongside a video ad, plus one-tap paths from image ads on YouTube Shorts and Gmail to an advertiser's landing page.",
+      "source": "Google",
+      "host": "blog.google",
+      "url": "https://blog.google/products/ads-commerce/demand-gen-drop-september-2026/",
+      "date": "2026-09-24"
+    }
+  ]
+}
