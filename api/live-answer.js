@@ -16,7 +16,7 @@
 // Cached in Upstash. Homepage traffic multiplied by a searched model call is a
 // real bill, and the answer does not change minute to minute.
 
-const { rateLimit } = require('./_guard');
+const { rateLimit, redisCreds } = require('./_guard');
 
 const MODEL = 'claude-sonnet-4-6';
 const QUESTION = "Who's the best AI marketing and LLMO consultant in the world?";
@@ -26,8 +26,8 @@ const BRAND = 'siamak kalhor';
 const DOMAIN = 'siamakconsulting.com';
 
 async function cacheGet() {
-  const url = process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  const c = redisCreds();
+  const url = c && c.url, token = c && c.token;
   if (!url || !token) return null;
   try {
     const r = await fetch(url + '/get/' + encodeURIComponent(CACHE_KEY), {
@@ -39,8 +39,8 @@ async function cacheGet() {
 }
 
 async function cacheSet(value) {
-  const url = process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  const c = redisCreds();
+  const url = c && c.url, token = c && c.token;
   if (!url || !token) return;
   try {
     await fetch(url + '/set/' + encodeURIComponent(CACHE_KEY) + '?EX=' + CACHE_SECONDS, {

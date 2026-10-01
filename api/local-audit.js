@@ -1,4 +1,4 @@
-const { guard } = require('./_guard');
+const { guard, redisCreds } = require('./_guard');
 
 // Local AI Visibility check — by Siamak Kalhor Consulting.
 //
@@ -158,8 +158,8 @@ function seriesKey(business, category, city) {
 }
 
 async function historyGet(key) {
-  const url = process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  const c = redisCreds();
+  const url = c && c.url, token = c && c.token;
   if (!url || !token) return [];
   try {
     const r = await fetch(url + '/get/' + encodeURIComponent(key),
@@ -171,8 +171,8 @@ async function historyGet(key) {
 }
 
 async function historySet(key, runs) {
-  const url = process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  const c = redisCreds();
+  const url = c && c.url, token = c && c.token;
   if (!url || !token) return;
   try {
     await fetch(url + '/set/' + encodeURIComponent(key), {

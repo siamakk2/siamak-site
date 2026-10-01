@@ -1,4 +1,4 @@
-const { guard } = require('./_guard');
+const { guard, redisCreds } = require('./_guard');
 // Leads API — saves audit leads (name, email, business URL) to Upstash,
 // then emails the lead their AI Visibility Report, branded
 // Siamak Kalhor Consulting (sent via Resend, same service as k2-contact).
@@ -16,8 +16,9 @@ module.exports = async function handler(req, res) {
   if (!(await guard(req, res, { bucket: 'leads', limit: 20, window: 3600 }))) return;
 
   try {
-    const REDIS_URL = process.env.UPSTASH_REDIS_REST_URL;
-    const REDIS_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
+    const _c = redisCreds();
+    const REDIS_URL = _c && _c.url;
+    const REDIS_TOKEN = _c && _c.token;
 
     let body = req.body;
     if (typeof body === 'string') { try { body = JSON.parse(body); } catch(e){ body={}; } }

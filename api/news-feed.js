@@ -11,7 +11,7 @@
 //
 // Reads the same cache the page does, so the feed and the page never disagree.
 
-const { rateLimit } = require('./_guard');
+const { rateLimit, redisCreds } = require('./_guard');
 
 // This endpoint reads only the shared cache. With no cache configured that
 // meant an RSS document with zero items — a feed that looked broken to every
@@ -24,7 +24,8 @@ const CACHE_KEY = 'ai-marketing-news:v1';
 const SITE = 'https://siamakconsulting.com';
 
 async function cacheGet() {
-  const url = process.env.UPSTASH_REDIS_REST_URL, token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  const c = redisCreds();
+  const url = c && c.url, token = c && c.token;
   if (!url || !token) return null;
   try {
     const r = await fetch(url + '/get/' + encodeURIComponent(CACHE_KEY),

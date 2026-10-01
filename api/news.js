@@ -13,7 +13,7 @@
 // Cached 18 hours. The news does not move faster than that and a searched model
 // call on every page view would be a genuine bill.
 
-const { rateLimit } = require('./_guard');
+const { rateLimit, redisCreds } = require('./_guard');
 
 const MODEL = 'claude-sonnet-4-6';
 // Shipped with the deployment. Serving slightly dated but verified items beats
@@ -81,7 +81,8 @@ Before returning, re-read each summary against these rules and fix any that
 fail. Prefer a duller summary that is exactly right.`;
 
 async function cacheGet() {
-  const url = process.env.UPSTASH_REDIS_REST_URL, token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  const c = redisCreds();
+  const url = c && c.url, token = c && c.token;
   if (!url || !token) return null;
   try {
     const r = await fetch(url + '/get/' + encodeURIComponent(CACHE_KEY),
@@ -104,7 +105,8 @@ async function cacheGet() {
 //
 // Returns a short status string so ?debug=1 can report whether the write stuck.
 async function cacheSet(value) {
-  const url = process.env.UPSTASH_REDIS_REST_URL, token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  const c = redisCreds();
+  const url = c && c.url, token = c && c.token;
   if (!url || !token) return 'no_upstash_env';
   try {
     const r = await fetch(url + '/set/' + encodeURIComponent(CACHE_KEY), {
@@ -127,7 +129,8 @@ async function cacheSet(value) {
 
 // Writes and reads back a disposable key. Used only by ?debug=1.
 async function cacheProbe() {
-  const url = process.env.UPSTASH_REDIS_REST_URL, token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  const c = redisCreds();
+  const url = c && c.url, token = c && c.token;
   if (!url || !token) return 'no_upstash_env';
   const k = 'news:probe:' + Date.now();
   try {
@@ -377,7 +380,10 @@ module.exports = async function handler(req, res) {
       anthropic_key_found: !!process.env.ANTHROPIC_API_KEY,
       cached_items: cached && cached.items ? cached.items.length : 0,
       compiled: cached ? cached.compiled : null,
-      upstash_env: !!(process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN),
+      // Reports the variable name the credentials were found under, so a
+      // database connected under an unexpected prefix is visible rather than
+      // silently reading as "not configured".
+      redis_via: (function () { const c = redisCreds(); return c ? c.via : null; })(),
       // Round-trip probe: write a throwaway key and read it back, so this
       // endpoint can prove whether caching works rather than implying it.
       cache_roundtrip: await cacheProbe()

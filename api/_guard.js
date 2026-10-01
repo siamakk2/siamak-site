@@ -14,6 +14,44 @@
 //  * ALLOWED_ORIGINS env var (comma separated) overrides the defaults without
 //    a redeploy of code.
 
+
+// ---- Redis credential resolution ---------------------------------------
+// Vercel injects these under different names depending on how the database was
+// connected: the Upstash marketplace integration uses UPSTASH_REDIS_REST_*,
+// Vercel KV uses KV_REST_API_*, and connecting a resource with a prefix
+// produces something else again. Hard-coding one spelling means a correctly
+// provisioned database still reads as "not configured", which is a
+// particularly annoying failure because the dashboard shows it connected.
+//
+// So probe known pairs first, then fall back to discovering any *_REST_API_URL
+// or *_REDIS_REST_URL with a matching token. Only REST endpoints are usable —
+// a redis:// connection string is a different protocol and is ignored.
+const REDIS_PAIRS = [
+  ['UPSTASH_REDIS_REST_URL', 'UPSTASH_REDIS_REST_TOKEN'],
+  ['KV_REST_API_URL', 'KV_REST_API_TOKEN'],
+  ['REDIS_REST_URL', 'REDIS_REST_TOKEN'],
+  ['STORAGE_REST_API_URL', 'STORAGE_REST_API_TOKEN']
+];
+
+function redisCreds() {
+  for (const [u, t] of REDIS_PAIRS) {
+    if (process.env[u] && process.env[t]) {
+      return { url: String(process.env[u]).replace(/\/$/, ''), token: process.env[t], via: u };
+    }
+  }
+  // Prefixed variants, e.g. NEWS_UPSTASH_REDIS_REST_URL / ..._TOKEN.
+  for (const k of Object.keys(process.env)) {
+    const m = k.match(/^(.*?)(_REST_API_URL|_REDIS_REST_URL)$/);
+    if (!m || !process.env[k]) continue;
+    if (!/^https?:\/\//i.test(process.env[k])) continue;
+    const tok = k.replace(/_URL$/, '_TOKEN');
+    if (process.env[tok]) {
+      return { url: String(process.env[k]).replace(/\/$/, ''), token: process.env[tok], via: k };
+    }
+  }
+  return null;
+}
+
 const DEFAULT_ORIGINS = [
   'https://siamakconsulting.com',
   'https://www.siamakconsulting.com',
@@ -63,9 +101,9 @@ function clientIp(req) {
 // Fixed-window counter in Upstash. Returns { ok, remaining }.
 // Any Redis problem resolves to ok:true — availability beats enforcement here.
 async function rateLimit(req, bucket, limit, windowSeconds) {
-  const url = process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
-  if (!url || !token) return { ok: true, remaining: limit, enforced: false };
+  const creds = redisCreds();
+  if (!creds) return { ok: true, remaining: limit, enforced: false };
+  const url = creds.url, token = creds.token;
 
   const window = Math.floor(Date.now() / (windowSeconds * 1000));
   const key = 'rl:' + bucket + ':' + clientIp(req) + ':' + window;
@@ -121,4 +159,4 @@ async function guard(req, res, opts) {
   return true;
 }
 
-module.exports = { guard, applyCors, rateLimit, clientIp, allowedOrigins };
+module.exports = { guard, applyCors, rateLimit, clientIp, allowedOrigins, redisCreds };
