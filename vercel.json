@@ -613,11 +613,6 @@
       "permanent": true
     },
     {
-      "source": "/website-audit",
-      "destination": "/audit",
-      "permanent": true
-    },
-    {
       "source": "/free-audit",
       "destination": "/audit",
       "permanent": true
