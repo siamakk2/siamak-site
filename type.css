@@ -382,3 +382,36 @@ body .tcard figcaption { font-size: 13px; }
 @media (max-width: 420px) {
   .hero .eyebrow { letter-spacing: .08em; }
 }
+
+/* ---------------------------------------------------------------------
+   Header: stop the page scrolling sideways on phones.
+
+   .nav-in is a flex row holding the brand on the left and .nav-right
+   (the "Run Your Free Scan" CTA + the hamburger) on the right. Both
+   .brand and .nav-right carry flex-shrink:0, so when the row runs out of
+   room neither one yields and the overflow lands on the page instead:
+   the document measured 399px wide at every phone width, which is 9px of
+   horizontal scroll at 390px, 24px at 375px, 39px at 360px and 79px at
+   320px. Only 414px and up were clean. The hamburger was the element
+   sitting outside the viewport, so on most Android phones the menu
+   button was partly unreachable.
+
+   The fix recovers the shortfall from padding, gaps and the CTA's own
+   type, then gives .brand a shrink factor as a backstop so the row can
+   never overflow again at any width. The wordmark is the only thing
+   allowed to give, and it is the last to do so: it stays whole from
+   375px up, and ellipsises below that. The CTA keeps its full label and
+   the hamburger keeps its 44px tap target at every width.
+
+   Scoped to `nav .nav-in` (0,1,1) rather than `.nav-in` (0,1,0) because
+   38 of the 126 pages carry their own <style> block after this file, and
+   a single-class selector would lose to the inline rule on those pages.
+--------------------------------------------------------------------- */
+@media (max-width: 420px) {
+  nav .nav-in     { padding-left: 12px; padding-right: 12px; gap: 8px; }
+  nav .nav-right  { gap: 8px; }
+  nav .nav-cta    { font-size: 11px; padding-left: 9px; padding-right: 9px; }
+  nav .brand      { flex-shrink: 1; min-width: 0; }
+  nav .brand-txt  { min-width: 0; overflow: hidden; text-overflow: ellipsis;
+                    font-size: 13px; letter-spacing: .2px; }
+}
