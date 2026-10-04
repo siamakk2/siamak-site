@@ -415,3 +415,88 @@ body .tcard figcaption { font-size: 13px; }
   nav .brand-txt  { min-width: 0; overflow: hidden; text-overflow: ellipsis;
                     font-size: 13px; letter-spacing: .2px; }
 }
+
+/* ---------------------------------------------------------------------
+   Card rows written as a fixed three-column grid in an inline style.
+
+   32 of them exist, almost all the related-posts row at the foot of a
+   the-long-view article, and none carries a media query, so three columns
+   survive down to the narrowest phone. At 390px the row's content needed
+   113px more than it had and the article overflowed by 85px; at 480px the
+   page fit but the cards were still 23px over their track and squeezed to
+   roughly 150px each, too narrow for a headline.
+
+   Collapsed to a single column at 600px and below. 640px and up measured
+   clean and is left alone, as are the `repeat(2,1fr)` and `auto-fit` rows,
+   which never overflowed.
+
+   `!important` is not decoration here: the declaration being overridden
+   lives in a style attribute, and an important author rule is the only
+   thing that outranks it short of editing all 32 pages.
+--------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  [style*="grid-template-columns:repeat(3,1fr)"],
+  [style*="grid-template-columns:repeat(2,1fr)"],
+  [style*="auto-fit,minmax("] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   Grid and flex tracks that refuse to shrink below their content.
+
+   `1fr` is shorthand for `minmax(auto, 1fr)`, and that `auto` floor is the
+   item's min-content width, so a track can end up wider than the grid
+   holding it. That is what happened to `.checks`: a single collapsed
+   column computed to 323px inside a 264px container. The same rule applies
+   to a flex item, whose automatic minimum size is also min-content -- which
+   is why `.check` and its children each need an explicit zero.
+
+   minmax(0,1fr) removes the floor so the track matches the container, and
+   overflow-wrap lets a long term inside break rather than hold the box
+   open. Together these clear the last of the 320px overflows.
+--------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  div.checks          { grid-template-columns: minmax(0, 1fr) !important; }
+  div.checks > .check { min-width: 0; overflow-wrap: anywhere; }
+  div.checks > .check > * { min-width: 0; }
+}
+
+/* ---------------------------------------------------------------------
+   Wide tables: scroll them instead of the page.
+
+   Two separate problems with the same symptom. `.table-wrap` is a div the
+   articles already wrap their tables in, but no rule for it was ever
+   written anywhere on the site, so it was an ordinary block and the table
+   simply overflowed it and then the page. Giving it overflow-x:auto is
+   what it was presumably put there to do; it needs no media query,
+   because a table that already fits produces no scrollbar.
+
+   `.compare` on /seo-vs-llmo and /how-much-does-llmo-cost has no wrapper
+   at all, so the table element itself has to become the scroll container.
+   That means display:block, which is only correct while the table is too
+   wide -- at desktop it would stop filling its column -- so it is scoped
+   to narrow viewports. It also overrides the overflow:hidden that clips
+   the table's own rounded corners, hence the explicit radius here.
+
+   A table that scrolls sideways is still awkward on a phone; it is simply
+   much better than a page that does.
+--------------------------------------------------------------------- */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+@media (max-width: 700px) {
+  table.compare {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 14px;
+  }
+}
+
+/* Inline code holding a URL or a long identifier is a single unbreakable
+   token, so it pushes the article sideways on a narrow screen no matter how
+   much room the paragraph has -- a 335px `https://yoursite.com/#business`
+   against a 262px column. Allowed to break mid-token, which is right for a
+   URL and wrong for a code block, so `pre > code` is excluded and keeps
+   scrolling instead. */
+.prose :not(pre) > code { overflow-wrap: anywhere; }

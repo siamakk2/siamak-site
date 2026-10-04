@@ -161,6 +161,48 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:40px 0;}
   .voice-shell{padding:32px 20px;}
 }
 :focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
+
+/* Header. This page carried only .nav-in, .nav-links, .nav-cta, .brand and
+   .brand-txt, while its markup is the same full header every other page uses:
+   dropdown menus and a hamburger. With no .dd-menu, .nav-toggle or collapse
+   rules, the dropdown contents rendered inline and visible, making .nav-links
+   735px wide and pushing the document to 810px at a 390px viewport. The menu
+   button was also showing at desktop widths. These are the same nav rules the
+   rest of the site carries, so the header now behaves identically everywhere. */
+.nav-in{max-width:1180px;margin:0 auto;padding:15px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
+.brand-txt{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.05em;color:var(--text);white-space:nowrap}
+.brand-txt span{color:var(--muted)}
+.nav-right{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.nav-links{display:flex;gap:22px;align-items:center;flex-wrap:nowrap}
+.nav-links>a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s;white-space:nowrap}
+.nav-links>a:hover,.nav-links>a.active{color:var(--text)}
+.nav-item{position:relative}
+.dd-trigger{background:none;border:none;color:var(--muted);font-family:inherit;font-size:13px;font-weight:500;letter-spacing:.02em;cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:0;transition:color .2s;white-space:nowrap}
+.dd-trigger:hover{color:var(--text)}
+.dd-caret{font-size:9px;opacity:.65;transition:transform .2s}
+.has-dd.open .dd-caret{transform:rotate(180deg)}
+.dd-menu{position:absolute;top:calc(100% + 14px);left:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px;min-width:210px;display:none;flex-direction:column;gap:2px;z-index:200;box-shadow:0 14px 44px rgba(0,0,0,.55)}
+.has-dd::after{content:"";position:absolute;top:100%;left:0;right:0;height:16px}
+.has-dd.open .dd-menu{display:flex}
+.dd-menu a{padding:9px 14px;border-radius:7px;font-size:13px;font-weight:500;color:var(--muted);white-space:nowrap;text-decoration:none;transition:background .15s,color .15s}
+.dd-menu a:hover{background:var(--surface-2);color:var(--text)}
+@media(min-width:961px){.has-dd:hover .dd-menu{display:flex}}
+.nav-cta{font-family:var(--mono);font-size:12px;padding:9px 15px;border:1px solid var(--line-bright);border-radius:6px;color:var(--text)!important;text-decoration:none;white-space:nowrap}
+.nav-cta:hover{border-color:var(--cyan);box-shadow:0 0 18px rgba(45,212,255,.15)}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:21px;cursor:pointer}
+@media(max-width:960px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;background:var(--void);border-bottom:1px solid var(--line);padding:16px 28px 22px;gap:4px;max-height:80vh;overflow-y:auto}
+  .nav-links.open{display:flex}
+  .nav-links>a{padding:10px 0;width:100%}
+  .nav-item,.has-dd{width:100%}
+  .has-dd::after{display:none}
+  .dd-trigger{width:100%;padding:10px 0;justify-content:space-between}
+  .dd-menu{position:static;box-shadow:none;border:none;background:var(--surface);margin:0 0 6px;width:100%}
+  .nav-toggle{display:block}
+}
+@media(max-width:960px){.nav-in{padding:12px 16px;gap:10px}.brand{gap:8px}.brand img{height:24px!important}.brand-txt{font-size:11px}.brand-txt span{display:none}.nav-right{gap:8px}.nav-toggle{flex-shrink:0}.nav-cta{font-size:11px;padding:8px 10px}}
+@media(max-width:400px){.nav-cta{font-size:10.5px;padding:7px 8px;letter-spacing:0}}
 </style>
 <link rel="alternate" hreflang="en" href="https://siamakconsulting.com/voice-consultant"/><link rel="alternate" hreflang="es" href="https://siamakconsulting.com/es/voice-consultant"/><link rel="alternate" hreflang="fa" href="https://siamakconsulting.com/fa/voice-consultant"/><link rel="alternate" hreflang="x-default" href="https://siamakconsulting.com/voice-consultant"/><style id="type-fix">
 /* the ElevenLabs widget is position:fixed at the bottom - make sure page content clears it */
