@@ -270,6 +270,35 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
   <div class="sec-label">Send a message</div>
   <h2 class="sec-h">Tell me what you're working on</h2>
   <p class="lead">The more specific you are about the problem, the more useful my first reply will be.</p>
+
+  <!-- Desk robot. Decorative: the bubble's opening line is in the markup so
+       there is something sensible here with no JavaScript, and nothing in
+       this block carries information that is not stated elsewhere on the
+       page. He watches whichever field has focus and comments on it. -->
+  <div class="bot-stage" aria-hidden="true">
+    <div class="bot-bubble" id="skBubble"><span id="skBubbleTxt">Hi. I&rsquo;m the part that reads your site.</span><span class="bot-car"></span></div>
+    <div class="bot-shadow"></div>
+    <svg class="bot" id="skBot" viewBox="0 0 240 276" role="presentation" focusable="false">
+      <path class="b-ant" d="M120 46 L120 24"/>
+      <circle class="b-bulb" cx="120" cy="18" r="7.5"/>
+      <rect class="b-arm" x="38" y="150" width="20" height="62" rx="10"/>
+      <rect class="b-arm b-arm-r" id="skArm" x="182" y="150" width="20" height="62" rx="10"/>
+      <rect class="b-body" x="52" y="46" width="136" height="104" rx="34"/>
+      <rect class="b-face" x="68" y="62" width="104" height="66" rx="26"/>
+      <g id="skEyes">
+        <ellipse class="b-eye" cx="100" cy="94" rx="9.5" ry="12"/>
+        <ellipse class="b-eye" cx="140" cy="94" rx="9.5" ry="12"/>
+      </g>
+      <ellipse class="b-cheek" cx="82" cy="112" rx="8" ry="5"/>
+      <ellipse class="b-cheek" cx="158" cy="112" rx="8" ry="5"/>
+      <path class="b-smile" d="M108 116 Q120 124 132 116"/>
+      <rect class="b-body" x="62" y="158" width="116" height="96" rx="30"/>
+      <rect class="b-plate" x="78" y="174" width="84" height="64" rx="22"/>
+      <circle class="b-core" cx="120" cy="206" r="17" stroke-dasharray="22 14"/>
+      <circle class="b-dot" cx="120" cy="206" r="6"/>
+    </svg>
+  </div>
+
   <form id="skContactForm" class="sk-form" novalidate>
     <div class="sk-row">
       <label>Name <span aria-hidden="true">*</span>
@@ -491,5 +520,67 @@ elevenlabs-convai{
 })();
 </script>
 <script defer src="/consent.js"></script>
+<!-- Desk robot behaviour. Scoped to this page, guarded throughout, and
+     entirely optional: with it absent the robot still bobs, blinks and waves
+     on CSS alone and the bubble shows its opening line from the markup. -->
+<script>
+(function(){
+  try{
+    var bot=document.getElementById('skBot'), eyes=document.getElementById('skEyes'),
+        arm=document.getElementById('skArm'), bub=document.getElementById('skBubble'),
+        txt=document.getElementById('skBubbleTxt'), form=document.getElementById('skContactForm');
+    if(!bot||!eyes||!txt||!bub) return;
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduced) return;
+
+    var IDLE=["Hi. I&rsquo;m the part that <b>reads</b> your site.",
+              "Tell him what you want to be known for.",
+              "The specific ones get the best replies.",
+              "He reads every message. I just sit here."];
+    var i=0, run=0;
+
+    function say(html, hold, then){
+      var token=++run, tmp=document.createElement('div'); tmp.innerHTML=html;
+      var plain=tmp.textContent, n=0; txt.innerHTML='';
+      (function tick(){
+        if(token!==run) return;
+        n++;
+        if(n>=plain.length){ txt.innerHTML=html;
+          setTimeout(function(){ if(token===run&&then) then(); }, hold||2800); return; }
+        txt.textContent=plain.slice(0,n);
+        setTimeout(tick,26);
+      })();
+    }
+    function idle(){ say(IDLE[i%IDLE.length],3200,function(){ i++; idle(); }); }
+
+    /* he looks at whichever field has focus */
+    function lookAt(el){
+      if(!el){ eyes.style.transform=''; return; }
+      var br=bot.getBoundingClientRect(), fr=el.getBoundingClientRect();
+      var dx=(fr.left+fr.width/2)-(br.left+br.width/2),
+          dy=(fr.top+fr.height/2)-(br.top+br.height/2),
+          m=Math.max(1,Math.sqrt(dx*dx+dy*dy));
+      eyes.style.transition='transform .35s cubic-bezier(.22,.61,.36,1)';
+      eyes.style.transform='translate('+(dx/m*4.5).toFixed(2)+'px,'+(dy/m*3.2).toFixed(2)+'px)';
+    }
+    var LINE={name:"Nice to meet you.", email:"Only used to reply to you.",
+              message:"Now <b>this</b> is the interesting part."};
+    if(form){
+      ['name','email','message'].forEach(function(k){
+        var el=form.querySelector('[name="'+k+'"]'); if(!el) return;
+        el.addEventListener('focus',function(){ lookAt(el); say(LINE[k],4500,idle); });
+        el.addEventListener('blur',function(){ lookAt(null); });
+      });
+    }
+    bot.addEventListener('click',function(){
+      if(arm){ arm.style.animation='none'; void arm.offsetWidth;
+               arm.style.animation='sk-wave 1.1s ease-in-out 2'; }
+      say("&#128075; Hello. Go on, fill it in.",3000,idle);
+    });
+
+    setTimeout(idle,800);
+  }catch(e){ /* decorative: never let this break the page */ }
+})();
+</script>
 </body>
 </html>
