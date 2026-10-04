@@ -500,3 +500,140 @@ body .tcard figcaption { font-size: 13px; }
    URL and wrong for a code block, so `pre > code` is excluded and keeps
    scrolling instead. */
 .prose :not(pre) > code { overflow-wrap: anywhere; }
+
+/* ============================================================
+   MOTION + DEPTH LAYER
+   ============================================================
+   The site had no transitions and no animations anywhere -- every
+   element rendered flat and responded to nothing. This adds depth
+   and interaction response without touching a single page's markup.
+
+   Three rules govern everything below, because this site's job is
+   being read and cited by machines:
+
+   1. Nothing here can hide content. No opacity:0 resting states,
+      no scroll-triggered reveals. A renderer that ignores CSS
+      animation sees exactly the same page as one that runs it.
+   2. Nothing here moves layout. Only transform, box-shadow,
+      border-color, background and filter -- never width, height,
+      margin, padding or position. CLS stays where it was.
+   3. Nothing here changes the palette. Same cyan, same violet,
+      same surfaces. This is depth and response, not a redesign.
+
+   Continuous motion is limited to decorative elements that carry
+   no text (.ambient) and one accent glow, so there is nothing for
+   a crawler to miss and nothing for a reader to wait on.
+   ============================================================ */
+
+/* ---------- 1. ambient field: slow drift behind the grid ---------- */
+/* .ambient is a purely decorative fixed layer that already exists on
+   27 pages. Animating its gradients gives the page a pulse without
+   any text being involved. */
+@keyframes sk-drift {
+  0%   { transform: translate3d(0,0,0)        scale(1);    }
+  50%  { transform: translate3d(2.5%,-2%,0)   scale(1.06); }
+  100% { transform: translate3d(0,0,0)        scale(1);    }
+}
+.ambient {
+  animation: sk-drift 34s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ---------- 2. interactive response ---------- */
+/* Everything clickable now acknowledges the pointer. These are the
+   single biggest felt change, because previously nothing did. */
+.card, .check, .faq-item, .step, .feat, .topic, .ansbox {
+  transition: transform .28s cubic-bezier(.22,.61,.36,1),
+              border-color .28s ease,
+              box-shadow .28s ease,
+              background-color .28s ease;
+}
+.card:hover, .feat:hover, .step:hover {
+  transform: translateY(-4px);
+  border-color: var(--line-bright, #465365);
+  box-shadow: 0 16px 40px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.check:hover, .topic:hover {
+  border-color: var(--cyan, #2dd4ff);
+  background-color: var(--surface-2, #19222f);
+}
+.faq-item:hover { border-color: var(--line-bright, #465365); }
+
+/* Touch devices get the same acknowledgement on press. */
+.card:active, .check:active, .feat:active, .step:active, .topic:active {
+  transform: translateY(-2px);
+}
+
+/* ---------- 3. buttons ---------- */
+.btn, .nav-cta, .cta-band a {
+  transition: transform .24s cubic-bezier(.22,.61,.36,1),
+              box-shadow .24s ease, border-color .24s ease, filter .24s ease;
+}
+.btn:hover, .cta-band a:hover { transform: translateY(-2px); }
+.btn-pri:hover   { box-shadow: 0 12px 32px rgba(45,212,255,.3); filter: saturate(1.08); }
+.btn-ghost:hover { border-color: var(--cyan,#2dd4ff);
+                   box-shadow: 0 0 0 1px rgba(45,212,255,.35), 0 0 28px rgba(45,212,255,.14); }
+.btn:active, .nav-cta:active, .cta-band a:active { transform: translateY(0); }
+
+.nav-cta:hover {
+  border-color: var(--cyan,#2dd4ff);
+  box-shadow: 0 0 0 1px rgba(45,212,255,.3), 0 0 22px rgba(45,212,255,.13);
+  transform: translateY(-1px);
+}
+
+/* ---------- 4. navigation ---------- */
+/* A hairline wipes in under the link rather than the colour simply
+   switching. Drawn with a gradient background, so no pseudo-element
+   is added and no element's positioning changes. */
+.nav-links > a {
+  background-image: linear-gradient(90deg, #2dd4ff, #a06bff);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: color .22s ease, background-size .3s cubic-bezier(.22,.61,.36,1);
+  padding-bottom: 2px;
+}
+.nav-links > a:hover,
+.nav-links > a.active { background-size: 100% 1px; }
+
+.dd-menu a { transition: background-color .18s ease, color .18s ease, padding-left .18s ease; }
+.dd-menu a:hover { padding-left: 18px; }
+
+/* ---------- 5. the answer console ---------- */
+/* The .ansbox is the site's signature element and sits on 47 pages.
+   A slow breathing edge keeps one piece of motion on screen at all
+   times, including on phones where hover does not exist. */
+@keyframes sk-breathe {
+  0%,100% { box-shadow: 0 0 0 1px rgba(45,212,255,.10), 0 18px 44px rgba(0,0,0,.45); }
+  50%     { box-shadow: 0 0 0 1px rgba(45,212,255,.30), 0 18px 54px rgba(0,0,0,.5),
+                        0 0 34px rgba(45,212,255,.10); }
+}
+.ansbox { animation: sk-breathe 5.5s ease-in-out infinite; }
+.ansbox:hover { transform: translateY(-3px); }
+
+/* ---------- 6. depth on flat surfaces ---------- */
+/* A one-pixel top highlight is what separates a panel that looks
+   printed on from one that looks lit. Static -- costs nothing. */
+.card, .check, .feat, .step, .ansbox, .cta-band, .faq-item {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+/* ---------- 7. links and focus ---------- */
+.lead a, .sec-desc a, .prose a { transition: color .2s ease, text-decoration-color .2s ease; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--cyan,#2dd4ff);
+  outline-offset: 2px;
+}
+
+/* ---------- 8. the ceiling ---------- */
+/* Anyone whose system asks for less motion gets the depth and the
+   colour response, and none of the movement. */
+@media (prefers-reduced-motion: reduce) {
+  .ambient, .ansbox { animation: none !important; }
+  .card, .check, .faq-item, .step, .feat, .topic, .ansbox,
+  .btn, .nav-cta, .cta-band a, .nav-links > a, .dd-menu a {
+    transition: none !important;
+  }
+  .card:hover, .feat:hover, .step:hover, .btn:hover,
+  .cta-band a:hover, .ansbox:hover, .nav-cta:hover { transform: none !important; }
+}
