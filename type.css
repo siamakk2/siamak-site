@@ -798,4 +798,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   /* pull the console up into the first screen */
   .hero-lead-in .hero-tag { margin-bottom: 0; }
   .hero-lead-in .eyebrow  { margin-bottom: 16px; }
+  /* .hero carries padding:90px 0 70px with no mobile override, so a phone
+     opened on roughly 90px of empty grid between the header and the first
+     word. That is the most valuable space on the site. */
+  .hero { padding-top: 26px; padding-bottom: 34px; }
 }
