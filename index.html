@@ -549,6 +549,18 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
       <div class="eyebrow"><span class="dot"></span>Large Language Model Optimization</div>
       <h1 class="hero-h">Become the answer<br><span class="grad">AI gives.</span></h1>
       <p class="hero-tag">Strategy that outlives the algorithm.</p>
+
+      <!-- THE HOOK. A real GET form, so it works with JavaScript off: the
+           browser navigates to /audit?site=… and the scan page picks the
+           value up and starts itself. No fabricated result is ever shown
+           here — the visitor's own answer comes from the real scan. -->
+      <form class="hero-scan" action="/audit" method="get" autocomplete="off">
+        <label for="heroSite">Your website</label>
+        <input id="heroSite" name="site" type="text" inputmode="url"
+               placeholder="yourbusiness.com" spellcheck="false" aria-label="Your website address">
+        <button type="submit" class="btn btn-pri">See what AI says <span class="arw">&rarr;</span></button>
+      </form>
+      <p class="hero-scan-note">Free, about two minutes, no account. You&rsquo;ll see which models already know you &mdash; and what they say.</p>
      </div>
      <div class="hero-body">
       <p class="hero-sub">Search sent traffic to links. AI sends it to <strong>answers</strong> — and only cites the brands it trusts. I engineer that trust. Your business, retrieved, grounded, and recommended by ChatGPT, Gemini, Claude, and Perplexity.</p>

@@ -842,6 +842,21 @@ try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.
     if(e.key==='Enter') runAudit();
   });
 
+  /* Arriving from the hero scan bar on the homepage: /audit?site=example.com
+     prefills the field and starts the scan, so the visitor does not have to
+     type the same thing twice. Guarded -- a malformed or absent parameter
+     just leaves the page as it was. */
+  try{
+    var seed = new URLSearchParams(location.search).get('site');
+    if (seed) {
+      seed = seed.trim().slice(0, 200);
+      if (seed) {
+        document.getElementById('urlInput').value = seed;
+        setTimeout(runAudit, 120);
+      }
+    }
+  }catch(e){}
+
   // ── LEAD GATE ────────────────────────────────────────────────────
   var LEAD = { name:'', email:'', url:'', businessName:'', version:'' };
 
