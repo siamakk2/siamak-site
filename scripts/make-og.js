@@ -38,10 +38,12 @@ if (!slug || !headline) {
 }
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-// siamak-portrait.jpg, not portrait.jpg: the latter is a 1200x630 social
-// banner, and cropping it to a circle produces an unreadable smear rather than
-// a face. It is also a banner that still reads "Large Model Optimization".
-const portrait = fs.readFileSync(path.join(__dirname, '..', 'assets', 'siamak-portrait.jpg')).toString('base64');
+// silhouette-og.png: the warm disc runs full-bleed to the edge of the square,
+// so the circular crop in .foot img lands exactly on the disc rather than
+// leaving a dark ring. The old siamak-portrait.jpg showed his face, which he
+// no longer wants published, and portrait.jpg still reads "Large Model
+// Optimization" in its pixels.
+const portrait = fs.readFileSync(path.join(__dirname, '..', 'assets', 'silhouette-og.png')).toString('base64');
 const lines = headline.split('|').map(s => s.trim()).filter(Boolean);
 
 const html = `<!doctype html><html><head><meta charset="utf-8"><style>
@@ -92,7 +94,7 @@ const html = `<!doctype html><html><head><meta charset="utf-8"><style>
     </div>
     <div class="foot">
       <div class="who">
-        <img src="data:image/jpeg;base64,${portrait}" alt="">
+        <img src="data:image/png;base64,${portrait}" alt="">
         <div><div class="nm">Siamak Kalhor</div><div class="dm">siamakconsulting.com</div></div>
       </div>
       <div class="brand">THE LONG VIEW</div>

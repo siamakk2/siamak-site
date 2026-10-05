@@ -87,7 +87,7 @@ const tail = [
 const hero = '<main id="main"><article><section class="article-hero"><header class="wrap">'
   + '<div class="crumb"><a href="/the-long-view">The Long View</a> / ' + spec.category + '</div>'
   + '<h1 class="article-h">' + spec.h1 + '</h1>'
-  + '<div class="byline"><img src="/assets/siamak-portrait.jpg" alt="Siamak Kalhor" width="46" height="46" loading="lazy">'
+  + '<div class="byline"><img src="/assets/silhouette.svg" alt="Siamak Kalhor" width="46" height="46" loading="lazy">'
   + '<div class="who">Siamak Kalhor<span>Forty years in marketing &mdash; ' + spec.readTime + ' minute read</span></div>'
   + '</div></header></section>\n';
 

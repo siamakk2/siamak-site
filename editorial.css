@@ -170,9 +170,9 @@
   height: 46px;
   border-radius: 50%;
   object-fit: cover;
-  /* The source is a tall portrait, so centring the crop lands on his chest.
-     Pull the focal point up to the face. */
-  object-position: 50% 16%;
+  /* The source is now a square silhouette mark, already composed on its own
+     centre, so the old focal-point offset for the tall JPG no longer applies. */
+  object-position: 50% 50%;
   border: 1px solid var(--line-bright, #465365);
   flex: 0 0 auto;
 }
