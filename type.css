@@ -983,3 +983,48 @@ body.v2 h1 .grad {
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* ---- question vs answer inside .check -----------------------------------
+   `.check b { display:block; color:var(--text) }` exists on 72 pages, but it
+   targets `b` only -- and the 13 pages whose blocks were just wrapped use
+   `strong`. On those the question ran inline with the answer in the same
+   colour and weight, which is what made them unreadable even once the
+   columns were fixed.
+
+   Both elements now get the same treatment, and the question takes the warm
+   accent so the split is carried by colour rather than weight alone: amber
+   question, muted answer. That also matches how the rest of the page now
+   works -- warm for the thing you read first, cool for the detail.
+-------------------------------------------------------------------------- */
+body.v2 .check p > b,
+body.v2 .check p > strong,
+body.v2 .check > p > b,
+body.v2 .check > p > strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--amber);
+  font-family: var(--display);
+  font-weight: 600;
+  line-height: 1.35;
+}
+/* the marker keeps its cold tone, so the row reads marker → question → answer */
+body.v2 .check .c { color: var(--cyan); }
+
+/* The same split, for the other question/answer components on the site. */
+body.v2 .faq-q, body.v2 .qa h4, body.v2 .faqr .q h4 { color: var(--amber); }
+
+/* The advisor button carries the same character as the floating helper, so
+   the robot reads as one thing across the site rather than a mascot in the
+   corner and an emoji on the button. currentColor means he picks up the
+   button's own ink, including on hover. */
+.tb-bot {
+  width: 1.45em;
+  height: 1.45em;
+  flex-shrink: 0;
+  overflow: visible;
+  vertical-align: -.32em;
+  display: inline-block;
+}
+@media (prefers-reduced-motion: no-preference) {
+  #talkBtn .tb-bot { animation: skb-bob 3.6s ease-in-out infinite; }
+}
