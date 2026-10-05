@@ -803,3 +803,116 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
      word. That is the most valuable space on the site. */
   .hero { padding-top: 26px; padding-bottom: 34px; }
 }
+
+/* ============================================================================
+   V2 — HOMEPAGE VISUAL UPGRADE
+   ============================================================================
+   Scoped to body.v2, which only index.html carries. Every rule below is inert
+   on the other 126 pages, and removing the class reverts the page instantly.
+
+   The problem was never the amount of motion. It was that the palette has no
+   temperature in it: cyan, violet and near-black are all cold, so however much
+   movement gets added the page still reads like instrumentation. Two changes
+   fix that, and they are the two held back from the prototype.
+
+   ONE WARM HUE. Amber into coral, used sparingly and only where the eye is
+   already going: the eyebrow, section labels, the primary button, the rule
+   under a heading. Cyan keeps the console, the data and the technical furniture
+   -- which is the right division, because the cold colour is doing real work
+   there and the warm one is doing the greeting.
+
+   ONE HUMAN LETTERFORM. The second line of the headline becomes an italic
+   Fraunces against the grotesk. A serif italic is the single most human mark
+   available in type, and set against a monospaced grid it reads as a person
+   speaking rather than a system reporting. It is used exactly once per page.
+
+   Everything else here is hierarchy: a larger headline, tighter tracking, more
+   air between sections, and a lede that is allowed to be bigger than the body.
+   ========================================================================= */
+
+body.v2 {
+  --amber: #ffb454;
+  --blush: #ff8a7a;
+  --warm:  linear-gradient(135deg, #ffb454 0%, #ff8a7a 100%);
+}
+
+/* ---- the headline ---- */
+body.v2 .hero-h {
+  font-size: clamp(40px, 5.6vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -.03em;
+  text-wrap: balance;
+  margin-bottom: 20px;
+}
+/* the one human mark on the page */
+body.v2 .hero-h .grad {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -.01em;
+  background: var(--warm);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ---- the line under it: quieter, so the headline carries ---- */
+body.v2 .hero-tag {
+  color: var(--muted-dim, #8fa0b4);
+  letter-spacing: .14em;
+  font-size: 12.5px;
+  margin-bottom: 22px;
+}
+
+body.v2 .hero-sub { font-size: 18px; line-height: 1.7; max-width: 46ch; }
+body.v2 .hero-sub strong { color: var(--text); }
+body.v2 #sk-positioning { font-size: 16px; color: var(--muted-dim, #8fa0b4); max-width: 50ch; }
+
+/* ---- warmth where the eye already goes ---- */
+body.v2 .eyebrow {
+  color: var(--amber);
+  border-color: rgba(255,180,84,.34);
+  background: rgba(255,180,84,.07);
+}
+body.v2 .eyebrow .dot { background: var(--amber); box-shadow: 0 0 10px var(--amber); }
+
+body.v2 .sec-label { color: var(--amber); }
+body.v2 .sec-label::before { background: var(--warm); width: 30px; }
+
+/* The primary CTA is the one place the gradient is worth spending. */
+body.v2 .btn-pri {
+  background: var(--warm);
+  color: #1a0f04;
+  font-weight: 700;
+  border: 0;
+  border-radius: 11px 11px 11px 4px;   /* one corner clipped: a mark, not a pill */
+}
+body.v2 .btn-pri:hover {
+  background: var(--warm);
+  color: #1a0f04;
+  box-shadow: 0 14px 36px rgba(255,138,122,.34);
+  filter: none;
+}
+body.v2 .btn-ghost { border-radius: 11px 11px 11px 4px; }
+
+/* ---- air ---- */
+body.v2 section { padding-block: 92px; }
+body.v2 h2.sec-h { font-size: clamp(30px,3.8vw,46px); letter-spacing: -.025em;
+                   line-height: 1.08; text-wrap: balance; }
+body.v2 .lead { font-size: 17px; line-height: 1.8; }
+
+/* ---- stats: warm numerals, so the proof reads as proof ---- */
+body.v2 .hstat .n {
+  background: var(--warm);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+body.v2 .hstat .l { color: var(--muted-dim, #8fa0b4); letter-spacing: .13em; }
+
+/* The constellation keeps its cold palette: it is the technical diagram and
+   should stay that way. Only its heading rule warms up, via .sec-label above. */
+
+@media (max-width: 900px) {
+  body.v2 section { padding-block: 62px; }
+  body.v2 .hero-h { font-size: clamp(36px,8.4vw,46px); }
+  body.v2 .hero-sub { font-size: 17px; }
+}
