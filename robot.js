@@ -51,13 +51,44 @@
                   "There is no page two of an AI answer."];
   var lines = LINES[path] || FALLBACK;
 
-  /* ---------- quick actions ---------- */
-  var ACTIONS = [
-    { href: '/audit',       label: 'Run my free AI scan' },
-    { href: '/ask',         label: 'Ask the AI advisor'  },
-    { href: '/what-is-llmo',label: 'What is LLMO?'       },
-    { href: '/contact-us',  label: 'Talk to Siamak'      }
-  ].filter(function (a) { return a.href !== path; });
+  /* ---------- where he can send people ----------
+     Not a fixed four. There is a pool of destinations, and which five he
+     offers depends on where the reader already is -- someone on an industry
+     page wants the scan and the price, someone mid-article wants more
+     reading, someone on /audit has already started and wants help reading
+     the result. The current page is always dropped from the list. */
+  var D = {
+    audit:    { href: '/audit',                 label: 'Run my free AI scan' },
+    ask:      { href: '/ask',                   label: 'Ask the AI advisor'  },
+    llmo:     { href: '/what-is-llmo',          label: 'What is LLMO?'       },
+    contact:  { href: '/contact-us',            label: 'Talk to Siamak'      },
+    services: { href: '/services',              label: 'What I actually do'  },
+    pricing:  { href: '/how-much-does-llmo-cost', label: 'What it costs'     },
+    work:     { href: '/portfolio',             label: 'See the work'        },
+    reading:  { href: '/the-long-view',         label: 'More like this'      },
+    seo:      { href: '/seo-vs-llmo',           label: 'SEO vs LLMO'         },
+    book:     { href: '/online-consulting',     label: 'Book a session'      },
+    local:    { href: '/local',                 label: 'Check local visibility' },
+    news:     { href: '/ai-marketing-news',     label: "What's changed lately" }
+  };
+
+  function pick() {
+    if (path === '/')                       return [D.audit, D.ask, D.llmo, D.work, D.pricing];
+    if (path === '/audit')                  return [D.ask, D.llmo, D.pricing, D.contact, D.work];
+    if (path === '/contact-us')             return [D.audit, D.ask, D.work, D.pricing];
+    if (path === '/ask')                    return [D.audit, D.llmo, D.contact, D.work];
+    if (/-consultant$|^\/ai-for-/.test(path))
+                                            return [D.audit, D.pricing, D.contact, D.work, D.local];
+    if (/^\/the-long-view/.test(path))      return [D.reading, D.llmo, D.audit, D.ask, D.news];
+    if (/budget|cost|pricing/.test(path))   return [D.audit, D.services, D.contact, D.book];
+    if (/^\/listings|portfolio|bluemoon|textile/.test(path))
+                                            return [D.work, D.contact, D.audit, D.services];
+    return [D.audit, D.ask, D.llmo, D.services, D.contact];
+  }
+
+  var ACTIONS = pick()
+    .filter(function (a) { return a.href !== path; })
+    .slice(0, 5);
 
   /* ---------- styles ---------- */
   var css = [
@@ -74,7 +105,7 @@
 '.sk-bot-say b{color:var(--cyan,#2dd4ff);font-weight:600}',
 '.sk-bot-btn{pointer-events:auto;width:76px;height:84px;padding:0;border:0;',
 '  background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;',
-'  filter:drop-shadow(0 12px 26px rgba(0,0,0,.6))}',
+'  filter:drop-shadow(0 10px 22px rgba(0,0,0,.75)) drop-shadow(0 0 16px rgba(45,212,255,.30))}',
 '.sk-bot-btn svg{width:100%;height:100%;overflow:visible;display:block}',
 '.sk-bot-panel{pointer-events:auto;display:none;flex-direction:column;gap:2px;',
 '  width:224px;background:var(--panel,#06080c);border:1px solid var(--line-bright,#465365);',
@@ -86,11 +117,13 @@
 '.sk-bot-panel .sk-hd{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;',
 '  color:var(--muted-dim,#8fa0b4);padding:6px 12px 8px}',
 /* the character */
-'.skb-body{fill:#182230;stroke:var(--line-bright,#465365);stroke-width:2}',
-'.skb-plate{fill:#0e151f}',
-'.skb-face{fill:#070b11;stroke:#2b3647;stroke-width:1.5}',
-'.skb-eye{fill:var(--cyan,#2dd4ff);transform-box:fill-box;transform-origin:center;',
-'  filter:drop-shadow(0 0 6px rgba(45,212,255,.85))}',
+/* He sat at #182230 with a #465365 outline -- a dark robot on a dark page,
+   which is why only his eyes read. Lighter body, brighter outline, and a
+   near-white face panel so the eyes have something to sit against. */
+'.skb-body{fill:#2b3a4f;stroke:#8aa0bb;stroke-width:3}',
+'.skb-plate{fill:#eef4ff;opacity:.26}',
+'.skb-face{fill:#eef4ff;stroke:#b9cbe4;stroke-width:2}',
+'.skb-eye{fill:#121c2b;transform-box:fill-box;transform-origin:center}',
 '.skb-cheek{fill:#ff8a7a;opacity:.45}',
 '.skb-smile{fill:none;stroke:var(--cyan,#2dd4ff);stroke-width:2.6;stroke-linecap:round;opacity:.85}',
 '.skb-ant{stroke:var(--line-bright,#465365);stroke-width:2.5;stroke-linecap:round}',
