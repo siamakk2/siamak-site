@@ -257,6 +257,11 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 .sk-form button[type=submit][disabled]{opacity:.6;cursor:not-allowed}
 .sk-or{margin:22px 0 0;font-family:var(--mono);font-size:13px;color:var(--muted-dim)}
 </style>
+<!-- OpenAI Ads pixel. Gated behind the site's own "ads" consent category:
+     consent.js activates script[type="text/plain"][data-consent] once the
+     visitor allows it, copying the inline body across. The EU/UK default is
+     denied, so in those regions nothing loads until the visitor opts in. -->
+<script type="text/plain" data-consent="ads">!function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");oaiq("init",{pixelId:"RcPGGw6wAtifRoM9TshX3N"});</script>
 </head><body id="top" class="v2">
 <a href="#main" class="skip-link">Skip to content</a><nav>
   <div class="nav-in">
@@ -456,8 +461,15 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
   }, true);
   // Form submit = generate_lead (the money event)
   document.addEventListener('submit', function(e){
-    if (e.target && e.target.tagName === 'FORM') {
-      track('generate_lead', {event_category:'lead', event_label:'contact_form', value:10});
+    var f = e.target;
+    if (!f || f.tagName !== 'FORM') return;
+    /* The hero scan bar is a GET form that starts the free scan. That is the
+       top of the funnel, not a lead. Counting it inflates generate_lead and
+       would teach the ad platforms to optimise for the wrong action. */
+    if (f.classList && f.classList.contains('hero-scan')) return;
+    track('generate_lead', {event_category:'lead', event_label:'contact_form', value:10});
+    if (typeof oaiq === 'function') {
+      oaiq('measure', 'lead_created', { type: 'customer_action' });
     }
   }, true);
 })();

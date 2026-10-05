@@ -343,6 +343,11 @@ try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.
 <meta name="twitter:creator" content="@SiamakKalhor">
 <link rel="stylesheet" href="/type.css">
 <!--type-scaled-->
+<!-- OpenAI Ads pixel. Gated behind the site's own "ads" consent category:
+     consent.js activates script[type="text/plain"][data-consent] once the
+     visitor allows it, copying the inline body across. The EU/UK default is
+     denied, so in those regions nothing loads until the visitor opts in. -->
+<script type="text/plain" data-consent="ads">!function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");oaiq("init",{pixelId:"RcPGGw6wAtifRoM9TshX3N"});</script>
 </head>
 <body class="v2">
 
@@ -873,6 +878,16 @@ try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.
     if(!email || !email.includes('@')){ err.textContent='Please enter a valid email.'; err.style.display='block'; return; }
     err.style.display='none';
     LEAD.name = name; LEAD.email = email;
+    /* A real lead: name and email have just been captured and validated.
+       The gate is a div rather than a <form>, so the delegated submit
+       listener that reports leads elsewhere never sees it. Guarded on oaiq
+       because the pixel only exists once advertising consent is given. */
+    if (typeof oaiq === 'function') {
+      oaiq('measure', 'lead_created', { type: 'customer_action' });
+    }
+    if (typeof gtag === 'function') {
+      gtag('event', 'generate_lead', { event_category:'lead', event_label:'audit_gate', value:10 });
+    }
     // Save to our backend (fire and forget — doesn't block the user)
     saveLead();
     closeGate();

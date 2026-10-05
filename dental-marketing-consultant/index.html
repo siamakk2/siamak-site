@@ -175,6 +175,11 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 </style>
 <link rel="stylesheet" href="/type.css">
 <!--type-scaled-->
+<!-- OpenAI Ads pixel. Gated behind the site's own "ads" consent category:
+     consent.js activates script[type="text/plain"][data-consent] once the
+     visitor allows it, copying the inline body across. The EU/UK default is
+     denied, so in those regions nothing loads until the visitor opts in. -->
+<script type="text/plain" data-consent="ads">!function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");oaiq("init",{pixelId:"RcPGGw6wAtifRoM9TshX3N"});</script>
 </head>
 <body class="v2">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -256,7 +261,41 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <div class="ph-btns">
 <a href="/contact-us" class="btn btn-pri">Talk to Siamak</a>
 <a href="/online-consulting" class="btn btn-ghost">Book a Strategy Session</a>
-</div></div></header>
+</div>
+<div class="ph-viz" aria-hidden="true">
+  <svg class="constel" viewBox="0 0 440 330" role="presentation" focusable="false">
+    <defs>
+      <linearGradient id="skWire" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#2dd4ff"/><stop offset="100%" stop-color="#a06bff"/>
+      </linearGradient>
+      <radialGradient id="skCore">
+        <stop offset="0%" stop-color="#8ee7ff"/><stop offset="100%" stop-color="#a06bff"/>
+      </radialGradient>
+    </defs>
+    <path class="cn-wire" d="M86 54 C150 90, 170 120, 220 168"/>
+    <path class="cn-wire" d="M354 54 C290 90, 270 120, 220 168"/>
+    <path class="cn-wire" d="M72 262 C140 236, 165 212, 220 168"/>
+    <path class="cn-wire" d="M368 262 C300 236, 275 212, 220 168"/>
+    <path class="cn-pulse p1" d="M86 54 C150 90, 170 120, 220 168"/>
+    <path class="cn-pulse p2" d="M354 54 C290 90, 270 120, 220 168"/>
+    <path class="cn-pulse p3" d="M72 262 C140 236, 165 212, 220 168"/>
+    <path class="cn-pulse p4" d="M368 262 C300 236, 275 212, 220 168"/>
+    <g><rect class="cn-node" x="26" y="36" width="120" height="34" rx="11"/>
+       <text class="cn-lab" x="86" y="58" text-anchor="middle">CHATGPT</text></g>
+    <g><rect class="cn-node" x="294" y="36" width="120" height="34" rx="11"/>
+       <text class="cn-lab" x="354" y="58" text-anchor="middle">CLAUDE</text></g>
+    <g><rect class="cn-node" x="12" y="244" width="120" height="34" rx="11"/>
+       <text class="cn-lab" x="72" y="266" text-anchor="middle">GEMINI</text></g>
+    <g><rect class="cn-node" x="308" y="244" width="120" height="34" rx="11"/>
+       <text class="cn-lab" x="368" y="266" text-anchor="middle">PERPLEXITY</text></g>
+    <circle class="cn-ring r1" cx="220" cy="168" r="30"/>
+    <circle class="cn-ring r2" cx="220" cy="168" r="30"/>
+    <circle class="cn-core" cx="220" cy="168" r="30"/>
+    <text class="cn-core-lab" x="220" y="165" text-anchor="middle">YOUR</text>
+    <text class="cn-core-lab" x="220" y="177" text-anchor="middle">PRACTICE</text>
+  </svg>
+</div>
+</div></header>
 <section><div class="wrap">
 <div class="sec-label">The diagnosis</div>
 <h2 class="sec-h">Why the schedule fills but revenue doesn't</h2>
@@ -420,8 +459,15 @@ elevenlabs-convai{
 
   // Form submit = generate_lead (the money event)
   document.addEventListener('submit', function(e){
-    if (e.target && e.target.tagName === 'FORM') {
-      track('generate_lead', {event_category:'lead', event_label:'contact_form', value:10});
+    var f = e.target;
+    if (!f || f.tagName !== 'FORM') return;
+    /* The hero scan bar is a GET form that starts the free scan. That is the
+       top of the funnel, not a lead. Counting it inflates generate_lead and
+       would teach the ad platforms to optimise for the wrong action. */
+    if (f.classList && f.classList.contains('hero-scan')) return;
+    track('generate_lead', {event_category:'lead', event_label:'contact_form', value:10});
+    if (typeof oaiq === 'function') {
+      oaiq('measure', 'lead_created', { type: 'customer_action' });
     }
   }, true);
 

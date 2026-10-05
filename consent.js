@@ -202,7 +202,7 @@
       c_functional: 'AI assistant',
       d_functional: 'Loads the voice advisor and remembers your place in it. Off means the assistant will not appear.',
       c_ads: 'Advertising',
-      d_ads: 'Advertising and remarketing identifiers. Nothing on this site uses them today.'
+      d_ads: 'Advertising and remarketing identifiers, used to measure which ads bring people here. Off means the OpenAI advertising pixel never loads.'
     },
     es: {
       eyebrow: 'Tus datos, tu decision',
@@ -218,7 +218,7 @@
       c_functional: 'Asistente de IA',
       d_functional: 'Carga el asesor de voz y recuerda donde lo dejaste. Desactivado, el asistente no aparecera.',
       c_ads: 'Publicidad',
-      d_ads: 'Identificadores de publicidad y remarketing. Hoy nada en este sitio los utiliza.'
+      d_ads: 'Identificadores de publicidad y remarketing, usados para medir qu\u00e9 anuncios traen visitantes. Desactivado significa que el p\u00edxel publicitario de OpenAI nunca se carga.'
     },
     fa: {
       eyebrow: 'داده‌های شما، انتخاب شما',
@@ -234,7 +234,7 @@
       c_functional: 'دستیار هوش مصنوعی',
       d_functional: 'مشاور صوتی را بارگذاری می‌کند و جای شما را در گفت‌وگو به یاد می‌سپارد. اگر خاموش باشد، دستیار نمایش داده نمی‌شود.',
       c_ads: 'تبلیغات',
-      d_ads: 'شناسه‌های تبلیغاتی و بازاریابی مجدد. در حال حاضر هیچ بخشی از این سایت از آن‌ها استفاده نمی‌کند.'
+      d_ads: 'شناسه‌های تبلیغاتی و بازاریابی مجدد، برای سنجش اینکه کدام تبلیغ بازدیدکننده می‌آورد. خاموش یعنی پیکسل تبلیغاتی OpenAI هرگز بارگذاری نمی‌شود.'
     },
     hy: {
       eyebrow: 'Ձեր տվյալները, ձեր ընտրությունը',
@@ -250,7 +250,7 @@
       c_functional: 'AI օգնական',
       d_functional: 'Բեռնում է ձայնային խորհրդատուին և հիշում ձեր տեղը զրույցում։ Անջատված վիճակում օգնականը չի հայտնվի։',
       c_ads: 'Գովազդ',
-      d_ads: 'Գովազդային և վերաշուկայավարման նույնացուցիչներ։ Այս կայքում ներկայում ոչինչ չի օգտագործում դրանք։'
+      d_ads: 'Գովազդային և վերաշուկայավարման նույնացուցիչներ՝ չափելու համար, թե որ գովազդն է այցելու բերում։ Անջատված լինելու դեպքում OpenAI-ի գովազդային փիքսելը երբեք չի բեռնվում։'
     }
   };
 

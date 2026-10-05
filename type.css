@@ -1028,3 +1028,80 @@ body.v2 .faq-q, body.v2 .qa h4, body.v2 .faqr .q h4 { color: var(--amber); }
 @media (prefers-reduced-motion: no-preference) {
   #talkBtn .tb-bot { animation: skb-bob 3.6s ease-in-out infinite; }
 }
+
+/* ---- industry heroes: fill the dead right-hand band ----------------------
+   These heroes were a single text column with a max-width, so on a desktop
+   the right ~40% of the hero was empty black. The text children now occupy
+   column one and the constellation sits in column two, spanning every row.
+
+   The graphic is aria-hidden and role="presentation": the argument it draws
+   is already made by the headline and paragraph next to it, so nothing is
+   lost if it never paints. Its centre node names what the reader is -- a
+   firm, a practice, a store -- rather than a generic brand.
+
+   Desktop only. Below 1000px it goes back to a single column and the
+   constellation drops underneath, which is what mobile already did well.
+-------------------------------------------------------------------------- */
+@media (min-width: 1000px) {
+  body.v2 .ph > .wrap:first-of-type,
+  body.v2 .loc-hero > .wrap:first-of-type,
+  body.v2 .cp-hero  > .wrap:first-of-type {
+    display: grid;
+    grid-template-columns: minmax(0, 1.04fr) minmax(0, .96fr);
+    column-gap: 52px;
+    /* Each text child is its own grid row. align-items:center pushed the
+       column down; the default `stretch` made the eyebrow pill grow into a
+       tall capsule and the buttons into full-width bars. `start` lets every
+       row keep its natural height, and only the graphic is centred. */
+    align-items: start;
+    /* .ph-viz spans every row. Without this the browser grows those rows to
+       accommodate the graphic's height, which opened a ~310px hole between
+       the eyebrow and the headline. min-content pins each row to its own
+       text and lets the graphic centre across them instead. */
+    grid-auto-rows: min-content;
+  }
+  body.v2 .ph-viz {
+    grid-column: 2;
+    /* `1 / -1` looks like "span every row" but -1 counts lines in the
+       EXPLICIT grid, and only columns were declared here -- so it resolved
+       to row 1 alone, which then grew to the graphic's 345px and pushed the
+       headline 310px down the page. An explicit span covers the implicit
+       rows the text creates. */
+    grid-row: 1 / span 20;
+    align-self: center;
+    min-width: 0;
+    justify-self: end;
+    width: 100%;
+    max-width: 460px;
+  }
+  /* A grid item stretches by default, which turned the eyebrow pill and the
+     buttons into full-width bars. These hug their content again. */
+  body.v2 .ph > .wrap:first-of-type > .eyebrow,
+  body.v2 .loc-hero > .wrap:first-of-type > .eyebrow,
+  body.v2 .cp-hero  > .wrap:first-of-type > .eyebrow,
+  body.v2 .ph > .wrap:first-of-type > .ph-btns,
+  body.v2 .loc-hero > .wrap:first-of-type > .ph-btns,
+  body.v2 .cp-hero  > .wrap:first-of-type > .ph-btns { justify-self: start; }
+  /* the text column keeps its own measure rather than stretching to the gap */
+  body.v2 .ph > .wrap:first-of-type > :not(.ph-viz),
+  body.v2 .loc-hero > .wrap:first-of-type > :not(.ph-viz),
+  body.v2 .cp-hero  > .wrap:first-of-type > :not(.ph-viz) { grid-column: 1; max-width: 100%; }
+}
+@media (max-width: 999px) {
+  body.v2 .ph-viz { max-width: 420px; margin: 26px auto 0; }
+}
+.ph-viz { min-width: 0; }
+.ph-viz .constel { width: 100%; height: auto; display: block; overflow: visible; }
+
+/* ---- homepage: the console was stranded mid-column -----------------------
+   The left column is tall -- headline, scan bar, note, two paragraphs, the
+   proof line, buttons and the stat row -- and the console was vertically
+   centred against all of it, which left roughly 490px of empty grid above
+   it, right where the eye lands. Aligning it to the top puts it beside the
+   headline and moves the slack to the bottom of the column, where a hero is
+   supposed to breathe.
+-------------------------------------------------------------------------- */
+@media (min-width: 901px) {
+  body.home .hero-grid { align-items: start; }
+  body.home .hero-grid > .console { margin-top: 78px; }
+}

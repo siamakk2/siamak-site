@@ -286,6 +286,11 @@ try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.
 <meta name="twitter:title" content="AI Voice Advisor — Business Growth Consulting, 20 Languages">
 <meta name="twitter:description" content="Ask Siamak Kalhor's AI advisor anything about business growth, LLMO, AI marketing, and brand strategy. Available 24/7 in 20 languages. No appointment needed.">
 <meta name="twitter:image" content="https://siamakconsulting.com/og-image.jpg">
+<!-- OpenAI Ads pixel. Gated behind the site's own "ads" consent category:
+     consent.js activates script[type="text/plain"][data-consent] once the
+     visitor allows it, copying the inline body across. The EU/UK default is
+     denied, so in those regions nothing loads until the visitor opts in. -->
+<script type="text/plain" data-consent="ads">!function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");oaiq("init",{pixelId:"RcPGGw6wAtifRoM9TshX3N"});</script>
 </head>
 <body class="v2">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -543,8 +548,15 @@ elevenlabs-convai{
 
   // Form submit = generate_lead (the money event)
   document.addEventListener('submit', function(e){
-    if (e.target && e.target.tagName === 'FORM') {
-      track('generate_lead', {event_category:'lead', event_label:'contact_form', value:10});
+    var f = e.target;
+    if (!f || f.tagName !== 'FORM') return;
+    /* The hero scan bar is a GET form that starts the free scan. That is the
+       top of the funnel, not a lead. Counting it inflates generate_lead and
+       would teach the ad platforms to optimise for the wrong action. */
+    if (f.classList && f.classList.contains('hero-scan')) return;
+    track('generate_lead', {event_category:'lead', event_label:'contact_form', value:10});
+    if (typeof oaiq === 'function') {
+      oaiq('measure', 'lead_created', { type: 'customer_action' });
     }
   }, true);
 
