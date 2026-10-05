@@ -540,10 +540,17 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <!-- HERO -->
 <header class="hero">
   <div class="wrap hero-grid">
-    <div>
+    <!-- Split into lead-in and body so the console can be ordered between them
+         on a phone. On a phone the grid collapses to one column, which used to
+         put every paragraph, both buttons and the stat row ahead of the
+         console -- so the first screen was nothing but text. -->
+    <div class="hero-copy">
+     <div class="hero-lead-in">
       <div class="eyebrow"><span class="dot"></span>Large Language Model Optimization</div>
       <h1 class="hero-h">Become the answer<br><span class="grad">AI gives.</span></h1>
       <p class="hero-tag">Strategy that outlives the algorithm.</p>
+     </div>
+     <div class="hero-body">
       <p class="hero-sub">Search sent traffic to links. AI sends it to <strong>answers</strong> — and only cites the brands it trusts. I engineer that trust. Your business, retrieved, grounded, and recommended by ChatGPT, Gemini, Claude, and Perplexity.</p>
 <p class="lead" id="sk-positioning">Siamak Kalhor is an
 <strong>AI marketing consultant in Los Angeles</strong>, working with law firms,
@@ -560,6 +567,7 @@ people search now.</p>
         <div class="hstat"><div class="n">14</div><div class="l">Advisor Languages</div></div>
         <div class="hstat"><div class="n">LLMO<span class="u">™</span></div><div class="l">Proprietary System</div></div>
       </div>
+     </div>
     </div>
 
     <!-- SIGNATURE: AI citation console -->

@@ -756,3 +756,46 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .bot, .bot-shadow, .b-eye, .b-bulb, .b-core, .b-arm-r, .bot-car {
     animation: none !important; }
 }
+
+/* ============================================================
+   MOBILE MENU WIDTH  (fix)
+   ============================================================
+   The open menu rendered as a ~147px panel floating in the middle
+   of the screen instead of a full-width sheet under the header.
+
+   The rules say position:absolute; left:0; right:0, and those do
+   compute -- but the element is a child of a flex container and
+   ends up sized to its content anyway, so the left/right pair never
+   resolves to a width. Forcing left and right with !important does
+   not help; only an explicit width does.
+
+   Pre-existing: it reproduces with this stylesheet removed.
+   ============================================================ */
+@media (max-width: 960px) {
+  nav .nav-links { width: 100%; box-sizing: border-box; }
+}
+
+/* ============================================================
+   HERO ORDER ON PHONES
+   ============================================================
+   The hero is a two-column grid that collapses to one column on a
+   phone, which put the entire copy block -- two paragraphs, the
+   proof link, both buttons and the stat row -- ahead of the answer
+   console. The first screen was pure text with no image or motion
+   anywhere on it.
+
+   .hero-copy becomes display:contents so its two halves join the
+   grid directly and can be ordered around the console: headline,
+   then the console, then the rest. Desktop is untouched, where the
+   two columns sit side by side as before.
+   ============================================================ */
+@media (max-width: 900px) {
+  .hero-grid   { display: flex; flex-direction: column; gap: 18px; }
+  .hero-copy   { display: contents; }
+  .hero-lead-in { order: 1; }
+  .hero-grid > .console { order: 2; margin: 0; }
+  .hero-body   { order: 3; }
+  /* pull the console up into the first screen */
+  .hero-lead-in .hero-tag { margin-bottom: 0; }
+  .hero-lead-in .eyebrow  { margin-bottom: 16px; }
+}
