@@ -895,7 +895,7 @@ body.v2 .btn-pri:hover {
 body.v2 .btn-ghost { border-radius: 11px 11px 11px 4px; }
 
 /* ---- air ---- */
-body.v2 section { padding-block: 92px; }
+body.home section { padding-block: 92px; }
 body.v2 h2.sec-h { font-size: clamp(30px,3.8vw,46px); letter-spacing: -.025em;
                    line-height: 1.08; text-wrap: balance; }
 body.v2 .lead { font-size: 17px; line-height: 1.8; }
@@ -912,7 +912,7 @@ body.v2 .hstat .l { color: var(--muted-dim, #8fa0b4); letter-spacing: .13em; }
    should stay that way. Only its heading rule warms up, via .sec-label above. */
 
 @media (max-width: 900px) {
-  body.v2 section { padding-block: 62px; }
+  body.home section { padding-block: 62px; }
   body.v2 .hero-h { font-size: clamp(36px,8.4vw,46px); }
   body.v2 .hero-sub { font-size: 17px; }
 }
@@ -965,4 +965,21 @@ body.v2 .hero-scan-note {
 @media (max-width: 560px) {
   body.v2 .hero-scan { flex-direction: column; max-width: none; }
   body.v2 .hero-scan .btn-pri { justify-content: center; }
+}
+
+/* ---- the signature mark, on every page ---------------------------------
+   .hero-h only exists on the homepage, so the rule above reaches one page.
+   Every other template uses .ph-h, .article-h, .loc-h and a few one-offs,
+   and all of them mark their accent phrase with .grad. Targeting `h1 .grad`
+   catches all of them in a single rule and leaves every h2 alone, so the
+   serif stays a once-per-page event rather than a texture.
+------------------------------------------------------------------------ */
+body.v2 h1 .grad {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -.01em;
+  background: var(--warm);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

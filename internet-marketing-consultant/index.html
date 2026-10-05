@@ -26,7 +26,7 @@ try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.
 <meta name="theme-color" content="#000000">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -160,7 +160,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <meta name="twitter:description" content="Internet marketing consultant in Los Angeles with 40 years of experience. Strategy, positioning and AI search visibility for professional practices.">
 <meta name="twitter:image" content="https://siamakconsulting.com/og-image.jpg">
 </head>
-<body>
+<body class="v2">
 <a href="#main" class="skip-link">Skip to content</a>
 <div class="ambient"></div>
 <nav>
@@ -236,6 +236,8 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <div class="eyebrow"><span class="dot"></span>Internet Marketing Consulting</div>
 <h1 class="ph-h">You don't need more tactics. You need a strategy that <span class="grad">compounds</span>.</h1>
 <p class="ph-sub">Most businesses hire an internet marketing consultant after something stops working — ads that used to convert, rankings that slipped, a website that gets visitors and no calls. The tactics are rarely the problem. The problem is that no strategy sits underneath them, so every fix is a guess.</p>
+<form class="hero-scan" action="/audit" method="get" autocomplete="off"><label for="heroSite">Your website</label><input id="heroSite" name="site" type="text" inputmode="url" placeholder="yourbusiness.com" spellcheck="false" aria-label="Your website address"><button type="submit" class="btn btn-pri">See what AI says &rarr;</button></form><p class="hero-scan-note">Free, about two minutes, no account.</p>
+
 <div class="ph-btns">
 <a href="/contact-us" class="btn btn-pri">Talk to Siamak</a>
 <a href="/online-consulting" class="btn btn-ghost">Book a Strategy Session</a>
