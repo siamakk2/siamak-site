@@ -15,7 +15,7 @@ Search is changing. People no longer click ten blue links — they ask an AI and
 - [Services](https://siamakconsulting.com/services): Nine services, each listed with the artifacts it produces rather than the capability claimed, plus four engagement models — one-off audit, hourly consulting at $350–$450, monthly retainer, and fractional CMO — including when each is the wrong choice.
 - [Contact](https://siamakconsulting.com/contact-us): Book a consultation.
 - [AI Authority Audit — 12 deliverables](https://siamakconsulting.com/analyze-your-brand): Baseline visibility across ChatGPT, Gemini, Claude and Perplexity; competitor citation share; the third-party sources driving the answers; entity, content, authority and schema gaps; and baseline vs post-implementation measurement.
-- [Website audit](https://siamakconsulting.com/website-audit): Technical, SEO, and LLMO audit of your site.
+- [S.C.A.L.E. free AI visibility scan](https://scale.siamakconsulting.com/): Reads a website the way AI systems do, scores it on five dimensions (visibility, clarity, structure, authority, momentum) and ranks what to fix first.
 - [AI voice advisor](https://siamakconsulting.com/ai-advisor): Talk to an AI strategy advisor in 20 languages.
 
 - [Law firm marketing consultant](https://siamakconsulting.com/law-firm-marketing-consultant): How clients describe a situation rather than a practice area, attorney entity coherence across bar and directory records, and why matters are lost on intake speed rather than marketing.

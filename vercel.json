@@ -638,6 +638,11 @@
       ],
       "destination": "https://siamakconsulting.com/$1",
       "permanent": true
+    },
+    {
+      "source": "/website-audit",
+      "destination": "https://scale.siamakconsulting.com/",
+      "permanent": true
     }
   ],
   "rewrites": [
