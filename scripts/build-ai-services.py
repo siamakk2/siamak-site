@@ -333,6 +333,7 @@ def build(p):
     ch, cp = p["cta"]
     cta = (f'<section><div class="wrap"><div class="cta-band"><h3>{e(ch)}</h3><p>{e(cp)}</p><div class="cta-row">'
            f'<a href="/online-consulting" class="btn btn-pri">Book a free 30-min call &rarr;</a>'
+           f'<a href="https://buy.stripe.com/cNi14o2yQaMUdbC3zX0kE03" class="btn btn-ghost" rel="noopener">Book a paid hour · $350</a>'
            f'<a href="tel:+13236577752" class="btn btn-ghost">Call 323-657-7752</a></div></div></div></section>\n')
 
     body = hero + defn + why + dia + helps + cmp_html + proc + extra + fit + proof + faq + cta + rel
