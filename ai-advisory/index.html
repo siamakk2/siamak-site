@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Consent Mode v2 defaults — must load ahead of gtag.js. Keep it directly after the charset meta tag. -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+(function(){var d='denied',g='granted',B={ad_storage:d,ad_user_data:d,ad_personalization:d,functionality_storage:d,personalization_storage:d,security_storage:g,wait_for_update:500},m=function(o){var r={},k;for(k in B)r[k]=B[k];for(k in o)r[k]=o[k];return r};
+gtag('consent','default',m({analytics_storage:g}));
+gtag('consent','default',m({analytics_storage:d,region:'AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE IS LI NO GB CH'.split(' ')}));
+try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.now()-c.ts<15552e6){var a=c.ads?g:d,n=c.analytics?g:d,f=c.functional?g:d;gtag('consent','update',{ad_storage:a,ad_user_data:a,ad_personalization:a,analytics_storage:n,functionality_storage:f,personalization_storage:f,security_storage:g});}}catch(e){}})();</script>
+<!-- Google Analytics GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2W5EQQ49S9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2W5EQQ49S9');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Advisor for Business Owners | Fractional AI Advisory</title>
+<meta name="description" content="A senior AI advisor on your side: vendor vetting, an AI roadmap, policy and team adoption, with no software to sell. Fractional AI advisory by Siamak Kalhor."><meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+<meta name="author" content="Siamak Kalhor">
+<meta property="og:title" content="AI Advisor for Business Owners | Fractional AI Advisory">
+<meta property="og:description" content="A senior AI advisor on your side: vendor vetting, an AI roadmap, policy and team adoption, with no software to sell. Fractional AI advisory by Siamak Kalhor.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://siamakconsulting.com/ai-advisory">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--void:#000;--panel:#06080c;--surface:#111826;--surface-2:#19222f;--line:#36414f;--line-bright:#465365;--cyan:#2dd4ff;--violet:#a06bff;--text:#f9fbfe;--muted:#ccd6e2;--muted-dim:#aab6c4;--glow:linear-gradient(135deg,#2dd4ff 0%,#a06bff 100%);--display:'Space Grotesk',sans-serif;--body:'Inter',sans-serif;--mono:'JetBrains Mono',monospace}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--text);font-family:var(--body);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:rgba(45,212,255,.25);color:#fff}
+a{color:inherit}
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(circle at 18% 12%,rgba(45,212,255,.07),transparent 38%),radial-gradient(circle at 82% 78%,rgba(160,107,255,.08),transparent 42%),linear-gradient(rgba(27,33,44,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(27,33,44,.35) 1px,transparent 1px);background-size:100% 100%,100% 100%,54px 54px,54px 54px;mask-image:radial-gradient(ellipse 120% 90% at 50% 0%,#000 40%,transparent 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 28px}
+nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1180px;margin:0 auto;padding:15px 28px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand-mark{width:28px;height:28px;border-radius:7px;background:var(--glow);position:relative;flex-shrink:0}
+.brand-mark::after{content:'';position:absolute;inset:6px;border-radius:3px;background:var(--void)}
+.brand-txt{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.05em}
+.brand-txt span{color:var(--muted)}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-cta{font-family:var(--mono);font-size:12px;padding:9px 15px;border:1px solid var(--line-bright);border-radius:6px;color:var(--text)!important}
+.nav-cta:hover{border-color:var(--cyan);box-shadow:0 0 18px rgba(45,212,255,.15)}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:21px;cursor:pointer}
+.ph{padding:74px 0 30px;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:22px;padding:6px 13px;border:1px solid var(--line-bright);border-radius:100px;background:var(--surface)}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+h1.ph-h{font-family:var(--display);font-size:clamp(34px,5vw,58px);font-weight:700;line-height:1.05;letter-spacing:-.02em;margin-bottom:20px;max-width:880px}
+h1.ph-h .grad{background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.ph-sub{font-size:18px;color:var(--muted);max-width:660px;line-height:1.7}
+.ph-sub strong{color:var(--text);font-weight:600}
+.ph-btns{display:flex;gap:13px;flex-wrap:wrap;margin-top:30px}
+.btn{font-family:var(--mono);font-size:13px;font-weight:500;padding:13px 22px;border-radius:8px;text-decoration:none;cursor:pointer;border:none;transition:all .22s;display:inline-flex;align-items:center;gap:8px}
+.btn-pri{background:var(--glow);color:#04060a;font-weight:600}
+.btn-pri:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(45,212,255,.26)}
+.btn-ghost{background:var(--surface);color:var(--text);border:1px solid var(--line-bright)}
+.btn-ghost:hover{border-color:var(--cyan)}
+section{padding:54px 0;position:relative}
+.sec-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.sec-label::before{content:'';width:26px;height:1px;background:var(--glow)}
+h2.sec-h{font-family:var(--display);font-size:clamp(26px,3.4vw,38px);font-weight:600;letter-spacing:-.015em;line-height:1.14;margin-bottom:16px;max-width:760px}
+h2.sec-h .grad{background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.lead{font-size:16.5px;color:var(--muted);max-width:760px;line-height:1.8;margin-bottom:14px}
+.lead strong{color:var(--text)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:28px;transition:all .25s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--glow);opacity:0;transition:opacity .25s}
+.card:hover{border-color:var(--line-bright);transform:translateY(-3px)}
+.card:hover::before{opacity:1}
+.card .ico{width:40px;height:40px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line-bright);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px}
+.card h3{font-family:var(--display);font-size:17.5px;font-weight:600;margin-bottom:10px}
+.card p{font-size:13.5px;color:var(--muted);line-height:1.7}
+.card .num{font-family:var(--display);font-size:30px;font-weight:600;background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;line-height:1}
+.steps{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.step{background:var(--surface);padding:26px 28px;display:grid;grid-template-columns:60px 1fr;gap:22px;align-items:start;transition:background .2s}
+.step:hover{background:var(--surface-2)}
+.step .l{font-family:var(--display);font-size:38px;font-weight:700;background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.step h4{font-family:var(--display);font-size:17px;font-weight:600;margin-bottom:6px}
+.step p{font-size:14px;color:var(--muted);line-height:1.7}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:8px}
+.check{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.check .c{color:var(--cyan);font-family:var(--mono);font-size:14px;margin-top:1px}
+.check p{font-size:13.5px;color:var(--muted);line-height:1.6}
+.check b{color:var(--text);font-weight:600;display:block;margin-bottom:2px;font-family:var(--display)}
+.cta-band{background:linear-gradient(180deg,var(--surface),var(--panel));border:1px solid var(--line);border-radius:16px;padding:48px;text-align:center;margin-top:10px}
+.cta-band h3{font-family:var(--display);font-size:clamp(24px,3.2vw,34px);font-weight:600;margin-bottom:12px;line-height:1.15}
+.cta-band h3 .grad{background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.cta-band p{color:var(--muted);max-width:540px;margin:0 auto 26px;font-size:15px}
+.cta-row{display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
+.faq{display:flex;flex-direction:column;gap:12px}
+.qa{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:22px 24px}
+.qa h4{font-family:var(--display);font-size:16px;font-weight:600;margin-bottom:8px;color:var(--text)}
+.qa p{font-size:14px;color:var(--muted);line-height:1.7}
+footer{border-top:1px solid var(--line);background:var(--panel);padding:50px 0 36px;margin-top:40px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:36px}
+.foot-brand p{color:var(--muted);font-size:13.5px;max-width:300px;margin-top:14px;line-height:1.7}
+.foot-col h5{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-dim);margin-bottom:15px}
+.foot-col a{display:block;color:var(--muted);text-decoration:none;font-size:13.5px;margin-bottom:10px;transition:color .2s}
+.foot-col a:hover{color:var(--cyan)}
+.foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:11.5px;color:var(--muted-dim)}
+@media(max-width:860px){.grid2,.grid3,.checks,.foot-grid{grid-template-columns:1fr}.nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--void);border-bottom:1px solid var(--line);padding:20px 28px;gap:16px}.nav-links.open{display:flex}.nav-toggle{display:block}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+:focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
+</style>
+<link rel="canonical" href="https://siamakconsulting.com/ai-advisory"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://siamakconsulting.com/#website", "url": "https://siamakconsulting.com", "name": "Siamak Kalhor Consulting", "publisher": {"@id": "https://siamakconsulting.com/#person"}}, {"@type": "Person", "@id": "https://siamakconsulting.com/#person", "name": "Siamak Kalhor", "jobTitle": "AI Consultant", "url": "https://siamakconsulting.com", "sameAs": ["https://www.linkedin.com/in/siamakkalhor/"], "knowsAbout": ["AI consulting", "AI strategy", "AI adoption", "Generative AI implementation", "AI automation", "Fractional AI leadership", "Large Language Model Optimization", "Generative Engine Optimization", "AI marketing", "Brand authority", "SEO", "Answer Engine Optimization", "AI visibility", "AI search optimization", "ChatGPT visibility", "Entity optimization", "Structured data"], "givenName": "Siamak", "familyName": "Kalhor", "description": "AI consultant with 40 years of market experience, advising founders and executives on AI strategy, adoption and visibility inside generative AI engines including ChatGPT, Claude, Gemini and Perplexity.", "worksFor": {"@id": "https://siamakconsulting.com/#business"}, "address": {"@type": "PostalAddress", "streetAddress": "530 E 8th St", "addressLocality": "Los Angeles", "addressRegion": "CA", "postalCode": "90014", "addressCountry": "US"}, "telephone": "+1-323-657-7752", "email": "siamakk2@gmail.com", "image": "https://siamakconsulting.com/og-image-v3.jpg", "hasOfferCatalog": {"@type": "OfferCatalog", "name": "AI Consulting & LLMO Services", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Large Language Model Optimization (LLMO)", "description": "Make your brand the answer ChatGPT, Gemini, Claude and Perplexity give when asked about your category."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "AI Marketing Strategy", "description": "Full AI-era marketing strategy including content, authority building, and AI visibility."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Fractional CMO", "description": "Senior marketing leadership engineered for the generative AI era."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "AI Advisor", "description": "24/7 AI voice advisor trained on Siamak's expertise, available in 20 languages, free."}}]}}, {"@type": "ProfessionalService", "@id": "https://siamakconsulting.com/#business", "name": "Siamak Kalhor Consulting", "slogan": "Strategy that outlives the algorithm.", "alternateName": "Siamak Kalhor Consulting LLC", "url": "https://siamakconsulting.com/", "description": "Los Angeles AI consultancy specializing in AI strategy, adoption and visibility inside generative AI engines, alongside brand positioning and long-horizon growth strategy for law firms, medical practices, ecommerce brands and professional services.", "founder": {"@id": "https://siamakconsulting.com/#person"}, "employee": {"@id": "https://siamakconsulting.com/#person"}, "priceRange": "$$$", "telephone": "+1-323-657-7752", "email": "siamakk2@gmail.com", "address": {"@type": "PostalAddress", "streetAddress": "530 E 8th St", "addressLocality": "Los Angeles", "addressRegion": "CA", "postalCode": "90014", "addressCountry": "US"}, "areaServed": [{"@type": "City", "name": "Los Angeles"}, {"@type": "City", "name": "Napa"}, {"@type": "Place", "name": "Napa Valley"}, {"@type": "State", "name": "California"}, {"@type": "Country", "name": "United States"}], "sameAs": ["https://www.yelp.com/biz/siamak-kalhor-consulting-los-angeles-2", "https://www.linkedin.com/in/siamakkalhor/", "https://www.alignable.com/downtown-los-angeles-ca/siamak-kalhor-consulting/digital-marketing", "https://upcity.com/profiles/siamak-kalhor-consulting", "https://www.chamberofcommerce.com/business-directory/california/los-angeles/internet-marketing-service/2007536334-siamak-kalhor-consulting", "https://g.page/r/CSXLDUNUf_uvEBE"], "image": "https://siamakconsulting.com/og-image-v3.jpg", "hasOfferCatalog": {"@type": "OfferCatalog", "name": "LLMO & AI Authority Services", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Large Language Model Optimization (LLMO)", "description": "Engineer your brand to be cited by ChatGPT, Gemini, Claude, and Perplexity."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "AI Authority Audit", "description": "Deep-scan diagnostic of how AI systems currently see, cite, or ignore your brand."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "S.C.A.L.E. Framework", "description": "Proprietary five-stage system for compounding AI-era growth."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Fractional CMO", "description": "Senior marketing leadership engineered for the generative-AI era."}}]}}, {"@type": "WebPage", "@id": "https://siamakconsulting.com/ai-advisory#webpage", "url": "https://siamakconsulting.com/ai-advisory", "name": "AI Advisor for Business Owners | Fractional AI Advisory", "description": "A senior AI advisor on your side: vendor vetting, an AI roadmap, policy and team adoption, with no software to sell. Fractional AI advisory by Siamak Kalhor.", "isPartOf": {"@id": "https://siamakconsulting.com/#website"}, "about": [{"@id": "https://siamakconsulting.com/ai-advisory#service"}, {"@id": "https://siamakconsulting.com/ai-advisory#term"}], "mainEntity": {"@id": "https://siamakconsulting.com/ai-advisory#service"}, "author": {"@id": "https://siamakconsulting.com/#person"}, "breadcrumb": {"@id": "https://siamakconsulting.com/ai-advisory#breadcrumb"}, "dateModified": "2026-10-06", "inLanguage": "en-US", "primaryImageOfPage": {"@type": "ImageObject", "url": "https://siamakconsulting.com/og/ai-advisory.jpg"}}, {"@type": "BreadcrumbList", "@id": "https://siamakconsulting.com/ai-advisory#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://siamakconsulting.com"}, {"@type": "ListItem", "position": 2, "name": "AI Consulting", "item": "https://siamakconsulting.com/ai-consulting"}, {"@type": "ListItem", "position": 3, "name": "AI Advisory", "item": "https://siamakconsulting.com/ai-advisory"}]}, {"@type": "Service", "@id": "https://siamakconsulting.com/ai-advisory#service", "name": "AI Advisor", "serviceType": "AI advisory", "description": "A senior AI advisor on your side: vendor vetting, an AI roadmap, policy and team adoption, with no software to sell. Fractional AI advisory by Siamak Kalhor.", "url": "https://siamakconsulting.com/ai-advisory", "provider": {"@id": "https://siamakconsulting.com/#business"}, "areaServed": [{"@type": "City", "name": "Los Angeles"}, {"@type": "Place", "name": "Napa Valley"}, {"@type": "Country", "name": "United States"}], "hasOfferCatalog": {"@type": "OfferCatalog", "name": "AI Advisor services", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "AI Roadmap", "description": "A roadmap ranked by value and readiness, revisited every quarter as the tools and your business change."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Vendor & Proposal Review", "description": "A written review: what it really does, the all-in cost including usage fees, red flags and the questions to ask."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "AI Use Policy", "description": "A plain-English policy covering approved tools, data that never goes in, approval paths and disclosure, ready for your counsel to review."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Leadership & Board Briefings", "description": "A short quarterly briefing and a standing agenda item, so leadership decides from facts rather than headlines."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Team Adoption", "description": "Role-based training and office hours, built around your own work rather than generic examples."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Vendor & Agency Oversight", "description": "A monthly scorecard for each AI vendor and agency against the metric they committed to."}}]}}, {"@type": "DefinedTerm", "@id": "https://siamakconsulting.com/ai-advisory#term", "name": "AI advisor", "description": "An AI advisor is a senior, independent expert who guides a business owner or leadership team through artificial-intelligence decisions: which opportunities to pursue, which vendors to trust, what policies to set and how to measure results. Unlike a vendor or an agency, an AI advisor is paid for judgment, not for selling software or hours of execution.", "inDefinedTermSet": "https://siamakconsulting.com/the-growth-glossary", "url": "https://siamakconsulting.com/ai-advisory"}, {"@type": "FAQPage", "@id": "https://siamakconsulting.com/ai-advisory#faq", "mainEntity": [{"@type": "Question", "name": "What does a fractional AI advisor do?", "acceptedAnswer": {"@type": "Answer", "text": "A fractional AI advisor gives you senior AI judgment for a few hours a month instead of a full-time hire: setting the AI roadmap, reviewing vendor proposals, writing your AI use policy, briefing leadership and checking whether the AI you've bought is paying off."}}, {"@type": "Question", "name": "How is this different from your AI Advisor voice assistant?", "acceptedAnswer": {"@type": "Answer", "text": "The AI Advisor is a free AI you can talk to at any hour about growth and AI visibility. This page is about engaging me personally, as a human advisor, for decisions specific to your business."}}, {"@type": "Question", "name": "How much of my time does it take?", "acceptedAnswer": {"@type": "Answer", "text": "Typically one standing session a week or fortnight, plus short questions in between. The baseline month asks a little more, mostly for access to people and numbers."}}, {"@type": "Question", "name": "Can you advise our board or partners?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Quarterly briefings for boards, partners and leadership teams are a standard part of the engagement, written so non-technical directors can make decisions from them."}}, {"@type": "Question", "name": "Is your AI use policy legal advice?", "acceptedAnswer": {"@type": "Answer", "text": "No. It's an operational policy written in plain English. For regulated businesses I recommend having your counsel review it, and I'm happy to work alongside them."}}, {"@type": "Question", "name": "Do you recommend your own products?", "acceptedAnswer": {"@type": "Answer", "text": "Only when they're genuinely the best fit, and I'll say so plainly when they are. Most of the time the right answer is a tool you already own, a mainstream product or doing nothing yet."}}]}]}</script>
+<link rel="alternate" hreflang="en" href="https://siamakconsulting.com/ai-advisory"/><link rel="alternate" hreflang="x-default" href="https://siamakconsulting.com/ai-advisory"/><style id="canonical-nav-css">
+nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1180px;margin:0 auto;padding:15px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
+.brand-txt{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.05em;color:var(--text);white-space:nowrap}
+.brand-txt span{color:var(--muted)}
+.nav-right{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.nav-links{display:flex;gap:22px;align-items:center;flex-wrap:nowrap}
+.nav-links>a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s;white-space:nowrap}
+.nav-links>a:hover,.nav-links>a.active{color:var(--text)}
+.nav-item{position:relative}
+.dd-trigger{background:none;border:none;color:var(--muted);font-family:inherit;font-size:13px;font-weight:500;letter-spacing:.02em;cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:0;transition:color .2s;white-space:nowrap}
+.dd-trigger:hover{color:var(--text)}
+.dd-caret{font-size:9px;opacity:.65;transition:transform .2s}
+.has-dd.open .dd-caret{transform:rotate(180deg)}
+.dd-menu{position:absolute;top:calc(100% + 14px);left:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px;min-width:210px;display:none;flex-direction:column;gap:2px;z-index:200;box-shadow:0 14px 44px rgba(0,0,0,.55)}
+.has-dd::after{content:"";position:absolute;top:100%;left:0;right:0;height:16px}
+.has-dd.open .dd-menu{display:flex}
+.dd-menu a{padding:9px 14px;border-radius:7px;font-size:13px;font-weight:500;color:var(--muted);white-space:nowrap;text-decoration:none;transition:background .15s,color .15s}
+.dd-menu a:hover{background:var(--surface-2);color:var(--text)}
+@media(min-width:961px){.has-dd:hover .dd-menu{display:flex}}
+.nav-cta{font-family:var(--mono);font-size:12px;padding:9px 15px;border:1px solid var(--line-bright);border-radius:6px;color:var(--text)!important;text-decoration:none;white-space:nowrap}
+.nav-cta:hover{border-color:var(--cyan);box-shadow:0 0 18px rgba(45,212,255,.15)}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:21px;cursor:pointer}
+@media(max-width:960px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;background:var(--void);border-bottom:1px solid var(--line);padding:16px 28px 22px;gap:4px;max-height:80vh;overflow-y:auto}
+  .nav-links.open{display:flex}
+  .nav-links>a{padding:10px 0;width:100%}
+  .nav-item,.has-dd{width:100%}
+  .has-dd::after{display:none}
+  .dd-trigger{width:100%;padding:10px 0;justify-content:space-between}
+  .dd-menu{position:static;box-shadow:none;border:none;background:var(--surface);margin:0 0 6px;width:100%}
+  .nav-toggle{display:block}
+}
+
+@media(max-width:960px){.nav-in{padding:12px 16px;gap:10px}.brand{gap:8px}.brand img{height:24px!important}.brand-txt{font-size:11px}.brand-txt span{display:none}.nav-right{gap:8px}.nav-toggle{flex-shrink:0}.nav-cta{font-size:11px;padding:8px 10px}}
+@media(max-width:400px){.nav-cta{font-size:10.5px;padding:7px 8px;letter-spacing:0}}
+</style>
+<link rel="stylesheet" href="/type.css">
+<!--type-scaled-->
+
+<style id="ai-svc-css">
+/* ---- AI service pages: components layered on the site's base tokens ---- */
+.ph{padding:70px 0 34px}
+.ph-sub{font-size:18.5px}
+.ph-r{position:relative;border:1px solid var(--line-bright);border-radius:20px;padding:26px;background:radial-gradient(circle at 80% 0%,rgba(160,107,255,.18),transparent 55%),radial-gradient(circle at 0% 100%,rgba(45,212,255,.14),transparent 55%),var(--panel);box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.ph-r::before{content:'';position:absolute;inset:-1px;border-radius:20px;padding:1px;background:var(--glow);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.55;pointer-events:none}
+.ph-r-k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-dim);margin-bottom:14px}
+.ph-r-f{margin-top:16px;font-family:var(--mono);font-size:11px;color:var(--muted-dim);letter-spacing:.06em}
+.glance{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.glance div{background:var(--surface);padding:20px 20px}
+.glance b{display:block;font-family:var(--display);font-size:30px;font-weight:700;line-height:1.1;background:var(--glow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.glance span{display:block;font-size:13px;color:var(--muted);margin-top:5px;line-height:1.4}
+.defn{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:0;border:1px solid var(--line-bright);border-radius:16px;overflow:hidden;background:var(--surface)}
+.defn-main{padding:34px 36px;border-left:3px solid transparent;border-image:var(--glow) 1}
+.defn-main .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:12px}
+.defn-main h2{font-family:var(--display);font-size:clamp(24px,3vw,32px);font-weight:600;line-height:1.15;margin-bottom:14px}
+.defn-main p{font-size:17.5px;line-height:1.75;color:var(--text)}
+.defn-side{background:var(--surface-2);padding:30px 28px;display:flex;flex-direction:column;justify-content:center;border-left:1px solid var(--line)}
+.defn-side .k{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--violet);margin-bottom:10px}
+.defn-side p{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:19px;line-height:1.5;color:var(--text)}
+.note{margin-top:18px;padding:16px 20px;border:1px dashed var(--line-bright);border-radius:12px;font-size:15px;color:var(--muted);line-height:1.65;background:rgba(160,107,255,.05)}
+.note b{color:var(--text)}.note a,.lead a,.qa a,.fit a{color:var(--cyan);text-decoration:underline;text-underline-offset:3px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card .rcv{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);line-height:1.65}
+.card .rcv b{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:5px;font-weight:500}
+.card .more{display:inline-block;margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--cyan);text-decoration:none}
+.card .more:hover{text-decoration:underline}
+a.card{text-decoration:none;color:inherit;display:block}
+/* diagram frame */
+.dia{margin-top:26px;background:radial-gradient(ellipse at 50% 0%,rgba(45,212,255,.07),transparent 60%),var(--panel);border:1px solid var(--line);border-radius:18px;padding:34px}
+.nd{background:var(--surface);border:1px solid var(--line-bright);border-radius:12px;padding:16px 18px;position:relative}
+.nd h4{font-family:var(--display);font-size:16px;font-weight:600;margin-bottom:4px}
+.nd p{font-size:13.5px;color:var(--muted);line-height:1.55}
+.nd .i{font-family:var(--mono);font-size:11px;color:var(--cyan);letter-spacing:.1em;display:block;margin-bottom:6px}
+.nd.hot{border-color:var(--violet);box-shadow:0 0 0 1px rgba(160,107,255,.35),0 10px 30px rgba(160,107,255,.12)}
+.nd.hot .i{color:var(--violet)}
+.arr{display:flex;align-items:center;justify-content:center;color:var(--cyan);font-family:var(--mono);font-size:18px;flex:0 0 auto}
+/* flow */
+.flow{display:flex;align-items:stretch;gap:8px}
+.flow .nd{flex:1 1 0;min-width:0}
+/* hub */
+.hub{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;position:relative}
+.hub .core{grid-column:1/-1;justify-self:center;width:min(440px,100%);text-align:center;background:linear-gradient(180deg,rgba(45,212,255,.10),rgba(160,107,255,.10)),var(--surface);border:1px solid var(--cyan);border-radius:16px;padding:22px 26px;margin:6px 0}
+.hub .core h4{font-family:var(--display);font-size:22px;font-weight:700}
+.hub .core p{font-size:14px;color:var(--muted);margin-top:4px}
+.hub a.nd{text-decoration:none;color:inherit;transition:border-color .2s,transform .2s}
+.hub a.nd:hover{border-color:var(--cyan);transform:translateY(-2px)}
+/* filter */
+.filter{display:grid;grid-template-columns:1fr auto 1.5fr auto 1fr;gap:12px;align-items:center}
+.stack{display:flex;flex-direction:column;gap:10px}
+.pill{background:var(--surface);border:1px solid var(--line);border-radius:100px;padding:10px 16px;font-size:14px;color:var(--muted);text-align:center}
+.gates{display:flex;flex-direction:column;gap:10px;border:1px solid var(--violet);border-radius:14px;padding:14px;background:rgba(160,107,255,.06)}
+.verdict{border-radius:10px;padding:11px 16px;font-family:var(--display);font-weight:600;font-size:15px;text-align:center;border:1px solid var(--line-bright)}
+.verdict.good{border-color:#3ddc97;color:#7ef0bd;background:rgba(61,220,151,.07)}
+.verdict.mid{border-color:var(--cyan);color:var(--cyan);background:rgba(45,212,255,.06)}
+.verdict.low{border-color:#ffb454;color:#ffcf8f;background:rgba(255,180,84,.06)}
+.verdict.no{border-color:#ff7a7a;color:#ffa3a3;background:rgba(255,122,122,.06)}
+/* lanes */
+.lanes{display:flex;flex-direction:column;gap:14px}
+.lane{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center}
+.lane-l{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)}
+.lane:nth-child(2) .lane-l{color:var(--violet)}
+.lane .flow .nd{text-align:center;padding:14px 10px}
+.lane .flow .nd h4{margin:0;font-size:15.5px}
+.base{margin-top:6px;border:1px solid var(--line-bright);border-radius:12px;padding:14px;background:var(--surface-2)}
+.base .lane-l{color:var(--muted-dim);margin-bottom:10px;display:block;text-align:center}
+.base .row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.base .row span{font-size:13.5px;padding:7px 13px;border-radius:100px;border:1px solid var(--line-bright);color:var(--text);background:var(--surface)}
+/* anatomy */
+.anat{display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:14px;align-items:center}
+.anat .col{display:flex;flex-direction:column;gap:12px}
+.anat .core{background:linear-gradient(180deg,rgba(45,212,255,.12),rgba(160,107,255,.12)),var(--surface);border:1px solid var(--cyan);border-radius:50%;aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px;box-shadow:0 0 60px rgba(45,212,255,.12)}
+.anat .core h4{font-family:var(--display);font-size:22px;font-weight:700;margin-bottom:8px}
+.anat .core p{font-size:13.5px;color:var(--muted);line-height:1.55;max-width:230px}
+/* loop */
+.loop{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;position:relative}
+.loop .nd .ai{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.5}
+.loop .nd .you{font-size:13px;color:var(--text);margin-top:6px;line-height:1.5}
+.loop .nd .you::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--violet);margin-right:6px;vertical-align:1px}
+.loop .nd .ai::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--cyan);margin-right:6px;vertical-align:1px}
+.loop-back{margin-top:14px;text-align:center;font-family:var(--mono);font-size:12.5px;color:var(--muted-dim);border-top:1px dashed var(--line-bright);padding-top:12px}
+.legend{display:flex;gap:18px;justify-content:center;margin-top:12px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+/* table */
+.tbl-wrap{margin-top:22px;border:1px solid var(--line);border-radius:14px;overflow-x:auto;background:var(--surface)}
+table.cmp{width:100%;border-collapse:collapse;min-width:640px}
+table.cmp th,table.cmp td{text-align:left;padding:15px 18px;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.55;vertical-align:top}
+table.cmp thead th{font-family:var(--display);font-size:15px;font-weight:600;background:var(--surface-2);color:var(--text)}
+.hl-2 thead th:nth-child(2),.hl-3 thead th:nth-child(3),.hl-4 thead th:nth-child(4),.hl-5 thead th:nth-child(5){color:var(--cyan)}
+table.cmp tbody th{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted-dim);font-weight:500;width:150px}
+table.cmp td{color:var(--muted)}
+.hl-2 td:nth-child(2),.hl-3 td:nth-child(3),.hl-4 td:nth-child(4),.hl-5 td:nth-child(5){color:var(--text);background:rgba(45,212,255,.045)}
+table.cmp tr:last-child th,table.cmp tr:last-child td{border-bottom:none}
+/* fit */
+.fit{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.fit .side{border:1px solid var(--line);border-radius:14px;padding:26px 28px;background:var(--surface)}
+.fit .side h3{font-family:var(--display);font-size:18px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.fit .side.yes h3 span{color:#3ddc97}.fit .side.no h3 span{color:#ff7a7a}
+.fit ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.fit li{font-size:15px;color:var(--muted);line-height:1.6;padding-left:22px;position:relative}
+.fit .yes li::before{content:'✓';position:absolute;left:0;color:#3ddc97;font-weight:700}
+.fit .no li::before{content:'✕';position:absolute;left:0;color:#ff7a7a}
+/* proof */
+.proof .card .tag{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--violet);border:1px solid rgba(160,107,255,.4);border-radius:100px;padding:4px 10px;margin-bottom:14px}
+/* extra list */
+.xl{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
+.xl .x{border:1px solid var(--line);border-left:3px solid var(--violet);border-radius:10px;padding:18px 20px;background:var(--surface)}
+.xl .x b{display:block;font-family:var(--display);font-size:16px;margin-bottom:5px}
+.xl .x p{font-size:14.5px;color:var(--muted);line-height:1.6}
+/* related */
+.rel{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.rel a{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 18px;border:1px solid var(--line);border-radius:11px;background:var(--surface);text-decoration:none;color:var(--text);font-family:var(--display);font-weight:600;font-size:15.5px;transition:border-color .2s}
+.rel a span{font-family:var(--body);font-weight:400;font-size:13px;color:var(--muted);display:block;margin-top:2px}
+.rel a:hover{border-color:var(--cyan)}
+.rel a::after{content:'→';color:var(--cyan);font-family:var(--mono)}
+.crumb{font-family:var(--mono);font-size:12px;color:var(--muted-dim);margin-bottom:18px}
+.crumb a{color:var(--muted);text-decoration:none}.crumb a:hover{color:var(--cyan)}
+@media(max-width:1000px){
+  body.v2 .ph-viz.ph-r{max-width:520px;margin:34px 0 0}
+  .grid4{grid-template-columns:1fr 1fr}
+  .loop{grid-template-columns:1fr 1fr}
+  .filter{grid-template-columns:1fr}
+  .filter .arr{transform:rotate(90deg)}
+  .anat{grid-template-columns:1fr 1fr}
+  .anat .core{grid-column:1/-1;grid-row:1;aspect-ratio:auto;border-radius:16px;max-width:none}
+}
+@media(max-width:860px){
+  .defn{grid-template-columns:1fr}
+  .defn-side{border-left:none;border-top:1px solid var(--line)}
+  .defn-main{padding:26px 22px}.defn-side{padding:22px}
+  .dia{padding:20px 16px}
+  .flow{flex-direction:column}
+  .flow .arr{transform:rotate(90deg);height:18px}
+  .lane{grid-template-columns:1fr}
+  .hub{grid-template-columns:1fr 1fr}
+  .fit,.xl,.rel{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .grid4,.loop,.anat,.hub{grid-template-columns:1fr}
+  .wrap{padding:0 16px}
+  .cta-band{padding:32px 20px}
+  .ph-sub{font-size:17px}
+  .glance b{font-size:21px}
+}
+</style>
+<meta property="og:site_name" content="Siamak Kalhor Consulting">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://siamakconsulting.com/og/ai-advisory.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Advisor for Business Owners | Fractional AI Advisory">
+<meta name="twitter:description" content="A senior AI advisor on your side: vendor vetting, an AI roadmap, policy and team adoption, with no software to sell. Fractional AI advisory by Siamak Kalhor.">
+<meta name="twitter:image" content="https://siamakconsulting.com/og/ai-advisory.jpg">
+</head>
+<body class="v2">
+<a href="#main" class="skip-link">Skip to content</a>
+<div class="ambient"></div>
+<nav>
+  <div class="nav-in">
+    <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
+    <div class="nav-links" id="navLinks">
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Services <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/ai-consulting">AI Consulting</a><a href="/ai-advisory" class="active" aria-current="page">AI Advisory</a><a href="/ai-automation">AI Automation</a><a href="/ai-agents">AI Agents</a><a href="/ai-seo">AI SEO</a><a href="/ai-marketing">AI Marketing</a><a href="/ai-visibility">AI Visibility</a><a href="/answers">Answers</a><a href="/ai-search-marketing-consultant">AI Search Marketing</a><a href="/llmo-training">Team Training</a><a href="/llm-optimization">LLM Optimization</a>
+          <a href="/internet-marketing">Internet Marketing</a>
+          <a href="/social-media-marketing">Social Media Marketing</a>
+          <a href="/brand-creation">Brand Creation</a>
+          <a href="/services">All Services &rarr;</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Industries <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/law-firm-marketing-consultant">Law Firms</a>
+          <a href="/dental-marketing-consultant">Dental Practices</a>
+          <a href="/medical-practice-marketing-consultant">Medical Practices</a>
+          <a href="/cosmetic-surgery-marketing-consultant">Cosmetic Surgery</a>
+          <a href="/ecommerce-marketing-consultant">E-commerce</a>
+          <a href="/ai-for-restaurants">Restaurants</a>
+          <a href="/ai-for-contractors">Contractors</a>
+          <a href="/ai-for-law-firms">AI Client Intake &rarr;</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Resources <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/growth-framework">S.C.A.L.E. Framework</a><a href="https://scale.siamakconsulting.com/">S.C.A.L.E. App &rarr;</a>
+          <a href="/the-growth-glossary">Growth Glossary</a>
+          <a href="/the-long-view">The Long View</a><a href="/ai-marketing-news">AI News</a><a href="/local">Local Visibility Check</a>
+          <a href="/faq">Ask Siamak</a>
+          <a href="/how-much-does-llmo-cost">Pricing</a>
+        <a href="/analyze-your-brand">AI Authority Audit</a>
+          <a href="/ai-advisor">AI Advisor</a>
+          <a href="/ask">Ask My AI</a>
+          <a href="/seo-vs-llmo">SEO vs LLMO</a>
+          <a href="/llm-info">Info for AI Systems</a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Portfolio <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/portfolio">The Portfolio</a><a href="/textile-wizard">Textile Wizard</a><a href="/listings">Real Estate</a><a href="/listings/95-longhorn-ridge-napa">Napa Valley</a><a href="/listings/1048-s-los-angeles-st-dtla">Downtown LA</a><a href="/listings/k2-investment">K2 Investment</a>
+          <a href="/portfolio#clients">Clients</a>
+        </div>
+      </div>
+      <a href="/analyze-your-brand">AI Audit</a>
+      <a href="/about-us">About</a>
+      <a href="/contact-us">Contact</a>
+      <div class="nav-item has-dd">
+        <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false" style="font-family:var(--mono);font-size:13px;">&#127760; <span class="dd-caret">&#9662;</span></button>
+        <div class="dd-menu">
+          <a href="/">English</a>
+          <a href="/es">Espa&ntilde;ol</a>
+          <a href="/fa">&#1601;&#1575;&#1585;&#1587;&#1740;</a>
+          <a href="/hy">&#1344;&#1377;&#1397;&#1381;&#1408;&#1381;&#1398;</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="/audit" class="nav-cta">Run Your Free Scan &rarr;</a>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" onclick="const o=document.getElementById('navLinks').classList.toggle('open');this.setAttribute('aria-expanded',o)">&#9776;</button>
+    </div>
+  </div>
+</nav>
+<main id="main">
+<header class="ph"><div class="wrap"><div class="crumb"><a href="/">Home</a> / <a href="/ai-consulting">AI Consulting</a> / <span>AI Advisory</span></div><div class="eyebrow"><span class="dot"></span>AI Advisor · Fractional AI Advisory</div><h1 class="ph-h">An AI advisor with <span class="grad">nothing to sell you</span> but judgment.</h1><p class="ph-sub">Every vendor now has an AI pitch. I sit on your side of the table: <strong>vetting tools, setting the roadmap, writing the rules your team works by and briefing leadership</strong>, on a fixed cadence and without a full-time salary.</p><div class="ph-btns"><a href="/online-consulting" class="btn btn-pri">Book a free 30-min call &rarr;</a><a href="https://scale.siamakconsulting.com/" class="btn btn-ghost">Free S.C.A.L.E. scan</a></div><aside class="ph-viz ph-r" aria-label="At a glance"><div class="ph-r-k">At a glance</div><div class="glance"><div><b>Fractional</b><span>weekly or fortnightly</span></div><div><b>Neutral</b><span>no product to push</span></div><div><b>Board-ready</b><span>leadership briefings</span></div><div><b>30 min</b><span>free first call</span></div></div><div class="ph-r-f">Siamak Kalhor · AI Consultant · Los Angeles</div></aside></div></header>
+<section><div class="wrap"><div class="defn"><div class="defn-main"><div class="k">Definition</div><h2>What is an AI advisor?</h2><p>An AI advisor is a senior, independent expert who guides a business owner or leadership team through artificial-intelligence decisions: which opportunities to pursue, which vendors to trust, what policies to set and how to measure results. Unlike a vendor or an agency, an AI advisor is paid for judgment, not for selling software or hours of execution.</p></div><div class="defn-side"><div class="k">In plain English</div><p>The experienced person you call before you sign the AI contract, and again when you want to know whether it&#x27;s working.</p></div></div><div class="note"><b>Looking for the AI Advisor you can talk to?</b> My free 24/7 <a href="/ai-advisor">AI Advisor</a> is a voice and video assistant trained on my work, available in 20 languages. This page is about working with me directly as your human advisor.</div></div></section>
+<section><div class="wrap"><div class="sec-label">The decisions</div><h2 class="sec-h">Four decisions an AI advisor <span class="grad">helps you get right</span></h2><p class="lead">Most of the value of an advisor is in the expensive mistakes you don't make, which is why the work is organised around decisions rather than tasks.</p><div class="grid4"><div class="card"><div class="ico">▦</div><h3>Buy, build or wait?</h3><p>Some AI is ready for your business today, some is a year from useful, and some will never pay. Knowing which is which is the first decision.</p></div><div class="card"><div class="ico">◇</div><h3>Which vendor?</h3><p>Proposals look alike and pricing hides in usage fees. I read them like a buyer, not a seller.</p></div><div class="card"><div class="ico">◈</div><h3>What&#x27;s allowed?</h3><p>Which tools staff may use, what data never goes into them and what you disclose to customers, written down before something goes wrong.</p></div><div class="card"><div class="ico">◎</div><h3>Is it working?</h3><p>A metric agreed before money is spent, and someone independent checking it afterwards.</p></div></div></div></section>
+<section><div class="wrap"><div class="sec-label">How I filter AI decisions</div><h2 class="sec-h">Everything passes through four gates</h2><p class="lead">Pitches, staff ideas, competitor moves and headlines all go through the same filter, and come out with one of four verdicts.</p><div class="dia"><div class="filter"><div class="stack"><div class="pill">Vendor pitches</div><div class="pill">Staff ideas</div><div class="pill">Competitor moves</div><div class="pill">Headlines &amp; hype</div></div><div class="arr" aria-hidden="true">→</div><div class="gates"><div class="nd"><h4>Business value</h4><p>Does it move revenue, cost, speed or risk?</p></div><div class="nd"><h4>Readiness</h4><p>Are the data, process and people ready?</p></div><div class="nd"><h4>Risk &amp; compliance</h4><p>What could go wrong, and who is exposed?</p></div><div class="nd"><h4>Payback</h4><p>When does it pay for itself, all-in?</p></div></div><div class="arr" aria-hidden="true">→</div><div class="stack"><div class="verdict good">Do now</div><div class="verdict mid">Pilot first</div><div class="verdict low">Park</div><div class="verdict no">Never</div></div></div></div></div></section>
+<section id="how-i-help"><div class="wrap"><div class="sec-label">What I do as your advisor</div><h2 class="sec-h">Fractional AI advisory, deliverable by deliverable</h2><p class="lead">An advisory relationship should leave a paper trail you can hold me to. These are the artifacts it produces.</p><div class="grid3"><div class="card"><div class="ico">▦</div><h3>AI Roadmap</h3><p>Where AI fits in your business over the next twelve months, in order.</p><div class="rcv"><b>You receive</b>A roadmap ranked by value and readiness, revisited every quarter as the tools and your business change.</div></div><div class="card"><div class="ico">◇</div><h3>Vendor &amp; Proposal Review</h3><p>A buyer&#x27;s read of any AI proposal, contract or demo before you commit.</p><div class="rcv"><b>You receive</b>A written review: what it really does, the all-in cost including usage fees, red flags and the questions to ask.</div></div><div class="card"><div class="ico">◈</div><h3>AI Use Policy</h3><p>Clear rules for how your team uses AI with customer and company data.</p><div class="rcv"><b>You receive</b>A plain-English policy covering approved tools, data that never goes in, approval paths and disclosure, ready for your counsel to review.</div></div><div class="card"><div class="ico">◎</div><h3>Leadership &amp; Board Briefings</h3><p>What changed in AI this quarter that matters to your business, and what didn&#x27;t.</p><div class="rcv"><b>You receive</b>A short quarterly briefing and a standing agenda item, so leadership decides from facts rather than headlines.</div></div><div class="card"><div class="ico">⟁</div><h3>Team Adoption</h3><p>Getting people fluent and confident, with guardrails that protect the brand.</p><div class="rcv"><b>You receive</b>Role-based training and office hours, built around your own work rather than generic examples.</div><a class="more" href="/llmo-training">Learn more &rarr;</a></div><div class="card"><div class="ico">⬡</div><h3>Vendor &amp; Agency Oversight</h3><p>Holding the people you already pay to measurable outcomes.</p><div class="rcv"><b>You receive</b>A monthly scorecard for each AI vendor and agency against the metric they committed to.</div></div></div></div></section>
+<section><div class="wrap"><div class="sec-label">Similar roles</div><h2 class="sec-h">AI advisor, AI consultant, fractional CTO or vendor?</h2><p class="lead">These titles get used interchangeably. They&#x27;re different jobs, and the right one depends on what you need.</p><div class="tbl-wrap"><table class="cmp hl-2"><thead><tr><th scope="col"></th><th scope="col">AI advisor</th><th scope="col">AI consultant</th><th scope="col">Fractional CTO</th><th scope="col">AI vendor</th></tr></thead><tbody><tr><th scope="row">Focus</th><td>Decisions and direction</td><td>Defined projects and builds</td><td>Your technology stack and engineers</td><td>Its own product</td></tr><tr><th scope="row">Cadence</th><td>Ongoing, a few hours a month</td><td>Project-based</td><td>Ongoing, part-time</td><td>Sales cycle, then support</td></tr><tr><th scope="row">Best when</th><td>Leadership needs a trusted second opinion on every AI move</td><td>You know the problem and need it solved</td><td>You have a software team to lead</td><td>You&#x27;ve already chosen the solution</td></tr><tr><th scope="row">Paid for</th><td>Judgment</td><td>Delivery</td><td>Technical leadership</td><td>Licences</td></tr></tbody></table></div></div></section>
+<section><div class="wrap"><div class="sec-label">How advisory works</div><h2 class="sec-h">From first call to standing cadence</h2><div class="steps"><div class="step"><div class="l">01</div><div><h4>Intake call</h4><p>A free 30 minutes to understand the business, the pressure you&#x27;re under and the AI decisions on the table.</p></div></div><div class="step"><div class="l">02</div><div><h4>30-day baseline</h4><p>An inventory of the AI already in use (including the tools staff adopted on their own), spend, data flows and the opportunities worth examining.</p></div></div><div class="step"><div class="l">03</div><div><h4>Roadmap</h4><p>The ranked roadmap and the first policy draft, agreed with leadership.</p></div></div><div class="step"><div class="l">04</div><div><h4>Standing cadence</h4><p>A weekly or fortnightly slot plus access between sessions for the decisions that can&#x27;t wait.</p></div></div><div class="step"><div class="l">05</div><div><h4>Quarterly review</h4><p>A written review of what worked, what to stop and what&#x27;s next, measured against the metrics we set.</p></div></div></div></div></section>
+<section><div class="wrap"><div class="sec-label">Who it&#x27;s for</div><h2 class="sec-h">A good fit, and not a fit</h2><p class="lead">I'd rather tell you now than six months into an engagement.</p><div class="fit"><div class="side yes"><h3><span>✓</span>Good fit</h3><ul><li>Owners and executives facing AI decisions without an in-house expert</li><li>Firms receiving AI pitches from vendors and agencies they can't evaluate</li><li>Regulated or confidential work (legal, medical, financial) that needs a policy first</li><li>Boards that want a clear, independent read on AI risk and opportunity</li></ul></div><div class="side no"><h3><span>✕</span>Not a fit</h3><ul><li>Teams that only need hands-on build capacity; see <a href="/ai-agents">AI agents</a> or <a href="/ai-automation">automation</a></li><li>Anyone wanting an advisor to sign off on a decision already made</li><li>Organisations looking for a full-time employee</li><li>Requests for legal advice; I work alongside your counsel, not instead of them</li></ul></div></div></div></section>
+<section><div class="wrap"><div class="sec-label">Why my advice is grounded</div><h2 class="sec-h">I advise on what I&#x27;ve built</h2><div class="grid4 proof"><a class="card" href="/portfolio"><span class="tag">8 products</span><h3>AI-native products shipped</h3><p>S.C.A.L.E., Orchamind, AisleBird, ResBizAI, Textile Wizard and more, designed, coded and launched end to end.</p><span class="more">View &rarr;</span></a><a class="card" href="/ai-for-law-firms"><span class="tag">Legal AI</span><h3>Your Legal Brain</h3><p>Built for confidential, regulated work: 24/7 intake under attorney supervision, designed around compliance from day one.</p><span class="more">View &rarr;</span></a><a class="card" href="/ai-advisor"><span class="tag">Voice AI</span><h3>The AI Advisor</h3><p>My own voice and video advisor in 20 languages: proof that I know what these systems can and can&#x27;t do in front of real customers.</p><span class="more">View &rarr;</span></a><a class="card" href="/about-us"><span class="tag">40 years</span><h3>Marketing leadership</h3><p>Four decades of fractional CMO and growth work, which is where the judgment about vendors, budgets and people comes from.</p><span class="more">View &rarr;</span></a></div></div></section>
+<section id="faq"><div class="wrap"><div class="sec-label">Questions</div><h2 class="sec-h">AI Advisory: frequently asked questions</h2><div class="faq"><div class="qa"><h3 style="font-family:var(--display);font-size:17px;font-weight:600;margin-bottom:8px">What does a fractional AI advisor do?</h3><p>A fractional AI advisor gives you senior AI judgment for a few hours a month instead of a full-time hire: setting the AI roadmap, reviewing vendor proposals, writing your AI use policy, briefing leadership and checking whether the AI you've bought is paying off.</p></div><div class="qa"><h3 style="font-family:var(--display);font-size:17px;font-weight:600;margin-bottom:8px">How is this different from your AI Advisor voice assistant?</h3><p>The <a href="/ai-advisor">AI Advisor</a> is a free AI you can talk to at any hour about growth and AI visibility. This page is about engaging me personally, as a human advisor, for decisions specific to your business.</p></div><div class="qa"><h3 style="font-family:var(--display);font-size:17px;font-weight:600;margin-bottom:8px">How much of my time does it take?</h3><p>Typically one standing session a week or fortnight, plus short questions in between. The baseline month asks a little more, mostly for access to people and numbers.</p></div><div class="qa"><h3 style="font-family:var(--display);font-size:17px;font-weight:600;margin-bottom:8px">Can you advise our board or partners?</h3><p>Yes. Quarterly briefings for boards, partners and leadership teams are a standard part of the engagement, written so non-technical directors can make decisions from them.</p></div><div class="qa"><h3 style="font-family:var(--display);font-size:17px;font-weight:600;margin-bottom:8px">Is your AI use policy legal advice?</h3><p>No. It's an operational policy written in plain English. For regulated businesses I recommend having your counsel review it, and I'm happy to work alongside them.</p></div><div class="qa"><h3 style="font-family:var(--display);font-size:17px;font-weight:600;margin-bottom:8px">Do you recommend your own products?</h3><p>Only when they're genuinely the best fit, and I'll say so plainly when they are. Most of the time the right answer is a tool you already own, a mainstream product or doing nothing yet.</p></div></div></div></section>
+<section><div class="wrap"><div class="cta-band"><h3>Get a second opinion before the next AI decision</h3><p>Start with a free 30-minute call. Bring the proposal, the pitch or the question that&#x27;s been sitting on your desk.</p><div class="cta-row"><a href="/online-consulting" class="btn btn-pri">Book a free 30-min call &rarr;</a><a href="tel:+13236577752" class="btn btn-ghost">Call 323-657-7752</a></div></div></div></section>
+<section><div class="wrap"><div class="sec-label">Related services</div><h2 class="sec-h">Explore the other practice areas</h2><div class="rel"><a href="/ai-consulting"><div>AI Consulting<span>Someone who has done this before tells you what&#x27;s worth…</span></div></a><a href="/ai-automation"><div>AI Automation<span>Software that can read, decide and draft, so your people…</span></div></a><a href="/ai-agents"><div>AI Agents<span>A digital team member that can take actions, not just chat,…</span></div></a><a href="/ai-seo"><div>AI SEO<span>Making sure that when someone asks a search engine or an AI…</span></div></a><a href="/ai-marketing"><div>AI Marketing<span>Using AI to do better marketing, and doing marketing that…</span></div></a><a href="/ai-consultant"><div>About your AI consultant<span>Who I am and how I work…</span></div></a></div></div></section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="/" class="brand"><img src="/assets/logo-mark.png" alt="Siamak Kalhor Consulting" style="height:28px;width:auto"><div class="brand-txt">SIAMAK_KALHOR<span>// LLMO</span></div></a>
+        <p><strong style="color:var(--text);display:block;margin-bottom:6px;">Strategy that outlives the algorithm.</strong>Large Language Model Optimization and AI authority consulting. I make brands the answer generative AI gives. 40 years of market experience, engineered for the AI era.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Services</h5>
+        <a href="/services">All Services</a>
+        <a href="/llm-optimization">LLM Optimization</a>
+        <a href="/business-dna">Business DNA</a>
+        <a href="/analyze-your-brand">Analyze Your Brand</a>
+        <a href="/ai-consultant">AI Consultant</a>
+        <a href="/ai-consulting">AI Consulting</a>
+        <a href="/ai-automation">AI Automation</a>
+        <a href="/ai-agents">AI Agents</a>
+        <a href="/ai-seo">AI SEO</a>
+        <a href="/ai-marketing">AI Marketing</a>
+        <a href="/ai-advisory">AI Advisory</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <a href="/about-us">About Us</a>
+        <a href="/online-consulting">Online Consulting</a>
+        <a href="/growth-framework">Growth Framework</a>
+        <a href="/the-long-view">The Long View</a>
+        <a href="/the-growth-glossary">Growth Glossary</a>
+        <a href="/contact-us">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Siamak Kalhor Consulting · All Rights Reserved</span>
+      <span>323-657-7752 · Los Angeles · Worldwide</span>
+     · <a href="/privacy">Privacy</a> · <a href="#cookie-preferences" data-sk-consent-open>Cookie preferences</a></div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- ElevenLabs Voice Widget — centered bottom -->
+<style>
+elevenlabs-convai{
+  position:fixed!important;
+  bottom:24px!important;
+  left:50%!important;
+  right:auto!important;
+  transform:translateX(-50%)!important;
+  z-index:9999!important;
+}
+</style>
+<elevenlabs-convai agent-id="agent_1501ksnmsv1dea1rmb2ed6t8rzwe" disable-banner="true"></elevenlabs-convai>
+<script type="text/plain" data-consent="functional" data-src="https://unpkg.com/@elevenlabs/convai-widget-embed"></script>
+
+
+<!-- GA4 Event Tracking — Siamak Kalhor Consulting -->
+<script>
+(function(){
+  function track(name, params){
+    if (typeof gtag === 'function') { gtag('event', name, params || {}); }
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a, button');
+    if (!a) return;
+    var href = (a.getAttribute('href') || '').toLowerCase();
+    var txt = (a.textContent || '').trim().toLowerCase();
+
+    // Phone clicks
+    if (href.indexOf('tel:') === 0) {
+      track('phone_click', {event_category:'lead', event_label:'phone', value:1});
+    }
+    // Email clicks
+    else if (href.indexOf('mailto:') === 0) {
+      track('email_click', {event_category:'lead', event_label:'email', value:1});
+    }
+    // Book a call / consultation buttons
+    else if (txt.indexOf('book') !== -1 || txt.indexOf('consultation') !== -1 || txt.indexOf('scan') !== -1 || href.indexOf('/contact') !== -1) {
+      track('book_call_click', {event_category:'lead', event_label:txt.slice(0,40), value:1});
+    }
+    // Product clicks (ecosystem)
+    else if (href.indexOf('aislebird.com') !== -1) {
+      track('product_click', {event_category:'ecosystem', event_label:'AisleBird'});
+    }
+    else if (href.indexOf('orchamind.com') !== -1) {
+      track('product_click', {event_category:'ecosystem', event_label:'Orchamind'});
+    }
+    else if (href.indexOf('resbizai.com') !== -1) {
+      track('product_click', {event_category:'ecosystem', event_label:'ResBizAI'});
+    }
+  }, true);
+
+  // Form submit = generate_lead (the money event)
+  document.addEventListener('submit', function(e){
+    var f = e.target;
+    if (!f || f.tagName !== 'FORM') return;
+    /* The hero scan bar is a GET form that starts the free scan. That is the
+       top of the funnel, not a lead. Counting it inflates generate_lead and
+       would teach the ad platforms to optimise for the wrong action. */
+    if (f.classList && f.classList.contains('hero-scan')) return;
+    track('generate_lead', {event_category:'lead', event_label:'contact_form', value:10});
+    if (typeof oaiq === 'function') {
+      oaiq('measure', 'lead_created', { type: 'customer_action' });
+    }
+  }, true);
+
+  // AI Advisor widget opened (ElevenLabs)
+  var advisorTracked = false;
+  document.addEventListener('click', function(e){
+    var w = e.target.closest('elevenlabs-convai');
+    if (w && !advisorTracked) {
+      advisorTracked = true;
+      track('ai_advisor_open', {event_category:'engagement', event_label:'voice_advisor'});
+    }
+  }, true);
+
+  // Language selection (on AI advisor / voice pages)
+  document.addEventListener('click', function(e){
+    var l = e.target.closest('.lang, .lang-btn, .lang-card');
+    if (l) {
+      var lang = (l.textContent || '').trim().slice(0,20);
+      track('language_select', {event_category:'engagement', event_label:lang});
+    }
+  }, true);
+})();
+</script>
+
+  <script src="/share.js" defer></script>
+<script id="canonical-nav-js">
+(function(){
+  document.querySelectorAll('#navLinks>a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open');});});
+  document.querySelectorAll('.dd-menu a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open');document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');});});});
+  document.querySelectorAll('.dd-trigger').forEach(function(t){
+    t.addEventListener('click',function(e){
+      e.preventDefault();e.stopPropagation();
+      var p=t.parentElement,was=p.classList.contains('open');
+      document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');var b=x.querySelector('.dd-trigger');if(b)b.setAttribute('aria-expanded','false');});
+      if(!was){p.classList.add('open');t.setAttribute('aria-expanded','true');}
+    });
+  });
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.has-dd')){document.querySelectorAll('.has-dd.open').forEach(function(x){x.classList.remove('open');var b=x.querySelector('.dd-trigger');if(b)b.setAttribute('aria-expanded','false');});}
+  });
+})();
+</script>
+<script defer src="/consent.js"></script>
+<script defer src="/robot.js"></script>
+</body>
+</html>

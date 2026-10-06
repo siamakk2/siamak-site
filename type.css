@@ -1148,3 +1148,10 @@ body.home .about-quote{
   font-size:clamp(12px,3.4cqw,16.5px); line-height:1.35;
   left:4.6cqw; right:4.6cqw; bottom:3.4cqw;
 }
+
+/* Services menu grew to 15 items (six AI practice pages added 2026-10-06).
+   On short laptop screens the last items would fall below the fold, so the
+   open menu scrolls instead of being clipped. */
+@media (min-width: 961px) {
+  .dd-menu { max-height: calc(100vh - 90px); overflow-y: auto; }
+}

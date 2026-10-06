@@ -31,6 +31,7 @@ const kicker   = arg('kicker', 'AI VISIBILITY');
 const headline = arg('headline', '');
 const sub      = arg('sub', '');
 const outDir   = arg('outdir', 'og/the-long-view');
+const label    = arg('label', 'THE LONG VIEW');   // bottom-right tag; service pages pass their own
 
 if (!slug || !headline) {
   console.error('need --slug and --headline');
@@ -97,7 +98,7 @@ const html = `<!doctype html><html><head><meta charset="utf-8"><style>
         <img src="data:image/png;base64,${portrait}" alt="">
         <div><div class="nm">Siamak Kalhor</div><div class="dm">siamakconsulting.com</div></div>
       </div>
-      <div class="brand">THE LONG VIEW</div>
+      <div class="brand">${esc(label)}</div>
     </div>
   </div>
 </body></html>`;

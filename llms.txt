@@ -25,6 +25,15 @@ Search is changing. People no longer click ten blue links — they ask an AI and
 - [Ecommerce marketing consultant](https://siamakconsulting.com/ecommerce-marketing-consultant): Engagement page for online stores — diagnosing where the sale leaks and getting products recommended by AI.
 - [Internet marketing consultant](https://siamakconsulting.com/internet-marketing-consultant): General engagement page for businesses that need strategy before tactics — diagnosing the constraint before recommending channels.
 
+## AI consulting services
+
+- [AI Consulting Services](https://siamakconsulting.com/ai-consulting): The service catalogue. Defines AI consulting, the six practice areas (strategy, advisory, automation, agents, AI SEO, AI marketing), how an engagement runs (diagnose, prioritise, pilot, implement, measure), and the four engagement models. The person behind it is described at /ai-consultant.
+- [AI Advisory](https://siamakconsulting.com/ai-advisory): Fractional, vendor-neutral AI advisory for owners and leadership teams: AI roadmap, vendor and proposal review, AI use policy, board briefings. Distinct from the AI Advisor voice assistant at /ai-advisor.
+- [AI Automation](https://siamakconsulting.com/ai-automation): Defines AI automation versus rule-based automation and explains which workflows to automate first (lead response, document processing, follow-up, scheduling, reporting), with humans kept in the loop and what should not be automated.
+- [AI Agents](https://siamakconsulting.com/ai-agents): Defines an AI agent versus a chatbot or automation, the six parts of a responsible business agent, the agents Siamak Kalhor builds, and agents he runs in production (the AI Advisor, Your Legal Brain).
+- [AI SEO](https://siamakconsulting.com/ai-seo): Defines AI SEO and its two meanings, compares classic search with AI answers, and lists the technical, entity, content and measurement work. Makes no ranking or citation guarantees.
+- [AI Marketing](https://siamakconsulting.com/ai-marketing): Defines AI marketing, where AI improves marketing and where it erodes a brand, and the monthly operating model in which AI does the volume and people decide.
+
 ## What LLMO is (and why it matters)
 
 - [What is LLMO?](https://siamakconsulting.com/what-is-llmo): Large Language Model Optimization explained in plain language.
