@@ -279,6 +279,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
   <div class="sec-label">Pick a time</div>
   <h2 class="sec-h">Book a session</h2>
   <p class="book-lede">Weekday mornings at 8:00 AM, and Monday, Wednesday and Friday at 5:00 PM &mdash; Pacific Time. Choose a slot and I confirm by email, usually within one business day.</p>
+  <div id="paidNote" hidden style="border:1px solid rgba(61,220,151,.45);background:rgba(61,220,151,.08);border-radius:12px;padding:14px 18px;margin:0 0 18px;font-size:16px;color:var(--text)"><b>Payment received, thank you.</b> Choose a time for your 1-hour session below. I'll confirm by email.</div>
   <div class="book-grid" id="bookSlots"></div>
   <div class="book-form" id="bookForm" hidden>
     <p class="book-chosen" id="bookChosen"></p>
@@ -474,6 +475,10 @@ elevenlabs-convai{
     try{ form.scrollIntoView({behavior:'smooth',block:'nearest'}); }catch(e){}
   });
 
+  // Arriving from the Stripe payment link (?paid=session): say so, and mark the
+  // booking request as paid so it stands out in the inbox.
+  var PAID=/[?&]paid=session\b/.test(location.search);
+  if(PAID){ var pn=document.getElementById('paidNote'); if(pn) pn.hidden=false; }
   document.getElementById('bkGo').addEventListener('click',function(){
     if(!picked){ st.textContent='Please choose a time first.'; return; }
     var name=document.getElementById('bkName').value.trim(),
@@ -481,10 +486,10 @@ elevenlabs-convai{
     if(!name||!email){ st.textContent='Please add your name and email.'; return; }
     var btn=this; btn.disabled=true; st.textContent='Sending…';
     fetch('/api/book',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({name:name,email:email,
+      body:JSON.stringify({name:name,email:email,paid:PAID,
         phone:document.getElementById('bkPhone').value.trim(),
         company:document.getElementById('bkCo').value.trim(),
-        about:document.getElementById('bkAbout').value.trim(),
+        about:(PAID?'[PAID: 1-hour session, $350 via Stripe] ':'')+document.getElementById('bkAbout').value.trim(),
         date:picked.date,time:picked.time})})
       .then(function(r){return r.json();})
       .then(function(d){
