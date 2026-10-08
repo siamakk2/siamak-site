@@ -26,17 +26,16 @@ const URL = 'https://siamakconsulting.com/the-long-view/' + SLUG;
 const OGIMG = 'https://siamakconsulting.com/og/the-long-view/' + SLUG + '.jpg';
 
 // ---- 1. page ------------------------------------------------------------
-const T = fs.readFileSync(TEMPLATE, 'utf8').split('\n');
-const prelude = T.slice(0, 19).join('\n');
-const styles = T.slice(49, 194).join('\n');
-// The template now carries <article>/<header>, so the nav slice ends before
-// <main>. Locate it rather than trusting a line number.
-const bodyStart = T.findIndex(l => l.startsWith('<body id="top">'));
-const mainStart = T.findIndex(l => l.includes('<main id="main">'));
-const mainEnd = T.findIndex(l => l.trim() === '</main>' || l.includes('</article></main>'));
-const nav = T.slice(bodyStart + 1, mainStart).join('\n');
-const footer = T.slice(mainEnd + 1).join('\n');
-
+// The template is edited by hand over time (new head scripts, a body class),
+// so it is located by markers, never by line number. A line-number slice once
+// silently pasted a second whole document into a published page.
+const TPL = fs.readFileSync(TEMPLATE, 'utf8');
+function cut(str, startMarker, endMarker, from = 0) {
+  const i = str.indexOf(startMarker, from);
+  const j = str.indexOf(endMarker, i + startMarker.length);
+  if (i < 0 || j < 0) throw new Error('template marker missing: ' + startMarker + ' / ' + endMarker);
+  return [i, j];
+}
 const meta = [
   ['title', null, spec.title],
   ['meta', 'name=description', spec.description],
@@ -107,10 +106,20 @@ const closing = '\n</div></div></section>\n'
   + '<section><div class="wrap"><div class="sec-label">Related</div><div class="checks">' + checks + '</div></div></section>\n'
   + '</article></main>';
 
-const page = prelude + '\n' + head + '\n' + styles + '\n' + tail
-  + '\nSCHEMA_PLACEHOLDER\n</head>\n<body id="top">\n' + nav + '\n'
-  + hero + '<section class="prose-wrap"><div class="wrap"><div class="prose">\n\n'
-  + body + closing + '\n' + footer;
+// Head: swap the template's metadata block (title .. first preconnect),
+// its canonical, and its JSON-LD. Body: swap <main>. Nav, footer and every
+// site-wide script stay exactly as the template has them.
+let page = TPL;
+let [h1i, h1j] = cut(page, '<title>', '<link rel="preconnect"');
+page = page.slice(0, h1i) + head + '\n' + page.slice(h1j);
+page = page.replace(/<link rel="canonical" href="[^"]*"\/>/, '<link rel="canonical" href="' + URL + '"/>');
+page = page.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>\n?/g, '');
+page = page.replace('</head>', 'SCHEMA_PLACEHOLDER\n</head>');
+const [mi, mj] = cut(page, '<main id="main">', '</main>');
+page = page.slice(0, mi) + hero + '<section class="prose-wrap"><div class="wrap"><div class="prose">\n\n'
+  + body + closing + page.slice(mj + '</main>'.length);
+if ((page.match(/<!DOCTYPE/gi) || []).length !== 1 || (page.match(/<body\b/g) || []).length !== 1 || (page.match(/<title>/g) || []).length !== 1)
+  throw new Error('assembled page is malformed (doctype/body/title count)');
 
 const dir = path.join(ROOT, 'the-long-view', SLUG);
 fs.mkdirSync(dir, { recursive: true });
