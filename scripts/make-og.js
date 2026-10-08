@@ -32,6 +32,7 @@ const headline = arg('headline', '');
 const sub      = arg('sub', '');
 const outDir   = arg('outdir', 'og/the-long-view');
 const label    = arg('label', 'THE LONG VIEW');   // bottom-right tag; service pages pass their own
+const dir      = arg('dir', 'ltr');             // rtl for Persian pages
 
 if (!slug || !headline) {
   console.error('need --slug and --headline');
@@ -88,7 +89,7 @@ const html = `<!doctype html><html><head><meta charset="utf-8"><style>
   <div class="bg"></div>
   <div class="pad">
     <div class="kick"><span class="n">SIAMAK_KALHOR</span><span class="s">//</span><span class="c">${esc(kicker)}</span></div>
-    <div class="mid">
+    <div class="mid" dir="${dir}">
       <h1>${lines.map(esc).join('<br>')}</h1>
       <div class="rule"></div>
       ${sub ? `<div class="sub">${esc(sub)}</div>` : ''}
