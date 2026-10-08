@@ -287,3 +287,69 @@
   idling = true;
   setTimeout(idle, 2600);
 })();
+
+/* ============================================================================
+   3D touches, site-wide (rides along with the robot because this is the one
+   script every page already loads).
+     - Logo: turns in 3D with a slow sway; spins once on hover.
+     - Robot: turns toward the pointer, and his eyes follow it.
+     - Buttons: raised with a bevel, lean toward the pointer, press down.
+   No position:fixed additions, no CSS filters, nothing for reduced motion.
+   ========================================================================= */
+(function () {
+  'use strict';
+  if (window.__sk3dUI) return; window.__sk3dUI = true;
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hover = window.matchMedia && matchMedia('(hover: hover)').matches;
+  var css = [
+    /* buttons: raised, bevelled, pressable (works on touch too) */
+    '.btn,.nav-cta{transform-style:preserve-3d;will-change:transform}',
+    '.btn-pri{box-shadow:inset 0 -3px 0 rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.35),0 10px 24px -8px rgba(255,150,90,.55)}',
+    '.sk3d-btn{transform:perspective(600px) translateY(-2px) rotateX(var(--bx,0deg)) rotateY(var(--by,0deg))}',
+    '.btn:active,.nav-cta:active{transform:perspective(600px) translateY(1px) scale(.98)!important;transition:transform .06s}',
+    '.btn-pri:active{box-shadow:inset 0 2px 4px rgba(0,0,0,.3),0 4px 10px -6px rgba(255,150,90,.5)}',
+    /* logo */
+    '.brand{perspective:500px}',
+    '.brand img{transform-style:preserve-3d;transition:transform .9s cubic-bezier(.2,.8,.2,1)}',
+    '@media(prefers-reduced-motion:no-preference){',
+    ' .brand img{animation:sk3d-sway 7s ease-in-out infinite}',
+    ' .brand:hover img{animation:sk3d-spin 1.1s cubic-bezier(.3,.7,.3,1) 1}',
+    '}',
+    '@keyframes sk3d-sway{0%,100%{transform:rotateY(-16deg) rotateX(4deg)}50%{transform:rotateY(16deg) rotateX(-4deg)}}',
+    '@keyframes sk3d-spin{from{transform:rotateY(0)}to{transform:rotateY(360deg)}}',
+    /* robot */
+    '.sk-bot-btn{perspective:420px}',
+    '.sk-bot-btn svg{transform:rotateY(var(--ty,0deg)) rotateX(var(--tx,0deg));transition:transform .35s ease-out;transform-style:preserve-3d}',
+    '#skbEyes{transform:translate(var(--ex,0px),var(--ey,0px));transition:transform .2s ease-out}'
+  ].join('\n');
+  var st = document.createElement('style'); st.id = 'sk-3d-ui'; st.textContent = css;
+  document.head.appendChild(st);
+  if (reduced || !hover) return;
+
+  var raf = 0, lx = 0, ly = 0;
+  document.addEventListener('pointermove', function (e) {
+    lx = e.clientX; ly = e.clientY;
+    if (!raf) raf = requestAnimationFrame(tick);
+    var b = e.target.closest && e.target.closest('.btn,.nav-cta');
+    if (b) {
+      var r = b.getBoundingClientRect();
+      b.classList.add('sk3d-btn');
+      b.style.setProperty('--by', (((lx - r.left) / r.width - 0.5) * 16).toFixed(1) + 'deg');
+      b.style.setProperty('--bx', (-((ly - r.top) / r.height - 0.5) * 18).toFixed(1) + 'deg');
+      if (!b._sk3d) { b._sk3d = 1; b.addEventListener('pointerleave', function () { b.classList.remove('sk3d-btn'); }); }
+    }
+  }, { passive: true });
+
+  function tick() {
+    raf = 0;
+    var svg = document.querySelector('.sk-bot-btn svg');
+    if (!svg) return;
+    var r = svg.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    var dx = (lx - cx) / innerWidth, dy = (ly - cy) / innerHeight;
+    var root = document.querySelector('.sk-bot-btn');
+    root.style.setProperty('--ty', Math.max(-28, Math.min(28, dx * 60)).toFixed(1) + 'deg');
+    root.style.setProperty('--tx', Math.max(-18, Math.min(18, -dy * 40)).toFixed(1) + 'deg');
+    root.style.setProperty('--ex', Math.max(-7, Math.min(7, dx * 22)).toFixed(1) + 'px');
+    root.style.setProperty('--ey', Math.max(-5, Math.min(5, dy * 16)).toFixed(1) + 'px');
+  }
+})();
