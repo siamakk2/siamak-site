@@ -56,10 +56,15 @@
       var r = cv.getBoundingClientRect();
       // Centre the network on the answer console, so it reads as the web of
       // sources the answer is drawn from.
-      if (anchor) {
+      var small = touch || innerWidth < 900;
+      if (small) {
+        // Phones: the console sits far down the page, so the network goes
+        // behind the headline, where it is actually seen.
+        AX = r.width * 0.6; AY = Math.min(r.height * 0.2, 250); AS = Math.min(r.width, 520) * 0.52;
+      } else if (anchor) {
         var a = anchor.getBoundingClientRect();
-        AX = a.left - r.left + a.width / 2; AY = a.top - r.top + a.height / 2;
-        AS = Math.max(a.width, a.height) * (touch || innerWidth < 760 ? 0.62 : 0.56);
+        AX = a.left - r.left + a.width * 0.5; AY = a.top - r.top + a.height * 0.62;
+        AS = Math.max(a.width, a.height) * 0.9;
       }
       DPR = Math.min(window.devicePixelRatio || 1, touch ? 1.5 : 2);
       W = r.width; H = r.height;
@@ -79,38 +84,38 @@
     var CORE = { x: 0, y: 0, z: 0 };
     function frame(now) {
       var dt = Math.min(50, now - (last || now)); last = now;
-      if (!reduce) rotY += dt * 0.00012;
+      if (!reduce) rotY += dt * 0.00018;
       tiltX += (aimX - tiltX) * 0.05; tiltY += (aimY - tiltY) * 0.05;
       ctx.clearRect(0, 0, W, H);
       var P = nodes.map(project), C = project(CORE);
       ctx.lineWidth = 1;
       for (var e = 0; e < edges.length; e++) {
         var p = P[edges[e][0]], q = P[edges[e][1]];
-        var al = Math.max(0.03, Math.min(0.32, (p.f + q.f - 1.2) * 0.35));
+        var al = Math.max(0.03, Math.min(0.55, (p.f + q.f - 1.1) * 0.5));
         ctx.strokeStyle = 'rgba(120,170,255,' + al.toFixed(3) + ')';
         ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
       }
       for (var s2 = 0; s2 < spokes.length; s2++) {
         var n = P[spokes[s2]];
         var g = ctx.createLinearGradient(n.x, n.y, C.x, C.y);
-        g.addColorStop(0, 'rgba(45,212,255,0.02)'); g.addColorStop(1, 'rgba(160,107,255,0.30)');
+        g.addColorStop(0, 'rgba(45,212,255,0.08)'); g.addColorStop(1, 'rgba(160,107,255,0.5)');
         ctx.strokeStyle = g; ctx.beginPath(); ctx.moveTo(n.x, n.y); ctx.lineTo(C.x, C.y); ctx.stroke();
       }
       // pulses travelling inward along spokes: citations arriving
-      if (!reduce && Math.random() < 0.06 && pulses.length < 14) pulses.push({ s: spokes[(Math.random() * spokes.length) | 0], t: 0 });
+      if (!reduce && Math.random() < 0.12 && pulses.length < 22) pulses.push({ s: spokes[(Math.random() * spokes.length) | 0], t: 0 });
       for (var u2 = pulses.length - 1; u2 >= 0; u2--) {
         var pu = pulses[u2]; pu.t += dt * 0.0009;
         if (pu.t >= 1) { pulses.splice(u2, 1); continue; }
         var from = P[pu.s], px = from.x + (C.x - from.x) * pu.t, py = from.y + (C.y - from.y) * pu.t;
         ctx.fillStyle = 'rgba(255,200,120,' + (0.9 * Math.sin(pu.t * Math.PI)).toFixed(3) + ')';
-        ctx.beginPath(); ctx.arc(px, py, 2.2, 0, 6.283); ctx.fill();
+        ctx.beginPath(); ctx.arc(px, py, 2.8, 0, 6.283); ctx.fill();
       }
       // nodes, far to near
       var order = P.map(function (p, i2) { return i2; }).sort(function (i1, i3) { return P[i3].z - P[i1].z; });
       for (var o = 0; o < order.length; o++) {
         var idx = order[o], pp = P[idx], nd = nodes[idx];
         var rad = nd.size * pp.f * 1.3, alpha = Math.max(0.15, Math.min(1, (pp.f - 0.62) * 1.6));
-        ctx.fillStyle = 'rgba(' + COL[nd.hue] + ',' + (alpha * 0.18).toFixed(3) + ')';
+        ctx.fillStyle = 'rgba(' + COL[nd.hue] + ',' + (alpha * 0.28).toFixed(3) + ')';
         ctx.beginPath(); ctx.arc(pp.x, pp.y, rad * 3.2, 0, 6.283); ctx.fill();
         ctx.fillStyle = 'rgba(' + COL[nd.hue] + ',' + alpha.toFixed(3) + ')';
         ctx.beginPath(); ctx.arc(pp.x, pp.y, rad, 0, 6.283); ctx.fill();
