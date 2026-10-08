@@ -123,42 +123,51 @@ For the "preview" content: write it as polished marketing copy a professional co
 
     const user = 'Audit this website: ' + url + ' (host: ' + host + ')\n\n--- FETCHED CONTENT ---\n' + pageText;
 
-    const aResp = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 2600,
-        system: system,
-        messages: [{ role: 'user', content: user }]
-      })
-    });
-
-    const data = await aResp.json();
-    let txt = '';
-    if (data && Array.isArray(data.content)) {
-      txt = data.content.filter(b => b.type === 'text').map(b => b.text).join('').trim();
-    }
-    if (!txt) {
-      return res.status(200).json({ error: "The analysis came back empty. Please try again, or call Siamak at 323-657-7752." });
-    }
-
-    // Strip any stray code fences and parse
-    txt = txt.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```$/i, '').trim();
-    let report;
-    try { report = JSON.parse(txt); }
-    catch (e) {
-      // Try to salvage the JSON object
+    // The report is returned through a forced tool call, so the model has to
+    // produce one complete JSON object. Free text was cut off mid-object when
+    // the report ran past max_tokens, which is what "couldn't format the
+    // report" meant. One retry with a bigger budget if it still truncates.
+    async function ask(maxTokens) {
+      const aResp = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-6',
+          max_tokens: maxTokens,
+          system: system + '\n\nDeliver the report by calling the submit_report tool with that JSON object as its input.',
+          tools: [{ name: 'submit_report', description: 'Submit the finished website report.',
+            input_schema: { type: 'object', properties: {
+              business_name: { type: 'string' }, what_they_do: { type: 'string' }, industry: { type: 'string' },
+              overall_score: { type: 'integer' }, grade_label: { type: 'string' }, headline: { type: 'string' },
+              scores: { type: 'object' }, quick_wins: { type: 'array', items: { type: 'string' } },
+              ideas: { type: 'array', items: { type: 'string' } }, preview: { type: 'object' }, pitch: { type: 'string' } },
+              required: ['business_name', 'overall_score', 'scores', 'quick_wins', 'preview'] } }],
+          tool_choice: { type: 'tool', name: 'submit_report' },
+          messages: [{ role: 'user', content: user }]
+        })
+      });
+      const data = await aResp.json();
+      if (!aResp.ok) { console.error(JSON.stringify({ source: 'audit', status: aResp.status, error: data && data.error })); return { fail: 'api' }; }
+      const tool = (data.content || []).find(b => b.type === 'tool_use');
+      if (data.stop_reason === 'max_tokens') { console.error(JSON.stringify({ source: 'audit', truncated: maxTokens })); return { fail: 'truncated' }; }
+      if (tool && tool.input && typeof tool.input === 'object' && tool.input.scores) return { report: tool.input };
+      // Fallback: a text answer holding the JSON.
+      let txt = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('').trim()
+        .replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```$/i, '').trim();
       const m = txt.match(/\{[\s\S]*\}/);
-      if (m) { try { report = JSON.parse(m[0]); } catch (e2) {} }
+      if (m) { try { return { report: JSON.parse(m[0]) }; } catch (e) {} }
+      console.error(JSON.stringify({ source: 'audit', unparsed: true, stop: data.stop_reason }));
+      return { fail: 'format' };
     }
-    if (!report) {
-      return res.status(200).json({ error: "I analyzed the site but couldn't format the report. Please try again." });
+
+    let out = await ask(6000);
+    if (!out.report && out.fail !== 'api') out = await ask(10000);
+    if (!out.report) {
+      return res.status(200).json({ error: out.fail === 'api'
+        ? 'The analysis service is busy right now. Please try again in a minute, or call Siamak at 323-657-7752.'
+        : "I analyzed the site but couldn't format the report. Please try again." });
     }
+    const report = out.report;
 
     report.url = url;
     report.host = host;
