@@ -57,6 +57,7 @@ function normalize(r) {
 module.exports = async function handler(req, res) {
   if (!(await guard(req, res, { bucket: 'audit', limit: 15, window: 3600 }))) return;
 
+  const t0 = Date.now();
   try {
     const apiKey = process.env.ANTHROPIC_API_KEY;
     if (!apiKey) {
@@ -210,6 +211,7 @@ For the "preview" content: write it as polished marketing copy a professional co
 
     let out = await ask(6000);
     if (!out.report && out.fail !== 'api') out = await ask(10000);
+    console.log(JSON.stringify({ source: 'audit', host, ok: !!out.report, fail: out.fail || null, ms: Date.now() - t0 }));
     if (!out.report) {
       return res.status(200).json({ error: out.fail === 'api'
         ? 'The analysis service is busy right now. Please try again in a minute, or call Siamak at 323-657-7752.'
