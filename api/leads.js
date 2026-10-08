@@ -159,17 +159,29 @@ module.exports = async function handler(req, res) {
         const to = [String(lead.email).trim()];
         const notify = process.env.AUDIT_NOTIFY_EMAIL; // optional copy to Siamak
 
-        const ctrl = new AbortController();
-        const timer = setTimeout(() => ctrl.abort(), 15000);
-        const r = await fetch('https://api.resend.com/emails', {
-          method: 'POST', signal: ctrl.signal,
-          headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key },
-          body: JSON.stringify(Object.assign(
-            { from, to, subject, text, html },
-            notify ? { bcc: [notify] } : {}
-          ))
-        });
-        clearTimeout(timer);
+        // The Resend key may only be allowed to send from one domain. If the
+        // configured sender is refused ("not authorized to send emails from"),
+        // fall back to the main domain, which the site's other emails use.
+        const senders = [from, 'Siamak Kalhor Consulting <reports@siamakconsulting.com>']
+          .filter((v, i, a) => v && a.indexOf(v) === i);
+        let r;
+        for (const sender of senders) {
+          const ctrl = new AbortController();
+          const timer = setTimeout(() => ctrl.abort(), 15000);
+          r = await fetch('https://api.resend.com/emails', {
+            method: 'POST', signal: ctrl.signal,
+            headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key },
+            body: JSON.stringify(Object.assign(
+              { from: sender, to, subject, text, html },
+              notify ? { bcc: [notify] } : {}
+            ))
+          });
+          clearTimeout(timer);
+          console.log(JSON.stringify({ source: 'leads', sender, status: r.status }));
+          if (r.status !== 403) break;
+          const peek = await r.clone().text().catch(() => '');
+          if (!/not authorized to send/i.test(peek)) break;
+        }
         if (r.ok) { emailed = true; }
         else {
           const detail = await r.text().catch(() => '');
