@@ -54,7 +54,7 @@
   </url>
   <url>
     <loc>https://siamakconsulting.com/growth-framework</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -415,4 +415,11 @@
 <url><loc>https://siamakconsulting.com/ai-agents</loc><lastmod>2026-10-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 <url><loc>https://siamakconsulting.com/ai-seo</loc><lastmod>2026-10-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 <url><loc>https://siamakconsulting.com/ai-marketing</loc><lastmod>2026-10-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://siamakconsulting.com/academy</loc><lastmod>2026-10-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://siamakconsulting.com/academy/week-1</loc><lastmod>2026-10-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/academy/week-2</loc><lastmod>2026-10-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/academy/week-3</loc><lastmod>2026-10-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/academy/week-4</loc><lastmod>2026-10-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/academy/week-5</loc><lastmod>2026-10-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://siamakconsulting.com/academy/week-6</loc><lastmod>2026-10-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>
