@@ -116,7 +116,7 @@ async function enroll(body, res) {
 // the full course ($197, Stripe, handled by the S.C.A.L.E. app's billing
 // endpoint). Everyone who enrolled before paid access launched keeps free
 // access for life.
-const FOUNDER_CUTOFF = '2026-10-12T21:30:00Z';
+const FOUNDER_CUTOFF = '2026-10-12T21:06:00Z'; // everyone enrolled before 2:06 pm PT, Oct 12 2026
 const BILLING = process.env.ACADEMY_BILLING_URL || 'https://scale.siamakconsulting.com/api/billing/academy';
 async function isPaid(db, email) {
   if (!db || !email) return false;
