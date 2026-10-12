@@ -12,7 +12,7 @@ from academy_content import LESSONS
 
 ROOT = os.path.join(os.path.dirname(__file__), '..')
 SITE = 'https://siamakconsulting.com'
-V = '5'  # bump to bust the browser cache of academy.js
+V = '6'  # bump to bust the browser cache of academy.js
 COURSE_NAME = 'S.C.A.L.E. Framework: Growth Strategy for the AI Era'
 esc = lambda s: html.escape(s, quote=True)
 
@@ -91,7 +91,8 @@ CSS = '''<style>
 .ac-steps{display:flex;gap:6px;margin:10px 0 0}.ac-steps a{flex:1;text-align:center;text-decoration:none;font-family:var(--mono);font-size:12px;padding:7px 0;border-radius:8px;border:1px solid var(--line);color:var(--muted)}
 .ac-steps a.is-done{border-color:#2f8f5f;color:#7ee2a8}.ac-steps a.is-here{border-color:var(--cyan);color:var(--text)}
 #gate{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.78);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px}
-#gate[hidden]{display:none}#gate .ac-card{max-width:520px;width:100%}
+#gate[hidden],#paywall[hidden]{display:none}#gate .ac-card,#paywall .ac-card{max-width:520px;width:100%}
+#paywall{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.78);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px}
 body.gated{overflow:hidden}
 .cert{background:#fbf9f3;color:#14202f;border-radius:18px;padding:56px 48px;text-align:center;border:10px double #0e7490;max-width:900px;margin:0 auto}
 .cert .k{font-family:var(--mono);letter-spacing:.2em;font-size:13px;color:#0e7490}
@@ -132,11 +133,11 @@ PERSON = {'@type': 'Person', '@id': SITE + '/#person', 'name': 'Siamak Kalhor', 
 ORG = {'@type': 'Organization', '@id': SITE + '/#business', 'name': 'Siamak Kalhor Consulting', 'url': SITE}
 COURSE = {'@context': 'https://schema.org', '@type': 'Course', '@id': SITE + '/academy#course', 'name': COURSE_NAME,
           'alternateName': 'S.C.A.L.E. Academy', 'url': SITE + '/academy',
-          'description': 'A free six-week online course with an AI tutor: how ChatGPT, Gemini, Claude and Perplexity decide which businesses to recommend, and the five-stage S.C.A.L.E. Framework (Scan, Clarify, Amplify, Leverage, Evaluate) for earning that recommendation.',
-          'provider': ORG, 'creator': PERSON, 'inLanguage': 'en', 'isAccessibleForFree': True,
+          'description': 'A six-week online course with an AI tutor (week 1 free): how ChatGPT, Gemini, Claude and Perplexity decide which businesses to recommend, and the five-stage S.C.A.L.E. Framework (Scan, Clarify, Amplify, Leverage, Evaluate) for earning that recommendation.',
+          'provider': ORG, 'creator': PERSON, 'inLanguage': 'en', 'isAccessibleForFree': False,
           'educationalCredentialAwarded': 'Certificate of completion',
           'teaches': ['Large Language Model Optimization (LLMO)', 'AI visibility', 'Positioning', 'Schema markup', 'Citation building', 'Marketing measurement'],
-          'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'USD', 'category': 'Free'},
+          'offers': {'@type': 'Offer', 'price': '197', 'priceCurrency': 'USD', 'category': 'Paid', 'availability': 'https://schema.org/InStock', 'url': SITE + '/academy'},
           'hasCourseInstance': {'@type': 'CourseInstance', 'courseMode': 'Online', 'courseWorkload': 'PT3H', 'instructor': PERSON},
           'syllabusSections': [{'@type': 'Syllabus', 'name': f"Week {l['n']}: {l['title']}", 'description': l['summary'], 'url': f"{SITE}/academy/week-{l['n']}"} for l in LESSONS]}
 
@@ -153,13 +154,13 @@ ENROLL_FORM = '''<form class="ac-enroll" data-enroll {extra}>
 <label class="sr-only" for="{p}-email" style="position:absolute;left:-9999px">Email</label><input id="{p}-email" name="email" type="email" autocomplete="email" required placeholder="Email address">
 <label class="sr-only" for="{p}-biz" style="position:absolute;left:-9999px">Business website (optional)</label><input id="{p}-biz" name="business" placeholder="Business you'll work on (optional)">
 <button type="submit">{cta}</button><p class="form-msg" role="status"></p>
-<p style="font-size:13px;color:var(--muted-dim);margin:0">Free. We email your welcome link and certificate; no spam. <a href="/privacy" style="color:var(--muted)">Privacy</a></p>
+<p style="font-size:13px;color:var(--muted-dim);margin:0">Week 1 is free. We email your personal course link; no spam. <a href="/privacy" style="color:var(--muted)">Privacy</a></p>
 </form>'''
 
 # ------------------------------------------------------------------ landing
 FAQ = [
- ('What is the S.C.A.L.E. Academy?', 'The S.C.A.L.E. Academy is a free six-week online course by AI consultant Siamak Kalhor. It teaches how AI assistants such as ChatGPT, Gemini, Claude and Perplexity decide which businesses to recommend, and the five-stage S.C.A.L.E. Framework for earning that recommendation.'),
- ('How much does the course cost?', 'Nothing. The course, the AI tutor and the certificate of completion are free. You only need an email address to enroll.'),
+ ('What is the S.C.A.L.E. Academy?', 'The S.C.A.L.E. Academy is a six-week online course by AI consultant Siamak Kalhor, with week 1 free. It teaches how AI assistants such as ChatGPT, Gemini, Claude and Perplexity decide which businesses to recommend, and the five-stage S.C.A.L.E. Framework for earning that recommendation.'),
+ ('How much does the course cost?', 'Week 1 is free with just your email. The full course is a one-time $197 for lifetime access to all six weeks, the AI tutor and the certificate of completion.'),
  ('How does the AI tutor work?', 'Every lesson has an AI tutor trained on that week\'s material. You can type or speak your questions, have answers read aloud, and ask it to apply the lesson to your own business. It answers in the language you write in.'),
  ('How long does it take?', 'Six lessons of about 25 to 35 minutes each, plus a hands-on exercise per week. Go at your own pace; your progress is saved in your browser.'),
  ('Do I get a certificate?', 'Yes. When you complete all six weeks you can claim a certificate of completion with your name, a unique ID and a shareable link you can add to LinkedIn.'),
@@ -171,13 +172,13 @@ landing_ld = [COURSE,
     {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': SITE}, {'@type': 'ListItem', 'position': 2, 'name': 'Academy', 'item': SITE + '/academy'}]}]
 faq_html = ''.join(f'<details class="ac-card" style="padding:18px 22px"><summary style="cursor:pointer;font-weight:600">{esc(q)}</summary><p style="color:var(--muted);margin-top:10px">{esc(a)}</p></details>' for q, a in FAQ)
 landing = f'''<header class="ac-hero"><div class="wrap">
-<div class="ac-pill">FREE ONLINE COURSE · 6 WEEKS · AI TUTOR · CERTIFICATE</div>
+<div class="ac-pill">ONLINE COURSE · 6 WEEKS · AI TUTOR · CERTIFICATE</div>
 <h1 class="ph-h">The <span class="grad">S.C.A.L.E.</span> Academy</h1>
 <p class="ph-sub">Learn how ChatGPT, Gemini, Claude and Perplexity decide which businesses to recommend, and the five-stage framework for becoming one of them. Taught by Siamak Kalhor, with an AI tutor you can type or talk to.</p>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;margin-top:30px;align-items:start">
 <div class="ac-card">
-<h2 style="font-family:var(--display);font-size:22px;margin-bottom:6px">Enroll free</h2>
-<p style="color:var(--muted);font-size:15px;margin-bottom:14px">Start in under a minute. Work on your own business as you go.</p>
+<h2 style="font-family:var(--display);font-size:22px;margin-bottom:6px">Start free: week 1 is on us</h2>
+<p style="color:var(--muted);font-size:15px;margin-bottom:14px">Start in under a minute. Then unlock all six weeks, the AI tutor and your certificate for a one-time <b style="color:var(--text)">$197</b>.</p>
 {ENROLL_FORM.format(extra='data-hide-when-enrolled data-next="/academy/week-1"', p='hero', cta='Start the course →')}
 <form id="link-form" class="ac-enroll" style="margin-top:14px;border-top:1px solid var(--line);padding-top:14px"><p style="font-size:14px;color:var(--muted);margin:0">Already enrolled? Get your personal link by email.</p><label for="hero-link" style="position:absolute;left:-9999px">Your enrolled email</label><input id="hero-link" name="email" type="email" autocomplete="email" placeholder="Your enrolled email"><button type="submit" class="ac-btn ghost">Email me my link</button><p class="form-msg" role="status"></p></form>
 <p data-welcome-back hidden style="color:#7ee2a8;margin-bottom:8px"></p><p data-resume-msg hidden style="color:#ffb454;margin-bottom:8px"></p><div data-enrolled-msg hidden><p style="color:var(--muted)">You're enrolled. <span data-progress-count>0</span> of 6 weeks complete.</p><div class="ac-bar" style="margin:10px 0 16px"><span data-progress-bar></span></div><a class="ac-btn" href="/academy/week-1" data-cta-start>Start week 1 →</a></div>
@@ -203,10 +204,10 @@ landing = f'''<header class="ac-hero"><div class="wrap">
 <section><div class="wrap">
 <div class="sec-label">Questions</div><h2 class="sec-h">About the course</h2>
 <div style="display:grid;gap:10px;max-width:860px">{faq_html}</div>
-<p style="margin-top:24px"><a class="ac-btn" href="#main">Enroll free →</a> <a class="ac-btn ghost" href="/contact-us">Want it done with you? Talk to Siamak</a></p>
+<p style="margin-top:24px"><a class="ac-btn" href="#main">Start week 1 free →</a> <a class="ac-btn ghost" href="/contact-us">Want it done with you? Talk to Siamak</a></p>
 </div></section>'''
-page('academy', 'S.C.A.L.E. Academy — Free AI Visibility Course', 'Free six-week online course with an AI tutor: learn how ChatGPT and other AI assistants choose businesses, and how to become one they recommend.',
-     'og/pages/academy.jpg', 'S.C.A.L.E. Academy — free AI visibility course with an AI tutor', landing_ld, landing, ' data-academy="landing"')
+page('academy', 'S.C.A.L.E. Academy — AI Visibility Course', 'Six-week online course with an AI tutor, week 1 free: learn how ChatGPT and other AI assistants choose businesses, and how to be one they recommend.',
+     'og/pages/academy.jpg', 'S.C.A.L.E. Academy — AI visibility course with an AI tutor', landing_ld, landing, ' data-academy="landing"')
 
 # ------------------------------------------------------------------ lessons
 LANGS = [('en-US', 'English'), ('es-ES', 'Español'), ('fr-FR', 'Français'), ('fa-IR', 'فارسی'), ('hy-AM', 'Հայերեն'), ('ar-SA', 'العربية'),
@@ -268,14 +269,23 @@ for l in LESSONS:
 <p style="font-size:13px;color:var(--muted-dim);margin-top:8px"><span data-progress-count>0</span> of 6 weeks complete</p><div class="ac-bar" style="margin-top:6px"><span data-progress-bar></span></div></div>
 </aside>
 </div>
+<div id="paywall" hidden role="dialog" aria-modal="true" aria-labelledby="pay-h"><div class="ac-card">
+<div class="ac-pill" style="margin-bottom:12px">FULL COURSE · ONE-TIME $197</div>
+<h2 id="pay-h" style="font-family:var(--display);font-size:24px;margin-bottom:6px">Unlock the full S.C.A.L.E. Academy</h2>
+<p style="color:var(--muted);font-size:15px;margin-bottom:12px">Week 1 is free. Keep going with lifetime access to:</p>
+<ul class="ac-take" style="margin-bottom:16px"><li>Weeks 2–6: Scan, Clarify, Amplify, Leverage, Evaluate</li><li>The AI tutor on every lesson, by text or voice, in your language</li><li>Hands-on exercises for your own business</li><li>Your certificate of completion, shareable on LinkedIn</li></ul>
+<button type="button" id="pay-btn" class="ac-btn" style="width:100%">Unlock for $197 →</button>
+<p class="form-msg" id="pay-msg" role="status" style="margin-top:8px"></p>
+<p style="font-size:13px;color:var(--muted-dim)">Secure checkout by Stripe. Questions? <a href="/contact-us" style="color:var(--muted)">Contact Siamak</a>. <a href="/academy/week-1" style="color:var(--muted)">Back to week 1</a></p>
+</div></div>
 <div id="gate" hidden role="dialog" aria-modal="true" aria-labelledby="gate-h"><div class="ac-card">
-<h2 id="gate-h" style="font-family:var(--display);font-size:24px;margin-bottom:6px">Enroll free to start</h2>
-<p style="color:var(--muted);font-size:15px;margin-bottom:14px">The S.C.A.L.E. Academy is free. Enter your email to unlock all six lessons, the AI tutor and your certificate.</p>
+<h2 id="gate-h" style="font-family:var(--display);font-size:24px;margin-bottom:6px">Start free with week 1</h2>
+<p style="color:var(--muted);font-size:15px;margin-bottom:14px">Week 1 is free. Enter your email to start, and unlock the full course whenever you are ready.</p>
 {ENROLL_FORM.format(extra='', p='gate', cta='Unlock the course')}
 <form id="link-form" class="ac-enroll" style="margin-top:14px;border-top:1px solid var(--line);padding-top:14px"><p style="font-size:14px;color:var(--muted);margin:0">Already enrolled? Get your personal link by email.</p><label for="gate-link" style="position:absolute;left:-9999px">Your enrolled email</label><input id="gate-link" name="email" type="email" autocomplete="email" placeholder="Your enrolled email"><button type="submit" class="ac-btn ghost">Email me my link</button><p class="form-msg" role="status"></p></form>
 </div></div>'''
     ld = [{'@context': 'https://schema.org', '@type': 'LearningResource', 'name': l['h1'], 'description': l['summary'], 'url': f'{SITE}/{path}',
-           'learningResourceType': 'Lesson', 'timeRequired': f"PT{l['minutes']}M", 'inLanguage': 'en', 'isAccessibleForFree': True,
+           'learningResourceType': 'Lesson', 'timeRequired': f"PT{l['minutes']}M", 'inLanguage': 'en', 'isAccessibleForFree': n == 1,
            'isPartOf': {'@id': SITE + '/academy#course', '@type': 'Course', 'name': COURSE_NAME}, 'author': PERSON, 'position': n},
           {'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
             {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': SITE}, {'@type': 'ListItem', 'position': 2, 'name': 'Academy', 'item': SITE + '/academy'},
@@ -297,7 +307,7 @@ cert_main = '''<div class="wrap" style="padding:48px 28px 72px">
 <div class="sig"><div><b>Siamak Kalhor</b>Instructor, Siamak Kalhor Consulting</div><div><b id="c-date"></b>Date issued</div><div><b id="c-id"></b>Certificate ID</div></div>
 </div>
 <div class="cert-actions"><a class="ac-btn" id="c-linkedin" href="#" target="_blank" rel="noopener">Add to LinkedIn</a><button type="button" class="ac-btn ghost" id="c-share">Share link</button><button type="button" class="ac-btn ghost" id="c-print">Print or save PDF</button></div>
-<p style="text-align:center;color:var(--muted-dim);font-size:13px">Verify at siamakconsulting.com/academy/certificate with the ID above. <a href="/academy" style="color:var(--muted)">Take the free course</a></p>
+<p style="text-align:center;color:var(--muted-dim);font-size:13px">Verify at siamakconsulting.com/academy/certificate with the ID above. <a href="/academy" style="color:var(--muted)">Take the course</a></p>
 </div></div>'''
-page('academy/certificate', 'S.C.A.L.E. Academy Certificate of Completion', 'A certificate of completion for the free S.C.A.L.E. Academy course on AI visibility by Siamak Kalhor Consulting.',
+page('academy/certificate', 'S.C.A.L.E. Academy Certificate of Completion', 'A certificate of completion for the S.C.A.L.E. Academy course on AI visibility by Siamak Kalhor Consulting.',
      'og/pages/academy.jpg', 'S.C.A.L.E. Academy certificate', [], cert_main, ' data-academy="certificate"', robots='noindex, follow')

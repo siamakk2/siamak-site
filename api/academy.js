@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const { guard, redisCreds } = require('./_guard');
 
-// S.C.A.L.E. Academy — the free online course at /academy.
+// S.C.A.L.E. Academy — the online course at /academy (week 1 free, full course $197).
 // One endpoint, three actions:
 //   enroll  { email, name?, business? }        -> stores the student, emails a welcome, alerts Siamak
 //   tutor   { week, messages[] }               -> the AI tutor for that week's lesson
@@ -100,7 +100,7 @@ async function enroll(body, res) {
     const first = name ? esc(name.split(' ')[0]) : 'there';
     await sendMail(email, 'Welcome to the S.C.A.L.E. Academy',
       emailShell('Welcome, ' + first + '.',
-        '<p>You are enrolled in the free S.C.A.L.E. Academy: six short lessons on how to become the business AI recommends.</p>' +
+        '<p>You are enrolled in the S.C.A.L.E. Academy: six short lessons on how to become the business AI recommends. Week 1 is free; unlock the full course whenever you are ready.</p>' +
         linkBlock(email) +
         '<p>Each lesson has an AI tutor you can type or talk to. Finish all six weeks to earn your certificate of completion.</p><p>Siamak</p>'),
       'Welcome to the S.C.A.L.E. Academy. Continue your course (your personal link, works on any device): ' + resumeUrl(email));
@@ -108,11 +108,72 @@ async function enroll(body, res) {
       emailShell('New Academy student', '<p><b>' + esc(email) + '</b><br>' + esc(name || '(no name)') + (business ? '<br>Business: ' + esc(business) : '') + '</p>'),
       'New Academy student: ' + email + ' ' + name + ' ' + business);
   }
-  return res.status(200).json({ ok: true, isNew, t: tokenFor(email) });
+  return res.status(200).json({ ok: true, isNew, t: tokenFor(email), paid: await isPaid(db, email) });
+}
+
+// ---- Paid access -----------------------------------------------------------
+// Week 1 is free. Weeks 2-6, the tutor beyond week 1 and the certificate need
+// the full course ($197, Stripe, handled by the S.C.A.L.E. app's billing
+// endpoint). Everyone who enrolled before paid access launched keeps free
+// access for life.
+const FOUNDER_CUTOFF = '2026-10-12T21:30:00Z';
+const BILLING = process.env.ACADEMY_BILLING_URL || 'https://scale.siamakconsulting.com/api/billing/academy';
+async function isPaid(db, email) {
+  if (!db || !email) return false;
+  try {
+    if (await db(['GET', 'academy:paid:' + email])) return true;
+    const rec = JSON.parse((await db(['GET', 'academy:student:' + email])) || '{}');
+    return !!(rec.at && rec.at < FOUNDER_CUTOFF);
+  } catch (e) { return false; }
+}
+async function billing(payload) {
+  const r = await fetch(BILLING, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+  return r.json();
+}
+
+async function checkout(body, res) {
+  const email = emailFromToken(body.t);
+  if (!email) return res.status(200).json({ error: 'Please enroll free first (it takes a moment), then unlock the full course.' });
+  const db = redis();
+  if (await isPaid(db, email)) return res.status(200).json({ ok: true, already: true });
+  try {
+    const d = await billing({ op: 'checkout', email, t: tokenFor(email) });
+    if (!d.url) return res.status(200).json({ error: d.error || 'Checkout is unavailable right now. Please try again.' });
+    return res.status(200).json({ ok: true, url: d.url });
+  } catch (e) { return res.status(200).json({ error: 'Checkout is unavailable right now. Please try again.' }); }
+}
+
+async function confirm(body, res) {
+  const sid = String(body.session_id || '');
+  let d;
+  try { d = await billing({ op: 'verify', session_id: sid }); } catch (e) { d = {}; }
+  if (!d.paid || !validEmail(d.email || '')) return res.status(200).json({ error: 'We could not confirm that payment yet. If you were charged, refresh in a minute or email siamakk2@gmail.com.' });
+  const email = d.email; const db = redis();
+  let first = true;
+  if (db) {
+    try {
+      first = (await db(['SET', 'academy:paid:' + email, JSON.stringify({ session: sid, at: new Date().toISOString(), amount: d.amount }), 'NX'])) === 'OK';
+      const known = await db(['GET', 'academy:student:' + email]);
+      if (!known) {
+        const rec = JSON.stringify({ email, name: '', business: '', at: new Date().toISOString() });
+        await db(['SET', 'academy:student:' + email, rec]); await db(['LPUSH', 'academy:students', rec]);
+      }
+    } catch (e) { console.error(JSON.stringify({ source: 'academy', confirm: e.message })); }
+  }
+  console.log(JSON.stringify({ source: 'academy', action: 'paid', first }));
+  if (first) {
+    await sendMail(email, 'Your S.C.A.L.E. Academy full course is unlocked', emailShell('You are in.',
+      '<p>Thank you. All six weeks, the AI tutor and your certificate are now unlocked.</p>' + linkBlock(email) + '<p>Siamak</p>'),
+      'Your S.C.A.L.E. Academy full course is unlocked: ' + resumeUrl(email));
+    await sendMail(ALERT, 'Academy sale: ' + email + ' ($' + ((d.amount || 0) / 100).toFixed(2) + ')',
+      emailShell('New Academy sale', '<p><b>' + esc(email) + '</b> bought the full course for $' + ((d.amount || 0) / 100).toFixed(2) + '.</p>'), 'Academy sale: ' + email);
+  }
+  return res.status(200).json({ ok: true, paid: true, email, t: tokenFor(email) });
 }
 
 async function tutor(body, res) {
   const week = WEEKS[parseInt(body.week, 10)] ? parseInt(body.week, 10) : 1;
+  if (week > 1 && !(await isPaid(redis(), emailFromToken(body.t)))) return res.status(200).json({ locked: true, error: 'The tutor for weeks 2 to 6 is part of the full course. Unlock it to keep going.' });
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) return res.status(200).json({ error: 'The tutor is not available right now.' });
   const msgs = (Array.isArray(body.messages) ? body.messages : []).slice(-12).map((m) => ({
@@ -122,7 +183,7 @@ async function tutor(body, res) {
   while (msgs.length && msgs[0].role !== 'user') msgs.shift();
   if (!msgs.length) return res.status(200).json({ error: 'Ask a question to start.' });
   const w = WEEKS[week];
-  const system = 'You are the AI tutor of the S.C.A.L.E. Academy, a free online course by Siamak Kalhor, an AI consultant with 40 years in marketing (siamakconsulting.com). ' +
+  const system = 'You are the AI tutor of the S.C.A.L.E. Academy, an online course by Siamak Kalhor, an AI consultant with 40 years in marketing (siamakconsulting.com). ' +
     'The student is on Week ' + week + ' of 6: ' + w.title + '.\nLesson content: ' + w.brief + '\n' +
     'The five stages and their scores in the free S.C.A.L.E. app (scale.siamakconsulting.com): Scan = Visibility, Clarify = Clarity, Amplify = Structure, Leverage = Authority, Evaluate = Momentum. The app runs 30 named checks.\n' +
     'How to teach: be a warm, direct coach. Keep answers short (under 170 words) and plain; no jargon without a one-line explanation. ' +
@@ -157,6 +218,7 @@ async function cert(body, res) {
   if (!db) return res.status(200).json({ error: 'Certificates are temporarily unavailable. Please try again later.' });
   try {
     const student = await db(['GET', 'academy:student:' + email]);
+    if (student && !(await isPaid(db, email))) return res.status(200).json({ locked: true, error: 'The certificate is part of the full course. Unlock it to claim yours.' });
     if (!student) return res.status(200).json({ error: 'We could not find your enrollment. Please enroll with this email first.' });
     const existing = await db(['GET', 'academy:certof:' + email]);
     if (existing) {
@@ -208,7 +270,7 @@ async function resume(body, res) {
       certId = await db(['GET', 'academy:certof:' + email]);
     } catch (e) { console.error(JSON.stringify({ source: 'academy', resume: e.message })); }
   }
-  return res.status(200).json({ ok: true, email, name: rec.name || '', business: rec.business || '', done, t: tokenFor(email),
+  return res.status(200).json({ ok: true, email, name: rec.name || '', business: rec.business || '', done, t: tokenFor(email), paid: await isPaid(db, email),
     cert: certId ? SITE + '/academy/certificate?id=' + certId : null });
 }
 
@@ -240,7 +302,7 @@ module.exports = async function handler(req, res) {
   if (typeof body === 'string') { try { body = JSON.parse(body); } catch (e) { body = {}; } }
   if (!body || typeof body !== 'object') body = {};
   const action = body.action;
-  const limits = { enroll: 10, tutor: 60, cert: 10, certGet: 120, resume: 60, progress: 120, link: 5 };
+  const limits = { enroll: 10, tutor: 60, cert: 10, certGet: 120, resume: 60, progress: 120, link: 5, checkout: 20, confirm: 30 };
   if (req.method === 'OPTIONS') return guard(req, res, { bucket: 'academy-preflight' });
   if (!limits[action]) { res.setHeader('Access-Control-Allow-Origin', '*'); return res.status(400).json({ error: 'Unknown action.' }); }
   if (!(await guard(req, res, { bucket: 'academy-' + action, limit: limits[action], window: 3600 }))) return;
@@ -250,5 +312,7 @@ module.exports = async function handler(req, res) {
   if (action === 'resume') return resume(body, res);
   if (action === 'progress') return progress(body, res);
   if (action === 'link') return sendLink(body, res);
+  if (action === 'checkout') return checkout(body, res);
+  if (action === 'confirm') return confirm(body, res);
   return certGet(body, res);
 };

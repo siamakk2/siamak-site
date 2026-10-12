@@ -34,7 +34,7 @@ try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.
 <meta name="twitter:title" content="Week 2: Scan | S.C.A.L.E. Academy">
 <meta name="twitter:description" content="Week 2 of the S.C.A.L.E. Academy: audit what search engines and AI can actually see, and find the three blockers holding a business back.">
 <meta name="twitter:image" content="https://siamakconsulting.com/og/pages/academy-week-2.jpg">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Week 2: Scan, the honest baseline", "description": "Week 2 of the S.C.A.L.E. Academy: audit what search engines and AI can actually see, and find the three blockers holding a business back.", "url": "https://siamakconsulting.com/academy/week-2", "learningResourceType": "Lesson", "timeRequired": "PT30M", "inLanguage": "en", "isAccessibleForFree": true, "isPartOf": {"@id": "https://siamakconsulting.com/academy#course", "@type": "Course", "name": "S.C.A.L.E. Framework: Growth Strategy for the AI Era"}, "author": {"@type": "Person", "@id": "https://siamakconsulting.com/#person", "name": "Siamak Kalhor", "url": "https://siamakconsulting.com"}, "position": 2}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Week 2: Scan, the honest baseline", "description": "Week 2 of the S.C.A.L.E. Academy: audit what search engines and AI can actually see, and find the three blockers holding a business back.", "url": "https://siamakconsulting.com/academy/week-2", "learningResourceType": "Lesson", "timeRequired": "PT30M", "inLanguage": "en", "isAccessibleForFree": false, "isPartOf": {"@id": "https://siamakconsulting.com/academy#course", "@type": "Course", "name": "S.C.A.L.E. Framework: Growth Strategy for the AI Era"}, "author": {"@type": "Person", "@id": "https://siamakconsulting.com/#person", "name": "Siamak Kalhor", "url": "https://siamakconsulting.com"}, "position": 2}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://siamakconsulting.com"}, {"@type": "ListItem", "position": 2, "name": "Academy", "item": "https://siamakconsulting.com/academy"}, {"@type": "ListItem", "position": 3, "name": "Week 2", "item": "https://siamakconsulting.com/academy/week-2"}]}</script>
 <style>
 .ac-hero{padding:72px 0 28px}.ac-hero .ph-sub{max-width:760px}
@@ -95,7 +95,8 @@ try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.
 .ac-steps{display:flex;gap:6px;margin:10px 0 0}.ac-steps a{flex:1;text-align:center;text-decoration:none;font-family:var(--mono);font-size:12px;padding:7px 0;border-radius:8px;border:1px solid var(--line);color:var(--muted)}
 .ac-steps a.is-done{border-color:#2f8f5f;color:#7ee2a8}.ac-steps a.is-here{border-color:var(--cyan);color:var(--text)}
 #gate{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.78);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px}
-#gate[hidden]{display:none}#gate .ac-card{max-width:520px;width:100%}
+#gate[hidden],#paywall[hidden]{display:none}#gate .ac-card,#paywall .ac-card{max-width:520px;width:100%}
+#paywall{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.78);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px}
 body.gated{overflow:hidden}
 .cert{background:#fbf9f3;color:#14202f;border-radius:18px;padding:56px 48px;text-align:center;border:10px double #0e7490;max-width:900px;margin:0 auto}
 .cert .k{font-family:var(--mono);letter-spacing:.2em;font-size:13px;color:#0e7490}
@@ -388,7 +389,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
       <div class="nav-item has-dd">
         <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Resources <span class="dd-caret">&#9662;</span></button>
         <div class="dd-menu">
-          <a href="/growth-framework">S.C.A.L.E. Framework</a><a href="https://scale.siamakconsulting.com/">S.C.A.L.E. App &rarr;</a><a href="/academy">S.C.A.L.E. Academy (free course)</a>
+          <a href="/growth-framework">S.C.A.L.E. Framework</a><a href="https://scale.siamakconsulting.com/">S.C.A.L.E. App &rarr;</a><a href="/academy">S.C.A.L.E. Academy (online course)</a>
           <a href="/the-growth-glossary">Growth Glossary</a>
           <a href="/the-long-view">The Long View</a><a href="/ai-marketing-news">AI News</a><a href="/local">Local Visibility Check</a>
           <a href="/faq">Ask Siamak</a>
@@ -479,15 +480,24 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <p style="font-size:13px;color:var(--muted-dim);margin-top:8px"><span data-progress-count>0</span> of 6 weeks complete</p><div class="ac-bar" style="margin-top:6px"><span data-progress-bar></span></div></div>
 </aside>
 </div>
+<div id="paywall" hidden role="dialog" aria-modal="true" aria-labelledby="pay-h"><div class="ac-card">
+<div class="ac-pill" style="margin-bottom:12px">FULL COURSE · ONE-TIME $197</div>
+<h2 id="pay-h" style="font-family:var(--display);font-size:24px;margin-bottom:6px">Unlock the full S.C.A.L.E. Academy</h2>
+<p style="color:var(--muted);font-size:15px;margin-bottom:12px">Week 1 is free. Keep going with lifetime access to:</p>
+<ul class="ac-take" style="margin-bottom:16px"><li>Weeks 2–6: Scan, Clarify, Amplify, Leverage, Evaluate</li><li>The AI tutor on every lesson, by text or voice, in your language</li><li>Hands-on exercises for your own business</li><li>Your certificate of completion, shareable on LinkedIn</li></ul>
+<button type="button" id="pay-btn" class="ac-btn" style="width:100%">Unlock for $197 →</button>
+<p class="form-msg" id="pay-msg" role="status" style="margin-top:8px"></p>
+<p style="font-size:13px;color:var(--muted-dim)">Secure checkout by Stripe. Questions? <a href="/contact-us" style="color:var(--muted)">Contact Siamak</a>. <a href="/academy/week-1" style="color:var(--muted)">Back to week 1</a></p>
+</div></div>
 <div id="gate" hidden role="dialog" aria-modal="true" aria-labelledby="gate-h"><div class="ac-card">
-<h2 id="gate-h" style="font-family:var(--display);font-size:24px;margin-bottom:6px">Enroll free to start</h2>
-<p style="color:var(--muted);font-size:15px;margin-bottom:14px">The S.C.A.L.E. Academy is free. Enter your email to unlock all six lessons, the AI tutor and your certificate.</p>
+<h2 id="gate-h" style="font-family:var(--display);font-size:24px;margin-bottom:6px">Start free with week 1</h2>
+<p style="color:var(--muted);font-size:15px;margin-bottom:14px">Week 1 is free. Enter your email to start, and unlock the full course whenever you are ready.</p>
 <form class="ac-enroll" data-enroll >
 <label class="sr-only" for="gate-name" style="position:absolute;left:-9999px">Your name</label><input id="gate-name" name="name" autocomplete="name" placeholder="Your name">
 <label class="sr-only" for="gate-email" style="position:absolute;left:-9999px">Email</label><input id="gate-email" name="email" type="email" autocomplete="email" required placeholder="Email address">
 <label class="sr-only" for="gate-biz" style="position:absolute;left:-9999px">Business website (optional)</label><input id="gate-biz" name="business" placeholder="Business you'll work on (optional)">
 <button type="submit">Unlock the course</button><p class="form-msg" role="status"></p>
-<p style="font-size:13px;color:var(--muted-dim);margin:0">Free. We email your welcome link and certificate; no spam. <a href="/privacy" style="color:var(--muted)">Privacy</a></p>
+<p style="font-size:13px;color:var(--muted-dim);margin:0">Week 1 is free. We email your personal course link; no spam. <a href="/privacy" style="color:var(--muted)">Privacy</a></p>
 </form>
 <form id="link-form" class="ac-enroll" style="margin-top:14px;border-top:1px solid var(--line);padding-top:14px"><p style="font-size:14px;color:var(--muted);margin:0">Already enrolled? Get your personal link by email.</p><label for="gate-link" style="position:absolute;left:-9999px">Your enrolled email</label><input id="gate-link" name="email" type="email" autocomplete="email" placeholder="Your enrolled email"><button type="submit" class="ac-btn ghost">Email me my link</button><p class="form-msg" role="status"></p></form>
 </div></div>
@@ -639,6 +649,6 @@ elevenlabs-convai{
 </script>
 <script defer src="/consent.js"></script>
 <script defer src="/robot.js"></script>
-<script src="/academy/academy.js?v=5" defer></script>
+<script src="/academy/academy.js?v=6" defer></script>
 </body>
 </html>

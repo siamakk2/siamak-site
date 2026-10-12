@@ -18,12 +18,12 @@ try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>S.C.A.L.E. Academy Certificate of Completion</title>
-<meta name="description" content="A certificate of completion for the free S.C.A.L.E. Academy course on AI visibility by Siamak Kalhor Consulting.">
+<meta name="description" content="A certificate of completion for the S.C.A.L.E. Academy course on AI visibility by Siamak Kalhor Consulting.">
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://siamakconsulting.com/academy/certificate">
 <meta property="og:type" content="website">
 <meta property="og:title" content="S.C.A.L.E. Academy Certificate of Completion">
-<meta property="og:description" content="A certificate of completion for the free S.C.A.L.E. Academy course on AI visibility by Siamak Kalhor Consulting.">
+<meta property="og:description" content="A certificate of completion for the S.C.A.L.E. Academy course on AI visibility by Siamak Kalhor Consulting.">
 <meta property="og:url" content="https://siamakconsulting.com/academy/certificate">
 <meta property="og:image" content="https://siamakconsulting.com/og/pages/academy.jpg">
 <meta property="og:image:width" content="1200">
@@ -32,7 +32,7 @@ try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.
 <meta property="og:image:alt" content="S.C.A.L.E. Academy certificate">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="S.C.A.L.E. Academy Certificate of Completion">
-<meta name="twitter:description" content="A certificate of completion for the free S.C.A.L.E. Academy course on AI visibility by Siamak Kalhor Consulting.">
+<meta name="twitter:description" content="A certificate of completion for the S.C.A.L.E. Academy course on AI visibility by Siamak Kalhor Consulting.">
 <meta name="twitter:image" content="https://siamakconsulting.com/og/pages/academy.jpg">
 <style>
 .ac-hero{padding:72px 0 28px}.ac-hero .ph-sub{max-width:760px}
@@ -93,7 +93,8 @@ try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.
 .ac-steps{display:flex;gap:6px;margin:10px 0 0}.ac-steps a{flex:1;text-align:center;text-decoration:none;font-family:var(--mono);font-size:12px;padding:7px 0;border-radius:8px;border:1px solid var(--line);color:var(--muted)}
 .ac-steps a.is-done{border-color:#2f8f5f;color:#7ee2a8}.ac-steps a.is-here{border-color:var(--cyan);color:var(--text)}
 #gate{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.78);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px}
-#gate[hidden]{display:none}#gate .ac-card{max-width:520px;width:100%}
+#gate[hidden],#paywall[hidden]{display:none}#gate .ac-card,#paywall .ac-card{max-width:520px;width:100%}
+#paywall{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.78);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px}
 body.gated{overflow:hidden}
 .cert{background:#fbf9f3;color:#14202f;border-radius:18px;padding:56px 48px;text-align:center;border:10px double #0e7490;max-width:900px;margin:0 auto}
 .cert .k{font-family:var(--mono);letter-spacing:.2em;font-size:13px;color:#0e7490}
@@ -386,7 +387,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
       <div class="nav-item has-dd">
         <button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false">Resources <span class="dd-caret">&#9662;</span></button>
         <div class="dd-menu">
-          <a href="/growth-framework">S.C.A.L.E. Framework</a><a href="https://scale.siamakconsulting.com/">S.C.A.L.E. App &rarr;</a><a href="/academy">S.C.A.L.E. Academy (free course)</a>
+          <a href="/growth-framework">S.C.A.L.E. Framework</a><a href="https://scale.siamakconsulting.com/">S.C.A.L.E. App &rarr;</a><a href="/academy">S.C.A.L.E. Academy (online course)</a>
           <a href="/the-growth-glossary">Growth Glossary</a>
           <a href="/the-long-view">The Long View</a><a href="/ai-marketing-news">AI News</a><a href="/local">Local Visibility Check</a>
           <a href="/faq">Ask Siamak</a>
@@ -438,7 +439,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <div class="sig"><div><b>Siamak Kalhor</b>Instructor, Siamak Kalhor Consulting</div><div><b id="c-date"></b>Date issued</div><div><b id="c-id"></b>Certificate ID</div></div>
 </div>
 <div class="cert-actions"><a class="ac-btn" id="c-linkedin" href="#" target="_blank" rel="noopener">Add to LinkedIn</a><button type="button" class="ac-btn ghost" id="c-share">Share link</button><button type="button" class="ac-btn ghost" id="c-print">Print or save PDF</button></div>
-<p style="text-align:center;color:var(--muted-dim);font-size:13px">Verify at siamakconsulting.com/academy/certificate with the ID above. <a href="/academy" style="color:var(--muted)">Take the free course</a></p>
+<p style="text-align:center;color:var(--muted-dim);font-size:13px">Verify at siamakconsulting.com/academy/certificate with the ID above. <a href="/academy" style="color:var(--muted)">Take the course</a></p>
 </div></div>
 </main>
 <footer>
@@ -588,6 +589,6 @@ elevenlabs-convai{
 </script>
 <script defer src="/consent.js"></script>
 <script defer src="/robot.js"></script>
-<script src="/academy/academy.js?v=5" defer></script>
+<script src="/academy/academy.js?v=6" defer></script>
 </body>
 </html>

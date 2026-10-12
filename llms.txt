@@ -48,7 +48,7 @@ Search is changing. People no longer click ten blue links — they ask an AI and
 ## Frameworks
 
 - [The S.C.A.L.E. Framework](https://siamakconsulting.com/growth-framework): Siamak Kalhor's structured method for building AI-era market authority.
-- [S.C.A.L.E. Academy](https://siamakconsulting.com/academy): A free six-week online course by Siamak Kalhor with an AI tutor, teaching the S.C.A.L.E. Framework (Scan, Clarify, Amplify, Leverage, Evaluate) and how AI assistants choose which businesses to recommend. Includes a certificate of completion.
+- [S.C.A.L.E. Academy](https://siamakconsulting.com/academy): A six-week online course by Siamak Kalhor with an AI tutor (week 1 free, full course $197), teaching the S.C.A.L.E. Framework (Scan, Clarify, Amplify, Leverage, Evaluate) and how AI assistants choose which businesses to recommend. Includes a certificate of completion.
 - [Business DNA](https://siamakconsulting.com/business-dna): Defining the core identity an AI engine will learn and repeat about your brand.
 - [Authority Hub](https://siamakconsulting.com/authority-hub): Building the citable content architecture AI engines pull from.
 - [Growth strategies](https://siamakconsulting.com/growth-strategies): Practical growth plays for AI-era marketing.
