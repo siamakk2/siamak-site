@@ -443,7 +443,8 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <button type="submit">Start the course →</button><p class="form-msg" role="status"></p>
 <p style="font-size:13px;color:var(--muted-dim);margin:0">Free. We email your welcome link and certificate; no spam. <a href="/privacy" style="color:var(--muted)">Privacy</a></p>
 </form>
-<div data-enrolled-msg hidden><p style="color:var(--muted)">You're enrolled. <span data-progress-count>0</span> of 6 weeks complete.</p><div class="ac-bar" style="margin:10px 0 16px"><span data-progress-bar></span></div><a class="ac-btn" href="/academy/week-1" data-cta-start>Start week 1 →</a></div>
+<form id="link-form" class="ac-enroll" style="margin-top:14px;border-top:1px solid var(--line);padding-top:14px"><p style="font-size:14px;color:var(--muted);margin:0">Already enrolled? Get your personal link by email.</p><label for="hero-link" style="position:absolute;left:-9999px">Your enrolled email</label><input id="hero-link" name="email" type="email" autocomplete="email" placeholder="Your enrolled email"><button type="submit" class="ac-btn ghost">Email me my link</button><p class="form-msg" role="status"></p></form>
+<p data-welcome-back hidden style="color:#7ee2a8;margin-bottom:8px"></p><p data-resume-msg hidden style="color:#ffb454;margin-bottom:8px"></p><div data-enrolled-msg hidden><p style="color:var(--muted)">You're enrolled. <span data-progress-count>0</span> of 6 weeks complete.</p><div class="ac-bar" style="margin:10px 0 16px"><span data-progress-bar></span></div><a class="ac-btn" href="/academy/week-1" data-cta-start>Start week 1 →</a></div>
 </div>
 <div class="ac-grid" style="grid-template-columns:1fr 1fr">
 <div class="ac-card"><h3 style="font-family:var(--display);font-size:18px">6 short lessons</h3><p style="color:var(--muted);font-size:14px">25–35 minutes each, one per stage of S.C.A.L.E.</p></div>
@@ -616,6 +617,6 @@ elevenlabs-convai{
 </script>
 <script defer src="/consent.js"></script>
 <script defer src="/robot.js"></script>
-<script src="/academy/academy.js?v=4" defer></script>
+<script src="/academy/academy.js?v=5" defer></script>
 </body>
 </html>

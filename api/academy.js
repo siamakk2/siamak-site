@@ -38,6 +38,28 @@ const cleanEmail = (e) => String(e || '').trim().toLowerCase().slice(0, 200);
 const validEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e);
 const cleanName = (n) => String(n || '').replace(/[\u0000-\u001f<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, 80);
 
+// Personal return link: an HMAC of the email, keyed by a server-only secret,
+// so the link in the email restores a student's place on any device.
+function secret() { return 'academy:' + (process.env.ACADEMY_SECRET || process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN || process.env.RESEND_API_KEY || ''); }
+function tokenFor(email) {
+  const e = Buffer.from(email).toString('base64url');
+  const sig = crypto.createHmac('sha256', secret()).update(email).digest('base64url').slice(0, 22);
+  return e + '.' + sig;
+}
+function emailFromToken(t) {
+  const m = /^([A-Za-z0-9_-]+)\.([A-Za-z0-9_-]{22})$/.exec(String(t || ''));
+  if (!m) return null;
+  let email; try { email = Buffer.from(m[1], 'base64url').toString('utf8'); } catch (e) { return null; }
+  const want = Buffer.from(tokenFor(email).split('.')[1]); const got = Buffer.from(m[2]);
+  return want.length === got.length && crypto.timingSafeEqual(want, got) ? email : null;
+}
+const resumeUrl = (email) => SITE + '/academy?t=' + tokenFor(email);
+function linkBlock(email) {
+  const u = resumeUrl(email);
+  return '<p><a href="' + u + '" style="display:inline-block;background:#0E7490;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:bold">Continue my course</a></p>' +
+    '<p style="font-size:14px;color:#4B5563">Your personal link (works on any device, keep this email):<br><a href="' + u + '" style="color:#0E7490;word-break:break-all">' + u + '</a></p>';
+}
+
 async function sendMail(to, subject, html, text) {
   const key = (process.env.RESEND_API_KEY || '').trim();
   if (!key) return false;
@@ -79,14 +101,14 @@ async function enroll(body, res) {
     await sendMail(email, 'Welcome to the S.C.A.L.E. Academy',
       emailShell('Welcome, ' + first + '.',
         '<p>You are enrolled in the free S.C.A.L.E. Academy: six short lessons on how to become the business AI recommends.</p>' +
-        '<p><a href="' + SITE + '/academy/week-1" style="display:inline-block;background:#0E7490;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:bold">Start Week 1</a></p>' +
+        linkBlock(email) +
         '<p>Each lesson has an AI tutor you can type or talk to. Finish all six weeks to earn your certificate of completion.</p><p>Siamak</p>'),
-      'Welcome to the S.C.A.L.E. Academy. Start Week 1: ' + SITE + '/academy/week-1');
+      'Welcome to the S.C.A.L.E. Academy. Continue your course (your personal link, works on any device): ' + resumeUrl(email));
     await sendMail(ALERT, 'New Academy student: ' + email,
       emailShell('New Academy student', '<p><b>' + esc(email) + '</b><br>' + esc(name || '(no name)') + (business ? '<br>Business: ' + esc(business) : '') + '</p>'),
       'New Academy student: ' + email + ' ' + name + ' ' + business);
   }
-  return res.status(200).json({ ok: true, isNew });
+  return res.status(200).json({ ok: true, isNew, t: tokenFor(email) });
 }
 
 async function tutor(body, res) {
@@ -151,7 +173,7 @@ async function cert(body, res) {
       emailShell('Congratulations, ' + esc(name.split(' ')[0]) + '.',
         '<p>You completed all six weeks of the S.C.A.L.E. Academy. Your certificate of completion is ready to view, print and share:</p>' +
         '<p><a href="' + url + '" style="display:inline-block;background:#0E7490;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:bold">View my certificate</a></p>' +
-        '<p>Certificate ID: ' + id + '</p><p>Siamak</p>'),
+        '<p>Certificate ID: ' + id + '</p>' + linkBlock(email) + '<p>Siamak</p>'),
       'Your S.C.A.L.E. Academy certificate: ' + url);
     await sendMail(ALERT, 'Academy certificate issued: ' + name, emailShell('Certificate issued', '<p>' + esc(name) + ' (' + esc(email) + ')<br><a href="' + url + '">' + id + '</a></p>'), name + ' ' + email + ' ' + url);
     return res.status(200).json({ ok: true, id, url });
@@ -174,17 +196,59 @@ async function certGet(body, res) {
   } catch (e) { return res.status(200).json({ error: 'Certificate lookup failed. Please try again.' }); }
 }
 
+
+async function resume(body, res) {
+  const email = emailFromToken(body.t);
+  if (!email) return res.status(200).json({ error: 'This link is not valid. Enter your email on the Academy page and we will send you a fresh one.' });
+  const db = redis(); let rec = {}, done = {}, certId = null;
+  if (db) {
+    try {
+      rec = JSON.parse((await db(['GET', 'academy:student:' + email])) || '{}');
+      done = JSON.parse((await db(['GET', 'academy:progress:' + email])) || '{}');
+      certId = await db(['GET', 'academy:certof:' + email]);
+    } catch (e) { console.error(JSON.stringify({ source: 'academy', resume: e.message })); }
+  }
+  return res.status(200).json({ ok: true, email, name: rec.name || '', business: rec.business || '', done, t: tokenFor(email),
+    cert: certId ? SITE + '/academy/certificate?id=' + certId : null });
+}
+
+async function progress(body, res) {
+  const email = emailFromToken(body.t);
+  if (!email) return res.status(200).json({ error: 'Not signed in.' });
+  const done = {};
+  for (let n = 1; n <= 6; n++) if (body.done && body.done[n]) done[n] = true;
+  const db = redis();
+  if (db) { try { await db(['SET', 'academy:progress:' + email, JSON.stringify(done)]); } catch (e) {} }
+  return res.status(200).json({ ok: true });
+}
+
+async function sendLink(body, res) {
+  const email = cleanEmail(body.email);
+  if (!validEmail(email)) return res.status(200).json({ error: 'Please enter a valid email address.' });
+  const db = redis(); let known = false;
+  if (db) { try { known = !!(await db(['GET', 'academy:student:' + email])); } catch (e) {} }
+  if (known) {
+    await sendMail(email, 'Your S.C.A.L.E. Academy link', emailShell('Welcome back.', '<p>Here is your personal link to pick up where you left off.</p>' + linkBlock(email) + '<p>Siamak</p>'),
+      'Your S.C.A.L.E. Academy link: ' + resumeUrl(email));
+  }
+  // Same answer either way, so the form does not reveal who is enrolled.
+  return res.status(200).json({ ok: true });
+}
+
 module.exports = async function handler(req, res) {
   let body = req.body;
   if (typeof body === 'string') { try { body = JSON.parse(body); } catch (e) { body = {}; } }
   if (!body || typeof body !== 'object') body = {};
   const action = body.action;
-  const limits = { enroll: 10, tutor: 60, cert: 10, certGet: 120 };
+  const limits = { enroll: 10, tutor: 60, cert: 10, certGet: 120, resume: 60, progress: 120, link: 5 };
   if (req.method === 'OPTIONS') return guard(req, res, { bucket: 'academy-preflight' });
   if (!limits[action]) { res.setHeader('Access-Control-Allow-Origin', '*'); return res.status(400).json({ error: 'Unknown action.' }); }
   if (!(await guard(req, res, { bucket: 'academy-' + action, limit: limits[action], window: 3600 }))) return;
   if (action === 'enroll') return enroll(body, res);
   if (action === 'tutor') return tutor(body, res);
   if (action === 'cert') return cert(body, res);
+  if (action === 'resume') return resume(body, res);
+  if (action === 'progress') return progress(body, res);
+  if (action === 'link') return sendLink(body, res);
   return certGet(body, res);
 };

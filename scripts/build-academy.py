@@ -12,7 +12,7 @@ from academy_content import LESSONS
 
 ROOT = os.path.join(os.path.dirname(__file__), '..')
 SITE = 'https://siamakconsulting.com'
-V = '4'  # bump to bust the browser cache of academy.js
+V = '5'  # bump to bust the browser cache of academy.js
 COURSE_NAME = 'S.C.A.L.E. Framework: Growth Strategy for the AI Era'
 esc = lambda s: html.escape(s, quote=True)
 
@@ -179,7 +179,8 @@ landing = f'''<header class="ac-hero"><div class="wrap">
 <h2 style="font-family:var(--display);font-size:22px;margin-bottom:6px">Enroll free</h2>
 <p style="color:var(--muted);font-size:15px;margin-bottom:14px">Start in under a minute. Work on your own business as you go.</p>
 {ENROLL_FORM.format(extra='data-hide-when-enrolled data-next="/academy/week-1"', p='hero', cta='Start the course →')}
-<div data-enrolled-msg hidden><p style="color:var(--muted)">You're enrolled. <span data-progress-count>0</span> of 6 weeks complete.</p><div class="ac-bar" style="margin:10px 0 16px"><span data-progress-bar></span></div><a class="ac-btn" href="/academy/week-1" data-cta-start>Start week 1 →</a></div>
+<form id="link-form" class="ac-enroll" style="margin-top:14px;border-top:1px solid var(--line);padding-top:14px"><p style="font-size:14px;color:var(--muted);margin:0">Already enrolled? Get your personal link by email.</p><label for="hero-link" style="position:absolute;left:-9999px">Your enrolled email</label><input id="hero-link" name="email" type="email" autocomplete="email" placeholder="Your enrolled email"><button type="submit" class="ac-btn ghost">Email me my link</button><p class="form-msg" role="status"></p></form>
+<p data-welcome-back hidden style="color:#7ee2a8;margin-bottom:8px"></p><p data-resume-msg hidden style="color:#ffb454;margin-bottom:8px"></p><div data-enrolled-msg hidden><p style="color:var(--muted)">You're enrolled. <span data-progress-count>0</span> of 6 weeks complete.</p><div class="ac-bar" style="margin:10px 0 16px"><span data-progress-bar></span></div><a class="ac-btn" href="/academy/week-1" data-cta-start>Start week 1 →</a></div>
 </div>
 <div class="ac-grid" style="grid-template-columns:1fr 1fr">
 <div class="ac-card"><h3 style="font-family:var(--display);font-size:18px">6 short lessons</h3><p style="color:var(--muted);font-size:14px">25–35 minutes each, one per stage of S.C.A.L.E.</p></div>
@@ -271,6 +272,7 @@ for l in LESSONS:
 <h2 id="gate-h" style="font-family:var(--display);font-size:24px;margin-bottom:6px">Enroll free to start</h2>
 <p style="color:var(--muted);font-size:15px;margin-bottom:14px">The S.C.A.L.E. Academy is free. Enter your email to unlock all six lessons, the AI tutor and your certificate.</p>
 {ENROLL_FORM.format(extra='', p='gate', cta='Unlock the course')}
+<form id="link-form" class="ac-enroll" style="margin-top:14px;border-top:1px solid var(--line);padding-top:14px"><p style="font-size:14px;color:var(--muted);margin:0">Already enrolled? Get your personal link by email.</p><label for="gate-link" style="position:absolute;left:-9999px">Your enrolled email</label><input id="gate-link" name="email" type="email" autocomplete="email" placeholder="Your enrolled email"><button type="submit" class="ac-btn ghost">Email me my link</button><p class="form-msg" role="status"></p></form>
 </div></div>'''
     ld = [{'@context': 'https://schema.org', '@type': 'LearningResource', 'name': l['h1'], 'description': l['summary'], 'url': f'{SITE}/{path}',
            'learningResourceType': 'Lesson', 'timeRequired': f"PT{l['minutes']}M", 'inLanguage': 'en', 'isAccessibleForFree': True,

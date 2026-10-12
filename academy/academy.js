@@ -55,7 +55,7 @@
       api({ action: 'enroll', email: email, name: name, business: biz }).then(function (d) {
         btn.disabled = false;
         if (d.error) { msg.textContent = d.error; return; }
-        S.email = email.toLowerCase(); S.name = name; S.business = biz; save(S);
+        S.email = email.toLowerCase(); S.name = name; S.business = biz; if (d.t) S.t = d.t; save(S);
         track('generate_lead', { event_category: 'lead', event_label: 'academy_enroll', value: 10 });
         var go = f.getAttribute('data-next');
         if (go) { location.href = go; return; }
@@ -66,7 +66,43 @@
       });
     });
   });
-  if (week && !enrolled()) { document.body.classList.add('gated'); var g = $('#gate'); if (g) g.hidden = false; }
+  function syncProgress() { if (S.t) api({ action: 'progress', t: S.t, done: S.done }); }
+  function gateIfNeeded() { if (week && !enrolled()) { document.body.classList.add('gated'); var g = $('#gate'); if (g) g.hidden = false; } }
+
+  // Personal return link from the email: /academy?t=...  restores the student on any device.
+  var tParam = new URLSearchParams(location.search).get('t');
+  if (tParam) {
+    history.replaceState(null, '', location.pathname + location.hash);
+    api({ action: 'resume', t: tParam }).then(function (d) {
+      if (d.error) { var m = $('[data-resume-msg]'); if (m) { m.hidden = false; m.textContent = d.error; } gateIfNeeded(); return; }
+      S.email = d.email; S.t = d.t; if (d.name) S.name = d.name; if (d.business) S.business = d.business;
+      Object.keys(d.done || {}).forEach(function (k) { if (d.done[k]) S.done[k] = true; });
+      if (d.cert) S.cert = d.cert;
+      save(S); syncProgress();
+      var gate = $('#gate'); if (gate) gate.hidden = true; document.body.classList.remove('gated');
+      $$('form[data-hide-when-enrolled]').forEach(function (f) { f.hidden = true; });
+      var w = $('[data-enrolled-msg]'); if (w) w.hidden = false;
+      var lf = $('#link-form'); if (lf) lf.hidden = true;
+      var hello = $('[data-welcome-back]'); if (hello) { hello.hidden = false; hello.textContent = 'Welcome back' + (S.name ? ', ' + S.name.split(' ')[0] : '') + '. Your progress is restored.'; }
+      renderProgress();
+    });
+  } else { gateIfNeeded(); }
+
+  // "Already enrolled? Email me my link"
+  var lf = $('#link-form');
+  if (lf) {
+    if (enrolled()) lf.hidden = true;
+    lf.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var msg = $('.form-msg', lf), em = (lf.email.value || '').trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) { msg.textContent = 'Please enter a valid email address.'; return; }
+      $('button', lf).disabled = true; msg.textContent = 'Sending…';
+      api({ action: 'link', email: em }).then(function (d) {
+        $('button', lf).disabled = false;
+        msg.textContent = d.error || 'If that email is enrolled, your personal link is on its way. Check your inbox.';
+      });
+    });
+  }
 
   // ---------------------------------------------------------------- exercises
   $$('textarea[data-note]').forEach(function (t) {
@@ -83,7 +119,7 @@
   // ---------------------------------------------------------------- complete
   var cb = $('#complete-btn');
   if (cb) cb.addEventListener('click', function () {
-    S.done[week] = !S.done[week]; save(S); renderProgress();
+    S.done[week] = !S.done[week]; save(S); renderProgress(); syncProgress();
     if (S.done[week]) { track('academy_week_complete', { event_category: 'academy', value: week }); var nx = $('#next-week'); if (nx) nx.focus(); }
   });
 
