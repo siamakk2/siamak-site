@@ -25,7 +25,7 @@ try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.
 <meta property="og:title" content="Start Your AI Agency Project | Siamak Kalhor Consulting">
 <meta property="og:description" content="Send your project brief after checkout: your business, goals, competitors and website. We email a kickoff plan within one business day.">
 <meta property="og:url" content="https://siamakconsulting.com/agency/start">
-<meta property="og:image" content="https://siamakconsulting.com/og/pages/agency.jpg">
+<meta property="og:image" content="https://siamakconsulting.com/og/pages/agency.jpg?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:type" content="image/jpeg">
@@ -33,9 +33,34 @@ try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Start Your AI Agency Project | Siamak Kalhor Consulting">
 <meta name="twitter:description" content="Send your project brief after checkout: your business, goals, competitors and website. We email a kickoff plan within one business day.">
-<meta name="twitter:image" content="https://siamakconsulting.com/og/pages/agency.jpg">
+<meta name="twitter:image" content="https://siamakconsulting.com/og/pages/agency.jpg?v=2">
 <style>
-.ag-hero{padding:72px 0 30px}.ag-hero .ph-sub{max-width:800px}
+.ag-hero{padding:72px 0 40px;position:relative;overflow:hidden}.ag-hero .ph-sub{max-width:640px}
+.net3d{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.ag-hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.35) 50%,rgba(0,0,0,0) 75%)}
+.ag-hero>.wrap{position:relative;z-index:1}
+.ag-hgrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:40px;align-items:center}
+.ag-stage{perspective:1200px;height:440px;position:relative}
+.ag-stack{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(var(--sx,14deg)) rotateY(var(--sy,-22deg));transition:transform .35s ease-out}
+.ag-layer{position:absolute;left:8%;right:8%;top:50%;height:86px;margin-top:-43px;border-radius:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 22px;
+ background:linear-gradient(135deg,rgba(18,28,44,.92),rgba(10,14,24,.88));border:1px solid rgba(45,212,255,.35);box-shadow:0 20px 50px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.06);
+ transform:translateY(calc(var(--i) * 74px - 148px)) translateZ(calc(var(--i) * -38px));animation:agFloat 6s ease-in-out infinite;animation-delay:calc(var(--i) * -1.1s);text-decoration:none;color:var(--text)}
+.ag-layer b{font-family:var(--display);font-size:17px;font-weight:600}.ag-layer span{font-family:var(--mono);font-size:15px;color:#ffb454;white-space:nowrap}
+.ag-layer:first-child{border-color:rgba(255,180,84,.7);box-shadow:0 0 40px rgba(255,180,84,.18),0 20px 50px rgba(0,0,0,.55)}
+.ag-layer:hover{border-color:var(--cyan)}
+@keyframes agFloat{0%,100%{translate:0 0}50%{translate:0 -8px}}
+.ag-stats{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:26px;font-family:var(--mono);font-size:12.5px;color:var(--muted);letter-spacing:.04em}.ag-stats b{color:var(--text);font-size:18px;display:block;font-family:var(--display);letter-spacing:0}
+.ag-grid.d3{perspective:1400px}
+.ag-reveal{opacity:0;transform:translateZ(-220px) rotateX(22deg) translateY(50px);transition:opacity .9s ease,transform 1s cubic-bezier(.2,.8,.2,1)}
+.ag-reveal.in{opacity:1;transform:none}
+.ag-card.tilt{position:relative}
+.ag-card.d3-tilt.in{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .2s ease-out,opacity .9s ease}
+.d3-tilt::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(420px circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.07),transparent 45%)}
+.ag-card.hot .ag-price{background:linear-gradient(90deg,#ffd27a,#ff9a62);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+@media(max-width:900px){.ag-hgrid{grid-template-columns:minmax(0,1fr)}.ag-stage{height:380px}.ag-hero::before{background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.25) 50%,rgba(0,0,0,.6))}}
+@media(max-width:900px){.ag-hero .net3d{opacity:.4}}
+@media(max-width:520px){.ag-layer{left:2%;right:2%;padding:0 14px;height:74px;margin-top:-37px}.ag-layer b{font-size:15px}.ag-layer span{font-size:13px}.ag-stage{height:340px}}
+@media(prefers-reduced-motion:reduce){.ag-layer{animation:none}.ag-reveal{opacity:1;transform:none;transition:none}}
 .ag-pill{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:#ffb454;border:1px solid rgba(255,180,84,.4);border-radius:999px;padding:6px 12px;margin-bottom:18px}
 .ag-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:22px}
 .ag-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px;display:flex;flex-direction:column;gap:12px}
@@ -552,6 +577,7 @@ elevenlabs-convai{
 </script>
 <script defer src="/consent.js"></script>
 <script defer src="/robot.js"></script>
-<script src="/agency/agency.js?v=1" defer></script>
+<script src="/agency/agency.js?v=2" defer></script>
+<script src="/assets/depth3d.js?v=2" defer></script>
 </body>
 </html>

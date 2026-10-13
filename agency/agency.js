@@ -6,6 +6,23 @@
   document.querySelectorAll('a[data-pkg]').forEach(function (a) {
     a.addEventListener('click', function () { var k = a.getAttribute('data-pkg'); track('begin_checkout', { currency: 'USD', value: VALUES[k] || 0, items: [{ item_name: k }] }); });
   });
+  // 3-D: packages rise out of depth as they scroll in; the hero stack follows the pointer.
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rev = document.querySelectorAll('.ag-reveal');
+  if (reduce || !('IntersectionObserver' in window)) rev.forEach(function (el) { el.classList.add('in'); });
+  else {
+    var io = new IntersectionObserver(function (en) {
+      en.forEach(function (x) { if (x.isIntersecting) { var el = x.target, d = [].indexOf.call(el.parentNode.children, el) % 3; setTimeout(function () { el.classList.add('in'); }, d * 120); io.unobserve(el); } });
+    }, { threshold: 0.12 });
+    rev.forEach(function (el) { io.observe(el); });
+  }
+  var stack = document.querySelector('.ag-stack');
+  if (stack && !reduce && window.matchMedia && matchMedia('(hover: hover)').matches) {
+    addEventListener('pointermove', function (e) {
+      stack.style.setProperty('--sy', (-22 + (e.clientX / innerWidth - 0.5) * 26).toFixed(2) + 'deg');
+      stack.style.setProperty('--sx', (14 - (e.clientY / innerHeight - 0.5) * 16).toFixed(2) + 'deg');
+    }, { passive: true });
+  }
   var form = document.getElementById('ag-brief');
   if (!form) return;
   var qs = new URLSearchParams(location.search), session = qs.get('session') || '', pkg = qs.get('pkg') || '';

@@ -46,10 +46,35 @@ for pat in [r'<title>.*?</title>', r'<meta\s+name="description"[^>]*>', r'<meta\
             r'<link\s+rel="alternate"\s+hreflang[^>]*>', r'<script type="application/ld\+json">.*?</script>']:
     head = re.sub(pat, '', head, flags=re.S)
 pre_main, rest = body.split('<main id="main">', 1)
-post_main = rest.split('</main>', 1)[1].replace('</body>', '<script src="/agency/agency.js?v=1" defer></script>\n</body>')
+post_main = rest.split('</main>', 1)[1].replace('</body>', '<script src="/agency/agency.js?v=2" defer></script>\n<script src="/assets/depth3d.js?v=2" defer></script>\n</body>')
 
 CSS = '''<style>
-.ag-hero{padding:72px 0 30px}.ag-hero .ph-sub{max-width:800px}
+.ag-hero{padding:72px 0 40px;position:relative;overflow:hidden}.ag-hero .ph-sub{max-width:640px}
+.net3d{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.ag-hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.35) 50%,rgba(0,0,0,0) 75%)}
+.ag-hero>.wrap{position:relative;z-index:1}
+.ag-hgrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:40px;align-items:center}
+.ag-stage{perspective:1200px;height:440px;position:relative}
+.ag-stack{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(var(--sx,14deg)) rotateY(var(--sy,-22deg));transition:transform .35s ease-out}
+.ag-layer{position:absolute;left:8%;right:8%;top:50%;height:86px;margin-top:-43px;border-radius:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 22px;
+ background:linear-gradient(135deg,rgba(18,28,44,.92),rgba(10,14,24,.88));border:1px solid rgba(45,212,255,.35);box-shadow:0 20px 50px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.06);
+ transform:translateY(calc(var(--i) * 74px - 148px)) translateZ(calc(var(--i) * -38px));animation:agFloat 6s ease-in-out infinite;animation-delay:calc(var(--i) * -1.1s);text-decoration:none;color:var(--text)}
+.ag-layer b{font-family:var(--display);font-size:17px;font-weight:600}.ag-layer span{font-family:var(--mono);font-size:15px;color:#ffb454;white-space:nowrap}
+.ag-layer:first-child{border-color:rgba(255,180,84,.7);box-shadow:0 0 40px rgba(255,180,84,.18),0 20px 50px rgba(0,0,0,.55)}
+.ag-layer:hover{border-color:var(--cyan)}
+@keyframes agFloat{0%,100%{translate:0 0}50%{translate:0 -8px}}
+.ag-stats{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:26px;font-family:var(--mono);font-size:12.5px;color:var(--muted);letter-spacing:.04em}.ag-stats b{color:var(--text);font-size:18px;display:block;font-family:var(--display);letter-spacing:0}
+.ag-grid.d3{perspective:1400px}
+.ag-reveal{opacity:0;transform:translateZ(-220px) rotateX(22deg) translateY(50px);transition:opacity .9s ease,transform 1s cubic-bezier(.2,.8,.2,1)}
+.ag-reveal.in{opacity:1;transform:none}
+.ag-card.tilt{position:relative}
+.ag-card.d3-tilt.in{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .2s ease-out,opacity .9s ease}
+.d3-tilt::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(420px circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.07),transparent 45%)}
+.ag-card.hot .ag-price{background:linear-gradient(90deg,#ffd27a,#ff9a62);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+@media(max-width:900px){.ag-hgrid{grid-template-columns:minmax(0,1fr)}.ag-stage{height:380px}.ag-hero::before{background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.25) 50%,rgba(0,0,0,.6))}}
+@media(max-width:900px){.ag-hero .net3d{opacity:.4}}
+@media(max-width:520px){.ag-layer{left:2%;right:2%;padding:0 14px;height:74px;margin-top:-37px}.ag-layer b{font-size:15px}.ag-layer span{font-size:13px}.ag-stage{height:340px}}
+@media(prefers-reduced-motion:reduce){.ag-layer{animation:none}.ag-reveal{opacity:1;transform:none;transition:none}}
 .ag-pill{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:#ffb454;border:1px solid rgba(255,180,84,.4);border-radius:999px;padding:6px 12px;margin-bottom:18px}
 .ag-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:22px}
 .ag-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px;display:flex;flex-direction:column;gap:12px}
@@ -76,7 +101,7 @@ CSS = '''<style>
 @media (max-width:700px){.ag-form .row{grid-template-columns:1fr}}
 </style>'''
 
-def page(path, title, desc, ld, main, robots='index, follow, max-image-preview:large', og='og/pages/agency.jpg'):
+def page(path, title, desc, ld, main, robots='index, follow, max-image-preview:large', og='og/pages/agency.jpg?v=2'):
     url = SITE + '/' + path
     meta = (f'<title>{esc(title)}</title>\n<meta name="description" content="{esc(desc)}">\n<meta name="robots" content="{robots}">\n'
             f'<link rel="canonical" href="{url}">\n<meta property="og:type" content="website">\n<meta property="og:title" content="{esc(title)}">\n'
@@ -116,19 +141,22 @@ ld = [{'@context': 'https://schema.org', '@type': 'Service', '@id': SITE + '/age
 cards = ''
 for i, p in enumerate(PACKAGES):
     gets = ''.join(f'<li>{esc(g)}</li>' for g in p['gets'])
-    cards += (f'<div class="ag-card{" hot" if i == 0 else ""}" id="{p["key"]}"><div class="ag-tag">{esc(p["tag"])}</div><h3>{esc(p["name"])}</h3>'
+    cards += (f'<div class="ag-card tilt ag-reveal{" hot" if i == 0 else ""}" id="{p["key"]}"><div class="ag-tag">{esc(p["tag"])}</div><h3>{esc(p["name"])}</h3>'
               f'<div class="ag-price">{esc(p["price"])}<small>{esc(p["per"])}</small></div><p class="ag-for">{esc(p["for"])}</p><ul>{gets}</ul>'
               f'<div class="ag-time">{esc(p["time"])}</div><a class="ag-btn" href="{p["link"]}" data-pkg="{p["key"]}" rel="noopener">Start {esc(p["name"])} &rarr;</a></div>')
 faq_html = ''.join(f'<details class="ag-card" style="padding:18px 22px;gap:0"><summary style="cursor:pointer;font-weight:600">{esc(q)}</summary><p style="color:var(--muted);margin-top:10px">{esc(a)}</p></details>' for q, a in FAQ)
-main = f'''<header class="ag-hero"><div class="wrap">
+stack = ''.join(f'<a class="ag-layer" href="#{p["key"]}" style="--i:{k}" tabindex="-1"><b>{esc(p["name"])}</b><span>{esc(p["price"].replace("From ","from "))}{"/mo" if p["per"]=="per month" else ""}</span></a>' for k, p in enumerate(PACKAGES))
+main = f'''<header class="ag-hero"><canvas class="net3d" aria-hidden="true"></canvas><div class="wrap"><div class="ag-hgrid"><div>
 <div class="ag-pill">DONE-FOR-YOU AI AGENCY · FIXED PRICES · NO SALES CALL NEEDED</div>
 <h1 class="ph-h">Your <span class="grad">AI agency</span>, led by a 40-year strategist.</h1>
 <p class="ph-sub">Pick a package, pay online, and the work starts. Siamak Kalhor sets the strategy and reviews every deliverable. Our AI-powered team does the work: getting you named by ChatGPT and Google, AI-ready websites, AI agents that answer leads 24/7, and monthly content.</p>
 <div class="ph-btns" style="margin-top:22px"><a href="#packages" class="btn btn-pri">See the packages &rarr;</a><a href="/audit" class="btn btn-ghost">Free AI visibility report first</a></div>
+<div class="ag-stats"><div><b>5</b>fixed-price packages</div><div><b>1 day</b>to your kickoff plan</div><div><b>40 yrs</b>of marketing judgment</div></div>
+</div><div class="ag-stage" aria-hidden="true"><div class="ag-stack">{stack}</div></div></div>
 </div></header>
 <section id="packages"><div class="wrap"><div class="sec-label">Packages</div><h2 class="sec-h">Five ways to hire us</h2>
 <p style="color:var(--muted);max-width:760px">Every price is fixed and published. Pay securely by card through Stripe, then tell us about your business in a two-minute brief.</p>
-<div class="ag-grid">{cards}</div>
+<div class="ag-grid d3">{cards}</div>
 <p style="color:var(--muted-dim);font-size:14px;margin-top:16px">Need something bigger or different? <a href="/contact-us" style="color:var(--cyan)">Ask for a custom quote</a>, or book <a href="/online-consulting" style="color:var(--cyan)">a strategy hour with Siamak</a> ($350).</p>
 </div></section>
 <section><div class="wrap"><div class="sec-label">How it works</div><h2 class="sec-h">From checkout to results, without the meetings</h2>
