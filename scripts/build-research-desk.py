@@ -24,7 +24,7 @@ MONTHS = 'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec'.split()
 fmt = lambda d: f'{MONTHS[int(d[5:7]) - 1]} {int(d[8:10])}, {d[:4]}' if len(d) == 10 else ''
 
 cards = ''.join(
-    f'<a class="rd-card" href="/the-long-view/{a["slug"]}"><img src="{esc(a["img"])}" alt="" loading="lazy" width="1200" height="630">'
+    f'<a class="rd-card" href="/the-long-view/{a["slug"]}"><img src="{esc(a["img"])}" alt="Cover image for the article: {esc(a["title"])}" loading="lazy" width="1200" height="630">'
     f'<div class="rd-body"><div class="rd-meta">{esc(a["sec"])} · {fmt(a["date"])}</div><h3>{esc(a["title"])}</h3><p>{esc(a["desc"])}</p></div></a>'
     for a in arts[:6])
 
