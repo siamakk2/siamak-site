@@ -476,7 +476,8 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 .d3-tilt{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .2s ease-out}
 .d3-tilt::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(420px circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.07),transparent 45%)}
 .card.d3-tilt,.scale-step.d3-tilt{position:relative}
-</style></head>
+</style><style>@media(min-width:961px) and (max-width:1240px){#navLinks{gap:16px}#navLinks>a[href="/analyze-your-brand"]{display:none}}@media(min-width:961px) and (max-width:1060px){#navLinks{gap:11px}#navLinks>a[href="/about-us"]{display:none}}</style>
+</head>
 <body class="v2 home">
 <a href="#main" class="skip-link">Skip to content</a>
 <div class="ambient"></div>
@@ -531,6 +532,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
           <a href="/portfolio#clients">Clients</a>
         </div>
       </div>
+      <a href="/agency" class="nav-ag" style="color:#ffb454;font-weight:600">AI Agency</a>
       <a href="/analyze-your-brand">AI Audit</a>
       <a href="/about-us">About</a>
       <a href="/contact-us">Contact</a>
