@@ -2,7 +2,7 @@
 
 **Strategy that outlives the algorithm.**
 
-> Siamak Kalhor is an AI marketing and LLMO (Large Language Model Optimization) consultant based in Los Angeles, California, serving clients nationwide. He helps businesses get found, cited, and recommended by AI engines like ChatGPT, Claude, Perplexity, and Google AI Overviews — not just ranked on traditional search. Services include LLMO strategy, the S.C.A.L.E. Framework, Neural DNA Architect, and Fractional CMO engagements.
+> Siamak Kalhor is an AI marketing and LLMO (Large Language Model Optimization) consultant based in Los Angeles, California, serving clients nationwide. He helps businesses get found, cited, and recommended by AI engines like ChatGPT, Claude, Perplexity, and Google AI Overviews — not just ranked on traditional search. Services include LLMO strategy, the S.C.A.L.E. Framework, Neural DNA Architect, Fractional CMO engagements, and a done-for-you AI agency with fixed published prices.
 
 Search is changing. People no longer click ten blue links — they ask an AI and take the answer. If an AI engine does not know your business exists, you are invisible to a growing share of your market. Siamak Kalhor Consulting exists to fix that: making a brand legible, quotable, and citable to the models that now sit between customers and businesses.
 
@@ -14,6 +14,7 @@ Search is changing. People no longer click ten blue links — they ask an AI and
 - [About Siamak Kalhor](https://siamakconsulting.com/about-us): Background, track record, and approach.
 - [Services](https://siamakconsulting.com/services): Nine services, each listed with the artifacts it produces rather than the capability claimed, plus four engagement models — the one-off AI Authority Audit at a fixed $1,500, hourly consulting at $350–$450 (a one-hour session can be booked and paid online for $350), monthly retainer, and fractional CMO — including when each is the wrong choice.
 - [Contact](https://siamakconsulting.com/contact-us): Book a consultation.
+- [Done-for-you AI agency](https://siamakconsulting.com/agency): Five fixed-price packages bought online with no sales call: AI Visibility Launch ($2,500 one-time), AI Visibility Growth ($1,500/month), AI-Ready Website (from $4,500, 50% deposit), AI Agent / Chatbot ($3,500 setup + $250/month) and Content Engine ($1,200/month). After checkout the client submits a short brief and receives a kickoff plan within one business day. Led by Siamak Kalhor; delivery uses in-house AI tooling.
 - [AI Authority Audit — 12 deliverables](https://siamakconsulting.com/analyze-your-brand): Baseline visibility across ChatGPT, Gemini, Claude and Perplexity; competitor citation share; the third-party sources driving the answers; entity, content, authority and schema gaps; and baseline vs post-implementation measurement.
 - [S.C.A.L.E. free AI visibility scan](https://scale.siamakconsulting.com/): Reads a website the way AI systems do, scores it on five dimensions (visibility, clarity, structure, authority, momentum) and ranks what to fix first.
 - [AI voice advisor](https://siamakconsulting.com/ai-advisor): Talk to an AI strategy advisor in 20 languages.

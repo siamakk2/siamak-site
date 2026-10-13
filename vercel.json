@@ -643,6 +643,11 @@
       "source": "/website-audit",
       "destination": "https://scale.siamakconsulting.com/",
       "permanent": true
+    },
+    {
+      "source": "/research",
+      "destination": "/the-long-view",
+      "permanent": false
     }
   ],
   "rewrites": [
@@ -916,6 +921,9 @@
     },
     "api/academy.js": {
       "maxDuration": 60
+    },
+    "api/agency.js": {
+      "maxDuration": 30
     }
   },
   "crons": [
