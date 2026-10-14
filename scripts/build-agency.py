@@ -5,7 +5,9 @@ Site chrome (consent, analytics, fonts, base CSS, nav, footer) comes from
 growth-framework/index.html at build time, so these pages always match the site.
 Run from the repo root:  python3 scripts/build-agency.py
 """
-import html, json, os, re
+import html, json, os, re, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import videos
 
 ROOT = os.path.join(os.path.dirname(__file__), '..')
 SITE = 'https://siamakconsulting.com'
@@ -99,7 +101,7 @@ CSS = '''<style>
 .form-msg{min-height:1.4em;color:var(--muted);font-size:14px}
 .ag-ok{border:1px solid #2f8f5f;background:rgba(47,143,95,.12);border-radius:14px;padding:18px 20px;color:#c9f2da}
 @media (max-width:700px){.ag-form .row{grid-template-columns:1fr}}
-</style>'''
+</style>''' + videos.CSS
 
 def page(path, title, desc, ld, main, robots='index, follow, max-image-preview:large', og='og/pages/agency.jpg?v=2'):
     url = SITE + '/' + path
@@ -154,6 +156,7 @@ main = f'''<header class="ag-hero"><canvas class="net3d" aria-hidden="true"></ca
 <div class="ag-stats"><div><b>5</b>fixed-price packages</div><div><b>1 day</b>to your kickoff plan</div><div><b>40 yrs</b>of marketing judgment</div></div>
 </div><div class="ag-stage" aria-hidden="true"><div class="ag-stack">{stack}</div></div></div>
 </div></header>
+{videos.section('whole-job', '<div class="ph-btns" style="margin-top:22px"><a href="#packages" class="btn btn-pri">See the packages &rarr;</a></div>')}
 <section id="packages"><div class="wrap"><div class="sec-label">Packages</div><h2 class="sec-h">Five ways to hire us</h2>
 <p style="color:var(--muted);max-width:760px">Every price is fixed and published. Pay securely by card through Stripe, then tell us about your business in a two-minute brief.</p>
 <div class="ag-grid d3">{cards}</div>
