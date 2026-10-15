@@ -14,7 +14,7 @@ ICONS = ('<link rel="icon" href="/favicon.ico" sizes="48x48">\n'
          '<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">\n'
          '<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">\n'
          '<link rel="manifest" href="/site.webmanifest">\n')
-HERO = '<script src="/assets/hero3d.js?v=4" defer></script>'
+HERO = '<script src="/assets/hero3d.js?v=5" defer></script>'
 n_icon = n_hero = 0
 for f in glob.glob('**/*.html', recursive=True):
     if any(x in f for x in ('node_modules', '_archive', 'scripts/', '.vercel')) or os.path.basename(f).startswith('google'):

@@ -23,6 +23,8 @@
   if (window.__hero3d) return; window.__hero3d = 1;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var touch = window.matchMedia && matchMedia('(hover: none)').matches;
+  // phones and tablets: no empty side column, so the scene goes behind the opening text instead
+  var MOBILE = innerWidth < 960 || (touch && innerWidth < 1100);
   var C = { c: '45,212,255', v: '160,107,255', a: '255,180,84', g: '110,231,183', r: '255,107,107' };
 
   // ------------------------------------------------------------- which scene
@@ -115,9 +117,9 @@
   function Stage(cv, scene) {
     var ctx = cv.getContext('2d'), W = 0, H = 0, ox = 0, oy = 0, S = 1, rot = 0, tx = 0.2, ty = 0, ax = 0.2, ay = 0, last = 0, run = false, T = 0;
     function size() {
-      var r = cv.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 1.75);
+      var r = cv.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, MOBILE ? 1.5 : 1.75);
       W = r.width; H = r.height; cv.width = Math.round(W * d); cv.height = Math.round(H * d); ctx.setTransform(d, 0, 0, d, 0, 0);
-      ox = W * 0.5; oy = H * 0.5; S = Math.min(W, H) * 0.36;
+      ox = W * (cv._cx || 0.5); oy = H * (cv._cy || 0.5); S = Math.min(W, H) * (cv._s || 0.36);
     }
     function P(p) {
       var cy = Math.cos(rot + ty), sy = Math.sin(rot + ty), x = p.x * cy - p.z * sy, z = p.x * sy + p.z * cy;
@@ -128,6 +130,7 @@
     var spin = scene.spin == null ? 0.00016 : scene.spin;
     if (scene.tilt != null) { tx = ax = scene.tilt; }
     function frame(now) {
+      if (MOBILE && last && now - last < 30) { if (run && !reduce) requestAnimationFrame(frame); return; } // ~30fps on phones: kinder to the battery
       var dt = Math.min(50, now - (last || now)); last = now; if (!reduce) { T += dt / 1000; rot += dt * spin; }
       tx += (ax - tx) * 0.05; ty += (ay - ty) * 0.05;
       ctx.clearRect(0, 0, W, H); scene.draw(api, dt / 1000);
@@ -136,11 +139,13 @@
     function start() { if (!run) { run = true; last = 0; requestAnimationFrame(frame); } }
     function stop() { run = false; }
     size(); if (scene.init) scene.init(api); frame(performance.now());
-    addEventListener('resize', function () { size(); if (!run) frame(performance.now()); });
+    var lastW = innerWidth; // phones fire resize when the address bar slides; only a real width change needs a redraw
+    addEventListener('resize', function () { if (MOBILE && innerWidth === lastW) return; lastW = innerWidth; size(); if (!run) frame(performance.now()); });
     if (!reduce) {
       if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { e[0].isIntersecting && !document.hidden ? start() : stop(); }).observe(cv); else start();
       document.addEventListener('visibilitychange', function () { document.hidden ? stop() : start(); });
-      addEventListener('pointermove', function (e) { ay = (e.clientX / innerWidth - 0.5) * 0.5; ax = (scene.tilt == null ? 0.2 : scene.tilt) + (e.clientY / innerHeight - 0.5) * 0.3; }, { passive: true });
+      if (MOBILE) addEventListener('scroll', function () { var k = Math.min(1, scrollY / 600); ay = k * 0.9; ax = (scene.tilt == null ? 0.2 : scene.tilt) + k * 0.25; }, { passive: true }); // the scene turns as you scroll
+      else addEventListener('pointermove', function (e) { ay = (e.clientX / innerWidth - 0.5) * 0.5; ax = (scene.tilt == null ? 0.2 : scene.tilt) + (e.clientY / innerHeight - 0.5) * 0.3; }, { passive: true });
     }
   }
   function dot(g, x, y, r, col, a) { g.fillStyle = 'rgba(' + col + ',' + a.toFixed(3) + ')'; g.beginPath(); g.arc(x, y, r, 0, 6.2832); g.fill(); }
@@ -653,9 +658,29 @@
     }
     Stage(cv, scene);
   }
+  // Phones: the scene sits behind the opening headline, where it is seen straight away, in its own
+  // stacking layer under the words, faded on the side where the text starts so every line stays readable.
+  function mountMobile(h) {
+    var vw = document.documentElement.clientWidth, name = pick(), scene = SCENES[name] || SCENES.network;
+    var host = h.el, cv = document.createElement('canvas');
+    cv.className = 'hero3d hero3d-' + name + ' hero3d-m'; cv.setAttribute('aria-hidden', 'true');
+    if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
+    host.style.isolation = 'isolate';
+    var hr = host.getBoundingClientRect(), css = 'position:absolute;pointer-events:none;z-index:-1;';
+    {
+      if (h.viz) { var svg = h.viz.querySelector('.constel'); if (svg) svg.style.opacity = '0.25'; }
+      var t = h.h1.getBoundingClientRect(), H2 = Math.round(Math.min(Math.max(vw * 1.05, 340), 480)), top = Math.max(0, t.top - hr.top - H2 * 0.3);
+      cv.style.cssText = css + 'left:' + Math.round(-hr.left) + 'px;width:' + vw + 'px;height:' + H2 + 'px;top:' + Math.round(top) + 'px;opacity:.58;' +
+        '-webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,.35),#000 55%);mask-image:linear-gradient(90deg,rgba(0,0,0,.35),#000 55%)';
+      cv._cx = 0.68; cv._cy = 0.42; cv._s = 0.4;
+      if (CENTRE[name] && h.viz) { var base = scene.draw, label = CENTRE[name]; scene = Object.create(scene); scene.draw = function (st, dt) { base.call(this, st, dt); engines(st, label, 1.2); }; }
+    }
+    host.insertBefore(cv, host.firstChild);
+    Stage(cv, scene);
+  }
   function mount() {
-    if (innerWidth < 960 || touch && innerWidth < 1100) return;
     var h = findHero(); if (!h) return;
+    if (MOBILE) return mountMobile(h);
     if (h.viz) return mountViz(h.viz);
     var el = h.el, box = el.getBoundingClientRect();
     if (box.height > 900) { // a whole-page container: use only the opening band around the h1
@@ -688,7 +713,6 @@
       'left:' + Math.round(left - hr2.left) + 'px;top:' + Math.round(box.top - hr2.top + (box.height - H) / 2) + 'px';
     host.appendChild(cv);
     Stage(cv, scene);
-    addEventListener('resize', function () { if (innerWidth < 960) cv.style.display = 'none'; else cv.style.display = ''; });
   }
   // Start as soon as the layout is settled. Do not wait for the window load event: a slow
   // third-party file (analytics, a font, an image far down the page) can hold it back for many seconds.
