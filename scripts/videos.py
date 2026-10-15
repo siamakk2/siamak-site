@@ -38,7 +38,7 @@ def schema(key):
     v = VIDEOS[key]
     return {'@context': 'https://schema.org', '@type': 'VideoObject', 'name': v['name'], 'description': v['description'],
             'thumbnailUrl': f"{SITE}/videos/{v['file']}.jpg", 'contentUrl': f"{SITE}/videos/{v['file']}.mp4",
-            'uploadDate': '2026-10-14', 'duration': f"PT{v['seconds']}S", 'inLanguage': 'en',
+            'uploadDate': '2026-10-14T09:00:00-07:00', 'duration': f"PT{v['seconds']}S", 'inLanguage': 'en',
             'publisher': {'@id': SITE + '/#business'}, 'creator': {'@id': SITE + '/#business'}}
 
 
