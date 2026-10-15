@@ -153,6 +153,7 @@ ENROLL_FORM = '''<form class="ac-enroll" data-enroll {extra}>
 <label class="sr-only" for="{p}-name" style="position:absolute;left:-9999px">Your name</label><input id="{p}-name" name="name" autocomplete="name" placeholder="Your name">
 <label class="sr-only" for="{p}-email" style="position:absolute;left:-9999px">Email</label><input id="{p}-email" name="email" type="email" autocomplete="email" required placeholder="Email address">
 <label class="sr-only" for="{p}-biz" style="position:absolute;left:-9999px">Business website (optional)</label><input id="{p}-biz" name="business" placeholder="Business you'll work on (optional)">
+<div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden"><label>Website<input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
 <button type="submit">{cta}</button><p class="form-msg" role="status"></p>
 <p style="font-size:13px;color:var(--muted-dim);margin:0">Week 1 is free. We email your personal course link; no spam. <a href="/privacy" style="color:var(--muted)">Privacy</a></p>
 </form>'''

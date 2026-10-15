@@ -80,12 +80,55 @@ function emailShell(title, bodyHtml) {
     '<p style="color:#6B7280;font-size:13px;margin-top:32px">Siamak Kalhor Consulting · Los Angeles · <a href="' + SITE + '">siamakconsulting.com</a></p></div>';
 }
 
+// ---- Bot defence ------------------------------------------------------------
+// Sign-up bots enter a real stranger's email with random-letter "names"
+// ("Lzve Dmzyjq", "Yqqdt LLC"), which made this endpoint mail welcome emails to
+// people who never asked for them. Three signals, all invisible to real people:
+//   1. a honeypot field humans never see ("website"): filled => bot, nothing stored or sent
+//   2. form fill time ("ft", ms since the page loaded): under 2.5 s => bot-speed
+//   3. gibberish words in the name or business (no vowels, 5+ consonants in a row,
+//      or letter pairs that never occur in real words, such as "jq" or "qq")
+// A suspected bot is answered like a normal success, so it learns nothing, but
+// no email goes out and no alert is raised. The record is kept apart for review.
+function gibberishWord(w) {
+  w = w.toLowerCase();
+  if (!/^[a-z]+$/.test(w) || w.length < 4) return false;
+  let v = 0, run = 0, maxRun = 0;
+  for (let i = 0; i < w.length; i++) {
+    const c = w[i], vowel = 'aeiou'.includes(c) || (c === 'y' && i > 0);
+    if (vowel) { v++; run = 0; } else { run++; if (run > maxRun) maxRun = run; }
+  }
+  return v === 0 || maxRun >= 5 || /jq|jx|jz|qg|qk|qy|qz|qj|qx|qq|wq|wz|xj|zx|zj|vq|vj|vx|kq|cj|fq|gq|pq|zq|hx|xk|bx|cx|dx|fx|gx|jv|jw|jf|jg|mq|pz|qv|vw|vz|xz|zf|zv|lzv|mzy/.test(w);
+}
+function looksGibberish(text) { return String(text || '').split(/[^A-Za-z]+/).some(gibberishWord); }
+function botSignals(body, name, business) {
+  const why = [];
+  if (String(body.website || body.hp || '').trim()) why.push('honeypot');
+  const ft = Number(body.ft);
+  if (body.ft !== undefined && (!isFinite(ft) || ft < 2500)) why.push('fast');
+  if (looksGibberish(name) || looksGibberish(business)) why.push('gibberish');
+  return why;
+}
+
 async function enroll(body, res) {
   const email = cleanEmail(body.email);
   if (!validEmail(email)) return res.status(200).json({ error: 'Please enter a valid email address.' });
   const name = cleanName(body.name);
   const business = cleanName(body.business);
   const db = redis();
+  const why = botSignals(body, name, business);
+  if (why.length) {
+    // Returning students who are already enrolled are never affected: only a NEW sign-up is screened.
+    let known = false;
+    if (db) { try { known = !!(await db(['GET', 'academy:student:' + email])); } catch (e) {} }
+    if (!known) {
+      if (db && !why.includes('honeypot')) {
+        try { await db(['LPUSH', 'academy:suspect', JSON.stringify({ email, name, business, why, at: new Date().toISOString() })]); await db(['LTRIM', 'academy:suspect', 0, 499]); } catch (e) {}
+      }
+      console.log(JSON.stringify({ source: 'academy', action: 'enroll', blocked: why.join(',') }));
+      return res.status(200).json({ ok: true, isNew: true, t: tokenFor(email), paid: false });
+    }
+  }
   let isNew = true;
   if (db) {
     try {
@@ -302,7 +345,7 @@ module.exports = async function handler(req, res) {
   if (typeof body === 'string') { try { body = JSON.parse(body); } catch (e) { body = {}; } }
   if (!body || typeof body !== 'object') body = {};
   const action = body.action;
-  const limits = { enroll: 10, tutor: 60, cert: 10, certGet: 120, resume: 60, progress: 120, link: 5, checkout: 20, confirm: 30 };
+  const limits = { enroll: 5, tutor: 60, cert: 10, certGet: 120, resume: 60, progress: 120, link: 5, checkout: 20, confirm: 30 };
   if (req.method === 'OPTIONS') return guard(req, res, { bucket: 'academy-preflight' });
   if (!limits[action]) { res.setHeader('Access-Control-Allow-Origin', '*'); return res.status(400).json({ error: 'Unknown action.' }); }
   if (!(await guard(req, res, { bucket: 'academy-' + action, limit: limits[action], window: 3600 }))) return;

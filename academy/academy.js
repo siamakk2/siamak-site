@@ -43,6 +43,7 @@
   }
 
   // ---------------------------------------------------------------- enrollment
+  var T0 = performance.now(); // fill time is sent with a new sign-up; bots submit instantly
   function enrolled() { return !!S.email; }
   $$('form[data-enroll]').forEach(function (f) {
     if (enrolled() && f.hasAttribute('data-hide-when-enrolled')) { f.hidden = true; var w = $('[data-enrolled-msg]'); if (w) w.hidden = false; }
@@ -52,7 +53,8 @@
       var msg = $('.form-msg', f), btn = $('button', f);
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { msg.textContent = 'Please enter a valid email address.'; return; }
       btn.disabled = true; msg.textContent = 'Enrolling…';
-      api({ action: 'enroll', email: email, name: name, business: biz }).then(function (d) {
+      var hp = f.website ? f.website.value : '';
+      api({ action: 'enroll', email: email, name: name, business: biz, website: hp, ft: Math.round(performance.now() - T0) }).then(function (d) {
         btn.disabled = false;
         if (d.error) { msg.textContent = d.error; return; }
         S.email = email.toLowerCase(); S.name = name; S.business = biz; if (d.t) S.t = d.t; S.paid = !!d.paid; save(S);
