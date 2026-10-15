@@ -306,5 +306,12 @@
     Stage(cv, scene);
     addEventListener('resize', function () { if (innerWidth < 960) cv.style.display = 'none'; else cv.style.display = ''; });
   }
-  if (document.readyState === 'complete') setTimeout(mount, 60); else addEventListener('load', function () { setTimeout(mount, 60); });
+  // Start as soon as the layout is settled. Do not wait for the window load event: a slow
+  // third-party file (analytics, a font, an image far down the page) can hold it back for many seconds.
+  var done = false;
+  function go() { if (done) return; done = true; try { mount(); } catch (e) { /* decoration only */ } }
+  function soon() { setTimeout(go, 120); }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(soon, soon);
+  if (document.readyState !== 'loading') soon(); else document.addEventListener('DOMContentLoaded', soon);
+  setTimeout(go, 1500);
 })();
