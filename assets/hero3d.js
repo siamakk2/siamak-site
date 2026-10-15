@@ -42,7 +42,7 @@
     '/ai-marketing-consultant-los-angeles': 'map', '/ai-marketing-consultant-napa-valley': 'map', '/local': 'map',
     '/fractional-cmo': 'helm', '/custom-ai-software': 'chip', '/pricing': 'coins', '/geo-aeo-consultant': 'rank',
     '/business-growth-consultant': 'growth', '/website-conversion-consultant': 'funnel', '/case-studies': 'growth', '/industries': 'network',
-    '/how-much-does-llmo-cost': 'coins', '/the-long-view/which-parts-of-my-business-should-i-automate-first': 'gears', '/llmo-training': 'docs'
+    '/how-much-does-llmo-cost': 'coins', '/the-long-view/which-parts-of-my-business-should-i-automate-first': 'gears', '/llmo-training': 'docs', '/the-long-view/nobody-searches-anymore': 'rank'
   };
   // what sits at the centre when the four AI engines orbit it (pages that had the 2D engine diagram)
   var CENTRE = { scales: 'YOUR FIRM', tooth: 'YOUR PRACTICE', pulse: 'YOUR PRACTICE', golden: 'YOUR PRACTICE', cart: 'YOUR STORE', house: 'YOUR COMPANY', dish: 'YOUR RESTAURANT' };
