@@ -27,22 +27,41 @@
 
   // ------------------------------------------------------------- which scene
   var path = location.pathname.replace(/^\/(es|fa|hy)(?=\/|$)/, '').replace(/\/+$/, '') || '/';
+  var MAP = {
+    '/ai-consulting': 'strategy', '/ai-consultant': 'strategy', '/ai-advisory': 'gyro', '/ai-automation': 'gears', '/ai-agents': 'agents',
+    '/ai-seo': 'rank', '/ai-search-marketing-consultant': 'rank', '/best-llmo-consultant': 'rank', '/seo-vs-llmo': 'rank',
+    '/ai-marketing': 'prism', '/internet-marketing': 'funnel', '/internet-marketing-consultant': 'funnel', '/social-media-marketing': 'feed',
+    '/brand-creation': 'dna', '/business-dna': 'dna', '/llm-optimization': 'network', '/what-is-llmo': 'network', '/how-to-get-cited-by-ai': 'network',
+    '/services': 'growth', '/analyze-your-brand': 'scan', '/audit': 'scan', '/website-audit': 'scan',
+    '/law-firm-marketing-consultant': 'scales', '/law-firm-marketing-budget': 'scales', '/ai-for-law-firms': 'scales',
+    '/dental-marketing-consultant': 'tooth', '/dental-marketing-budget': 'tooth', '/medical-practice-marketing-consultant': 'pulse',
+    '/cosmetic-surgery-marketing-consultant': 'golden', '/ecommerce-marketing-consultant': 'cart', '/ai-for-ecommerce': 'cart',
+    '/ai-for-contractors': 'house', '/ai-for-restaurants': 'dish', '/ai-marketing-news': 'news',
+    '/ai-marketing-consultant-los-angeles': 'map', '/ai-marketing-consultant-napa-valley': 'map', '/local': 'map'
+  };
+  // what sits at the centre when the four AI engines orbit it (pages that had the 2D engine diagram)
+  var CENTRE = { scales: 'YOUR FIRM', tooth: 'YOUR PRACTICE', pulse: 'YOUR PRACTICE', golden: 'YOUR PRACTICE', cart: 'YOUR STORE', house: 'YOUR COMPANY', dish: 'YOUR RESTAURANT' };
   function pick() {
     var forced = document.documentElement.getAttribute('data-hero3d');
     if (forced) return forced;
+    if (MAP[path]) return MAP[path];
     var p = path, slug = p.split('/').pop();
     var rules = [
-      ['docs', /glossary|^\/faq|^\/academy|training|ai-marketing-news/],
-      ['map', /los-angeles|napa-valley|^\/local|^\/listings|winer|hotel|(^|-)inns?(-|$)|restaurant|tasting/],
-      ['pulse', /dental|medical|cosmetic|doctor|patient|clinic/],
-      ['shield', /privacy|terms|llm-info|law-firm|super-intelligence|executive-order|security/],
+      ['docs', /glossary|^\/faq|^\/academy|training/],
+      ['tooth', /dental|dentist/], ['golden', /cosmetic|plastic|aesthetic/], ['pulse', /medical|doctor|patient|clinic/],
+      ['scales', /law-firm|lawyer|attorney/], ['dish', /restaurant/], ['cart', /online-store|ecommerce|shop/],
+      ['map', /los-angeles|napa|^\/local|^\/listings|winer|hotel|(^|-)inns?(-|$)|tasting/],
+      ['shield', /privacy|terms|llm-info|super-intelligence|executive-order|security/],
       ['scan', /audit|analyze|pagespeed|is-my-marketing|invisible|contradiction|checklist|why-doesnt|show-up|doesnt-show/],
       ['voice', /voice|\/ai-advisor$|^\/ask|online-consulting|contact/],
-      ['agents', /agent|automation|ai-for-|ai-advisory|ai-consult|commerce|fractional/],
+      ['agents', /agent|automation|ai-for-|commerce|fractional/],
       ['dna', /dna|brand-creation|about|portfolio|textile|bluemoon|blue-moon/],
-      ['growth', /growth|budget|spend|how-much|price|ecommerce|internet-marketing|social-media|ai-marketing$|services|ads|leads|sales|customers|stalled|agency/],
-      ['network', /llm|llmo|ai-visibility|ai-seo|cited|authority|seo-vs|answers|chatgpt|schema|search|model|frontier|announcement/],
-      ['docs', /long-view|glossary|faq|news|academy|training|framework|myth|strategy/]
+      ['funnel', /leads|sales|customers|advertising|ads-in|dont-buy/],
+      ['growth', /growth|budget|spend|how-much|price|stalled|agency|services/],
+      ['rank', /outrank|seo-agencies|choose-an-llmo/],
+      ['network', /llm|llmo|ai-visibility|ai-seo|cited|authority|answers|chatgpt|schema|search|model|frontier|announcement/],
+      ['strategy', /strategy|myth/],
+      ['docs', /long-view|news/]
     ];
     for (var i = 0; i < rules.length; i++) if (rules[i][1].test(p) || rules[i][1].test(slug)) return rules[i][0];
     return 'network';
@@ -61,6 +80,8 @@
     }
     if (el === h1) return null;
     if (el.querySelector('canvas,video,iframe,x-embed')) return null;
+    var viz = el.querySelector('.ph-viz');
+    if (viz && (viz.querySelector('.glance') || viz.querySelector('.constel'))) return { el: el, h1: h1, viz: viz };
     // a photo backdrop (CSS background image on the section, an ancestor or a child) means it is not empty
     var chk = [el, el.parentElement].concat([].slice.call(el.querySelectorAll('*'), 0, 250));
     for (var b = 0; b < chk.length; b++) { if (!chk[b]) continue; var bi = getComputedStyle(chk[b]).backgroundImage, bb = getComputedStyle(chk[b], '::before').backgroundImage;
@@ -69,10 +90,10 @@
     for (var i = 0; i < imgs.length; i++) { var r = imgs[i].getBoundingClientRect(); if (r.width > 160 && r.height > 120) return null; }
     return { el: el, h1: h1 };
   }
-  function contentBox(el) {
+  function contentBox(el, y0, y1) {
     // the horizontal extent actually covered by text and controls (not the width of their boxes)
     var L = Infinity, R = -Infinity, n = 0;
-    function add(r) { if (r.width < 2 || r.height < 2) return; if (r.left < L) L = r.left; if (r.right > R) R = r.right; }
+    function add(r) { if (r.width < 2 || r.height < 2) return; if (y0 != null && (r.bottom < y0 || r.top > y1)) return; if (r.left < L) L = r.left; if (r.right > R) R = r.right; }
     var tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null), node, rg = document.createRange();
     while ((node = tw.nextNode()) && n < 600) {
       if (!/\S/.test(node.nodeValue)) continue;
@@ -274,15 +295,312 @@
     }
   };
 
+
+  // ------------------------------------------------- scenes for services and industries
+  function ring3(s, cx, cy, cz, r, ax, col, al, w, n) { // a circle in a plane: ax 'y' = horizontal (xz), 'z' = facing (xy), 'x' = side (yz)
+    var pts = []; n = n || 48;
+    for (var i = 0; i <= n; i++) { var a = i / n * 6.2832, c = Math.cos(a) * r, d = Math.sin(a) * r;
+      pts.push(ax === 'y' ? { x: cx + c, y: cy, z: cz + d } : ax === 'z' ? { x: cx + c, y: cy + d, z: cz } : { x: cx, y: cy + c, z: cz + d }); }
+    path3(s, pts, col, al, w);
+  }
+  function poly3(s, pts, fill, stroke, w) { var g = s.ctx, q = pts.map(s.P); g.beginPath(); q.forEach(function (p, i) { i ? g.lineTo(p.x, p.y) : g.moveTo(p.x, p.y); }); g.closePath(); if (fill) { g.fillStyle = fill; g.fill(); } if (stroke) { g.strokeStyle = stroke; g.lineWidth = w || 1; g.stroke(); } }
+  // The four engines, orbiting whatever the page is about: what the old 2D diagrams said, now in depth.
+  function engines(s, label, r) {
+    var g = s.ctx, names = ['ChatGPT', 'Claude', 'Gemini', 'Perplexity'], c = s.P({ x: 0, y: 0, z: 0 }); r = r || 1.35;
+    g.font = '600 11px ui-monospace, SFMono-Regular, Menlo, monospace'; g.textAlign = 'center'; g.textBaseline = 'middle';
+    names.map(function (n, i) { var a = i / 4 * 6.2832 + s.t * 0.12; return { n: n, q: s.P({ x: Math.cos(a) * r, y: Math.sin(a * 2) * 0.12 - 0.05, z: Math.sin(a) * r }) }; })
+      .sort(function (a, b) { return b.q.z - a.q.z; }).forEach(function (o, i) {
+        var q = o.q, al = depthA(q.f), w = g.measureText(o.n.toUpperCase()).width + 18;
+        line(g, q, c, C.c, 0.14 * al);
+        g.fillStyle = 'rgba(12,18,30,' + (0.55 + 0.35 * al).toFixed(2) + ')'; g.strokeStyle = 'rgba(45,212,255,' + (0.25 + 0.45 * al).toFixed(2) + ')';
+        g.beginPath(); if (g.roundRect) g.roundRect(q.x - w / 2, q.y - 11, w, 22, 6); else g.rect(q.x - w / 2, q.y - 11, w, 22); g.fill(); g.stroke();
+        g.fillStyle = 'rgba(200,215,235,' + (0.45 + 0.55 * al).toFixed(2) + ')'; g.fillText(o.n.toUpperCase(), q.x, q.y + 0.5);
+      });
+    if (label) { g.font = '700 11px ui-monospace, SFMono-Regular, Menlo, monospace'; g.fillStyle = 'rgba(255,214,150,.95)'; g.fillText(label, c.x, c.y + s.S * 0.98); }
+  }
+
+  var MORE = {
+    // AI consulting: strategy as a decision tree; one path, lit gold, is the plan.
+    strategy: {
+      tilt: 0.12, spin: 0.00022,
+      init: function () {
+        var nodes = [{ x: 0, y: 0.95, z: 0, d: 0, gold: true }], edges = [];
+        (function grow(pi, depth) {
+          if (depth > 3) return; var p = nodes[pi], k = depth === 0 ? 3 : 2, goldKid = (depth * 7 + 1) % k;
+          for (var i = 0; i < k; i++) { var a = (i / k) * 6.2832 + depth * 1.3 + rand() * 0.5, spread = 0.62 - depth * 0.12;
+            var n = { x: p.x + Math.cos(a) * spread, y: p.y - 0.5, z: p.z + Math.sin(a) * spread, d: depth + 1, gold: p.gold && i === goldKid };
+            nodes.push(n); edges.push([pi, nodes.length - 1]); grow(nodes.length - 1, depth + 1); }
+        })(0, 0);
+        this.n = nodes; this.e = edges; this.path = []; var cur = 0;
+        while (true) { var nx = -1; for (var j = 0; j < edges.length; j++) if (edges[j][0] === cur && nodes[edges[j][1]].gold) nx = edges[j][1]; if (nx < 0) break; this.path.push([cur, nx]); cur = nx; }
+      },
+      draw: function (s) {
+        var g = s.ctx, Q = this.n.map(s.P), n = this.n;
+        this.e.forEach(function (e) { var gold = n[e[0]].gold && n[e[1]].gold; line(g, Q[e[0]], Q[e[1]], gold ? C.a : '120,170,255', gold ? 0.9 : 0.28 * depthA(Q[e[1]].f) + 0.08, gold ? 2.6 : 1.2); });
+        var T = reduce ? 0.7 : (s.t * 0.35) % 1, seg = this.path[Math.min(this.path.length - 1, (T * this.path.length) | 0)], u = (T * this.path.length) % 1;
+        if (seg) { var A = Q[seg[0]], B = Q[seg[1]]; glow(g, A.x + (B.x - A.x) * u, A.y + (B.y - A.y) * u, 16, 'rgba(255,214,150,.95)', 'rgba(255,170,90,0)'); }
+        Q.forEach(function (q, i) { var nd = n[i], col = nd.gold ? C.a : nd.d === 4 ? C.v : C.c; dot(g, q.x, q.y, (nd.gold ? 5 : 3) * q.f, col, depthA(q.f)); if (nd.gold && nd.d === 4) glow(g, q.x, q.y, 30, 'rgba(255,214,150,.7)', 'rgba(255,170,90,0)'); });
+      }
+    },
+    // AI advisory: a gyroscope — steady guidance while everything around it moves.
+    gyro: {
+      tilt: 0.2, spin: 0.0001,
+      draw: function (s) {
+        var g = s.ctx, t = s.t, R = [1.0, 0.82, 0.64];
+        function ringPts(r, rx, ry) { var pts = []; for (var i = 0; i <= 64; i++) { var a = i / 64 * 6.2832, x = Math.cos(a) * r, y = Math.sin(a) * r, z = 0;
+          var cy = Math.cos(ry), sy = Math.sin(ry), x2 = x * cy - z * sy, z2 = x * sy + z * cy; var cx = Math.cos(rx), sx = Math.sin(rx); pts.push({ x: x2, y: y * cx - z2 * sx, z: y * sx + z2 * cx }); } return pts; }
+        path3(s, ringPts(R[0], 1.57, t * 0.4), C.v, 0.5, 2); path3(s, ringPts(R[1], t * 0.7, 0.6), C.c, 0.6, 2); path3(s, ringPts(R[2], 0.3, -t * 1.1), C.a, 0.7, 2);
+        for (var k = 0; k < 24; k++) { var a = k / 24 * 6.2832, o = { x: Math.cos(a) * 1.12, y: 0, z: Math.sin(a) * 1.12 }, i2 = { x: Math.cos(a) * (k % 6 ? 1.07 : 1.0), y: 0, z: Math.sin(a) * (k % 6 ? 1.07 : 1.0) }; line(g, s.P(i2), s.P(o), '160,180,210', 0.35, k % 6 ? 1 : 2); }
+        var nd = { x: Math.cos(0.6) * 0.95, y: -0.15, z: Math.sin(0.6) * 0.95 }, c = s.P({ x: 0, y: 0, z: 0 }), N = s.P(nd);
+        line(g, c, N, C.a, 0.95, 3); dot(g, N.x, N.y, 6 * N.f, C.a, 1); glow(g, N.x, N.y, 26, 'rgba(255,214,150,.8)', 'rgba(255,170,90,0)');
+        glow(g, c.x, c.y, 34, 'rgba(255,214,150,.9)', 'rgba(160,107,255,0)');
+      }
+    },
+    // AI automation: gears that turn each other.
+    gears: {
+      tilt: 0.3, spin: 0.00012,
+      draw: function (s) {
+        var g = s.ctx, t = reduce ? 0.3 : s.t;
+        function gear(cx, cy, R, N, ang, col) {
+          for (var face = -1; face <= 1; face += 2) { var pts = []; for (var i = 0; i <= N * 8; i++) { var a = i / (N * 8) * 6.2832 + ang, tooth = ((i % 8) >= 2 && (i % 8) <= 5) ? 0.12 : 0; pts.push({ x: cx + Math.cos(a) * (R + tooth), y: cy + Math.sin(a) * (R + tooth), z: face * 0.07 }); }
+            path3(s, pts, col, face > 0 ? 0.85 : 0.35, face > 0 ? 1.8 : 1); }
+          for (var k = 0; k < 6; k++) { var a2 = k / 6 * 6.2832 + ang; path3(s, [{ x: cx + Math.cos(a2) * R * 0.25, y: cy + Math.sin(a2) * R * 0.25, z: 0.07 }, { x: cx + Math.cos(a2) * R * 0.85, y: cy + Math.sin(a2) * R * 0.85, z: 0.07 }], col, 0.45, 1.4); }
+          ring3(s, cx, cy, 0.07, R * 0.22, 'z', col, 0.9, 2); var c = s.P({ x: cx, y: cy, z: 0.07 }); glow(g, c.x, c.y, R * s.S * 0.35, 'rgba(' + col + ',.35)', 'rgba(' + col + ',0)');
+        }
+        gear(-0.42, 0.12, 0.52, 12, t * 0.5, C.c);
+        gear(0.47, -0.32, 0.36, 8, -t * 0.5 * 12 / 8 + 0.2, C.a);
+        gear(0.5, 0.58, 0.26, 6, -t * 0.5 * 12 / 6 + 0.5, C.v);
+      }
+    },
+    // AI SEO: ten ranked results, and the one answer above them that names only a few.
+    rank: {
+      tilt: 0.28, spin: 0.00014,
+      draw: function (s) {
+        var g = s.ctx, lift = reduce ? 1 : (Math.sin(s.t * 0.9) + 1) / 2;
+        for (var i = 7; i >= 0; i--) {
+          var y = 0.75 - i * 0.03, z = i * 0.2 - 0.6, x = 0, hot = i === 2, up = hot ? lift : 0;
+          var yy = y - up * 1.05 - (hot ? 0 : 0), w = 0.75, d = 0.08;
+          var al = hot ? 1 : 0.35 + 0.4 * (1 - i / 8);
+          poly3(s, [{ x: -w, y: yy, z: z - d }, { x: w, y: yy, z: z - d }, { x: w, y: yy, z: z + d }, { x: -w, y: yy, z: z + d }], 'rgba(18,28,44,.85)', 'rgba(' + (hot ? C.a : C.c) + ',' + al.toFixed(2) + ')', hot ? 2 : 1);
+          line(g, s.P({ x: -w * 0.8, y: yy, z: z }), s.P({ x: w * (0.1 + (i % 3) * 0.15), y: yy, z: z }), hot ? C.a : '150,165,190', hot ? 0.95 : 0.4, hot ? 2.5 : 1.5);
+        }
+        var A = [{ x: -0.62, y: -0.95, z: 0 }, { x: 0.62, y: -0.95, z: 0 }, { x: 0.62, y: -0.55, z: 0 }, { x: -0.62, y: -0.55, z: 0 }];
+        poly3(s, A, 'rgba(18,28,44,.92)', 'rgba(' + C.v + ',.85)', 1.5);
+        g.font = '600 10px ui-monospace, Menlo, monospace'; g.textAlign = 'left'; var a0 = s.P(A[0]); g.fillStyle = 'rgba(' + C.v + ',.95)'; g.fillText('AI ANSWER', a0.x + 10, a0.y + 14);
+        for (var k = 0; k < 3; k++) line(g, s.P({ x: -0.5, y: -0.8 + k * 0.08, z: 0 }), s.P({ x: 0.2 + k * 0.1, y: -0.8 + k * 0.08, z: 0 }), k === 1 && lift > 0.8 ? C.a : '200,210,230', k === 1 && lift > 0.8 ? 1 : 0.5, 2);
+      }
+    },
+    // AI marketing: a prism — one brand in, a sharper spectrum out.
+    prism: {
+      tilt: 0.15, spin: 0.0001,
+      draw: function (s) {
+        var g = s.ctx, h = 0.55, tri = [[0, -h], [0.5, h * 0.7], [-0.5, h * 0.7]], d = 0.35;
+        var F = tri.map(function (p) { return { x: p[0], y: p[1], z: d }; }), B = tri.map(function (p) { return { x: p[0], y: p[1], z: -d }; });
+        poly3(s, B, 'rgba(160,107,255,.08)', 'rgba(160,107,255,.5)', 1.2);
+        for (var i = 0; i < 3; i++) line(g, s.P(F[i]), s.P(B[i]), C.v, 0.5, 1.2);
+        var entry = { x: -0.27, y: 0.05, z: 0 }, exit = { x: 0.24, y: 0.02, z: 0 };
+        line(g, s.P({ x: -1.6, y: 0.25, z: 0 }), s.P(entry), '235,240,250', 0.95, 3);
+        var cols = ['255,107,107', '255,180,84', '250,230,120', '110,231,183', '45,212,255', '160,107,255'];
+        cols.forEach(function (c, k) { var e = { x: 1.6, y: -0.35 + k * 0.17, z: 0 }; var A = s.P(exit), Bq = s.P(e); line(g, A, Bq, c, 0.85, 2.6);
+          var u = reduce ? 0.5 : (s.t * 0.5 + k * 0.13) % 1; dot(g, A.x + (Bq.x - A.x) * u, A.y + (Bq.y - A.y) * u, 3, c, 1); });
+        line(g, s.P(entry), s.P(exit), '235,240,250', 0.35, 6);
+        poly3(s, F, 'rgba(45,212,255,.1)', 'rgba(45,212,255,.85)', 1.6);
+      }
+    },
+    // Internet marketing: a funnel — many in, the right ones through.
+    funnel: {
+      tilt: 0.35, spin: 0.00018,
+      init: function () { this.p = []; },
+      draw: function (s, dt) {
+        var g = s.ctx, L = [[-0.9, 1.0], [-0.45, 0.72], [0, 0.48], [0.45, 0.28], [0.85, 0.14]];
+        L.forEach(function (l, i) { ring3(s, 0, l[0], 0, l[1], 'y', i === 4 ? C.a : C.c, 0.55, i === 4 ? 2 : 1.4, 56); });
+        for (var k = 0; k < 8; k++) { var a = k / 8 * 6.2832; path3(s, L.map(function (l) { return { x: Math.cos(a) * l[1], y: l[0], z: Math.sin(a) * l[1] }; }), '120,170,255', 0.18); }
+        if (!reduce && this.p.length < 70 && Math.random() < 0.6) { var a2 = rand() * 6.2832, r = 0.2 + rand() * 0.8; this.p.push({ a: a2, r: r, y: -1.1, keep: rand() < 0.25 }); }
+        for (var j = this.p.length - 1; j >= 0; j--) { var p = this.p[j]; p.y += dt * 0.55; var lim = 1.0 - (p.y + 0.9) / 1.75 * 0.86; if (p.r > lim) { if (!p.keep) { p.dead = (p.dead || 0) + dt * 2; } p.r = lim; }
+          if (p.y > 1.2 || p.dead > 1) { this.p.splice(j, 1); continue; } var q = s.P({ x: Math.cos(p.a) * p.r, y: p.y, z: Math.sin(p.a) * p.r }); dot(g, q.x, q.y, (p.keep ? 3 : 2) * q.f, p.keep ? C.a : C.c, (p.dead ? 1 - p.dead : 1) * depthA(q.f)); }
+      }
+    },
+    // Social media: a wheel of posts, the front one getting the hearts.
+    feed: {
+      tilt: 0.05, spin: 0,
+      init: function () { this.h = []; },
+      draw: function (s, dt) {
+        var g = s.ctx, N = 7, R = 0.9, rot0 = reduce ? 0 : s.t * 0.35, cards = [];
+        for (var i = 0; i < N; i++) { var a = i / N * 6.2832 + rot0; cards.push({ a: a, y: Math.sin(a) * R, z: -Math.cos(a) * R }); }
+        cards.sort(function (a, b) { return s.P({ x: 0, y: a.y, z: a.z }).z < s.P({ x: 0, y: b.y, z: b.z }).z ? 1 : -1; });
+        cards.forEach(function (c) {
+          var w = 0.42, h = 0.2, ca = Math.cos(c.a), sa = Math.sin(c.a);
+          function at(u, v) { return { x: u, y: c.y + v * ca, z: c.z + v * sa }; }
+          var al = Math.max(0.15, -Math.cos(c.a) * 0.8 + 0.3); if (-Math.cos(c.a) < -0.2) al *= 0.5;
+          poly3(s, [at(-w, -h), at(w, -h), at(w, h), at(-w, h)], 'rgba(18,28,44,' + (0.5 + al * 0.4).toFixed(2) + ')', 'rgba(' + C.c + ',' + (0.2 + al * 0.6).toFixed(2) + ')', 1.2);
+          poly3(s, [at(-w * 0.85, -h * 0.7), at(-w * 0.2, -h * 0.7), at(-w * 0.2, h * 0.6), at(-w * 0.85, h * 0.6)], 'rgba(160,107,255,' + (0.15 + al * 0.35).toFixed(2) + ')', null);
+          for (var k = 0; k < 3; k++) line(g, s.P(at(-w * 0.05, -h * 0.5 + k * h * 0.45)), s.P(at(w * (0.75 - k * 0.15), -h * 0.5 + k * h * 0.45)), '170,185,210', 0.45 * al, 1.6);
+        });
+        if (!reduce && Math.random() < 0.2 && this.h.length < 30) this.h.push({ x: (rand() - 0.5) * 0.7, y: -R + 0.1, t: 0 });
+        for (var j = this.h.length - 1; j >= 0; j--) { var hh = this.h[j]; hh.t += dt * 0.6; if (hh.t > 1) { this.h.splice(j, 1); continue; }
+          var q = s.P({ x: hh.x + Math.sin(hh.t * 9) * 0.05, y: hh.y - hh.t * 0.9, z: -R - 0.1 }), r = 5;
+          g.fillStyle = 'rgba(255,107,140,' + (1 - hh.t).toFixed(2) + ')'; g.beginPath(); g.moveTo(q.x, q.y + r * 0.9); g.bezierCurveTo(q.x - r * 1.6, q.y - r * 0.4, q.x - r * 0.6, q.y - r * 1.5, q.x, q.y - r * 0.5); g.bezierCurveTo(q.x + r * 0.6, q.y - r * 1.5, q.x + r * 1.6, q.y - r * 0.4, q.x, q.y + r * 0.9); g.fill(); }
+      }
+    },
+    // Law: the scales.
+    scales: {
+      tilt: 0.12, spin: 0.00018,
+      draw: function (s) {
+        var g = s.ctx, tip = reduce ? 0.08 : Math.sin(s.t * 0.8) * 0.12;
+        line(g, s.P({ x: 0, y: 0.95, z: 0 }), s.P({ x: 0, y: -0.75, z: 0 }), C.a, 0.9, 3);
+        ring3(s, 0, 0.95, 0, 0.42, 'y', C.a, 0.7, 2); ring3(s, 0, 0.98, 0, 0.3, 'y', C.a, 0.4, 1.5);
+        var L = { x: -0.85, y: -0.7 + tip * 0.85, z: 0 }, R = { x: 0.85, y: -0.7 - tip * 0.85, z: 0 };
+        line(g, s.P(L), s.P(R), C.a, 0.95, 3); var top = s.P({ x: 0, y: -0.82, z: 0 }); glow(g, top.x, top.y, 18, 'rgba(255,214,150,.9)', 'rgba(255,170,90,0)');
+        [L, R].forEach(function (E, k) {
+          var py = E.y + 0.62;
+          for (var i = 0; i < 3; i++) { var a = i / 3 * 6.2832 + 0.4; line(g, s.P(E), s.P({ x: E.x + Math.cos(a) * 0.3, y: py, z: Math.sin(a) * 0.3 }), '230,200,150', 0.5, 1.2); }
+          ring3(s, E.x, py, 0, 0.3, 'y', k ? C.c : C.v, 0.85, 2); ring3(s, E.x, py + 0.05, 0, 0.22, 'y', k ? C.c : C.v, 0.4, 1.4);
+          var c = s.P({ x: E.x, y: py - 0.08, z: 0 }); glow(g, c.x, c.y, 22, 'rgba(' + (k ? C.c : C.v) + ',.45)', 'rgba(0,0,0,0)');
+        });
+      }
+    },
+    // Dental: a molar.
+    tooth: {
+      tilt: 0.42, spin: 0.00028,
+      draw: function (s) {
+        var g = s.ctx, i, k, N = 56;
+        function prof(v) { return v < 0.12 ? 0.42 + v * 1.2 : v < 0.55 ? 0.56 - (v - 0.12) * 0.05 : 0.54 - (v - 0.55) * 0.75; }
+        var rows = [];
+        for (k = 0; k <= 8; k++) { var v = k / 8 * 0.68, pts = []; for (i = 0; i <= N; i++) { var a = i / N * 6.2832, r = prof(v) * (1 + 0.05 * Math.cos(4 * a)), y = -0.55 + v * 1.25 - (k === 0 ? 0.09 * Math.cos(2 * a) * Math.cos(2 * a) : 0); pts.push({ x: Math.cos(a) * r * 1.1, y: y, z: Math.sin(a) * r }); } rows.push(pts); path3(s, pts, k < 2 ? '235,245,255' : C.c, k < 2 ? 0.8 : 0.4, k < 2 ? 1.8 : 1.1); }
+        for (i = 0; i < N; i += 4) path3(s, rows.map(function (r) { return r[i]; }), '200,225,245', 0.28);
+        [-0.22, 0.22].forEach(function (rx) { var pts = []; for (var j = 0; j <= 10; j++) { var v = j / 10; pts.push({ x: rx * (1 + v * 0.4), y: 0.3 + v * 0.62, z: 0 }); } path3(s, pts, C.c, 0.55, 5 - 3);
+          for (var j2 = 0; j2 <= 4; j2++) { var vv = j2 / 4; ring3(s, rx * (1 + vv * 0.4), 0.3 + vv * 0.62, 0, 0.16 * (1 - vv * 0.75), 'y', C.c, 0.45, 1.1, 24); } });
+        var sp = s.P({ x: -0.25, y: -0.62, z: 0.3 }), tw = reduce ? 1 : (Math.sin(s.t * 2.2) + 1) / 2;
+        g.strokeStyle = 'rgba(255,255,255,' + (0.4 + tw * 0.6).toFixed(2) + ')'; g.lineWidth = 2; g.beginPath(); g.moveTo(sp.x - 9 * tw - 4, sp.y); g.lineTo(sp.x + 9 * tw + 4, sp.y); g.moveTo(sp.x, sp.y - 9 * tw - 4); g.lineTo(sp.x, sp.y + 9 * tw + 4); g.stroke();
+      }
+    },
+    // Cosmetic surgery: the golden proportion, as a phyllotaxis bloom.
+    golden: {
+      tilt: 0.6, spin: 0.00022,
+      draw: function (s) {
+        var g = s.ctx, N = 320, GA = 2.39996, br = reduce ? 1 : 1 + Math.sin(s.t * 0.8) * 0.04, pts = [];
+        for (var i = 1; i < N; i++) { var r = Math.sqrt(i / N) * 1.1 * br, a = i * GA, x = Math.cos(a) * r, z = Math.sin(a) * r; pts.push([s.P({ x: x, y: -0.35 * (1 - r * r) + 0.2, z: z }), i / N]); }
+        pts.sort(function (a, b) { return b[0].z - a[0].z; }).forEach(function (p) { var q = p[0], u = p[1], col = u < 0.33 ? C.a : u < 0.7 ? '255,150,170' : C.v; dot(g, q.x, q.y, (1.2 + u * 2.2) * q.f, col, depthA(q.f) * 0.95); });
+        var c = s.P({ x: 0, y: -0.15, z: 0 }); glow(g, c.x, c.y, 40, 'rgba(255,214,150,.9)', 'rgba(255,150,170,0)');
+        var sp = []; for (var k = 0; k < 120; k++) { var a2 = k / 120 * 6.2832 * 2.2, r2 = 0.04 * Math.pow(1.618, a2 / 1.5708); if (r2 > 1.2) break; sp.push({ x: Math.cos(a2) * r2, y: -0.62, z: Math.sin(a2) * r2 }); } path3(s, sp, C.a, 0.7, 1.6);
+      }
+    },
+    // E-commerce: a cart, with products dropping in.
+    cart: {
+      tilt: 0.25, spin: 0.0002,
+      init: function () { this.b = []; },
+      draw: function (s, dt) {
+        var g = s.ctx, top = [[-0.7, -0.15, -0.38], [0.7, -0.15, -0.38], [0.7, -0.15, 0.38], [-0.7, -0.15, 0.38]], bot = [[-0.5, 0.45, -0.28], [0.55, 0.45, -0.28], [0.55, 0.45, 0.28], [-0.5, 0.45, 0.28]];
+        var T = top.map(function (p) { return { x: p[0], y: p[1], z: p[2] }; }), B = bot.map(function (p) { return { x: p[0], y: p[1], z: p[2] }; });
+        path3(s, B.concat([B[0]]), C.c, 0.6, 1.5);
+        for (var i = 0; i < 4; i++) line(g, s.P(T[i]), s.P(B[i]), C.c, 0.6, 1.5);
+        for (var k = 1; k < 6; k++) { var u = k / 6; line(g, s.P({ x: -0.7 + 1.4 * u, y: -0.15, z: -0.38 }), s.P({ x: -0.5 + 1.05 * u, y: 0.45, z: -0.28 }), '120,170,255', 0.25); line(g, s.P({ x: -0.7 + 1.4 * u, y: -0.15, z: 0.38 }), s.P({ x: -0.5 + 1.05 * u, y: 0.45, z: 0.28 }), '120,170,255', 0.25); }
+        path3(s, [{ x: -0.7, y: -0.15, z: -0.38 }, { x: -0.95, y: -0.42, z: -0.38 }, { x: -1.12, y: -0.42, z: -0.38 }], C.c, 0.8, 2);
+        path3(s, [{ x: -0.7, y: -0.15, z: 0.38 }, { x: -0.95, y: -0.42, z: 0.38 }, { x: -1.12, y: -0.42, z: 0.38 }], C.c, 0.8, 2);
+        line(g, s.P({ x: -1.12, y: -0.42, z: -0.38 }), s.P({ x: -1.12, y: -0.42, z: 0.38 }), C.a, 0.95, 3);
+        [[-0.4, -0.28], [0.45, -0.28], [-0.4, 0.28], [0.45, 0.28]].forEach(function (w) { ring3(s, w[0], 0.62, w[1], 0.1, 'z', '200,210,230', 0.8, 2, 20); });
+        if (!reduce && this.b.length < 5 && Math.random() < 0.02) this.b.push({ x: (rand() - 0.5) * 0.8, z: (rand() - 0.5) * 0.4, y: -1.3, v: 0, s: 0.09 + rand() * 0.06, c: [C.a, C.v, C.g][this.b.length % 3] });
+        var self = this; this.b.forEach(function (bx) { bx.v += dt * 2.2; bx.y = Math.min(0.32 - bx.s, bx.y + bx.v * dt); var h = bx.s, x = bx.x, y = bx.y, z = bx.z;
+          poly3(s, [{ x: x - h, y: y - h, z: z + h }, { x: x + h, y: y - h, z: z + h }, { x: x + h, y: y + h, z: z + h }, { x: x - h, y: y + h, z: z + h }], 'rgba(' + bx.c + ',.35)', 'rgba(' + bx.c + ',.9)', 1.4);
+          poly3(s, [{ x: x - h, y: y - h, z: z - h }, { x: x + h, y: y - h, z: z - h }, { x: x + h, y: y - h, z: z + h }, { x: x - h, y: y - h, z: z + h }], 'rgba(' + bx.c + ',.55)', 'rgba(' + bx.c + ',.9)', 1.2); });
+        if (this.b.length >= 5 && Math.random() < 0.005) this.b = [];
+        path3(s, T.concat([T[0]]), C.c, 0.95, 2);
+      }
+    },
+    // Contractors: a house being framed, beam by beam.
+    house: {
+      tilt: 0.3, spin: 0.00022,
+      init: function () {
+        var w = 0.75, d = 0.55, h = 0.55, y0 = 0.6, yr = y0 - h, ry = yr - 0.45, P3 = function (x, y, z) { return { x: x, y: y, z: z }; };
+        var f = [P3(-w, y0, -d), P3(w, y0, -d), P3(w, y0, d), P3(-w, y0, d)], t = [P3(-w, yr, -d), P3(w, yr, -d), P3(w, yr, d), P3(-w, yr, d)], r = [P3(-w, ry, 0), P3(w, ry, 0)];
+        var E = []; for (var i = 0; i < 4; i++) E.push([f[i], f[(i + 1) % 4]]); for (i = 0; i < 4; i++) E.push([f[i], t[i]]); for (i = 0; i < 4; i++) E.push([t[i], t[(i + 1) % 4]]);
+        E.push([t[0], r[0]], [t[3], r[0]], [t[1], r[1]], [t[2], r[1]], [r[0], r[1]]);
+        for (i = 1; i < 4; i++) { var x = -w + i * w / 2; E.push([P3(x, y0, -d), P3(x, yr, -d)], [P3(x, y0, d), P3(x, yr, d)]); }
+        E.push([P3(-0.15, y0, d), P3(-0.15, y0 - 0.38, d)], [P3(0.15, y0, d), P3(0.15, y0 - 0.38, d)], [P3(-0.15, y0 - 0.38, d), P3(0.15, y0 - 0.38, d)]);
+        this.E = E;
+      },
+      draw: function (s) {
+        var g = s.ctx, n = this.E.length, cyc = reduce ? 1 : (s.t % 9) / 9, shown = Math.min(n, Math.floor(cyc * 1.6 * n));
+        for (var i = -6; i <= 6; i++) { path3(s, [{ x: i * 0.2, y: 0.6, z: -1.2 }, { x: i * 0.2, y: 0.6, z: 1.2 }], '120,170,255', 0.08); path3(s, [{ x: -1.2, y: 0.6, z: i * 0.2 }, { x: 1.2, y: 0.6, z: i * 0.2 }], '120,170,255', 0.08); }
+        for (var k = 0; k < shown; k++) { var e = this.E[k], newest = k === shown - 1 && shown < n; line(g, s.P(e[0]), s.P(e[1]), newest ? C.a : k > n - 4 ? C.a : C.c, newest ? 1 : 0.8, newest ? 3 : 2); if (newest) { var q = s.P(e[1]); glow(g, q.x, q.y, 20, 'rgba(255,214,150,.9)', 'rgba(255,170,90,0)'); } }
+        if (shown >= n) { var c = s.P({ x: 0, y: 0.1, z: 0 }); glow(g, c.x, c.y, 90, 'rgba(255,214,150,.22)', 'rgba(255,170,90,0)'); }
+      }
+    },
+    // Restaurants: a plate under a cloche, with steam.
+    dish: {
+      tilt: 0.45, spin: 0.00015,
+      draw: function (s) {
+        var g = s.ctx, lift = reduce ? 0.4 : Math.max(0, Math.sin(s.t * 0.6)) * 0.55;
+        ring3(s, 0, 0.45, 0, 1.0, 'y', '220,225,235', 0.7, 2, 64); ring3(s, 0, 0.43, 0, 0.72, 'y', '220,225,235', 0.35, 1.2, 64);
+        for (var k = 0; k <= 6; k++) { var lat = k / 6 * 1.5708, r = Math.cos(lat) * 0.8, y = 0.4 - lift - Math.sin(lat) * 0.8; if (k < 6) ring3(s, 0, y, 0, r, 'y', C.a, 0.25 + k * 0.08, 1.4, 48); }
+        for (var m = 0; m < 12; m++) { var a = m / 12 * 6.2832, pts = []; for (var j = 0; j <= 12; j++) { var la = j / 12 * 1.5708; pts.push({ x: Math.cos(a) * Math.cos(la) * 0.8, y: 0.4 - lift - Math.sin(la) * 0.8, z: Math.sin(a) * Math.cos(la) * 0.8 }); } path3(s, pts, C.a, 0.3, 1.1); }
+        var kn = s.P({ x: 0, y: 0.4 - lift - 0.86, z: 0 }); dot(g, kn.x, kn.y, 6 * kn.f, C.a, 1);
+        if (lift > 0.15) for (var q = 0; q < 3; q++) { var pts2 = []; for (var u = 0; u <= 20; u++) { var v = u / 20; pts2.push({ x: (q - 1) * 0.25 + Math.sin(v * 9 + s.t * 2 + q) * 0.06, y: 0.35 - v * (lift * 1.6), z: 0 }); } path3(s, pts2, '230,235,245', 0.35 * Math.min(1, lift * 3), 2); }
+        var c = s.P({ x: 0, y: 0.38, z: 0 }); glow(g, c.x, c.y, 60 * lift + 10, 'rgba(255,214,150,.55)', 'rgba(255,170,90,0)');
+      }
+    },
+    // AI news: a wire globe, stories arcing between cities.
+    news: {
+      tilt: 0.3, spin: 0.00018,
+      init: function () { var n = 180, pts = []; for (var i = 0; i < n; i++) { var y = 1 - (i + 0.5) / n * 2, r = Math.sqrt(1 - y * y), a = i * 2.39996; pts.push({ x: Math.cos(a) * r, y: y, z: Math.sin(a) * r }); } this.p = pts; this.arcs = []; },
+      draw: function (s, dt) {
+        var g = s.ctx, self = this;
+        this.p.forEach(function (p) { var q = s.P(p); dot(g, q.x, q.y, 1.4 * q.f, C.c, depthA(q.f) * 0.7); });
+        if (!reduce && this.arcs.length < 7 && Math.random() < 0.05) this.arcs.push({ a: this.p[(rand() * this.p.length) | 0], b: this.p[(rand() * this.p.length) | 0], t: 0, c: [C.a, C.v, C.c][(rand() * 3) | 0] });
+        for (var i = this.arcs.length - 1; i >= 0; i--) { var A = this.arcs[i]; A.t += dt * 0.4; if (A.t > 1.4) { this.arcs.splice(i, 1); continue; }
+          var pts = []; for (var k = 0; k <= 30; k++) { var u = k / 30, x = A.a.x + (A.b.x - A.a.x) * u, y = A.a.y + (A.b.y - A.a.y) * u, z = A.a.z + (A.b.z - A.a.z) * u, L = Math.hypot(x, y, z) || 1, h = 1 + Math.sin(u * Math.PI) * 0.35; pts.push({ x: x / L * h, y: y / L * h, z: z / L * h }); }
+          var upto = Math.min(30, Math.floor(Math.min(1, A.t) * 30)); path3(s, pts.slice(0, upto + 1), A.c, Math.max(0, 1 - Math.max(0, A.t - 1) * 2.5) * 0.85, 1.8);
+          var hq = s.P(pts[upto]); if (A.t < 1) dot(g, hq.x, hq.y, 3.2, A.c, 1); }
+        var c = s.P({ x: 0, y: 0, z: 0 }); glow(g, c.x, c.y, s.S * 1.05, 'rgba(45,212,255,.10)', 'rgba(45,212,255,0)');
+      }
+    }
+  };
+  for (var mk in MORE) SCENES[mk] = MORE[mk];
+
   // ----------------------------------------------------------------- mount
+  // The right column already holds a visual: a 2D engine diagram (replaced by the 3D version, engines included)
+  // or an "at a glance" card (kept, as frosted glass in front of the scene).
+  function mountViz(viz) {
+    var r = viz.getBoundingClientRect(); if (r.width < 220 || r.height < 160) return;
+    var name = pick(), scene = SCENES[name] || SCENES.network, glance = viz.querySelector('.glance'), cv = document.createElement('canvas');
+    cv.className = 'hero3d hero3d-' + name; cv.setAttribute('aria-hidden', 'true');
+    if (glance) {
+      var host = viz.parentElement, hr = host.getBoundingClientRect();
+      if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
+      // the object rises above the card; the card drops a little and becomes glass in front of it
+      var drop = Math.round(r.height * 0.36), w = Math.min(r.width * 1.35, document.documentElement.clientWidth - r.left + 30), H = Math.max(r.height * 1.25, 420);
+      cv.style.cssText = 'position:absolute;pointer-events:none;z-index:0;width:' + Math.round(w) + 'px;height:' + Math.round(H) + 'px;left:' +
+        Math.round(r.left - hr.left + r.width / 2 - w / 2) + 'px;top:' + Math.round(r.top - hr.top - H * 0.42) + 'px';
+      viz.style.transform = 'translateY(' + drop + 'px)';
+      host.insertBefore(cv, host.firstChild);
+      viz.style.zIndex = '1'; if (getComputedStyle(viz).position === 'static') viz.style.position = 'relative';
+      viz.style.background = 'linear-gradient(160deg,rgba(14,20,34,.58),rgba(8,12,22,.5))';
+      [].forEach.call(glance.querySelectorAll('div'), function (d) { d.style.background = 'rgba(10,15,26,.62)'; });
+    } else {
+      var svg = viz.querySelector('.constel'); if (svg) svg.style.opacity = '0';
+      if (getComputedStyle(viz).position === 'static') viz.style.position = 'relative';
+      var pad = 0.14, w2 = r.width * (1 + pad * 2), H2 = Math.max(r.height * (1 + pad * 2), w2 * 0.85);
+      cv.style.cssText = 'position:absolute;pointer-events:none;z-index:0;width:' + Math.round(w2) + 'px;height:' + Math.round(H2) + 'px;left:' + Math.round(-r.width * pad) + 'px;top:' + Math.round((r.height - H2) / 2) + 'px';
+      viz.appendChild(cv);
+      var base = scene.draw, label = CENTRE[name] || 'YOUR BRAND';
+      scene = Object.create(scene); scene.draw = function (st, dt) { base.call(this, st, dt); engines(st, label); };
+    }
+    Stage(cv, scene);
+  }
   function mount() {
     if (innerWidth < 960 || touch && innerWidth < 1100) return;
     var h = findHero(); if (!h) return;
-    var el = h.el, box = el.getBoundingClientRect(), cb = contentBox(el);
+    if (h.viz) return mountViz(h.viz);
+    var el = h.el, box = el.getBoundingClientRect();
+    if (box.height > 900) { // a whole-page container: use only the opening band around the h1
+      var hr0 = h.h1.getBoundingClientRect(), top0 = Math.max(box.top, hr0.top - 90);
+      box = { left: box.left, right: box.right, top: top0, bottom: top0 + 560, height: 560, width: box.width };
+    }
+    var cb = contentBox(el, box.top, box.top + box.height);
     var vw = document.documentElement.clientWidth, rtl = getComputedStyle(el).direction === 'rtl';
     // free space is measured against the viewport, so a narrow centred header still counts
     var gap = 32, edge = 40, free = rtl ? cb.L - edge - gap : vw - edge - cb.R - gap;
-    if (free < 340 || box.height < 170 || cb.R === -Infinity) return;
+    if (free < 270 || box.height < 170 || cb.R === -Infinity) return;
     // a centred, symmetric layout (text in the middle) has no single empty side: leave it
     if (!rtl && cb.L - box.left > free * 0.8 && cb.L > vw * 0.28) return;
     // host = the first box from the hero up that spans the free area

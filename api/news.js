@@ -24,6 +24,13 @@ try { FALLBACK = require('./news-fallback.json'); } catch (e) { FALLBACK = null;
 
 const CACHE_KEY = 'ai-marketing-news:v2';   // v2: items are link-verified before caching
 const CACHE_SECONDS = 64800;             // 18 hours
+// A copy of the last good compile with NO expiry. Visitors are always served from
+// the cache or from this copy, never made to wait for a compile: when the 18-hour
+// cache lapsed between cron runs, the next visitor started a compile that took
+// longer than the page waits (40s) and saw "the feed could not be refreshed".
+// Compiling is the cron's job (vercel.json, four times a day).
+const LAST_KEY = 'ai-marketing-news:last';
+const REFRESH_AFTER_MS = 5 * 3600 * 1000;  // the cron recompiles anything older than this
 
 const PROMPT = `Find the most significant developments in AI marketing and advertising from the last 14 days.
 
@@ -89,6 +96,25 @@ treat them as hard constraints rather than style guidance:
 
 Before returning, re-read each summary against these rules and fix any that
 fail. Prefer a duller summary that is exactly right.`;
+
+async function keyGet(key) {
+  const c = redisCreds();
+  if (!c || !c.url || !c.token) return null;
+  try {
+    const r = await fetch(c.url + '/get/' + encodeURIComponent(key), { headers: { Authorization: 'Bearer ' + c.token } });
+    const d = await r.json();
+    return d && d.result ? JSON.parse(d.result) : null;
+  } catch (e) { return null; }
+}
+async function keySetForever(key, value) {
+  const c = redisCreds();
+  if (!c || !c.url || !c.token) return false;
+  try {
+    const r = await fetch(c.url + '/set/' + encodeURIComponent(key), { method: 'POST',
+      headers: { Authorization: 'Bearer ' + c.token, 'Content-Type': 'text/plain' }, body: JSON.stringify(value) });
+    return r.ok;
+  } catch (e) { return false; }
+}
 
 async function cacheGet() {
   const c = redisCreds();
@@ -463,10 +489,24 @@ module.exports = async function handler(req, res) {
   const rl = await rateLimit(req, 'news', 60, 3600);
   if (!rl.ok) return res.status(429).json({ error: 'Too many requests' });
 
+  const isCron = /vercel-cron/i.test(String(req.headers['user-agent'] || '')) || !!req.headers['x-vercel-cron'];
   const cached = await cacheGet();
-  if (cached && cached.items && cached.items.length) {
-    res.setHeader('Cache-Control', 'public, s-maxage=21600, stale-while-revalidate=86400');
+  const age = cached && cached.compiled ? Date.now() - Date.parse(cached.compiled) : Infinity;
+  if (cached && cached.items && cached.items.length && !(isCron && age > REFRESH_AFTER_MS)) {
+    res.setHeader('Cache-Control', 'public, s-maxage=1800, stale-while-revalidate=86400');
     return res.status(200).json(Object.assign({ cached: true }, cached));
+  }
+  // Visitors never wait for a compile: serve the last good copy, then the shipped fallback.
+  if (!isCron && !(req.query && req.query.debug === '1')) {
+    const last = await keyGet(LAST_KEY);
+    if (last && last.items && last.items.length) {
+      res.setHeader('Cache-Control', 'public, s-maxage=600, stale-while-revalidate=86400');
+      return res.status(200).json(Object.assign({ cached: true, stale: true }, last));
+    }
+    if (FALLBACK && FALLBACK.items && FALLBACK.items.length) {
+      res.setHeader('Cache-Control', 'public, s-maxage=600');
+      return res.status(200).json(Object.assign({ fallback: true, stale: true }, FALLBACK));
+    }
   }
 
   // Diagnostic: which keys this deployment can see. Never the keys themselves.
@@ -538,6 +578,7 @@ module.exports = async function handler(req, res) {
   const payload = { items: items, compiled: new Date().toISOString(),
                      engine: r.engine, links: verified.report };
   const cacheStatus = await cacheSet(payload);
+  await keySetForever(LAST_KEY, payload);
   if (cacheStatus !== 'ok') {
     // Loud in the logs. A cache that will not hold means every visitor pays
     // for a full recompile, which is the failure this page just had.
