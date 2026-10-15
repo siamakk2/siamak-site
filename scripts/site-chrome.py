@@ -14,7 +14,7 @@ ICONS = ('<link rel="icon" href="/favicon.ico" sizes="48x48">\n'
          '<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">\n'
          '<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">\n'
          '<link rel="manifest" href="/site.webmanifest">\n')
-HERO = '<script src="/assets/hero3d.js?v=3" defer></script>'
+HERO = '<script src="/assets/hero3d.js?v=4" defer></script>'
 n_icon = n_hero = 0
 for f in glob.glob('**/*.html', recursive=True):
     if any(x in f for x in ('node_modules', '_archive', 'scripts/', '.vercel')) or os.path.basename(f).startswith('google'):
@@ -31,4 +31,15 @@ for f in glob.glob('**/*.html', recursive=True):
         s = s.replace('</body>', HERO + '\n</body>', 1); n_hero += 1
     if s != o:
         open(f, 'w', encoding='utf-8').write(s)
+# Pages produced by the builders lose the sitewide entity block on rebuild; restore it.
+ENTITY_PAGES = ['fractional-cmo', 'geo-aeo-consultant', 'business-growth-consultant', 'website-conversion-consultant',
+                'custom-ai-software', 'industries', 'pricing', 'case-studies']
+_src = next((open(f, encoding='utf-8').read() for f in glob.glob('*/index.html') if 'id="sk-entity"' in open(f, encoding='utf-8').read()), '')
+_blk = re.search(r'<script type="application/ld\+json" id="sk-entity">.*?</script>', _src, re.S)
+for slug in ENTITY_PAGES:
+    f = os.path.join(slug, 'index.html')
+    if _blk and os.path.exists(f):
+        s2 = open(f, encoding='utf-8').read()
+        if 'id="sk-entity"' not in s2:
+            open(f, 'w', encoding='utf-8').write(s2.replace('</head>', _blk.group(0) + '\n</head>', 1))
 print('icons added:', n_icon, ' hero script added:', n_hero)

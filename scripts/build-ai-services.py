@@ -10,13 +10,18 @@ the rest of the site's chrome. Re-run after editing the content file:
 Crawl-safety rules carried over from the rest of the site: no element rests at
 opacity 0, and no text is hidden with display:none at any width.
 """
-import html, json, os, re, runpy
+import html, json, os, re, runpy, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = "https://siamakconsulting.com"
-C = runpy.run_path(os.path.join(ROOT, "scripts", "ai-services-content.py"))
+# Optional argument: another content file (same PAGES schema) for a second family of pages.
+CONTENT = sys.argv[1] if len(sys.argv) > 1 else "ai-services-content.py"
+C = runpy.run_path(os.path.join(ROOT, "scripts", CONTENT))
 PAGES = C["PAGES"]
-TODAY = "2026-10-06"
+TODAY = C.get("TODAY", "2026-10-06")
+PARENT = C.get("PARENT", ("AI Consulting", "/ai-consulting"))   # breadcrumb parent
+REL_H2 = C.get("REL_H2", "Explore the other practice areas")
+REL_EXTRA = C.get("REL_EXTRA", [("/ai-consultant", "About your AI consultant", "Who I am and how I work")])
 
 shell = open(os.path.join(ROOT, "ai-consultant", "index.html"), encoding="utf-8").read()
 
@@ -244,6 +249,25 @@ def section(label, h2, inner, lead=None, sid=None):
     ld = f'<p class="lead">{lead}</p>' if lead else ""
     return f'<section{idattr}><div class="wrap"><div class="sec-label">{e(label)}</div><h2 class="sec-h">{h2}</h2>{ld}{inner}</div></section>\n'
 
+def head_html(title, desc, url, og_img, ld):
+    return (HEAD_TOP + f'<title>{e(title)}</title>\n'
+        f'<meta name="description" content="{a(desc)}"><meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>\n'
+        f'<meta name="author" content="Siamak Kalhor">\n'
+        f'<meta property="og:title" content="{a(title)}">\n<meta property="og:description" content="{a(desc)}">\n'
+        f'<meta property="og:type" content="website">\n<meta property="og:url" content="{url}">\n'
+        f'<meta name="theme-color" content="#000000">\n'
+        '<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
+        '<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">\n'
+        + BASE_CSS + "\n" + f'<link rel="canonical" href="{url}"/>\n'
+        f'<script type="application/ld+json">{ld}</script>\n'
+        f'<link rel="alternate" hreflang="en" href="{url}"/><link rel="alternate" hreflang="x-default" href="{url}"/>'
+        + NAV_CSS + '\n<link rel="stylesheet" href="/type.css">\n<!--type-scaled-->\n' + EXTRA_CSS + "\n"
+        '<meta property="og:site_name" content="Siamak Kalhor Consulting">\n<meta property="og:locale" content="en_US">\n'
+        f'<meta property="og:image" content="{og_img}">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n'
+        f'<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:title" content="{a(title)}">\n'
+        f'<meta name="twitter:description" content="{a(desc)}">\n<meta name="twitter:image" content="{og_img}">\n'
+        "</head>\n")
+
 def build(p):
     url = f'{BASE}/{p["slug"]}'
     og_img = f'{BASE}/og/{p["slug"]}.jpg'
@@ -266,7 +290,7 @@ def build(p):
             "breadcrumb": {"@id": url + "#breadcrumb"}, "dateModified": TODAY, "inLanguage": "en-US",
             "primaryImageOfPage": {"@type": "ImageObject", "url": og_img}}
     crumbs = [("Home", BASE)]
-    if p["slug"] != "ai-consulting": crumbs.append(("AI Consulting", BASE + "/ai-consulting"))
+    if "/" + p["slug"] != PARENT[1]: crumbs.append((PARENT[0], BASE + PARENT[1]))
     crumbs.append((p["nav"], url))
     bc = {"@type": "BreadcrumbList", "@id": url + "#breadcrumb", "itemListElement": [
         {"@type": "ListItem", "position": i + 1, "name": n, "item": u} for i, (n, u) in enumerate(crumbs)]}
@@ -310,7 +334,7 @@ def build(p):
     hl = cm.get("hl", 2 if cm["cols"][1].startswith(("Independent", "AI advisor")) else len(cm["cols"]))
     cmp_html = section(cm["label"], e(cm["h2"]), f'<div class="tbl-wrap"><table class="cmp hl-{hl}"><thead><tr>{thead}</tr></thead><tbody>{rows}</tbody></table></div>', e(cm["lead"]))
     pr = p["process"]
-    steps = "".join(f'<div class="step"><div class="l">{i+1:02d}</div><div><h4>{e(h)}</h4><p>{e(t)}</p></div></div>' for i, (h, t) in enumerate(pr["steps"]))
+    steps = "".join(f'<div class="step"><div class="l">{i+1:02d}</div><div><h4>{e(h)}</h4><p>{t}</p></div></div>' for i, (h, t) in enumerate(pr["steps"]))
     proc = section(pr["label"], e(pr["h2"]), f'<div class="steps">{steps}</div>')
     extra = ""
     if p.get("extra"):
@@ -328,8 +352,8 @@ def build(p):
     faq = section("Questions", f'{e(p["nav"])}: frequently asked questions', f'<div class="faq">{faqs}</div>', sid="faq")
     others = [q for q in PAGES if q["slug"] != p["slug"]]
     rel_links = "".join(f'<a href="/{q["slug"]}"><div>{e(q["nav"])}<span>{e(q["defn"]["plain"][:60].rsplit(" ",1)[0])}…</span></div></a>' for q in others)
-    rel_links += '<a href="/ai-consultant"><div>About your AI consultant<span>Who I am and how I work…</span></div></a>'
-    rel = section("Related services", "Explore the other practice areas", f'<div class="rel">{rel_links}</div>')
+    rel_links += "".join(f'<a href="{a(h)}"><div>{e(n)}<span>{e(t)}…</span></div></a>' for h, n, t in REL_EXTRA)
+    rel = section("Related services", REL_H2, f'<div class="rel">{rel_links}</div>')
     ch, cp = p["cta"]
     cta = (f'<section><div class="wrap"><div class="cta-band"><h3>{e(ch)}</h3><p>{e(cp)}</p><div class="cta-row">'
            f'<a href="/online-consulting" class="btn btn-pri">Book a free 30-min call &rarr;</a>'
@@ -338,28 +362,13 @@ def build(p):
 
     body = hero + defn + why + dia + helps + cmp_html + proc + extra + fit + proof + faq + cta + rel
     nav = NAV.replace(f'<a href="/{p["slug"]}">', f'<a href="/{p["slug"]}" class="active" aria-current="page">', 1)
-    head = (HEAD_TOP + f'<title>{e(p["title"])}</title>\n'
-        f'<meta name="description" content="{a(p["desc"])}"><meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>\n'
-        f'<meta name="author" content="Siamak Kalhor">\n'
-        f'<meta property="og:title" content="{a(p["title"])}">\n<meta property="og:description" content="{a(p["desc"])}">\n'
-        f'<meta property="og:type" content="website">\n<meta property="og:url" content="{url}">\n'
-        f'<meta name="theme-color" content="#000000">\n'
-        '<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
-        '<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">\n'
-        + BASE_CSS + "\n" + f'<link rel="canonical" href="{url}"/>\n'
-        f'<script type="application/ld+json">{ld}</script>\n'
-        f'<link rel="alternate" hreflang="en" href="{url}"/><link rel="alternate" hreflang="x-default" href="{url}"/>'
-        + NAV_CSS + '\n<link rel="stylesheet" href="/type.css">\n<!--type-scaled-->\n' + EXTRA_CSS + "\n"
-        '<meta property="og:site_name" content="Siamak Kalhor Consulting">\n<meta property="og:locale" content="en_US">\n'
-        f'<meta property="og:image" content="{og_img}">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n'
-        f'<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:title" content="{a(p["title"])}">\n'
-        f'<meta name="twitter:description" content="{a(p["desc"])}">\n<meta name="twitter:image" content="{og_img}">\n'
-        "</head>\n")
+    head = head_html(p["title"], p["desc"], url, og_img, ld)
     out = head + '<body class="v2">\n<a href="#main" class="skip-link">Skip to content</a>\n<div class="ambient"></div>\n' + nav + '\n<main id="main">\n' + body + "</main>" + TAIL
     os.makedirs(os.path.join(ROOT, p["slug"]), exist_ok=True)
     open(os.path.join(ROOT, p["slug"], "index.html"), "w", encoding="utf-8").write(out)
     return len(p["title"]), len(p["desc"]), len(strip(body).split())
 
-for p in PAGES:
+if __name__ == "__main__":
+  for p in PAGES:
     tl, dl, words = build(p)
     print(f'{p["slug"]:15s} title={tl:3d} desc={dl:3d} words~{words}')

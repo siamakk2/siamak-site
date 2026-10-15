@@ -37,7 +37,10 @@
     '/dental-marketing-consultant': 'tooth', '/dental-marketing-budget': 'tooth', '/medical-practice-marketing-consultant': 'pulse',
     '/cosmetic-surgery-marketing-consultant': 'golden', '/ecommerce-marketing-consultant': 'cart', '/ai-for-ecommerce': 'cart',
     '/ai-for-contractors': 'house', '/ai-for-restaurants': 'dish', '/ai-marketing-news': 'news',
-    '/ai-marketing-consultant-los-angeles': 'map', '/ai-marketing-consultant-napa-valley': 'map', '/local': 'map'
+    '/ai-marketing-consultant-los-angeles': 'map', '/ai-marketing-consultant-napa-valley': 'map', '/local': 'map',
+    '/fractional-cmo': 'helm', '/custom-ai-software': 'chip', '/pricing': 'coins', '/geo-aeo-consultant': 'rank',
+    '/business-growth-consultant': 'growth', '/website-conversion-consultant': 'funnel', '/case-studies': 'growth', '/industries': 'network',
+    '/how-much-does-llmo-cost': 'coins', '/the-long-view/which-parts-of-my-business-should-i-automate-first': 'gears', '/llmo-training': 'docs'
   };
   // what sits at the centre when the four AI engines orbit it (pages that had the 2D engine diagram)
   var CENTRE = { scales: 'YOUR FIRM', tooth: 'YOUR PRACTICE', pulse: 'YOUR PRACTICE', golden: 'YOUR PRACTICE', cart: 'YOUR STORE', house: 'YOUR COMPANY', dish: 'YOUR RESTAURANT' };
@@ -552,6 +555,69 @@
           var upto = Math.min(30, Math.floor(Math.min(1, A.t) * 30)); path3(s, pts.slice(0, upto + 1), A.c, Math.max(0, 1 - Math.max(0, A.t - 1) * 2.5) * 0.85, 1.8);
           var hq = s.P(pts[upto]); if (A.t < 1) dot(g, hq.x, hq.y, 3.2, A.c, 1); }
         var c = s.P({ x: 0, y: 0, z: 0 }); glow(g, c.x, c.y, s.S * 1.05, 'rgba(45,212,255,.10)', 'rgba(45,212,255,0)');
+      }
+    },
+    // Fractional CMO: a ship's helm. Someone senior steering, the heading held in gold.
+    helm: {
+      tilt: 0.22, spin: 0.00012,
+      draw: function (s) {
+        var g = s.ctx, t = reduce ? 0.4 : s.t, ang = Math.sin(t * 0.45) * 0.55, R = 0.72, z0 = 0.05;
+        for (var k = 0; k < 36; k++) { var a = k / 36 * 6.2832, r1 = 1.32, r2 = k % 9 ? 1.27 : 1.18; line(g, s.P({ x: Math.cos(a) * r1, y: 0.95, z: Math.sin(a) * r1 }), s.P({ x: Math.cos(a) * r2, y: 0.95, z: Math.sin(a) * r2 }), '150,170,200', k % 9 ? 0.25 : 0.6, k % 9 ? 1 : 2); }
+        ring3(s, 0, 0.95, 0, 1.32, 'y', '120,170,255', 0.3, 1.2, 72);
+        var hd = -1.5708 + ang * 0.5, tip = s.P({ x: Math.cos(hd) * 1.1, y: 0.95, z: Math.sin(hd) * 1.1 }), base = s.P({ x: 0, y: 0.95, z: 0 });
+        line(g, base, tip, C.a, 0.9, 2.4); glow(g, tip.x, tip.y, 18, 'rgba(255,214,150,.85)', 'rgba(255,170,90,0)');
+        [-z0, z0].forEach(function (z, f) { var pts = []; for (var i = 0; i <= 72; i++) { var a = i / 72 * 6.2832; pts.push({ x: Math.cos(a) * R, y: -0.1 + Math.sin(a) * R, z: z }); } path3(s, pts, C.c, f ? 0.9 : 0.35, f ? 2.4 : 1.2);
+          var p2 = []; for (var j = 0; j <= 72; j++) { var b = j / 72 * 6.2832; p2.push({ x: Math.cos(b) * R * 0.86, y: -0.1 + Math.sin(b) * R * 0.86, z: z }); } path3(s, p2, C.c, f ? 0.5 : 0.2, 1.2); });
+        for (var sp = 0; sp < 8; sp++) { var a3 = sp / 8 * 6.2832 + ang, c3 = Math.cos(a3), s3 = Math.sin(a3), hot = sp === 0;
+          var A = s.P({ x: c3 * 0.14, y: -0.1 + s3 * 0.14, z: z0 }), B = s.P({ x: c3 * 1.0, y: -0.1 + s3 * 1.0, z: z0 });
+          line(g, A, B, hot ? C.a : C.c, hot ? 0.95 : 0.7, hot ? 3 : 2); dot(g, B.x, B.y, (hot ? 6 : 4.5) * B.f, hot ? C.a : C.v, 0.95); }
+        ring3(s, 0, -0.1, z0, 0.14, 'z', C.a, 0.95, 2.4, 28); var h = s.P({ x: 0, y: -0.1, z: z0 }); glow(g, h.x, h.y, 34, 'rgba(255,214,150,.85)', 'rgba(160,107,255,0)');
+        line(g, s.P({ x: 0, y: -0.1, z: -0.05 }), s.P({ x: 0, y: 0.95, z: -0.05 }), '150,170,200', 0.35, 3);
+      }
+    },
+    // Custom AI software: a processor, with data flowing in along its traces.
+    chip: {
+      tilt: 0.55, spin: 0.00016,
+      init: function () {
+        var tr = [];
+        for (var side = 0; side < 4; side++) for (var k = 0; k < 5; k++) {
+          var u = -0.32 + k * 0.16, L = 0.75 + ((k * 7 + side * 3) % 5) * 0.12, bend = ((k + side) % 2 ? 1 : -1) * (0.12 + (k % 3) * 0.08);
+          var pts = [[0.44, u], [0.62, u], [0.62 + (L - 0.62) * 0.5, u + bend], [L, u + bend]].map(function (p) {
+            return side === 0 ? { x: p[0], y: 0, z: p[1] } : side === 1 ? { x: -p[0], y: 0, z: -p[1] } : side === 2 ? { x: p[1], y: 0, z: p[0] } : { x: -p[1], y: 0, z: -p[0] }; });
+          tr.push({ p: pts, o: (k * 0.21 + side * 0.37) % 1 }); }
+        this.tr = tr;
+      },
+      draw: function (s) {
+        var g = s.ctx, t = reduce ? 0.5 : s.t;
+        this.tr.forEach(function (tr, i) {
+          path3(s, tr.p, i % 3 ? C.c : C.v, 0.45, 1.4); var e = s.P(tr.p[3]); dot(g, e.x, e.y, 3.2 * e.f, i % 3 ? C.c : C.v, depthA(e.f));
+          var u = 1 - ((t * 0.35 + tr.o) % 1), seg = Math.min(2, (u * 3) | 0), f = u * 3 - seg, a = tr.p[seg], b = tr.p[seg + 1];
+          var q = s.P({ x: a.x + (b.x - a.x) * f, y: 0, z: a.z + (b.z - a.z) * f }); dot(g, q.x, q.y, 3 * q.f, C.a, 0.95);
+        });
+        var H = 0.44, top = -0.1, sq = function (r, y) { return [{ x: -r, y: y, z: -r }, { x: r, y: y, z: -r }, { x: r, y: y, z: r }, { x: -r, y: y, z: r }]; };
+        var Bt = sq(H, 0), Tp = sq(H, top); for (var i = 0; i < 4; i++) line(g, s.P(Bt[i]), s.P(Tp[i]), C.c, 0.6, 1.4);
+        poly3(s, Tp, 'rgba(14,22,36,.95)', 'rgba(45,212,255,.9)', 2);
+        poly3(s, sq(0.24, top - 0.005), 'rgba(160,107,255,.18)', 'rgba(160,107,255,.85)', 1.6);
+        for (var k = 0; k < 5; k++) { var v = -0.16 + k * 0.08; line(g, s.P({ x: -0.2, y: top - 0.006, z: v }), s.P({ x: 0.2, y: top - 0.006, z: v }), '160,107,255', 0.25, 1); }
+        var c = s.P({ x: 0, y: top, z: 0 }); glow(g, c.x, c.y, 40 + (reduce ? 0 : Math.sin(t * 2) * 6), 'rgba(255,214,150,.55)', 'rgba(160,107,255,0)');
+        g.font = '700 13px ui-monospace, SFMono-Regular, Menlo, monospace'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = 'rgba(255,224,170,.95)'; g.fillText('AI', c.x, c.y);
+      }
+    },
+    // Pricing: three stacks of coins, every price on the table; one coin keeps landing.
+    coins: {
+      tilt: 0.32, spin: 0.0002,
+      init: function () { this.drop = -1.4; },
+      draw: function (s, dt) {
+        var g = s.ctx, stacks = [[-0.68, 3, C.c], [0, 6, C.v], [0.68, 9, C.a]], r = 0.24, h = 0.075, base = 0.7;
+        function coin(x, y, col, al) { ring3(s, x, y, 0, r, 'y', col, (0.35 * al).toFixed(2), 1.2, 32); ring3(s, x, y - h, 0, r, 'y', col, (0.9 * al).toFixed(2), 1.8, 32);
+          for (var k = 0; k < 8; k++) { var a = k / 8 * 6.2832; line(g, s.P({ x: x + Math.cos(a) * r, y: y, z: Math.sin(a) * r }), s.P({ x: x + Math.cos(a) * r, y: y - h, z: Math.sin(a) * r }), col, 0.3 * al, 1); } }
+        stacks.forEach(function (st, i) { for (var n = 0; n < st[1]; n++) coin(st[0], base - n * h * 1.05, st[2], 0.55 + 0.45 * (n + 1) / st[1]);
+          var tp = s.P({ x: st[0], y: base - st[1] * h * 1.05, z: 0 }); if (i === 2) glow(g, tp.x, tp.y, 30, 'rgba(255,214,150,.75)', 'rgba(255,170,90,0)');
+          g.font = '700 12px ui-monospace, SFMono-Regular, Menlo, monospace'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = 'rgba(' + st[2] + ',.95)'; g.fillText('$', tp.x, tp.y - 2); });
+        var land = base - 9 * h * 1.05 - 0.02;
+        if (!reduce) { this.drop += dt * 0.9; if (this.drop > land) this.drop = -1.4; }
+        var y = reduce ? -0.9 : this.drop; if (y < land - 0.02) coin(0.68, y, C.a, 0.95);
+        ring3(s, 0, base + 0.02, 0, 1.15, 'y', '120,170,255', 0.18, 1, 64);
       }
     }
   };
