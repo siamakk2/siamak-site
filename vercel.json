@@ -618,6 +618,161 @@
       "permanent": true
     },
     {
+      "source": "/clients",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/about-us",
+      "permanent": true
+    },
+    {
+      "source": "/about-me",
+      "destination": "/about-us",
+      "permanent": true
+    },
+    {
+      "source": "/team",
+      "destination": "/about-us",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/home-3d",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/the-long-view",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "/the-long-view",
+      "permanent": true
+    },
+    {
+      "source": "/insights",
+      "destination": "/the-long-view",
+      "permanent": true
+    },
+    {
+      "source": "/articles",
+      "destination": "/the-long-view",
+      "permanent": true
+    },
+    {
+      "source": "/news",
+      "destination": "/ai-marketing-news",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/terms-of-service",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/terms-and-conditions",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/book",
+      "destination": "/contact-us",
+      "permanent": true
+    },
+    {
+      "source": "/booking",
+      "destination": "/contact-us",
+      "permanent": true
+    },
+    {
+      "source": "/book-online",
+      "destination": "/contact-us",
+      "permanent": true
+    },
+    {
+      "source": "/schedule",
+      "destination": "/contact-us",
+      "permanent": true
+    },
+    {
+      "source": "/contact-me",
+      "destination": "/contact-us",
+      "permanent": true
+    },
+    {
+      "source": "/glossary",
+      "destination": "/the-growth-glossary",
+      "permanent": true
+    },
+    {
+      "source": "/case-study",
+      "destination": "/case-studies",
+      "permanent": true
+    },
+    {
+      "source": "/llmo",
+      "destination": "/what-is-llmo",
+      "permanent": true
+    },
+    {
+      "source": "/lmo",
+      "destination": "/what-is-llmo",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-lmo",
+      "destination": "/what-is-llmo",
+      "permanent": true
+    },
+    {
+      "source": "/geo",
+      "destination": "/geo-aeo-consultant",
+      "permanent": true
+    },
+    {
+      "source": "/aeo",
+      "destination": "/geo-aeo-consultant",
+      "permanent": true
+    },
+    {
+      "source": "/consulting",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/scale",
+      "destination": "/growth-framework",
+      "permanent": true
+    },
+    {
+      "source": "/sitemap",
+      "destination": "/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/feed",
+      "destination": "/news.xml",
+      "permanent": true
+    },
+    {
+      "source": "/rss",
+      "destination": "/news.xml",
+      "permanent": true
+    },
+    {
       "source": "/(.*)",
       "has": [
         {
@@ -654,10 +809,6 @@
     {
       "source": "/voice",
       "destination": "/voice/index.html"
-    },
-    {
-      "source": "/clients",
-      "destination": "/clients/index.html"
     },
     {
       "source": "/voice-consultant",
