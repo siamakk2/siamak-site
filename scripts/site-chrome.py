@@ -27,7 +27,7 @@ for f in glob.glob('**/*.html', recursive=True):
         # keep any existing icon tags; add the full set right after <meta charset>
         m = re.search(r'<meta charset="[^"]*"\s*/?>', s, re.I) or re.search(r'<head[^>]*>', s, re.I)
         s = s[:m.end()] + '\n' + ICONS + s[m.end():]; n_icon += 1
-    if f != 'index.html' and HERO not in s and '</body>' in s and '<main' in s:
+    if f not in ('index.html', 'audit/index.html') and HERO not in s and '</body>' in s and '<main' in s:
         s = re.sub(r'<script src="/assets/hero3d\.js[^"]*" defer></script>\n?', '', s)
         s = s.replace('</body>', HERO + '\n</body>', 1); n_hero += 1
     if 'form-guard.js' not in s and '</body>' in s:
