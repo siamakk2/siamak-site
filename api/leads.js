@@ -1,4 +1,5 @@
 const { guard, redisCreds } = require('./_guard');
+const bot = require('./_bot');
 // Leads API — saves audit leads (name, email, business URL) to Upstash,
 // then emails the lead their AI Visibility Report, branded
 // Siamak Kalhor Consulting (sent via Resend, same service as k2-contact).
@@ -26,6 +27,13 @@ module.exports = async function handler(req, res) {
 
     const lead = body.lead || {};
     if (!lead.email) { return res.status(200).json({ ok: false, error: 'No email provided.' }); }
+    // Bot screen: a suspected bot is told "ok" but nothing is emailed (the address is usually a stranger's).
+    const suspect = bot.screen(Object.assign({}, lead, { _ft: body._ft, website_url: body.website_url || lead.website_url }), { names: ['name', 'businessName'] });
+    if (suspect.length) {
+      await bot.keep('leads', { name: lead.name || '', email: lead.email, url: lead.url || '', why: suspect });
+      console.log(JSON.stringify({ source: 'leads', blocked: suspect.join(',') }));
+      return res.status(200).json({ ok: true, saved: true, emailed: true });
+    }
 
     // --- 1) Save lead to Upstash (same key as before) ---
     let saved = false;

@@ -1,4 +1,5 @@
 const { guard } = require('./_guard');
+const bot = require('./_bot');
 
 // Booking requests.
 //
@@ -58,6 +59,12 @@ module.exports = async function handler(req, res) {
     const name = String(body.name || '').trim().slice(0, 120);
     const email = String(body.email || '').trim().slice(0, 160);
     const phone = String(body.phone || '').trim().slice(0, 40);
+    const suspect = bot.screen(body, { names: ['name'], texts: ['message', 'notes', 'topic'] });
+    if (suspect.length) {
+      await bot.keep('book', { name, email, why: suspect });
+      console.log(JSON.stringify({ source: 'book', blocked: suspect.join(',') }));
+      return res.status(200).json({ ok: true });
+    }
     const company = String(body.company || '').trim().slice(0, 160);
     const about = String(body.about || '').trim().slice(0, 2000);
     const date = String(body.date || '').trim();

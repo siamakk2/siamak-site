@@ -15,7 +15,8 @@ ICONS = ('<link rel="icon" href="/favicon.ico" sizes="48x48">\n'
          '<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">\n'
          '<link rel="manifest" href="/site.webmanifest">\n')
 HERO = '<script src="/assets/hero3d.js?v=6" defer></script>'
-n_icon = n_hero = 0
+FG = '<script src="/assets/form-guard.js?v=1" defer></script>'  # bot screening stamp for form posts (see api/_bot.js)
+n_icon = n_hero = n_fg = 0
 for f in glob.glob('**/*.html', recursive=True):
     if any(x in f for x in ('node_modules', '_archive', 'scripts/', '.vercel')) or os.path.basename(f).startswith('google'):
         continue
@@ -29,6 +30,8 @@ for f in glob.glob('**/*.html', recursive=True):
     if f != 'index.html' and HERO not in s and '</body>' in s and '<main' in s:
         s = re.sub(r'<script src="/assets/hero3d\.js[^"]*" defer></script>\n?', '', s)
         s = s.replace('</body>', HERO + '\n</body>', 1); n_hero += 1
+    if 'form-guard.js' not in s and '</body>' in s:
+        s = s.replace('</body>', FG + '\n</body>', 1); n_fg += 1
     if s != o:
         open(f, 'w', encoding='utf-8').write(s)
 # Pages produced by the builders lose the sitewide entity block on rebuild; restore it.
@@ -42,4 +45,4 @@ for slug in ENTITY_PAGES:
         s2 = open(f, encoding='utf-8').read()
         if 'id="sk-entity"' not in s2:
             open(f, 'w', encoding='utf-8').write(s2.replace('</head>', _blk.group(0) + '\n</head>', 1))
-print('icons added:', n_icon, ' hero script added:', n_hero)
+print('icons added:', n_icon, ' hero script added:', n_hero, ' form guard added:', n_fg)

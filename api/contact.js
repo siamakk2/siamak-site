@@ -1,4 +1,5 @@
 const { guard } = require('./_guard');
+const bot = require('./_bot');
 // Contact form handler for siamakconsulting.com — forwards enquiries to
 // siamakk2@gmail.com via Resend.
 //
@@ -58,6 +59,12 @@ module.exports = async function handler(req, res) {
     // NOTE: k2-contact uses `company` as its honeypot. This form collects a
     // real company name, so the trap field here is `website_url` instead.
     if (clean(b.website_url, 100)) return res.status(200).json({ ok: true });
+    const suspect = bot.screen(b, { names: ['name', 'company'], texts: ['message', 'goal'] });
+    if (suspect.length) {
+      await bot.keep('contact', { name, email, company, why: suspect });
+      console.log(JSON.stringify({ source: 'contact', blocked: suspect.join(',') }));
+      return res.status(200).json({ ok: true });
+    }
 
     const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     const subject = 'Website enquiry — ' + name + (company ? ' (' + company + ')' : '');
