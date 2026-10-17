@@ -1075,12 +1075,19 @@
     },
     "api/agency.js": {
       "maxDuration": 30
+    },
+    "api/letter.js": {
+      "maxDuration": 60
     }
   },
   "crons": [
     {
       "path": "/api/news",
       "schedule": "0 2,8,14,20 * * *"
+    },
+    {
+      "path": "/api/letter?a=cron",
+      "schedule": "0 16 * * *"
     }
   ]
 }
