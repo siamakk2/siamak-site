@@ -14,6 +14,14 @@ PLACEMENTS = [
     ('ai-consulting/index.html', 'sovereignty', r'<section><div class="wrap"><div class="sec-label">Engagement models</div>', ''),
     ('services/index.html', 'whole-job', r'<section id="buyer-questions">',
      '<div class="ph-btns" style="margin-top:22px"><a href="/agency" class="btn btn-pri">See the done-for-you packages &rarr;</a></div>'),
+    ('ai-agents/index.html', 'agents', r'<section><div class="wrap"><div class="sec-label">Know what you&#x27;re buying</div>',
+     '<div class="ph-btns" style="margin-top:22px"><a href="/online-consulting" class="btn btn-pri">Book a free 30-min call &rarr;</a></div>'),
+    ('how-to-get-cited-by-ai/index.html', 'reviews', r'<section style="padding:56px 0;background:var\(--surface-2\);border-top:1px solid var\(--line\);"><div class="wrap" style="max-width:780px;"><div class="sec-head" style="margin-bottom:30px;"><div class="sec-label">FAQ',
+     '<div class="ph-btns" style="margin-top:22px"><a href="/audit" class="btn btn-pri">Get the free AI check &rarr;</a></div>'),
+    ('dental-marketing-consultant/index.html', 'reviews', r'<section><div class="wrap">\n<div class="sec-label">Diagnostic</div>',
+     '<p style="margin-top:14px;color:var(--muted)">The example reviews in the video are illustrations, not real patients.</p>'),
+    ('ai-visibility/index.html', 'reviews', r'<h2>What decides whether a model names you</h2>', 'INLINE'),
+    ('fa/index.html', 'nobody-fa', r'<h2>مسئله‌ای که امروز با آن روبه‌رو هستید</h2>', 'INLINE'),
 ]
 
 for page, key, anchor, extra in PLACEMENTS:
@@ -22,7 +30,8 @@ for page, key, anchor, extra in PLACEMENTS:
     s = re.sub(r'<!-- VIDEO:%s -->.*?<!-- /VIDEO:%s -->\n' % (key, key), '', s, flags=re.S)
     m = re.search(anchor, s)
     assert m, (page, anchor)
-    s = s[:m.start()] + videos.section(key, extra) + s[m.start():]
+    block = videos.inline(key) if extra == 'INLINE' else videos.section(key, extra)
+    s = s[:m.start()] + block + s[m.start():]
     if 'id="vid-css"' not in s:
         s = s.replace('</head>', videos.CSS + '\n</head>', 1)
     open(p, 'w', encoding='utf-8').write(s)
