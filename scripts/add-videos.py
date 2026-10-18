@@ -20,6 +20,8 @@ PLACEMENTS = [
      '<div class="ph-btns" style="margin-top:22px"><a href="/audit" class="btn btn-pri">Get the free AI check &rarr;</a></div>'),
     ('dental-marketing-consultant/index.html', 'reviews', r'<section><div class="wrap">\n<div class="sec-label">Diagnostic</div>',
      '<p style="margin-top:14px;color:var(--muted)">The example reviews in the video are illustrations, not real patients.</p>'),
+    ('ai-automation/index.html', 'automation', r'<section id="how-i-help"><div class="wrap"><div class="sec-label">Where automation pays first',
+     '<div class="ph-btns" style="margin-top:22px"><a href="/online-consulting" class="btn btn-pri">Book a free 30-min call &rarr;</a></div>'),
     ('ai-visibility/index.html', 'reviews', r'<h2>What decides whether a model names you</h2>', 'INLINE'),
     ('fa/index.html', 'nobody-fa', r'<h2>مسئله‌ای که امروز با آن روبه‌رو هستید</h2>', 'INLINE'),
 ]

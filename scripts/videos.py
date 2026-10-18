@@ -43,6 +43,15 @@ VIDEOS = {
         'description': 'A 34-second explainer narrated by Siamak Kalhor on how AI assistants such as ChatGPT read and quote customer reviews, why a specific review beats five stars, and the three things AI looks for: specific, recent and everywhere. Review examples in the video are labelled EXAMPLE.',
         'transcript': "Your next customer won't read your reviews. AI will. When someone asks ChatGPT who's good nearby, it reads your reviews, and it quotes the specific ones. It looks for three things. Specific: what you fixed, in their words. Recent: this year, not 2019. And everywhere: Google, Yelp, and your industry's sites. This week, ask three happy customers to describe what you solved for them. Want to know what AI says about your business? Get a free check at siamakconsulting.com.",
     },
+    'automation': {
+        'file': 'ai-automation-hours-back', 'seconds': 41, 'date': '2026-10-18T09:30:00-07:00',
+        'name': 'Automate the work nobody should be doing by hand.',
+        'label': 'Watch · 41 seconds',
+        'heading': 'Automate the work nobody should be <span class="grad">doing by hand.</span>',
+        'lead': 'Lead replies at 11 PM. Re-typing PDFs into spreadsheets. Chasing the same five follow-ups every week. I find the hours worth reclaiming, build the automation, and keep a human wherever judgment matters.',
+        'description': 'A 41-second explainer narrated by Siamak Kalhor on AI automation: software that reads, decides and writes, sorting email, pulling data from documents, drafting replies and qualifying leads. Unlike rule-based automation, it handles messy inputs and makes judgment calls within limits the business sets. The incoming message shown is labelled EXAMPLE.',
+        'transcript': "It's 11 PM. A lead just replied, and nobody's awake to answer. Meanwhile, someone on your team is re-typing PDFs into a spreadsheet, chasing the same five follow-ups again. That's not work. That's a job for AI automation. It reads, decides and writes. It sorts the email, pulls the data, drafts the reply, qualifies the lead. Old automation follows fixed rules. AI handles the messy stuff, within limits you set. I find the hours worth reclaiming, build the automation, and keep a human wherever judgment matters. Get your hours back. Start at siamakconsulting.com.",
+    },
     'nobody-fa': {
         'file': 'nobody-searches-fa', 'seconds': 37, 'date': '2026-10-18T09:00:00-07:00', 'lang': 'fa',
         'name': 'دیگه کسی گوگل نمی‌کنه. می‌پرسن.',
