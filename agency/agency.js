@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   function track(n, p) { try { if (typeof gtag === 'function') gtag('event', n, p || {}); } catch (e) {} }
-  var VALUES = { launch: 2500, growth: 1500, website: 2250, agent: 3750, content: 1200 };
+  var VALUES = { launch: 2500, growth: 1500, website: 2250, agent: 4500, content: 1200 };
   document.querySelectorAll('a[data-pkg]').forEach(function (a) {
     a.addEventListener('click', function () { var k = a.getAttribute('data-pkg'); track('begin_checkout', { currency: 'USD', value: VALUES[k] || 0, items: [{ item_name: k }] }); });
   });
