@@ -33,7 +33,7 @@ PACKAGES = [
   'link': '/online-consulting', 'time': 'Live in about 3 weeks',
   'for': 'Businesses that want an AI agent running their follow-up, support or operations, built and managed for them.',
   'gets': ['A chat, voice or back-office agent trained on your business', 'Connected to your store, CRM, calendar and email', 'Answers, qualifies, books, follows up and reports',
-           'Monthly management: hosting, monitoring, tuning and strategy', 'You approve what it may do on its own', 'Medical, legal and financial practices: from $5,000 + $1,500/month']},
+           'Monthly management: hosting, monitoring, tuning and strategy', 'You approve what it may do on its own', 'Doctors, dentists, law firms and financial advisors: from $5,000 + $1,500/month, because their agents handle protected patient or client information and need extra privacy safeguards']},
  {'key': 'content', 'name': 'Content Engine', 'tag': 'Ongoing', 'price': '$1,200', 'per': 'per month', 'amount': 1200, 'recurring': True,
   'link': 'https://buy.stripe.com/bJe28s0qI4owgnOdax0kE09', 'time': 'Month to month',
   'for': 'Businesses that know they should publish but never have the time.',
