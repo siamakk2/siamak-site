@@ -140,7 +140,7 @@ CONSULT = [
 ]
 AGENCY = [
  ("AI Visibility Launch", "$2,500", "one-time", "launch"), ("AI Visibility Growth", "$1,500", "per month", "growth"),
- ("AI-Ready Website", "From $4,500", "50% deposit to start", "website"), ("AI Agent / Chatbot", "$3,500", "setup + $250/month care", "agent"),
+ ("AI-Ready Website", "From $4,500", "50% deposit to start", "website"), ("Done-For-You AI Agent", "$3,500", "setup + $1,000/month", "agent"),
  ("Content Engine", "$1,200", "per month", "content"),
 ]
 LEARN = [

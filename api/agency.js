@@ -16,7 +16,7 @@ const PKGS = {
   launch: 'AI Visibility Launch ($2,500)',
   growth: 'AI Visibility Growth ($1,500/month)',
   website: 'AI-Ready Website (50% deposit, $2,250)',
-  agent: 'AI Agent / Chatbot ($3,500 + $250/month)',
+  agent: 'Done-For-You AI Agent ($3,500 + $1,000/month)',
   content: 'Content Engine ($1,200/month)'
 };
 
