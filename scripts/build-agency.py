@@ -30,7 +30,7 @@ PACKAGES = [
   'gets': ['Up to 8 pages on Shopify, WordPress or custom', 'Clear positioning and copy written for you', 'Fast, mobile-first, with schema built in',
            'Titles, descriptions and share previews on every page', 'Analytics and lead forms wired up', 'Balance due at launch']},
  {'key': 'agent', 'name': 'Done-For-You AI Agent', 'tag': 'Automation', 'price': '$3,500', 'per': 'setup + $1,000/month', 'amount': 3500, 'recurring': True,
-  'link': 'https://agents.siamakconsulting.com/api/checkout/agency?plan=agent', 'time': 'Live in about 3 weeks',
+  'link': 'https://buy.stripe.com/9B63cwb5m6wE4F64E10kE0a', 'time': 'Live in about 3 weeks',
   'for': 'Businesses that want an AI agent running their follow-up, support or operations, built and managed for them.',
   'gets': ['A chat, voice or back-office agent trained on your business', 'Connected to your store, CRM, calendar and email', 'Answers, qualifies, books, follows up and reports',
            'Monthly management: hosting, monitoring, tuning and strategy', 'You approve what it may do on its own', 'Doctors, dentists, law firms and financial advisors: from $5,000 + $1,500/month, because their agents handle protected patient or client information and need extra privacy safeguards']},
