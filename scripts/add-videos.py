@@ -9,6 +9,8 @@ import videos
 ROOT = os.path.join(os.path.dirname(__file__), '..')
 # (page, video key, regex for the element the video goes BEFORE, extra html under the text)
 PLACEMENTS = [
+    ('index.html', 'studio', r'<section id="agent-studio-band">',
+     '<div class="ph-btns" style="margin-top:22px"><a href="https://agents.siamakconsulting.com" class="btn btn-pri">Build my agent free &rarr;</a></div>'),
     ('ai-agents/index.html', 'sovereignty', r'<section><div class="wrap"><div class="sec-label">Responsible by design</div>',
      '<p style="margin-top:14px;color:var(--muted)">That is why every agent I build follows the rules below.</p>'),
     ('ai-consulting/index.html', 'sovereignty', r'<section><div class="wrap"><div class="sec-label">Engagement models</div>', ''),
@@ -43,5 +45,7 @@ for page, key, anchor, extra in PLACEMENTS:
         s = s[:m.start()] + block + s[m.start():]
     if 'id="vid-css"' not in s:
         s = s.replace('</head>', videos.CSS + '\n</head>', 1)
+    else:
+        s = re.sub(r'<style id="vid-css">.*?</style>', lambda _: videos.CSS, s, count=1, flags=re.S)
     open(p, 'w', encoding='utf-8').write(s)
     print('placed', key, 'on', page)

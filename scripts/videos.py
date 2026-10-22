@@ -25,6 +25,15 @@ VIDEOS = {
         'lead': 'Your data is your most valuable asset, until the day it leaks. For Indigenous communities it runs deeper, which is why the OCAP® and CARE principles exist. Every AI system Siamak Kalhor Consulting builds is encrypted, access-controlled, consent-first and respects who the data belongs to.',
         'description': 'A short film on data protection and Indigenous data sovereignty: the cost of a data breach, the OCAP® principles (ownership, control, access, possession) and the CARE principles, and how Siamak Kalhor Consulting builds AI that is encrypted, access-controlled, consent-first and community-governed.',
     },
+    'studio': {
+        'file': 'agent-studio-build-your-agent', 'seconds': 30, 'date': '2026-10-22T13:00:00-07:00',
+        'name': 'The agent that runs your business while you run it.',
+        'label': 'Watch · 30 seconds',
+        'heading': 'Meet the agent that runs your business <span class="grad">while you run it.</span>',
+        'lead': 'Name it, give it a voice, then connect your store, your website, your inbox and your CRM. It watches orders, leads and reviews, follows up, reports on revenue and runs your social media, and it only acts within the guardrails you set. Build yours free in Agent Studio.',
+        'description': 'A 30-second introduction to Agent Studio by Siamak Kalhor Consulting: name an AI business agent, give it a voice, connect your store, website, inbox and CRM, and let it watch orders, leads and reviews, follow up, report on revenue and run social media within the guardrails you set.',
+        'transcript': "Meet the agent that runs your business while you run it. Name it, give it a voice, then connect your store, your website, your inbox, and your CRM. It watches orders, leads, and reviews. It follows up, reports on revenue, and runs your social media. Built for every industry, and it only acts within the guardrails you set. Siamak Kalhor Consulting. Build your agent free at agents.siamakconsulting.com.",
+    },
     'agents': {
         'file': 'ai-agents-take-steps', 'seconds': 32, 'date': '2026-10-17T17:00:00-07:00',
         'name': 'AI that talks is everywhere. AI that does the work is rare.',
@@ -85,7 +94,7 @@ VIDEOS = {
 CSS = ('<style id="vid-css">.vid-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:48px;align-items:center}'
        '.vid{margin:0;justify-self:center;width:100%;max-width:360px}'
        '.vid video{display:block;width:100%;height:auto;aspect-ratio:9/16;border-radius:22px;border:1px solid var(--line-bright,#2a3446);background:#05070b;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px rgba(45,212,255,.12)}'
-       '.vid figcaption{font-size:13.5px;color:var(--muted-dim,#7c8796);margin-top:10px;text-align:center}'
+       '.vid figcaption{font-size:13.5px;color:var(--muted-dim,#7c8796);margin-top:10px;text-align:center}.vid figcaption a{color:var(--cyan,#2dd4ff);text-decoration:underline;text-underline-offset:3px}'
        '.vid.vid-in{margin:34px auto 30px}'
        '@media(max-width:860px){.vid-grid{grid-template-columns:minmax(0,1fr);gap:28px}}</style>')
 
