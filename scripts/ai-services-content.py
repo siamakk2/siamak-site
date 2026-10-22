@@ -415,7 +415,7 @@ fit=dict(good=["Established businesses with a brand worth protecting","Small tea
          bad=["Anyone looking for the cheapest way to fill a content calendar","Brands unwilling to define a clear position first","Expectations of overnight growth from AI tools alone","Businesses wanting an agency to run everything unsupervised"]),
 proof=dict(label="Track record",h2="Forty years, applied to the AI era",
   cards=[("8-year engagement","Blue Moon Fabrics","A single LA Fashion District store engineered into a national textile leader, the 100× build.","/bluemoon"),
-         ("Consumer app","AisleBird","A voice-first grocery app grown across 500+ stores, marketed and built in-house.","/aislebird"),
+         ("Consumer app","AisleBird","A voice-first grocery app grown across 300+ stores, marketed and built in-house.","/aislebird"),
          ("Reviews","5.0 on Google","Twelve public reviews from clients over more than a decade, every one verifiable.","/portfolio"),
          ("Local","LA & Napa Valley","AI marketing for Los Angeles and Napa Valley businesses, in person or online.","/ai-marketing-consultant-los-angeles")]),
 faq=[("What does an AI marketing consultant do?","An AI marketing consultant decides where AI belongs in your marketing (research, content, advertising, personalization, measurement), sets up the systems and guardrails, and makes sure the result produces customers rather than just more content. The strategy is the job; the tools are the means."),
