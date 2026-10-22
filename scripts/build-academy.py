@@ -198,7 +198,7 @@ landing = f'''<header class="ac-hero"><div class="wrap">
 <section><div class="wrap">
 <div class="sec-label">Your instructor</div><h2 class="sec-h">Forty years of market instinct, rebuilt for AI</h2>
 <div class="ac-card" style="display:grid;gap:12px;max-width:860px">
-<p style="color:var(--muted)">Siamak Kalhor started in marketing before the internet existed. Today he helps businesses become visible to AI systems like ChatGPT, Gemini and Claude. He grew Blue Moon Fabrics from a single LA Fashion District store into a national textile leader over an eight-year engagement, and scaled AisleBird, a voice-first shopping app, to 235+ stores across 10 metros.</p>
+<p style="color:var(--muted)">Siamak Kalhor started in marketing before the internet existed. Today he helps businesses become visible to AI systems like ChatGPT, Gemini and Claude. He grew Blue Moon Fabrics from a single LA Fashion District store into a national textile leader over an eight-year engagement, and scaled AisleBird, a voice-first shopping app, to 500+ stores across 10 metros.</p>
 <p style="color:var(--muted)">S.C.A.L.E. is the method he uses with clients, now taught as a course and built into the <a href="https://scale.siamakconsulting.com/" style="color:var(--cyan)">S.C.A.L.E. app</a>.</p>
 <p><a href="/about-us" style="color:var(--cyan)">About Siamak</a> · <a href="/growth-framework" style="color:var(--cyan)">The S.C.A.L.E. Framework</a></p>
 </div></div></section>

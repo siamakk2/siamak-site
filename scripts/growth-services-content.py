@@ -28,7 +28,7 @@ HOUR = "https://buy.stripe.com/cNi14o2yQaMUdbC3zX0kE03"
 
 PROOF_CORE = [
     ("8-year engagement", "Blue Moon Fabrics", "A single LA Fashion District store engineered into a national textile leader: the 100× build.", "/bluemoon"),
-    ("235+ stores", "AisleBird", "A voice-first shopping app scaled to 235+ stores across 10 metros, with AI categorization.", "/aislebird"),
+    ("500+ stores", "AisleBird", "A voice-first shopping app scaled to 500+ stores across 10 metros, with AI categorization.", "/aislebird"),
     ("SaaS", "S.C.A.L.E.", "My growth method turned into software: it reads a website the way AI systems do and ranks what to fix.", "https://scale.siamakconsulting.com/"),
     ("40 years", "Market experience", "Legal, medical, e-commerce, hospitality and finance, from before the internet to the age of AI answers.", "/about-us"),
 ]
@@ -296,7 +296,7 @@ service_type="Custom AI software development",
 eyebrow="Custom AI Software · AI for Small Business",
 h1='Custom AI software, built by someone who <span class="grad">ships his own.</span>',
 sub="Off-the-shelf AI tools solve someone else's problem. I design and build <strong>AI apps, agents, voice assistants and workflow tools</strong> around how your business actually runs, the same way I built S.C.A.L.E., Orchamind, AisleBird, Textile Wizard and Weftwise.",
-glance=[("8+","AI products shipped"),("235+","stores on AisleBird"),("Voice","20-language AI advisor"),("30 min","free first call")],
+glance=[("8+","AI products shipped"),("500+","stores on AisleBird"),("Voice","20-language AI advisor"),("30 min","free first call")],
 defn=dict(term="Custom AI software",
   q="What is custom AI software development?",
   a="Custom AI software development is designing and building software that uses artificial intelligence for one business's specific workflows, data and customers, rather than adapting a generic tool. It typically includes AI assistants and agents, document and data processing, voice interfaces and integrations with the systems the business already uses.",
@@ -335,7 +335,7 @@ process=dict(label="How a build runs",h2="Prove it small, then build it properly
 fit=dict(good=["Small and mid-size businesses with a workflow no tool fits","Owners with data spread across spreadsheets, email and old systems","Businesses fielding customer questions around the clock","Regulated or confidential work that needs security designed in"],
          bad=["Projects where an existing tool already does the job; I'll say so","Anyone wanting software without naming the problem it solves","Very large enterprise systems needing big engineering teams","Uses that misuse customer data"]),
 proof=dict(label="Proof, not promises",h2="Products I've designed, built and shipped",
-  cards=[("235+ stores","AisleBird","A voice-first shopping app scaled to 235+ stores across 10 metros, with AI categorization.","/aislebird"),
+  cards=[("500+ stores","AisleBird","A voice-first shopping app scaled to 500+ stores across 10 metros, with AI categorization.","/aislebird"),
          ("SaaS","Orchamind","The AI system that runs a contracting business: estimates, follow-ups, job costing and a voice assistant.","/portfolio"),
          ("Industry app","Textile Wizard","Inventory, invoicing and accounts receivable software for textile businesses.","/textile-wizard"),
          ("E-commerce AI","Weftwise","Catalog intelligence for fabric stores: an AI fabric expert, a yardage calculator and a listing studio.","https://weftwise.vercel.app/")]),
