@@ -9,6 +9,15 @@ SITE = 'https://siamakconsulting.com'
 esc = lambda s: html.escape(s, quote=True)
 
 VIDEOS = {
+    'portfolio': {
+        'file': 'portfolio-apps-i-built', 'seconds': 63, 'date': '2026-10-22T13:00:00-07:00',
+        'name': "I don't just advise on AI. I ship it.",
+        'label': 'Watch · 1 minute',
+        'heading': "I don't just advise on AI. <span class=\"grad\">I ship it.</span>",
+        'lead': 'Twelve AI apps designed, coded and launched, from S.C.A.L.E. and Agent Studio to AisleBird, Parcel Finder and Napa Wino, plus client builds like Blue Moon Fabrics, an eight-year engagement that grew one store into a national leader. Tell me what you are building and I will take it from idea to launch.',
+        'description': 'A one-minute tour, narrated by Siamak Kalhor, of the twelve AI apps he has designed, coded and launched (S.C.A.L.E., Agent Studio, S.C.A.L.E. Academy, Orchamind, ResBizAI, AisleBird, Parcel Finder, Textile Wizard, Weftwise and Napa Wino) and of client builds such as Blue Moon Fabrics.',
+        'transcript': "I don't just advise on artificial intelligence. I ship it. From idea to live product. Twelve artificial intelligence apps designed, coded, and launched. S.C.A.L.E. scans your website the way assistants see it. Agent Studio builds your business agent in about ten minutes. And the Academy teaches my framework with a tutor in thirteen languages. Orchamind runs contractors. ResBizAI runs restaurants. AisleBird sorts your grocery list in over three hundred stores. Parcel Finder, Textile Wizard, Weftwise, Napa Wino. Built for real businesses and for clients like Blue Moon Fabrics, an eight-year build that grew one store into a national leader. Five stars on Google across more than a decade. Tell me what you're building. I'll take it from idea to launch. siamakconsulting.com.",
+    },
     'whole-job': {
         'file': 'we-do-the-whole-job', 'seconds': 35,
         'name': 'AI is the tool. Strategy is the job.',
