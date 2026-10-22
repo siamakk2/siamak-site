@@ -101,6 +101,10 @@ def schema(key):
     return d
 
 
+def watch(v):
+    return 'متن کامل و صفحه‌ی ویدیو' if v.get('lang') == 'fa' else 'Watch page and transcript'
+
+
 def section(key, extra=''):
     v = VIDEOS[key]
     f = v['file']
@@ -108,8 +112,8 @@ def section(key, extra=''):
             f'<div class="sec-label">{esc(v["label"])}</div><h2 class="sec-h">{v["heading"]}</h2>'
             f'<p class="lead" style="color:var(--muted)">{esc(v["lead"])}</p>{extra}</div>'
             f'<figure class="vid"><video controls playsinline preload="none" poster="/videos/{f}.jpg" width="720" height="1280" aria-label="{esc(v["name"])}">'
-            f'<source src="/videos/{f}.mp4" type="video/mp4"></video><figcaption>{esc(v["name"])}</figcaption></figure>'
-            f'</div></div></section>\n<script type="application/ld+json">{json.dumps(schema(key), ensure_ascii=False)}</script>\n<!-- /VIDEO:{key} -->\n')
+            f'<source src="/videos/{f}.mp4" type="video/mp4"></video><figcaption>{esc(v["name"])} · <a href="/videos/{f}">{watch(v)}</a></figcaption></figure>'
+            f'</div></div></section>\n<!-- /VIDEO:{key} -->\n')
 
 
 def inline(key):
@@ -117,5 +121,5 @@ def inline(key):
     v = VIDEOS[key]
     f = v['file']
     return (f'<!-- VIDEO:{key} -->\n<figure class="vid vid-in"><video controls playsinline preload="none" poster="/videos/{f}.jpg" width="720" height="1280" aria-label="{esc(v["name"])}">'
-            f'<source src="/videos/{f}.mp4" type="video/mp4"></video><figcaption>{esc(v["name"])} · {esc(v["label"].split("·")[-1].strip())}</figcaption></figure>\n'
-            f'<script type="application/ld+json">{json.dumps(schema(key), ensure_ascii=False)}</script>\n<!-- /VIDEO:{key} -->\n')
+            f'<source src="/videos/{f}.mp4" type="video/mp4"></video><figcaption>{esc(v["name"])} · {esc(v["label"].split("·")[-1].strip())} · <a href="/videos/{f}">{watch(v)}</a></figcaption></figure>\n'
+            f'<!-- /VIDEO:{key} -->\n')
