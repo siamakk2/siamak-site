@@ -15,6 +15,7 @@ head = head.replace('<meta name="viewport" content="width=device-width, initial-
 links = [('/agency', 'Done-for-you AI agency', 'Fixed-price packages. Pay online and the work starts.'),
          ('/audit', 'Free AI visibility report', 'See how AI assistants read your website.'),
          ('/the-long-view', 'The Long View', 'Research and guides on AI search and LLMO.'),
+         ('/videos', 'Videos', 'Short films on AI agents, automation and visibility, with transcripts.'),
          ('/academy', 'S.C.A.L.E. Academy', 'The online course. Week 1 is free.'),
          ('/services', 'All services', 'Consulting, audits and fractional CMO.'),
          ('/contact-us', 'Contact', 'Call 323-657-7752 or send a message.')]
