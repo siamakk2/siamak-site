@@ -112,10 +112,19 @@ CSS = ('<style id="w-css">.ph>.wrap{display:block!important}.ph .w-grid{width:10
        '.w-rels{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.w-rel{font-size:14px;padding:8px 14px;border:1px solid var(--line,#1c2330);border-radius:999px;color:var(--text,#e8edf2);text-decoration:none}'
        '.w-rel:hover{border-color:var(--cyan,#2dd4ff)}.w-fine{margin-top:18px;font-size:14px;color:var(--muted-dim,#7c8796)}'
        '.w-narrow{max-width:860px}.w-tr{font-size:18px;line-height:1.75;color:var(--muted,#a6b0bd)}'
-       '.w-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px;margin-top:28px}'
-       '.w-card{display:block;text-decoration:none;color:var(--text,#e8edf2);border:1px solid var(--line,#1c2330);border-radius:18px;overflow:hidden;background:rgba(255,255,255,.02)}'
-       '.w-card img{display:block;width:100%;aspect-ratio:9/16;object-fit:cover}.w-card span{display:block;padding:14px 16px;font-size:15px;line-height:1.4}'
-       '.w-card small{display:block;color:var(--muted-dim,#7c8796);margin-top:4px}'
+       '.w-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:8px}'
+       '.w-card{display:block;text-decoration:none;color:var(--text,#e8edf2)}'
+       '.w-thumb{position:relative;display:block;aspect-ratio:9/16;border-radius:20px;overflow:hidden;background:#05070b;border:1px solid var(--line,#1c2330);box-shadow:0 18px 50px rgba(0,0,0,.45);transition:transform .25s ease,border-color .25s ease}'
+       '.w-thumb img,.w-thumb video{position:absolute;inset:0;width:100%!important;height:100%!important;object-fit:cover;display:block}'
+       '.w-thumb video{opacity:0;transition:opacity .3s}.w-card.playing .w-thumb video{opacity:1}'
+       '.w-card:hover .w-thumb,.w-card:focus-visible .w-thumb{transform:translateY(-4px);border-color:var(--cyan,#2dd4ff)}'
+       '.w-play{position:absolute;left:10px;bottom:10px;width:44px;height:44px;border-radius:50%;background:rgba(5,7,11,.55);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;transition:opacity .25s}'
+       '.w-play:after{content:"";margin-left:4px;border-style:solid;border-width:8px 0 8px 13px;border-color:transparent transparent transparent #fff}'
+       '.w-card.playing .w-play{opacity:0}'
+       '.w-dur{position:absolute;right:10px;bottom:10px;font:600 12px/1 var(--mono,monospace);padding:6px 8px;border-radius:8px;background:rgba(5,7,11,.7);color:#fff}'
+       '.w-cap{display:block;padding:14px 4px 0;font-size:15px;font-weight:600;line-height:1.4}'
+       '.w-cap small{display:block;font-weight:400;color:var(--muted-dim,#7c8796);margin-top:4px;font-size:13px}'
+       '@media(max-width:1000px){.w-list{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:700px){.w-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.w-play{width:38px;height:38px}.w-cap{font-size:14px}}'
        '[dir=rtl] .w-grid{direction:rtl}@media(max-width:860px){.w-grid{grid-template-columns:minmax(0,1fr);gap:24px}.w-vid{order:-1;max-width:300px}.ph:has(.w-grid){padding-top:28px}}</style>')
 
 def hub():
@@ -139,11 +148,23 @@ def hub():
                                                          {'@type': 'ListItem', 'position': 2, 'name': 'Videos', 'item': url}]}]}
     s = re.sub(r'<script type="application/ld\+json">\s*\{"@context":"https://schema.org","@graph":\[.*?\]\}\s*</script>',
                lambda m: '<script type="application/ld+json">%s</script>' % json.dumps(graph, ensure_ascii=False), s, count=1, flags=re.S)
-    cards = ''.join('<a class="w-card" href="/videos/%s"%s><img src="/videos/%s.jpg" alt="" loading="lazy" width="720" height="1280"><span>%s<small>%s</small></span></a>' % (
-        v['file'], ' dir="rtl" lang="fa"' if v.get('lang') == 'fa' else '', v['file'], esc(v['name']), esc(v['label'])) for v in videos.VIDEOS.values())
+    def card(v):
+        fa = v.get('lang') == 'fa'
+        sec = int(v.get('seconds') or 0)
+        return ('<a class="w-card" href="/videos/%s"%s><span class="w-thumb">'
+                '<img src="/videos/%s.jpg" alt="" loading="lazy" width="720" height="1280">'
+                '<video muted loop playsinline preload="none" data-src="/videos/%s.mp4"></video>'
+                '<span class="w-play" aria-hidden="true"></span><span class="w-dur">%d:%02d</span></span>'
+                '<span class="w-cap">%s<small>%s</small></span></a>') % (
+            v['file'], ' dir="rtl" lang="fa"' if fa else '', v['file'], v['file'], sec // 60, sec % 60, esc(v['name']), esc(v['label']))
+    cards = ''.join(card(v) for v in videos.VIDEOS.values())
+    js = ("<script>(function(){if(matchMedia('(hover:none)').matches)return;document.querySelectorAll('.w-card').forEach(function(c){"
+          "var v=c.querySelector('video');c.addEventListener('mouseenter',function(){if(!v.src)v.src=v.dataset.src;v.currentTime=0;"
+          "var p=v.play();if(p)p.then(function(){c.classList.add('playing')}).catch(function(){})});"
+          "c.addEventListener('mouseleave',function(){v.pause();c.classList.remove('playing')})})})();</script>")
     body = ('<main id="main">\n<header class="ph"><div class="wrap"><div class="eyebrow"><span class="dot"></span>Videos</div>'
             '<h1 class="ph-h">Short films, <span class="grad">plain answers</span></h1><p class="ph-sub">%s</p></div></header>\n'
-            '<section><div class="wrap"><div class="w-list">%s</div></div></section>\n</main>') % (esc(desc), cards)
+            '<section><div class="wrap"><div class="w-list">%s</div></div></section>\n%s\n</main>') % (esc(desc), cards, js)
     s = re.sub(r'<main id="main">.*?</main>', lambda m: body, s, count=1, flags=re.S)
     return s.replace('</head>', CSS + '\n</head>', 1)
 
