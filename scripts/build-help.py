@@ -125,6 +125,8 @@ NEEDS = [
  [("Brand Creation", "/brand-creation")]),
 ]
 
+READ = {'marketing-consultant': [('Marketing consultant or marketing agency?', 'marketing-consultant-or-marketing-agency')], 'agency': [('What a full-service marketing agency really does', 'what-a-full-service-marketing-agency-does'), ('Outsourcing your marketing: what to keep', 'outsourcing-your-marketing-what-to-keep')], 'grow': [('Business growth vs business development consultant', 'business-growth-vs-business-development-consultant')], 'ai-marketing': [('What does an AI business consultant actually do?', 'what-does-an-ai-business-consultant-do')], 'lead': [('Fractional CMO vs marketing director vs agency', 'fractional-cmo-vs-marketing-director-vs-agency')], 'website': [('Web designer or website strategy consultant?', 'website-strategy-consultant-or-web-designer'), ('Conversion optimization for small business', 'conversion-optimization-for-small-business')], 'automation': [('AI automation agency or automation consultant?', 'ai-automation-agency-or-automation-consultant'), ('Hiring an AI implementation consultant', 'hiring-an-ai-implementation-consultant')], 'visibility': [('SEO, GEO, AEO or LLMO: which do you need?', 'seo-geo-aeo-llmo-which-do-you-need'), ('SEO consultant or SEO agency?', 'seo-consultant-or-seo-agency')], 'ecommerce': [('Shopify consultant or Shopify marketing agency?', 'shopify-consultant-or-shopify-marketing-agency'), ('What an ecommerce growth consultant does', 'what-an-ecommerce-growth-consultant-does')], 'brand': [('Brand strategy vs brand positioning', 'brand-strategy-vs-brand-positioning')]}
+
 EXTRA_CSS = """<style id="help-css">
 .help-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:26px}
 .help-nav a{display:flex;gap:14px;align-items:center;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--surface);text-decoration:none;color:var(--text);font-family:var(--display);font-weight:600;font-size:16px;transition:border-color .2s}
@@ -139,6 +141,7 @@ EXTRA_CSS = """<style id="help-css">
 .need .qa p a,.help-lead a{color:var(--cyan)}
 .need-go{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
 .need+.need{border-top:1px solid var(--line)}
+.need-read{margin-top:16px;font-size:15px;color:var(--muted)}.need-read b{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--muted-dim);margin-right:8px}.need-read a{color:var(--cyan);margin-right:16px}
 @media(max-width:700px){.help-nav{grid-template-columns:1fr}}
 </style>"""
 
@@ -175,9 +178,10 @@ def build():
         items = "".join(f'<div class="qa"><h3>{e(q)}</h3><p>{ans}</p></div>' for q, ans in qa)
         btns = "".join(f'<a href="{a(href)}" class="btn {"btn-pri" if j == 0 else "btn-ghost"}">{e(lbl)}{" &rarr;" if j == 0 else ""}</a>'
                        for j, (lbl, href) in enumerate(go))
+        reads = ('<p class="need-read"><b>Read more</b>' + ''.join(f'<a href="/the-long-view/{sl}">{e(t)}</a>' for t, sl in READ.get(k, [])) + '</p>') if READ.get(k) else ''
         secs += (f'<section class="need" id="{k}"><div class="wrap"><div class="sec-label">{i+1:02d} · {len(qa)} answers</div>'
                  f'<h2 class="need-h">“{e(h)}”</h2><div class="need-q"><b>People search</b>{chips}</div>'
-                 f'<div class="faq">{items}</div><div class="need-go">{btns}</div></div></section>\n')
+                 f'<div class="faq">{items}</div>{reads}<div class="need-go">{btns}</div></div></section>\n')
     cta = ('<section><div class="wrap"><div class="cta-band"><h3>Still not sure what you need?</h3>'
            '<p>That\'s what the first call is for. Thirty minutes, free, and you\'ll leave knowing your next step, even if it isn\'t me.</p>'
            '<div class="cta-row"><a href="/online-consulting" class="btn btn-pri">Book a free 30-min call &rarr;</a>'
