@@ -55,14 +55,16 @@ NEEDS = [
  [("Business Growth Consultant", "/business-growth-consultant"), ("The S.C.A.L.E. Framework", "/growth-framework")]),
 
 ("ai-marketing", "I want someone who understands AI and marketing",
- ["AI marketing consultant", "AI marketing agency", "AI business consultant", "AI strategy advisor"],
+ ["AI marketing consultant", "AI marketing agency", "best AI marketing agencies", "AI-powered digital marketing agency", "AI marketing automation agency", "AI advertising agencies", "AI business consultant", "AI strategy advisor"],
  [("What does an AI marketing consultant do?",
    "An AI marketing consultant helps a business use AI where it actually pays: getting found and recommended in ChatGPT, Gemini and Google's AI Overviews, producing content faster without losing quality, and automating follow-up and reporting. Just as important, they tell you where AI isn't worth it yet."),
+  ("How do I find the best AI marketing agency?",
+   "Ignore the \"top 10\" lists, which are mostly paid placements or written by the agencies themselves. Ask each agency to show what ChatGPT and Gemini say about your business today, how it will change that, how it measures it every month and whether it reports in enquiries and revenue. My <a href=\"/ai-marketing-agency\">AI marketing agency</a> publishes its prices and answers all four."),
   ("Should I hire an AI consultant or an AI agency?",
    "A consultant gives you independent advice on what to do with AI; an agency builds and runs it. If you're not sure what you need, start with advice, then build. I compare the two honestly in <a href=\"/ai-consultant-vs-ai-agency\">AI consultant vs AI agency</a>."),
   ("What does an AI business consultant or AI strategy advisor do?",
    "They look at your whole business, not just marketing, and find the few places where AI saves real time or money: customer calls, intake, follow-up, quoting, reporting and content. Then they set the order, the budget and the rules for using AI safely with customer data.")],
- [("AI Marketing", "/ai-marketing"), ("AI Consultant", "/ai-consultant"), ("AI Advisory", "/ai-advisory")]),
+ [("AI Marketing Agency", "/ai-marketing-agency"), ("AI Marketing", "/ai-marketing"), ("AI Consultant", "/ai-consultant")]),
 
 ("lead", "I want someone to lead the whole marketing effort",
  ["fractional CMO", "outsourced marketing director", "fractional chief marketing officer", "marketing consultant to manage my agency"],

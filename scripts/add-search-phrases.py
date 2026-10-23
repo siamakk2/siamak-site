@@ -125,6 +125,15 @@ PAGES = {
         "A brand positioning consultant focuses on one part of brand strategy: the specific place you want to hold in the customer's mind compared with the alternatives. Clear positioning is what stops customers choosing on price alone."),
        ("Do I need a branding and marketing agency or a brand consultant?",
         "If your strategy is clear and you need a logo, website and materials, a branding and marketing agency fits. If customers can't say why you're different, start with a consultant, because a beautiful identity on an unclear position still loses on price.")]),
+"ai-marketing-consultant-los-angeles": dict(
+  title="AI Marketing Agency & Consultant in Los Angeles | Siamak Kalhor",
+  desc="An AI marketing agency and consultant in Los Angeles: get found in ChatGPT, Gemini and Google AI answers, with AI-powered content, ads and automation.",
+  style="loc",
+  faq=[("Is there an AI marketing agency near me in Los Angeles?",
+        "Yes. I'm an AI marketing consultant based in Los Angeles, and my <a href=\"/ai-marketing-agency\">AI marketing agency</a> works with LA businesses on AI search visibility, AI-assisted content and ads, marketing automation and AI agents. Most of the work runs online, and fixed-price packages start at $2,500."),
+       ("What do AI digital marketing companies in Los Angeles actually do?",
+        "The useful ones do three things: make sure AI assistants such as ChatGPT and Gemini recommend your business, use AI to produce and test content and ads faster, and automate how leads are answered and followed up. Ask any of them to show you what AI says about your business today before you sign.")]),
+
 }
 
 QA_H3 = '<div class="qa"><h3 style="font-family:var(--display);font-size:17px;font-weight:600;margin-bottom:8px">{q}</h3><p>{a}</p></div>'
@@ -137,6 +146,8 @@ def visible(style, q, a):
     if style == "details":
         return ('<details class="ag-card" style="padding:18px 22px;gap:0"><summary style="cursor:pointer;font-weight:600">%s</summary>'
                 '<p style="color:var(--muted);margin-top:10px">%s</p></details>') % (eq, a)
+    if style == "loc":
+        return '<div><div class="loc-faq-q">%s</div><div class="loc-faq-a">%s</div></div>' % (eq, a)
     if style == "check":
         return '<div class="check"><span class="c">?</span><p><strong>%s</strong> %s</p></div>\n' % (eq, a)
     raise ValueError(style)
@@ -149,6 +160,9 @@ def add_visible(s, style, block, page):
         return s[:end] + block + s[end:]
     if style == "details":
         i = s.index('Before you start</h2>'); end = s.rindex('</details>', i, s.index('</section>', i)) + len('</details>')
+        return s[:end] + block + s[end:]
+    if style == "loc":
+        i = s.index('Working with me in Los Angeles</h2>'); end = s.index('</div></section>', i)
         return s[:end] + block + s[end:]
     if style == "check":
         i = s.index('Common questions</h2>'); j = s.index('<div class="checks">', i)
