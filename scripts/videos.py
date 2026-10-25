@@ -10,12 +10,12 @@ esc = lambda s: html.escape(s, quote=True)
 
 VIDEOS = {
     'inhouse': {
-        'file': 'agency-all-in-house', 'seconds': 33, 'date': '2026-10-25T09:00:00-07:00',
+        'file': 'agency-all-in-house', 'seconds': 44, 'date': '2026-10-25T09:00:00-07:00',
         'name': 'Most agencies hand your work to someone else. We do it all in house.',
-        'label': 'Watch · 33 seconds',
+        'label': 'Watch · 44 seconds',
         'heading': 'Most agencies hand your work to someone else. <span class="grad">We do it all in house.</span>',
         'lead': 'No freelancers, subcontractors or overseas hand-offs. Strategy, copy, design, video, websites and AI agents are built by us, on our own tools, and checked by me. You talk to the people who actually do the work. Even this video was made in house.',
-        'description': 'A 33-second film narrated by Siamak Kalhor: Siamak Kalhor Consulting is now a full agency that does every job in house (strategy, copy, design, video, websites and AI agents) with no middlemen or hand-offs, built on its own tools and checked by Siamak.',
+        'description': 'A 44-second film narrated by Siamak Kalhor: Siamak Kalhor Consulting is now a full agency that does every job in house (strategy, copy, design, video, websites and AI agents) with no middlemen or hand-offs, built on its own tools and checked by Siamak.',
         'transcript': "Most agencies sell you the work, then hand it to someone else. Freelancers. Subcontractors. Someone overseas. We don't. Siamak Kalhor Consulting is now a full agency, and every job is done in house. Strategy. Copy. Design. Video. Websites. AI agents. Built by us, on our own tools, and checked by me. No middlemen. No hand-offs. No lost messages. You talk to the people who actually do the work. Even this video was made in house. Your agency, in house. Start at siamakconsulting.com.",
     },
     'atoz': {
