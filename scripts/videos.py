@@ -9,6 +9,15 @@ SITE = 'https://siamakconsulting.com'
 esc = lambda s: html.escape(s, quote=True)
 
 VIDEOS = {
+    'atoz': {
+        'file': 'full-service-a-to-z', 'seconds': 33, 'date': '2026-10-24T19:00:00-07:00',
+        'name': 'For 40 years I told businesses what to do. Now I can do it for them.',
+        'label': 'Watch · 33 seconds',
+        'heading': 'Not just a consultant anymore. <span class="grad">Your whole business, handled.</span>',
+        'lead': 'Strategy, brand, website, Google and AI search, content, ads and email, every lead answered day and night, and operations automated. A team of AI agents does the volume around the clock, and I direct every move, for one store or a hundred locations.',
+        'description': 'A 33-second film narrated by Siamak Kalhor announcing his full-service AI agency: after forty years of advising businesses, he now runs their growth from A to Z, with AI agents doing the volume around the clock and one strategist directing every move.',
+        'transcript': "For 40 years, I told businesses what to do. Now I can do it for them, from A to Z. Strategy, brand, website, Google and AI search, content, ads, and email. Every lead answered day and night, operations automated. How? A team of AI agents does the volume around the clock, and I direct every move. One store or 100 locations, it scales without hiring an army. I'm not just a consultant anymore. Your whole business, handled. Start at siamakconsulting.com.",
+    },
     'portfolio': {
         'file': 'portfolio-apps-i-built', 'seconds': 63, 'date': '2026-10-22T13:00:00-07:00',
         'name': "I don't just advise on AI. I ship it.",

@@ -9,6 +9,9 @@ import videos
 ROOT = os.path.join(os.path.dirname(__file__), '..')
 # (page, video key, regex for the element the video goes BEFORE, extra html under the text)
 PLACEMENTS = [
+    ('full-service-ai-agency/index.html', 'atoz', r'<section id="how-i-help"><div class="wrap"><div class="sec-label">A to Z</div>',
+     '<div class="ph-btns" style="margin-top:22px"><a href="/online-consulting" class="btn btn-pri">Hand over the whole thing &rarr;</a></div>'),
+    ('agency/index.html', 'atoz', r'<section[^>]*>(?:(?!<section).)*?Before you start</h2>', ''),
     ('portfolio/index.html', 'portfolio', r'<section style="padding:16px 0 64px;background:var\(--surface-2\)',
      '<div class="ph-btns" style="margin-top:22px"><a href="/contact-us" class="btn btn-pri">Tell me what you&#x27;re building &rarr;</a></div>'),
     ('custom-ai-software/index.html', 'portfolio', r'<section id="how-i-help"><div class="wrap"><div class="sec-label">What I build</div>',
