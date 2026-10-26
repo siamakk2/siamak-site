@@ -153,15 +153,15 @@ def hub():
         sec = int(v.get('seconds') or 0)
         return ('<a class="w-card" href="/videos/%s"%s><span class="w-thumb">'
                 '<img src="/videos/%s.jpg" alt="" loading="lazy" width="720" height="1280">'
-                '<video muted loop playsinline preload="none" data-src="/videos/%s.mp4"></video>'
+
                 '<span class="w-play" aria-hidden="true"></span><span class="w-dur">%d:%02d</span></span>'
                 '<span class="w-cap">%s<small>%s</small></span></a>') % (
-            v['file'], ' dir="rtl" lang="fa"' if fa else '', v['file'], v['file'], sec // 60, sec % 60, esc(v['name']), esc(v['label']))
+            v['file'], ' dir="rtl" lang="fa"' if fa else '', v['file'], sec // 60, sec % 60, esc(v['name']), esc(v['label']))
     cards = ''.join(card(v) for v in videos.VIDEOS.values())
     js = ("<script>(function(){if(matchMedia('(hover:none)').matches)return;document.querySelectorAll('.w-card').forEach(function(c){"
-          "var v=c.querySelector('video');c.addEventListener('mouseenter',function(){if(!v.src)v.src=v.dataset.src;v.currentTime=0;"
+          "var v=null,t=c.querySelector('.w-thumb');c.addEventListener('mouseenter',function(){if(!v){v=document.createElement('video');v.muted=true;v.loop=true;v.setAttribute('playsinline','');v.src=c.getAttribute('href')+'.mp4';t.insertBefore(v,t.querySelector('.w-play'));}v.currentTime=0;"
           "var p=v.play();if(p)p.then(function(){c.classList.add('playing')}).catch(function(){})});"
-          "c.addEventListener('mouseleave',function(){v.pause();c.classList.remove('playing')})})})();</script>")
+          "c.addEventListener('mouseleave',function(){if(v)v.pause();c.classList.remove('playing')})})})();</script>")
     body = ('<main id="main">\n<header class="ph"><div class="wrap"><div class="eyebrow"><span class="dot"></span>Videos</div>'
             '<h1 class="ph-h">Short films, <span class="grad">plain answers</span></h1><p class="ph-sub">%s</p></div></header>\n'
             '<section><div class="wrap"><div class="w-list">%s</div></div></section>\n%s\n</main>') % (esc(desc), cards, js)

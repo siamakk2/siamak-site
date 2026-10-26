@@ -53,6 +53,6 @@ for page, key, anchor, extra in PLACEMENTS:
     if 'id="vid-css"' not in s:
         s = s.replace('</head>', videos.CSS + '\n</head>', 1)
     else:
-        s = re.sub(r'<style id="vid-css">.*?</style>', lambda _: videos.CSS, s, count=1, flags=re.S)
+        s = re.sub(r'<style id="vid-css">.*?</style>(?:<script id="vid-js">.*?</script>)?', lambda _: videos.CSS, s, count=1, flags=re.S)
     open(p, 'w', encoding='utf-8').write(s)
     print('placed', key, 'on', page)

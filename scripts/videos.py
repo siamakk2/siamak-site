@@ -123,7 +123,15 @@ CSS = ('<style id="vid-css">.vid-grid{display:grid;grid-template-columns:minmax(
        '.vid video{display:block;width:100%;height:auto;aspect-ratio:9/16;border-radius:22px;border:1px solid var(--line-bright,#2a3446);background:#05070b;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px rgba(45,212,255,.12)}'
        '.vid figcaption{font-size:13.5px;color:var(--muted-dim,#7c8796);margin-top:10px;text-align:center}.vid figcaption a{color:var(--cyan,#2dd4ff);text-decoration:underline;text-underline-offset:3px}'
        '.vid.vid-in{margin:34px auto 30px}'
-       '@media(max-width:860px){.vid-grid{grid-template-columns:minmax(0,1fr);gap:28px}}</style>')
+       '.vid-lite{display:block;position:relative;width:100%;aspect-ratio:9/16;padding:0;margin:0;border-radius:22px;overflow:hidden;cursor:pointer;border:1px solid var(--line-bright,#2a3446);background:#05070b;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px rgba(45,212,255,.12)}'
+       '.vid-lite img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}'
+       '.vid-lite .vplay{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:rgba(5,7,11,.55);border:1px solid rgba(255,255,255,.45);backdrop-filter:blur(6px);transition:transform .2s}'
+       '.vid-lite .vplay:after{content:"";position:absolute;left:31px;top:24px;border-style:solid;border-width:14px 0 14px 22px;border-color:transparent transparent transparent #fff}'
+       '.vid-lite:hover .vplay{transform:scale(1.08)}'
+       '@media(max-width:860px){.vid-grid{grid-template-columns:minmax(0,1fr);gap:28px}}</style>'
+       '<script id="vid-js">document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest(".vid-lite");if(!b)return;e.preventDefault();'
+       'var v=document.createElement("video");v.controls=true;v.setAttribute("playsinline","");v.preload="auto";v.poster=b.getAttribute("data-poster");'
+       'v.setAttribute("aria-label",b.getAttribute("aria-label")||"");v.src=b.getAttribute("data-src");b.parentNode.replaceChild(v,b);var p=v.play();if(p&&p.catch)p.catch(function(){});});</script>')
 
 
 def schema(key):
@@ -141,14 +149,22 @@ def watch(v):
     return 'متن کامل و صفحه‌ی ویدیو' if v.get('lang') == 'fa' else 'Watch page and transcript'
 
 
+def player(v):
+    """A click-to-play poster. The <video> element is created only when someone presses play, so this page
+    carries no video markup for Google: the video is indexed on its own watch page (/videos/<file>) instead,
+    which is what Search Console's "Video isn't on a watch page" asks for."""
+    f = v['file']
+    return (f'<button type="button" class="vid-lite" data-src="/videos/{f}.mp4" data-poster="/videos/{f}.jpg" aria-label="Play video: {esc(v["name"])}">'
+            f'<img src="/videos/{f}.jpg" alt="{esc(v["name"])}" width="720" height="1280" loading="lazy"><span class="vplay" aria-hidden="true"></span></button>')
+
+
 def section(key, extra=''):
     v = VIDEOS[key]
     f = v['file']
     return (f'<!-- VIDEO:{key} -->\n<section id="video-{key}"><div class="wrap"><div class="vid-grid"><div>'
             f'<div class="sec-label">{esc(v["label"])}</div><h2 class="sec-h">{v["heading"]}</h2>'
             f'<p class="lead" style="color:var(--muted)">{esc(v["lead"])}</p>{extra}</div>'
-            f'<figure class="vid"><video controls playsinline preload="none" poster="/videos/{f}.jpg" width="720" height="1280" aria-label="{esc(v["name"])}">'
-            f'<source src="/videos/{f}.mp4" type="video/mp4"></video><figcaption>{esc(v["name"])} · <a href="/videos/{f}">{watch(v)}</a></figcaption></figure>'
+            f'<figure class="vid">{player(v)}<figcaption>{esc(v["name"])} · <a href="/videos/{f}">{watch(v)}</a></figcaption></figure>'
             f'</div></div></section>\n<!-- /VIDEO:{key} -->\n')
 
 
@@ -156,6 +172,5 @@ def inline(key):
     """A captioned video figure for article-style pages (no section heading)."""
     v = VIDEOS[key]
     f = v['file']
-    return (f'<!-- VIDEO:{key} -->\n<figure class="vid vid-in"><video controls playsinline preload="none" poster="/videos/{f}.jpg" width="720" height="1280" aria-label="{esc(v["name"])}">'
-            f'<source src="/videos/{f}.mp4" type="video/mp4"></video><figcaption>{esc(v["name"])} · {esc(v["label"].split("·")[-1].strip())} · <a href="/videos/{f}">{watch(v)}</a></figcaption></figure>\n'
+    return (f'<!-- VIDEO:{key} -->\n<figure class="vid vid-in">{player(v)}<figcaption>{esc(v["name"])} · {esc(v["label"].split("·")[-1].strip())} · <a href="/videos/{f}">{watch(v)}</a></figcaption></figure>\n'
             f'<!-- /VIDEO:{key} -->\n')
