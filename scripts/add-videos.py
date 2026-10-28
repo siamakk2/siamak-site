@@ -36,6 +36,10 @@ PLACEMENTS = [
      '<div class="ph-btns" style="margin-top:22px"><a href="/contact-us" class="btn btn-pri">Talk to Siamak &rarr;</a></div>'),
     ('fa/index.html', 'shifts-fa', r'<h2>چرا تجربه اهمیت دارد</h2>\n<p>چهل سال', 'INLINE_AFTER_H2'),
     ('fa/index.html', 'nobody-fa', r'<h2>مسئله‌ای که امروز با آن روبه‌رو هستید</h2>', 'INLINE'),
+    ('audit/index.html', 'answer', r'<section id="what-it-checks" class="ax-sec">', 'INLINE'),
+    ('ai-search-marketing-consultant/index.html', 'answer', r"<h2>Why isn't ChatGPT recommending my business\?</h2>", 'INLINE'),
+    ('geo-aeo-consultant/index.html', 'answer', r'<section><div class="wrap"><div class="sec-label">Why it matters now</div>',
+     '<div class="ph-btns" style="margin-top:22px"><a href="/audit" class="btn btn-pri">Get the free AI Authority Scan &rarr;</a></div>'),
 ]
 
 for page, key, anchor, extra in PLACEMENTS:

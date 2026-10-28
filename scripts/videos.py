@@ -9,6 +9,15 @@ SITE = 'https://siamakconsulting.com'
 esc = lambda s: html.escape(s, quote=True)
 
 VIDEOS = {
+    'answer': {
+        'file': 'become-the-answer-ai-gives', 'seconds': 34, 'date': '2026-10-27T20:00:00-07:00',
+        'name': "Ask ChatGPT who's the best in your business. Is it you?",
+        'label': 'Watch · 34 seconds',
+        'heading': "Ask ChatGPT who's the best in your business. <span class=\"grad\">Is it you?</span>",
+        'lead': 'Your customers don\'t search anymore. They ask AI, and it only names the brands it trusts. Forty years in marketing, five big shifts, and this one is the biggest. I engineer your business to become the answer, starting with a free AI Authority Scan.',
+        'description': 'A 34-second film narrated by Siamak Kalhor: customers now ask AI assistants such as ChatGPT for recommendations instead of searching, and AI only names the brands it trusts. Siamak, with forty years in marketing, a Fashion District store grown a hundredfold and AI products of his own, engineers businesses to become the answer AI gives. Ends with the free AI Authority Scan at siamakconsulting.com/audit.',
+        'transcript': "Ask ChatGPT who's the best in your business. Is it you? Your customers don't search anymore. They ask artificial intelligence, and it only names the brands it trusts. I'm Siamak Kalhor. Forty years in marketing. Five big shifts, and this one is the biggest. I grew one Fashion District store a hundred times. I've built eight artificial intelligence products of my own. Now, I engineer your business to become the answer. Free AI Authority Scan at siamakconsulting.com/audit.",
+    },
     'inhouse': {
         'file': 'agency-all-in-house', 'seconds': 44, 'date': '2026-10-25T09:00:00-07:00',
         'name': 'Most agencies hand your work to someone else. We do it all in house.',

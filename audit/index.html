@@ -442,6 +442,7 @@ try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.
 @media(max-width:560px){.brand{font-size:15px}.brand .dot{width:26px;height:26px}.top .call{font-size:13px}.hero .audit-row{flex-direction:column}.hero .btn-go{width:100%}.ax-bar{grid-template-columns:96px 1fr 30px}.ax-sample{padding:18px}.ax-band-in{padding:28px 22px}}
 @media(prefers-reduced-motion:reduce){.ax-radar,.ax-bar .tr i{animation:none}}
 </style>
+<style id="vid-css">.vid-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:48px;align-items:center}.vid{margin:0;justify-self:center;width:100%;max-width:360px}.vid video{display:block;width:100%;height:auto;aspect-ratio:9/16;border-radius:22px;border:1px solid var(--line-bright,#2a3446);background:#05070b;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px rgba(45,212,255,.12)}.vid figcaption{font-size:13.5px;color:var(--muted-dim,#7c8796);margin-top:10px;text-align:center}.vid figcaption a{color:var(--cyan,#2dd4ff);text-decoration:underline;text-underline-offset:3px}.vid.vid-in{margin:34px auto 30px}.vid-lite{display:block;position:relative;width:100%;aspect-ratio:9/16;padding:0;margin:0;border-radius:22px;overflow:hidden;cursor:pointer;border:1px solid var(--line-bright,#2a3446);background:#05070b;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px rgba(45,212,255,.12)}.vid-lite img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}.vid-lite .vplay{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:rgba(5,7,11,.55);border:1px solid rgba(255,255,255,.45);backdrop-filter:blur(6px);transition:transform .2s}.vid-lite .vplay:after{content:"";position:absolute;left:31px;top:24px;border-style:solid;border-width:14px 0 14px 22px;border-color:transparent transparent transparent #fff}.vid-lite:hover .vplay{transform:scale(1.08)}@media(max-width:860px){.vid-grid{grid-template-columns:minmax(0,1fr);gap:28px}}</style><script id="vid-js">document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest(".vid-lite");if(!b)return;e.preventDefault();var v=document.createElement("video");v.controls=true;v.setAttribute("playsinline","");v.preload="auto";v.poster=b.getAttribute("data-poster");v.setAttribute("aria-label",b.getAttribute("aria-label")||"");v.src=b.getAttribute("data-src");b.parentNode.replaceChild(v,b);var p=v.play();if(p&&p.catch)p.catch(function(){});});</script>
 </head>
 <body class="v2">
 
@@ -597,6 +598,9 @@ try{var c=JSON.parse(localStorage.getItem('sk_consent_v1'));if(c&&c.v===1&&Date.
 
 </div>
 
+<!-- VIDEO:answer -->
+<figure class="vid vid-in"><button type="button" class="vid-lite" data-src="/videos/become-the-answer-ai-gives.mp4" data-poster="/videos/become-the-answer-ai-gives.jpg" aria-label="Play video: Ask ChatGPT who&#x27;s the best in your business. Is it you?"><img src="/videos/become-the-answer-ai-gives.jpg" alt="Ask ChatGPT who&#x27;s the best in your business. Is it you?" width="720" height="1280" loading="lazy"><span class="vplay" aria-hidden="true"></span></button><figcaption>Ask ChatGPT who&#x27;s the best in your business. Is it you? · 34 seconds · <a href="/videos/become-the-answer-ai-gives">Watch page and transcript</a></figcaption></figure>
+<!-- /VIDEO:answer -->
 <section id="what-it-checks" class="ax-sec">
 <div class="ax-k">What you get</div>
 <h2>What the AI visibility audit checks</h2>
