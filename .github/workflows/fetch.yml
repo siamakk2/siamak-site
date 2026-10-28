@@ -1,0 +1,21 @@
+name: fetch-deck-images
+on:
+  push:
+    branches: [deck-assets]
+    paths: [".github/workflows/fetch.yml"]
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p img
+          curl -sfL -o img/napa.png "https://argoseyes.s3-accelerate.amazonaws.com/production/videoassets/c7e3c93b-5223-4c2e-9a21-c1cabbb28d60.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAS5Z5FDA4BQBRWQOT%2F20261028%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20261028T194104Z&X-Amz-Expires=43200&X-Amz-Signature=9b2a1cb0e3de5af42870b308cf5141233f897eeb948d5953e6fca41c7059cba4&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+          curl -sfL -o img/trail.png "https://argoseyes.s3-accelerate.amazonaws.com/production/videoassets/77cf58f0-a73d-4993-bbd6-db5d7839b728.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAS5Z5FDA4BQBRWQOT%2F20261028%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20261028T194158Z&X-Amz-Expires=43200&X-Amz-Signature=2c55e2fb126ffef870848bc8732339a8ba01bb815f482173bdad574a15e28948&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+          curl -sfL -o img/mustard.png "https://argoseyes.s3-accelerate.amazonaws.com/production/videoassets/d807a500-74fa-46f8-b394-6c6bedbc1dec.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAS5Z5FDA4BQBRWQOT%2F20261028%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20261028T194159Z&X-Amz-Expires=43200&X-Amz-Signature=d2196c64889caec2d772f095eb465ea1638966f963467d419de77c419887f1c9&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+          curl -sfL -o img/forest.png "https://argoseyes.s3-accelerate.amazonaws.com/production/videoassets/0041f616-1212-434d-8392-890063271994.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAS5Z5FDA4BQBRWQOT%2F20261028%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20261028T194159Z&X-Amz-Expires=43200&X-Amz-Signature=00df3d7effbddd13374f7428d987d8be7f6ca023afb7085697e53cded9bc9b13&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+          ls -la img
+          git config user.name "deck-bot"; git config user.email "deck-bot@users.noreply.github.com"
+          git add img && git commit -m "Deck background images" && git push
