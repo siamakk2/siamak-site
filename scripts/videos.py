@@ -140,7 +140,7 @@ CSS = ('<style id="vid-css">.vid-grid{display:grid;grid-template-columns:minmax(
        '@media(max-width:860px){.vid-grid{grid-template-columns:minmax(0,1fr);gap:28px}}</style>'
        '<script id="vid-js">document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest(".vid-lite");if(!b)return;e.preventDefault();'
        'var v=document.createElement("video");v.controls=true;v.setAttribute("playsinline","");v.preload="auto";v.poster=b.getAttribute("data-poster");'
-       'v.setAttribute("aria-label",b.getAttribute("aria-label")||"");v.src=b.getAttribute("data-src");b.parentNode.replaceChild(v,b);var p=v.play();if(p&&p.catch)p.catch(function(){});});</script>')
+       'v.setAttribute("aria-label",b.getAttribute("aria-label")||"");v.src=b.getAttribute("data-src")+".mp4";b.parentNode.replaceChild(v,b);var p=v.play();if(p&&p.catch)p.catch(function(){});});</script>')
 
 
 def schema(key):
@@ -163,7 +163,7 @@ def player(v):
     carries no video markup for Google: the video is indexed on its own watch page (/videos/<file>) instead,
     which is what Search Console's "Video isn't on a watch page" asks for."""
     f = v['file']
-    return (f'<button type="button" class="vid-lite" data-src="/videos/{f}.mp4" data-poster="/videos/{f}.jpg" aria-label="Play video: {esc(v["name"])}">'
+    return (f'<button type="button" class="vid-lite" data-src="/videos/{f}" data-poster="/videos/{f}.jpg" aria-label="Play video: {esc(v["name"])}">'
             f'<img src="/videos/{f}.jpg" alt="{esc(v["name"])}" width="720" height="1280" loading="lazy"><span class="vplay" aria-hidden="true"></span></button>')
 
 
