@@ -1,0 +1,12 @@
+{
+  "name": "pattern-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pattern Studio — standalone custom sewing pattern maker (designers & cosplayers), fabrics by Blue Moon Fabrics",
+  "scripts": {
+    "build": "node scripts/patch-engine.js && node scripts/validate-pieces.js && node scripts/build.js",
+    "test": "node scripts/validate-pieces.js && node test/shots.js",
+    "dev": "node test/serve.js"
+  },
+  "engines": { "node": ">=18" }
+}

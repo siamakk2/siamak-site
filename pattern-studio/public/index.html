@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pattern Studio — Custom Sewing Pattern Maker for Designers &amp; Cosplayers</title>
+<meta name="description" content="Design a garment, enter your measurements, pick the fabric and get a graded, cut-ready sewing pattern with a designer croquis. 24 garments, 90 styles, DXF/SVG/PNG export.">
+<meta name="theme-color" content="#0b0a10">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pattern Studio — Sketch it. Draft it. Wear it.">
+<meta property="og:description" content="Custom sewing patterns for designers and cosplayers: 24 garments, 90 styles, size grading, fabric yield, DXF export.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%230b0a10'/%3E%3Cpath d='M9 31 L20 7 L31 31 Z' fill='none' stroke='%23ff2d87' stroke-width='2.4'/%3E%3Ccircle cx='20' cy='7' r='2.4' fill='%23e2c275'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<script>window.PS_CONFIG={mode:'standalone',shop:'https://bluemoonfabrics.com',fabricsApi:'/api/fabrics'};</script>
+</head>
+<body class="ps-body">
+<div id="bmf-root">
+<header id="bmf-top" class="ps-top">
+  <div class="ps-noise" aria-hidden="true"></div>
+  <div class="ps-glow ps-glow-a" aria-hidden="true"></div>
+  <div class="ps-glow ps-glow-b" aria-hidden="true"></div>
+  <div class="ps-bar">
+    <a class="ps-brand" href="/" aria-label="Pattern Studio home">
+      <span class="ps-brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="34" height="34"><defs><linearGradient id="psMark" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff2d87"/><stop offset="1" stop-color="#9b6bff"/></linearGradient></defs><path d="M8 32 L20 6 L32 32 Z" fill="none" stroke="url(#psMark)" stroke-width="2.2" stroke-linejoin="round"/><path d="M13 24 Q20 20 27 24" fill="none" stroke="#e2c275" stroke-width="1.6"/><circle cx="20" cy="6" r="2.2" fill="#e2c275"/></svg>
+      </span>
+      <span class="ps-brand-word">Pattern<em>Studio</em></span>
+      <span class="ps-brand-by">by Blue Moon Fabrics</span>
+    </a>
+    <div class="ps-actions top-actions">
+      <button class="project-badge" onclick="openProjectPanel()"><div class="proj-dot"></div><span id="projBadgeName">Projects</span></button>
+      <button class="btn-export" onclick="openPrint()">Export &darr;</button>
+    </div>
+  </div>
+  <div class="ps-hero">
+    <div class="ps-eyebrow"><span>Atelier</span><i></i><span>Cosplay</span><i></i><span>Couture</span></div>
+    <h1 class="ps-title">Sketch it. <em>Draft it.</em> Wear it.</h1>
+    <p class="ps-lede">Choose a silhouette, enter your measurements, pick the fabric &mdash; get a graded, cut-ready pattern and a designer croquis in seconds.</p>
+    <div class="ps-stats"><span><b>24</b> garments</span><span><b>90</b> styles</span><span><b>DXF</b> · SVG · PNG</span><span><b>XS&ndash;3XL</b> size runs</span></div>
+  </div>
+  <div id="gen-counter" hidden>
+    <span id="gen-count-txt"></span>
+    <div id="gc-track"><div id="gc-fill"></div></div>
+  </div>
+</header>
+
+<nav id="bmf-tabs" aria-label="Studio steps">
+  <button class="btab on" onclick="showTab(this,'pg1')"><span class="tab-num">1</span>Silhouette</button>
+  <button class="btab" onclick="showTab(this,'pg2')"><span class="tab-num">2</span>Design</button>
+  <button class="btab" onclick="showTab(this,'pg3')"><span class="tab-num">3</span>Measure</button>
+  <button class="btab" onclick="showTab(this,'pg4')"><span class="tab-num">4</span>Fit</button>
+  <button class="btab" onclick="showTab(this,'pgF')"><span class="tab-num">5</span>Fabric</button>
+  <span class="tab-sep" aria-hidden="true"></span>
+  <button class="btab" onclick="showTab(this,'pg5')">Pattern</button>
+  <button class="btab" onclick="showTab(this,'pg6')">Pieces</button>
+  <button class="btab" onclick="showTab(this,'pg7')">Yield</button>
+  <button class="btab" onclick="showTab(this,'pg8')">Look</button>
+  <button class="btab" onclick="showTab(this,'pgU')">Projects</button>
+  <button class="btab" onclick="showTab(this,'pgP')">Print</button>
+  <button class="btab" onclick="showTab(this,'pgH')">Guide</button>
+</nav>
+
+
+
+<!-- TAB 1: GARMENT -->
+<div class="bpage show" id="pg1">
+  <div class="pg-header">
+    <div class="pg-title">Choose your <em>garment</em></div>
+    <div class="pg-sub">24 garments &middot; 90 design styles &mdash; tap to unlock design styles, measurement fields &amp; AI pattern generation</div>
+  </div>
+  <div id="bgrid"></div>
+  <div class="bcard bcard-accent" id="selCard">
+    <div style="font-size:11px;font-weight:800;color:var(--blue2);margin-bottom:3px" id="selTitle">&#10003; Selected</div>
+    <div style="font-size:13px;color:var(--ink3)" id="selBody">Continue to choose a design style</div>
+  </div>
+  <button class="btn-next" style="width:100%;padding:15px" onclick="nxt('pg2')">Choose Design Style &#8594;</button>
+</div>
+
+<!-- TAB 2: DESIGN -->
+<div class="bpage" id="pg2">
+  <div class="pg-header">
+    <div class="pg-title">Choose your <em>design</em></div>
+    <div class="pg-sub" id="pg2Sub">Describe your vision and let AI pick the style &mdash; or browse and tap a card</div>
+  </div>
+  <div class="ai-desc-card">
+    <div class="ai-desc-label">&#129302; AI Style Picker</div>
+    <div class="ai-desc-wrap">
+      <textarea id="aiDescInput" placeholder="e.g. 'sexy push-up triangle with long ties and O-ring' or 'sporty racerback compression bra with mesh panels'&#8230;"></textarea>
+      <button id="aiDescBtn" onclick="runAIDesc()">&#10022; AI</button>
+    </div>
+    <div id="aiDescResult"></div>
+  </div>
+  <span class="sec-label">Or pick a design style</span>
+  <div id="designGrid"></div>
+  <div class="nav-row">
+    <button class="btn-back" onclick="nxt('pg1')">&larr; Back</button>
+    <button class="btn-next" id="pg2Next" onclick="nxt('pg3')" disabled>Next: Measurements &#8594;</button>
+  </div>
+</div>
+
+<!-- TAB 3: MEASURE -->
+<div class="bpage" id="pg3">
+  <div class="pg-header">
+    <div class="pg-title" id="mH">Your <em>measurements</em></div>
+    <div class="pg-sub" id="mSub">All in inches. Fields marked * are required for accurate pattern generation.</div>
+  </div>
+  <div class="tip-card" id="mtip"></div>
+  <div id="mfields"><div class="bcard" style="text-align:center;padding:36px"><div style="font-size:36px;margin-bottom:8px">&#8592;</div><div style="font-size:14px;font-weight:800;color:var(--ink3)">Select a garment first</div></div></div>
+  <div class="nav-row">
+    <button class="btn-back" onclick="nxt('pg2')">&larr; Back</button>
+    <button class="btn-next" onclick="nxt('pg4')">Options &#8594;</button>
+  </div>
+</div>
+
+<!-- TAB 4: OPTIONS -->
+<div class="bpage" id="pg4">
+  <div class="pg-header">
+    <div class="pg-title">Design <em>options</em></div>
+    <div class="pg-sub">Construction features, grain direction, seam allowance &amp; fabric width</div>
+  </div>
+  <div class="bcard">
+    <span class="sec-label">Construction Features</span>
+    <div id="schips"><div style="font-size:13px;color:var(--ink5)">Select a garment to see features</div></div>
+  </div>
+  <div class="bcard">
+    <span class="sec-label">Grain Direction</span>
+    <div class="option-row">
+      <button class="opt-btn on" onclick="setGrain(this,'vertical')">&#8597; Vertical</button>
+      <button class="opt-btn" onclick="setGrain(this,'horizontal')">&#8596; Horizontal</button>
+      <button class="opt-btn" onclick="setGrain(this,'bias')">&#8599; Bias 45&deg;</button>
+    </div>
+    <span class="sec-label" style="margin-top:12px">Seam Allowance</span>
+    <div class="sl-row">
+      <span class="sl-lbl sl-blue">&#188;"</span>
+      <input type="range" class="sl sl-b" id="saS" min="1" max="4" value="2" step="1" oninput="onSA(this.value)">
+      <span class="sl-lbl sl-blue">1"</span>
+      <span class="sl-val sl-blue" id="saV">&#189;"</span>
+    </div>
+    <span class="sec-label">Fabric Width</span>
+    <div class="sl-row">
+      <span class="sl-lbl sl-green">36"</span>
+      <input type="range" class="sl sl-g" id="fwS" min="36" max="72" value="60" step="2" oninput="onFW(this.value)">
+      <span class="sl-lbl sl-green">72"</span>
+      <span class="sl-val sl-green" id="fwV">60"</span>
+    </div>
+    <span class="sec-label">Fabric Behavior</span>
+    <select class="miw" id="fabType" onchange="S.fab=this.value">
+      <option value="stretch">Stretch / Spandex (4-way)</option>
+      <option value="directional">Directional print</option>
+      <option value="stripe">Stripe / Plaid (match required)</option>
+      <option value="sequin">Sequin / Beaded (no rotate)</option>
+      <option value="velvet">Velvet / Pile (directional nap)</option>
+    </select>
+  </div>
+  <div id="fitCardMount"></div>
+  <div class="nav-row">
+    <button class="btn-back" onclick="nxt('pg3')">&larr; Back</button>
+    <button id="genBtn" onclick="generate()" disabled>&#10022; Generate My Pattern</button>
+  </div>
+</div>
+
+<!-- TAB F: FABRIC -->
+<div class="bpage" id="pgF">
+  <div class="pg-header">
+    <div class="pg-title">Choose your <em>fabric</em></div>
+    <div class="pg-sub">Live Blue Moon Fabrics catalog &mdash; tap a fabric to see a live mockup on your garment</div>
+  </div>
+  <input type="search" id="fabricSearch" placeholder="&#128269; Search fabrics by name, color, category&#8230;" oninput="filterFabrics(this.value)">
+  <div id="liveCollBar" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;align-items:center">
+    <span style="font-size:11px;font-weight:800;color:var(--ink4);text-transform:uppercase;letter-spacing:.04em">Live from store:</span>
+    <button class="live-coll" onclick="loadCollectionIntoGrid(this,'swimwear','Swim')">Swimwear</button>
+    <button class="live-coll" onclick="loadCollectionIntoGrid(this,'activewear','Active')">Activewear</button>
+    <button class="live-coll" onclick="loadCollectionIntoGrid(this,'dancewear','Dance')">Dancewear</button>
+    <span id="liveCollStatus" style="font-size:11px;color:var(--ink4);font-weight:600"></span>
+  </div>
+  <div class="fab-cats" id="fabCats"></div>
+  <div id="fabricGrid"></div>
+  <div id="mockupSection" style="display:none">
+    <div class="mockup-card">
+      <div class="mockup-header">&#127800; Live Preview <span id="mockFabName" style="color:var(--ink3);font-weight:600"></span></div>
+      <svg id="mockupSvg" viewBox="0 0 300 380" fill="none"></svg>
+      <div class="mock-info">
+        <div class="mock-swatch" id="mockSwatchMini"></div>
+        <div>
+          <div id="mockSelName" style="font-size:13px;font-weight:800;color:var(--ink)"></div>
+          <div id="mockSelDetails" style="font-size:11px;color:var(--ink4)"></div>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:6px">
+          <button id="mockAddCart" onclick="addSelectedFabricToCart()" style="padding:7px 13px;background:var(--blue);color:#fff;border:none;border-radius:var(--r3);font-size:11px;font-weight:800;cursor:pointer;display:none">&#128722; Add to Cart</button>
+          <a id="mockFabLink" href="https://bluemoonfabrics.com" target="_blank" style="padding:7px 13px;background:var(--blue2);color:#fff;border-radius:var(--r3);font-size:11px;font-weight:800;text-decoration:none">Shop &#8594;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="sketchPanel" style="display:none;background:var(--surface);border:2px solid var(--border2);border-radius:var(--r);padding:18px;margin:14px 0;box-shadow:var(--shadow)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+      <div>
+        <div style="font-size:13px;font-weight:800;color:var(--navy);letter-spacing:.05em">&#9998; DESIGNER SKETCH</div>
+        <div id="sketchCaption" style="font-size:10px;color:var(--ink4);margin-top:2px"></div>
+        <div id="sketchGenderToggle" style="display:flex;gap:5px;margin-top:6px"></div>
+      </div>
+      <button onclick="downloadSketch()" style="padding:9px 16px;background:linear-gradient(135deg,var(--blue3),var(--blue2));color:#fff;border:none;border-radius:var(--r3);font-size:11px;font-weight:800;cursor:pointer;flex-shrink:0">&#8595; Download sketch</button>
+    </div>
+    <div id="sketchSvgHost" style="background:var(--paper);border-radius:10px;padding:8px"></div>
+    <div style="font-size:9px;color:var(--ink4);text-align:center;margin-top:8px;letter-spacing:.04em">Croquis re-draws live with your garment and fabric &middot; free on all plans</div>
+  </div>
+
+  <div class="nav-row">
+    <button class="btn-back" onclick="nxt('pg4')">&larr; Back</button>
+    <button class="btn-next" onclick="nxt('pg5')">View Pattern &#8594;</button>
+  </div>
+</div>
+
+<!-- TAB 5: PATTERN -->
+<div class="bpage" id="pg5">
+  <div class="pg-header">
+    <div style="display:flex;justify-content:space-between;align-items:center"><div class="pg-title" style="margin:0">Your <em>pattern</em></div><button onclick="saveProject()" style="padding:7px 14px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer">&#128190; Save</button></div>
+    <div class="pg-sub" id="pg5Sub">Drag to rearrange &middot; Size Run = grade all sizes &middot; Auto Arrange = optimize layout</div>
+  </div>
+  <div id="nestPanel" style="display:none"></div>
+  
+<!-- MOBILE-FRIENDLY PATTERN CONTROLS -->
+<div class="pctrl">
+
+  <!-- MOVE / FLIP row (always visible, primary interactions) -->
+  <div class="pctrl-primary">
+    <button class="pc-toggle" id="bScrollMode" onclick="toggleScrollMode(this)">
+      <span class="pc-ico">&#9776;</span><span class="pc-lbl">Scroll</span>
+    </button>
+    <button class="pc-toggle" onclick="flipSel()">
+      <span class="pc-ico">&#10234;</span><span class="pc-lbl">Flip Piece</span>
+    </button>
+    <div class="pc-zoom">
+      <button class="pc-zbtn" onclick="zOut()" aria-label="Zoom out">&#8722;</button>
+      <span id="zlbl" class="pc-zlbl">100%</span>
+      <button class="pc-zbtn" onclick="zIn()" aria-label="Zoom in">&#43;</button>
+      <button class="pc-zbtn pc-fit" onclick="fitV()">Fit</button>
+    </div>
+  </div>
+
+  <!-- VIEW section -->
+  <details class="pc-sec" open>
+    <summary class="pc-head"><span class="pc-h-ico">&#128065;</span> Show on pattern <span class="pc-chev">&#8250;</span></summary>
+    <div class="pc-body">
+      <button class="pc-chip on" id="bGr" onclick="togV('grid',this)">
+        <span class="pc-c-ico">&#9638;</span>
+        <span class="pc-c-txt"><b>Grid</b><small>Alignment guide</small></span>
+      </button>
+      <button class="pc-chip on" id="bSA" onclick="togV('sa',this)">
+        <span class="pc-c-ico">&#9986;</span>
+        <span class="pc-c-txt"><b>Seam Allowance</b><small>Extra fabric to sew</small></span>
+      </button>
+      <button class="pc-chip on" id="bGn" onclick="togV('grain',this)">
+        <span class="pc-c-ico">&#8597;</span>
+        <span class="pc-c-txt"><b>Grain Lines</b><small>Fabric direction</small></span>
+      </button>
+      <button class="pc-chip on" id="bNt" onclick="togV('notch',this)">
+        <span class="pc-c-ico">&#9662;</span>
+        <span class="pc-c-txt"><b>Notches</b><small>Match-up marks</small></span>
+      </button>
+    </div>
+  </details>
+
+  <!-- SMART TOOLS section -->
+  <details class="pc-sec" open>
+    <summary class="pc-head"><span class="pc-h-ico">&#10024;</span> Smart tools <span class="pc-chev">&#8250;</span></summary>
+    <div class="pc-body">
+      <button class="pc-action" onclick="autoNest(true)">
+        <span class="pc-a-ico">&#129513;</span>
+        <span class="pc-a-txt"><b>Auto-Arrange</b><small>Fit pieces to save fabric</small></span>
+      </button>
+      <button class="pc-action" onclick="showYieldPanel()">
+        <span class="pc-a-ico">&#128207;</span>
+        <span class="pc-a-txt"><b>Fabric Needed</b><small>Calculate how much to buy</small></span>
+      </button>
+      <button class="pc-action" onclick="openGrading()">
+        <span class="pc-a-ico">&#128208;</span>
+        <span class="pc-a-txt"><b>Size Run</b><small>Make every size (XS&ndash;XXL)</small></span>
+      </button>
+    </div>
+  </details>
+
+  <!-- DOWNLOAD section -->
+  <details class="pc-sec">
+    <summary class="pc-head"><span class="pc-h-ico">&#11015;</span> Download pattern <span class="pc-chev">&#8250;</span></summary>
+    <div class="pc-body">
+      <button class="pc-action pc-dl" onclick="saveDXF()">
+        <span class="pc-a-ico">&#9986;</span>
+        <span class="pc-a-txt"><b>For Cutting (DXF)</b><small>Send to a fabric cutter / factory</small></span>
+      </button>
+      <button class="pc-action pc-dl" onclick="saveSVG()">
+        <span class="pc-a-ico">&#128196;</span>
+        <span class="pc-a-txt"><b>Vector File (SVG)</b><small>Edit in design software</small></span>
+      </button>
+      <button class="pc-action pc-dl" onclick="saveCanvas()">
+        <span class="pc-a-ico">&#128247;</span>
+        <span class="pc-a-txt"><b>Image (PNG)</b><small>Print or share a picture</small></span>
+      </button>
+    </div>
+  </details>
+
+</div>
+  <div id="cwrap">
+    <canvas id="cnv"></canvas>
+    <div id="emp">
+      <div class="emp-ico">&#129535;</div>
+      <div class="emp-h">Pattern will appear here</div>
+      <div class="emp-p">Complete the steps above then click Generate to create your custom pattern</div>
+    </div>
+    <div id="aiovl">
+      <div class="ai-spin"></div>
+      <div id="aiH">Drafting your pattern&hellip;</div>
+      <div id="aiP">AI is calculating piece dimensions</div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 6: PIECES -->
+<div class="bpage" id="pg6">
+  <div class="pg-header">
+    <div class="pg-title">Pattern <em>pieces</em></div>
+    <div class="pg-sub">Tap a piece to highlight it on the pattern canvas</div>
+  </div>
+  <div id="rpPieces"><div class="bcard" style="text-align:center;padding:32px;color:var(--ink4)">Generate a pattern to see pieces</div></div>
+</div>
+
+<!-- TAB 7: STATS -->
+<div class="bpage" id="pg7">
+  <div class="pg-header">
+    <div class="pg-title">Pattern <em>statistics</em></div>
+    <div class="pg-sub">Fabric efficiency, yardage calculator &amp; AI construction notes</div>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-v" id="sFW">—</div><div class="stat-l">Fabric Width</div></div>
+    <div class="stat-card"><div class="stat-v" id="sFL">—</div><div class="stat-l">Fabric Length</div></div>
+    <div class="stat-card"><div class="stat-v" id="sPC">—</div><div class="stat-l">Total Pieces</div></div>
+    <div class="stat-card"><div class="stat-v" id="sYd">—</div><div class="stat-l">Yards to Buy</div></div>
+    <div class="stat-card"><div class="stat-v" id="sEff">—</div><div class="stat-l">Efficiency</div></div>
+    <div class="stat-card"><div class="stat-v" id="sSA">—</div><div class="stat-l">Seam Allow.</div></div>
+  </div>
+  <div class="ebar"><div class="efill" id="eFill" style="width:0;background:var(--blue3)"></div></div>
+  <div class="bcard" style="margin-bottom:12px">
+    <div style="font-size:11px;color:var(--ink4);margin-bottom:6px"><strong style="color:var(--ink2)" id="sDesign">—</strong></div>
+    <div style="font-size:11px;color:var(--ink5)" id="sSKU">—</div>
+  </div>
+  <div class="ai-notes-card" id="aiNotesCard" style="display:none">
+    <div class="ai-notes-label">&#129302; AI Construction Notes</div>
+    <div id="aiTxt" style="font-size:13px;color:var(--ink3);line-height:1.75"></div>
+    <div id="sewCard" style="display:none;margin-top:12px">
+      <div style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink4);margin-bottom:8px">Sewing Sequence</div>
+      <div id="sewSteps"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB U: PROJECTS & UPLOAD -->
+<div class="bpage" id="pgU">
+  <div class="pg-header">
+    <div class="pg-title">My <em>projects</em></div>
+    <div class="pg-sub">Save and reload your patterns anytime</div>
+  </div>
+  <div id="projectsList"></div>
+</div>
+
+<div class="bpage" id="pg8">
+  <div class="pg-header"><div class="pg-title">See it <em>on model</em></div><div class="pg-sub">AI generates a real photo — Pro feature</div></div>
+  <div id="lookGate" style="display:none;text-align:center;padding:32px 20px;background:var(--blue5);border:2px solid var(--border2);border-radius:var(--r);margin-bottom:16px">
+    <div style="font-size:36px;margin-bottom:10px">&#10022;</div>
+    <div style="font-size:18px;font-weight:800;color:var(--navy);margin-bottom:8px">Pro Feature</div>
+    <div style="font-size:12px;color:var(--ink3);margin-bottom:16px">Generate photorealistic model photos of your design. Available on Pro plan ($24.99/mo).</div>
+    <button onclick="if(BMF_USER){nxt('pg8');}else{showUpgrade('look','pro','look');}" style="padding:12px 24px;background:linear-gradient(135deg,var(--blue3),var(--blue2));color:#fff;border:none;border-radius:var(--r3);font-size:13px;font-weight:800;cursor:pointer">Upgrade to Pro</button>
+  </div>
+  <div id="lookAIWrap" style="display:none">
+    <div style="background:var(--off);border:1.5px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:16px">
+      <div style="display:flex;gap:10px;margin-bottom:10px">
+        <div style="flex:1"><label style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);display:block;margin-bottom:5px">Model</label>
+        <select id="look-model-sel" style="width:100%;padding:8px;border:1.5px solid var(--border2);border-radius:var(--r2);font-size:12px;font-weight:600;color:var(--navy);background:var(--card)">
+          <option value="woman_25_diverse">Woman, 25, diverse</option>
+          <option value="woman_30_athletic">Woman, 30, athletic</option>
+          <option value="woman_40_curvy">Woman, 40, curvy</option>
+          <option value="woman_20_petite">Woman, 20, petite</option>
+          <option value="man_28_athletic">Man, 28, athletic</option>
+        </select></div>
+        <div style="flex:1"><label style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);display:block;margin-bottom:5px">Setting</label>
+        <select id="look-setting-sel" style="width:100%;padding:8px;border:1.5px solid var(--border2);border-radius:var(--r2);font-size:12px;font-weight:600;color:var(--navy);background:var(--card)">
+          <option value="studio white">Clean studio</option>
+          <option value="fashion editorial">Fashion editorial</option>
+          <option value="beach outdoor">Beach / outdoor</option>
+          <option value="urban street">Urban street</option>
+        </select></div>
+      </div>
+      <div style="margin-bottom:10px"><label style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);display:block;margin-bottom:5px">Fabric &amp; colour</label>
+      <input type="text" id="look-fabric-desc" placeholder="e.g. royal blue lycra, white swimwear" style="width:100%;padding:8px;border:1.5px solid var(--border2);border-radius:var(--r2);font-size:12px;box-sizing:border-box"></div>
+      <button onclick="generateLookImage()" style="width:100%;padding:13px;background:linear-gradient(135deg,var(--accent-2),#4a148c);color:#fff;border:none;border-radius:var(--r);font-size:14px;font-weight:800;cursor:pointer">&#10022; Generate AI Photo</button>
+    </div>
+    <div id="lookEmptyState" style="text-align:center;padding:40px 20px;color:var(--ink3)"><div style="font-size:48px;margin-bottom:12px">&#128247;</div><div style="font-weight:700;margin-bottom:6px">No image yet</div><div style="font-size:12px">Configure above and tap Generate</div></div>
+    <div id="lookImageWrap" style="display:none"><img id="lookAIImage" src="" alt="AI model" style="width:100%;border-radius:12px;display:block"><div id="lookImgMeta" style="font-size:11px;color:var(--ink4);text-align:center;margin-top:8px"></div><div style="display:flex;gap:8px;margin-top:10px"><button onclick="downloadLookImage()" style="flex:1;padding:9px;background:var(--blue5);border:1.5px solid var(--border2);border-radius:var(--r2);font-size:11px;font-weight:800;color:var(--blue2);cursor:pointer">&#8595; Save</button><button onclick="generateLookImage()" style="flex:1;padding:9px;background:var(--blue5);border:1.5px solid var(--border2);border-radius:var(--r2);font-size:11px;font-weight:800;color:var(--blue2);cursor:pointer">&#8635; Again</button></div></div>
+    <div id="lookLoadingState" style="display:none;flex-direction:column;align-items:center;padding:40px 20px"><div style="width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--blue3);border-radius:50%;animation:spin .8s linear infinite"></div><div id="lookLoadingTxt" style="margin-top:12px;font-size:13px;color:var(--ink3);font-weight:600">Generating…</div></div>
+    <div id="lookErrorState" style="display:none;text-align:center;padding:24px;background:var(--danger-bg);border-radius:var(--r)"><div id="lookErrorMsg" style="font-size:13px;font-weight:600;color:var(--danger)"></div><button onclick="generateLookImage()" style="margin-top:10px;padding:8px 16px;background:var(--blue3);color:#fff;border:none;border-radius:var(--r2);cursor:pointer;font-weight:700">Try again</button></div>
+  </div>
+</div>
+<div class="bpage" id="pgP">
+  <div class="pg-header">
+    <div class="pg-title">AI Fabric <em>Print Preview</em></div>
+    <div class="pg-sub">Describe any fabric print &mdash; see it on your garment instantly</div>
+  </div>
+
+  <div style="background:var(--surface-2);border-radius:12px;padding:14px;margin-bottom:14px;border-left:4px solid var(--accent)">
+    <div style="font-size:12px;font-weight:800;color:var(--ink);margin-bottom:6px">&#127912; How it works</div>
+    <div style="font-size:12px;color:var(--ink-2);line-height:1.6">
+      Describe a fabric print in plain English. The AI generates a designer sketch of your garment wearing that exact print &mdash; before you buy a single yard of fabric.
+    </div>
+  </div>
+
+  <div style="margin-bottom:12px">
+    <label style="font-size:10px;font-weight:800;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Describe your print</label>
+    <textarea id="printDesc" rows="3" placeholder="e.g. tropical flowers in teal and coral on white\ne.g. black and gold leopard print\ne.g. watercolor tie dye in sunset colors\ne.g. navy blue geometric tribal pattern" style="width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;color:var(--ink);resize:vertical;box-sizing:border-box;font-family:inherit"></textarea>
+  </div>
+
+  <div style="margin-bottom:14px">
+    <div style="font-size:10px;font-weight:800;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Quick picks</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px">
+      <button onclick="setPrint('tropical flowers in teal, coral and white')" style="padding:6px 10px;background:var(--ok-bg);color:var(--ok);border:1px solid #a5d6a7;border-radius:16px;font-size:11px;cursor:pointer">&#127804; Tropical floral</button>
+      <button onclick="setPrint('black and gold leopard animal print')" style="padding:6px 10px;background:var(--gold-soft);color:var(--warn);border:1px solid #ffe082;border-radius:16px;font-size:11px;cursor:pointer">&#128008; Leopard print</button>
+      <button onclick="setPrint('tie dye in sunset orange pink and purple')" style="padding:6px 10px;background:var(--accent-soft);color:var(--accent);border:1px solid #f48fb1;border-radius:16px;font-size:11px;cursor:pointer">&#127771; Tie dye</button>
+      <button onclick="setPrint('navy blue and white geometric tribal pattern')" style="padding:6px 10px;background:var(--surface-2);color:var(--accent);border:1px solid #90caf9;border-radius:16px;font-size:11px;cursor:pointer">&#9651; Geometric</button>
+      <button onclick="setPrint('holographic rainbow metallic foil')" style="padding:6px 10px;background:var(--violet-soft);color:var(--accent-2);border:1px solid #ce93d8;border-radius:16px;font-size:11px;cursor:pointer">&#10024; Holographic</button>
+      <button onclick="setPrint('watercolor brushstroke in deep ocean blue and teal')" style="padding:6px 10px;background:var(--ok-bg);color:var(--ok);border:1px solid #80cbc4;border-radius:16px;font-size:11px;cursor:pointer">&#127754; Ocean wash</button>
+      <button onclick="setPrint('classic black and white houndstooth check')" style="padding:6px 10px;background:var(--surface-2);color:var(--ink);border:1px solid #bdbdbd;border-radius:16px;font-size:11px;cursor:pointer">&#9724; Houndstooth</button>
+      <button onclick="setPrint('red and white strawberry fruit print')" style="padding:6px 10px;background:var(--danger-bg);color:var(--danger);border:1px solid #ef9a9a;border-radius:16px;font-size:11px;cursor:pointer">&#127827; Strawberry</button>
+    </div>
+  </div>
+
+  <button id="printGenBtn" onclick="generatePrintPreview()" style="width:100%;padding:14px;background:linear-gradient(135deg,var(--accent),var(--accent-deep));color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:800;cursor:pointer;margin-bottom:16px">
+    &#127912; Generate Print Preview
+  </button>
+
+  <div id="printLoadingState" style="display:none;text-align:center;padding:40px 20px">
+    <div style="font-size:32px;margin-bottom:12px">&#127912;</div>
+    <div style="font-size:14px;font-weight:700;color:var(--accent);margin-bottom:6px">Generating your print preview...</div>
+    <div style="font-size:12px;color:var(--ink-4)">AI is painting your fabric design onto the garment</div>
+  </div>
+
+  <div id="printResultWrap" style="display:none">
+    <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:12px">
+      <img id="printResultImg" src="" alt="AI fabric print preview" style="width:100%;display:block">
+      <div style="padding:10px 14px">
+        <div id="printResultLabel" style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px"></div>
+        <div style="font-size:11px;color:var(--ink-4)">AI-generated preview &middot; actual fabric may vary</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <button onclick="generatePrintPreview()" style="padding:10px;background:var(--surface-2);color:var(--accent);border:1.5px solid var(--border);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">&#8635; Regenerate</button>
+      <button onclick="downloadPrintPreview()" style="padding:10px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">&#8595; Download</button>
+    </div>
+  </div>
+
+  <div id="printErrorState" style="display:none;text-align:center;padding:24px;background:var(--danger-bg);border-radius:10px;border:1px solid #ffcdd2">
+    <div style="font-size:13px;color:var(--danger)">Could not generate preview. Check your connection and try again.</div>
+  </div>
+</div>
+
+<div class="bpage" id="pgH">
+  <div class="kb-hero">
+    <div class="kb-hero-t">The Pattern Maker Guide</div>
+    <div class="kb-hero-s">Everything about making custom sewing patterns online &mdash; by Blue Moon Fabrics, Los Angeles</div>
+  </div>
+
+  <div class="pg-header"><div class="pg-title">How to make a <em>custom sewing pattern</em></div>
+  <div class="pg-sub">Eight steps from idea to cut-ready files &mdash; no software to install, free to start</div></div>
+
+  <div class="kb-step"><div class="kb-num">1</div><div><div class="kb-step-t">Choose your garment</div><div class="kb-step-b">Pick from 24 garment types &mdash; bikinis, one-pieces, leggings, sports bras, leotards, dresses, corsets, rash guards and more. Each opens its own measurement set and design styles.</div></div></div>
+  <div class="kb-step"><div class="kb-num">2</div><div><div class="kb-step-t">Pick a design style</div><div class="kb-step-b">70 styles across the collection &mdash; halter, bandeau, racerback, V-neck, Brazilian, mermaid, wrap&hellip; Or describe your vision in words and the AI Style Picker matches it for you.</div></div></div>
+  <div class="kb-step"><div class="kb-num">3</div><div><div class="kb-step-t">Enter body measurements</div><div class="kb-step-b">Measure the body, not clothing sizes, in inches. Required fields are starred; smart defaults fill the rest. The pattern maker drafts to your exact numbers &mdash; that is what &ldquo;custom&rdquo; means.</div></div></div>
+  <div class="kb-step"><div class="kb-num">4</div><div><div class="kb-step-t">Set construction options</div><div class="kb-step-b">Feature chips adapt to your chosen style (a racerback hides open-back options). Set seam allowance, grain direction, and fabric behavior &mdash; stretch, directional, stripe-match, sequin, or velvet nap.</div></div></div>
+  <div class="kb-step"><div class="kb-num">5</div><div><div class="kb-step-t">Choose your fabric</div><div class="kb-step-b">Pick from the Blue Moon Fabrics collection and see a live mockup. Your fashion sketch re-draws instantly in that exact fabric &mdash; solid, foil, lace, sequin, or velvet.</div></div></div>
+  <div class="kb-step"><div class="kb-num">6</div><div><div class="kb-step-t">Generate &amp; nest the pattern</div><div class="kb-step-b">The drafting engine builds every piece with seam allowance, grain lines, notches and fold marks, then AI-nests them on your fabric width for maximum efficiency.</div></div></div>
+  <div class="kb-step"><div class="kb-num">7</div><div><div class="kb-step-t">Grade your size run</div><div class="kb-step-b">Open <b>Size Run</b> from the Pattern tab. Pick your base size, select the sizes you need &mdash; the app re-drafts every piece for every size from your measurements. Download a graded DXF or CSV for your factory.</div></div></div>
+  <div class="bcard" style="margin:0 0 20px;background:var(--surface-2);border:1.5px solid var(--border)"><div style="padding:14px 18px"><div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:10px">&#128208; Grading &mdash; the full picture</div><div style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:10px"><b>What is grading?</b> Re-drafting your pattern across sizes &mdash; not scaling. Scaling distorts every seam and notch. True grading moves each point by a precise amount based on how bodies change between sizes.</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px"><div style="background:var(--surface);border-radius:8px;padding:10px;border:1px solid var(--border)"><div style="font-size:10px;font-weight:800;color:var(--accent);margin-bottom:3px">Circumference grade</div><div style="font-size:10px;color:var(--ink-3)">+2&Prime; per size (XS&ndash;16)<br>+3&Prime; per size (18+)<br>Bust &middot; waist &middot; hip</div></div><div style="background:var(--surface);border-radius:8px;padding:10px;border:1px solid var(--border)"><div style="font-size:10px;font-weight:800;color:var(--accent);margin-bottom:3px">Length grade</div><div style="font-size:10px;color:var(--ink-3)">+3/8&Prime; per size<br>Rounded to 1/8&Prime;<br>Torso &middot; skirt &middot; leg</div></div><div style="background:var(--surface);border-radius:8px;padding:10px;border:1px solid var(--border)"><div style="font-size:10px;font-weight:800;color:var(--accent);margin-bottom:3px">What to give your factory</div><div style="font-size:10px;color:var(--ink-3)"><b>DXF</b> &mdash; one layer per size<br><b>CSV</b> &mdash; piece dims per size<br><b>Sketch</b> &mdash; tech pack visual</div></div><div style="background:var(--surface);border-radius:8px;padding:10px;border:1px solid var(--border)"><div style="font-size:10px;font-weight:800;color:var(--ok);margin-bottom:3px">&#10003; Best practice</div><div style="font-size:10px;color:var(--ink-3)">Sew a test garment in your <b>base size</b> first. Confirm the fit, then grade out. Never grade from an unfit pattern.</div></div></div><div style="font-size:10px;color:var(--danger);line-height:1.65">&#10007; Scaling at 90% &mdash; distorts seams &nbsp;&middot;&nbsp; &#10007; Wrong base size &mdash; every size will be off &nbsp;&middot;&nbsp; &#10007; Adding ease to stretch grades &mdash; the rules already handle it</div></div></div>
+  <div class="kb-step" style="border-bottom:none"><div class="kb-num">8</div><div><div class="kb-step-t">Export &amp; sew</div><div class="kb-step-b">Print at home at 100% scale, or export DXF for Gerber, Lectra, Optitex and CLO 3D. Download the designer sketch with its contractor spec block and hand the whole package to your sewist.</div></div></div>
+
+  <div class="kb-gallery" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0">
+
+    <div style="border-radius:12px;overflow:hidden;border:1px solid var(--border);background:var(--surface-2)">
+      <img src="https://cdn.shopify.com/s/files/1/0046/4234/0957/files/gallery_sketch_2_1.png?v=1783378024"
+           alt="AI designer sketch — fashion croquis generated by the Blue Moon Pattern Maker"
+           style="width:100%;height:220px;object-fit:cover;display:block" loading="lazy">
+      <div style="padding:8px 10px;font-size:10px;text-align:center;color:var(--ink-3)">AI designer sketch &middot; free on all plans</div>
+    </div>
+
+    <div style="border-radius:12px;overflow:hidden;border:1px solid #d4b8ff;background:var(--surface-2)">
+      <img src="https://cdn.shopify.com/s/files/1/0046/4234/0957/files/gallery_sketch_1_1.png?v=1783378024"
+           alt="Four design styles — halter bikini, bandeau, V-neck one-piece, mermaid gown"
+           style="width:100%;height:220px;object-fit:cover;display:block" loading="lazy">
+      <div style="padding:8px 10px;font-size:10px;text-align:center;color:var(--ink-3)">90+ design styles &middot; any fabric</div>
+    </div>
+
+    <div style="border-radius:12px;overflow:hidden;border:1px solid #9fe1cb;background:var(--surface-2)">
+      <img src="https://cdn.shopify.com/s/files/1/0046/4234/0957/files/gallery_sketch_3_1.png?v=1783378024"
+           alt="Shaded fashion sketches — one-piece swimsuit, bodycon dress, ballgown"
+           style="width:100%;height:220px;object-fit:cover;display:block" loading="lazy">
+      <div style="padding:8px 10px;font-size:10px;text-align:center;color:var(--ink-3)">Couture croquis &middot; your exact fabric</div>
+    </div>
+
+  </div>
+
+    <div class="faq-sec">
+    <div class="faq-h">Frequently asked questions</div>
+    <div class="faq-sub">Quick answers about the free online pattern maker</div>
+    <details class="faq"><summary>What is the Blue Moon Pattern Maker?</summary><div class="faq-a">A free online sewing pattern maker by Blue Moon Fabrics. It drafts custom patterns from your body measurements for 24 garment types in 70 design styles, renders a fashion designer sketch in your chosen fabric, grades a full size run, and exports print-ready PDF or industry DXF files &mdash; all in your browser, nothing to install.</div></details>
+    <details class="faq"><summary>Is it really free?</summary><div class="faq-a">Yes &mdash; your first 10 pattern generations are free, with designer sketches, yield planning and print-at-home included. Studio ($19.99/mo) and Pro ($24.99/mo) monthly subscriptions unlock size grading, DXF/SVG export and unlimited patterns.</div></details>
+    <details class="faq"><summary>What garments can I make patterns for?</summary><div class="faq-a">Swimwear (bikini tops and bottoms, one-pieces, swim dresses, rash guards, board shorts), activewear (leggings, sports bras, biker shorts, tennis dresses), dancewear (leotards, unitards, costumes), dresses (bodycon, maxi, wrap, slip), plus crop tops, skirts, shorts, corset tops, lingerie and jumpsuits &mdash; 24 garments, 70 styles.</div></details>
+    <details class="faq"><summary>What is a DXF file and who accepts it?</summary><div class="faq-a">DXF is the industry-standard vector format for pattern cutting. Our AutoCAD R14 DXF export &mdash; one labeled layer per pattern piece and per size &mdash; opens in Gerber AccuMark, Lectra, Optitex, CLO 3D, Browzwear, Adobe Illustrator, and most laser or blade cutting tables.</div></details>
+    <details class="faq"><summary>How does size grading work?</summary><div class="faq-a">The pattern maker re-drafts every piece mathematically &mdash; not scaled &mdash; across ten sizes (XS&ndash;3X) using industry-standard rules: <b>2&Prime; circumference</b> per size (3&Prime; above size 16), <b>3/8&Prime; length</b> steps rounded to 1/8&Prime;. Your measurements become the base size anchor and all others grade from there. Export as a graded DXF (one layer per size) or size run CSV. Custom sizes with any label are also supported.</div></details>
+    <details class="faq"><summary>What is a base size and how do I choose it?</summary><div class="faq-a">Your base size is the standard size closest to your entered measurements &mdash; shown with a &#9679; in the Size Run panel. If your bust is 36&Prime;, your base is typically US size 8. All other sizes grade up or down from there. Getting the base right is the most important step. When in doubt, match to your full bust measurement.</div></details>
+    <details class="faq"><summary>What files does my factory need for a size run?</summary><div class="faq-a">Most cutting rooms want a <b>graded DXF</b>: one file with each size on a separate named layer, compatible with Gerber AccuMark, Lectra, Optitex, CLO 3D, and Illustrator. If your factory works from a spec sheet, use the <b>Size Run CSV</b> &mdash; every piece and size with exact dimensions. Include the designer sketch as your tech pack visual.</div></details>
+    <details class="faq"><summary>Can I add a custom or non-standard size?</summary><div class="faq-a">Yes &mdash; tap <b>+ Custom size</b> in the Size Run panel, give it any label (e.g. &ldquo;1X EU&rdquo;, &ldquo;Petite 10&rdquo;), and set the grade step in inches from your base. Useful for plus extensions, petite grades, regional sizing, or bespoke sizes your factory uses.</div></details>
+    <details class="faq"><summary>How do I know how much fabric to buy?</summary><div class="faq-a">The Yield panel calculates units per yard from your nested layout at your fabric width, using a 78% production marker efficiency &mdash; so you can cost a production run, not just one garment. The Stats page shows exact yards to buy for a single piece.</div></details>
+    <details class="faq"><summary>How do I print a pattern at home at the right size?</summary><div class="faq-a">Export &rarr; Print, and set your printer to 100% scale / actual size &mdash; never &ldquo;fit to page.&rdquo; Each piece includes grain lines, notches and seam allowance. For large pieces, use a print shop&rsquo;s wide-format printer with the same 100% rule.</div></details>
+    <details class="faq"><summary>Can I give the sketch to a sewing contractor?</summary><div class="faq-a">Yes &mdash; that is what it is designed for. Every sketch is a fashion plate with a spec column listing garment, style, fabric, selected construction features and date, drawn in your exact fabric. Download it as a high-resolution PNG and send it with your graded DXF.</div></details>
+    <details class="faq"><summary>Do my measurements and designs stay private?</summary><div class="faq-a">Yes. Patterns are drafted in your browser and projects are saved on your own device. Uploaded reference images are analysed in-session and never stored on our servers.</div></details>
+    <details class="faq"><summary>Why is a fabric store making a pattern maker?</summary><div class="faq-a">Because patterns and fabric belong together. Blue Moon Fabrics has supplied Los Angeles designers for years &mdash; the Pattern Maker lets you design with our actual fabrics, see the sketch in the material you will sew, and know your yardage before you order.</div></details>
+  </div>
+
+  <div class="kb-cite"><strong style="color:var(--ink)">Blue Moon Pattern Maker</strong> &mdash; a free custom sewing pattern maker online, by Blue Moon Fabrics, Los Angeles. 24 garments &middot; 70 styles &middot; designer sketches &middot; smart grading &middot; DXF export for professional cutters.</div>
+
+  <div style="text-align:center;padding:20px 0 8px"><button onclick="nxt('pg1')" style="padding:12px 32px;background:linear-gradient(135deg,var(--blue3),var(--blue2));color:#fff;border:none;border-radius:var(--r3);font-size:14px;font-weight:800;cursor:pointer">Start creating &#8594;</button></div>
+</div>
+
+<footer class="ps-foot">
+  <span class="ps-brand-word">Pattern<em>Studio</em></span>
+  <span>Fabrics &amp; checkout by <a href="https://bluemoonfabrics.com" target="_blank" rel="noopener">Blue Moon Fabrics</a> &middot; Los Angeles Fashion District</span>
+  <span>Patterns export as DXF (cutters), SVG and PNG &middot; measurements in inches</span>
+</footer>
+<div id="toast"></div>
+</div><!-- /bmf-root --><div id="advisorPanel"></div>
+<div id="bmfNavBar" role="navigation" aria-label="Previous / next step">
+  <button type="button" onclick="pgStep(-1)">&larr; Back</button>
+  <span id="bmfPageLabel">Step 1 of 5 — Choose Garment</span>
+  <button type="button" onclick="pgStep(1)">Next &rarr;</button>
+</div>
+<script src="engine.js" defer></script>
+<script>
+// Pattern Studio shell glue: compact the hero off step 1, keep the sticky nav in sync, deep-link tabs (#pg5 etc.)
+window.addEventListener('DOMContentLoaded',function(){
+  var orig=window.showTab; if(typeof orig!=='function')return;
+  window.showTab=function(btn,pg){ orig(btn,pg); document.body.classList.toggle('ps-compact',pg!=='pg1'); try{history.replaceState(null,'','#'+pg);}catch(e){} };
+  // step order for the sticky Back/Next bar (parked AI-photo tabs skipped; Fabric → Next generates)
+  var ORDER=['pg1','pg2','pg3','pg4','pgF','pg5','pg6','pg7','pgU','pgH'], ALL=['pg1','pg2','pg3','pg4','pgF','pg5','pg6','pg7','pg8','pgU','pgP','pgH'];
+  window.pgStep=function(dir){ var cur=document.querySelector('.bpage.show'); var i=Math.max(0,ORDER.indexOf(cur?cur.id:'pg1')); var n=i+dir; if(n<0||n>=ORDER.length)return;
+    if(dir===1&&ORDER[i]==='pgF'){ if(typeof generate==='function')generate(); return; }
+    var tabs=document.querySelectorAll('.btab'); window.showTab(tabs[ALL.indexOf(ORDER[n])],ORDER[n]); };
+  var h=(location.hash||'').slice(1); if(/^pg(d|F|U|P|H)$/.test(h)&&document.getElementById(h)){ var tabs=[].slice.call(document.querySelectorAll('.btab')); var i=['pg1','pg2','pg3','pg4','pgF','pg5','pg6','pg7','pg8','pgU','pgP','pgH'].indexOf(h); if(i>=0)window.showTab(tabs[i],h); }
+});
+</script>
+</body>
+</html>

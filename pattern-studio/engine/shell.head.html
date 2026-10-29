@@ -1,0 +1,45 @@
+<div id="bmf-root">
+<header id="bmf-top" class="ps-top">
+  <div class="ps-noise" aria-hidden="true"></div>
+  <div class="ps-glow ps-glow-a" aria-hidden="true"></div>
+  <div class="ps-glow ps-glow-b" aria-hidden="true"></div>
+  <div class="ps-bar">
+    <a class="ps-brand" href="/" aria-label="Pattern Studio home">
+      <span class="ps-brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="34" height="34"><defs><linearGradient id="psMark" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff2d87"/><stop offset="1" stop-color="#9b6bff"/></linearGradient></defs><path d="M8 32 L20 6 L32 32 Z" fill="none" stroke="url(#psMark)" stroke-width="2.2" stroke-linejoin="round"/><path d="M13 24 Q20 20 27 24" fill="none" stroke="#e2c275" stroke-width="1.6"/><circle cx="20" cy="6" r="2.2" fill="#e2c275"/></svg>
+      </span>
+      <span class="ps-brand-word">Pattern<em>Studio</em></span>
+      <span class="ps-brand-by">by Blue Moon Fabrics</span>
+    </a>
+    <div class="ps-actions top-actions">
+      <button class="project-badge" onclick="openProjectPanel()"><div class="proj-dot"></div><span id="projBadgeName">Projects</span></button>
+      <button class="btn-export" onclick="openPrint()">Export &darr;</button>
+    </div>
+  </div>
+  <div class="ps-hero">
+    <div class="ps-eyebrow"><span>Atelier</span><i></i><span>Cosplay</span><i></i><span>Couture</span></div>
+    <h1 class="ps-title">Sketch it. <em>Draft it.</em> Wear it.</h1>
+    <p class="ps-lede">Choose a silhouette, enter your measurements, pick the fabric &mdash; get a graded, cut-ready pattern and a designer croquis in seconds.</p>
+    <div class="ps-stats"><span><b>24</b> garments</span><span><b>90</b> styles</span><span><b>DXF</b> · SVG · PNG</span><span><b>XS&ndash;3XL</b> size runs</span></div>
+  </div>
+  <div id="gen-counter" hidden>
+    <span id="gen-count-txt"></span>
+    <div id="gc-track"><div id="gc-fill"></div></div>
+  </div>
+</header>
+
+<nav id="bmf-tabs" aria-label="Studio steps">
+  <button class="btab on" onclick="showTab(this,'pg1')"><span class="tab-num">1</span>Silhouette</button>
+  <button class="btab" onclick="showTab(this,'pg2')"><span class="tab-num">2</span>Design</button>
+  <button class="btab" onclick="showTab(this,'pg3')"><span class="tab-num">3</span>Measure</button>
+  <button class="btab" onclick="showTab(this,'pg4')"><span class="tab-num">4</span>Fit</button>
+  <button class="btab" onclick="showTab(this,'pgF')"><span class="tab-num">5</span>Fabric</button>
+  <span class="tab-sep" aria-hidden="true"></span>
+  <button class="btab" onclick="showTab(this,'pg5')">Pattern</button>
+  <button class="btab" onclick="showTab(this,'pg6')">Pieces</button>
+  <button class="btab" onclick="showTab(this,'pg7')">Yield</button>
+  <button class="btab" onclick="showTab(this,'pg8')">Look</button>
+  <button class="btab" onclick="showTab(this,'pgU')">Projects</button>
+  <button class="btab" onclick="showTab(this,'pgP')">Print</button>
+  <button class="btab" onclick="showTab(this,'pgH')">Guide</button>
+</nav>
