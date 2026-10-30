@@ -1,5 +1,5 @@
 {
-  "functions": { "api/render.js": { "maxDuration": 60 }, "api/advise.js": { "maxDuration": 45 } },
+  "functions": { "api/render.js": { "maxDuration": 120 }, "api/advise.js": { "maxDuration": 45 } },
   "version": 2,
   "cleanUrls": true,
   "headers": [

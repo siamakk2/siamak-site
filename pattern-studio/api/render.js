@@ -7,6 +7,7 @@
 // (Shopify CDN) is passed as a reference image so the print/texture on the model is the real fabric.
 const KEY = process.env.GEMINI_API_KEY;
 const SPEC = require('./garment-spec.js');
+const { geminiText } = require('./_gemini-text.js');
 const MODELS = ['gemini-3-pro-image', 'gemini-3.1-flash-image', 'gemini-2.5-flash-image'];
 const ALLOWED_IMG = /^https:\/\/(cdn\.shopify\.com|bluemoonfabrics\.com)\//;
 
@@ -120,12 +121,28 @@ module.exports = async (req, res) => {
   const ref = ctx && ctx.fabric ? await fetchRef(ctx.fabric.img) : null;
   if (ref) parts.push(ref);
 
-  const errors = [];
+  // quality gate: a vision check against the brief; one stricter retry if the garment type drifted
+  async function check(dataUrl) {
+    if (!ctx || !SPEC[ctx.garmentId]) return { ok: true };
+    try {
+      const m = dataUrl.match(/^data:(image\/\w+);base64,(.+)$/);
+      const q = `You are a fashion QA inspector. The brief: ${SPEC[ctx.garmentId].is}. Style: ${ctx.style}. Requirements: ${SPEC[ctx.garmentId].must}. Look at the photo and answer in JSON only: {"ok":true|false,"reason":"<10 words>"} — ok=false if the garment type, length or key construction (straps, cut-outs, legs/no legs) contradicts the brief.`;
+      const out = await geminiText([{ text: q }, { inlineData: { mimeType: m[1], data: m[2] } }], { temperature: 0, maxOutputTokens: 60, timeout: 20000 });
+      const j = JSON.parse((out.text.match(/\{[\s\S]*\}/) || ['{"ok":true}'])[0]);
+      return { ok: j.ok !== false, reason: j.reason || '' };
+    } catch (e) { return { ok: true, reason: 'check skipped' }; }
+  }
+  const errors = []; let attempt = 0, lastQA = null;
   for (const m of MODELS) {
     try {
-      const out = await gemini(m, parts, aspect);
+      let out = await gemini(m, parts, aspect); attempt++;
+      lastQA = await check(out.dataUrl);
+      if (!lastQA.ok && attempt < 2) {
+        const stricter = [{ text: promptFinal + ` IMPORTANT CORRECTION: a previous attempt was rejected because: ${lastQA.reason}. Follow the GARMENT BRIEF and the technical sketch literally.` }, ...parts.slice(1)];
+        try { const out2 = await gemini(m, stricter, aspect); attempt++; const qa2 = await check(out2.dataUrl); if (qa2.ok || !lastQA.ok) { out = out2; lastQA = qa2; } } catch (e) {}
+      }
       res.setHeader('Cache-Control', 'no-store');
-      return res.status(200).json({ image: out.dataUrl, model: out.model, prompt: promptFinal, usedFabricPhoto: !!ref, usedSketch: !!sketch });
+      return res.status(200).json({ image: out.dataUrl, model: out.model, prompt: promptFinal, usedFabricPhoto: !!ref, usedSketch: !!sketch, qa: lastQA, attempts: attempt });
     } catch (e) { errors.push(e.message); }
   }
   return res.status(502).json({ error: 'render failed', detail: errors });
