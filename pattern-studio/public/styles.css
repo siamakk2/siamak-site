@@ -614,8 +614,22 @@ body.ps-compact .ps-glow{opacity:.3}
 #bmf-root .btab.on .tab-num{background:var(--grad);color:#fff;border-color:transparent}
 .tab-sep{flex:0 0 1px;height:22px;background:var(--border-2);margin:0 6px}
 
-/* AI photo features are parked until an image model is wired in: tabs stay in the DOM (engine indexes them) but are hidden */
-#bmf-root .btab[onclick*="'pg8'"],#bmf-root .btab[onclick*="'pgP'"]{display:none}
+/* ─────────────── Render on model (Fabric step) ─────────────── */
+#psRenderBox{margin-top:16px;padding-top:16px;border-top:1px solid rgba(226,194,117,.3)}
+.ps-render-head{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:flex-end;margin-bottom:12px}
+.ps-render-title{font-family:var(--D);font-size:20px;font-weight:600;color:var(--ink)}
+.ps-render-sub{font-size:11.5px;color:var(--ink-3);margin-top:3px;max-width:520px;line-height:1.5}
+.ps-render-ctl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.ps-render-ctl .mi{padding:9px 12px;font-size:12px;width:auto}
+.ps-render-ctl .btn-next{padding:11px 20px;font-size:13px}
+.ps-render-stage{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r);min-height:120px;display:grid;place-items:center;overflow:hidden}
+.ps-render-empty{padding:28px 16px;text-align:center;color:var(--ink-3);font-size:12.5px}
+.ps-render-loading{display:flex;flex-direction:column;align-items:center;gap:14px;padding:40px 16px;color:var(--ink-2);font-size:13px}
+.ps-render-loading .ai-spin{width:34px;height:34px;border:3px solid var(--surface-3);border-top-color:var(--accent);border-radius:50%;animation:psSpin .9s linear infinite}
+@keyframes psSpin{to{transform:rotate(360deg)}}
+.ps-render-img{display:block;width:100%;max-width:560px;height:auto;margin:0 auto;border-radius:6px;box-shadow:var(--shadow2)}
+.ps-render-meta{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 14px;font-family:var(--M);font-size:11px;letter-spacing:.04em;color:var(--ink-3);border-top:1px solid var(--border)}
+.ps-render-meta .btn-back{padding:7px 12px;font-size:11px}
 
 /* ─────────────── Pages & headers ─────────────── */
 #bmf-root .bpage{display:none;animation:none;background:transparent;padding:0;max-width:none}

@@ -22,5 +22,5 @@ npm run dev     # http://localhost:3131 (static + /api/fabrics)
 ```
 Never hand-edit `public/` or `engine/engine.js`; change the sources and rebuild.
 
-## Parked
-AI photo "Look" and "Print preview" tabs are hidden until an image model is wired in (no Imagen/Gemini image access on the account).
+## Renders
+`api/render.js` renders the garment on a model with Google Gemini image models (GEMINI_API_KEY): the Fabric step "Render on model" panel, the Look tab and the Print tab all build a structured context (garment, style, construction chips, measurements, exact fabric + its product photo as a reference image). `api/advise.js` powers the atelier advisor with Gemini text.

@@ -3,6 +3,7 @@ const { chromium } = require('playwright'); const path=require('path'), fs=requi
 const pub=path.join(__dirname,'..','public'); const out=path.join(__dirname,'shots'); fs.mkdirSync(out,{recursive:true});
 const types={'.html':'text/html','.css':'text/css','.js':'application/javascript','.json':'application/json'};
 const srv=http.createServer((q,r)=>{let p=q.url.split('?')[0]; if(p==='/')p='/index.html';
+  if(p.startsWith('/api/render')){ r.setHeader('content-type','application/json'); return r.end(JSON.stringify({image:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==',model:'mock',usedFabricPhoto:false})); }
   if(p.startsWith('/api/fabrics')){ r.setHeader('content-type','application/json'); return r.end(JSON.stringify({products:[]})); }
   const f=path.join(pub,p); if(!fs.existsSync(f)){r.statusCode=404;return r.end('nf');} r.setHeader('content-type',types[path.extname(f)]||'text/plain'); r.end(fs.readFileSync(f));});
 (async()=>{ await new Promise(r=>srv.listen(0,r)); const port=srv.address().port;
@@ -23,6 +24,8 @@ const srv=http.createServer((q,r)=>{let p=q.url.split('?')[0]; if(p==='/')p='/in
   await pg.click('.btab:nth-of-type(4)'); await pg.waitForTimeout(300); await shot('04-fit');
   await pg.click('.btab:nth-of-type(5)'); await pg.waitForTimeout(600); await shot('05-fabric');
   report.sketchSvg=await pg.$eval('#sketchSvgHost',e=>e.innerHTML.length).catch(()=>0);
+  await pg.click('#fabricGrid .fab-card:nth-child(3)'); await pg.waitForTimeout(300);
+  report.renderPanel=!!(await pg.$('#psRenderBtn')); await pg.click('#psRenderBtn'); await pg.waitForTimeout(800); report.renderImg=!!(await pg.$('.ps-render-img')); await pg.$eval('#psRenderBox',e=>e.scrollIntoView()); await shot('05b-render');
   // generate via the sticky Next (pgF → generate)
   await pg.click('#bmfNavBar button:last-child'); await pg.waitForTimeout(2500); await shot('06-pattern');
   report.pieces=await pg.evaluate(()=>typeof S!=='undefined'?S.ps.length:-1);
@@ -32,7 +35,7 @@ const srv=http.createServer((q,r)=>{let p=q.url.split('?')[0]; if(p==='/')p='/in
   report.piecesAfterNest=await pg.evaluate(()=>S.ps.length);
   await pg.$eval('#cwrap',e=>e.scrollIntoView({block:'center'})); await pg.waitForTimeout(300); await shot('07b-canvas');
   report.nestPanel=await pg.$eval('#nestPanel',e=>e.style.display!=='none'&&e.textContent.length>0).catch(()=>false);
-  report.walk=[]; for (const n of ['08-pieces','09-yield','10-projects','11-guide']) { await pg.click('#bmfNavBar button:last-child'); await pg.waitForTimeout(400); report.walk.push(await pg.$eval('.bpage.show',e=>e.id)); await shot(n); }
+  report.walk=[]; for (const n of ['08-pieces','09-yield','10-look','11-projects','12-print','13-guide']) { await pg.click('#bmfNavBar button:last-child'); await pg.waitForTimeout(400); report.walk.push(await pg.$eval('.bpage.show',e=>e.id)); await shot(n); }
   report.hiddenTabs=await pg.evaluate(()=>[...document.querySelectorAll('.btab')].filter(b=>getComputedStyle(b).display==='none').length);
   await pg.setViewportSize({width:390,height:844}); await pg.click('.btab:nth-of-type(1)'); await pg.waitForTimeout(400); await shot('14-mobile-home');
   await pg.click('.btab:nth-of-type(6)'); await pg.waitForTimeout(400); await shot('15-mobile-pattern');

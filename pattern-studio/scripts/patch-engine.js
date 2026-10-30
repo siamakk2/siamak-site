@@ -58,7 +58,19 @@ addFields('tennis_dress', "{id:'inseam',l:'Short Inseam',h:'Built-in short insea
 /* 5 ── no Shopify theme chrome to hide in the standalone page */
 rep('theme hide', "document.querySelectorAll('.page__title,.rich-text__heading,.page__content,.rich-text__text,.section--padding')", "document.querySelectorAll('.__none__')");
 
-/* 6 ── theme: JS-built markup uses tokens (CSS declarations only; SVG art & canvas colours untouched) */
+/* 6 ── photoreal renders: Look tab + Print tab + Fabric-step panel all go through /api/render (Gemini image) */
+rep('look → render api', "    var seed=Math.floor(Math.random()*999999);\n    var url='https://image.pollinations.ai/prompt/'+encodeURIComponent(prompt)+'?width=512&height=768&model=flux&seed='+seed+'&nologo=true';\n    var img=new Image();",
+  "    var out=await psRender(psRenderContext({model:model,setting:setting,mode:'photo'}),'3:4'); var url=out.image; window.__psLastRender=url;\n    var img=new Image();");
+rep('print → render api', "    var proxyUrl = 'https://siamakconsulting.com/api/sketch';\n    var proxyRes = await fetch(proxyUrl, {\n      method: 'POST',\n      headers: { 'Content-Type': 'application/json' },\n      body: JSON.stringify({ prompt: prompt })\n    });",
+  "    var proxyRes = await fetch((PS.renderApi||'/api/render'), {\n      method: 'POST',\n      headers: { 'Content-Type': 'application/json' },\n      body: JSON.stringify({ context: psRenderContext({mode:'print', printDesc: desc}), aspect:'3:4' })\n    });");
+rep('print: no pollinations fallback', "    if (!imageUrl) {\n      var seed = Math.floor(Math.random() * 999999);\n      imageUrl = 'https://image.pollinations.ai/prompt/'\n        + encodeURIComponent(prompt)\n        + '?width=512&height=768&model=flux&seed=' + seed + '&nologo=true';\n    }",
+  "    if (!imageUrl) { throw new Error('render failed'); }");
+rep('advisor → gemini', "  fetch('https://text.pollinations.ai/' + encodeURIComponent(prompt))\n    .then(function(r){ return r.ok ? r.text() : Promise.reject(); })",
+  "  fetch((PS.adviseApi||'/api/advise'), {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt})})\n    .then(function(r){ return r.ok ? r.json().then(function(j){return j.text;}) : Promise.reject(); })");
+e += fs.readFileSync(E('render-client.js'), 'utf8');
+log.push('render client appended');
+
+/* 7 ── theme: JS-built markup uses tokens (CSS declarations only; SVG art & canvas colours untouched) */
 const before = e; e = remapProps(e); log.push('tokenised declarations: ' + (before !== e));
 
 const out = '/* Pattern Studio engine — generated from engine.raw.js by scripts/patch-engine.js; do not edit by hand */\n' + e;

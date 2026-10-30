@@ -547,8 +547,8 @@
 window.addEventListener('DOMContentLoaded',function(){
   var orig=window.showTab; if(typeof orig!=='function')return;
   window.showTab=function(btn,pg){ orig(btn,pg); document.body.classList.toggle('ps-compact',pg!=='pg1'); try{history.replaceState(null,'','#'+pg);}catch(e){} };
-  // step order for the sticky Back/Next bar (parked AI-photo tabs skipped; Fabric → Next generates)
-  var ORDER=['pg1','pg2','pg3','pg4','pgF','pg5','pg6','pg7','pgU','pgH'], ALL=['pg1','pg2','pg3','pg4','pgF','pg5','pg6','pg7','pg8','pgU','pgP','pgH'];
+  // step order for the sticky Back/Next bar (Fabric → Next generates)
+  var ORDER=['pg1','pg2','pg3','pg4','pgF','pg5','pg6','pg7','pg8','pgU','pgP','pgH'], ALL=['pg1','pg2','pg3','pg4','pgF','pg5','pg6','pg7','pg8','pgU','pgP','pgH'];
   window.pgStep=function(dir){ var cur=document.querySelector('.bpage.show'); var i=Math.max(0,ORDER.indexOf(cur?cur.id:'pg1')); var n=i+dir; if(n<0||n>=ORDER.length)return;
     if(dir===1&&ORDER[i]==='pgF'){ if(typeof generate==='function')generate(); return; }
     var tabs=document.querySelectorAll('.btab'); window.showTab(tabs[ALL.indexOf(ORDER[n])],ORDER[n]); };
