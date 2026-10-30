@@ -65,15 +65,19 @@ function psEnsureRenderPanel(){
   box = document.createElement('div'); box.id='psRenderBox';
   box.innerHTML =
     '<div class="ps-render-head">'
-    + '<div><div class="ps-render-title">&#10022; Render on model</div><div class="ps-render-sub">Photoreal look built from your garment, style, construction details, measurements and the exact fabric</div></div>'
+    + '<div><div class="ps-render-title">&#10022; See it on a model</div><div class="ps-render-sub">Photoreal look built from your garment, style, construction details, measurements and the exact fabric you picked</div></div>'
     + '<div class="ps-render-ctl">'
     + psGenderToggleHTML()
     + '<select id="psRenderModel" class="mi"></select>'
     + '<select id="psRenderSetting" class="mi"><option value="Clean studio">Studio</option><option value="runway">Runway</option><option value="beach">Beach</option><option value="street">Street</option><option value="cosplay">Cosplay booth</option></select>'
     + '<button type="button" id="psRenderBtn" class="btn-next" onclick="psRenderOnModel()">Render &#8594;</button>'
     + '</div></div>'
-    + '<div id="psRenderStage" class="ps-render-stage"><div class="ps-render-empty">Pick a fabric, then press <b>Render</b>. About 20&ndash;40 seconds.</div></div>';
-  panel.appendChild(box);
+    + '<div id="psRenderStage" class="ps-render-stage"><div class="ps-render-empty"><div class="ps-render-cta"><button type="button" class="btn-next" onclick="psRenderOnModel()">&#10022; Render on model</button></div>Uses the fabric you selected above. About 20&ndash;40 seconds.</div></div>';
+  // the photoreal render leads; the technical croquis folds underneath
+  var det = document.createElement('details'); det.className='ps-croquis';
+  det.innerHTML = '<summary><span>&#9998; Technical croquis &amp; spec sheet</span><i>flat sketch for the cutter</i></summary>';
+  var keep = Array.prototype.slice.call(panel.childNodes); keep.forEach(function(n){ det.appendChild(n); });
+  panel.appendChild(box); panel.appendChild(det);
   psSyncGenderUI();
   return box;
 }

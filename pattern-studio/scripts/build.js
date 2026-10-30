@@ -65,6 +65,9 @@ let theme = fs.readFileSync(E('theme.css'), 'utf8'); const imp = (theme.match(/@
 css = imp + '\n/* ── component layer (from Blue Moon Pattern Maker v55, re-tokenised) ── */\n' + css + '\n\n' + theme;
 fs.writeFileSync(P('styles.css'), css);
 
+fs.copyFileSync(E('site.css'), P('site.css'));
+fs.copyFileSync(E('hero3d.js'), P('hero3d.js'));
+
 /* ── HTML ── */
 let body = fs.readFileSync(E('legacy.html'), 'utf8');
 body = body.slice(body.indexOf('<div id="bmf-tabs">'));                      // drop JSON-LD/og meta + old hero
@@ -130,11 +133,11 @@ window.addEventListener('DOMContentLoaded',function(){
 </body>
 </html>
 `;
-fs.writeFileSync(P('index.html'), html);
+const crypto=require('crypto'); const h8=f=>crypto.createHash('md5').update(fs.readFileSync(P(f))).digest('hex').slice(0,8);
+const hashed = html.replace('href="styles.css"','href="styles.css?v='+h8('styles.css')+'"').replace('src="engine.js"','src="engine.js?v='+h8('engine.js')+'"').replace('src="hero3d.js"','src="hero3d.js?v='+(fs.existsSync(P('hero3d.js'))?h8('hero3d.js'):'1')+'"');
+fs.writeFileSync(P('index.html'), hashed);
 
 /* ── extra assets + site pages ── */
-fs.copyFileSync(E('site.css'), P('site.css'));
-fs.copyFileSync(E('hero3d.js'), P('hero3d.js'));
 require('./site.js');
 
 /* ── report ── */
