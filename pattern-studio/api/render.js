@@ -14,7 +14,12 @@ const MODEL_DESC = {
   woman_30_athletic: 'a 30-year-old athletic woman with toned shoulders',
   woman_40_curvy: 'a 40-year-old curvy plus-size woman, confident and elegant',
   woman_20_petite: 'a 20-year-old petite woman',
-  man_28_athletic: 'a 28-year-old athletic man',
+  woman_50_elegant: 'an elegant 50-year-old woman with silver-streaked hair',
+  man_28_athletic: 'a 28-year-old athletic man with a swimmer\'s build',
+  man_25_slim: 'a 25-year-old slim man with a lean dancer\'s build',
+  man_32_muscular: 'a 32-year-old muscular man, broad shoulders',
+  man_40_plus: 'a 40-year-old plus-size man, confident and well-groomed',
+  man_50_distinguished: 'a distinguished 50-year-old man with grey hair',
 };
 const SETTING_DESC = {
   'studio white': 'clean white seamless studio backdrop, soft key light and gentle rim light, faint floor shadow',
@@ -25,12 +30,12 @@ const SETTING_DESC = {
   'cosplay': 'convention-hall photo booth with a dramatic gradient backdrop and crisp studio flash',
 };
 
-function sizeWords(b) {
+function sizeWords(b, male) {
   if (!b || !b.bust) return '';
   const bust = +b.bust, waist = +b.waist || bust - 8, hips = +b.hips || bust + 2;
   const size = bust < 33 ? 'XS' : bust < 35 ? 'S' : bust < 38 ? 'M' : bust < 41 ? 'L' : bust < 45 ? 'XL' : 'plus-size';
   const shape = hips - bust >= 3 ? 'pear-shaped' : bust - hips >= 3 ? 'inverted-triangle' : bust - waist >= 9 ? 'hourglass' : 'straight';
-  return ` The model is a size ${size}, ${shape} figure (bust ${bust}", waist ${waist}", hips ${hips}"), and the garment fits those proportions exactly.`;
+  return male ? ` The model is a men's size ${size} (chest ${bust}", waist ${waist}", hips ${hips}"), and the garment fits those proportions exactly.` : ` The model is a size ${size}, ${shape} figure (bust ${bust}", waist ${waist}", hips ${hips}"), and the garment fits those proportions exactly.`;
 }
 function fabricWords(f) {
   if (!f) return 'a matte stretch fabric';
@@ -43,18 +48,22 @@ function buildPrompt(c) {
   const chips = (c.chips || []).filter(Boolean);
   const details = chips.length ? ` Construction details that must be visible: ${chips.join(', ')}.` : '';
   const ease = c.fit && +c.fit.ease ? (c.fit.ease < 0 ? ' Negative ease: skin-tight compression fit.' : ' Relaxed fit with visible ease.') : '';
-  const who = c.gender === 'male' ? (MODEL_DESC[c.model] || 'a 28-year-old athletic man') : (MODEL_DESC[c.model] || MODEL_DESC.woman_25_diverse);
+  const male = /^m/.test(String(c.gender || '')) || /^man_/.test(String(c.model || ''));
+  const who = male ? (/^man_/.test(c.model) && MODEL_DESC[c.model] ? MODEL_DESC[c.model] : MODEL_DESC.man_28_athletic)
+                   : (/^woman_/.test(c.model) && MODEL_DESC[c.model] ? MODEL_DESC[c.model] : MODEL_DESC.woman_25_diverse);
+  const he = male ? 'He' : 'She';
+  const cut = male ? " men's cut of the" : '';
   const where = SETTING_DESC[c.setting] || SETTING_DESC['Clean studio'];
   const fabric = fabricWords(c.fabric);
   const ref = c.fabric && c.fabric.img ? ' The attached photo is the actual fabric: reproduce its exact colour, print scale, texture and sheen on the garment.' : '';
 
   if (c.mode === 'sketch') {
-    return `Couture fashion illustration, hand-drawn designer croquis with ink line and watercolour wash, elongated 9-head fashion figure, white paper background. The figure wears a ${g} in the "${st}" style${sub}.${details} Fabric: ${fabric}.${ref} Render the garment's seams, neckline, straps, hems and silhouette precisely as a pattern-maker would draft them. Elegant, confident pose. No text, no logos.`;
+    return `Couture fashion illustration, hand-drawn designer croquis with ink line and watercolour wash, elongated 9-head fashion figure, white paper background. The ${male ? 'male' : 'female'} figure wears a${cut} ${g} in the "${st}" style${sub}.${details} Fabric: ${fabric}.${ref} Render the garment's seams, neckline, straps, hems and silhouette precisely as a pattern-maker would draft them. Elegant, confident pose. No text, no logos.`;
   }
   if (c.mode === 'print') {
-    return `Editorial fashion photograph, full body, ${who}, wearing a ${g} in the "${st}" style${sub}, sewn from fabric printed with: ${c.printDesc || 'an abstract print'}. The print must be clearly visible and correctly scaled across the whole garment, following the body's curves and the garment's seams.${details} ${where}. 85mm lens, photorealistic, magazine quality. No text, no logos, no watermark.`;
+    return `Editorial fashion photograph, full body, ${who}, wearing a${cut} ${g} in the "${st}" style${sub}, sewn from fabric printed with: ${c.printDesc || 'an abstract print'}. The print must be clearly visible and correctly scaled across the whole garment, following the body's curves and the garment's seams.${details} ${where}. 85mm lens, photorealistic, magazine quality. No text, no logos, no watermark.`;
   }
-  return `Editorial fashion photograph for a couture lookbook, full body head-to-toe, ${who}, relaxed confident three-quarter pose. She/he wears a ${g} in the "${st}" style${sub}.${details}${ease}${sizeWords(c.body)} Fabric: ${fabric}.${ref} Seams, topstitching, hems, straps and closures rendered as a real sewn garment with correct drape and stretch for this fabric. ${where}. Camera at chest height, 85mm lens, shallow depth of field, photorealistic, high-end fashion magazine quality. No text, no logos, no watermark.`;
+  return `Editorial fashion photograph for a couture lookbook, full body head-to-toe, ${who}, relaxed confident three-quarter pose. ${he} wears a${cut} ${g} in the "${st}" style${sub}.${details}${ease}${sizeWords(c.body, male)} Fabric: ${fabric}.${ref} Seams, topstitching, hems, straps and closures rendered as a real sewn garment with correct drape and stretch for this fabric. ${where}. Camera at chest height, 85mm lens, shallow depth of field, photorealistic, high-end fashion magazine quality. No text, no logos, no watermark.`;
 }
 
 async function fetchRef(url) {

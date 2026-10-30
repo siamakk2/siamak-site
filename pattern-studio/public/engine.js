@@ -4716,9 +4716,9 @@ var SKETCH_VARIANTS = {
 var SKETCH_MALE_DEFAULT = { board_shorts: 1 };
 var SKETCH_FEMALE_ONLY = {
   maxi_dress:1, bodycon_dress:1, night_dress:1, dress:1, gown:1, skirt:1,
-  lingerie:1, leotard:1, corset_top:1, two_piece:1, one_piece:1, swim_dress:1,
+  lingerie:1, corset_top:1, two_piece:1, swim_dress:1,
   bikini_top:1, bikini_bottom:1, sports_bra:1,
-  wrap_dress:1, costume:1, crop_top:1
+  wrap_dress:1
 };
 var _sketchGenderOverride = {};
 function sketchGenderFor(g) {
@@ -5813,8 +5813,8 @@ function psRenderContext(extra){
     fabric: f ? { name:f.name, hex:f.hex||f.color, pattern:f.pattern, category:f.category, desc:(f.desc||'').slice(0,160), img:f.img||'' } : null,
     body: { bust:m.bust, waist:m.waist, hips:m.hips },
     fit: { ease: S.fit ? S.fit.ease : 0 },
-    gender: (typeof sketchGenderFor==='function') ? sketchGenderFor(S.g) : 'female',
-    model: 'woman_25_diverse', setting: 'Clean studio', mode: 'photo'
+    gender: psGender(),
+    model: psDefaultModel(), setting: 'Clean studio', mode: 'photo'
   };
   for (var k in (extra||{})) ctx[k]=extra[k];
   return ctx;
@@ -5824,6 +5824,39 @@ async function psRender(ctx, aspect){
   var j = await r.json().catch(function(){return {};});
   if (!r.ok || !j.image) throw new Error((j && (j.error + (j.detail? ': '+[].concat(j.detail).join(' | '):''))) || ('HTTP '+r.status));
   return j;
+}
+/* ── model gender: 'f' | 'm' — shared by croquis, render panel and Look tab ── */
+var PS_MODELS = {
+  f: [['woman_25_diverse','Woman · 25'],['woman_30_athletic','Woman · athletic'],['woman_40_curvy','Woman · curvy'],['woman_20_petite','Woman · petite'],['woman_50_elegant','Woman · 50+']],
+  m: [['man_28_athletic','Man · athletic'],['man_25_slim','Man · slim'],['man_32_muscular','Man · muscular'],['man_40_plus','Man · plus-size'],['man_50_distinguished','Man · 50+']]
+};
+function psGenderAllowed(){ return !(typeof SKETCH_FEMALE_ONLY!=='undefined' && S.g && SKETCH_FEMALE_ONLY[S.g]); }
+function psGender(){ var g = (typeof sketchGenderFor==='function' && S.g) ? sketchGenderFor(S.g) : 'f'; return g==='m' ? 'm' : 'f'; }
+function psDefaultModel(){ return PS_MODELS[psGender()][0][0]; }
+function psSetGender(g){
+  if (g==='m' && !psGenderAllowed()) { toast_('This garment is drafted on a women\'s block'); g='f'; }
+  if (typeof setSketchGender==='function') setSketchGender(g);   // re-draws the croquis on the matching figure
+  psSyncGenderUI();
+}
+function psSyncGenderUI(){
+  var g = psGender(), allowed = psGenderAllowed();
+  document.querySelectorAll('.ps-gender').forEach(function(w){
+    w.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b.dataset.g===g); b.disabled = (b.dataset.g==='m' && !allowed); });
+    w.title = allowed ? '' : 'Drafted on a women\'s block';
+  });
+  ['psRenderModel','look-model-sel'].forEach(function(id){
+    var sel=document.getElementById(id); if(!sel) return;
+    var cur=sel.value; sel.innerHTML='';
+    PS_MODELS[g].forEach(function(o){ var op=document.createElement('option'); op.value=o[0]; op.textContent=o[1]; sel.appendChild(op); });
+    if ([].some.call(sel.options,function(o){return o.value===cur;})) sel.value=cur;
+  });
+}
+function psGenderToggleHTML(){ return '<div class="ps-gender" role="group" aria-label="Model"><button type="button" data-g="f" onclick="psSetGender(\'f\')">Woman</button><button type="button" data-g="m" onclick="psSetGender(\'m\')">Man</button></div>'; }
+/* Look tab: put the toggle above its form and swap the model list */
+function psMountLookGender(){
+  var sel=document.getElementById('look-model-sel'); if(!sel || document.getElementById('psLookGender')) return;
+  var holder=document.createElement('div'); holder.id='psLookGender'; holder.style.marginBottom='10px'; holder.innerHTML=psGenderToggleHTML();
+  var card=sel.closest('[style*="border-radius"]') || sel.parentElement.parentElement; card.insertBefore(holder, card.firstChild);
 }
 /* Fabric-step panel: "Render on model" */
 function psEnsureRenderPanel(){
@@ -5835,12 +5868,14 @@ function psEnsureRenderPanel(){
     '<div class="ps-render-head">'
     + '<div><div class="ps-render-title">&#10022; Render on model</div><div class="ps-render-sub">Photoreal look built from your garment, style, construction details, measurements and the exact fabric</div></div>'
     + '<div class="ps-render-ctl">'
-    + '<select id="psRenderModel" class="mi"><option value="woman_25_diverse">Woman · 25</option><option value="woman_30_athletic">Woman · athletic</option><option value="woman_40_curvy">Woman · curvy</option><option value="woman_20_petite">Woman · petite</option><option value="man_28_athletic">Man · athletic</option></select>'
+    + psGenderToggleHTML()
+    + '<select id="psRenderModel" class="mi"></select>'
     + '<select id="psRenderSetting" class="mi"><option value="Clean studio">Studio</option><option value="runway">Runway</option><option value="beach">Beach</option><option value="street">Street</option><option value="cosplay">Cosplay booth</option></select>'
     + '<button type="button" id="psRenderBtn" class="btn-next" onclick="psRenderOnModel()">Render &#8594;</button>'
     + '</div></div>'
     + '<div id="psRenderStage" class="ps-render-stage"><div class="ps-render-empty">Pick a fabric, then press <b>Render</b>. About 20&ndash;40 seconds.</div></div>';
   panel.appendChild(box);
+  psSyncGenderUI();
   return box;
 }
 async function psRenderOnModel(){
@@ -5865,4 +5900,5 @@ async function psRenderOnModel(){
 }
 function psDownloadRender(){ if(!window.__psLastRender)return; var a=document.createElement('a'); a.href=window.__psLastRender; a.download='pattern-studio-look.png'; document.body.appendChild(a); a.click(); a.remove(); }
 /* keep the panel alive whenever the sketch re-renders */
-(function(){ var _rs = window.renderSketch; if (typeof _rs==='function') window.renderSketch = function(){ _rs.apply(this, arguments); try{ psEnsureRenderPanel(); }catch(e){} }; })();
+(function(){ var _rs = window.renderSketch; if (typeof _rs==='function') window.renderSketch = function(){ _rs.apply(this, arguments); try{ psEnsureRenderPanel(); psSyncGenderUI(); }catch(e){} }; })();
+(function(){ var _rl = window.refreshLook; if (typeof _rl==='function') window.refreshLook = function(){ _rl.apply(this, arguments); try{ psMountLookGender(); psSyncGenderUI(); }catch(e){} }; })();

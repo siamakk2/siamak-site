@@ -25,7 +25,17 @@ const srv=http.createServer((q,r)=>{let p=q.url.split('?')[0]; if(p==='/')p='/in
   await pg.click('.btab:nth-of-type(5)'); await pg.waitForTimeout(600); await shot('05-fabric');
   report.sketchSvg=await pg.$eval('#sketchSvgHost',e=>e.innerHTML.length).catch(()=>0);
   await pg.click('#fabricGrid .fab-card:nth-child(3)'); await pg.waitForTimeout(300);
-  report.renderPanel=!!(await pg.$('#psRenderBtn')); await pg.click('#psRenderBtn'); await pg.waitForTimeout(800); report.renderImg=!!(await pg.$('.ps-render-img')); await pg.$eval('#psRenderBox',e=>e.scrollIntoView()); await shot('05b-render');
+  report.renderPanel=!!(await pg.$('#psRenderBtn'));
+  report.genderOnDress=await pg.evaluate(()=>[...document.querySelectorAll('#psRenderBox .ps-gender button')].map(b=>b.textContent+(b.disabled?'(off)':'')+(b.classList.contains('on')?'*':'')).join(' ')); await pg.click('#psRenderBtn'); await pg.waitForTimeout(800); report.renderImg=!!(await pg.$('.ps-render-img')); await pg.$eval('#psRenderBox',e=>e.scrollIntoView()); await shot('05b-render');
+  // unisex garment: switch to Man → croquis + model list follow
+  await pg.click('.btab:nth-of-type(1)'); await pg.waitForTimeout(200); await pg.click('#bgrid .gc:nth-child(5)'); await pg.waitForTimeout(200); // leggings
+  await pg.click('.btab:nth-of-type(2)'); await pg.waitForTimeout(200); await pg.click('#designGrid .dcard:nth-child(1)'); await pg.waitForTimeout(200);
+  await pg.click('.btab:nth-of-type(5)'); await pg.waitForTimeout(500);
+  const svgF=await pg.$eval('#sketchSvgHost',e=>e.innerHTML);
+  await pg.click('#psRenderBox .ps-gender button[data-g="m"]'); await pg.waitForTimeout(600);
+  const svgM=await pg.$eval('#sketchSvgHost',e=>e.innerHTML);
+  report.maleToggle={croquisChanged: svgF!==svgM, models: await pg.$eval('#psRenderModel',s=>[...s.options].map(o=>o.value).join(',')), ctxGender: await pg.evaluate(()=>psRenderContext().gender)};
+  await pg.$eval('#sketchPanel',e=>e.scrollIntoView()); await shot('05c-male');
   // generate via the sticky Next (pgF → generate)
   await pg.click('#bmfNavBar button:last-child'); await pg.waitForTimeout(2500); await shot('06-pattern');
   report.pieces=await pg.evaluate(()=>typeof S!=='undefined'?S.ps.length:-1);
