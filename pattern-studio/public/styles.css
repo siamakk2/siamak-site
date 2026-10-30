@@ -522,8 +522,8 @@ details.faq .faq-a{padding:0 16px 14px;font-size:12px;color:var(--ink-3);line-he
   --ink:#f3eee6;           /* primary text (ivory) */
   --ink-2:#ddd6cb;
   --ink-3:#a9a197;
-  --ink-4:#7c756c;
-  --ink-5:#5a544d;
+  --ink-4:#8c857b;
+  --ink-5:#7d766d;
   --accent:#ff2d87;        /* magenta */
   --accent-2:#9b6bff;      /* violet */
   --accent-deep:#c2186a;
@@ -788,6 +788,8 @@ body.ps-compact .ps-glow{opacity:.3}
 #bmfNavBar button{border:0;border-radius:var(--r3);padding:11px 18px;font-weight:700;font-size:13px;cursor:pointer;transition:var(--transition);font-family:var(--B)}
 #bmfNavBar button:first-child{background:var(--surface-3);color:var(--ink-2);border:1px solid var(--border-2)}
 #bmfNavBar button:last-child{background:var(--accent);color:#fff;box-shadow:0 8px 22px rgba(255,45,135,.35)}
+#bmfNavBar button[style*="--ok"]{color:#121407!important;box-shadow:0 8px 22px rgba(199,245,90,.35)}
+#bmf-root .btn-next[style*="--ok"],#bmf-root button[style*="background:var(--ok)"]{color:#121407!important}
 #bmfPageLabel{font-family:var(--M);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:40vw}
 
 /* ─────────────── Footer ─────────────── */

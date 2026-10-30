@@ -39,6 +39,7 @@ const SAFE_QUOTED = new Set(Object.entries(COLOR).filter(([k,v])=>/surface|borde
 function remapProps(s){
   // quoted light-surface / border / text hexes used in string-built markup (ternaries etc.); canvas fills are guarded below
   s = s.replace(/(fillStyle|strokeStyle)(\s*=\s*)(['"])(#[0-9a-fA-F]{3,6})\3/g, '$1$2$3CANVAS_$4$3');
+  s = s.replace(/((?:fill|stroke|stop-color|flood-color)=)(['"\\]+)(#[0-9a-fA-F]{3,6})/g, '$1$2CANVAS_$3'); // SVG presentation attrs keep real colours
   s = s.replace(/(['"])(#[0-9a-fA-F]{3,6})\1/g, (m,q,hex)=> SAFE_QUOTED.has(hex.toLowerCase()) ? q+COLOR[hex.toLowerCase()]+q : m);
   s = s.replace(/CANVAS_(#[0-9a-fA-F]{3,6})/g, '$1');
   return s.replace(/((?:^|[;"'`{\s])(?:color|background|background-color|border(?:-[a-z]+)*|outline|caret-color)\s*:\s*)(#[0-9a-fA-F]{3,6})(?![0-9a-fA-F])/g,(m,pre,hex)=>{
