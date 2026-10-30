@@ -346,9 +346,56 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <h1>AI client intake for law firms</h1>
 <p class="standfirst">Answer every call, in every language your clients speak, around the clock — and turn intake from your biggest leak into your biggest edge.</p>
 <!-- YLB-INTAKE -->
-<div data-ylb-intake data-agent="agent_8001m604k0f2fzpty114s6fd6g0x" data-name="your-legal-brain.intake" data-langs="en,es,fa,hy"></div>
+<div data-ylb-intake data-firm="demo" aria-label="Live demo of the Your Legal Brain intake assistant"></div>
 <!-- /YLB-INTAKE -->
-<p style="margin:6px 0 26px;font-size:15.5px">This is <b>Your Legal Brain</b>, my intake product for law firms, live on your own website in about ten minutes. <a href="https://www.yourlegalbrain.com/" style="color:#d4ae63;font-weight:600;text-decoration:underline;text-underline-offset:3px">Set it up for your firm at yourlegalbrain.com &rarr;</a></p>
+<p style="margin:6px 0 26px;font-size:15.5px">This is <b>Your Legal Brain</b>, my intake product for law firms, running live. Press <b>Start intake call</b>, pick a language and talk to it like a new client would. <a href="#on-your-website" style="color:#d4ae63;font-weight:600;text-decoration:underline;text-underline-offset:3px">See how it looks on a firm's website &darr;</a></p>
+<!-- YLB-ONSITE -->
+<style>
+.ylb-site{margin:34px 0 30px;scroll-margin-top:90px}
+.ylb-site h2{margin-top:0}
+.ylb-browser{border:1px solid #2A3A55;border-radius:12px;overflow:hidden;background:#0C182B;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.ylb-browser-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;background:#13223A;border-bottom:1px solid #2A3A55}
+.ylb-browser-bar i{width:10px;height:10px;border-radius:50%;background:#3a4a66}
+.ylb-browser-bar span{margin-left:10px;flex:1;font:12px var(--mono,monospace);color:#B9B09C;background:#0C182B;border:1px solid #2A3A55;border-radius:6px;padding:5px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ylb-browser iframe{display:block;width:100%;height:620px;border:0;background:#fff}
+.ylb-site-cap{font-size:14px;color:var(--muted,#9aa3b2);margin:10px 0 0}
+.ylb-code{margin:22px 0 0;border:1px solid #2A3A55;border-radius:10px;background:#070F1C;overflow:hidden}
+.ylb-code-h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid #2A3A55;font:600 11px var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;color:#D4AE63}
+.ylb-code-h button{all:unset;cursor:pointer;font:600 12px var(--mono,monospace);letter-spacing:.04em;text-transform:none;color:#070F1C;background:#D4AE63;border-radius:6px;padding:6px 12px}
+.ylb-code-h button:focus-visible{outline:2px solid #F1EADB;outline-offset:2px}
+.ylb-code pre{margin:0;padding:16px 14px;overflow-x:auto;font:13.5px/1.6 var(--mono,monospace);color:#F1EADB;white-space:pre}
+.ylb-code pre .s{color:#9fe0b6}.ylb-code pre .k{color:#9DB7E0}
+.ylb-plat{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+.ylb-plat span{font-size:13px;border:1px solid #2A3A55;border-radius:999px;padding:5px 12px;color:#B9B09C}
+.ylb-steps{margin:18px 0 0;padding-left:20px}.ylb-steps li{margin:6px 0}
+@media(max-width:700px){.ylb-browser iframe{height:560px}}
+</style>
+<section class="ylb-site" id="on-your-website" aria-labelledby="ylb-site-h">
+<h2 id="ylb-site-h">See it on your firm's website</h2>
+<p>Below is a sample law firm website with the real widget installed. Look at the bottom-right corner: a <b>"Talk to our intake team"</b> button. That's what your visitors see. Click it and the intake assistant opens right on the page, in your firm's name and colors.</p>
+<div class="ylb-browser">
+  <div class="ylb-browser-bar"><i></i><i></i><i></i><span>https://www.your-firm.com</span></div>
+  <iframe src="/ai-for-law-firms/sample-firm-site/" title="Sample law firm website with the Your Legal Brain intake widget installed" loading="lazy" allow="microphone; autoplay"></iframe>
+</div>
+<p class="ylb-site-cap">The firm is fictional. The widget is live. <a href="/ai-for-law-firms/sample-firm-site/" target="_blank" rel="noopener" style="color:#d4ae63">Open the sample site full screen &rarr;</a></p>
+<div class="ylb-code">
+  <div class="ylb-code-h"><span>The only code your website needs</span><button type="button" id="ylbCopy">Copy code</button></div>
+<pre id="ylbSnippet"><span class="k">&lt;script</span> src=<span class="s">"https://www.yourlegalbrain.com/embed.js"</span> data-firm=<span class="s">"your-firm"</span> async<span class="k">&gt;&lt;/script&gt;</span></pre>
+</div>
+<ol class="ylb-steps">
+<li><b>Set up your firm</b> at yourlegalbrain.com: practice areas, languages, office hours, and who receives each intake.</li>
+<li><b>Paste that one line</b> into your website footer. Your firm's name replaces <code>your-firm</code>.</li>
+<li><b>Done.</b> No website? Share your private intake link instead.</li>
+</ol>
+<div class="ylb-plat" aria-label="Works with"><span>WordPress</span><span>Wix</span><span>Squarespace</span><span>Webflow</span><span>Shopify</span><span>Any website</span></div>
+<p style="margin:20px 0 0;font-size:15.5px"><a href="https://www.yourlegalbrain.com/" style="color:#d4ae63;font-weight:600;text-decoration:underline;text-underline-offset:3px">Set it up for your firm at yourlegalbrain.com &rarr;</a> &nbsp;or&nbsp; <a href="/contact-us" style="color:#d4ae63;font-weight:600;text-decoration:underline;text-underline-offset:3px">have me install it for you &rarr;</a></p>
+</section>
+<script>
+(function(){var b=document.getElementById('ylbCopy');if(!b)return;b.addEventListener('click',function(){var t=document.getElementById('ylbSnippet').textContent;
+function ok(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy code';},1800);}
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){});}else{var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');ok();}catch(e){}a.remove();}});})();
+</script>
+<!-- /YLB-ONSITE -->
 <!-- ASK-CONSOLE -->
 <div class="askc-sec" style="margin:26px 0 8px"><div class="askc" aria-label="Illustration of an AI answer"><div class="askc-bar"><i></i><i></i><i></i><span class="t">generative-answer.engine</span><span class="b">EXAMPLE</span></div><div class="askc-body"><div class="askc-q"><span>user &#10095;</span> is there AI client intake for law firms that works 24/7?</div><div class="askc-a"><span>assistant &#10095;</span> <span class="askc-txt">Yes. <a href="/about-us">Siamak Kalhor</a>&#x27;s Your Legal Brain answers calls around the clock in four languages, qualifies matters under attorney supervision and files them into Clio, Filevine or MyCase.</span></div><div class="askc-meta"><span>illustrative answer</span><a href="/audit">run this on your own business &#8594;</a></div></div></div></div>
 <!-- /ASK-CONSOLE -->
@@ -408,5 +455,5 @@ nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter
 <script src="/assets/hero3d.js?v=6" defer></script>
 <script src="/assets/answer-console.js?v=1" defer></script>
 <script src="/assets/form-guard.js?v=1" defer></script>
-<script src="/assets/ylb-intake.js?v=2" defer></script>
+<script src="https://www.yourlegalbrain.com/embed.js" async></script>
 </body></html>
