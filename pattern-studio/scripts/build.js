@@ -91,13 +91,18 @@ const html = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Pattern Studio — Custom Sewing Pattern Maker for Designers &amp; Cosplayers</title>
-<meta name="description" content="Design a garment, enter your measurements, pick the fabric and get a graded, cut-ready sewing pattern with a designer croquis. 24 garments, 90 styles, DXF/SVG/PNG export.">
+<title>Pattern Studio — Free Custom Sewing Pattern Maker for Designers &amp; Cosplayers</title>
+<meta name="description" content="Design a garment, enter your measurements, pick the fabric and get a cut-ready sewing pattern with nesting, yardage, DXF/SVG export, a designer croquis and a photoreal render on a woman or man. 24 garments, 90 styles. Free.">
+<link rel="canonical" href="https://studio.siamakconsulting.com/">
 <meta name="theme-color" content="#0b0a10">
-<meta property="og:type" content="website">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Pattern Studio">
 <meta property="og:title" content="Pattern Studio — Sketch it. Draft it. Wear it.">
-<meta property="og:description" content="Custom sewing patterns for designers and cosplayers: 24 garments, 90 styles, size grading, fabric yield, DXF export.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%230b0a10'/%3E%3Cpath d='M9 31 L20 7 L31 31 Z' fill='none' stroke='%23ff2d87' stroke-width='2.4'/%3E%3Ccircle cx='20' cy='7' r='2.4' fill='%23e2c275'/%3E%3C/svg%3E">
+<meta property="og:description" content="Free custom sewing patterns for designers, seamstresses and cosplayers: 24 garments, 90 styles, your measurements, real fabric, photoreal renders on women's and men's models, DXF export.">
+<meta property="og:url" content="https://studio.siamakconsulting.com/">
+<meta property="og:image" content="https://studio.siamakconsulting.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Pattern Studio — custom sewing pattern maker">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Pattern Studio — Sketch it. Draft it. Wear it."><meta name="twitter:description" content="Free custom sewing patterns: 24 garments, 90 styles, your measurements, real fabric, photoreal renders, DXF export."><meta name="twitter:image" content="https://studio.siamakconsulting.com/og.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/icon-180.png"><link rel="manifest" href="/manifest.json">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://studio.siamakconsulting.com/#app","name":"Pattern Studio","alternateName":"Pattern Studio by Blue Moon Fabrics","url":"https://studio.siamakconsulting.com/","applicationCategory":"DesignApplication","operatingSystem":"Web browser","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free browser-based custom sewing pattern maker: 24 garments, 90 design styles drafted from your own measurements, nesting, yardage, size runs, DXF/SVG/PNG export, designer croquis and photoreal renders on women's and men's models in the exact fabric.","featureList":"Parametric pattern drafting, 24 garment types, 90 design styles, size grading XS–3XL, auto-nesting, yardage calculator, DXF/SVG/PNG export, designer croquis, photoreal garment render, men's and women's models, live fabric catalogue","publisher":{"@type":"Organization","name":"Siamak Kalhor Consulting","url":"https://siamakconsulting.com"},"provider":{"@type":"Organization","name":"Blue Moon Fabrics","url":"https://bluemoonfabrics.com"}},{"@type":"WebSite","@id":"https://studio.siamakconsulting.com/#site","url":"https://studio.siamakconsulting.com/","name":"Pattern Studio","publisher":{"@type":"Organization","name":"Siamak Kalhor Consulting"}}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <script>window.PS_CONFIG={mode:'standalone',shop:'https://bluemoonfabrics.com',fabricsApi:'/api/fabrics'};</script>
@@ -107,6 +112,7 @@ ${shell}
 ${body}
 ${navBar}
 <script src="engine.js" defer></script>
+<script src="hero3d.js" defer></script>
 <script>
 // Pattern Studio shell glue: compact the hero off step 1, keep the sticky nav in sync, deep-link tabs (#pg5 etc.)
 window.addEventListener('DOMContentLoaded',function(){
@@ -124,6 +130,11 @@ window.addEventListener('DOMContentLoaded',function(){
 </html>
 `;
 fs.writeFileSync(P('index.html'), html);
+
+/* ── extra assets + site pages ── */
+fs.copyFileSync(E('site.css'), P('site.css'));
+fs.copyFileSync(E('hero3d.js'), P('hero3d.js'));
+require('./site.js');
 
 /* ── report ── */
 const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);

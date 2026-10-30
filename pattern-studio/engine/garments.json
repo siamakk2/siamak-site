@@ -1,0 +1,2307 @@
+[
+ {
+  "id": "bikini_top",
+  "slug": "bikini-top",
+  "label": "Bikini Top",
+  "tip": "Underbust sets band size. Cup size shapes cup volume. Tie length determines coverage.",
+  "sku": "Synergy Nylon Lycra — 70 colors, 4-way stretch, chlorine-resistant",
+  "chips": [
+   "Underwire channel",
+   "Padding pocket",
+   "Removable pads",
+   "Tie back",
+   "Hook and eye",
+   "O-ring detail",
+   "Halter tie",
+   "Bandeau straps"
+  ],
+  "fields": [
+   {
+    "l": "Bust",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Underbust",
+    "h": "Below bust",
+    "req": true
+   },
+   {
+    "l": "Cup Size",
+    "h": "",
+    "req": true
+   },
+   {
+    "l": "Torso Front",
+    "h": "Shoulder to waist",
+    "req": true
+   },
+   {
+    "l": "Band Length",
+    "h": "Around ribcage",
+    "req": true
+   },
+   {
+    "l": "Tie Length",
+    "h": "Neck/back ties",
+    "req": false
+   }
+  ],
+  "styles": [
+   {
+    "name": "Triangle",
+    "sub": "Classic ties",
+    "pieces": [
+     "Cup Left",
+     "Cup Right",
+     "Band Front",
+     "Band Back",
+     "Neck Tie"
+    ]
+   },
+   {
+    "name": "Bandeau",
+    "sub": "No straps",
+    "pieces": [
+     "Front Panel",
+     "Back Panel",
+     "Underwire Channel"
+    ]
+   },
+   {
+    "name": "Halter",
+    "sub": "Neck tie",
+    "pieces": [
+     "Cup Left",
+     "Cup Right",
+     "Halter Neck Tie",
+     "Band"
+    ]
+   },
+   {
+    "name": "Underwire",
+    "sub": "Molded cup",
+    "pieces": [
+     "Cup Left",
+     "Cup Right",
+     "Cup Lining L",
+     "Cup Lining R",
+     "Band Front",
+     "Band Back",
+     "Underwire Channel"
+    ]
+   },
+   {
+    "name": "Longline",
+    "sub": "Extended band",
+    "pieces": [
+     "Cup Left",
+     "Cup Right",
+     "Front Band",
+     "Back Band",
+     "Strap"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "bikini_bottom",
+  "slug": "bikini-bottom",
+  "label": "Bikini Bottom",
+  "tip": "Crotch length total front-to-back is the most critical measurement.",
+  "sku": "Synergy Nylon Lycra — 70 colors, chlorine-resistant",
+  "chips": [
+   "Side ties",
+   "Ruched back",
+   "Scrunch",
+   "High waist",
+   "Brazilian",
+   "Full coverage",
+   "O-ring sides"
+  ],
+  "fields": [
+   {
+    "l": "Hips",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Waist",
+    "h": "Natural waist",
+    "req": true
+   },
+   {
+    "l": "Rise",
+    "h": "Waist to crotch front",
+    "req": true
+   },
+   {
+    "l": "Crotch Length",
+    "h": "Total girth through legs",
+    "req": true
+   },
+   {
+    "l": "Leg Opening",
+    "h": "Around upper thigh",
+    "req": true
+   }
+  ],
+  "styles": [
+   {
+    "name": "Brief",
+    "sub": "Classic cut",
+    "pieces": [
+     "Front",
+     "Back",
+     "Gusset"
+    ]
+   },
+   {
+    "name": "High Waist",
+    "sub": "Vintage style",
+    "pieces": [
+     "Front (High)",
+     "Back (High)",
+     "Gusset"
+    ]
+   },
+   {
+    "name": "Tie Side",
+    "sub": "String ties",
+    "pieces": [
+     "Front",
+     "Back",
+     "Gusset",
+     "Side Tie"
+    ]
+   },
+   {
+    "name": "Brazilian",
+    "sub": "Cheeky cut",
+    "pieces": [
+     "Front",
+     "Back (Brazilian)",
+     "Gusset"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "one_piece",
+  "slug": "one-piece",
+  "label": "One-Piece Swimsuit",
+  "tip": "Torso girth shoulder&#8209;to&#8209;crotch&#8209;to&#8209;shoulder is THE critical measurement.",
+  "sku": "Matte Nylon Spandex Classic — opacity and shape retention",
+  "chips": [
+   "Scoop neck",
+   "V-neck",
+   "High neck",
+   "Underwire",
+   "Tummy lining",
+   "Racerback",
+   "Ruching",
+   "Open back"
+  ],
+  "fields": [
+   {
+    "l": "Bust",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Waist",
+    "h": "Natural waist",
+    "req": true
+   },
+   {
+    "l": "Hips",
+    "h": "Fullest",
+    "req": true
+   },
+   {
+    "l": "Torso Girth",
+    "h": "Shoulder to crotch to shoulder back",
+    "req": true
+   },
+   {
+    "l": "Torso Front",
+    "h": "Shoulder to crotch front only",
+    "req": true
+   },
+   {
+    "l": "Cup Size",
+    "h": "",
+    "req": true
+   }
+  ],
+  "styles": [
+   {
+    "name": "Scoop Neck",
+    "sub": "Classic cut",
+    "pieces": [
+     "Front Body",
+     "Back Body",
+     "Strap",
+     "Crotch Lining"
+    ]
+   },
+   {
+    "name": "V-Neck",
+    "sub": "Deep V front",
+    "pieces": [
+     "Front Left",
+     "Front Right",
+     "Back Body",
+     "Strap",
+     "Crotch Lining"
+    ]
+   },
+   {
+    "name": "Racerback",
+    "sub": "Athletic back",
+    "pieces": [
+     "Front Body",
+     "Racerback Panel",
+     "Crotch Lining"
+    ]
+   },
+   {
+    "name": "Cut-Out",
+    "sub": "Side panels",
+    "pieces": [
+     "Front Body",
+     "Back Body",
+     "Side Panel",
+     "Strap",
+     "Crotch Lining"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "swim_dress",
+  "slug": "swim-dress",
+  "label": "Swim Dress",
+  "tip": "Hip and dress length determine the skirt flare. Use chlorine-resistant stretch fabric with UPF rating.",
+  "sku": "Synergy Nylon Lycra — 70 colors, chlorine-resistant, 4-way stretch",
+  "chips": [
+   "Built-in brief",
+   "Underwire",
+   "Tummy panel",
+   "Ruffled skirt",
+   "Bandeau top",
+   "Halter neck",
+   "Side gathering"
+  ],
+  "fields": [
+   {
+    "l": "Bust",
+    "h": "",
+    "req": true
+   },
+   {
+    "l": "Waist",
+    "h": "",
+    "req": true
+   },
+   {
+    "l": "Hips",
+    "h": "",
+    "req": true
+   },
+   {
+    "l": "Torso Girth",
+    "h": "Shoulder to crotch to shoulder back",
+    "req": true
+   },
+   {
+    "l": "Torso Front",
+    "h": "Shoulder to crotch front",
+    "req": true
+   },
+   {
+    "l": "Dress Length",
+    "h": "Shoulder to hem",
+    "req": true
+   }
+  ],
+  "styles": [
+   {
+    "name": "Tank Style",
+    "sub": "Built-in brief",
+    "pieces": [
+     "Front Bodice",
+     "Back Bodice",
+     "Front Skirt",
+     "Back Skirt",
+     "Brief Front",
+     "Brief Back",
+     "Crotch Gusset"
+    ]
+   },
+   {
+    "name": "Ruffled Skirt",
+    "sub": "Playful flare",
+    "pieces": [
+     "Front Bodice",
+     "Back Bodice",
+     "Front Skirt",
+     "Back Skirt",
+     "Ruffle Strip",
+     "Crotch Gusset"
+    ]
+   },
+   {
+    "name": "Halter Swim",
+    "sub": "Halter neck",
+    "pieces": [
+     "Front Bodice",
+     "Back Bodice",
+     "Halter Tie",
+     "Front Skirt",
+     "Back Skirt",
+     "Crotch Gusset"
+    ]
+   },
+   {
+    "name": "Bandeau Swim",
+    "sub": "Strapless bodice",
+    "pieces": [
+     "Front Bandeau",
+     "Back Bandeau",
+     "Elastic Channel",
+     "Front Skirt",
+     "Back Skirt",
+     "Crotch Gusset"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "leggings",
+  "slug": "leggings",
+  "label": "Leggings",
+  "tip": "Thigh, knee and calf shape the silhouette. Use 0&#8209;5% negative ease for compression.",
+  "sku": "Core Recycled Nylon Spandex — eco-certified 4-way stretch",
+  "chips": [
+   "High waistband",
+   "Side pocket",
+   "Phone pocket",
+   "Wide waist",
+   "Fold-over waist",
+   "Compression panel",
+   "Mesh insert"
+  ],
+  "fields": [
+   {
+    "l": "Waist",
+    "h": "Natural waist",
+    "req": true
+   },
+   {
+    "l": "Hips",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Thigh",
+    "h": "Upper thigh fullest",
+    "req": true
+   },
+   {
+    "l": "Knee",
+    "h": "Around knee",
+    "req": true
+   },
+   {
+    "l": "Calf",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Inseam",
+    "h": "Crotch to ankle",
+    "req": true
+   },
+   {
+    "l": "Rise",
+    "h": "Waist to crotch front",
+    "req": true
+   }
+  ],
+  "styles": [
+   {
+    "name": "Full Length",
+    "sub": "Ankle",
+    "pieces": [
+     "Front Leg L",
+     "Front Leg R",
+     "Back Leg L",
+     "Back Leg R",
+     "Waistband"
+    ]
+   },
+   {
+    "name": "7/8 Length",
+    "sub": "Below calf",
+    "pieces": [
+     "Front Leg L",
+     "Front Leg R",
+     "Back Leg L",
+     "Back Leg R",
+     "Waistband"
+    ]
+   },
+   {
+    "name": "Capri",
+    "sub": "Mid-calf",
+    "pieces": [
+     "Front Leg L",
+     "Front Leg R",
+     "Back Leg L",
+     "Back Leg R",
+     "Waistband"
+    ]
+   },
+   {
+    "name": "High Waist",
+    "sub": "Wide band",
+    "pieces": [
+     "Front Leg L",
+     "Front Leg R",
+     "Back Leg L",
+     "Back Leg R",
+     "High Waistband"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "sports_bra",
+  "slug": "sports-bra",
+  "label": "Sports Bra",
+  "tip": "Underbust and impact level determine structure and support required.",
+  "sku": "Matte Nylon Spandex Classic Collection",
+  "chips": [
+   "Removable padding",
+   "Sewn-in padding",
+   "Underwire",
+   "Racerback",
+   "Cross-back",
+   "Mesh panel",
+   "Longline",
+   "Front zip"
+  ],
+  "fields": [
+   {
+    "l": "Bust",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Underbust",
+    "h": "Below bust",
+    "req": true
+   },
+   {
+    "l": "Cup Size",
+    "h": "",
+    "req": true
+   },
+   {
+    "l": "Band Circumf.",
+    "h": "Around ribcage",
+    "req": true
+   },
+   {
+    "l": "Strap Length",
+    "h": "Shoulder to band",
+    "req": true
+   },
+   {
+    "l": "Impact Level",
+    "h": "",
+    "req": true
+   }
+  ],
+  "styles": [
+   {
+    "name": "Scoop Neck",
+    "sub": "Versatile",
+    "pieces": [
+     "Cup Front",
+     "Band Front",
+     "Band Back",
+     "Strap"
+    ]
+   },
+   {
+    "name": "Racerback",
+    "sub": "Athletic",
+    "pieces": [
+     "Cup Front",
+     "Band Front",
+     "Racerback Panel",
+     "Band Back"
+    ]
+   },
+   {
+    "name": "Longline",
+    "sub": "Extended band",
+    "pieces": [
+     "Cup Front",
+     "Front Band",
+     "Back Band",
+     "Strap"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "leotard",
+  "slug": "leotard",
+  "label": "Leotard",
+  "tip": "Torso girth is THE most important. Uses negative ease. Needs 50&#8209;75% stretch.",
+  "sku": "Mystique Foiled Spandex OR Solid Velvet — stage drama and 4-way stretch",
+  "chips": [
+   "Scoop neck",
+   "V-neck",
+   "High neck",
+   "Sweetheart",
+   "Long sleeve",
+   "Short sleeve",
+   "Tank",
+   "Racerback",
+   "Ballet leg",
+   "Princess seam",
+   "Boning",
+   "Lining"
+  ],
+  "fields": [
+   {
+    "l": "Bust",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Waist",
+    "h": "Natural waist",
+    "req": true
+   },
+   {
+    "l": "Hips",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Torso Girth",
+    "h": "Shoulder to crotch to shoulder back",
+    "req": true
+   },
+   {
+    "l": "Torso Front",
+    "h": "Shoulder to crotch front",
+    "req": true
+   },
+   {
+    "l": "Armhole Depth",
+    "h": "Shoulder to underarm",
+    "req": true
+   },
+   {
+    "l": "Shoulder Width",
+    "h": "Across back",
+    "req": true
+   }
+  ],
+  "styles": [
+   {
+    "name": "Scoop Back",
+    "sub": "Classic dance",
+    "pieces": [
+     "Front Body",
+     "Back Body",
+     "Strap",
+     "Crotch"
+    ]
+   },
+   {
+    "name": "High Neck",
+    "sub": "Elegant",
+    "pieces": [
+     "Front Body",
+     "Back Body",
+     "Collar",
+     "Crotch"
+    ]
+   },
+   {
+    "name": "Sweetheart",
+    "sub": "Romantic",
+    "pieces": [
+     "Front Body",
+     "Back Body",
+     "Strap",
+     "Crotch"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "unitard",
+  "slug": "unitard",
+  "label": "Unitard / Catsuit",
+  "tip": "Torso girth shoulder through crotch to shoulder. Min 50% stretch required.",
+  "sku": "Synergy Nylon Lycra OR Mystique Foiled Spandex — full body power stretch",
+  "chips": [
+   "Long sleeve",
+   "Short sleeve",
+   "Tank",
+   "Mock neck",
+   "Turtleneck",
+   "Scoop neck",
+   "Racerback",
+   "Zipper back",
+   "Stirrup foot",
+   "Open foot",
+   "Lining"
+  ],
+  "fields": [
+   {
+    "l": "Bust",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Waist",
+    "h": "Natural waist",
+    "req": true
+   },
+   {
+    "l": "Hips",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Torso Girth",
+    "h": "Shoulder to crotch to shoulder back",
+    "req": true
+   },
+   {
+    "l": "Torso Front",
+    "h": "Shoulder to crotch front",
+    "req": true
+   },
+   {
+    "l": "Inseam",
+    "h": "Crotch to ankle",
+    "req": true
+   },
+   {
+    "l": "Thigh",
+    "h": "Upper thigh fullest",
+    "req": true
+   },
+   {
+    "l": "Knee",
+    "h": "Around knee",
+    "req": true
+   },
+   {
+    "l": "Calf",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Shoulder Width",
+    "h": "Across back",
+    "req": false
+   }
+  ],
+  "styles": [
+   {
+    "name": "Tank",
+    "sub": "No sleeve",
+    "pieces": [
+     "Front Body",
+     "Back Body",
+     "Front Leg L",
+     "Front Leg R",
+     "Back Leg L",
+     "Back Leg R"
+    ]
+   },
+   {
+    "name": "Long Sleeve",
+    "sub": "Full coverage",
+    "pieces": [
+     "Front Body",
+     "Back Body",
+     "Sleeve",
+     "Front Leg L",
+     "Front Leg R",
+     "Back Leg L",
+     "Back Leg R"
+    ]
+   },
+   {
+    "name": "Zipfront Catsuit",
+    "sub": "Front zip closure",
+    "pieces": [
+     "Front Body",
+     "Back Body",
+     "Left Leg",
+     "Crotch Gusset",
+     "Zip Placket",
+     "Neck Band"
+    ]
+   },
+   {
+    "name": "Open-Back",
+    "sub": "Plunge open back",
+    "pieces": [
+     "Front Body",
+     "Back Body",
+     "Left Leg",
+     "Crotch Gusset",
+     "Neck Strap"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "crop_top",
+  "slug": "crop-top",
+  "label": "Crop Top",
+  "tip": "Front and back length set the crop point. Armhole depth shapes the sleeve opening.",
+  "sku": "Synergy Polyester Lycra OR Two-Tone Rib Nylon",
+  "chips": [
+   "Scoop neck",
+   "V-neck",
+   "Square neck",
+   "Off-shoulder",
+   "Ruched front",
+   "Bralette style",
+   "Long sleeve",
+   "Short sleeve"
+  ],
+  "fields": [
+   {
+    "l": "Bust",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Cup Size",
+    "h": "",
+    "req": false
+   },
+   {
+    "l": "Shoulder Width",
+    "h": "Shoulder to shoulder",
+    "req": true
+   },
+   {
+    "l": "Armhole Depth",
+    "h": "Shoulder to underarm",
+    "req": true
+   },
+   {
+    "l": "Front Length",
+    "h": "Shoulder to hem front",
+    "req": true
+   },
+   {
+    "l": "Back Length",
+    "h": "Shoulder to hem back",
+    "req": true
+   }
+  ],
+  "styles": [
+   {
+    "name": "Fitted",
+    "sub": "Classic fit",
+    "pieces": [
+     "Front",
+     "Back",
+     "Neck Binding",
+     "Hem Band"
+    ]
+   },
+   {
+    "name": "Bralette",
+    "sub": "Triangle cups",
+    "pieces": [
+     "Cup Left",
+     "Cup Right",
+     "Band",
+     "Neck Tie"
+    ]
+   },
+   {
+    "name": "Square Neck",
+    "sub": "Modern look",
+    "pieces": [
+     "Front",
+     "Back",
+     "Square Neck Binding",
+     "Hem Band"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "bodycon_dress",
+  "slug": "bodycon-dress",
+  "label": "Bodycon Dress",
+  "tip": "Waist position and hip position create the curved side seam.",
+  "sku": "Harmony Ultra Soft Double Knit — luxurious drape and stretch",
+  "chips": [
+   "Scoop neck",
+   "V-neck",
+   "Square neck",
+   "Off-shoulder",
+   "Strapless",
+   "Side slit",
+   "Back zip",
+   "Lining"
+  ],
+  "fields": [
+   {
+    "l": "Bust",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Waist",
+    "h": "Natural waist",
+    "req": true
+   },
+   {
+    "l": "Hips",
+    "h": "Fullest",
+    "req": true
+   },
+   {
+    "l": "Shoulder Width",
+    "h": "Shoulder to shoulder",
+    "req": true
+   },
+   {
+    "l": "Front Length",
+    "h": "Shoulder to hem front",
+    "req": true
+   },
+   {
+    "l": "Back Length",
+    "h": "Shoulder to hem back",
+    "req": true
+   },
+   {
+    "l": "Waist Position",
+    "h": "Shoulder to natural waist",
+    "req": true
+   },
+   {
+    "l": "Hip Position",
+    "h": "Waist to fullest hip",
+    "req": true
+   }
+  ],
+  "styles": [
+   {
+    "name": "Mini",
+    "sub": "Above knee",
+    "pieces": [
+     "Front",
+     "Back",
+     "Neck Facing"
+    ]
+   },
+   {
+    "name": "Midi",
+    "sub": "Below knee",
+    "pieces": [
+     "Front",
+     "Back",
+     "Neck Facing"
+    ]
+   },
+   {
+    "name": "Maxi",
+    "sub": "Floor length",
+    "pieces": [
+     "Front",
+     "Back",
+     "Neck Facing"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "maxi_dress",
+  "slug": "maxi-dress",
+  "label": "Maxi Dress",
+  "tip": "Full length from shoulder to floor is critical. Hem flare controls the sweep.",
+  "sku": "Harmony Ultra Soft Double Knit OR Jersey — fluid drape for maxi silhouettes",
+  "chips": [
+   "Spaghetti straps",
+   "Halter neck",
+   "Off-shoulder",
+   "V-neck",
+   "Empire waist",
+   "Wrap front",
+   "Side slit",
+   "Tiered skirt",
+   "Lining"
+  ],
+  "fields": [
+   {
+    "l": "Bust",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Waist",
+    "h": "Natural waist",
+    "req": true
+   },
+   {
+    "l": "Hips",
+    "h": "Fullest",
+    "req": true
+   },
+   {
+    "l": "Shoulder Width",
+    "h": "Shoulder to shoulder",
+    "req": true
+   },
+   {
+    "l": "Full Length",
+    "h": "Shoulder to floor/hem",
+    "req": true
+   },
+   {
+    "l": "Waist Position",
+    "h": "Shoulder to natural waist",
+    "req": true
+   },
+   {
+    "l": "Hip Position",
+    "h": "Waist to fullest hip",
+    "req": true
+   },
+   {
+    "l": "Hem Flare",
+    "h": "Extra width at hem vs hip",
+    "req": false
+   }
+  ],
+  "styles": [
+   {
+    "name": "Slip Maxi",
+    "sub": "Minimalist",
+    "pieces": [
+     "Front",
+     "Back",
+     "Strap"
+    ]
+   },
+   {
+    "name": "Empire Waist",
+    "sub": "High seam",
+    "pieces": [
+     "Front Bodice",
+     "Back Bodice",
+     "Front Skirt",
+     "Back Skirt",
+     "Strap"
+    ]
+   },
+   {
+    "name": "Tiered",
+    "sub": "Layered skirt",
+    "pieces": [
+     "Front Bodice",
+     "Back Bodice",
+     "Tier 1",
+     "Tier 2",
+     "Tier 3",
+     "Strap"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "night_dress",
+  "slug": "night-dress",
+  "label": "Nightgown / Slip Dress",
+  "tip": "Bust and hip determine ease. Slip dresses use 1&#8209;2\" positive ease for comfort.",
+  "sku": "Satin Charmeuse OR Stretch Lace — luxurious hand and drape for sleepwear",
+  "chips": [
+   "Spaghetti straps",
+   "V-neck",
+   "Lace trim",
+   "Ruffle hem",
+   "Bias cut",
+   "Empire waist",
+   "Side slit",
+   "Cowl neck"
+  ],
+  "fields": [
+   {
+    "l": "Bust",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Waist",
+    "h": "Natural waist",
+    "req": true
+   },
+   {
+    "l": "Hips",
+    "h": "Fullest",
+    "req": true
+   },
+   {
+    "l": "Shoulder Width",
+    "h": "Shoulder to shoulder",
+    "req": true
+   },
+   {
+    "l": "Length",
+    "h": "Shoulder to hem",
+    "req": true
+   },
+   {
+    "l": "Waist Position",
+    "h": "Shoulder to natural waist",
+    "req": true
+   }
+  ],
+  "styles": [
+   {
+    "name": "Classic Slip",
+    "sub": "Simple straps",
+    "pieces": [
+     "Front",
+     "Back",
+     "Strap Left",
+     "Strap Right",
+     "Bodice Lining"
+    ]
+   },
+   {
+    "name": "Cowl Neck",
+    "sub": "Draped front",
+    "pieces": [
+     "Front (Cowl)",
+     "Back",
+     "Strap Left",
+     "Strap Right"
+    ]
+   },
+   {
+    "name": "Satin Slip",
+    "sub": "Bias-cut satin",
+    "pieces": [
+     "Front (bias cut)",
+     "Back (bias cut)",
+     "Spaghetti Strap",
+     "Lining Front"
+    ]
+   },
+   {
+    "name": "Babydoll",
+    "sub": "Short empire silhouette",
+    "pieces": [
+     "Bodice Front",
+     "Bodice Back",
+     "Skirt Front",
+     "Skirt Back",
+     "Spaghetti Strap"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "two_piece",
+  "slug": "two-piece",
+  "label": "Two-Piece Set",
+  "tip": "Waist and hip must coordinate between top and bottom for a matching set.",
+  "sku": "Synergy Nylon Lycra OR Rib Knit — coordinates beautifully as a matching set",
+  "chips": [
+   "Crop top",
+   "Bandeau top",
+   "Bralette top",
+   "Off-shoulder",
+   "Ruched top",
+   "Elastic waist",
+   "High waist",
+   "Ruffled hem"
+  ],
+  "fields": [
+   {
+    "l": "Bust",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Waist",
+    "h": "Natural waist",
+    "req": true
+   },
+   {
+    "l": "Hips",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Top Length",
+    "h": "Shoulder to top hem",
+    "req": true
+   },
+   {
+    "l": "Bottom Length",
+    "h": "Waist to hem",
+    "req": true
+   },
+   {
+    "l": "Shoulder Width",
+    "h": "Shoulder to shoulder",
+    "req": true
+   },
+   {
+    "l": "Skirt Length",
+    "h": "Waist to skirt hem",
+    "req": false
+   },
+   {
+    "l": "Inseam",
+    "h": "Crotch to ankle (palazzo)",
+    "req": false
+   },
+   {
+    "l": "Rise",
+    "h": "Waist to crotch, seated",
+    "req": false
+   }
+  ],
+  "styles": [
+   {
+    "name": "Crop + Skirt",
+    "sub": "Classic set",
+    "pieces": [
+     "Top Front",
+     "Top Back",
+     "Bottom Front",
+     "Bottom Back",
+     "Waistband"
+    ]
+   },
+   {
+    "name": "Bralette + Shorts",
+    "sub": "Sporty set",
+    "pieces": [
+     "Bra Cup L",
+     "Bra Cup R",
+     "Bra Band",
+     "Short Front L",
+     "Short Front R",
+     "Short Back L",
+     "Short Back R",
+     "Waistband"
+    ]
+   },
+   {
+    "name": "Halter Set",
+    "sub": "Halter top + mini skirt",
+    "pieces": [
+     "Top Front",
+     "Top Back",
+     "Halter Tie",
+     "Skirt Front",
+     "Skirt Back",
+     "Waistband"
+    ]
+   },
+   {
+    "name": "Palazzo Set",
+    "sub": "Crop top + wide-leg pants",
+    "pieces": [
+     "Top Front",
+     "Top Back",
+     "Front Pant",
+     "Back Pant",
+     "Waistband"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "jumpsuit",
+  "slug": "jumpsuit",
+  "label": "Jumpsuit",
+  "tip": "Torso girth shoulder-to-crotch-to-shoulder is the critical measurement. Inseam and thigh determine the leg fit.",
+  "sku": "Harmony Double Knit OR Recycled Nylon Spandex — fluid drape with stretch",
+  "chips": [
+   "Sleeveless",
+   "Short sleeve",
+   "Long sleeve",
+   "Wide leg",
+   "Tapered leg",
+   "Utility pockets",
+   "Elastic waist",
+   "Zipper front"
+  ],
+  "fields": [
+   {
+    "l": "Bust",
+    "h": "",
+    "req": true
+   },
+   {
+    "l": "Waist",
+    "h": "",
+    "req": true
+   },
+   {
+    "l": "Hips",
+    "h": "",
+    "req": true
+   },
+   {
+    "l": "Torso Girth",
+    "h": "Shoulder to crotch to shoulder back",
+    "req": true
+   },
+   {
+    "l": "Torso Front",
+    "h": "Shoulder to crotch front",
+    "req": true
+   },
+   {
+    "l": "Inseam",
+    "h": "Crotch to ankle",
+    "req": true
+   },
+   {
+    "l": "Thigh",
+    "h": "",
+    "req": true
+   },
+   {
+    "l": "Rise",
+    "h": "Waist to crotch, seated",
+    "req": false
+   }
+  ],
+  "styles": [
+   {
+    "name": "Sleeveless",
+    "sub": "Classic column",
+    "pieces": [
+     "Front Bodice",
+     "Back Bodice",
+     "Front Leg L",
+     "Front Leg R",
+     "Back Leg L",
+     "Back Leg R"
+    ]
+   },
+   {
+    "name": "Wide-Leg",
+    "sub": "Belted waist",
+    "pieces": [
+     "Front Bodice",
+     "Back Bodice",
+     "Front Wide Leg L",
+     "Front Wide Leg R",
+     "Back Wide Leg L",
+     "Back Wide Leg R",
+     "Belt"
+    ]
+   },
+   {
+    "name": "Strapless",
+    "sub": "Off-shoulder",
+    "pieces": [
+     "Front Bodice",
+     "Back Bodice",
+     "Top Elastic",
+     "Left Front Pant",
+     "Left Back Pant",
+     "Crotch Gusset"
+    ]
+   },
+   {
+    "name": "Midi Jumpsuit",
+    "sub": "Belted midi length",
+    "pieces": [
+     "Front Bodice",
+     "Back Bodice",
+     "Belt",
+     "Left Front Pant",
+     "Left Back Pant",
+     "Crotch Gusset"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "skirt",
+  "slug": "skirt",
+  "label": "Skirt",
+  "tip": "Skirt style determines piece shapes. A-line and circle need more fabric.",
+  "sku": "Stretch Velvet OR Matte Nylon Spandex",
+  "chips": [
+   "Elastic waist",
+   "Structured waistband",
+   "Side zip",
+   "Back zip",
+   "Lining",
+   "Pockets",
+   "Front slit",
+   "Ruffle hem"
+  ],
+  "fields": [
+   {
+    "l": "Waist",
+    "h": "Natural waist",
+    "req": true
+   },
+   {
+    "l": "Hips",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Hip Depth",
+    "h": "Waist to fullest hip",
+    "req": true
+   },
+   {
+    "l": "Skirt Length",
+    "h": "Waist to hem",
+    "req": true
+   }
+  ],
+  "styles": [
+   {
+    "name": "A-Line",
+    "sub": "Classic flare",
+    "pieces": [
+     "Front Panel",
+     "Back Panel",
+     "Waistband"
+    ]
+   },
+   {
+    "name": "Pencil",
+    "sub": "Fitted straight",
+    "pieces": [
+     "Front Panel",
+     "Back Panel",
+     "Waistband"
+    ]
+   },
+   {
+    "name": "Circle",
+    "sub": "Full flare",
+    "pieces": [
+     "Front Panel",
+     "Back Panel",
+     "Waistband"
+    ]
+   },
+   {
+    "name": "Mini",
+    "sub": "Above knee",
+    "pieces": [
+     "Front Panel",
+     "Back Panel",
+     "Waistband"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "shorts",
+  "slug": "shorts",
+  "label": "Shorts",
+  "tip": "Rise and inseam determine coverage. Bike shorts need negative ease.",
+  "sku": "Core Recycled Nylon Spandex OR Synergy Nylon Lycra",
+  "chips": [
+   "Wide waistband",
+   "Fold-over waist",
+   "Side pocket",
+   "Hidden pocket",
+   "Phone pocket",
+   "Inner brief",
+   "Drawstring",
+   "Split hem"
+  ],
+  "fields": [
+   {
+    "l": "Waist",
+    "h": "Natural waist",
+    "req": true
+   },
+   {
+    "l": "Hips",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Thigh",
+    "h": "Upper thigh fullest",
+    "req": true
+   },
+   {
+    "l": "Rise",
+    "h": "Waist to crotch front",
+    "req": true
+   },
+   {
+    "l": "Inseam",
+    "h": "Crotch to hem",
+    "req": true
+   }
+  ],
+  "styles": [
+   {
+    "name": "Bike Short",
+    "sub": "Compression",
+    "pieces": [
+     "Front L",
+     "Front R",
+     "Back L",
+     "Back R",
+     "Waistband"
+    ]
+   },
+   {
+    "name": "High Waist",
+    "sub": "Wide band",
+    "pieces": [
+     "Front L",
+     "Front R",
+     "Back L",
+     "Back R",
+     "High Waistband"
+    ]
+   },
+   {
+    "name": "Board Short",
+    "sub": "Relaxed fit",
+    "pieces": [
+     "Front L",
+     "Front R",
+     "Back L",
+     "Back R",
+     "Waistband"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "lingerie",
+  "slug": "lingerie",
+  "label": "Lingerie / Bodysuit",
+  "tip": "Torso girth determines snap placement. 10&#8209;15% negative ease. Needs 75%+ stretch.",
+  "sku": "Stretch Lace OR Satin-finish Spandex — sensual drape with functional stretch",
+  "chips": [
+   "Underwire",
+   "Removable padding",
+   "Sheer panels",
+   "Lace overlay",
+   "Satin lining",
+   "Snap crotch",
+   "Zipper back",
+   "Ribbon trim",
+   "Boning",
+   "Plunge",
+   "Demi cup"
+  ],
+  "fields": [
+   {
+    "l": "Bust",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Underbust",
+    "h": "Below bust",
+    "req": true
+   },
+   {
+    "l": "Waist",
+    "h": "Natural waist",
+    "req": true
+   },
+   {
+    "l": "Hips",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Torso Girth",
+    "h": "Shoulder to crotch to shoulder back",
+    "req": true
+   },
+   {
+    "l": "Cup Size",
+    "h": "",
+    "req": true
+   }
+  ],
+  "styles": [
+   {
+    "name": "Bodysuit",
+    "sub": "Snap crotch",
+    "pieces": [
+     "Front Body",
+     "Back Body",
+     "Cup Left",
+     "Cup Right",
+     "Crotch Gusset"
+    ]
+   },
+   {
+    "name": "Teddy",
+    "sub": "Loose cut",
+    "pieces": [
+     "Front Body",
+     "Back Body",
+     "Crotch Gusset"
+    ]
+   },
+   {
+    "name": "Chemise",
+    "sub": "Short slip",
+    "pieces": [
+     "Front",
+     "Back",
+     "Spaghetti Strap",
+     "Lace Trim"
+    ]
+   },
+   {
+    "name": "Lace Bodysuit",
+    "sub": "All-lace fitted",
+    "pieces": [
+     "Front Body",
+     "Back Body",
+     "Cup Lining L",
+     "Snap Gusset",
+     "Strap"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "costume",
+  "slug": "costume",
+  "label": "Costume / Couture",
+  "tip": "All measurements critical. Torso girth connects bodice to skirt. Add boning for structure.",
+  "sku": "Sequin on Mesh AND Stretch Lace — show-stopping stage presence",
+  "chips": [
+   "Strapless",
+   "Halter",
+   "Princess seam",
+   "Boning",
+   "Underlining",
+   "Lining",
+   "Bustle",
+   "Peplum",
+   "Train",
+   "Corset lacing",
+   "Sequin overlay",
+   "Tulle underskirt"
+  ],
+  "fields": [
+   {
+    "l": "Bust",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Waist",
+    "h": "Natural waist",
+    "req": true
+   },
+   {
+    "l": "Hips",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Torso Girth",
+    "h": "Shoulder to crotch to shoulder back",
+    "req": true
+   },
+   {
+    "l": "Shoulder Width",
+    "h": "Across back",
+    "req": true
+   },
+   {
+    "l": "Armhole Depth",
+    "h": "Shoulder to underarm",
+    "req": true
+   },
+   {
+    "l": "Waist Position",
+    "h": "Shoulder to natural waist",
+    "req": true
+   },
+   {
+    "l": "Skirt/Leg Length",
+    "h": "Waist to hem",
+    "req": true
+   },
+   {
+    "l": "Cup Size",
+    "h": "",
+    "req": true
+   }
+  ],
+  "styles": [
+   {
+    "name": "Ball Gown",
+    "sub": "Full skirt",
+    "pieces": [
+     "Bodice Front L",
+     "Bodice Front R",
+     "Bodice Back L",
+     "Bodice Back R",
+     "Skirt Front",
+     "Skirt Back",
+     "Underlining"
+    ]
+   },
+   {
+    "name": "Mermaid",
+    "sub": "Fitted to flare",
+    "pieces": [
+     "Bodice Front L",
+     "Bodice Front R",
+     "Bodice Back L",
+     "Bodice Back R",
+     "Fitted Skirt F",
+     "Fitted Skirt B",
+     "Trumpet Flare"
+    ]
+   },
+   {
+    "name": "Jumpsuit",
+    "sub": "All-in-one",
+    "pieces": [
+     "Bodice Front L",
+     "Bodice Front R",
+     "Bodice Back L",
+     "Bodice Back R",
+     "Front Leg L",
+     "Front Leg R",
+     "Back Leg L",
+     "Back Leg R"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "wrap_dress",
+  "slug": "wrap-dress",
+  "label": "Wrap Dress",
+  "tip": "Waist position and hip measurement shape the cross-front wrap. Add ease: at least 3\" at bust for comfortable overlap.",
+  "sku": "Harmony Ultra Soft Double Knit OR Jersey Knit — fluid drape essential for wrap silhouette",
+  "chips": [
+   "Deep V wrap",
+   "Self-tie belt",
+   "Fixed belt",
+   "Ruffle hem",
+   "Long sleeve",
+   "Short sleeve",
+   "Cap sleeve",
+   "Sleeveless",
+   "Midi length",
+   "Maxi length",
+   "Lined bodice",
+   "Flutter sleeve"
+  ],
+  "fields": [
+   {
+    "l": "Bust",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Waist",
+    "h": "Natural waist",
+    "req": true
+   },
+   {
+    "l": "Hips",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Shoulder Width",
+    "h": "Shoulder to shoulder",
+    "req": true
+   },
+   {
+    "l": "Front Length",
+    "h": "Shoulder to hem front",
+    "req": true
+   },
+   {
+    "l": "Back Length",
+    "h": "Shoulder to hem back",
+    "req": true
+   },
+   {
+    "l": "Waist Position",
+    "h": "Shoulder to natural waist",
+    "req": true
+   },
+   {
+    "l": "Sleeve Length",
+    "h": "Shoulder to cuff",
+    "req": false
+   },
+   {
+    "l": "Tie Length",
+    "h": "Each belt tie",
+    "req": false
+   }
+  ],
+  "styles": [
+   {
+    "name": "Short Sleeve",
+    "sub": "Classic wrap",
+    "pieces": [
+     "Front Left Panel",
+     "Front Right Panel",
+     "Back Panel",
+     "Sleeve",
+     "Belt Tie",
+     "Neck Binding"
+    ]
+   },
+   {
+    "name": "Sleeveless",
+    "sub": "Minimal wrap",
+    "pieces": [
+     "Front Left Panel",
+     "Front Right Panel",
+     "Back Panel",
+     "Belt Tie",
+     "Neck/Arm Binding"
+    ]
+   },
+   {
+    "name": "Long Sleeve",
+    "sub": "Elegant wrap",
+    "pieces": [
+     "Front Left Panel",
+     "Front Right Panel",
+     "Back Panel",
+     "Long Sleeve",
+     "Belt Tie",
+     "Neck Binding"
+    ]
+   },
+   {
+    "name": "Flutter Sleeve",
+    "sub": "Romantic drape",
+    "pieces": [
+     "Front Left Panel",
+     "Front Right Panel",
+     "Back Panel",
+     "Flutter Sleeve",
+     "Belt Tie",
+     "Neck Binding"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "rash_guard",
+  "slug": "rash-guard",
+  "label": "Rash Guard / Swim Top",
+  "tip": "Chest and torso length are key. Use 0–5% negative ease for fitted. Needs 60%+ stretch. UPF fabric recommended.",
+  "sku": "Synergy Nylon Lycra — chlorine-resistant, colour-fast, ideal for swim & surf",
+  "chips": [
+   "Long sleeve UPF 50+",
+   "Short sleeve",
+   "Tank",
+   "Zip front",
+   "Mock neck",
+   "Round neck",
+   "Flat lock seams",
+   "Thumb holes",
+   "Built-in bra",
+   "Chest panel",
+   "Side panels",
+   "Printed panels"
+  ],
+  "fields": [
+   {
+    "l": "Chest / Bust",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Waist",
+    "h": "At hem",
+    "req": true
+   },
+   {
+    "l": "Shoulder Width",
+    "h": "Shoulder to shoulder",
+    "req": true
+   },
+   {
+    "l": "Armhole Depth",
+    "h": "Shoulder to underarm",
+    "req": true
+   },
+   {
+    "l": "Front Length",
+    "h": "Shoulder to hem",
+    "req": true
+   },
+   {
+    "l": "Back Length",
+    "h": "Shoulder to hem back",
+    "req": true
+   },
+   {
+    "l": "Sleeve Length",
+    "h": "Shoulder to cuff",
+    "req": false
+   },
+   {
+    "l": "Sleeve Width",
+    "h": "Bicep circumference",
+    "req": false
+   }
+  ],
+  "styles": [
+   {
+    "name": "Long Sleeve",
+    "sub": "UPF 50+ coverage",
+    "pieces": [
+     "Front Body",
+     "Back Body",
+     "Sleeve Left",
+     "Sleeve Right",
+     "Cuff",
+     "Neck Binding",
+     "Hem Band"
+    ]
+   },
+   {
+    "name": "Short Sleeve",
+    "sub": "Classic surf top",
+    "pieces": [
+     "Front Body",
+     "Back Body",
+     "Sleeve Left",
+     "Sleeve Right",
+     "Neck Binding",
+     "Hem Band"
+    ]
+   },
+   {
+    "name": "Tank / Vest",
+    "sub": "No sleeve",
+    "pieces": [
+     "Front Body",
+     "Back Body",
+     "Neck Binding",
+     "Armhole Binding",
+     "Hem Band"
+    ]
+   },
+   {
+    "name": "Zip Front",
+    "sub": "Easy on / off",
+    "pieces": [
+     "Front Left",
+     "Front Right",
+     "Back Body",
+     "Sleeve Left",
+     "Sleeve Right",
+     "Front Placket",
+     "Cuff",
+     "Hem Band"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "biker_shorts",
+  "slug": "biker-shorts",
+  "label": "Biker Shorts",
+  "tip": "Waist sets the waistband. Inseam determines the length — typically 4-7 inches.",
+  "sku": "Power Lycra — compression fabric, 85/15 nylon lycra, 4-way stretch",
+  "chips": [
+   "Wide waistband",
+   "Compression",
+   "Moisture-wicking",
+   "Flat seams",
+   "4-way stretch",
+   "Side pockets",
+   "Hidden pocket",
+   "UPF 50+"
+  ],
+  "fields": [
+   {
+    "l": "Waist",
+    "h": "Natural waist",
+    "req": true
+   },
+   {
+    "l": "Hips",
+    "h": "Fullest point",
+    "req": true
+   },
+   {
+    "l": "Inseam",
+    "h": "4-7\" typical",
+    "req": true
+   },
+   {
+    "l": "Rise",
+    "h": "Waist to crotch",
+    "req": false
+   }
+  ],
+  "styles": [
+   {
+    "name": "Classic Biker",
+    "sub": "Compression fit",
+    "pieces": [
+     "Front",
+     "Back",
+     "Waistband",
+     "Gusset"
+    ]
+   },
+   {
+    "name": "Pocket Biker",
+    "sub": "Side pockets",
+    "pieces": [
+     "Front",
+     "Back",
+     "Side Pocket Bag",
+     "Waistband",
+     "Gusset"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "corset_top",
+  "slug": "corset-top",
+  "label": "Corset Top",
+  "tip": "Bust sets cup. Waist determines cinch. Torso length sets the bottom hem.",
+  "sku": "Duchess Satin / Brocade — structured woven, requires interfacing and boning",
+  "chips": [
+   "Boning channels",
+   "Lace-up back",
+   "Sweetheart neckline",
+   "Underwire",
+   "Modesty panel",
+   "Zip front",
+   "Hook & eye",
+   "Bustier style"
+  ],
+  "fields": [
+   {
+    "l": "Bust",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Waist",
+    "h": "Natural waist",
+    "req": true
+   },
+   {
+    "l": "Torso Front",
+    "h": "Bust to waist",
+    "req": false
+   },
+   {
+    "l": "Hips",
+    "h": "Hip measurement",
+    "req": false
+   }
+  ],
+  "styles": [
+   {
+    "name": "Sweetheart Corset",
+    "sub": "Sweetheart neckline",
+    "pieces": [
+     "Center Front",
+     "Side Front",
+     "Side Seam",
+     "Center Back",
+     "Sweetheart Piece",
+     "Boning Channel"
+    ]
+   },
+   {
+    "name": "Modern Bustier",
+    "sub": "Straight neckline",
+    "pieces": [
+     "Center Front",
+     "Side Panel",
+     "Center Back",
+     "Top Band",
+     "Boning Strip"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "tennis_dress",
+  "slug": "tennis-dress",
+  "label": "Tennis Dress",
+  "tip": "Bust fits the bodice. Dress length determines hem — typically 14-18\" from waist.",
+  "sku": "Performance Piqué — moisture-wicking, UV50+, mechanical stretch",
+  "chips": [
+   "Built-in shorts",
+   "Polo collar",
+   "Pleated skirt",
+   "UV protection",
+   "Moisture-wicking",
+   "Side slits",
+   "Deep pockets",
+   "Compression lining"
+  ],
+  "fields": [
+   {
+    "l": "Bust",
+    "h": "Fullest part",
+    "req": true
+   },
+   {
+    "l": "Waist",
+    "h": "Natural waist",
+    "req": true
+   },
+   {
+    "l": "Hips",
+    "h": "Hip measure",
+    "req": true
+   },
+   {
+    "l": "Dress Length",
+    "h": "Waist to hem",
+    "req": true
+   },
+   {
+    "l": "Bodice Length",
+    "h": "Shoulder to waist",
+    "req": false
+   },
+   {
+    "l": "Short Inseam",
+    "h": "Built-in short inseam",
+    "req": false
+   },
+   {
+    "l": "Rise",
+    "h": "Waist to crotch, seated",
+    "req": false
+   }
+  ],
+  "styles": [
+   {
+    "name": "Classic Tennis",
+    "sub": "Pleated skirt",
+    "pieces": [
+     "Bodice Front",
+     "Bodice Back",
+     "Collar",
+     "Skirt Front",
+     "Skirt Back",
+     "Built-in Short"
+    ]
+   },
+   {
+    "name": "Wrap Skirt Tennis",
+    "sub": "Wrap skirt",
+    "pieces": [
+     "Bodice Front",
+     "Bodice Back",
+     "Wrap Skirt",
+     "Short Lining",
+     "Waistband"
+    ]
+   },
+   {
+    "name": "High-Waist Biker",
+    "sub": "Elevated waistband",
+    "pieces": [
+     "Front",
+     "Back",
+     "Wide Waistband",
+     "Gusset"
+    ]
+   },
+   {
+    "name": "Crop Biker",
+    "sub": "Above-knee length",
+    "pieces": [
+     "Front",
+     "Back",
+     "Waistband",
+     "Side Pocket",
+     "Gusset"
+    ]
+   },
+   {
+    "name": "Overbust Corset",
+    "sub": "Full bust coverage",
+    "pieces": [
+     "Center Front",
+     "Side Front",
+     "Cup Piece",
+     "Side Seam",
+     "Center Back",
+     "Boning Channel"
+    ]
+   },
+   {
+    "name": "Underbust Cincher",
+    "sub": "Below-bust cincher",
+    "pieces": [
+     "Center Front",
+     "Side Panel",
+     "Center Back",
+     "Boning Strip",
+     "Top Binding"
+    ]
+   },
+   {
+    "name": "Racerback Tennis",
+    "sub": "Athletic racerback",
+    "pieces": [
+     "Bodice Front",
+     "Bodice Back",
+     "Skirt Front",
+     "Skirt Back",
+     "Built-in Short",
+     "Armhole Binding"
+    ]
+   },
+   {
+    "name": "Polo Tennis",
+    "sub": "Polo collar style",
+    "pieces": [
+     "Bodice Front",
+     "Bodice Back",
+     "Polo Collar",
+     "Short Sleeve",
+     "Skirt Front",
+     "Skirt Back",
+     "Built-in Short"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "board_shorts",
+  "slug": "board-shorts",
+  "label": "Board Shorts",
+  "tip": "Waist sets the waistband. Outseam is total length — typically 18-22 inches for mens cut.",
+  "sku": "Recycled Polyester Twill — quick-dry, water-repellent, eco-friendly",
+  "chips": [
+   "Drawstring waist",
+   "Mesh lining",
+   "Velcro pocket",
+   "Quick-dry",
+   "UPF 50+",
+   "Side vents",
+   "Flat-lock seams",
+   "Water-repellent"
+  ],
+  "fields": [
+   {
+    "l": "Waist",
+    "h": "Natural waist",
+    "req": true
+   },
+   {
+    "l": "Hips",
+    "h": "Fullest point",
+    "req": true
+   },
+   {
+    "l": "Outseam",
+    "h": "Total length",
+    "req": true
+   },
+   {
+    "l": "Inseam",
+    "h": "Inner leg length",
+    "req": false
+   }
+  ],
+  "styles": [
+   {
+    "name": "Classic Surf",
+    "sub": "Classic surf cut",
+    "pieces": [
+     "Front Panel",
+     "Back Panel",
+     "Waistband",
+     "Cargo Pocket",
+     "Mesh Lining",
+     "Fly Facing"
+    ]
+   },
+   {
+    "name": "Volley Short",
+    "sub": "Short volley cut",
+    "pieces": [
+     "Front",
+     "Back",
+     "Elastic Waist",
+     "Mesh Lining"
+    ]
+   },
+   {
+    "name": "Cargo Board",
+    "sub": "Cargo pockets",
+    "pieces": [
+     "Front Panel",
+     "Back Panel",
+     "Waistband",
+     "Cargo Pocket",
+     "Pocket Flap",
+     "Fly Facing",
+     "Mesh Lining"
+    ]
+   },
+   {
+    "name": "Compression Board",
+    "sub": "Built-in liner",
+    "pieces": [
+     "Front Panel",
+     "Back Panel",
+     "Waistband",
+     "Compression Front",
+     "Compression Back",
+     "Fly Facing"
+    ]
+   }
+  ]
+ }
+]

@@ -1,0 +1,57 @@
+/* Pattern Studio — marketing / explainer pages (layered on styles.css tokens) */
+.ps-site{min-height:100vh}
+.st-bar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px clamp(14px,3vw,36px);background:rgba(11,10,16,.72);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border-bottom:1px solid var(--border)}
+.st-nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.st-nav a{color:var(--ink-3);text-decoration:none;font-weight:600;font-size:13px;padding:8px 12px;border-radius:var(--r3);transition:var(--transition)}
+.st-nav a:hover{color:var(--ink);background:var(--surface-2)}
+.st-nav .st-cta{background:var(--grad);color:#fff;margin-left:6px;box-shadow:0 8px 22px rgba(255,45,135,.3)}
+.st-main{max-width:1040px;margin:0 auto;padding:0 clamp(14px,3vw,36px) 60px}
+.st-main.st-wide{max-width:1180px}
+.st-hero{text-align:center;padding:56px 0 36px;position:relative}
+.st-hero::before{content:'';position:absolute;inset:-60px -20% auto;height:420px;background:radial-gradient(600px 300px at 70% 0,rgba(155,107,255,.18),transparent 65%),radial-gradient(500px 260px at 20% 20%,rgba(255,45,135,.14),transparent 65%);pointer-events:none;z-index:-1}
+.st-hero .ps-title{font-size:clamp(34px,5.6vw,64px)}
+.st-hero .ps-lede{max-width:720px}
+.st-h2{font-family:var(--D);font-size:clamp(24px,3vw,34px);font-weight:600;margin:44px 0 16px;color:var(--ink)}
+.st-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.st-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px;transition:var(--transition);position:relative;overflow:hidden}
+.st-card::before{content:'';position:absolute;inset:0 0 auto;height:2px;background:var(--grad);opacity:.6}
+.st-card:hover{transform:translateY(-3px);border-color:var(--border-2);box-shadow:var(--shadow2)}
+.st-card h3{font-family:var(--D);font-size:20px;font-weight:600;margin:0 0 8px;color:var(--ink)}
+.st-card p{margin:0;color:var(--ink-3);font-size:13.5px;line-height:1.6}
+.st-muted{color:var(--ink-4);font-size:12px}
+.st-steps{list-style:none;counter-reset:s;padding:0;margin:0 0 30px;display:grid;gap:12px}
+.st-steps li{counter-increment:s;display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:start;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px}
+.st-steps li::before{content:counter(s);font-family:var(--D);font-size:30px;font-weight:600;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.st-steps b{display:block;font-family:var(--D);font-size:20px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.st-steps span{grid-column:2;color:var(--ink-3);font-size:13.5px;line-height:1.6}
+.st-cta-row{text-align:center;margin:40px 0 0}
+.st-btn{display:inline-block;text-decoration:none;padding:16px 30px;font-size:15px;font-family:var(--D);font-style:italic;font-weight:600;font-size:19px}
+.st-garments{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.st-garment{display:block;text-decoration:none;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px 14px 16px;text-align:center;transition:var(--transition);transform-style:preserve-3d}
+.st-garment:hover{transform:translateY(-4px) rotateX(4deg);border-color:var(--accent);box-shadow:var(--glow)}
+.st-garment-ico{width:76px;height:76px;margin:0 auto 10px;filter:drop-shadow(0 8px 16px rgba(0,0,0,.5))}
+.st-garment-ico svg,.st-garment-big svg{width:100%;height:100%}
+.st-garment-name{font-family:var(--D);font-size:18px;font-weight:600;color:var(--ink)}
+.st-garment-sub{font-size:10.5px;color:var(--ink-4);margin-top:4px;font-family:var(--M);letter-spacing:.03em;line-height:1.5}
+.st-garment-hero{display:grid;grid-template-columns:200px 1fr;gap:30px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:26px;margin-bottom:10px}
+.st-garment-big{width:200px;height:200px;filter:drop-shadow(0 16px 30px rgba(0,0,0,.55))}
+.st-kv{display:flex;gap:14px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13.5px}
+.st-kv b{min-width:140px;color:var(--ink-3);font-weight:600}.st-kv span{color:var(--ink)}
+.st-garment-hero .st-cta-row{text-align:left;margin:18px 0 0}
+.st-fields{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px}
+.st-fields li{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px;font-size:13px;color:var(--ink-2)}
+.st-fields i{font-style:normal;color:var(--accent);font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-left:6px}
+.st-fields span{display:block;color:var(--ink-4);font-size:11.5px;margin-top:2px}
+.st-chips span{display:inline-block;margin:0 6px 8px 0;padding:7px 12px;border-radius:var(--r3);background:var(--surface-2);border:1px solid var(--border-2);font-size:12px;color:var(--ink-2)}
+.st-back{margin-top:30px}.st-back a{color:var(--ink-3);text-decoration:none}.st-back a:hover{color:var(--ink)}
+.st-faq{display:grid;gap:8px}
+.st-faq details{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:0 18px}
+.st-faq summary{cursor:pointer;padding:16px 0;font-weight:700;color:var(--ink);font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.st-faq summary::after{content:'+';font-family:var(--D);font-size:22px;color:var(--accent)}
+.st-faq details[open] summary::after{content:'–'}
+.st-faq p{margin:0 0 16px;color:var(--ink-3);line-height:1.65;font-size:14px}
+.st-prose{max-width:720px;margin:0 auto;font-size:16px;line-height:1.75;color:var(--ink-2)}
+.st-prose a{color:var(--accent-2)}
+.st-foot{max-width:1040px;margin:50px auto 0;padding:26px clamp(14px,3vw,36px) 40px}
+.st-foot nav a{color:var(--ink-3);text-decoration:none}.st-foot nav a:hover{color:var(--ink)}
+@media(max-width:640px){.st-nav a:not(.st-cta){display:none}.st-garment-hero{grid-template-columns:1fr;text-align:center}.st-garment-big{margin:0 auto}.st-kv{justify-content:center}.st-garment-hero .st-cta-row{text-align:center}}

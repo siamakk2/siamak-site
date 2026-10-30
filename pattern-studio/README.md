@@ -24,3 +24,9 @@ Never hand-edit `public/` or `engine/engine.js`; change the sources and rebuild.
 
 ## Renders
 `api/render.js` renders the garment on a model with Google Gemini image models (GEMINI_API_KEY): the Fabric step "Render on model" panel, the Look tab and the Print tab all build a structured context (garment, style, construction chips, measurements, exact fabric + its product photo as a reference image). `api/advise.js` powers the atelier advisor with Gemini text.
+
+## Site pages & SEO
+`scripts/site.js` generates the explainer pages (/how-it-works, /garments, /garments/<slug> ×24, /cosplay, /designers, /faq, /about), sitemap.xml, robots.txt, llms.txt, manifest and 404 from the engine's own garment data. `public/og.png` is the share image (rendered from a design card; regenerate if the brand changes). Search Console: property `studio.siamakconsulting.com`, sitemap `https://studio.siamakconsulting.com/sitemap.xml`.
+
+## 3D
+`engine/hero3d.js` draws the couture dress form in the hero with self-hosted three.js (`public/vendor/three.min.js`, r128): recolours to the picked fabric, switches to a men's form with the Woman/Man toggle, follows the pointer, pauses off-screen. Garment and design cards tilt in 3D on hover.

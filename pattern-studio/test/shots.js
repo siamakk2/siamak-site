@@ -11,8 +11,11 @@ const srv=http.createServer((q,r)=>{let p=q.url.split('?')[0]; if(p==='/')p='/in
   const errors=[]; pg.on('pageerror',e=>errors.push('PAGEERROR '+e.message)); pg.on('console',m=>{if(m.type()==='error')errors.push('CONSOLE '+m.text())});
   await pg.goto(`http://127.0.0.1:${port}/`,{waitUntil:'networkidle'}); await pg.waitForTimeout(1200);
   const shot=async n=>pg.screenshot({path:path.join(out,n+'.png'),fullPage:false});
-  await shot('01-home');
   const report={};
+  await pg.waitForTimeout(2500); await shot('01-home');
+  report.hero3d=await pg.evaluate(()=>!!document.querySelector('.ps-3d canvas'));
+  for (const [u,n] of [['/how-it-works.html','p1-how'],['/garments.html','p2-garments'],['/garments/swim-dress.html','p3-swimdress'],['/cosplay.html','p4-cosplay'],['/faq.html','p5-faq']]) { const q=await br.newPage({viewport:{width:1280,height:900}}); q.on('pageerror',e=>errors.push('PAGEERROR '+u+' '+e.message)); await q.goto(`http://127.0.0.1:${port}${u}`,{waitUntil:'networkidle'}); await q.screenshot({path:path.join(out,n+'.png')}); await q.close(); }
+
   report.garments=await pg.$$eval('#bgrid .gc',a=>a.length);
   await pg.click('#bgrid .gc:nth-child(10)'); await pg.waitForTimeout(300);           // bodycon dress
   report.selected=await pg.$eval('#selBody',e=>e.textContent.trim());
