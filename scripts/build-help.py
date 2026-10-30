@@ -31,7 +31,7 @@ NEEDS = [
   ("Should I hire a marketing consultant or a marketing agency?",
    "Hire a consultant when you need to decide what to do, and an agency when the plan is clear and you need people to do the work. Many small businesses use both: the consultant sets the strategy and holds the agency to results."),
   ("How much does a marketing consultant cost?",
-   "Mine: the first 30-minute call is free, a paid strategy hour is $350 and hourly consulting is $350 to $450 with no minimum. Projects and retainers are quoted after a diagnostic. Every price is on the <a href=\"/pricing\">pricing page</a>.")],
+   "Mine: the first 30-minute call is free, a paid strategy hour is $350 and hourly consulting is $350 to $450 with no minimum. Projects and retainers are quoted after a diagnostic. Every price is on the <a href=\"/pricing\">pricing page</a>. Compare <a href=\"/ai-marketing-cost\">how much AI marketing costs</a> at other agencies with the free calculator.")],
  [("Marketing Consultant", "/marketing-consultant"), ("Book a paid hour · $350", HOUR)]),
 
 ("agency", "I want an agency that can handle everything",
