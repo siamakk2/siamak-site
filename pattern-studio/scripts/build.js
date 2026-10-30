@@ -94,6 +94,7 @@ const html = `<!doctype html>
 <title>Pattern Studio — Free Custom Sewing Pattern Maker for Designers &amp; Cosplayers</title>
 <meta name="description" content="Design a garment, enter your measurements, pick the fabric and get a cut-ready sewing pattern with nesting, yardage, DXF/SVG export, a designer croquis and a photoreal render on a woman or man. 24 garments, 90 styles. Free.">
 <link rel="canonical" href="https://studio.siamakconsulting.com/">
+<meta name="google-site-verification" content="I7hdoCdp0thE8bUvymvob5u3baC49hmSoijGTHpA3qE">
 <meta name="theme-color" content="#0b0a10">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Pattern Studio">
 <meta property="og:title" content="Pattern Studio — Sketch it. Draft it. Wear it.">

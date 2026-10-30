@@ -37,6 +37,7 @@ function layout({ path: p, title, description, h1, kicker, lede, body, jsonld = 
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${url}">
+<meta name="google-site-verification" content="I7hdoCdp0thE8bUvymvob5u3baC49hmSoijGTHpA3qE">
 <meta name="theme-color" content="#0b0a10">
 <meta property="og:type" content="website"><meta property="og:site_name" content="${NAME}">
 <meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}">
