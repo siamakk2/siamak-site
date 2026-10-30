@@ -35,7 +35,12 @@ const COLOR = {
   '#e65100':'var(--warn)','#f57f17':'var(--warn)','#8f4500':'var(--warn)','#7a5800':'var(--warn)','#7b1fa2':'var(--accent-2)',
 };
 /* property-context remap: only touches CSS declarations (color/background/border…), never SVG attributes or canvas colours */
+const SAFE_QUOTED = new Set(Object.entries(COLOR).filter(([k,v])=>/surface|border|ink|paper|bg\)|-bg\)|-soft\)/.test(v)).map(([k])=>k));
 function remapProps(s){
+  // quoted light-surface / border / text hexes used in string-built markup (ternaries etc.); canvas fills are guarded below
+  s = s.replace(/(fillStyle|strokeStyle)(\s*=\s*)(['"])(#[0-9a-fA-F]{3,6})\3/g, '$1$2$3CANVAS_$4$3');
+  s = s.replace(/(['"])(#[0-9a-fA-F]{3,6})\1/g, (m,q,hex)=> SAFE_QUOTED.has(hex.toLowerCase()) ? q+COLOR[hex.toLowerCase()]+q : m);
+  s = s.replace(/CANVAS_(#[0-9a-fA-F]{3,6})/g, '$1');
   return s.replace(/((?:^|[;"'`{\s])(?:color|background|background-color|border(?:-[a-z]+)*|outline|caret-color)\s*:\s*)(#[0-9a-fA-F]{3,6})(?![0-9a-fA-F])/g,(m,pre,hex)=>{
     const l=hex.toLowerCase(); if(/^#fff(fff)?$/.test(l)) return /background/.test(pre)? pre+'var(--surface)' : m;
     return COLOR[l]? pre+COLOR[l] : m; })

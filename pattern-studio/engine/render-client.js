@@ -7,7 +7,7 @@ function psRenderContext(extra){
   var chips=[]; try{ document.querySelectorAll('#schips .chip.on').forEach(function(c){chips.push(c.textContent.trim());}); }catch(e){}
   var m = {}; try{ m = (typeof readM==='function') ? readM() : (S.m||{}); }catch(e){ m=S.m||{}; }
   var ctx = {
-    garment: cfg ? cfg.label : S.g, style: st ? st.name : S.design, styleSub: st ? (st.sub||'') : '',
+    garmentId: S.g, garment: cfg ? cfg.label : S.g, style: st ? st.name : S.design, styleSub: st ? (st.sub||'') : '',
     chips: chips,
     fabric: f ? { name:f.name, hex:f.hex||f.color, pattern:f.pattern, category:f.category, desc:(f.desc||'').slice(0,160), img:f.img||'' } : null,
     body: { bust:m.bust, waist:m.waist, hips:m.hips },
@@ -18,7 +18,23 @@ function psRenderContext(extra){
   for (var k in (extra||{})) ctx[k]=extra[k];
   return ctx;
 }
+/* rasterise the technical croquis (garment paths only; the CDN figure is dropped) so the model wears the drafted design */
+function psSketchPNG(){
+  return new Promise(function(res){
+    try {
+      var svg = document.querySelector('#sketchSvgHost svg'); if (!svg) return res(null);
+      var cl = svg.cloneNode(true); cl.querySelectorAll('image').forEach(function(i){ i.remove(); });
+      var vb = (cl.getAttribute('viewBox')||'0 0 300 760').split(/\s+/).map(Number); var w = vb[2]||300, h = vb[3]||760;
+      cl.setAttribute('width', w); cl.setAttribute('height', h); cl.setAttribute('xmlns','http://www.w3.org/2000/svg');
+      var bg = document.createElementNS('http://www.w3.org/2000/svg','rect'); bg.setAttribute('width','100%'); bg.setAttribute('height','100%'); bg.setAttribute('fill','#ffffff'); cl.insertBefore(bg, cl.firstChild);
+      var blob = new Blob([new XMLSerializer().serializeToString(cl)], {type:'image/svg+xml;charset=utf-8'}); var url = URL.createObjectURL(blob);
+      var img = new Image(); img.onload = function(){ try { var cv=document.createElement('canvas'); var sc=Math.min(2, 900/h); cv.width=w*sc; cv.height=h*sc; var x=cv.getContext('2d'); x.fillStyle='#fff'; x.fillRect(0,0,cv.width,cv.height); x.drawImage(img,0,0,cv.width,cv.height); res(cv.toDataURL('image/jpeg', 0.85)); } catch(e){ res(null); } URL.revokeObjectURL(url); };
+      img.onerror = function(){ URL.revokeObjectURL(url); res(null); }; img.src = url;
+    } catch(e) { res(null); }
+  });
+}
 async function psRender(ctx, aspect){
+  if (!ctx.sketch) { try { ctx.sketch = await psSketchPNG(); } catch(e) {} }
   var r = await fetch((PS.renderApi||'/api/render'), { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ context: ctx, aspect: aspect||'3:4' }) });
   var j = await r.json().catch(function(){return {};});
   if (!r.ok || !j.image) throw new Error((j && (j.error + (j.detail? ': '+[].concat(j.detail).join(' | '):''))) || ('HTTP '+r.status));

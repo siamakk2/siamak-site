@@ -62,6 +62,12 @@ rep('theme hide', "document.querySelectorAll('.page__title,.rich-text__heading,.
 rep('unisex garments', "  wrap_dress:1, costume:1, crop_top:1\n};", "  wrap_dress:1\n};");
 rep('unisex garments 2', "  lingerie:1, leotard:1, corset_top:1, two_piece:1, one_piece:1, swim_dress:1,", "  lingerie:1, corset_top:1, two_piece:1, swim_dress:1,");
 
+/* 5c ── bugs found in the standalone walk-through */
+rep('closePrint null-safe', "function closePrint(){document.getElementById('printModal').classList.remove('show');}", "function closePrint(){var m=document.getElementById('printModal'); if(m) m.classList.remove('show');}");
+rep('overlay close (style attr is normalised with spaces)', "  document.querySelectorAll('[style*=\"position:fixed\"][style*=\"z-index:99999\"]').forEach(function(el){el.remove();});",
+  "  Array.prototype.forEach.call(document.body.children, function(el){ if (el.style && el.style.position==='fixed' && String(el.style.zIndex)==='99999') el.remove(); });");
+rep('download anchors in DOM (Safari)', "const a=document.createElement('a');a.href=url;a.download=filename;a.click();", "const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),1000);");
+
 /* 6 ── photoreal renders: Look tab + Print tab + Fabric-step panel all go through /api/render (Gemini image) */
 rep('look → render api', "    var seed=Math.floor(Math.random()*999999);\n    var url='https://image.pollinations.ai/prompt/'+encodeURIComponent(prompt)+'?width=512&height=768&model=flux&seed='+seed+'&nologo=true';\n    var img=new Image();",
   "    var out=await psRender(psRenderContext({model:model,setting:setting,mode:'photo'}),'3:4'); var url=out.image; window.__psLastRender=url;\n    var img=new Image();");

@@ -29,6 +29,7 @@ const srv=http.createServer((q,r)=>{let p=q.url.split('?')[0]; if(p==='/')p='/in
   report.sketchSvg=await pg.$eval('#sketchSvgHost',e=>e.innerHTML.length).catch(()=>0);
   await pg.click('#fabricGrid .fab-card:nth-child(3)'); await pg.waitForTimeout(300);
   report.renderPanel=!!(await pg.$('#psRenderBtn'));
+  const skp=await pg.evaluate(()=>psSketchPNG()); report.sketchPng=skp?skp.length:0; if(skp) fs.writeFileSync(path.join(out,'sketch-ref.png'),Buffer.from(skp.split(',')[1],'base64'));
   report.genderOnDress=await pg.evaluate(()=>[...document.querySelectorAll('#psRenderBox .ps-gender button')].map(b=>b.textContent+(b.disabled?'(off)':'')+(b.classList.contains('on')?'*':'')).join(' ')); await pg.click('#psRenderBtn'); await pg.waitForTimeout(800); report.renderImg=!!(await pg.$('.ps-render-img')); await pg.$eval('#psRenderBox',e=>e.scrollIntoView()); await shot('05b-render');
   // unisex garment: switch to Man → croquis + model list follow
   await pg.click('.btab:nth-of-type(1)'); await pg.waitForTimeout(200); await pg.click('#bgrid .gc:nth-child(5)'); await pg.waitForTimeout(200); // leggings

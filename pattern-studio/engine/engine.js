@@ -533,7 +533,7 @@ function showAdminPanel() {
   wrap.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(6,15,40,.8);display:flex;align-items:center;justify-content:center;padding:20px';
   function tierBtn(t, label) {
     var on = cur === t;
-    return '<button onclick="adminSetTier(\'' + t + '\')" style="flex:1;padding:12px 8px;border-radius:10px;border:2px solid ' + (on?'#1255b0':'#dde5f0') + ';background:' + (on?'#eef4ff':'#fff') + ';color:' + (on?'#1255b0':'#556') + ';font-size:12px;font-weight:800;cursor:pointer">' + label + '</button>';
+    return '<button onclick="adminSetTier(\'' + t + '\')" style="flex:1;padding:12px 8px;border-radius:10px;border:2px solid ' + (on?'#1255b0':'var(--border)') + ';background:' + (on?'var(--surface-2)':'#fff') + ';color:' + (on?'#1255b0':'var(--ink-3)') + ';font-size:12px;font-weight:800;cursor:pointer">' + label + '</button>';
   }
   wrap.innerHTML =
     '<div style="background:var(--surface);border-radius:16px;max-width:420px;width:100%;padding:24px;box-shadow:0 24px 80px rgba(0,0,0,.4)">' +
@@ -841,9 +841,9 @@ function renderGradeModal() {
   var chips = SIZE_RUN.map(function(g,i) {
     var on = GRADE_SEL.on[i];
     var isBase = i === GRADE_SEL.base;
-    var bg = isBase ? '#1255b0' : on ? '#eef4ff' : '#f8f9fb';
-    var border = isBase ? '#1255b0' : on ? '#7aa8e0' : '#dde5f0';
-    var color = isBase ? '#fff' : on ? '#1255b0' : '#889';
+    var bg = isBase ? '#1255b0' : on ? 'var(--surface-2)' : '#f8f9fb';
+    var border = isBase ? '#1255b0' : on ? '#7aa8e0' : 'var(--border)';
+    var color = isBase ? '#fff' : on ? '#1255b0' : 'var(--ink-4)';
     return '<button onclick="toggleGradeSize(' + i + ')" style="padding:7px 12px;border-radius:16px;border:1.5px solid '+border+';background:'+bg+';color:'+color+';font-size:11px;font-weight:800;cursor:pointer;white-space:nowrap;transition:all .15s">'
       + g.size + (isBase ? ' &#9679;' : (on ? ' &#10003;' : '')) + '</button>';
   }).join('');
@@ -1271,21 +1271,21 @@ sports_bra:{label:'Sports Bra',tip:'<strong>Underbust</strong> and <strong>impac
   fields:[{id:'bust',l:'Bust',h:'Fullest part',req:1,def:34,mn:24,mx:60},{id:'ubust',l:'Underbust',h:'Below bust',req:1,def:28,mn:20,mx:52},{id:'cup',l:'Cup Size',sel:['AA','A','B','C','D','DD/E','F'],req:1,def:'C'},{id:'bandLen',l:'Band Circumf.',h:'Around ribcage',req:1,def:28,mn:20,mx:52},{id:'strapL',l:'Strap Length',h:'Shoulder to band',req:1,def:11,mn:7,mx:16},{id:'impact',l:'Impact Level',sel:['Low (yoga)','Medium (cycling)','High (running/HIIT)'],req:1,def:'Medium (cycling)'}],
   styles:[
     {id:'scoopbra',name:'Scoop Neck',sub:'Versatile',
-     icon:dSvg('<defs><linearGradient id="sbr_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#e3f2fd"/><stop offset="100%" stop-color="#42a5f5"/></linearGradient></defs><path d="M6 32 C6 20 12 12 20 10 L24 10 C26 16 30 16 32 10 L36 10 C44 12 50 20 50 32 L50 44 C50 48 40 52 28 52 C16 52 6 48 6 44 Z" fill="url(#sbr_g)" stroke="#1255b0" stroke-width="1.8" stroke-linejoin="round"/><path d="M6 32 Q28 26 50 32" stroke="white" stroke-width="1" opacity=".5" fill="none"/><line x1="22" y1="10" x2="20" y2="4" stroke="#0c3d8f" stroke-width="2" stroke-linecap="round"/><line x1="34" y1="10" x2="36" y2="4" stroke="#0c3d8f" stroke-width="2" stroke-linecap="round"/><path d="M10 26 C12 18 16 12 22 10" stroke="white" stroke-width="1.2" opacity=".5" fill="none" stroke-linecap="round"/>'),
+     icon:dSvg('<defs><linearGradient id="sbr_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--surface-2)"/><stop offset="100%" stop-color="#42a5f5"/></linearGradient></defs><path d="M6 32 C6 20 12 12 20 10 L24 10 C26 16 30 16 32 10 L36 10 C44 12 50 20 50 32 L50 44 C50 48 40 52 28 52 C16 52 6 48 6 44 Z" fill="url(#sbr_g)" stroke="#1255b0" stroke-width="1.8" stroke-linejoin="round"/><path d="M6 32 Q28 26 50 32" stroke="white" stroke-width="1" opacity=".5" fill="none"/><line x1="22" y1="10" x2="20" y2="4" stroke="#0c3d8f" stroke-width="2" stroke-linecap="round"/><line x1="34" y1="10" x2="36" y2="4" stroke="#0c3d8f" stroke-width="2" stroke-linecap="round"/><path d="M10 26 C12 18 16 12 22 10" stroke="white" stroke-width="1.2" opacity=".5" fill="none" stroke-linecap="round"/>'),
      pieces:m=>[
       {id:'cf',n:'Cup Front',q:'Cut x2',w:m.bust/4+cx(m.cup)+.5,h:m.bust/6+cx(m.cup),s:'cup_round',t:['grain','notch'],c:'#1255b0'},
       {id:'bf',n:'Band Front',q:'Cut x1 on fold',w:m.bandLen/2+.5,h:4,s:'rarc',t:['fold','grain'],c:'#1769d4'},
       {id:'bb',n:'Band Back',q:'Cut x2',w:m.bandLen/4+1.5,h:4,s:'rect',t:['grain'],c:'#1769d4'},
       {id:'st',n:'Strap',q:'Cut x2',w:1.25,h:m.strapL+2,s:'rect',t:['grain'],c:'#0c3d8f'}]},
     {id:'racerbra',name:'Racerback',sub:'Athletic',
-     icon:dSvg('<defs><linearGradient id="rbr_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#e3f2fd"/><stop offset="100%" stop-color="#1e88e5"/></linearGradient></defs><path d="M6 34 C6 22 12 12 20 10 L24 12 L28 8 L32 12 L36 10 C44 12 50 22 50 34 L50 46 C50 50 40 54 28 54 C16 54 6 50 6 46 Z" fill="url(#rbr_g)" stroke="#1255b0" stroke-width="1.8"/><path d="M24 12 L26 16 L28 10 L30 16 L32 12" stroke="#0c3d8f" stroke-width="2" fill="none" stroke-linejoin="round"/><path d="M6 34 Q28 28 50 34" stroke="white" stroke-width="1" opacity=".5" fill="none"/><path d="M10 28 C12 18 18 12 24 10" stroke="white" stroke-width="1.2" opacity=".4" fill="none" stroke-linecap="round"/>'),
+     icon:dSvg('<defs><linearGradient id="rbr_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--surface-2)"/><stop offset="100%" stop-color="#1e88e5"/></linearGradient></defs><path d="M6 34 C6 22 12 12 20 10 L24 12 L28 8 L32 12 L36 10 C44 12 50 22 50 34 L50 46 C50 50 40 54 28 54 C16 54 6 50 6 46 Z" fill="url(#rbr_g)" stroke="#1255b0" stroke-width="1.8"/><path d="M24 12 L26 16 L28 10 L30 16 L32 12" stroke="#0c3d8f" stroke-width="2" fill="none" stroke-linejoin="round"/><path d="M6 34 Q28 28 50 34" stroke="white" stroke-width="1" opacity=".5" fill="none"/><path d="M10 28 C12 18 18 12 24 10" stroke="white" stroke-width="1.2" opacity=".4" fill="none" stroke-linecap="round"/>'),
      pieces:m=>[
       {id:'cf',n:'Cup Front',q:'Cut x2',w:m.bust/4+cx(m.cup)+.5,h:m.bust/6+cx(m.cup),s:'cup_round',t:['grain','notch'],c:'#1255b0'},
       {id:'bf',n:'Band Front',q:'Cut x1 on fold',w:m.bandLen/2+.5,h:4,s:'rarc',t:['fold','grain'],c:'#1769d4'},
       {id:'rb',n:'Racerback Panel',q:'Cut x1',w:m.bandLen/3,h:m.strapL+4,s:'racerb',t:['grain'],c:'#1769d4'},
       {id:'bb',n:'Band Back',q:'Cut x2',w:m.bandLen/4+1.5,h:4,s:'rect',t:['grain'],c:'#1769d4'}]},
     {id:'longlinebra',name:'Longline',sub:'Extended band',
-     icon:dSvg('<defs><linearGradient id="llb_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#e3f2fd"/><stop offset="100%" stop-color="#42a5f5"/></linearGradient></defs><path d="M6 28 C6 16 12 8 20 6 L24 6 C26 12 30 12 32 6 L36 6 C44 8 50 16 50 28 L50 50 C50 54 40 58 28 58 C16 58 6 54 6 50 Z" fill="url(#llb_g)" stroke="#1255b0" stroke-width="1.8"/><path d="M6 28 Q28 22 50 28" stroke="#0c3d8f" stroke-width="1.5" fill="none"/><path d="M6 40 Q28 44 50 40" stroke="#1255b0" stroke-width="1" stroke-dasharray="3 2" fill="none"/><line x1="22" y1="6" x2="20" y2="2" stroke="#0c3d8f" stroke-width="2" stroke-linecap="round"/><line x1="34" y1="6" x2="36" y2="2" stroke="#0c3d8f" stroke-width="2" stroke-linecap="round"/>'),
+     icon:dSvg('<defs><linearGradient id="llb_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--surface-2)"/><stop offset="100%" stop-color="#42a5f5"/></linearGradient></defs><path d="M6 28 C6 16 12 8 20 6 L24 6 C26 12 30 12 32 6 L36 6 C44 8 50 16 50 28 L50 50 C50 54 40 58 28 58 C16 58 6 54 6 50 Z" fill="url(#llb_g)" stroke="#1255b0" stroke-width="1.8"/><path d="M6 28 Q28 22 50 28" stroke="#0c3d8f" stroke-width="1.5" fill="none"/><path d="M6 40 Q28 44 50 40" stroke="#1255b0" stroke-width="1" stroke-dasharray="3 2" fill="none"/><line x1="22" y1="6" x2="20" y2="2" stroke="#0c3d8f" stroke-width="2" stroke-linecap="round"/><line x1="34" y1="6" x2="36" y2="2" stroke="#0c3d8f" stroke-width="2" stroke-linecap="round"/>'),
      pieces:m=>[
       {id:'cf',n:'Cup Front',q:'Cut x2',w:m.bust/4+cx(m.cup)+.5,h:m.bust/6+cx(m.cup),s:'cup_round',t:['grain','notch'],c:'#1255b0'},
       {id:'bf',n:'Front Band',q:'Cut x1 on fold',w:m.bandLen/2+.5,h:8,s:'rarc',t:['fold','grain'],c:'#1769d4'},
@@ -1372,21 +1372,21 @@ crop_top:{label:'Crop Top',tip:'<strong>Front and back length</strong> set the c
   fields:[{id:'bust',l:'Bust',h:'Fullest part',req:1,def:34,mn:24,mx:60},{id:'cup',l:'Cup Size',sel:['AA','A','B','C','D','DD/E','F'],req:0,def:'C'},{id:'shoulder',l:'Shoulder Width',h:'Shoulder to shoulder',req:1,def:14,mn:10,mx:20},{id:'armhole',l:'Armhole Depth',h:'Shoulder to underarm',req:1,def:7,mn:4,mx:12},{id:'frontL',l:'Front Length',h:'Shoulder to hem front',req:1,def:14,mn:8,mx:24},{id:'backL',l:'Back Length',h:'Shoulder to hem back',req:1,def:13,mn:8,mx:24}],
   styles:[
     {id:'fitted',name:'Fitted',sub:'Classic fit',
-     icon:dSvg('<defs><linearGradient id="fit_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#fce4ec"/><stop offset="100%" stop-color="#e91e63"/></linearGradient></defs><path d="M18 10 L10 18 L8 24 L10 32 L12 40 L44 40 L46 32 L48 24 L46 18 L38 10 Z" fill="url(#fit_g)" stroke="#c2185b" stroke-width="1.8" stroke-linejoin="round"/><path d="M18 10 C22 16 34 16 38 10" stroke="#880e4f" stroke-width="2" fill="none"/><path d="M10 18 L8 24" stroke="#880e4f" stroke-width="2" stroke-linecap="round"/><path d="M46 18 L48 24" stroke="#880e4f" stroke-width="2" stroke-linecap="round"/><rect x="10" y="36" width="36" height="6" rx="2" fill="#880e4f" fill-opacity=".25" stroke="#880e4f" stroke-width="1.5"/><path d="M14 20 C12 26 12 32 14 38" stroke="white" stroke-width="1" opacity=".3" stroke-linecap="round"/>'),
+     icon:dSvg('<defs><linearGradient id="fit_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--accent-soft)"/><stop offset="100%" stop-color="#e91e63"/></linearGradient></defs><path d="M18 10 L10 18 L8 24 L10 32 L12 40 L44 40 L46 32 L48 24 L46 18 L38 10 Z" fill="url(#fit_g)" stroke="#c2185b" stroke-width="1.8" stroke-linejoin="round"/><path d="M18 10 C22 16 34 16 38 10" stroke="#880e4f" stroke-width="2" fill="none"/><path d="M10 18 L8 24" stroke="#880e4f" stroke-width="2" stroke-linecap="round"/><path d="M46 18 L48 24" stroke="#880e4f" stroke-width="2" stroke-linecap="round"/><rect x="10" y="36" width="36" height="6" rx="2" fill="#880e4f" fill-opacity=".25" stroke="#880e4f" stroke-width="1.5"/><path d="M14 20 C12 26 12 32 14 38" stroke="white" stroke-width="1" opacity=".3" stroke-linecap="round"/>'),
      pieces:m=>[
       {id:'fr',n:'Front',q:'Cut x1 on fold',w:m.bust/2+1,h:m.frontL+.5,s:'tpf',t:['fold','grain','notch'],c:'#ad1457'},
       {id:'bk',n:'Back',q:'Cut x1 on fold',w:m.bust/2+.5,h:m.backL+.5,s:'tpb',t:['fold','grain'],c:'#c2185b'},
       {id:'nb',n:'Neck Binding',q:'Cut x1',w:m.bust/2+2,h:1.5,s:'rect',t:['grain'],c:'#880e4f'},
       {id:'hm',n:'Hem Band',q:'Cut x1',w:m.bust+1,h:2,s:'rect',t:['grain'],c:'#880e4f'}]},
     {id:'bralette_top',name:'Bralette',sub:'Triangle cups',
-     icon:dSvg('<defs><linearGradient id="blt_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#fce4ec"/><stop offset="100%" stop-color="#f06292"/></linearGradient></defs><path d="M8 32 L20 12 L28 16 L36 12 L48 32 Z" fill="url(#blt_g)" stroke="#c2185b" stroke-width="1.8" stroke-linejoin="round"/><rect x="8" y="32" width="40" height="10" rx="3" fill="url(#blt_g)" stroke="#c2185b" stroke-width="1.5"/><path d="M10 30 L20 18 L27 20" stroke="white" stroke-width=".9" opacity=".5" stroke-linecap="round"/><line x1="8" y1="32" x2="2" y2="24" stroke="#880e4f" stroke-width="2" stroke-linecap="round"/><line x1="48" y1="32" x2="54" y2="24" stroke="#880e4f" stroke-width="2" stroke-linecap="round"/><circle cx="28" cy="31" r="2" fill="#880e4f" opacity=".6"/>'),
+     icon:dSvg('<defs><linearGradient id="blt_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--accent-soft)"/><stop offset="100%" stop-color="#f06292"/></linearGradient></defs><path d="M8 32 L20 12 L28 16 L36 12 L48 32 Z" fill="url(#blt_g)" stroke="#c2185b" stroke-width="1.8" stroke-linejoin="round"/><rect x="8" y="32" width="40" height="10" rx="3" fill="url(#blt_g)" stroke="#c2185b" stroke-width="1.5"/><path d="M10 30 L20 18 L27 20" stroke="white" stroke-width=".9" opacity=".5" stroke-linecap="round"/><line x1="8" y1="32" x2="2" y2="24" stroke="#880e4f" stroke-width="2" stroke-linecap="round"/><line x1="48" y1="32" x2="54" y2="24" stroke="#880e4f" stroke-width="2" stroke-linecap="round"/><circle cx="28" cy="31" r="2" fill="#880e4f" opacity=".6"/>'),
      pieces:m=>[
       {id:'cl',n:'Cup Left',q:'Cut x1',w:m.bust/4+cx(m.cup||'C')+.5,h:m.bust/6+cx(m.cup||'C'),s:'tri',t:['grain','notch'],c:'#ad1457'},
       {id:'cr',n:'Cup Right',q:'Cut x1 (mirror)',w:m.bust/4+cx(m.cup||'C')+.5,h:m.bust/6+cx(m.cup||'C'),s:'tri',t:['grain','notch'],c:'#ad1457'},
       {id:'bf',n:'Band',q:'Cut x1 on fold',w:m.bust/2+1,h:3,s:'rect',t:['fold','grain'],c:'#c2185b'},
       {id:'ti',n:'Neck Tie',q:'Cut x2',w:1,h:14,s:'rect',t:['grain'],c:'#880e4f'}]},
     {id:'squareneck',name:'Square Neck',sub:'Modern look',
-     icon:dSvg('<defs><linearGradient id="sqn_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#fce4ec"/><stop offset="100%" stop-color="#e91e63"/></linearGradient></defs><path d="M18 10 L10 18 L8 24 L10 32 L12 40 L44 40 L46 32 L48 24 L46 18 L38 10 Z" fill="url(#sqn_g)" stroke="#c2185b" stroke-width="1.8" stroke-linejoin="round"/><path d="M18 10 L18 18 L38 18 L38 10" stroke="#880e4f" stroke-width="2.2" fill="none" stroke-linejoin="round"/><rect x="10" y="36" width="36" height="6" rx="2" fill="#880e4f" fill-opacity=".25" stroke="#880e4f" stroke-width="1.5"/><path d="M14 20 C12 26 12 32 14 38" stroke="white" stroke-width="1" opacity=".3" stroke-linecap="round"/>'),
+     icon:dSvg('<defs><linearGradient id="sqn_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--accent-soft)"/><stop offset="100%" stop-color="#e91e63"/></linearGradient></defs><path d="M18 10 L10 18 L8 24 L10 32 L12 40 L44 40 L46 32 L48 24 L46 18 L38 10 Z" fill="url(#sqn_g)" stroke="#c2185b" stroke-width="1.8" stroke-linejoin="round"/><path d="M18 10 L18 18 L38 18 L38 10" stroke="#880e4f" stroke-width="2.2" fill="none" stroke-linejoin="round"/><rect x="10" y="36" width="36" height="6" rx="2" fill="#880e4f" fill-opacity=".25" stroke="#880e4f" stroke-width="1.5"/><path d="M14 20 C12 26 12 32 14 38" stroke="white" stroke-width="1" opacity=".3" stroke-linecap="round"/>'),
      pieces:m=>[
       {id:'fr',n:'Front',q:'Cut x1 on fold',w:m.bust/2+1,h:m.frontL+.5,s:'tpf',t:['fold','grain','notch'],c:'#ad1457'},
       {id:'bk',n:'Back',q:'Cut x1 on fold',w:m.bust/2+.5,h:m.backL+.5,s:'tpb',t:['fold','grain'],c:'#c2185b'},
@@ -1431,7 +1431,7 @@ maxi_dress:{label:'Maxi Dress',tip:'<strong>Full length</strong> from shoulder t
       {id:'bk',n:'Back',q:'Cut x1 on fold',w:m.hips/4+1.5,h:m.fullL+1.5,s:'drb',t:['fold','grain'],c:'#1769d4'},
       {id:'st',n:'Strap',q:'Cut x2',w:1,h:16,s:'rect',t:['grain'],c:'#0c3d8f'}]},
     {id:'empmaxi',name:'Empire Waist',sub:'High seam',
-     icon:dSvg('<defs><linearGradient id="emp_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#e3f2fd"/><stop offset="100%" stop-color="#1565c0"/></linearGradient></defs><path d="M18 6 L16 16 L40 16 L38 6 C34 4 30 3 28 3 C26 3 22 4 18 6 Z" fill="#1976d2" stroke="#0d47a1" stroke-width="1.8"/><line x1="14" y1="16" x2="42" y2="16" stroke="#0d47a1" stroke-width="2.5"/><path d="M16 16 L8 60 L48 60 L40 16 Z" fill="url(#emp_g)" stroke="#1255b0" stroke-width="1.8" stroke-linejoin="round"/><path d="M18 22 C16 34 14 46 14 58" stroke="white" stroke-width="1" opacity=".25" stroke-linecap="round"/><line x1="18" y1="6" x2="18" y2="2" stroke="#0c3d8f" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="6" x2="38" y2="2" stroke="#0c3d8f" stroke-width="1.8" stroke-linecap="round"/>'),
+     icon:dSvg('<defs><linearGradient id="emp_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--surface-2)"/><stop offset="100%" stop-color="#1565c0"/></linearGradient></defs><path d="M18 6 L16 16 L40 16 L38 6 C34 4 30 3 28 3 C26 3 22 4 18 6 Z" fill="#1976d2" stroke="#0d47a1" stroke-width="1.8"/><line x1="14" y1="16" x2="42" y2="16" stroke="#0d47a1" stroke-width="2.5"/><path d="M16 16 L8 60 L48 60 L40 16 Z" fill="url(#emp_g)" stroke="#1255b0" stroke-width="1.8" stroke-linejoin="round"/><path d="M18 22 C16 34 14 46 14 58" stroke="white" stroke-width="1" opacity=".25" stroke-linecap="round"/><line x1="18" y1="6" x2="18" y2="2" stroke="#0c3d8f" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="6" x2="38" y2="2" stroke="#0c3d8f" stroke-width="1.8" stroke-linecap="round"/>'),
      pieces:m=>[
       {id:'fb',n:'Front Bodice',q:'Cut x1 on fold',w:m.bust/4+1,h:m.waistPos+2,s:'tpf',t:['fold','grain','notch'],c:'#1255b0'},
       {id:'bb',n:'Back Bodice',q:'Cut x1 on fold',w:m.bust/4+1,h:m.waistPos+2,s:'tpb',t:['fold','grain'],c:'#1769d4'},
@@ -1439,7 +1439,7 @@ maxi_dress:{label:'Maxi Dress',tip:'<strong>Full length</strong> from shoulder t
       {id:'bs',n:'Back Skirt',q:'Cut x1 on fold',w:m.hips/4+1.5+(m.hemFlare||8)/2,h:m.fullL-m.waistPos+1.5,s:'drb',t:['fold','grain'],c:'#1769d4'},
       {id:'st',n:'Strap',q:'Cut x2',w:1.25,h:14,s:'rect',t:['grain'],c:'#0c3d8f'}]},
     {id:'tieredmaxi',name:'Tiered',sub:'Layered skirt',
-     icon:dSvg('<defs><linearGradient id="tier_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#e3f2fd"/><stop offset="100%" stop-color="#1976d2"/></linearGradient></defs><path d="M20 4 L18 14 L38 14 L36 4 C32 2 28 2 28 2 C28 2 24 2 20 4 Z" fill="#1976d2" stroke="#0d47a1" stroke-width="1.8"/><path d="M16 14 L12 26 L44 26 L40 14 Z" fill="url(#tier_g)" stroke="#1255b0" stroke-width="1.5"/><path d="M10 26 L6 40 L50 40 L46 26 Z" fill="url(#tier_g)" stroke="#1255b0" stroke-width="1.5" opacity=".85"/><path d="M6 40 L4 56 L52 56 L50 40 Z" fill="url(#tier_g)" stroke="#1255b0" stroke-width="1.5" opacity=".7"/><line x1="20" y1="4" x2="20" y2="0" stroke="#0c3d8f" stroke-width="1.8" stroke-linecap="round"/><line x1="36" y1="4" x2="36" y2="0" stroke="#0c3d8f" stroke-width="1.8" stroke-linecap="round"/>'),
+     icon:dSvg('<defs><linearGradient id="tier_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--surface-2)"/><stop offset="100%" stop-color="#1976d2"/></linearGradient></defs><path d="M20 4 L18 14 L38 14 L36 4 C32 2 28 2 28 2 C28 2 24 2 20 4 Z" fill="#1976d2" stroke="#0d47a1" stroke-width="1.8"/><path d="M16 14 L12 26 L44 26 L40 14 Z" fill="url(#tier_g)" stroke="#1255b0" stroke-width="1.5"/><path d="M10 26 L6 40 L50 40 L46 26 Z" fill="url(#tier_g)" stroke="#1255b0" stroke-width="1.5" opacity=".85"/><path d="M6 40 L4 56 L52 56 L50 40 Z" fill="url(#tier_g)" stroke="#1255b0" stroke-width="1.5" opacity=".7"/><line x1="20" y1="4" x2="20" y2="0" stroke="#0c3d8f" stroke-width="1.8" stroke-linecap="round"/><line x1="36" y1="4" x2="36" y2="0" stroke="#0c3d8f" stroke-width="1.8" stroke-linecap="round"/>'),
      pieces:m=>[
       {id:'fb',n:'Front Bodice',q:'Cut x1 on fold',w:m.bust/4+1,h:m.waistPos+2,s:'tpf',t:['fold','grain','notch'],c:'#1255b0'},
       {id:'bb',n:'Back Bodice',q:'Cut x1 on fold',w:m.bust/4+1,h:m.waistPos+2,s:'tpb',t:['fold','grain'],c:'#1769d4'},
@@ -1455,7 +1455,7 @@ night_dress:{label:'Nightgown / Slip Dress',tip:'<strong>Bust and hip</strong> d
   fields:[{id:'bust',l:'Bust',h:'Fullest part',req:1,def:34,mn:24,mx:60},{id:'waist',l:'Waist',h:'Natural waist',req:1,def:28,mn:20,mx:52},{id:'hips',l:'Hips',h:'Fullest',req:1,def:38,mn:28,mx:66},{id:'shoulder',l:'Shoulder Width',h:'Shoulder to shoulder',req:1,def:14,mn:10,mx:20},{id:'fullL',l:'Length',h:'Shoulder to hem',req:1,def:44,mn:28,mx:62},{id:'waistPos',l:'Waist Position',h:'Shoulder to natural waist',req:1,def:15,mn:10,mx:22}],
   styles:[
     {id:'classicslip',name:'Classic Slip',sub:'Simple straps',
-     icon:dSvg('<defs><linearGradient id="cls_g" x1=".5" y1="0" x2=".6" y2="1"><stop offset="0%" stop-color="#fce4ec"/><stop offset="60%" stop-color="#f48fb1"/><stop offset="100%" stop-color="#880e4f"/></linearGradient></defs><line x1="18" y1="4" x2="18" y2="10" stroke="#880e4f" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="4" x2="38" y2="10" stroke="#880e4f" stroke-width="1.8" stroke-linecap="round"/><path d="M16 10 L13 56 L43 56 L40 10 Z" fill="url(#cls_g)" stroke="#c2185b" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 18 C18 22 38 22 40 18" stroke="white" stroke-width="1" opacity=".5" fill="none"/><path d="M14 52 C18 48 24 52 28 50 C32 48 38 52 42 50" stroke="#880e4f" stroke-width="1.5" fill="none"/>'),
+     icon:dSvg('<defs><linearGradient id="cls_g" x1=".5" y1="0" x2=".6" y2="1"><stop offset="0%" stop-color="var(--accent-soft)"/><stop offset="60%" stop-color="#f48fb1"/><stop offset="100%" stop-color="#880e4f"/></linearGradient></defs><line x1="18" y1="4" x2="18" y2="10" stroke="#880e4f" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="4" x2="38" y2="10" stroke="#880e4f" stroke-width="1.8" stroke-linecap="round"/><path d="M16 10 L13 56 L43 56 L40 10 Z" fill="url(#cls_g)" stroke="#c2185b" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 18 C18 22 38 22 40 18" stroke="white" stroke-width="1" opacity=".5" fill="none"/><path d="M14 52 C18 48 24 52 28 50 C32 48 38 52 42 50" stroke="#880e4f" stroke-width="1.5" fill="none"/>'),
      pieces:m=>[
       {id:'fr',n:'Front',q:'Cut x1 on fold',w:m.hips/4+1,h:m.fullL+1,s:'drf',t:['fold','grain','notch'],c:'#880e4f'},
       {id:'bk',n:'Back',q:'Cut x1 on fold',w:m.hips/4+1.25,h:m.fullL+1,s:'drb',t:['fold','grain'],c:'#c2185b'},
@@ -1463,7 +1463,7 @@ night_dress:{label:'Nightgown / Slip Dress',tip:'<strong>Bust and hip</strong> d
       {id:'stR',n:'Strap Right',q:'Cut x1',w:1,h:16,s:'rect',t:['grain'],c:'#880e4f'},
       {id:'fc',n:'Bodice Lining',q:'Cut x1 on fold',w:m.bust/4+.5,h:m.waistPos+1,s:'rarc',t:['fold','grain'],c:'#f8bbd0'}]},
     {id:'cowlslip',name:'Cowl Neck',sub:'Draped front',
-     icon:dSvg('<defs><linearGradient id="cow_g" x1=".5" y1="0" x2=".6" y2="1"><stop offset="0%" stop-color="#fce4ec"/><stop offset="100%" stop-color="#c2185b"/></linearGradient></defs><path d="M16 10 C16 6 20 4 24 6 C26 10 30 10 32 6 C36 4 40 6 40 10" stroke="#880e4f" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M16 10 L13 56 L43 56 L40 10 Z" fill="url(#cow_g)" stroke="#c2185b" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 52 C18 48 24 52 28 50 C32 48 38 52 42 50" stroke="#880e4f" stroke-width="1.5" fill="none"/><path d="M17 14 C16 28 14 42 14 54" stroke="white" stroke-width="1" opacity=".25" stroke-linecap="round"/>'),
+     icon:dSvg('<defs><linearGradient id="cow_g" x1=".5" y1="0" x2=".6" y2="1"><stop offset="0%" stop-color="var(--accent-soft)"/><stop offset="100%" stop-color="#c2185b"/></linearGradient></defs><path d="M16 10 C16 6 20 4 24 6 C26 10 30 10 32 6 C36 4 40 6 40 10" stroke="#880e4f" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M16 10 L13 56 L43 56 L40 10 Z" fill="url(#cow_g)" stroke="#c2185b" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 52 C18 48 24 52 28 50 C32 48 38 52 42 50" stroke="#880e4f" stroke-width="1.5" fill="none"/><path d="M17 14 C16 28 14 42 14 54" stroke="white" stroke-width="1" opacity=".25" stroke-linecap="round"/>'),
      pieces:m=>[
       {id:'fr',n:'Front (Cowl)',q:'Cut x1 on fold',w:m.hips/4+2,h:m.fullL+3,s:'drf',t:['fold','grain','notch'],c:'#880e4f'},
       {id:'bk',n:'Back',q:'Cut x1 on fold',w:m.hips/4+1.25,h:m.fullL+1,s:'drb',t:['fold','grain'],c:'#c2185b'},
@@ -1494,7 +1494,7 @@ two_piece:{label:'Two-Piece Set',tip:'<strong>Waist and hip</strong> must coordi
   fields:[{id:'bust',l:'Bust',h:'Fullest part',req:1,def:34,mn:24,mx:60},{id:'waist',l:'Waist',h:'Natural waist',req:1,def:28,mn:20,mx:52},{id:'hips',l:'Hips',h:'Fullest part',req:1,def:38,mn:28,mx:66},{id:'topL',l:'Top Length',h:'Shoulder to top hem',req:1,def:16,mn:10,mx:26},{id:'bottomL',l:'Bottom Length',h:'Waist to hem',req:1,def:18,mn:10,mx:36},{id:'shoulder',l:'Shoulder Width',h:'Shoulder to shoulder',req:1,def:14,mn:10,mx:20},{id:'skirtL',l:'Skirt Length',h:'Waist to skirt hem',req:0,def:18,mn:10,mx:40},{id:'inseam',l:'Inseam',h:'Crotch to ankle (palazzo)',req:0,def:28,mn:18,mx:38},{id:'rise',l:'Rise',h:'Waist to crotch, seated',req:0,def:10,mn:7,mx:14}],
   styles:[
     {id:'croptop_skirt',name:'Crop + Skirt',sub:'Classic set',
-     icon:dSvg('<defs><linearGradient id="cts_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#e8f5e9"/><stop offset="100%" stop-color="#2e7d32"/></linearGradient></defs><rect x="10" y="6" width="36" height="18" rx="4" fill="url(#cts_g)" stroke="#1b5e20" stroke-width="1.8"/><path d="M12 10 C20 14 36 14 44 10" stroke="white" stroke-width="1" opacity=".5" fill="none"/><rect x="8" y="28" width="40" height="8" rx="3" fill="#1b5e20" fill-opacity=".4" stroke="#1b5e20" stroke-width="1.5"/><path d="M10 36 L8 56 L48 56 L46 36 Z" fill="url(#cts_g)" stroke="#2e7d32" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 42 C10 46 9 50 9 54" stroke="white" stroke-width="1" opacity=".25" stroke-linecap="round"/>'),
+     icon:dSvg('<defs><linearGradient id="cts_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--ok-bg)"/><stop offset="100%" stop-color="#2e7d32"/></linearGradient></defs><rect x="10" y="6" width="36" height="18" rx="4" fill="url(#cts_g)" stroke="#1b5e20" stroke-width="1.8"/><path d="M12 10 C20 14 36 14 44 10" stroke="white" stroke-width="1" opacity=".5" fill="none"/><rect x="8" y="28" width="40" height="8" rx="3" fill="#1b5e20" fill-opacity=".4" stroke="#1b5e20" stroke-width="1.5"/><path d="M10 36 L8 56 L48 56 L46 36 Z" fill="url(#cts_g)" stroke="#2e7d32" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 42 C10 46 9 50 9 54" stroke="white" stroke-width="1" opacity=".25" stroke-linecap="round"/>'),
      pieces:m=>[
       {id:'tf',n:'Top Front',q:'Cut x1 on fold',w:m.bust/4+.75,h:m.topL+.5,s:'tpf',t:['fold','grain','notch'],c:'#077040'},
       {id:'tb',n:'Top Back',q:'Cut x1 on fold',w:m.bust/4+.75,h:m.topL+.5,s:'tpb',t:['fold','grain'],c:'#077040'},
@@ -1502,7 +1502,7 @@ two_piece:{label:'Two-Piece Set',tip:'<strong>Waist and hip</strong> must coordi
       {id:'bb',n:'Bottom Back',q:'Cut x1 on fold',w:m.hips/4+1.25,h:m.bottomL+1,s:'drb',t:['fold','grain','notch'],c:'#0c9456'},
       {id:'wb',n:'Waistband',q:'Cut x1',w:m.waist+2,h:3,s:'rect',t:['grain'],c:'#004d36'}]},
     {id:'bralette_shorts',name:'Bralette + Shorts',sub:'Sporty set',
-     icon:dSvg('<defs><linearGradient id="bls_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#e8f5e9"/><stop offset="100%" stop-color="#388e3c"/></linearGradient></defs><path d="M8 22 L20 10 L28 14 L36 10 L48 22 Z" fill="url(#bls_g)" stroke="#2e7d32" stroke-width="1.8" stroke-linejoin="round"/><rect x="8" y="22" width="40" height="8" rx="3" fill="url(#bls_g)" stroke="#1b5e20" stroke-width="1.5"/><path d="M10 34 L8 48 L22 48 L28 40" fill="url(#bls_g)" stroke="#2e7d32" stroke-width="1.8" stroke-linejoin="round"/><path d="M46 34 L48 48 L34 48 L28 40" fill="url(#bls_g)" stroke="#2e7d32" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 34 Q28 38 48 34" stroke="#1b5e20" stroke-width="1.5" fill="none"/>'),
+     icon:dSvg('<defs><linearGradient id="bls_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--ok-bg)"/><stop offset="100%" stop-color="#388e3c"/></linearGradient></defs><path d="M8 22 L20 10 L28 14 L36 10 L48 22 Z" fill="url(#bls_g)" stroke="#2e7d32" stroke-width="1.8" stroke-linejoin="round"/><rect x="8" y="22" width="40" height="8" rx="3" fill="url(#bls_g)" stroke="#1b5e20" stroke-width="1.5"/><path d="M10 34 L8 48 L22 48 L28 40" fill="url(#bls_g)" stroke="#2e7d32" stroke-width="1.8" stroke-linejoin="round"/><path d="M46 34 L48 48 L34 48 L28 40" fill="url(#bls_g)" stroke="#2e7d32" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 34 Q28 38 48 34" stroke="#1b5e20" stroke-width="1.5" fill="none"/>'),
      pieces:m=>[
       {id:'cl',n:'Bra Cup L',q:'Cut x1',w:m.bust/4+cx('C')+.5,h:m.bust/6+cx('C'),s:'tri',t:['grain','notch'],c:'#077040'},
       {id:'cr',n:'Bra Cup R',q:'Cut x1 (mirror)',w:m.bust/4+cx('C')+.5,h:m.bust/6+cx('C'),s:'tri',t:['grain','notch'],c:'#077040'},
@@ -1539,25 +1539,25 @@ skirt:{label:'Skirt',tip:'<strong>Skirt style</strong> determines piece shapes. 
   fields:[{id:'waist',l:'Waist',h:'Natural waist',req:1,def:28,mn:20,mx:52},{id:'hips',l:'Hips',h:'Fullest part',req:1,def:38,mn:28,mx:66},{id:'hipDepth',l:'Hip Depth',h:'Waist to fullest hip',req:1,def:8,mn:5,mx:12},{id:'skirtL',l:'Skirt Length',h:'Waist to hem',req:1,def:18,mn:8,mx:42}],
   styles:[
     {id:'aline',name:'A-Line',sub:'Classic flare',
-     icon:dSvg('<defs><linearGradient id="aln_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#e8f5e9"/><stop offset="100%" stop-color="#2e7d32"/></linearGradient></defs><rect x="14" y="4" width="28" height="12" rx="4" fill="#1b5e20" fill-opacity=".4" stroke="#1b5e20" stroke-width="2"/><path d="M14 16 L4 58 L52 58 L42 16 Z" fill="url(#aln_g)" stroke="#2e7d32" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 22 C12 34 9 46 8 56" stroke="white" stroke-width="1" opacity=".3" stroke-linecap="round"/><path d="M40 22 C44 34 47 46 48 56" stroke="white" stroke-width="1" opacity=".3" stroke-linecap="round"/><line x1="14" y1="56" x2="52" y2="56" stroke="#1b5e20" stroke-width="2"/>'),
+     icon:dSvg('<defs><linearGradient id="aln_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--ok-bg)"/><stop offset="100%" stop-color="#2e7d32"/></linearGradient></defs><rect x="14" y="4" width="28" height="12" rx="4" fill="#1b5e20" fill-opacity=".4" stroke="#1b5e20" stroke-width="2"/><path d="M14 16 L4 58 L52 58 L42 16 Z" fill="url(#aln_g)" stroke="#2e7d32" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 22 C12 34 9 46 8 56" stroke="white" stroke-width="1" opacity=".3" stroke-linecap="round"/><path d="M40 22 C44 34 47 46 48 56" stroke="white" stroke-width="1" opacity=".3" stroke-linecap="round"/><line x1="14" y1="56" x2="52" y2="56" stroke="#1b5e20" stroke-width="2"/>'),
      pieces:m=>[
       {id:'fr',n:'Front Panel',q:'Cut x1 on fold',w:m.hips/4+1,h:m.skirtL+1,s:'skf',t:['fold','grain','notch'],c:'#1b5e20'},
       {id:'bk',n:'Back Panel',q:'Cut x1 on fold',w:m.hips/4+1.25,h:m.skirtL+1.5,s:'skb',t:['fold','grain','notch'],c:'#2e7d32'},
       {id:'wb',n:'Waistband',q:'Cut x1',w:m.waist+2,h:2.5,s:'rect',t:['grain'],c:'#004d40'}]},
     {id:'pencil',name:'Pencil',sub:'Fitted straight',
-     icon:dSvg('<defs><linearGradient id="pen_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#e8f5e9"/><stop offset="100%" stop-color="#2e7d32"/></linearGradient></defs><rect x="14" y="4" width="28" height="12" rx="4" fill="#1b5e20" fill-opacity=".4" stroke="#1b5e20" stroke-width="2"/><path d="M14 16 L12 58 L44 58 L42 16 Z" fill="url(#pen_g)" stroke="#2e7d32" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 30 Q28 28 42 30" stroke="white" stroke-width=".9" opacity=".4" fill="none"/><path d="M13 48 Q28 46 43 48" stroke="white" stroke-width=".9" opacity=".3" fill="none"/><line x1="12" y1="56" x2="44" y2="56" stroke="#1b5e20" stroke-width="2"/>'),
+     icon:dSvg('<defs><linearGradient id="pen_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--ok-bg)"/><stop offset="100%" stop-color="#2e7d32"/></linearGradient></defs><rect x="14" y="4" width="28" height="12" rx="4" fill="#1b5e20" fill-opacity=".4" stroke="#1b5e20" stroke-width="2"/><path d="M14 16 L12 58 L44 58 L42 16 Z" fill="url(#pen_g)" stroke="#2e7d32" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 30 Q28 28 42 30" stroke="white" stroke-width=".9" opacity=".4" fill="none"/><path d="M13 48 Q28 46 43 48" stroke="white" stroke-width=".9" opacity=".3" fill="none"/><line x1="12" y1="56" x2="44" y2="56" stroke="#1b5e20" stroke-width="2"/>'),
      pieces:m=>[
       {id:'fr',n:'Front Panel',q:'Cut x1 on fold',w:m.hips/4+.5,h:m.skirtL+1,s:'skf',t:['fold','grain','notch'],c:'#1b5e20'},
       {id:'bk',n:'Back Panel',q:'Cut x1 on fold',w:m.hips/4+.75,h:m.skirtL+1.5,s:'skb',t:['fold','grain','notch'],c:'#2e7d32'},
       {id:'wb',n:'Waistband',q:'Cut x1',w:m.waist+2,h:2.5,s:'rect',t:['grain'],c:'#004d40'}]},
     {id:'circle',name:'Circle',sub:'Full flare',
-     icon:dSvg('<defs><linearGradient id="cir_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#e8f5e9"/><stop offset="100%" stop-color="#388e3c"/></linearGradient></defs><rect x="14" y="2" width="28" height="10" rx="4" fill="#1b5e20" fill-opacity=".4" stroke="#1b5e20" stroke-width="2"/><path d="M14 12 L2 58 L54 58 L42 12 Z" fill="url(#cir_g)" stroke="#2e7d32" stroke-width="1.8" stroke-linejoin="round"/><path d="M15 18 C10 30 6 44 4 56" stroke="white" stroke-width="1" opacity=".3" stroke-linecap="round"/><path d="M41 18 C46 30 50 44 52 56" stroke="white" stroke-width="1" opacity=".3" stroke-linecap="round"/><line x1="2" y1="56" x2="54" y2="56" stroke="#1b5e20" stroke-width="2"/>'),
+     icon:dSvg('<defs><linearGradient id="cir_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--ok-bg)"/><stop offset="100%" stop-color="#388e3c"/></linearGradient></defs><rect x="14" y="2" width="28" height="10" rx="4" fill="#1b5e20" fill-opacity=".4" stroke="#1b5e20" stroke-width="2"/><path d="M14 12 L2 58 L54 58 L42 12 Z" fill="url(#cir_g)" stroke="#2e7d32" stroke-width="1.8" stroke-linejoin="round"/><path d="M15 18 C10 30 6 44 4 56" stroke="white" stroke-width="1" opacity=".3" stroke-linecap="round"/><path d="M41 18 C46 30 50 44 52 56" stroke="white" stroke-width="1" opacity=".3" stroke-linecap="round"/><line x1="2" y1="56" x2="54" y2="56" stroke="#1b5e20" stroke-width="2"/>'),
      pieces:m=>[
       {id:'fr',n:'Front Panel',q:'Cut x1 on fold',w:m.hips/4+3,h:m.skirtL+1,s:'skf',t:['fold','grain','notch'],c:'#1b5e20'},
       {id:'bk',n:'Back Panel',q:'Cut x1 on fold',w:m.hips/4+3.5,h:m.skirtL+1.5,s:'skb',t:['fold','grain','notch'],c:'#2e7d32'},
       {id:'wb',n:'Waistband',q:'Cut x1',w:m.waist+2,h:2.5,s:'rect',t:['grain'],c:'#004d40'}]},
     {id:'mini_skirt',name:'Mini',sub:'Above knee',
-     icon:dSvg('<defs><linearGradient id="msk_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#e8f5e9"/><stop offset="100%" stop-color="#2e7d32"/></linearGradient></defs><rect x="14" y="4" width="28" height="12" rx="4" fill="#1b5e20" fill-opacity=".4" stroke="#1b5e20" stroke-width="2"/><path d="M14 16 L10 40 L46 40 L42 16 Z" fill="url(#msk_g)" stroke="#2e7d32" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 26 Q28 24 42 26" stroke="white" stroke-width=".9" opacity=".4" fill="none"/><line x1="10" y1="38" x2="46" y2="38" stroke="#1b5e20" stroke-width="2"/>'),
+     icon:dSvg('<defs><linearGradient id="msk_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--ok-bg)"/><stop offset="100%" stop-color="#2e7d32"/></linearGradient></defs><rect x="14" y="4" width="28" height="12" rx="4" fill="#1b5e20" fill-opacity=".4" stroke="#1b5e20" stroke-width="2"/><path d="M14 16 L10 40 L46 40 L42 16 Z" fill="url(#msk_g)" stroke="#2e7d32" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 26 Q28 24 42 26" stroke="white" stroke-width=".9" opacity=".4" fill="none"/><line x1="10" y1="38" x2="46" y2="38" stroke="#1b5e20" stroke-width="2"/>'),
      pieces:m=>[
       {id:'fr',n:'Front Panel',q:'Cut x1 on fold',w:m.hips/4+1,h:m.skirtL*.45+1,s:'skf',t:['fold','grain','notch'],c:'#1b5e20'},
       {id:'bk',n:'Back Panel',q:'Cut x1 on fold',w:m.hips/4+1.25,h:m.skirtL*.45+1.5,s:'skb',t:['fold','grain','notch'],c:'#2e7d32'},
@@ -1601,7 +1601,7 @@ lingerie:{label:'Lingerie / Bodysuit',tip:'<strong>Torso girth</strong> determin
   fields:[{id:'bust',l:'Bust',h:'Fullest part',req:1,def:34,mn:24,mx:60},{id:'ubust',l:'Underbust',h:'Below bust',req:1,def:28,mn:20,mx:52},{id:'waist',l:'Waist',h:'Natural waist',req:1,def:28,mn:20,mx:52},{id:'hips',l:'Hips',h:'Fullest part',req:1,def:38,mn:28,mx:66},{id:'torsoG',l:'Torso Girth',h:'Shoulder to crotch to shoulder back',req:1,def:58,mn:46,mx:76},{id:'cup',l:'Cup Size',sel:['AA','A','B','C','D','DD/E','F','G+'],req:1,def:'C'}],
   styles:[
     {id:'bodysuit',name:'Bodysuit',sub:'Snap crotch',
-     icon:dSvg('<defs><linearGradient id="bdy_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#fce4ec"/><stop offset="100%" stop-color="#e91e63"/></linearGradient></defs><path d="M20 10 L28 18 L36 10" stroke="#c2185b" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 12 C10 16 10 26 16 30 C20 32 28 30 28 26 L28 12 Z" fill="#f48fb1" fill-opacity=".5" stroke="#c2185b" stroke-width="1.8"/><path d="M40 12 C46 16 46 26 40 30 C36 32 28 30 28 26 L28 12 Z" fill="#f48fb1" fill-opacity=".5" stroke="#c2185b" stroke-width="1.8"/><path d="M16 30 C14 36 14 46 16 52 C18 56 22 58 28 58 C34 58 38 56 40 52 C42 46 42 36 40 30 Z" fill="url(#bdy_g)" stroke="#c2185b" stroke-width="1.8"/><circle cx="24" cy="58" r="2" stroke="#c2185b" stroke-width="1.5" fill="white"/><circle cx="28" cy="58" r="2" stroke="#c2185b" stroke-width="1.5" fill="white"/><circle cx="32" cy="58" r="2" stroke="#c2185b" stroke-width="1.5" fill="white"/>'),
+     icon:dSvg('<defs><linearGradient id="bdy_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--accent-soft)"/><stop offset="100%" stop-color="#e91e63"/></linearGradient></defs><path d="M20 10 L28 18 L36 10" stroke="#c2185b" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 12 C10 16 10 26 16 30 C20 32 28 30 28 26 L28 12 Z" fill="#f48fb1" fill-opacity=".5" stroke="#c2185b" stroke-width="1.8"/><path d="M40 12 C46 16 46 26 40 30 C36 32 28 30 28 26 L28 12 Z" fill="#f48fb1" fill-opacity=".5" stroke="#c2185b" stroke-width="1.8"/><path d="M16 30 C14 36 14 46 16 52 C18 56 22 58 28 58 C34 58 38 56 40 52 C42 46 42 36 40 30 Z" fill="url(#bdy_g)" stroke="#c2185b" stroke-width="1.8"/><circle cx="24" cy="58" r="2" stroke="#c2185b" stroke-width="1.5" fill="white"/><circle cx="28" cy="58" r="2" stroke="#c2185b" stroke-width="1.5" fill="white"/><circle cx="32" cy="58" r="2" stroke="#c2185b" stroke-width="1.5" fill="white"/>'),
      pieces:m=>[
       {id:'fr',n:'Front Body',q:'Cut x1 on fold',w:m.hips/4+.75,h:m.torsoG/2+.5,s:'suf',t:['fold','grain','notch'],c:'#c2185b'},
       {id:'bk',n:'Back Body',q:'Cut x1 on fold',w:m.hips/4+.75,h:m.torsoG/2-.5,s:'sub',t:['fold','grain','notch'],c:'#e91e63'},
@@ -1609,7 +1609,7 @@ lingerie:{label:'Lingerie / Bodysuit',tip:'<strong>Torso girth</strong> determin
       {id:'cr',n:'Cup Right',q:'Cut x1 (mirror)',w:m.bust/4+cx(m.cup)+.5,h:m.bust/6+cx(m.cup),s:'cup_round',t:['grain','notch'],c:'#880e4f'},
       {id:'gu',n:'Crotch Gusset',q:'Cut x2',w:3,h:4,s:'rect',t:['grain'],c:'#f8bbd0'}]},
     {id:'teddy',name:'Teddy',sub:'Loose cut',
-     icon:dSvg('<defs><linearGradient id="ted_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#fce4ec"/><stop offset="100%" stop-color="#f06292"/></linearGradient></defs><path d="M14 10 L28 6 L42 10 L44 28 C44 38 38 46 34 50 C32 52 30 54 28 54 C26 54 24 52 22 50 C18 46 12 38 12 28 Z" fill="url(#ted_g)" stroke="#c2185b" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 10 L10 16 L14 18" stroke="#c2185b" stroke-width="1.8" stroke-linecap="round" fill="none"/><path d="M40 10 L46 16 L42 18" stroke="#c2185b" stroke-width="1.8" stroke-linecap="round" fill="none"/><path d="M20 26 Q28 30 36 26" stroke="white" stroke-width="1" opacity=".5" fill="none"/>'),
+     icon:dSvg('<defs><linearGradient id="ted_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--accent-soft)"/><stop offset="100%" stop-color="#f06292"/></linearGradient></defs><path d="M14 10 L28 6 L42 10 L44 28 C44 38 38 46 34 50 C32 52 30 54 28 54 C26 54 24 52 22 50 C18 46 12 38 12 28 Z" fill="url(#ted_g)" stroke="#c2185b" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 10 L10 16 L14 18" stroke="#c2185b" stroke-width="1.8" stroke-linecap="round" fill="none"/><path d="M40 10 L46 16 L42 18" stroke="#c2185b" stroke-width="1.8" stroke-linecap="round" fill="none"/><path d="M20 26 Q28 30 36 26" stroke="white" stroke-width="1" opacity=".5" fill="none"/>'),
      pieces:m=>[
       {id:'fr',n:'Front Body',q:'Cut x1 on fold',w:m.hips/4+1.5,h:m.torsoG/2+1.5,s:'suf',t:['fold','grain','notch'],c:'#c2185b'},
       {id:'bk',n:'Back Body',q:'Cut x1 on fold',w:m.hips/4+1.5,h:m.torsoG/2+.5,s:'sub',t:['fold','grain','notch'],c:'#e91e63'},
@@ -1742,7 +1742,7 @@ rash_guard:{label:'Rash Guard / Swim Top',tip:'<strong>Chest and torso length</s
   ],
   styles:[
     {id:'longsleeve_rg',name:'Long Sleeve',sub:'UPF 50+ coverage',
-     icon:dSvg('<defs><linearGradient id="lrg_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#e3f2fd"/><stop offset="100%" stop-color="#0277bd"/></linearGradient></defs><path d="M20 6 L12 14 L6 36 L14 38 L18 22 L22 12 Z" fill="url(#lrg_g)" stroke="#01579b" stroke-width="1.8" stroke-linejoin="round"/><path d="M36 6 L44 14 L50 36 L42 38 L38 22 L34 12 Z" fill="url(#lrg_g)" stroke="#01579b" stroke-width="1.8" stroke-linejoin="round"/><path d="M22 12 L20 44 L36 44 L34 12 Z" fill="url(#lrg_g)" stroke="#01579b" stroke-width="1.8" stroke-linejoin="round"/><path d="M20 6 C22 2 34 2 36 6" stroke="#01579b" stroke-width="2.2" fill="none" stroke-linecap="round"/><line x1="28" y1="6" x2="28" y2="26" stroke="#0288d1" stroke-width="1.5" stroke-dasharray="2 2"/>'),
+     icon:dSvg('<defs><linearGradient id="lrg_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--surface-2)"/><stop offset="100%" stop-color="#0277bd"/></linearGradient></defs><path d="M20 6 L12 14 L6 36 L14 38 L18 22 L22 12 Z" fill="url(#lrg_g)" stroke="#01579b" stroke-width="1.8" stroke-linejoin="round"/><path d="M36 6 L44 14 L50 36 L42 38 L38 22 L34 12 Z" fill="url(#lrg_g)" stroke="#01579b" stroke-width="1.8" stroke-linejoin="round"/><path d="M22 12 L20 44 L36 44 L34 12 Z" fill="url(#lrg_g)" stroke="#01579b" stroke-width="1.8" stroke-linejoin="round"/><path d="M20 6 C22 2 34 2 36 6" stroke="#01579b" stroke-width="2.2" fill="none" stroke-linecap="round"/><line x1="28" y1="6" x2="28" y2="26" stroke="#0288d1" stroke-width="1.5" stroke-dasharray="2 2"/>'),
      pieces:m=>[
       {id:'fr',n:'Front Body',q:'Cut x1 on fold',w:m.bust/2+.75,h:m.frontL+.75,s:'tpf',t:['fold','grain','notch'],c:'#01579b'},
       {id:'bk',n:'Back Body',q:'Cut x1 on fold',w:m.bust/2+.75,h:m.backL+.75,s:'tpb',t:['fold','grain','notch'],c:'#0277bd'},
@@ -1753,7 +1753,7 @@ rash_guard:{label:'Rash Guard / Swim Top',tip:'<strong>Chest and torso length</s
       {id:'hm',n:'Hem Band',q:'Cut x1',w:m.bust+1,h:2,s:'rect',t:['grain'],c:'#0288d1'}
     ]},
     {id:'shortsleeve_rg',name:'Short Sleeve',sub:'Classic surf top',
-     icon:dSvg('<defs><linearGradient id="srg_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#e3f2fd"/><stop offset="100%" stop-color="#0277bd"/></linearGradient></defs><path d="M20 8 L12 18 L16 22 L20 14 Z" fill="url(#srg_g)" stroke="#01579b" stroke-width="1.8" stroke-linejoin="round"/><path d="M36 8 L44 18 L40 22 L36 14 Z" fill="url(#srg_g)" stroke="#01579b" stroke-width="1.8" stroke-linejoin="round"/><path d="M20 14 L18 44 L38 44 L36 14 Z" fill="url(#srg_g)" stroke="#01579b" stroke-width="1.8" stroke-linejoin="round"/><path d="M20 8 C22 4 34 4 36 8" stroke="#01579b" stroke-width="2" fill="none" stroke-linecap="round"/><line x1="28" y1="8" x2="28" y2="26" stroke="#0288d1" stroke-width="1.5" stroke-dasharray="2 2"/>'),
+     icon:dSvg('<defs><linearGradient id="srg_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--surface-2)"/><stop offset="100%" stop-color="#0277bd"/></linearGradient></defs><path d="M20 8 L12 18 L16 22 L20 14 Z" fill="url(#srg_g)" stroke="#01579b" stroke-width="1.8" stroke-linejoin="round"/><path d="M36 8 L44 18 L40 22 L36 14 Z" fill="url(#srg_g)" stroke="#01579b" stroke-width="1.8" stroke-linejoin="round"/><path d="M20 14 L18 44 L38 44 L36 14 Z" fill="url(#srg_g)" stroke="#01579b" stroke-width="1.8" stroke-linejoin="round"/><path d="M20 8 C22 4 34 4 36 8" stroke="#01579b" stroke-width="2" fill="none" stroke-linecap="round"/><line x1="28" y1="8" x2="28" y2="26" stroke="#0288d1" stroke-width="1.5" stroke-dasharray="2 2"/>'),
      pieces:m=>[
       {id:'fr',n:'Front Body',q:'Cut x1 on fold',w:m.bust/2+.75,h:m.frontL+.75,s:'tpf',t:['fold','grain','notch'],c:'#01579b'},
       {id:'bk',n:'Back Body',q:'Cut x1 on fold',w:m.bust/2+.75,h:m.backL+.75,s:'tpb',t:['fold','grain','notch'],c:'#0277bd'},
@@ -1763,7 +1763,7 @@ rash_guard:{label:'Rash Guard / Swim Top',tip:'<strong>Chest and torso length</s
       {id:'hm',n:'Hem Band',q:'Cut x1',w:m.bust+1,h:2,s:'rect',t:['grain'],c:'#0288d1'}
     ]},
     {id:'tank_rg',name:'Tank / Vest',sub:'No sleeve',
-     icon:dSvg('<defs><linearGradient id="trg_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#e3f2fd"/><stop offset="100%" stop-color="#0288d1"/></linearGradient></defs><line x1="20" y1="6" x2="18" y2="12" stroke="#01579b" stroke-width="1.8" stroke-linecap="round"/><line x1="36" y1="6" x2="38" y2="12" stroke="#01579b" stroke-width="1.8" stroke-linecap="round"/><path d="M18 12 C22 18 34 18 38 12" stroke="#01579b" stroke-width="2" fill="none"/><path d="M18 12 L16 46 L40 46 L38 12 Z" fill="url(#trg_g)" stroke="#01579b" stroke-width="1.8" stroke-linejoin="round"/><path d="M18 30 Q28 27 38 30" stroke="white" stroke-width=".9" opacity=".4" fill="none"/>'),
+     icon:dSvg('<defs><linearGradient id="trg_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--surface-2)"/><stop offset="100%" stop-color="#0288d1"/></linearGradient></defs><line x1="20" y1="6" x2="18" y2="12" stroke="#01579b" stroke-width="1.8" stroke-linecap="round"/><line x1="36" y1="6" x2="38" y2="12" stroke="#01579b" stroke-width="1.8" stroke-linecap="round"/><path d="M18 12 C22 18 34 18 38 12" stroke="#01579b" stroke-width="2" fill="none"/><path d="M18 12 L16 46 L40 46 L38 12 Z" fill="url(#trg_g)" stroke="#01579b" stroke-width="1.8" stroke-linejoin="round"/><path d="M18 30 Q28 27 38 30" stroke="white" stroke-width=".9" opacity=".4" fill="none"/>'),
      pieces:m=>[
       {id:'fr',n:'Front Body',q:'Cut x1 on fold',w:m.bust/2+.75,h:m.frontL+.75,s:'tpf',t:['fold','grain','notch'],c:'#01579b'},
       {id:'bk',n:'Back Body',q:'Cut x1 on fold',w:m.bust/2+.75,h:m.backL+.75,s:'tpb',t:['fold','grain','notch'],c:'#0277bd'},
@@ -1772,7 +1772,7 @@ rash_guard:{label:'Rash Guard / Swim Top',tip:'<strong>Chest and torso length</s
       {id:'hm',n:'Hem Band',q:'Cut x1',w:m.bust+1,h:2,s:'rect',t:['grain'],c:'#0288d1'}
     ]},
     {id:'zip_rg',name:'Zip Front',sub:'Easy on / off',
-     icon:dSvg('<defs><linearGradient id="zrg_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#e3f2fd"/><stop offset="100%" stop-color="#0277bd"/></linearGradient></defs><path d="M20 6 L12 14 L6 38 L14 40 L18 22 L22 12 Z" fill="url(#zrg_g)" stroke="#01579b" stroke-width="1.8" stroke-linejoin="round"/><path d="M36 6 L44 14 L50 38 L42 40 L38 22 L34 12 Z" fill="url(#zrg_g)" stroke="#01579b" stroke-width="1.8" stroke-linejoin="round"/><path d="M22 12 L20 44 L36 44 L34 12 Z" fill="url(#zrg_g)" stroke="#01579b" stroke-width="1.8"/><path d="M20 6 C22 2 34 2 36 6" stroke="#01579b" stroke-width="2" fill="none"/><line x1="28" y1="6" x2="28" y2="44" stroke="#0277bd" stroke-width="2" stroke-linecap="round"/><rect x="26" y="16" width="4" height="6" rx="1" fill="#0277bd" opacity=".7"/>'),
+     icon:dSvg('<defs><linearGradient id="zrg_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--surface-2)"/><stop offset="100%" stop-color="#0277bd"/></linearGradient></defs><path d="M20 6 L12 14 L6 38 L14 40 L18 22 L22 12 Z" fill="url(#zrg_g)" stroke="#01579b" stroke-width="1.8" stroke-linejoin="round"/><path d="M36 6 L44 14 L50 38 L42 40 L38 22 L34 12 Z" fill="url(#zrg_g)" stroke="#01579b" stroke-width="1.8" stroke-linejoin="round"/><path d="M22 12 L20 44 L36 44 L34 12 Z" fill="url(#zrg_g)" stroke="#01579b" stroke-width="1.8"/><path d="M20 6 C22 2 34 2 36 6" stroke="#01579b" stroke-width="2" fill="none"/><line x1="28" y1="6" x2="28" y2="44" stroke="#0277bd" stroke-width="2" stroke-linecap="round"/><rect x="26" y="16" width="4" height="6" rx="1" fill="#0277bd" opacity=".7"/>'),
      pieces:m=>[
       {id:'fl',n:'Front Left',q:'Cut x1',w:m.bust/4+.75,h:m.frontL+.75,s:'tpf',t:['grain','notch'],c:'#01579b'},
       {id:'fr',n:'Front Right',q:'Cut x1 (mirror)',w:m.bust/4+.75,h:m.frontL+.75,s:'tpf',t:['grain','notch'],c:'#01579b'},
@@ -1860,7 +1860,7 @@ swim_dress:{label:'Swim Dress',tip:'<strong>Hip</strong> and <strong>dress lengt
        {id:'bs',n:'Back Skirt',q:'Cut x1 on fold',w:m.hips/4+2.5,h:m.dressL-((m.torsoG-m.torsoF)*.48)+1,s:'drb',t:['fold','grain'],c:'#00796b'},
        {id:'br',n:'Brief Front',q:'Cut x1 on fold',w:m.hips/4+.5,h:7,s:'brif',t:['fold','grain','notch'],c:'#004d40'},
        {id:'brbk',n:'Brief Back',q:'Cut x1 on fold',w:m.hips/4+.5,h:5.5,s:'brib',t:['fold','grain','notch'],c:'#004d40'},
-       {id:'gu',n:'Crotch Gusset',q:'Cut x2',w:3,h:5,s:'rect',t:['grain'],c:'#e0f2f1'}
+       {id:'gu',n:'Crotch Gusset',q:'Cut x2',w:3,h:5,s:'rect',t:['grain'],c:'var(--ok-bg)'}
      ]},
     {id:'ruffle_swim',name:'Ruffled Skirt',sub:'Playful flare',
      icon:dSvg('<defs><linearGradient id="rsw_g" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#b2dfdb"/><stop offset="100%" stop-color="#00695c"/></linearGradient></defs><path d="M20 8 C16 10 12 16 12 22 L12 30 L44 30 L44 22 C44 16 40 10 36 8 Z" fill="url(#rsw_g)" stroke="#00695c" stroke-width="1.8"/><line x1="10" y1="30" x2="46" y2="30" stroke="#004d40" stroke-width="2"/><path d="M8 30 L4 56 L52 56 L48 30 Z" fill="url(#rsw_g)" fill-opacity=".55" stroke="#00695c" stroke-width="1.8"/><path d="M6 42 C14 46 42 46 50 42" stroke="#00695c" stroke-width="1.5" fill="none" opacity=".7"/><line x1="20" y1="8" x2="18" y2="4" stroke="#004d40" stroke-width="1.8" stroke-linecap="round"/><line x1="36" y1="8" x2="38" y2="4" stroke="#004d40" stroke-width="1.8" stroke-linecap="round"/>'),
@@ -1869,7 +1869,7 @@ swim_dress:{label:'Swim Dress',tip:'<strong>Hip</strong> and <strong>dress lengt
        {id:'bb',n:'Back Bodice',q:'Cut x1 on fold',w:m.bust/4+.75,h:(m.torsoG-m.torsoF)*.48+.75,s:'sub',t:['fold','grain','notch'],c:'#00796b'},
        {id:'fs',n:'Front Skirt',q:'Cut x1 on fold',w:m.hips/4+3.5,h:m.dressL-(m.torsoF*.48)+1,s:'drf',t:['fold','grain'],c:'#00695c'},
        {id:'bs',n:'Back Skirt',q:'Cut x1 on fold',w:m.hips/4+4,h:m.dressL-((m.torsoG-m.torsoF)*.48)+1,s:'drb',t:['fold','grain'],c:'#00796b'},
-       {id:'rf',n:'Ruffle Strip',q:'Cut x3',w:m.hips/2+8,h:4.5,s:'rect',t:['grain'],c:'#e0f2f1'},
+       {id:'rf',n:'Ruffle Strip',q:'Cut x3',w:m.hips/2+8,h:4.5,s:'rect',t:['grain'],c:'var(--ok-bg)'},
        {id:'gu',n:'Crotch Gusset',q:'Cut x2',w:3,h:5,s:'rect',t:['grain'],c:'#004d40'}
      ]}
     ,{id:'halter_swim',name:'Halter Swim',sub:'Halter neck',
@@ -1877,7 +1877,7 @@ swim_dress:{label:'Swim Dress',tip:'<strong>Hip</strong> and <strong>dress lengt
      pieces:m=>[
        {id:'fb',n:'Front Bodice',q:'Cut x1 on fold',w:m.bust/4+.75,h:m.torsoF*.48+.75,s:'suf',t:['fold','grain','notch'],c:'#00695c'},
        {id:'bb',n:'Back Bodice',q:'Cut x1 on fold',w:m.bust/4+.75,h:(m.torsoG-m.torsoF)*.48+.75,s:'sub',t:['fold','grain','notch'],c:'#00796b'},
-       {id:'ht',n:'Halter Tie',q:'Cut x2',w:m.bust/4+2,h:2,s:'rect',t:['grain'],c:'#e0f2f1'},
+       {id:'ht',n:'Halter Tie',q:'Cut x2',w:m.bust/4+2,h:2,s:'rect',t:['grain'],c:'var(--ok-bg)'},
        {id:'fs',n:'Front Skirt',q:'Cut x1 on fold',w:m.hips/4+2.5,h:m.dressL-(m.torsoF*.48)+1,s:'drf',t:['fold','grain'],c:'#00695c'},
        {id:'bs',n:'Back Skirt',q:'Cut x1 on fold',w:m.hips/4+2.5,h:m.dressL-((m.torsoG-m.torsoF)*.48)+1,s:'drb',t:['fold','grain'],c:'#00796b'},
        {id:'gu',n:'Crotch Gusset',q:'Cut x2',w:3,h:5,s:'rect',t:['grain'],c:'#004d40'}
@@ -1924,7 +1924,7 @@ biker_shorts:{label:'Biker Shorts',tip:'<strong>Waist</strong> sets the waistban
     fields:[{id:'bust',l:'Bust',h:'Fullest part',req:1,def:36,mn:28,mx:54},{id:'waist',l:'Waist',h:'Natural waist',req:1,def:28,mn:22,mx:46},{id:'torsoF',l:'Torso Front',h:'Bust to waist',req:0,def:9,mn:7,mx:13},{id:'hips',l:'Hips',h:'Hip measurement',req:0,def:38,mn:30,mx:58}],
     styles:[
       {id:'ct_sweet',name:'Sweetheart Corset',sub:'Sweetheart neckline',
-     icon:dSvg('<defs><linearGradient id="dct1" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#fce4ec"/><stop offset="100%" stop-color="#e91e63"/></linearGradient></defs><path d="M12 12 C12 8 16 4 20 8 C22 12 26 12 28 8 C30 12 34 12 36 8 C40 4 44 8 44 12 L42 34 C40 46 34 52 28 54 C22 52 16 46 14 34 L12 12 Z" fill="url(#dct1)" stroke="#c2185b" stroke-width="1.8" stroke-linejoin="round"/><line x1="20" y1="15" x2="19" y2="48" stroke="#f48fb1" stroke-width="1" opacity=".7"/><line x1="28" y1="14" x2="28" y2="52" stroke="#f48fb1" stroke-width="1" opacity=".7"/><line x1="36" y1="15" x2="37" y2="48" stroke="#f48fb1" stroke-width="1" opacity=".7"/>','0 0 56 56'),
+     icon:dSvg('<defs><linearGradient id="dct1" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--accent-soft)"/><stop offset="100%" stop-color="#e91e63"/></linearGradient></defs><path d="M12 12 C12 8 16 4 20 8 C22 12 26 12 28 8 C30 12 34 12 36 8 C40 4 44 8 44 12 L42 34 C40 46 34 52 28 54 C22 52 16 46 14 34 L12 12 Z" fill="url(#dct1)" stroke="#c2185b" stroke-width="1.8" stroke-linejoin="round"/><line x1="20" y1="15" x2="19" y2="48" stroke="#f48fb1" stroke-width="1" opacity=".7"/><line x1="28" y1="14" x2="28" y2="52" stroke="#f48fb1" stroke-width="1" opacity=".7"/><line x1="36" y1="15" x2="37" y2="48" stroke="#f48fb1" stroke-width="1" opacity=".7"/>','0 0 56 56'),
      pieces:(m)=>[
         {id:'cf',n:'Center Front',q:'Cut x1',w:m.bust/8+1,h:m.torsoF+1,s:'drf',t:['grain','notch'],c:'#6a1b9a'},
         {id:'sf',n:'Side Front',q:'Cut x2 mirror',w:m.bust/8+.5,h:m.torsoF+1,s:'drf',t:['grain'],c:'#7b1fa2'},
@@ -1934,7 +1934,7 @@ biker_shorts:{label:'Biker Shorts',tip:'<strong>Waist</strong> sets the waistban
         {id:'bon',n:'Boning Channel',q:'Cut x8',w:.75,h:m.torsoF-.5,s:'rect',t:['grain'],c:'#ce93d8'}
       ]},
       {id:'ct_modern',name:'Modern Bustier',sub:'Straight neckline',
-     icon:dSvg('<defs><linearGradient id="dct2" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#fce4ec"/><stop offset="100%" stop-color="#e91e63"/></linearGradient></defs><path d="M12 10 L44 10 L42 34 C40 46 34 52 28 54 C22 52 16 46 14 34 L12 10 Z" fill="url(#dct2)" stroke="#c2185b" stroke-width="1.8" stroke-linejoin="round"/><line x1="12" y1="10" x2="44" y2="10" stroke="#880e4f" stroke-width="2.2"/><line x1="20" y1="12" x2="19" y2="48" stroke="#f48fb1" stroke-width="1" opacity=".7"/><line x1="28" y1="12" x2="28" y2="52" stroke="#f48fb1" stroke-width="1" opacity=".7"/><line x1="36" y1="12" x2="37" y2="48" stroke="#f48fb1" stroke-width="1" opacity=".7"/><path d="M22 18 L34 22 M22 24 L34 28 M22 30 L34 34" stroke="#880e4f" stroke-width="1.2" opacity=".6"/>','0 0 56 56'),
+     icon:dSvg('<defs><linearGradient id="dct2" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--accent-soft)"/><stop offset="100%" stop-color="#e91e63"/></linearGradient></defs><path d="M12 10 L44 10 L42 34 C40 46 34 52 28 54 C22 52 16 46 14 34 L12 10 Z" fill="url(#dct2)" stroke="#c2185b" stroke-width="1.8" stroke-linejoin="round"/><line x1="12" y1="10" x2="44" y2="10" stroke="#880e4f" stroke-width="2.2"/><line x1="20" y1="12" x2="19" y2="48" stroke="#f48fb1" stroke-width="1" opacity=".7"/><line x1="28" y1="12" x2="28" y2="52" stroke="#f48fb1" stroke-width="1" opacity=".7"/><line x1="36" y1="12" x2="37" y2="48" stroke="#f48fb1" stroke-width="1" opacity=".7"/><path d="M22 18 L34 22 M22 24 L34 28 M22 30 L34 34" stroke="#880e4f" stroke-width="1.2" opacity=".6"/>','0 0 56 56'),
      pieces:(m)=>[
         {id:'cf',n:'Center Front',q:'Cut x1',w:m.bust/6+1,h:m.torsoF+1,s:'drf',t:['grain','notch'],c:'#6a1b9a'},
         {id:'sf',n:'Side Panel',q:'Cut x2 mirror',w:m.bust/5+.5,h:m.torsoF+.5,s:'rect',t:['grain'],c:'#7b1fa2'},
@@ -1950,7 +1950,7 @@ biker_shorts:{label:'Biker Shorts',tip:'<strong>Waist</strong> sets the waistban
     fields:[{id:'bust',l:'Bust',h:'Fullest part',req:1,def:34,mn:28,mx:52},{id:'waist',l:'Waist',h:'Natural waist',req:1,def:28,mn:22,mx:46},{id:'hips',l:'Hips',h:'Hip measure',req:1,def:38,mn:30,mx:56},{id:'dressL',l:'Dress Length',h:'Waist to hem',req:1,def:16,mn:12,mx:22},{id:'torsoF',l:'Bodice Length',h:'Shoulder to waist',req:0,def:14,mn:11,mx:18},{id:'inseam',l:'Short Inseam',h:'Built-in short inseam',req:0,def:3,mn:1,mx:8},{id:'rise',l:'Rise',h:'Waist to crotch, seated',req:0,def:10,mn:7,mx:14}],
     styles:[
       {id:'td_classic',name:'Classic Tennis',sub:'Pleated skirt',
-     icon:dSvg('<defs><linearGradient id="dtd1" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#f3e5f5"/><stop offset="100%" stop-color="#8e24aa"/></linearGradient></defs><path d="M22 4 L20 11 L15 16 L17 23 L17 29 L39 29 L39 23 L41 16 L36 11 L34 4 Z" fill="url(#dtd1)" stroke="#6a1b9a" stroke-width="1.8"/><path d="M22 4 C24 9 32 9 34 4" stroke="#4a148c" stroke-width="1.8" fill="none"/><line x1="15" y1="29" x2="41" y2="29" stroke="#4a148c" stroke-width="1.8"/><path d="M17 29 L10 52 L46 52 L39 29 Z" fill="url(#dtd1)" fill-opacity=".65" stroke="#6a1b9a" stroke-width="1.8" stroke-linejoin="round"/><path d="M17 36 L15 50 M23 34 L22 51 M33 34 L34 51 M39 36 L41 50" stroke="#8e24aa" stroke-width="1" opacity=".5"/>','0 0 56 56'),
+     icon:dSvg('<defs><linearGradient id="dtd1" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--violet-soft)"/><stop offset="100%" stop-color="#8e24aa"/></linearGradient></defs><path d="M22 4 L20 11 L15 16 L17 23 L17 29 L39 29 L39 23 L41 16 L36 11 L34 4 Z" fill="url(#dtd1)" stroke="#6a1b9a" stroke-width="1.8"/><path d="M22 4 C24 9 32 9 34 4" stroke="#4a148c" stroke-width="1.8" fill="none"/><line x1="15" y1="29" x2="41" y2="29" stroke="#4a148c" stroke-width="1.8"/><path d="M17 29 L10 52 L46 52 L39 29 Z" fill="url(#dtd1)" fill-opacity=".65" stroke="#6a1b9a" stroke-width="1.8" stroke-linejoin="round"/><path d="M17 36 L15 50 M23 34 L22 51 M33 34 L34 51 M39 36 L41 50" stroke="#8e24aa" stroke-width="1" opacity=".5"/>','0 0 56 56'),
      pieces:(m)=>[
         {id:'bf',n:'Bodice Front',q:'Cut x1',w:m.bust/2+2,h:m.torsoF+1,s:'tpf',t:['grain','notch'],c:'#00897b'},
         {id:'bb',n:'Bodice Back',q:'Cut x1',w:m.bust/2+2,h:m.torsoF+.5,s:'tpb',t:['grain','notch'],c:'#00796b'},
@@ -1960,7 +1960,7 @@ biker_shorts:{label:'Biker Shorts',tip:'<strong>Waist</strong> sets the waistban
         {id:'li',n:'Built-in Short',q:'Cut x2 mirror',w:m.hips/4+2,h:5,s:'lgf',t:['grain'],c:'#b2dfdb'}
       ]},
       {id:'td_wrap',name:'Wrap Skirt Tennis',sub:'Wrap skirt',
-     icon:dSvg('<defs><linearGradient id="dtd2" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#f3e5f5"/><stop offset="100%" stop-color="#8e24aa"/></linearGradient></defs><path d="M22 4 L20 11 L15 16 L17 23 L17 29 L39 29 L39 23 L41 16 L36 11 L34 4 Z" fill="url(#dtd2)" stroke="#6a1b9a" stroke-width="1.8"/><path d="M22 4 C24 9 32 9 34 4" stroke="#4a148c" stroke-width="1.8" fill="none"/><line x1="15" y1="29" x2="41" y2="29" stroke="#4a148c" stroke-width="1.8"/><path d="M17 29 L12 52 L34 52 L28 29 Z" fill="url(#dtd2)" fill-opacity=".75" stroke="#6a1b9a" stroke-width="1.8" stroke-linejoin="round"/><path d="M28 29 L44 52 L24 52 Z" fill="url(#dtd2)" fill-opacity=".5" stroke="#6a1b9a" stroke-width="1.5" stroke-linejoin="round"/>','0 0 56 56'),
+     icon:dSvg('<defs><linearGradient id="dtd2" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--violet-soft)"/><stop offset="100%" stop-color="#8e24aa"/></linearGradient></defs><path d="M22 4 L20 11 L15 16 L17 23 L17 29 L39 29 L39 23 L41 16 L36 11 L34 4 Z" fill="url(#dtd2)" stroke="#6a1b9a" stroke-width="1.8"/><path d="M22 4 C24 9 32 9 34 4" stroke="#4a148c" stroke-width="1.8" fill="none"/><line x1="15" y1="29" x2="41" y2="29" stroke="#4a148c" stroke-width="1.8"/><path d="M17 29 L12 52 L34 52 L28 29 Z" fill="url(#dtd2)" fill-opacity=".75" stroke="#6a1b9a" stroke-width="1.8" stroke-linejoin="round"/><path d="M28 29 L44 52 L24 52 Z" fill="url(#dtd2)" fill-opacity=".5" stroke="#6a1b9a" stroke-width="1.5" stroke-linejoin="round"/>','0 0 56 56'),
      pieces:(m)=>[
         {id:'bf',n:'Bodice Front',q:'Cut x1',w:m.bust/2+2,h:m.torsoF+1,s:'tpf',t:['grain','notch'],c:'#00897b'},
         {id:'bb',n:'Bodice Back',q:'Cut x1',w:m.bust/2+2,h:m.torsoF+.5,s:'tpb',t:['grain','notch'],c:'#00796b'},
@@ -1986,7 +1986,7 @@ biker_shorts:{label:'Biker Shorts',tip:'<strong>Waist</strong> sets the waistban
       {id:'gu',n:'Gusset',q:'Cut x1',w:3,h:4,s:'rect',t:['grain'],c:'#90caf9'}
     ]}
     ,{id:'ct_overbust',name:'Overbust Corset',sub:'Full bust coverage',
-     icon:dSvg('<defs><linearGradient id="dco" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#fce4ec"/><stop offset="100%" stop-color="#e91e63"/></linearGradient></defs><path d="M12 8 C12 4 16 2 20 6 L28 10 L36 6 C40 2 44 4 44 8 L42 32 C40 44 34 50 28 52 C22 50 16 44 14 32 Z" fill="url(#dco)" stroke="#c2185b" stroke-width="1.8"/><line x1="28" y1="10" x2="28" y2="50" stroke="#f48fb1" stroke-width="1" opacity=".6"/>','0 0 56 54'),
+     icon:dSvg('<defs><linearGradient id="dco" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--accent-soft)"/><stop offset="100%" stop-color="#e91e63"/></linearGradient></defs><path d="M12 8 C12 4 16 2 20 6 L28 10 L36 6 C40 2 44 4 44 8 L42 32 C40 44 34 50 28 52 C22 50 16 44 14 32 Z" fill="url(#dco)" stroke="#c2185b" stroke-width="1.8"/><line x1="28" y1="10" x2="28" y2="50" stroke="#f48fb1" stroke-width="1" opacity=".6"/>','0 0 56 54'),
      pieces:(m)=>[
       {id:'cf',n:'Center Front',q:'Cut x1',w:m.bust/8+1,h:m.torsoF+2,s:'drf',t:['grain','notch'],c:'#880e4f'},
       {id:'sf',n:'Side Front',q:'Cut x2 mirror',w:m.bust/8+.5,h:m.torsoF+1.5,s:'drf',t:['grain'],c:'#ad1457'},
@@ -1996,16 +1996,16 @@ biker_shorts:{label:'Biker Shorts',tip:'<strong>Waist</strong> sets the waistban
       {id:'bon',n:'Boning Channel',q:'Cut x10',w:.75,h:m.torsoF+.5,s:'rect',t:['grain'],c:'#f48fb1'}
     ]}
     ,{id:'ct_underbust',name:'Underbust Cincher',sub:'Below-bust cincher',
-     icon:dSvg('<defs><linearGradient id="dcu" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#fce4ec"/><stop offset="100%" stop-color="#e91e63"/></linearGradient></defs><path d="M12 16 L44 16 L42 34 C40 44 34 48 28 50 C22 48 16 44 14 34 Z" fill="url(#dcu)" stroke="#c2185b" stroke-width="1.8"/><line x1="12" y1="16" x2="44" y2="16" stroke="#880e4f" stroke-width="2.2"/>','0 0 56 52'),
+     icon:dSvg('<defs><linearGradient id="dcu" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--accent-soft)"/><stop offset="100%" stop-color="#e91e63"/></linearGradient></defs><path d="M12 16 L44 16 L42 34 C40 44 34 48 28 50 C22 48 16 44 14 34 Z" fill="url(#dcu)" stroke="#c2185b" stroke-width="1.8"/><line x1="12" y1="16" x2="44" y2="16" stroke="#880e4f" stroke-width="2.2"/>','0 0 56 52'),
      pieces:(m)=>[
       {id:'cf',n:'Center Front',q:'Cut x1',w:m.bust/8+.5,h:m.torsoF*.6+1,s:'rect',t:['grain','notch'],c:'#880e4f'},
       {id:'sf',n:'Side Panel',q:'Cut x2 mirror',w:m.bust/6+.5,h:m.torsoF*.5+.5,s:'rect',t:['grain'],c:'#ad1457'},
       {id:'cb',n:'Center Back',q:'Cut x2 mirror',w:m.bust/8+2,h:m.torsoF*.6+1,s:'rect',t:['grain','notch'],c:'#c2185b'},
       {id:'bon',n:'Boning Strip',q:'Cut x8',w:.75,h:m.torsoF*.5,s:'rect',t:['grain'],c:'#f48fb1'},
-      {id:'top',n:'Top Binding',q:'Cut x1',w:m.bust+2,h:1.5,s:'rect',t:['grain'],c:'#fce4ec'}
+      {id:'top',n:'Top Binding',q:'Cut x1',w:m.bust+2,h:1.5,s:'rect',t:['grain'],c:'var(--accent-soft)'}
     ]}
     ,{id:'td_racerback',name:'Racerback Tennis',sub:'Athletic racerback',
-     icon:dSvg('<defs><linearGradient id="dtr" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#f3e5f5"/><stop offset="100%" stop-color="#8e24aa"/></linearGradient></defs><path d="M22 4 L20 10 L14 18 L18 26 L18 29 L38 29 L38 26 L42 18 L36 10 L34 4 Z" fill="url(#dtr)" stroke="#6a1b9a" stroke-width="1.8"/><path d="M22 4 C24 6 28 8 28 8 C28 8 32 6 34 4" stroke="#4a148c" stroke-width="1.8" fill="none"/><path d="M18 29 L12 52 L44 52 L38 29 Z" fill="url(#dtr)" fill-opacity=".65" stroke="#6a1b9a" stroke-width="1.8"/>','0 0 56 56'),
+     icon:dSvg('<defs><linearGradient id="dtr" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--violet-soft)"/><stop offset="100%" stop-color="#8e24aa"/></linearGradient></defs><path d="M22 4 L20 10 L14 18 L18 26 L18 29 L38 29 L38 26 L42 18 L36 10 L34 4 Z" fill="url(#dtr)" stroke="#6a1b9a" stroke-width="1.8"/><path d="M22 4 C24 6 28 8 28 8 C28 8 32 6 34 4" stroke="#4a148c" stroke-width="1.8" fill="none"/><path d="M18 29 L12 52 L44 52 L38 29 Z" fill="url(#dtr)" fill-opacity=".65" stroke="#6a1b9a" stroke-width="1.8"/>','0 0 56 56'),
      pieces:(m)=>[
       {id:'bf',n:'Bodice Front',q:'Cut x1',w:m.bust/2+1.5,h:m.torsoF+1,s:'tpf',t:['grain','notch'],c:'#6a1b9a'},
       {id:'bb',n:'Bodice Back',q:'Cut x1',w:m.bust/2+1.5,h:m.torsoF+.5,s:'tpb',t:['grain','notch'],c:'#7b1fa2'},
@@ -2015,7 +2015,7 @@ biker_shorts:{label:'Biker Shorts',tip:'<strong>Waist</strong> sets the waistban
       {id:'am',n:'Armhole Binding',q:'Cut x2',w:m.bust/4+2,h:1.5,s:'rect',t:['grain'],c:'#ce93d8'}
     ]}
     ,{id:'td_polo',name:'Polo Tennis',sub:'Polo collar style',
-     icon:dSvg('<defs><linearGradient id="dtp" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="#f3e5f5"/><stop offset="100%" stop-color="#8e24aa"/></linearGradient></defs><path d="M22 4 L20 10 L15 16 L17 23 L17 29 L39 29 L39 23 L41 16 L36 11 L34 4 Z" fill="url(#dtp)" stroke="#6a1b9a" stroke-width="1.8"/><rect x="24" y="4" width="8" height="8" rx="1" fill="url(#dtp)" stroke="#4a148c" stroke-width="1.5"/><path d="M17 29 L11 52 L45 52 L39 29 Z" fill="url(#dtp)" fill-opacity=".65" stroke="#6a1b9a" stroke-width="1.8"/>','0 0 56 56'),
+     icon:dSvg('<defs><linearGradient id="dtp" x1=".5" y1="0" x2=".5" y2="1"><stop offset="0%" stop-color="var(--violet-soft)"/><stop offset="100%" stop-color="#8e24aa"/></linearGradient></defs><path d="M22 4 L20 10 L15 16 L17 23 L17 29 L39 29 L39 23 L41 16 L36 11 L34 4 Z" fill="url(#dtp)" stroke="#6a1b9a" stroke-width="1.8"/><rect x="24" y="4" width="8" height="8" rx="1" fill="url(#dtp)" stroke="#4a148c" stroke-width="1.5"/><path d="M17 29 L11 52 L45 52 L39 29 Z" fill="url(#dtp)" fill-opacity=".65" stroke="#6a1b9a" stroke-width="1.8"/>','0 0 56 56'),
      pieces:(m)=>[
       {id:'bf',n:'Bodice Front',q:'Cut x1',w:m.bust/2+2,h:m.torsoF+1,s:'tpf',t:['grain','notch'],c:'#4a148c'},
       {id:'bb',n:'Bodice Back',q:'Cut x1',w:m.bust/2+2,h:m.torsoF+.5,s:'tpb',t:['grain','notch'],c:'#6a1b9a'},
@@ -2952,7 +2952,7 @@ function renderPL(){
     // SA dimensions — final cut size including seam allowance
     var cutW=(p.w+(p.sa||0.5)*2).toFixed(2);
     var cutH=(p.h+(p.sa||0.5)*2).toFixed(2);
-    return '<div class="pc'+(isSel?' sel':'')+'" onclick="selP('+i+')" style="border:2px solid '+(isSel?p.c:'#eef2f8')+';border-radius:10px;padding:10px 12px;margin-bottom:8px;background:'+(isSel?'#f0f7ff':'#fafbff')+';cursor:pointer;transition:all .15s">'
+    return '<div class="pc'+(isSel?' sel':'')+'" onclick="selP('+i+')" style="border:2px solid '+(isSel?p.c:'var(--border)')+';border-radius:10px;padding:10px 12px;margin-bottom:8px;background:'+(isSel?'var(--surface-2)':'var(--surface)')+';cursor:pointer;transition:all .15s">'
       // Header row: color dot + name + quantity
       +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:6px">'
       +'<div style="width:12px;height:12px;border-radius:50%;background:'+p.c+';flex-shrink:0;box-shadow:0 1px 3px rgba(0,0,0,.2)"></div>'
@@ -3192,7 +3192,7 @@ function deleteProject(id){
 }
 
 function bmfCloseOverlay(){
-  document.querySelectorAll('[style*="position:fixed"][style*="z-index:99999"]').forEach(function(el){el.remove();});
+  Array.prototype.forEach.call(document.body.children, function(el){ if (el.style && el.style.position==='fixed' && String(el.style.zIndex)==='99999') el.remove(); });
 }
 
 function showSignInPrompt() {
@@ -3396,7 +3396,7 @@ function zIn(){zoom=Math.min(4,zoom+.2);document.getElementById('zlbl').textCont
 function zOut(){zoom=Math.max(.18,zoom-.2);document.getElementById('zlbl').textContent=Math.round(zoom*100)+'%';drawAll();}
 let paperSel='letter';
 function openPrint(){if(!S.ps.length){toast_('Generate a pattern first');return;}document.getElementById('printModal').classList.add('show');}
-function closePrint(){document.getElementById('printModal').classList.remove('show');}
+function closePrint(){var m=document.getElementById('printModal'); if(m) m.classList.remove('show');}
 function selPaper(el,type){paperSel=type;['paperLetter','paperLarge'].forEach(id=>document.getElementById(id).classList.remove('sel'));el.classList.add('sel');}
 function doPrint(){
   closePrint();
@@ -3452,7 +3452,7 @@ var _liveLoading = {};      // handle -> bool
 // Map a Shopify color/variant name to a hex the sketch can render.
 // Falls back to a neutral if unknown (sketch still works, just less exact).
 var COLOR_NAME_HEX = {
-  black:'#1a1a1a', white:'#f5f5f5', ivory:'#f5f0e1', cream:'#f3ead6',
+  black:'#1a1a1a', white:'var(--surface-2)', ivory:'#f5f0e1', cream:'#f3ead6',
   red:'#c0202a', scarlet:'#c0202a', crimson:'#9e1b32', burgundy:'#6d1a2e', wine:'#5e1a2b', maroon:'#6d1a2e',
   pink:'#e86a9a', rose:'#d64f7f', fuchsia:'#c2185b', magenta:'#c2185b', hotpink:'#e63f8a', blush:'#f0b8c8',
   coral:'#ff6f5e', salmon:'#ff8c69', peach:'#ffb07a', tangerine:'#f28c1f', orange:'#f47b20', rust:'#a0522d',
@@ -3580,11 +3580,11 @@ const BMF_FABRICS=[
   {id:'syn4',name:'Synergy Nylon Lycra - Stripe',color:'#1769d4',hex:'#42a5f5',category:'Swim',price:'$13.99/yd',desc:'Stripe print · directional · 4-way stretch',url:'https://bluemoonfabrics.com/collections/nylon-lycra',pattern:'stripe',img:''},
   {id:'syn5',name:'Synergy Nylon Lycra - Animal',color:'#8f4500',hex:'#a0522d',category:'Swim',price:'$13.99/yd',desc:'Animal print · 4-way stretch',url:'https://bluemoonfabrics.com/collections/nylon-lycra',pattern:'animal',img:''},
   // Matte Nylon
-  {id:'mn1',name:'Matte Nylon Spandex Classic',color:'#192846',hex:'#263238',category:'Activewear',price:'$11.99/yd',desc:'Opacity and shape retention · great for one-piece',url:'https://bluemoonfabrics.com/collections/nylon-spandex',pattern:'solid',img:''},
+  {id:'mn1',name:'Matte Nylon Spandex Classic',color:'var(--ink-2)',hex:'#263238',category:'Activewear',price:'$11.99/yd',desc:'Opacity and shape retention · great for one-piece',url:'https://bluemoonfabrics.com/collections/nylon-spandex',pattern:'solid',img:''},
   {id:'mn2',name:'Matte Nylon - Dusty Rose',color:'#c2185b',hex:'#f48fb1',category:'Activewear',price:'$11.99/yd',desc:'Soft pink · perfect for sports bras',url:'https://bluemoonfabrics.com/collections/nylon-spandex',pattern:'solid',img:''},
   {id:'mn3',name:'Matte Nylon - Sage',color:'#2e7d32',hex:'#81c784',category:'Activewear',price:'$11.99/yd',desc:'Earthy sage green · trending in activewear',url:'https://bluemoonfabrics.com/collections/nylon-spandex',pattern:'solid',img:''},
   // Recycled
-  {id:'rc1',name:'Core Recycled Nylon Spandex',color:'#374f78',hex:'#455a64',category:'Activewear',price:'$13.49/yd',desc:'Eco-certified · 4-way stretch · GOTS pending',url:'https://bluemoonfabrics.com/collections/recycled-fabrics',pattern:'solid',img:''},
+  {id:'rc1',name:'Core Recycled Nylon Spandex',color:'var(--ink-3)',hex:'#455a64',category:'Activewear',price:'$13.49/yd',desc:'Eco-certified · 4-way stretch · GOTS pending',url:'https://bluemoonfabrics.com/collections/recycled-fabrics',pattern:'solid',img:''},
   {id:'rc2',name:'Core Recycled - Coral',color:'#e64a19',hex:'#ff7043',category:'Activewear',price:'$13.49/yd',desc:'Vibrant coral · eco-certified recycled nylon',url:'https://bluemoonfabrics.com/collections/recycled-fabrics',pattern:'solid',img:''},
   // Mystique Foil
   {id:'mf1',name:'Mystique Foiled Spandex - Gold',color:'#f9a825',hex:'#ffd54f',category:'Dance/Stage',price:'$15.99/yd',desc:'Metallic gold foil · high-drama stage look',url:'https://bluemoonfabrics.com/collections/foil-spandex',pattern:'foil',img:''},
@@ -3595,10 +3595,10 @@ const BMF_FABRICS=[
   {id:'vl2',name:'Stretch Velvet - Burgundy',color:'#880e4f',hex:'#b71c1c',category:'Dance/Stage',price:'$16.99/yd',desc:'Deep red · crush velvet effect',url:'https://bluemoonfabrics.com/collections/stretch-velvet',pattern:'velvet',img:''},
   // Lace
   {id:'lc1',name:'Stretch Lace - Ivory',color:'#8f6500',hex:'#f5f0e0',category:'Lingerie',price:'$14.99/yd',desc:'Stretch lace · semi-sheer · lingerie & overlay',url:'https://bluemoonfabrics.com/collections/stretch-lace',pattern:'lace',img:''},
-  {id:'lc2',name:'Stretch Lace - Black',color:'#192846',hex:'#212121',category:'Lingerie',price:'$14.99/yd',desc:'Classic black stretch lace · lingerie staple',url:'https://bluemoonfabrics.com/collections/stretch-lace',pattern:'lace',img:''},
+  {id:'lc2',name:'Stretch Lace - Black',color:'var(--ink-2)',hex:'var(--ink)',category:'Lingerie',price:'$14.99/yd',desc:'Classic black stretch lace · lingerie staple',url:'https://bluemoonfabrics.com/collections/stretch-lace',pattern:'lace',img:''},
   // Sequin
   {id:'sq1',name:'Sequin on Mesh - Gold',color:'#f9a825',hex:'#ffc107',category:'Dance/Stage',price:'$19.99/yd',desc:'All-over gold sequins on stretch mesh',url:'https://bluemoonfabrics.com/collections/sequin-fabric',pattern:'sequin',img:''},
-  {id:'sq2',name:'Sequin on Mesh - Black',color:'#192846',hex:'#263238',category:'Dance/Stage',price:'$19.99/yd',desc:'Classic black sequin · show-stopping',url:'https://bluemoonfabrics.com/collections/sequin-fabric',pattern:'sequin',img:''},
+  {id:'sq2',name:'Sequin on Mesh - Black',color:'var(--ink-2)',hex:'#263238',category:'Dance/Stage',price:'$19.99/yd',desc:'Classic black sequin · show-stopping',url:'https://bluemoonfabrics.com/collections/sequin-fabric',pattern:'sequin',img:''},
   // Harmony Double Knit
   {id:'hdk1',name:'Harmony Ultra Soft Double Knit',color:'#6a1b9a',hex:'#9c27b0',category:'Dresses',price:'$10.99/yd',desc:'Fluid drape · maxi & bodycon · no-fray edges',url:'https://bluemoonfabrics.com/collections/double-knit',pattern:'solid',img:''},
   {id:'hdk2',name:'Harmony Double Knit - Floral',color:'#ad1457',hex:'#e91e63',category:'Dresses',price:'$11.99/yd',desc:'Floral print · fluid drape · maxi dresses',url:'https://bluemoonfabrics.com/collections/double-knit',pattern:'floral',img:''},
@@ -3772,7 +3772,7 @@ function drawMockupSVG(){
 
   const paths=getMockupPaths(g);
   svg.innerHTML=defs+`<rect width="300" height="380" fill="#f2f5ff"/>
-    <text x="150" y="354" text-anchor="middle" fill="#637899" font-size="10" font-family="Inter,sans-serif" font-weight="700">${(DESIGNS[g]?.label||'').toUpperCase()} MOCKUP &middot; ${f.name.toUpperCase()}</text>
+    <text x="150" y="354" text-anchor="middle" fill="var(--ink-3)" font-size="10" font-family="Inter,sans-serif" font-weight="700">${(DESIGNS[g]?.label||'').toUpperCase()} MOCKUP &middot; ${f.name.toUpperCase()}</text>
     ${paths.map(p=>`<path d="${p}" fill="${fill}" stroke="${f.hex}" stroke-width="2"/>`).join('\n')}
     <text x="150" y="370" text-anchor="middle" fill="#93c4ff" font-size="9" font-family="Inter,sans-serif">Blue Moon Fabrics Pattern Studio</text>`;
 }
@@ -3963,7 +3963,7 @@ function saveDXF(){
 function downloadDXFFile(content,filename){
   const blob=new Blob([content],{type:'application/dxf'});
   const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');a.href=url;a.download=filename;a.click();
+  const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),1000);
   setTimeout(()=>URL.revokeObjectURL(url),2000);
 }
 
@@ -4151,8 +4151,8 @@ function saveSVG(){
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="${svgNS}" width="${W.toFixed(1)}px" height="${H.toFixed(1)}px" viewBox="0 0 ${W.toFixed(1)} ${H.toFixed(1)}">
 <title>Blue Moon Fabrics &mdash; ${DESIGNS[S.g]?.label||'Pattern'} / ${S.design}</title>
-<rect width="${W}" height="${H}" fill="#eef2ff"/>
-<text x="${pad}" y="${pad-4}" font-family="Arial,sans-serif" font-size="10" fill="#637899">Blue Moon Fabrics Pattern Studio &mdash; ${DESIGNS[S.g]?.label||''} &middot; ${S.design}</text>
+<rect width="${W}" height="${H}" fill="var(--surface-2)"/>
+<text x="${pad}" y="${pad-4}" font-family="Arial,sans-serif" font-size="10" fill="var(--ink-3)">Blue Moon Fabrics Pattern Studio &mdash; ${DESIGNS[S.g]?.label||''} &middot; ${S.design}</text>
 `;
   S.ps.forEach(p=>{
     const pcx=((p.x-minX+pad)+p.wP/2)*zoom;
@@ -4163,8 +4163,8 @@ function saveSVG(){
     const ptStr=verts.map(v=>`${(pcx+v.x*sc).toFixed(2)},${(pcy+v.y*sc).toFixed(2)}`).join(' ');
     svgContent+=`<polygon points="${ptStr}" fill="${p.c}22" stroke="${p.c}" stroke-width="1.5"/>
 <text x="${pcx.toFixed(1)}" y="${(pcy-8).toFixed(1)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="${Math.max(9,11*zoom).toFixed(0)}" font-weight="bold" fill="${p.c}">${p.n}</text>
-<text x="${pcx.toFixed(1)}" y="${(pcy+6).toFixed(1)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="${Math.max(7,9*zoom).toFixed(0)}" fill="#374f78">${p.q}</text>
-<text x="${pcx.toFixed(1)}" y="${(pcy+18).toFixed(1)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="${Math.max(7,9*zoom).toFixed(0)}" fill="#637899">${p.w.toFixed(2)}" x ${p.h.toFixed(2)}"</text>
+<text x="${pcx.toFixed(1)}" y="${(pcy+6).toFixed(1)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="${Math.max(7,9*zoom).toFixed(0)}" fill="var(--ink-3)">${p.q}</text>
+<text x="${pcx.toFixed(1)}" y="${(pcy+18).toFixed(1)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="${Math.max(7,9*zoom).toFixed(0)}" fill="var(--ink-3)">${p.w.toFixed(2)}" x ${p.h.toFixed(2)}"</text>
 `;
   });
   svgContent+=`</svg>`;
@@ -4607,7 +4607,7 @@ var SKETCH_VARIANTS = {
     scoop: function(b,d,t){ return b('M126 128 L146 118 C148 130 152 130 154 118 L174 128 C184 170 186 220 182 262 C178 300 166 330 150 342 C134 330 122 300 118 262 C114 220 116 170 126 128 Z')+d('M126 128 L146 94 M174 128 L154 94 M146 118 C148 132 152 132 154 118'); },
     vneck: function(b,d,t){ return b('M126 128 L150 170  L174 128 C184 170 186 220 182 262 C178 300 166 330 150 342 C134 330 122 300 118 262 C114 220 116 170 126 128 Z')+d('M126 128 L150 170 L174 128 M126 128 L146 94 M174 128 L154 94'); },
     racerback: function(b,d,t){ return b('M132 126 L146 116 C148 128 152 128 154 116 L168 126 C180 170 183 220 180 262 C176 300 165 330 150 342 C135 330 124 300 120 262 C117 220 120 170 132 126 Z')+d('M132 126 C138 108 145 100 150 98 C155 100 162 108 168 126'); },
-    cutout: function(b,d,t){ return b('M126 128 L146 118 C148 130 152 130 154 118 L174 128 C184 170 186 220 182 262 C178 300 166 330 150 342 C134 330 122 300 118 262 C114 220 116 170 126 128 Z')+d('M126 128 L146 94 M174 128 L154 94')+'<path d="M120 236 C126 242 126 252 121 258 M180 236 C174 242 174 252 179 258" stroke="#faf7f1" stroke-width="7" fill="none" stroke-linecap="round"/>'+d('M120 236 C126 242 126 252 121 258 M180 236 C174 242 174 252 179 258'); },
+    cutout: function(b,d,t){ return b('M126 128 L146 118 C148 130 152 130 154 118 L174 128 C184 170 186 220 182 262 C178 300 166 330 150 342 C134 330 122 300 118 262 C114 220 116 170 126 128 Z')+d('M126 128 L146 94 M174 128 L154 94')+'<path d="M120 236 C126 242 126 252 121 258 M180 236 C174 242 174 252 179 258" stroke="var(--paper)" stroke-width="7" fill="none" stroke-linecap="round"/>'+d('M120 236 C126 242 126 252 121 258 M180 236 C174 242 174 252 179 258'); },
   },
   leggings: {
     fulllen: function(b,d,t){ return b('M120 240 C136 248 164 248 180 240 L184 300 C182 380 176 565 168 641 C166 649 164 653 163 655 L149 655 C150 595 150 520 150 450 L150 420 C151 500 152 597 153 655 L139 655 C136 597 130 500 122 380 C118 320 118 276 120 240 Z')+d('M120 252 C138 260 162 260 180 252'); },
@@ -4686,7 +4686,7 @@ var SKETCH_VARIANTS = {
   },
   jumpsuit: {
     sleeveless_jump: function(b,d,t){ return b('M124 126 L150 114 L176 126 C182 166 184 214 180 254 L188 300 C190 400 188 520 184 640 L156 640 L152 420 L148 420 L144 640 L116 640 C112 520 110 400 112 300 L120 254 C116 214 118 166 124 126 Z')+d('M124 126 L146 90 M176 126 L154 90 M120 252 C138 260 162 260 180 252'); },
-    belted_jump: function(b,d,t){ return b('M124 126 L150 114 L176 126 C182 166 184 214 180 254 L188 300 C190 400 188 520 184 640 L156 640 L152 420 L148 420 L144 640 L116 640 C112 520 110 400 112 300 L120 254 C116 214 118 166 124 126 Z')+'<path d="M119 248 L181 248 L181 262 L119 262 Z" fill="#2b2b35" opacity=".9"/><rect x="143" y="247" width="14" height="16" rx="2.5" fill="none" stroke="#faf7f1" stroke-width="2"/>'+d('M124 126 L146 90 M176 126 L154 90'); },
+    belted_jump: function(b,d,t){ return b('M124 126 L150 114 L176 126 C182 166 184 214 180 254 L188 300 C190 400 188 520 184 640 L156 640 L152 420 L148 420 L144 640 L116 640 C112 520 110 400 112 300 L120 254 C116 214 118 166 124 126 Z')+'<path d="M119 248 L181 248 L181 262 L119 262 Z" fill="#2b2b35" opacity=".9"/><rect x="143" y="247" width="14" height="16" rx="2.5" fill="none" stroke="var(--paper)" stroke-width="2"/>'+d('M124 126 L146 90 M176 126 L154 90'); },
   },
   swim_dress: {
     tank_swim_dress: function(b,d,t){ return b('M126 128 L146 118 C148 130 152 130 154 118 L174 128 C182 160 184 196 182 226 L118 226 C116 196 118 160 126 128 Z')+b('M118 226 L182 226 C190 280 194 330 196 372 C168 384 132 384 104 372 C106 330 110 280 118 226 Z')+d('M126 128 L146 94 M174 128 L154 94 M118 226 L182 226'); },
@@ -4694,7 +4694,7 @@ var SKETCH_VARIANTS = {
   },
   biker_shorts: {
     bs_classic: function(b,d,t){ return b('M120 244 C136 252 164 252 180 244 L184 300 C185 426 185 450 183 466 L157 466 L152 330 L148 330 L143 466 L117 466 C115 450 115 426 116 300 Z')+d('M120 256 C138 264 162 264 180 256')+d('M118 456 L142 456 M158 456 L182 456'); },
-    bs_pocket: function(b,d,t){ return b('M120 244 C136 252 164 252 180 244 L184 300 C185 426 185 450 183 466 L157 466 L152 330 L148 330 L143 466 L117 466 C115 450 115 426 116 300 Z')+d('M120 256 C138 264 162 264 180 256')+'<rect x="120" y="300" width="15" height="32" rx="4" fill="none" stroke="#faf7f1" stroke-width="2" opacity=".9"/><rect x="165" y="300" width="15" height="32" rx="4" fill="none" stroke="#faf7f1" stroke-width="2" opacity=".9"/>'; },
+    bs_pocket: function(b,d,t){ return b('M120 244 C136 252 164 252 180 244 L184 300 C185 426 185 450 183 466 L157 466 L152 330 L148 330 L143 466 L117 466 C115 450 115 426 116 300 Z')+d('M120 256 C138 264 162 264 180 256')+'<rect x="120" y="300" width="15" height="32" rx="4" fill="none" stroke="var(--paper)" stroke-width="2" opacity=".9"/><rect x="165" y="300" width="15" height="32" rx="4" fill="none" stroke="var(--paper)" stroke-width="2" opacity=".9"/>'; },
   },
   corset_top: {
     ct_sweet: function(b,d,t){ return b('M126 134 C134 122 142 128 150 140 C158 128 166 122 174 134 C182 158 184 196 180 228 C162 242 138 242 120 228 C116 196 118 158 126 134 Z')+d('M134 138 L132 232 M150 142 L150 238 M166 138 L168 232 M138 162 L162 170 M138 186 L162 194 M138 210 L162 216'); },
@@ -4746,7 +4746,7 @@ function specBlockSVG(cfg, styleDef, f) {
     var words = String(val||'').split(' '), rows = [''], r = 0;
     words.forEach(function(w){ if ((rows[r]+' '+w).length > 15) { r++; rows[r]=w; } else rows[r] = (rows[r]?rows[r]+' ':'')+w; });
     rows.slice(0,2).forEach(function(rw){
-      s += '<text x="222" y="' + y + '" font-family="Georgia,serif" font-size="8.5" font-weight="bold" fill="#4a3f2c">' + rw.replace(/&/g,'&amp;').replace(/</g,'&lt;') + '</text>';
+      s += '<text x="222" y="' + y + '" font-family="Georgia,serif" font-size="8.5" font-weight="bold" fill="var(--ink-2)">' + rw.replace(/&/g,'&amp;').replace(/</g,'&lt;') + '</text>';
       y += 11;
     });
     y += 5;
@@ -4760,14 +4760,14 @@ function specBlockSVG(cfg, styleDef, f) {
     out += '<text x="222" y="' + y + '" font-family="Georgia,serif" font-size="7" fill="#8a7758" letter-spacing=".12em">FEATURES</text>';
     y += 11;
     chips.forEach(function(ch){
-      out += '<text x="222" y="' + y + '" font-family="Georgia,serif" font-size="7.5" fill="#4a3f2c">&#8226; ' + ch.replace(/&/g,'&amp;').replace(/</g,'&lt;') + '</text>';
+      out += '<text x="222" y="' + y + '" font-family="Georgia,serif" font-size="7.5" fill="var(--ink-2)">&#8226; ' + ch.replace(/&/g,'&amp;').replace(/</g,'&lt;') + '</text>';
       y += 10;
     });
     y += 5;
   }
   var dt = new Date();
   out += '<text x="222" y="' + y + '" font-family="Georgia,serif" font-size="7" fill="#a89a80">' + (dt.getMonth()+1) + '/' + dt.getDate() + '/' + dt.getFullYear() + '</text>';
-  out += '<path d="M216 86 L216 ' + (y+4) + '" stroke="#dcc990" stroke-width=".8"/>';
+  out += '<path d="M216 86 L216 ' + (y+4) + '" stroke="var(--border-2)" stroke-width=".8"/>';
   return out;
 }
 
@@ -5635,7 +5635,7 @@ function askAdvisorAI() {
     });
     var mt = document.createElement('meta'); mt.name = 'apple-mobile-web-app-title'; mt.content = 'Pattern Maker';
     document.head.appendChild(mt);
-    var tc = document.createElement('meta'); tc.name = 'theme-color'; tc.content = '#0d2260';
+    var tc = document.createElement('meta'); tc.name = 'theme-color'; tc.content = 'var(--surface-2)';
     document.head.appendChild(tc);
   } catch(e) {}
 })();
@@ -5808,7 +5808,7 @@ function psRenderContext(extra){
   var chips=[]; try{ document.querySelectorAll('#schips .chip.on').forEach(function(c){chips.push(c.textContent.trim());}); }catch(e){}
   var m = {}; try{ m = (typeof readM==='function') ? readM() : (S.m||{}); }catch(e){ m=S.m||{}; }
   var ctx = {
-    garment: cfg ? cfg.label : S.g, style: st ? st.name : S.design, styleSub: st ? (st.sub||'') : '',
+    garmentId: S.g, garment: cfg ? cfg.label : S.g, style: st ? st.name : S.design, styleSub: st ? (st.sub||'') : '',
     chips: chips,
     fabric: f ? { name:f.name, hex:f.hex||f.color, pattern:f.pattern, category:f.category, desc:(f.desc||'').slice(0,160), img:f.img||'' } : null,
     body: { bust:m.bust, waist:m.waist, hips:m.hips },
@@ -5819,7 +5819,23 @@ function psRenderContext(extra){
   for (var k in (extra||{})) ctx[k]=extra[k];
   return ctx;
 }
+/* rasterise the technical croquis (garment paths only; the CDN figure is dropped) so the model wears the drafted design */
+function psSketchPNG(){
+  return new Promise(function(res){
+    try {
+      var svg = document.querySelector('#sketchSvgHost svg'); if (!svg) return res(null);
+      var cl = svg.cloneNode(true); cl.querySelectorAll('image').forEach(function(i){ i.remove(); });
+      var vb = (cl.getAttribute('viewBox')||'0 0 300 760').split(/\s+/).map(Number); var w = vb[2]||300, h = vb[3]||760;
+      cl.setAttribute('width', w); cl.setAttribute('height', h); cl.setAttribute('xmlns','http://www.w3.org/2000/svg');
+      var bg = document.createElementNS('http://www.w3.org/2000/svg','rect'); bg.setAttribute('width','100%'); bg.setAttribute('height','100%'); bg.setAttribute('fill','#ffffff'); cl.insertBefore(bg, cl.firstChild);
+      var blob = new Blob([new XMLSerializer().serializeToString(cl)], {type:'image/svg+xml;charset=utf-8'}); var url = URL.createObjectURL(blob);
+      var img = new Image(); img.onload = function(){ try { var cv=document.createElement('canvas'); var sc=Math.min(2, 900/h); cv.width=w*sc; cv.height=h*sc; var x=cv.getContext('2d'); x.fillStyle='#fff'; x.fillRect(0,0,cv.width,cv.height); x.drawImage(img,0,0,cv.width,cv.height); res(cv.toDataURL('image/jpeg', 0.85)); } catch(e){ res(null); } URL.revokeObjectURL(url); };
+      img.onerror = function(){ URL.revokeObjectURL(url); res(null); }; img.src = url;
+    } catch(e) { res(null); }
+  });
+}
 async function psRender(ctx, aspect){
+  if (!ctx.sketch) { try { ctx.sketch = await psSketchPNG(); } catch(e) {} }
   var r = await fetch((PS.renderApi||'/api/render'), { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ context: ctx, aspect: aspect||'3:4' }) });
   var j = await r.json().catch(function(){return {};});
   if (!r.ok || !j.image) throw new Error((j && (j.error + (j.detail? ': '+[].concat(j.detail).join(' | '):''))) || ('HTTP '+r.status));

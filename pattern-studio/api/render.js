@@ -6,6 +6,7 @@
 // Uses Google Gemini image models with GEMINI_API_KEY (Vercel env). The fabric's real product photo
 // (Shopify CDN) is passed as a reference image so the print/texture on the model is the real fabric.
 const KEY = process.env.GEMINI_API_KEY;
+const SPEC = require('./garment-spec.js');
 const MODELS = ['gemini-3-pro-image', 'gemini-3.1-flash-image', 'gemini-2.5-flash-image'];
 const ALLOWED_IMG = /^https:\/\/(cdn\.shopify\.com|bluemoonfabrics\.com)\//;
 
@@ -45,6 +46,10 @@ function fabricWords(f) {
 }
 function buildPrompt(c) {
   const g = c.garment || 'garment', st = c.style || '', sub = c.styleSub ? ` (${c.styleSub})` : '';
+  const sp = SPEC[c.garmentId] || null;
+  const styleKey = String(st).toLowerCase();
+  const spec = sp ? ` GARMENT BRIEF — this is ${sp.is}. Style "${st}": ${sp.styles[styleKey] || c.styleSub || st}. Requirements: ${sp.must}. Do not change the garment type, length, neckline, strap layout or cut-outs.` : '';
+  const sketchNote = c.hasSketch ? ' The FIRST attached image is the designer\'s technical sketch of this exact garment: reproduce its silhouette, neckline, straps, cut-outs, seam lines and hem length faithfully as a real sewn garment on the model.' : '';
   const chips = (c.chips || []).filter(Boolean);
   const details = chips.length ? ` Construction details that must be visible: ${chips.join(', ')}.` : '';
   const ease = c.fit && +c.fit.ease ? (c.fit.ease < 0 ? ' Negative ease: skin-tight compression fit.' : ' Relaxed fit with visible ease.') : '';
@@ -55,15 +60,15 @@ function buildPrompt(c) {
   const cut = male ? " men's cut of the" : '';
   const where = SETTING_DESC[c.setting] || SETTING_DESC['Clean studio'];
   const fabric = fabricWords(c.fabric);
-  const ref = c.fabric && c.fabric.img ? ' The attached photo is the actual fabric: reproduce its exact colour, print scale, texture and sheen on the garment.' : '';
+  const ref = c.fabric && c.fabric.img ? ' The attached fabric photo (last image) is the actual fabric: reproduce its exact colour, print scale, texture and sheen on the garment.' : '';
 
   if (c.mode === 'sketch') {
-    return `Couture fashion illustration, hand-drawn designer croquis with ink line and watercolour wash, elongated 9-head fashion figure, white paper background. The ${male ? 'male' : 'female'} figure wears a${cut} ${g} in the "${st}" style${sub}.${details} Fabric: ${fabric}.${ref} Render the garment's seams, neckline, straps, hems and silhouette precisely as a pattern-maker would draft them. Elegant, confident pose. No text, no logos.`;
+    return `Couture fashion illustration, hand-drawn designer croquis with ink line and watercolour wash, elongated 9-head fashion figure, white paper background. The ${male ? 'male' : 'female'} figure wears a${cut} ${g} in the "${st}" style${sub}.${spec}${sketchNote}${details} Fabric: ${fabric}.${ref} Render the garment's seams, neckline, straps, hems and silhouette precisely as a pattern-maker would draft them. Elegant, confident pose. No text, no logos.`;
   }
   if (c.mode === 'print') {
-    return `Editorial fashion photograph, full body, ${who}, wearing a${cut} ${g} in the "${st}" style${sub}, sewn from fabric printed with: ${c.printDesc || 'an abstract print'}. The print must be clearly visible and correctly scaled across the whole garment, following the body's curves and the garment's seams.${details} ${where}. 85mm lens, photorealistic, magazine quality. No text, no logos, no watermark.`;
+    return `Editorial fashion photograph, full body, ${who}, wearing a${cut} ${g} in the "${st}" style${sub}, sewn from fabric printed with: ${c.printDesc || 'an abstract print'}.${spec}${sketchNote} The print must be clearly visible and correctly scaled across the whole garment, following the body's curves and the garment's seams.${details} ${where}. 85mm lens, photorealistic, magazine quality. No text, no logos, no watermark.`;
   }
-  return `Editorial fashion photograph for a couture lookbook, full body head-to-toe, ${who}, relaxed confident three-quarter pose. ${he} wears a${cut} ${g} in the "${st}" style${sub}.${details}${ease}${sizeWords(c.body, male)} Fabric: ${fabric}.${ref} Seams, topstitching, hems, straps and closures rendered as a real sewn garment with correct drape and stretch for this fabric. ${where}. Camera at chest height, 85mm lens, shallow depth of field, photorealistic, high-end fashion magazine quality. No text, no logos, no watermark.`;
+  return `Editorial fashion photograph for a couture lookbook, full body head-to-toe, ${who}, relaxed confident three-quarter pose. ${he} wears a${cut} ${g} in the "${st}" style${sub}.${spec}${sketchNote}${details}${ease}${sizeWords(c.body, male)} Fabric: ${fabric}.${ref} Seams, topstitching, hems, straps and closures rendered as a real sewn garment with correct drape and stretch for this fabric. ${where}. Camera at chest height, 85mm lens, shallow depth of field, photorealistic, high-end fashion magazine quality. No text, no logos, no watermark.`;
 }
 
 async function fetchRef(url) {
@@ -107,7 +112,11 @@ module.exports = async (req, res) => {
   if (!prompt) return res.status(400).json({ error: 'prompt or context required' });
   const aspect = body.aspect || '3:4';
 
-  const parts = [{ text: prompt }];
+  const sketch = ctx && typeof ctx.sketch === 'string' && /^data:image\/(png|jpeg);base64,/.test(ctx.sketch) && ctx.sketch.length < 1_500_000 ? ctx.sketch : null;
+  if (ctx) ctx.hasSketch = !!sketch;
+  const promptFinal = ctx ? buildPrompt(ctx) : prompt;
+  const parts = [{ text: promptFinal }];
+  if (sketch) { const m = sketch.match(/^data:(image\/\w+);base64,(.+)$/); parts.push({ inlineData: { mimeType: m[1], data: m[2] } }); }
   const ref = ctx && ctx.fabric ? await fetchRef(ctx.fabric.img) : null;
   if (ref) parts.push(ref);
 
@@ -116,7 +125,7 @@ module.exports = async (req, res) => {
     try {
       const out = await gemini(m, parts, aspect);
       res.setHeader('Cache-Control', 'no-store');
-      return res.status(200).json({ image: out.dataUrl, model: out.model, prompt, usedFabricPhoto: !!ref });
+      return res.status(200).json({ image: out.dataUrl, model: out.model, prompt: promptFinal, usedFabricPhoto: !!ref, usedSketch: !!sketch });
     } catch (e) { errors.push(e.message); }
   }
   return res.status(502).json({ error: 'render failed', detail: errors });
