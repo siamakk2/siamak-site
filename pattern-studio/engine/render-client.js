@@ -1,5 +1,6 @@
 
 /* ═══ PATTERN STUDIO — photoreal render client (appended by patch-engine) ═══ */
+var PS_ACCOUNT = { user: null, profile: null, ready: false };
 function psRenderContext(extra){
   var cfg = (typeof DESIGNS!=='undefined' && S.g) ? DESIGNS[S.g] : null;
   var st  = cfg && cfg.styles ? cfg.styles.find(function(s){return s.id===S.design;}) : null;

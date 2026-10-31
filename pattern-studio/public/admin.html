@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pattern Studio — Admin</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/site.css">
+<style>
+.ad-wrap{max-width:1180px;margin:0 auto;padding:20px clamp(14px,3vw,36px) 80px}
+.ad-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:18px 0 28px}
+.ad-kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px}
+.ad-kpi b{display:block;font-family:var(--D);font-size:34px;font-weight:600;color:var(--ink)}
+.ad-kpi span{font-family:var(--M);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-4)}
+.ad-tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.ad-tabs button{background:var(--surface-2);border:1px solid var(--border-2);color:var(--ink-2);padding:9px 14px;border-radius:var(--r3);font-weight:700;font-size:12.5px;cursor:pointer}
+.ad-tabs button.on{background:var(--grad);color:#fff;border-color:transparent}
+table.ad{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;font-size:13px}
+table.ad th{text-align:left;font-family:var(--M);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-4);padding:12px 14px;border-bottom:1px solid var(--border)}
+table.ad td{padding:11px 14px;border-bottom:1px solid var(--border);color:var(--ink-2);vertical-align:middle}
+table.ad tr:hover td{background:var(--surface-2)}
+.pill{display:inline-block;padding:3px 9px;border-radius:999px;font-family:var(--M);font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+.pill.pro{background:var(--gold-soft);color:var(--gold)}.pill.free{background:var(--surface-3);color:var(--ink-3)}.pill.admin{background:var(--accent-soft);color:var(--accent)}
+.ad-act{background:none;border:1px solid var(--border-2);color:var(--ink-2);border-radius:8px;padding:5px 9px;font-size:11px;cursor:pointer;margin-right:4px}
+.ad-act:hover{border-color:var(--accent);color:#fff}
+.ad-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.ad-gallery figure{margin:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
+.ad-gallery img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover}
+.ad-gallery figcaption{padding:8px 10px;font-size:11px;color:var(--ink-3);line-height:1.4}
+.ad-gate{max-width:420px;margin:80px auto;text-align:center}
+.ad-gate input{width:100%;margin:12px 0}
+.ad-search{background:var(--surface-2);border:1px solid var(--border-2);color:var(--ink);border-radius:var(--r3);padding:9px 14px;font-size:13px;min-width:240px}
+.ad-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.ad-muted{color:var(--ink-4);font-size:12px}
+</style>
+</head>
+<body class="ps-body ps-site">
+<header class="st-bar">
+  <a class="ps-brand" href="/"><span class="ps-brand-word">Pattern<em>Studio</em></span><span class="ps-brand-by">Admin</span></a>
+  <nav class="st-nav"><a href="/">Open the studio</a><a href="#" id="signout" style="display:none">Sign out</a></nav>
+</header>
+<main class="ad-wrap" id="app"><div class="ad-gate"><div class="ps-eyebrow"><span>Admin</span></div><h1 class="ps-title" style="font-size:36px">Pattern Studio <em>back office</em></h1><p class="ps-lede">Sign in with the admin email to see users, projects, renders and revenue.</p>
+<form id="gateForm"><input type="email" id="gateEmail" class="mi" placeholder="admin email" required><button class="btn-next" style="width:100%">Email me a sign-in link →</button></form><div id="gateNote" class="ps-note"></div></div></main>
+<script src="/vendor/supabase.js"></script>
+<script>
+const SB = window.supabase.createClient('https://ydrlaucrzgnuvcepczuf.supabase.co','sb_publishable_p3rWLcUgdSqGFNYyp2QZ1Q_viNMdbmA',{db:{schema:'studio'},auth:{persistSession:true,detectSessionInUrl:true}});
+const $ = s => document.querySelector(s); const esc = s => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const money = c => '$'+(c/100).toFixed(0);
+let ME=null, TAB='users', CACHE={};
+$('#gateForm').onsubmit = async e => { e.preventDefault(); const r = await SB.auth.signInWithOtp({ email: $('#gateEmail').value.trim(), options: { emailRedirectTo: location.origin + '/admin' } }); $('#gateNote').textContent = r.error ? r.error.message : 'Check your inbox for the link.'; };
+$('#signout').onclick = async e => { e.preventDefault(); await SB.auth.signOut(); location.reload(); };
+async function boot(){ const s = await SB.auth.getSession(); ME = s.data.session?.user || null; if (ME) await load(); SB.auth.onAuthStateChange((_,sess)=>{ const was=ME?.id; ME=sess?.user||null; if (ME && ME.id!==was) load(); }); }
+async function load(){
+  const adm = await SB.rpc('is_admin'); if (adm.error || adm.data !== true) { $('#app').innerHTML = '<div class="ad-gate"><h1 class="ps-title" style="font-size:32px">Not an admin</h1><p class="ps-lede">'+esc(ME.email)+' does not have admin rights. <a href="#" onclick="SB.auth.signOut().then(()=>location.reload());return false">Sign out</a></p></div>'; return; }
+  $('#signout').style.display='';
+  const [ov, users, projects, renders, events] = await Promise.all([
+    SB.from('admin_overview').select('*').single(),
+    SB.from('profiles').select('*').order('created_at',{ascending:false}).limit(500),
+    SB.from('projects').select('id,user_id,name,garment,style,fabric,thumb,updated_at,created_at').order('updated_at',{ascending:false}).limit(300),
+    SB.from('renders').select('id,user_id,garment,style,fabric,model,setting,image_url,qa,model_used,created_at').order('created_at',{ascending:false}).limit(120),
+    SB.from('events').select('*').order('created_at',{ascending:false}).limit(100),
+  ]);
+  CACHE = { ov: ov.data||{}, users: users.data||[], projects: projects.data||[], renders: renders.data||[], events: events.data||[] };
+  CACHE.byUser = Object.fromEntries(CACHE.users.map(u=>[u.user_id,u]));
+  render();
+}
+function render(){
+  const o = CACHE.ov, pro = CACHE.users.filter(u=>u.plan==='pro' && (['active','trialing'].includes(u.subscription_status) || (u.current_period_end && new Date(u.current_period_end)>new Date()))).length;
+  $('#app').innerHTML = `
+  <div class="ad-bar"><div><div class="ps-eyebrow"><span>Back office</span></div><h1 class="ps-title" style="font-size:34px;margin:0">Pattern Studio <em>admin</em></h1></div><div class="ad-muted">Signed in as ${esc(ME.email)} · <a href="#" onclick="load();return false">refresh</a></div></div>
+  <div class="ad-kpis">
+    <div class="ad-kpi"><b>${o.users||0}</b><span>Accounts</span></div>
+    <div class="ad-kpi"><b>${pro}</b><span>Pro subscribers</span></div>
+    <div class="ad-kpi"><b>${money(pro*3500)}</b><span>MRR</span></div>
+    <div class="ad-kpi"><b>${o.projects||0}</b><span>Projects</span></div>
+    <div class="ad-kpi"><b>${o.renders||0}</b><span>Renders (${o.renders_7d||0} this week)</span></div>
+  </div>
+  <div class="ad-tabs">${['users','projects','renders','events'].map(t=>`<button class="${TAB===t?'on':''}" onclick="TAB='${t}';render()">${t[0].toUpperCase()+t.slice(1)}</button>`).join('')}<input class="ad-search" id="q" placeholder="filter by email, garment, style…" oninput="render()" value="${esc(window._q||'')}"></div>
+  <div id="panel"></div>`;
+  const q = ($('#q').value||'').toLowerCase(); window._q = q; const hit = s => !q || String(s||'').toLowerCase().includes(q);
+  const P = $('#panel');
+  if (TAB==='users') P.innerHTML = `<table class="ad"><tr><th>Email</th><th>Plan</th><th>Status</th><th>Renders</th><th>Projects</th><th>Joined</th><th>Actions</th></tr>${CACHE.users.filter(u=>hit(u.email)).map(u=>`<tr><td>${esc(u.email)}</td><td><span class="pill ${u.plan}">${u.plan}</span></td><td class="ad-muted">${esc(u.subscription_status||'—')}${u.current_period_end?' · to '+new Date(u.current_period_end).toLocaleDateString():''}</td><td>${u.renders_used}/${u.plan==='free'?u.renders_free_limit:'∞'}</td><td>${CACHE.projects.filter(p=>p.user_id===u.user_id).length}</td><td class="ad-muted">${new Date(u.created_at).toLocaleDateString()}</td><td>${u.plan==='free'?`<button class="ad-act" onclick="setPlan('${u.user_id}','pro')">Comp Pro</button><button class="ad-act" onclick="addRenders('${u.user_id}')">+5 renders</button>`:u.plan==='pro'?`<button class="ad-act" onclick="setPlan('${u.user_id}','free')">Set free</button>`:''}${u.stripe_customer_id?`<a class="ad-act" href="https://dashboard.stripe.com/customers/${u.stripe_customer_id}" target="_blank">Stripe</a>`:''}</td></tr>`).join('')}</table>`;
+  if (TAB==='projects') P.innerHTML = `<table class="ad"><tr><th></th><th>Project</th><th>Owner</th><th>Garment · Style</th><th>Fabric</th><th>Updated</th></tr>${CACHE.projects.filter(p=>hit(p.name+p.garment+p.style+(CACHE.byUser[p.user_id]||{}).email)).map(p=>`<tr><td>${p.thumb?`<img src="${p.thumb}" style="width:36px;height:48px;object-fit:cover;border-radius:4px">`:''}</td><td>${esc(p.name)}</td><td class="ad-muted">${esc((CACHE.byUser[p.user_id]||{}).email||p.user_id)}</td><td>${esc(p.garment)} · ${esc(p.style)}</td><td class="ad-muted">${esc(p.fabric||'')}</td><td class="ad-muted">${new Date(p.updated_at).toLocaleString()}</td></tr>`).join('')}</table>`;
+  if (TAB==='renders') P.innerHTML = `<div class="ad-gallery">${CACHE.renders.filter(r=>hit(r.garment+r.style+r.fabric+(CACHE.byUser[r.user_id]||{}).email)).map(r=>`<figure>${r.image_url?`<img src="${r.image_url}" loading="lazy">`:'<div style="aspect-ratio:3/4;background:var(--surface-2)"></div>'}<figcaption><b>${esc(r.garment)}</b> · ${esc(r.style)}<br>${esc(r.fabric||'')}<br><span class="ad-muted">${esc(r.model||'')} · ${esc((CACHE.byUser[r.user_id]||{}).email||'')}<br>${new Date(r.created_at).toLocaleString()} · ${esc((r.model_used||'').replace('gemini-',''))}${r.qa&&r.qa.ok===false?' · <span style="color:var(--danger)">QA fail</span>':''}</span></figcaption></figure>`).join('')}</div>`;
+  if (TAB==='events') P.innerHTML = `<table class="ad"><tr><th>When</th><th>Kind</th><th>User</th><th>Payload</th></tr>${CACHE.events.map(e=>`<tr><td class="ad-muted">${new Date(e.created_at).toLocaleString()}</td><td>${esc(e.kind)}</td><td class="ad-muted">${esc((CACHE.byUser[e.user_id]||{}).email||e.user_id||'')}</td><td class="ad-muted" style="font-family:var(--M);font-size:11px">${esc(JSON.stringify(e.payload||{})).slice(0,120)}</td></tr>`).join('')}</table>`;
+}
+async function setPlan(uid, plan){ const r = await SB.from('profiles').update({ plan, subscription_status: plan==='pro'?'comped':null, current_period_end: plan==='pro'? new Date(Date.now()+365*864e5).toISOString() : null }).eq('user_id', uid); if (r.error) alert(r.error.message); else load(); }
+async function addRenders(uid){ const u = CACHE.byUser[uid]; const r = await SB.from('profiles').update({ renders_free_limit: (u.renders_free_limit||3)+5 }).eq('user_id', uid); if (r.error) alert(r.error.message); else load(); }
+boot();
+</script>
+</body>
+</html>

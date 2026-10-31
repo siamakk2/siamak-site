@@ -115,7 +115,8 @@ const html = `<!doctype html>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://studio.siamakconsulting.com/#app","name":"Pattern Studio","alternateName":"Pattern Studio by Blue Moon Fabrics","url":"https://studio.siamakconsulting.com/","applicationCategory":"DesignApplication","operatingSystem":"Web browser","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free browser-based custom sewing pattern maker: 24 garments, 90 design styles drafted from your own measurements, nesting, yardage, size runs, DXF/SVG/PNG export, designer croquis and photoreal renders on women's and men's models in the exact fabric.","featureList":"Parametric pattern drafting, 24 garment types, 90 design styles, size grading XS–3XL, auto-nesting, yardage calculator, DXF/SVG/PNG export, designer croquis, photoreal garment render, men's and women's models, live fabric catalogue","publisher":{"@type":"Organization","name":"Siamak Kalhor Consulting","url":"https://siamakconsulting.com"},"provider":{"@type":"Organization","name":"Blue Moon Fabrics","url":"https://bluemoonfabrics.com"}},{"@type":"WebSite","@id":"https://studio.siamakconsulting.com/#site","url":"https://studio.siamakconsulting.com/","name":"Pattern Studio","publisher":{"@type":"Organization","name":"Siamak Kalhor Consulting"}}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="styles.css">
-<script>window.PS_CONFIG={mode:'standalone',shop:'https://bluemoonfabrics.com',fabricsApi:'/api/fabrics'};</script>
+<script>window.PS_CONFIG={mode:'standalone',shop:'https://bluemoonfabrics.com',fabricsApi:'/api/fabrics',supabaseUrl:'https://ydrlaucrzgnuvcepczuf.supabase.co',supabaseAnonKey:'sb_publishable_p3rWLcUgdSqGFNYyp2QZ1Q_viNMdbmA'};</script>
+<script src="vendor/supabase.js"></script>
 </head>
 <body class="ps-body">
 ${shell}
@@ -133,6 +134,8 @@ window.addEventListener('DOMContentLoaded',function(){
   window.pgStep=function(dir){ var cur=document.querySelector('.bpage.show'); var i=Math.max(0,ORDER.indexOf(cur?cur.id:'pg1')); var n=i+dir; if(n<0||n>=ORDER.length)return;
     if(dir===1&&ORDER[i]==='pgF'){ if(typeof generate==='function')generate(); return; }
     var tabs=document.querySelectorAll('.btab'); window.showTab(tabs[ALL.indexOf(ORDER[n])],ORDER[n]); };
+  if(/upgrade=1/.test(location.search)) setTimeout(function(){ if(typeof psShowPricing==='function') psShowPricing(); },600);
+  if(/upgraded=1/.test(location.search)) setTimeout(function(){ if(typeof toast_==='function') toast_('Welcome to Pro ✦ — unlimited renders and exports are on'); history.replaceState(null,'',location.pathname); },1200);
   var h=(location.hash||'').slice(1); if(/^pg(\d|F|U|P|H)$/.test(h)&&document.getElementById(h)){ var tabs=[].slice.call(document.querySelectorAll('.btab')); var i=['pg1','pg2','pg3','pg4','pgF','pg5','pg6','pg7','pg8','pgU','pgP','pgH'].indexOf(h); if(i>=0)window.showTab(tabs[i],h); }
 });
 </script>

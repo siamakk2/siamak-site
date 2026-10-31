@@ -20,8 +20,10 @@ PS.fabricsApi = PS.fabricsApi || '/api/fabrics';
 async function initSubscription() {
   if (PS.mode === 'standalone') {
     document.body.classList.add('bmf-app-active');
-    BMF_TIER = 'pro'; BMF_USER = { email: 'studio', tags: 'ps-pro', _standalone: true };
-    BMF_GENS_USED = 0; BMF_TIER_READY = true; if (BMF_TIER_RESOLVE) BMF_TIER_RESOLVE(BMF_TIER);
+    // tier is resolved by account.js (free until signed in as Pro); drafting itself is never gated
+    GATES.free = { gens: Infinity, dxf:false, svg:false, nest:true, grade:false, look:true, projects:3 };
+    BMF_TIER = 'free'; BMF_USER = null; BMF_GENS_USED = 0;
+    if (typeof psApplyTier === 'function') psApplyTier(); else { BMF_TIER_READY = true; if (BMF_TIER_RESOLVE) BMF_TIER_RESOLVE(BMF_TIER); }
     try { renderGenCounter(); } catch(e) {}
     var gc = document.getElementById('gen-counter'); if (gc) gc.style.display = 'none';
     return;
@@ -78,6 +80,7 @@ rep('print: no pollinations fallback', "    if (!imageUrl) {\n      var seed = M
 rep('advisor → gemini', "  fetch('https://text.pollinations.ai/' + encodeURIComponent(prompt))\n    .then(function(r){ return r.ok ? r.text() : Promise.reject(); })",
   "  fetch((PS.adviseApi||'/api/advise'), {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt})})\n    .then(function(r){ return r.ok ? r.json().then(function(j){return j.text;}) : Promise.reject(); })");
 e += fs.readFileSync(E('render-client.js'), 'utf8');
+e += fs.readFileSync(E('account.js'), 'utf8');
 log.push('render client appended');
 
 /* 7 ── theme: JS-built markup uses tokens (CSS declarations only; SVG art & canvas colours untouched) */

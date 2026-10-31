@@ -52,7 +52,7 @@ function layout({ path: p, title, description, h1, kicker, lede, body, jsonld = 
 <header class="st-bar">
   <a class="ps-brand" href="/"><span class="ps-brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" width="34" height="34"><defs><linearGradient id="psMarkS" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff2d87"/><stop offset="1" stop-color="#9b6bff"/></linearGradient></defs><path d="M8 32 L20 6 L32 32 Z" fill="none" stroke="url(#psMarkS)" stroke-width="2.2" stroke-linejoin="round"/><path d="M13 24 Q20 20 27 24" fill="none" stroke="#e2c275" stroke-width="1.6"/><circle cx="20" cy="6" r="2.2" fill="#e2c275"/></svg></span><span class="ps-brand-word">Pattern<em>Studio</em></span></a>
   <nav class="st-nav">
-    <a href="/how-it-works">How it works</a><a href="/garments">Garments</a><a href="/cosplay">Cosplay</a><a href="/designers">Designers</a><a href="/faq">FAQ</a>
+    <a href="/how-it-works">How it works</a><a href="/garments">Garments</a><a href="/cosplay">Cosplay</a><a href="/designers">Designers</a><a href="/pricing">Pricing</a><a href="/faq">FAQ</a>
     <a class="st-cta" href="/#pg1">Open the studio &rarr;</a>
   </nav>
 </header>
@@ -66,7 +66,7 @@ function layout({ path: p, title, description, h1, kicker, lede, body, jsonld = 
 </main>
 <footer class="ps-foot st-foot">
   <span class="ps-brand-word">Pattern<em>Studio</em></span>
-  <nav><a href="/how-it-works">How it works</a> · <a href="/garments">24 garments</a> · <a href="/cosplay">Cosplay</a> · <a href="/designers">Designers</a> · <a href="/faq">FAQ</a> · <a href="/about">About</a></nav>
+  <nav><a href="/how-it-works">How it works</a> · <a href="/garments">24 garments</a> · <a href="/cosplay">Cosplay</a> · <a href="/designers">Designers</a> · <a href="/pricing">Pricing</a> · <a href="/faq">FAQ</a> · <a href="/about">About</a></nav>
   <span>Fabrics &amp; checkout by <a href="https://bluemoonfabrics.com" target="_blank" rel="noopener">Blue Moon Fabrics</a> · built by <a href="https://siamakconsulting.com" target="_blank" rel="noopener">Siamak Kalhor Consulting</a></span>
 </footer>
 </body>
@@ -150,6 +150,24 @@ page({ path: '/designers', title: 'Pattern Studio for fashion designers, seamstr
     ${card('Projects', 'Save designs, come back, duplicate, iterate. Projects live in your browser; cloud accounts are next.')}
     ${card('Fabric in the loop', 'The catalogue is live inventory. Yardage goes straight to a Blue Moon Fabrics cart.')}
   </div>${cta('Open the studio →')}` });
+
+/* ── Pricing ── */
+page({ path: '/pricing', title: 'Pattern Studio pricing — free to draft, $35/month for Pro', kicker: 'Pricing',
+  description: 'Draft patterns, see the croquis and three photoreal renders free. Pattern Studio Pro is $35/month: unlimited renders on women\u2019s and men\u2019s models, DXF and SVG export, size runs XS\u20133XL and unlimited cloud projects. Cancel anytime.',
+  h1: 'Free to draft. <em>$35 a month</em> to produce.', lede: 'Everything a working designer, seamstress or cosplayer needs to go from idea to cutting table \u2014 one flat price, cancel anytime.',
+  body: `<div class="st-grid st-pricing">
+    <div class="st-card st-plan"><div class="st-plan-name">Free</div><div class="st-plan-price">$0</div><ul><li>All ${G.length} garments, ${STYLE_COUNT} styles</li><li>Drafting from your measurements, auto-nesting, yardage</li><li>Designer croquis &amp; spec sheet</li><li><b>3 photoreal renders</b></li><li>PNG export</li><li>3 projects on this device</li></ul><p class="st-cta-row" style="margin-top:14px"><a class="btn-back st-btn" href="/#pg1">Start free</a></p></div>
+    <div class="st-card st-plan st-plan-pro"><div class="st-plan-name">Pro</div><div class="st-plan-price">$35<span>/month</span></div><ul><li><b>Unlimited photoreal renders</b> \u2014 5 women\u2019s + 5 men\u2019s models, studio, runway, beach, cosplay booth</li><li><b>DXF export</b> for cutters, plotters and factories</li><li><b>SVG export</b> for Illustrator / Clo / Inkscape</li><li><b>Size runs XS\u20133XL</b> with per-size yardage</li><li><b>Unlimited cloud projects</b>, synced across devices</li><li>Everything in Free</li></ul><p class="st-cta-row" style="margin-top:14px"><a class="btn-next st-btn" href="/?upgrade=1#pg1">Go Pro \u2014 $35/month</a></p><div class="st-muted" style="margin-top:10px">Billed monthly by card via Stripe. Cancel any time from Manage billing.</div></div>
+  </div>
+  <h2 class="st-h2">Questions</h2>
+  <div class="st-faq">
+    <details class="faq"><summary>Can I try before paying?</summary><p>Yes \u2014 draft any garment, see the croquis and three photoreal renders on the free plan. Pro only adds exports, size runs, unlimited renders and cloud projects.</p></details>
+    <details class="faq"><summary>Do I own the patterns?</summary><p>Yes. Everything you draft and export is yours to sew, sell or commission.</p></details>
+    <details class="faq"><summary>How do I cancel?</summary><p>Open your account menu \u2192 Manage billing \u2192 Cancel. You keep Pro until the end of the paid month.</p></details>
+    <details class="faq"><summary>Is fabric included?</summary><p>No \u2014 fabric is ordered separately from Blue Moon Fabrics; the studio adds the right yardage to their cart.</p></details>
+  </div>`,
+  jsonld: [{ '@context': 'https://schema.org', '@type': 'Product', name: 'Pattern Studio Pro', description: 'Unlimited photoreal renders, DXF/SVG export, size runs, cloud projects.', brand: { '@type': 'Brand', name: NAME }, offers: { '@type': 'Offer', price: '35.00', priceCurrency: 'USD', url: SITE + '/pricing', availability: 'https://schema.org/InStock', priceSpecification: { '@type': 'UnitPriceSpecification', price: '35.00', priceCurrency: 'USD', billingDuration: 'P1M' } } }] });
+fs.copyFileSync(path.join(root, 'engine', 'admin.html'), P('admin.html'));
 
 /* ── FAQ ── */
 const FAQ = [

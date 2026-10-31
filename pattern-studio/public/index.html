@@ -17,8 +17,9 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/icon-180.png"><link rel="manifest" href="/manifest.json">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://studio.siamakconsulting.com/#app","name":"Pattern Studio","alternateName":"Pattern Studio by Blue Moon Fabrics","url":"https://studio.siamakconsulting.com/","applicationCategory":"DesignApplication","operatingSystem":"Web browser","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free browser-based custom sewing pattern maker: 24 garments, 90 design styles drafted from your own measurements, nesting, yardage, size runs, DXF/SVG/PNG export, designer croquis and photoreal renders on women's and men's models in the exact fabric.","featureList":"Parametric pattern drafting, 24 garment types, 90 design styles, size grading XS–3XL, auto-nesting, yardage calculator, DXF/SVG/PNG export, designer croquis, photoreal garment render, men's and women's models, live fabric catalogue","publisher":{"@type":"Organization","name":"Siamak Kalhor Consulting","url":"https://siamakconsulting.com"},"provider":{"@type":"Organization","name":"Blue Moon Fabrics","url":"https://bluemoonfabrics.com"}},{"@type":"WebSite","@id":"https://studio.siamakconsulting.com/#site","url":"https://studio.siamakconsulting.com/","name":"Pattern Studio","publisher":{"@type":"Organization","name":"Siamak Kalhor Consulting"}}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="styles.css?v=afa672ed">
-<script>window.PS_CONFIG={mode:'standalone',shop:'https://bluemoonfabrics.com',fabricsApi:'/api/fabrics'};</script>
+<link rel="stylesheet" href="styles.css?v=94cd68e2">
+<script>window.PS_CONFIG={mode:'standalone',shop:'https://bluemoonfabrics.com',fabricsApi:'/api/fabrics',supabaseUrl:'https://ydrlaucrzgnuvcepczuf.supabase.co',supabaseAnonKey:'sb_publishable_p3rWLcUgdSqGFNYyp2QZ1Q_viNMdbmA'};</script>
+<script src="vendor/supabase.js"></script>
 </head>
 <body class="ps-body">
 <div id="bmf-root">
@@ -44,7 +45,7 @@
     <h1 class="ps-title">Sketch it. <em>Draft it.</em> Wear it.</h1>
     <p class="ps-lede">Choose a silhouette, enter your measurements, pick the fabric &mdash; get a graded, cut-ready pattern and a designer croquis in seconds.</p>
     <div class="ps-stats"><span><b>24</b> garments</span><span><b>90</b> styles</span><span><b>DXF</b> · SVG · PNG</span><span><b>XS&ndash;3XL</b> size runs</span></div>
-    <nav class="ps-links"><a href="/how-it-works">How it works</a><a href="/garments">All garments</a><a href="/cosplay">Cosplay</a><a href="/designers">Designers</a><a href="/faq">FAQ</a></nav>
+    <nav class="ps-links"><a href="/how-it-works">How it works</a><a href="/garments">All garments</a><a href="/cosplay">Cosplay</a><a href="/designers">Designers</a><a href="/pricing">Pricing</a><a href="/faq">FAQ</a></nav>
     </div>
   </div>
   <div id="gen-counter" hidden>
@@ -549,7 +550,7 @@
   <span id="bmfPageLabel">Step 1 of 5 — Choose Garment</span>
   <button type="button" onclick="pgStep(1)">Next &rarr;</button>
 </div>
-<script src="engine.js?v=5a386d38" defer></script>
+<script src="engine.js?v=032077f1" defer></script>
 <script src="hero3d.js?v=80d5f91d" defer></script>
 <script>
 // Pattern Studio shell glue: compact the hero off step 1, keep the sticky nav in sync, deep-link tabs (#pg5 etc.)
@@ -561,6 +562,8 @@ window.addEventListener('DOMContentLoaded',function(){
   window.pgStep=function(dir){ var cur=document.querySelector('.bpage.show'); var i=Math.max(0,ORDER.indexOf(cur?cur.id:'pg1')); var n=i+dir; if(n<0||n>=ORDER.length)return;
     if(dir===1&&ORDER[i]==='pgF'){ if(typeof generate==='function')generate(); return; }
     var tabs=document.querySelectorAll('.btab'); window.showTab(tabs[ALL.indexOf(ORDER[n])],ORDER[n]); };
+  if(/upgrade=1/.test(location.search)) setTimeout(function(){ if(typeof psShowPricing==='function') psShowPricing(); },600);
+  if(/upgraded=1/.test(location.search)) setTimeout(function(){ if(typeof toast_==='function') toast_('Welcome to Pro ✦ — unlimited renders and exports are on'); history.replaceState(null,'',location.pathname); },1200);
   var h=(location.hash||'').slice(1); if(/^pg(d|F|U|P|H)$/.test(h)&&document.getElementById(h)){ var tabs=[].slice.call(document.querySelectorAll('.btab')); var i=['pg1','pg2','pg3','pg4','pgF','pg5','pg6','pg7','pg8','pgU','pgP','pgH'].indexOf(h); if(i>=0)window.showTab(tabs[i],h); }
 });
 </script>

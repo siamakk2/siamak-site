@@ -30,3 +30,10 @@ Never hand-edit `public/` or `engine/engine.js`; change the sources and rebuild.
 
 ## 3D
 `engine/hero3d.js` draws the couture dress form in the hero with self-hosted three.js (`public/vendor/three.min.js`, r128): recolours to the picked fabric, switches to a men's form with the Woman/Man toggle, follows the pointer, pauses off-screen. Garment and design cards tilt in 3D on hover.
+
+## Accounts, projects, billing
+- Supabase project **fabric-erp** (ydrlaucrzgnuvcepczuf), schema `studio`: profiles, projects, renders, events; RPCs `ensure_profile`, `consume_render`, `is_admin`; view `admin_overview`. Admin = siamakk2@gmail.com (or plan='admin').
+- Client: `engine/account.js` — magic-link sign-in, unified local+cloud projects, free-tier gates (3 renders, PNG, 3 local projects), Pro = unlimited renders, DXF/SVG, size runs, cloud projects. Anonymous visitors get 1 render.
+- Billing: `api/checkout.js` (Stripe Checkout, auto-creates product/price `pattern_studio_pro_monthly` at `STRIPE_PRICE_CENTS`, default 3500), `api/portal.js`; Supabase Edge Function `stripe-webhook` updates `studio.profiles` (secrets STRIPE_WEBHOOK_SECRET, STRIPE_SECRET_KEY). Vercel env: STRIPE_SECRET_KEY.
+- Admin: `/admin` (engine/admin.html) — KPIs, users (comp Pro, +5 renders, Stripe link), projects, renders gallery, events.
+- Tests: `test/account.js`.
