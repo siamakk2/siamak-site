@@ -136,7 +136,7 @@ process=dict(label="How advisory works",h2="From first call to standing cadence"
 fit=dict(good=["Owners and executives facing AI decisions without an in-house expert","Firms receiving AI pitches from vendors and agencies they can't evaluate","Regulated or confidential work (legal, medical, financial) that needs a policy first","Boards that want a clear, independent read on AI risk and opportunity"],
          bad=["Teams that only need hands-on build capacity; see <a href=\"/ai-agents\">AI agents</a> or <a href=\"/ai-automation\">automation</a>","Anyone wanting an advisor to sign off on a decision already made","Organisations looking for a full-time employee","Requests for legal advice; I work alongside your counsel, not instead of them"]),
 proof=dict(label="Why my advice is grounded",h2="I advise on what I've built",
-  cards=[("14 products","AI-native products shipped","S.C.A.L.E., Orchamind, AisleBird, ResBizAI, Textile Wizard and more, designed, coded and launched end to end.","/portfolio"),
+  cards=[("15 products","AI software products shipped","S.C.A.L.E., Orchamind, AisleBird, ResBizAI, Textile Wizard and more, designed, coded and launched end to end.","/portfolio"),
          ("Legal AI","Your Legal Brain","Built for confidential, regulated work: 24/7 intake under attorney supervision, designed around compliance from day one.","/ai-for-law-firms"),
          ("Voice AI","The AI Advisor","My own voice and video advisor in 20 languages: proof that I know what these systems can and can't do in front of real customers.","/ai-advisor"),
          ("40 years","Marketing leadership","Four decades of fractional CMO and growth work, which is where the judgment about vendors, budgets and people comes from.","/about-us")]),
