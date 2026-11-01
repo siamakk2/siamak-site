@@ -2,6 +2,16 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/\"/ask/\"",
+      "destination": "/ask",
+      "permanent": true
+    },
+    {
+      "source": "/%22/ask/%22",
+      "destination": "/ask",
+      "permanent": true
+    },
+    {
       "source": "/",
       "has": [
         {
