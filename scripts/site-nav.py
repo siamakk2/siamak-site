@@ -86,7 +86,7 @@ MENU = [
         ("Ask", [
             ("/faq", "Ask Siamak (FAQ)"),
             ("/ask", "Ask My AI"),
-            ("/ai-advisor", "AI Advisor, 20 Languages"),
+            ("/ai-advisor", "AI Advisor, 17 Languages"),
         ]),
         ("The S.C.A.L.E. Method", [
             ("/growth-framework", "S.C.A.L.E. Framework"),

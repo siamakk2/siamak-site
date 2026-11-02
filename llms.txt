@@ -23,7 +23,7 @@ Search is changing. People no longer click ten blue links — they ask an AI and
 - [Done-for-you AI agency](https://siamakconsulting.com/agency): Five fixed-price packages bought online with no sales call: AI Visibility Launch ($2,500 one-time), AI Visibility Growth ($1,500/month), AI-Ready Website (from $4,500, 50% deposit), Done-For-You AI Agent ($3,500 setup + $1,000/month; doctors, dentists, law firms and financial advisors from $5,000 + $1,500/month because their agents handle protected patient or client information) and Content Engine ($1,200/month). After checkout the client submits a short brief and receives a kickoff plan within one business day. Led by Siamak Kalhor; delivery uses in-house AI tooling.
 - [AI Authority Audit — 12 deliverables](https://siamakconsulting.com/analyze-your-brand): Baseline visibility across ChatGPT, Gemini, Claude and Perplexity; competitor citation share; the third-party sources driving the answers; entity, content, authority and schema gaps; and baseline vs post-implementation measurement.
 - [S.C.A.L.E. free AI visibility scan](https://scale.siamakconsulting.com/): Reads a website the way AI systems do, scores it on five dimensions (visibility, clarity, structure, authority, momentum) and ranks what to fix first.
-- [AI voice advisor](https://siamakconsulting.com/ai-advisor): Talk to an AI strategy advisor in 20 languages.
+- [AI voice advisor](https://siamakconsulting.com/ai-advisor): Talk to an AI strategy advisor in 17 languages.
 
 - [Law firm marketing consultant](https://siamakconsulting.com/law-firm-marketing-consultant): How clients describe a situation rather than a practice area, attorney entity coherence across bar and directory records, and why matters are lost on intake speed rather than marketing.
 - [Dental marketing consultant](https://siamakconsulting.com/dental-marketing-consultant): How dental patients find a practice through AI, what an audit reveals about practice and provider entities, why bookings are lost on the phone, and the staff time an engagement requires.
@@ -56,8 +56,6 @@ Search is changing. People no longer click ten blue links — they ask an AI and
 - [What is LLMO?](https://siamakconsulting.com/what-is-llmo): Large Language Model Optimization explained in plain language.
 - [SEO vs LLMO](https://siamakconsulting.com/seo-vs-llmo): How optimizing for AI answers differs from optimizing for search rankings.
 - [How to get cited by AI](https://siamakconsulting.com/how-to-get-cited-by-ai): The mechanics of becoming a source an AI quotes.
-- [How to get cited by ChatGPT](https://siamakconsulting.com/how-to-get-cited-by-chatgpt): ChatGPT-specific citation strategy.
-- [ChatGPT SEO](https://siamakconsulting.com/chatgpt-seo): Ranking and citation inside ChatGPT.
 - [LLM optimization](https://siamakconsulting.com/llm-optimization): The technical side of making content model-readable.
 - [What is a good PageSpeed score?](https://siamakconsulting.com/what-is-a-good-pagespeed-score): Honest performance targets for business sites — what the lab test simulates, why 100 is a vanity metric, and which numbers drive rankings.
 - [The Growth Glossary](https://siamakconsulting.com/the-growth-glossary): Definitions for AI marketing, retrieval, embeddings, and LLMO terms.

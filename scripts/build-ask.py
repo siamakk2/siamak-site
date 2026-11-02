@@ -115,7 +115,7 @@ FAQ = [
     ("What is Siamak Kalhor's AI Advisor?", "It is a free voice AI assistant available at siamakconsulting.com/ask, trained on Siamak Kalhor's 40+ years of marketing and AI expertise. You talk to it out loud and it answers questions about AI marketing, LLMO (Large Language Model Optimization), and business growth."),
     ("What can I ask the AI Advisor?", "Ask anything about making your brand visible to AI assistants like ChatGPT and Gemini, LLMO and SEO, marketing strategy, positioning, and how to use AI to grow a business. Example questions: 'What is LLMO?', 'How do I get cited by ChatGPT?', 'How can AI grow my business?'"),
     ("Is the AI Advisor free?", "Yes. The AI Advisor is completely free to use, available 24/7, with no sign-up required. Just visit siamakconsulting.com/ask and tap to start talking."),
-    ("What languages does the AI Advisor speak?", "The AI Advisor understands and responds in about 20 languages, so you can ask your questions in your own language."),
+    ("What languages does the AI Advisor speak?", "The AI Advisor understands and responds in 17 languages, so you can ask your questions in your own language."),
     ("Who created the AI Advisor?", "It was created by Siamak Kalhor, an AI marketing consultant and LLMO strategist in Los Angeles with 40+ years of experience and creator of the AI products Orchamind, AisleBird, and ResBizAI."),
 ]
 
@@ -177,7 +177,7 @@ MAIN = """<main id="main">
       </div>
     </div>
     <ul>
-      <li><b>VOICE</b>Answers calls and questions in about 20 languages</li>
+      <li><b>VOICE</b>Answers calls and questions in 17 languages</li>
       <li><b>BOOKS</b>Checks your calendar and schedules the appointment</li>
       <li><b>HANDS OFF</b>Knows when to pass the conversation to you</li>
       <li><b>24/7</b>Never misses a lead after hours</li>
@@ -279,6 +279,6 @@ s = s.replace('<script src="/assets/hero3d.js?v=6" defer></script>\n', '')
 s = re.sub(r'<script id="ask-ring">.*?</script>\n?', '', s, flags=re.S)
 s = s.replace('<script src="/share.js" defer></script>', RING + '\n  <script src="/share.js" defer></script>', 1)
 # 6. head copy for promotion
-s = re.sub(r'<meta name="description" content="[^"]*"/>', '<meta name="description" content="Talk to Siamak Kalhor\'s free AI Advisor: a voice assistant trained on 40+ years of marketing and AI strategy. Ask about AI visibility, LLMO and growth, 24/7, in about 20 languages."/>', s, count=1)
+s = re.sub(r'<meta name="description" content="[^"]*"/>', '<meta name="description" content="Talk to Siamak Kalhor\'s free AI Advisor: a voice assistant trained on 40+ years of marketing and AI strategy. Ask about AI visibility, LLMO and growth, 24/7, in 17 languages."/>', s, count=1)
 open(P, "w", encoding="utf-8").write(s)
 print("ask rebuilt")
