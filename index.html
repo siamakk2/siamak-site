@@ -1111,7 +1111,7 @@ people search now.</p>
 
 
 <!-- AI Advisor: loads only on click — no auto-open box on page load -->
-<style>elevenlabs-convai{z-index:2147483000!important;}
+<style>
 /* Homepage social proof — the audit correctly flagged that credibility rested
    entirely on first-person copy with no third-party corroboration. */
 .hero-proof{margin:18px 0 22px;font-family:var(--body);font-size:.95rem;line-height:1.6}
@@ -1134,37 +1134,7 @@ people search now.</p>
 <script>
 (function(){
   var loaded=false;
-  function openAdvisor(){
-    // The advisor is a third-party embed (ElevenLabs), so it must not load until
-    // the visitor has allowed the AI assistant category. Gating the static script
-    // tag was not enough here: this page builds the tag in JS at click time.
-    var _c = window.SKConsent && window.SKConsent.get();
-    if (window.SKConsent && (!_c || !_c.functional)) {
-      window.addEventListener('sk:consent', function h(e){
-        if (e.detail && e.detail.functional) {
-          window.removeEventListener('sk:consent', h);
-          openAdvisor();
-        }
-      });
-      window.SKConsent.open();
-      return;
-    }
-    if(!loaded){
-      loaded=true;
-      var el=document.createElement('elevenlabs-convai');
-      el.setAttribute('agent-id','agent_1501ksnmsv1dea1rmb2ed6t8rzwe');
-      document.body.appendChild(el);
-      var s=document.createElement('script');
-      s.src='https://unpkg.com/@elevenlabs/convai-widget-embed';
-      s.async=true; s.type='text/javascript';
-      document.body.appendChild(s);
-      var b=document.getElementById('talkBtn'); if(b) b.style.display='none';
-      try{ gtag('event','ai_advisor_open',{event_category:'engagement'}); }catch(e){}
-    } else {
-      var w=document.querySelector('elevenlabs-convai');
-      if(w && w.shadowRoot){ var btn=w.shadowRoot.querySelector('button,[role="button"]'); if(btn){ try{ btn.click(); }catch(e){} } }
-    }
-  }
+  function openAdvisor(){ if(window.SKAgent) window.SKAgent.open(); }
   var tb=document.getElementById('talkBtn');
   if(tb) tb.addEventListener('click', openAdvisor);
 })();
@@ -1316,5 +1286,6 @@ people search now.</p>
 <script defer src="/robot.js"></script>
 <script src="/assets/depth3d.js?v=2" defer></script>
 <script src="/assets/form-guard.js?v=1" defer></script>
+<script defer src="/assets/sk-agent.js"></script>
 </body>
 </html>

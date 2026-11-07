@@ -119,7 +119,7 @@ h1{font-family:var(--display);font-size:clamp(38px,6.4vw,64px);font-weight:700;l
 .footer{border-top:1px solid var(--line);margin-top:80px;padding:36px 24px 110px;text-align:center}
 .footer p{font-family:var(--mono);font-size:12.5px;color:#7a8597}
 .footer a{color:var(--muted)}.footer a:hover{color:var(--cyan)}
-elevenlabs-convai{z-index:2147483000!important;}
+
 @media(max-width:860px){.qs,.steps,.grid,.app-grid{grid-template-columns:1fr}.band{grid-template-columns:1fr;padding:28px}.nav-r .hide-m{display:none}.sub{font-size:17px}}
 @media(prefers-reduced-motion:reduce){.orb,.eyebrow i{animation:none}}
 :focus-visible{outline:2px solid #2dd4ff;outline-offset:2px;border-radius:3px}.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:10px 16px;font:600 14px/1.2 system-ui,sans-serif;text-decoration:none}.skip-link:focus{left:8px;top:8px}
@@ -260,41 +260,7 @@ elevenlabs-convai{z-index:2147483000!important;}
       if(tries>60) clearInterval(iv);
     },200);
   }
-  function openAdvisor(){
-    // Third-party embed (ElevenLabs): must not load until the visitor has
-    // allowed the AI assistant category. The static-tag gating does not cover
-    // this page, which builds the script tag in JS at click time.
-    var _c = window.SKConsent && window.SKConsent.get();
-    if (window.SKConsent && (!_c || !_c.functional)) {
-      window.addEventListener('sk:consent', function h(e){
-        if (e.detail && e.detail.functional) {
-          window.removeEventListener('sk:consent', h);
-          openAdvisor();
-        }
-      });
-      window.SKConsent.open();
-      return;
-    }
-    var orb=document.getElementById('orb'); if(orb) orb.classList.add('active');
-    if(!loaded){
-      loaded=true;
-      // inject the widget on demand — it opens itself
-      var el=document.createElement('elevenlabs-convai');
-      el.setAttribute('agent-id','agent_1501ksnmsv1dea1rmb2ed6t8rzwe');
-      document.body.appendChild(el);
-      var s=document.createElement('script');
-      s.src='https://unpkg.com/@elevenlabs/convai-widget-embed';
-      s.async=true; s.type='text/javascript';
-      document.body.appendChild(s);
-      var b=document.getElementById('talkBtn'); if(b) b.style.display='none';
-      track();
-      enhanceHangup();
-    } else {
-      // already loaded — toggle it open/closed via its own control
-      var w=document.querySelector('elevenlabs-convai');
-      if(w && w.shadowRoot){ var btn=w.shadowRoot.querySelector('button,[role="button"]'); if(btn){ try{ btn.click(); }catch(e){} } }
-    }
-  }
+  function openAdvisor(){ if(window.SKAgent) window.SKAgent.open(); }
   var orb=document.getElementById('orb');
   if(orb){
     orb.addEventListener('click', openAdvisor);
@@ -356,4 +322,5 @@ elevenlabs-convai{z-index:2147483000!important;}
 <script defer src="/consent.js"></script>
 <script defer src="/robot.js"></script>
 <script src="/assets/form-guard.js?v=1" defer></script>
+<script defer src="/assets/sk-agent.js"></script>
 </body></html>

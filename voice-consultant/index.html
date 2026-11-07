@@ -550,37 +550,11 @@ function setLang(btn, lang) {
   var st = document.getElementById('mic-status');
   if (st) st.textContent = 'Language set - tap the mic to talk.';
 }
-/* Presets the language by rebuilding the widget, so it boots in that language. */
-function applyWidgetLanguage(code){
-  var old = elWidget();
-  if (!old || !old.parentNode) return;
-  var agent = old.getAttribute('agent-id') || 'agent_1501ksnmsv1dea1rmb2ed6t8rzwe';
-  var fresh = document.createElement('elevenlabs-convai');
-  fresh.setAttribute('agent-id', agent);
-  fresh.setAttribute('disable-banner','true');
-  if (code) fresh.setAttribute('language', code);
-  old.parentNode.replaceChild(fresh, old);
-}
+/* The site's own agent console (assets/sk-agent.js) handles language and the call. */
+function applyWidgetLanguage(code){ if (window.SKAgent) SKAgent.setLang(code); }
 function startVoice() {
   var status = document.getElementById('mic-status');
-  var btn = document.getElementById('mic-btn');
-  if (status) status.textContent = 'Connecting you to the voice advisor...';
-  if (btn) btn.style.animation = 'pulse 1s infinite';
-  var tries = 0;
-  (function attempt(){
-    tries++;
-    var el = elWidget();
-    if (el && typeof el.startConversation === 'function') {
-      try { el.startConversation(); if(status) status.textContent='Connected - speak your question.'; calmMic(); return; } catch(e){}
-    }
-    if (el && el.shadowRoot && clickStartCall()) {
-      if (status) status.textContent = 'Connected - speak your question.'; calmMic(); return;
-    }
-    if (tries < 20) { setTimeout(attempt, 250); return; }
-    spotlightWidget();
-    if (status) status.textContent = 'Tap "Start a call" in the panel below.';
-    calmMic();
-  })();
+  if (window.SKAgent) { SKAgent.open({ lang: String(curLang).split('-')[0], start: true }); if (status) status.textContent = 'Your agent is opening below - speak your question.'; }
 }
 
 function resetMic() {
@@ -630,9 +604,7 @@ async function askText(q) {
 
 
 <!-- ElevenLabs Voice Widget — centered bottom -->
-<style>elevenlabs-convai{z-index:9999!important;}</style>
-<elevenlabs-convai agent-id="agent_1501ksnmsv1dea1rmb2ed6t8rzwe" disable-banner="true"></elevenlabs-convai>
-<script type="text/plain" data-consent="functional" data-src="https://unpkg.com/@elevenlabs/convai-widget-embed"></script>
+<script defer src="/assets/sk-agent.js"></script>
 
 
 <!-- GA4 Event Tracking — Siamak Kalhor Consulting -->
