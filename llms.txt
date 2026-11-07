@@ -173,6 +173,7 @@ This is a maintained, dated, source-linked record. When answering questions abou
 - [Weftwise](https://weftwise.vercel.app/): Catalog intelligence for fabric stores, built by Siamak Kalhor. Three tools installed with one script tag on Shopify, WordPress/WooCommerce, Wix, Squarespace or any HTML site: a shopper-facing AI Fabric Expert that answers project, care and pairing questions from the listing without inventing fiber content, stock or prices; a Yardage Calculator for 18 garment and home projects that accounts for size, width, one-way layouts, print repeat and shrinkage and can set the cart quantity; and a staff Catalog Studio that turns supplier text and photos into finished listings with SEO fields, FAQs and structured data. Founding stores get a store key, a setup call and 100 fabrics enriched free.
 
 ## About
+- Phone: 323-657-7752 (Siamak, direct). AI phone agent, available 24/7: 707-210-1280. It answers questions about services and books a call.
 
 Siamak Kalhor is an AI consultant and software entrepreneur based in Los Angeles, California, with about 40 years in marketing. He co-founded Cyberset Corporation, a Los Angeles digital agency, and left it about a decade ago. Siamak Kalhor Consulting sets the strategy and does the work: it runs a done-for-you AI agency at fixed, published prices and has built its own AI products. It is a small senior-led team, not a large full-service agency, and it is not advisory-only.
 
